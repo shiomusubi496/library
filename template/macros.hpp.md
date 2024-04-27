@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/2D/AreaofUnionofRectangles.hpp
     title: data-struct/2D/AreaofUnionofRectangles.hpp
   - icon: ':heavy_check_mark:'
@@ -164,6 +164,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/wavelet/FullyIndexableDictionary.hpp
     title: "FullyIndexableDictionary(\u5B8C\u5099\u8F9E\u66F8)"
+  - icon: ':heavy_check_mark:'
+    path: data-struct/wavelet/SegmentTreeWM.hpp
+    title: WaveletMatrixPointAddRectangleSum.hpp
   - icon: ':heavy_check_mark:'
     path: data-struct/wavelet/WaveletMatrix.hpp
     title: WaveletMatrix
@@ -848,6 +851,9 @@ data:
     path: test/yosupo/convolution/min_plus_convolution_convex_arbitrary.test.cpp
     title: test/yosupo/convolution/min_plus_convolution_convex_arbitrary.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
+    title: test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
     title: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -874,6 +880,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/point_add_rectangle_sum-2DSegTree.test.cpp
     title: test/yosupo/data_structure/point_add_rectangle_sum-2DSegTree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/point_add_rectangle_sum-WM.test.cpp
+    title: test/yosupo/data_structure/point_add_rectangle_sum-WM.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/point_set_range_composite.test.cpp
     title: test/yosupo/data_structure/point_set_range_composite.test.cpp
@@ -1387,6 +1396,7 @@ data:
   - data-struct/cht/LiChaoTree.hpp
   - data-struct/cht/ConvexHullTrickAddMonotone.hpp
   - data-struct/wavelet/WaveletMatrixStruct.hpp
+  - data-struct/wavelet/SegmentTreeWM.hpp
   - data-struct/wavelet/WaveletMatrix.hpp
   - data-struct/wavelet/FullyIndexableDictionary.hpp
   - data-struct/wavelet/CumulativeSumWM.hpp
@@ -1537,6 +1547,7 @@ data:
   - test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
   - test/yosupo/data_structure/point_add_range_sum.test.cpp
   - test/yosupo/data_structure/rectangle_add_point_get.test.cpp
+  - test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
   - test/yosupo/data_structure/double_ended_priority_queue.test.cpp
   - test/yosupo/data_structure/range_affine_point_get.test.cpp
   - test/yosupo/data_structure/unionfind-Dynamic.test.cpp
@@ -1559,6 +1570,7 @@ data:
   - test/yosupo/data_structure/deque_operate_all_composite.test.cpp
   - test/yosupo/data_structure/static_range_frequency.test.cpp
   - test/yosupo/data_structure/range_set_range_composite.test.cpp
+  - test/yosupo/data_structure/point_add_rectangle_sum-WM.test.cpp
   - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
   - test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
   - test/yosupo/data_structure/persistent_queue-Array.test.cpp

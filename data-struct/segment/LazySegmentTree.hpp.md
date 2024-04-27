@@ -32,7 +32,7 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/2D/AreaofUnionofRectangles.hpp
     title: data-struct/2D/AreaofUnionofRectangles.hpp
   - icon: ':heavy_check_mark:'
@@ -54,6 +54,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_5_E-HLD.test.cpp
     title: test/aoj/GRL/GRL_5_E-HLD.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
+    title: test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/range_affine_range_sum.test.cpp
     title: test/yosupo/data_structure/range_affine_range_sum.test.cpp
@@ -779,6 +782,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/data_structure/range_affine_range_sum.test.cpp
+  - test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
   - test/yosupo/data_structure/range_set_range_composite.test.cpp
   - test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
   - test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp

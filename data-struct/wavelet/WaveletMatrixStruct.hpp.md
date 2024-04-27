@@ -38,7 +38,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/wavelet/CumulativeSumWM.hpp
     title: WaveletMatrixPointAddRectangleSum.hpp
+  - icon: ':heavy_check_mark:'
+    path: data-struct/wavelet/SegmentTreeWM.hpp
+    title: WaveletMatrixPointAddRectangleSum.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/point_add_rectangle_sum-WM.test.cpp
+    title: test/yosupo/data_structure/point_add_rectangle_sum-WM.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/rectangle_sum-WM.test.cpp
     title: test/yosupo/data_structure/rectangle_sum-WM.test.cpp
@@ -657,10 +663,12 @@ data:
   isVerificationFile: false
   path: data-struct/wavelet/WaveletMatrixStruct.hpp
   requiredBy:
+  - data-struct/wavelet/SegmentTreeWM.hpp
   - data-struct/wavelet/CumulativeSumWM.hpp
   timestamp: '2024-04-27 18:04:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/data_structure/point_add_rectangle_sum-WM.test.cpp
   - test/yosupo/data_structure/rectangle_sum-WM.test.cpp
 documentation_of: data-struct/wavelet/WaveletMatrixStruct.hpp
 layout: document

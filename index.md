@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: data-struct/2D
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/2D/AreaofUnionofRectangles.hpp
       title: data-struct/2D/AreaofUnionofRectangles.hpp
     - icon: ':heavy_check_mark:'
@@ -179,6 +179,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-struct/wavelet/FullyIndexableDictionary.hpp
       title: "FullyIndexableDictionary(\u5B8C\u5099\u8F9E\u66F8)"
+    - icon: ':heavy_check_mark:'
+      path: data-struct/wavelet/SegmentTreeWM.hpp
+      title: WaveletMatrixPointAddRectangleSum.hpp
     - icon: ':heavy_check_mark:'
       path: data-struct/wavelet/WaveletMatrix.hpp
       title: WaveletMatrix
@@ -925,7 +928,7 @@ data:
       title: test/yosupo/convolution/min_plus_convolution_convex_arbitrary.test.cpp
   - name: test/yosupo/data_structure
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
       title: test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
     - icon: ':heavy_check_mark:'
@@ -955,7 +958,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/point_add_rectangle_sum-2DSegTree.test.cpp
       title: test/yosupo/data_structure/point_add_rectangle_sum-2DSegTree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/point_add_rectangle_sum-WM.test.cpp
       title: test/yosupo/data_structure/point_add_rectangle_sum-WM.test.cpp
     - icon: ':heavy_check_mark:'

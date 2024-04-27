@@ -2,6 +2,15 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: data-struct/segment/SegmentTree.hpp
+    title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
+  - icon: ':heavy_check_mark:'
+    path: data-struct/wavelet/FullyIndexableDictionary.hpp
+    title: "FullyIndexableDictionary(\u5B8C\u5099\u8F9E\u66F8)"
+  - icon: ':heavy_check_mark:'
+    path: data-struct/wavelet/WaveletMatrixStruct.hpp
+    title: data-struct/wavelet/WaveletMatrixStruct.hpp
+  - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -31,90 +40,20 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: data-struct/2D/AreaofUnionofRectangles.hpp
-    title: data-struct/2D/AreaofUnionofRectangles.hpp
-  - icon: ':heavy_check_mark:'
-    path: data-struct/2D/StaticRectangleAddRectangleSum.hpp
-    title: data-struct/2D/StaticRectangleAddRectangleSum.hpp
-  - icon: ':heavy_check_mark:'
-    path: math/DiscreteLogarithm.hpp
-    title: "Discrete Logarithm(\u96E2\u6563\u5BFE\u6570)"
-  - icon: ':heavy_check_mark:'
-    path: math/convolution/BitwiseAndConvolution.hpp
-    title: BitwiseAndConvolution
-  - icon: ':heavy_check_mark:'
-    path: math/convolution/BitwiseOrConvolution.hpp
-    title: BitwiseOrConvolution
-  - icon: ':heavy_check_mark:'
-    path: math/convolution/BitwiseXorConvolution.hpp
-    title: BitwiseXorConvolution
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
-    title: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/convolution/bitwise_and_convolution.test.cpp
-    title: test/yosupo/convolution/bitwise_and_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/convolution/bitwise_xor_convolution.test.cpp
-    title: test/yosupo/convolution/bitwise_xor_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/convolution/gcd_convolution.test.cpp
-    title: test/yosupo/convolution/gcd_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/convolution/lcm_convolution.test.cpp
-    title: test/yosupo/convolution/lcm_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
-    title: test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
-    title: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SplayTree.test.cpp
-    title: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SplayTree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/point_set_range_composite.test.cpp
-    title: test/yosupo/data_structure/point_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
-    title: test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
-    title: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/range_affine_point_get.test.cpp
-    title: test/yosupo/data_structure/range_affine_point_get.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
-    title: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/range_affine_range_sum.test.cpp
-    title: test/yosupo/data_structure/range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/range_set_range_composite.test.cpp
-    title: test/yosupo/data_structure/range_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
-    title: test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-    title: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
-    title: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/math/discrete_logarithm_mod.test.cpp
-    title: test/yosupo/math/discrete_logarithm_mod.test.cpp
+    path: test/yosupo/data_structure/point_add_rectangle_sum-WM.test.cpp
+    title: test/yosupo/data_structure/point_add_rectangle_sum-WM.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    _deprecated_at_docs: docs/data-struct/wavelet/WaveletMatrixPointAddRectangleSum.md
+    document_title: WaveletMatrixPointAddRectangleSum.hpp
     links: []
-  bundledCode: "#line 2 \"other/monoid2.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
-    #include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
+  bundledCode: "#line 2 \"data-struct/wavelet/SegmentTreeWM.hpp\"\n\n#line 2 \"other/template.hpp\"\
+    \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
     \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define OVERLOAD5(a,\
     \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
     \                                                           \\\n    for (ll REP_COUNTER_##c\
@@ -617,74 +556,135 @@ data:
     \ not defined\");\n        return M::get_inv(a);\n    }\n};\n\ntemplate<class\
     \ E_> struct MakeAction {\n    using M = E_;\n    using E = E_;\n    using T =\
     \ typename E_::value_type;\n    static T op(const T& a, const T& b) { return E_::op(b,\
-    \ a); }\n};\n\n} // namespace Monoid\n#line 5 \"other/monoid2.hpp\"\n\nnamespace\
-    \ Monoid {\n\ntemplate<class T> struct Product {\n    using value_type = T;\n\
-    \    static T op(const T& a, const T& b) { return a * b; }\n    static T id()\
-    \ { return T{1}; }\n    static T inv(const T& a, const T& b) { return a / b; }\n\
-    \    static T get_inv(const T& a) { return T{1} / a; }\n};\n\ntemplate<class T>\
-    \ struct Composite {\n    using value_type = std::pair<T, T>;\n    static value_type\
-    \ op(const value_type& a, const value_type& b) {\n        return {b.first * a.first,\
-    \ b.first * a.second + b.second};\n    }\n    static value_type id() { return\
-    \ {T{1}, T{0}}; }\n    static value_type get_inv(const value_type& a) {\n    \
-    \    return {T{1} / a.first, -a.second / a.first};\n    }\n    static value_type\
-    \ inv(const value_type& a, const value_type& b) {\n        return op(a, get_inv(b));\n\
-    \    }\n};\n\ntemplate<class T> struct GCD {\n    using value_type = T;\n    static\
-    \ T op(T a, T b) { return gcd(a, b); }\n    static T id() { return 0; }\n};\n\
-    template<class T> struct LCM {\n    using value_type = T;\n    static T op(T a,\
-    \ T b) { return lcm(a, b); }\n    static T id() { return 1; }\n};\n\ntemplate<class\
-    \ T> struct AddAssign {\n    using value_type = std::pair<bool, T>; // false:\
-    \ add, true: assign\n    static value_type op(const value_type& a, const value_type&\
-    \ b) {\n        if (b.first) return b;\n        return {a.first, a.second + b.second};\n\
-    \    }\n    static value_type id() { return {false, T{0}}; }\n};\n\ntemplate<class\
-    \ T, T max_value = infinity<T>::max> struct MinCount {\n    using value_type =\
-    \ std::pair<T, ll>;\n    static value_type op(const value_type& a, const value_type&\
-    \ b) {\n        if (a.first < b.first) return a;\n        if (a.first > b.first)\
-    \ return b;\n        return {a.first, a.second + b.second};\n    }\n    static\
-    \ value_type id() { return {max_value, 0}; }\n};\n\n\ntemplate<class T> struct\
-    \ AffineSum {\n    using M = Sum<T>;\n    using E = Composite<T>;\n    using U\
-    \ = typename E::value_type;\n    static T mul_op(const U& a, int b, const T& c)\
-    \ {\n        return a.first * c + a.second * b;\n    }\n};\n\ntemplate<class T>\
-    \ struct AddAssignSum {\n    using M = Sum<T>;\n    using E = AddAssign<T>;\n\
-    \    using U = typename E::value_type;\n    static T mul_op(const U& a, int b,\
-    \ const T& c) {\n        if (a.first) return a.second * b;\n        return c +\
-    \ a.second * b;\n    }\n};\n\ntemplate<class T> struct AddMinCount {\n    using\
-    \ M = MinCount<T>;\n    using E = Sum<T>;\n    using U = typename M::value_type;\n\
-    \    static U op(const T& a, const U& b) { return {a + b.first, b.second}; }\n\
-    };\n\n} // namespace Monoid\n"
-  code: "#pragma once\n\n#include \"template.hpp\"\n#include \"monoid.hpp\"\n\nnamespace\
-    \ Monoid {\n\ntemplate<class T> struct Product {\n    using value_type = T;\n\
-    \    static T op(const T& a, const T& b) { return a * b; }\n    static T id()\
-    \ { return T{1}; }\n    static T inv(const T& a, const T& b) { return a / b; }\n\
-    \    static T get_inv(const T& a) { return T{1} / a; }\n};\n\ntemplate<class T>\
-    \ struct Composite {\n    using value_type = std::pair<T, T>;\n    static value_type\
-    \ op(const value_type& a, const value_type& b) {\n        return {b.first * a.first,\
-    \ b.first * a.second + b.second};\n    }\n    static value_type id() { return\
-    \ {T{1}, T{0}}; }\n    static value_type get_inv(const value_type& a) {\n    \
-    \    return {T{1} / a.first, -a.second / a.first};\n    }\n    static value_type\
-    \ inv(const value_type& a, const value_type& b) {\n        return op(a, get_inv(b));\n\
-    \    }\n};\n\ntemplate<class T> struct GCD {\n    using value_type = T;\n    static\
-    \ T op(T a, T b) { return gcd(a, b); }\n    static T id() { return 0; }\n};\n\
-    template<class T> struct LCM {\n    using value_type = T;\n    static T op(T a,\
-    \ T b) { return lcm(a, b); }\n    static T id() { return 1; }\n};\n\ntemplate<class\
-    \ T> struct AddAssign {\n    using value_type = std::pair<bool, T>; // false:\
-    \ add, true: assign\n    static value_type op(const value_type& a, const value_type&\
-    \ b) {\n        if (b.first) return b;\n        return {a.first, a.second + b.second};\n\
-    \    }\n    static value_type id() { return {false, T{0}}; }\n};\n\ntemplate<class\
-    \ T, T max_value = infinity<T>::max> struct MinCount {\n    using value_type =\
-    \ std::pair<T, ll>;\n    static value_type op(const value_type& a, const value_type&\
-    \ b) {\n        if (a.first < b.first) return a;\n        if (a.first > b.first)\
-    \ return b;\n        return {a.first, a.second + b.second};\n    }\n    static\
-    \ value_type id() { return {max_value, 0}; }\n};\n\n\ntemplate<class T> struct\
-    \ AffineSum {\n    using M = Sum<T>;\n    using E = Composite<T>;\n    using U\
-    \ = typename E::value_type;\n    static T mul_op(const U& a, int b, const T& c)\
-    \ {\n        return a.first * c + a.second * b;\n    }\n};\n\ntemplate<class T>\
-    \ struct AddAssignSum {\n    using M = Sum<T>;\n    using E = AddAssign<T>;\n\
-    \    using U = typename E::value_type;\n    static T mul_op(const U& a, int b,\
-    \ const T& c) {\n        if (a.first) return a.second * b;\n        return c +\
-    \ a.second * b;\n    }\n};\n\ntemplate<class T> struct AddMinCount {\n    using\
-    \ M = MinCount<T>;\n    using E = Sum<T>;\n    using U = typename M::value_type;\n\
-    \    static U op(const T& a, const U& b) { return {a + b.first, b.second}; }\n\
-    };\n\n} // namespace Monoid\n"
+    \ a); }\n};\n\n} // namespace Monoid\n#line 2 \"data-struct/wavelet/WaveletMatrixStruct.hpp\"\
+    \n\n#line 2 \"data-struct/wavelet/FullyIndexableDictionary.hpp\"\n\n#line 4 \"\
+    data-struct/wavelet/FullyIndexableDictionary.hpp\"\n\nclass FullyIndexableDictionary\
+    \ {\nprivate:\n    int n, b;\n    std::vector<unsigned int> bit, sm;\n\npublic:\n\
+    \    FullyIndexableDictionary() = default;\n    FullyIndexableDictionary(int n)\
+    \ : n(n), b((n >> 5) + 1), bit(b), sm(b) {}\n    void set(int i) { bit[i >> 5]\
+    \ |= 1U << (i & 31); }\n    bool get(int i) const { return (bool)((bit[i >> 5]\
+    \ >> (i & 31)) & 1); }\n    bool operator[](int i) const { return get(i); }\n\
+    \    void build() {\n        rep (i, b - 1) sm[i + 1] = sm[i] + popcnt(bit[i]);\n\
+    \    }\n    int rank(int i) const {\n        return sm[i >> 5] + popcnt(bit[i\
+    \ >> 5] & ((1U << (i & 31)) - 1));\n    }\n    int rank(bool x, int i) const {\
+    \ return x ? rank(i) : i - rank(i); }\n    int select(bool x, int i) const {\n\
+    \        int l = 0, r = n;\n        while (r - l > 1) {\n            int m = (l\
+    \ + r) >> 1;\n            if (rank(x, m) <= i) l = m;\n            else r = m;\n\
+    \        }\n        return l;\n    }\n};\n\n/**\n * @brief FullyIndexableDictionary(\u5B8C\
+    \u5099\u8F9E\u66F8)\n * @docs docs/data-struct/wavelet/FullyIndexableDictionary.md\n\
+    \ */\n#line 6 \"data-struct/wavelet/WaveletMatrixStruct.hpp\"\n\nclass WaveletMatrixStruct\
+    \ {\nprivate:\n    int n, m, h;\n    compressor<PLL> points;\n    compressor<ll>\
+    \ ps;\n    std::vector<FullyIndexableDictionary> dat;\n    std::vector<int> mid;\n\
+    \npublic:\n    template<class F>\n    void init(F&& f, const std::vector<ll>&\
+    \ xs, const std::vector<ll>& ys) {\n        rep (i, xs.size()) points.emplace_back(xs[i],\
+    \ ys[i]);\n        points.build();\n        ps.push(ys);\n        ps.build();\n\
+    \        n = points.size();\n        m = ps.size();\n        h = bitop::ceil_log2(m\
+    \ + 1);\n        std::vector<int> v(n);\n        rep (i, n) v[i] = ps.get(points[i].second);\n\
+    \        dat.assign(h, FullyIndexableDictionary(n));\n        mid.resize(h);\n\
+    \        std::vector<int> lv(n), rv(n);\n        rrep (i, h) {\n            int\
+    \ l = 0, r = 0;\n            rep (j, n) {\n                if ((v[j] >> i) & 1)\
+    \ {\n                    dat[i].set(j);\n                    rv[r++] = v[j];\n\
+    \                }\n                else {\n                    lv[l++] = v[j];\n\
+    \                }\n            }\n            dat[i].build();\n            mid[i]\
+    \ = l;\n            v.swap(lv);\n            rep (j, r) v[l + j] = rv[j];\n  \
+    \      }\n        f(h, n);\n    }\n    template<class F, class M>\n    void init(F&&\
+    \ f, const std::vector<ll>& xs, const std::vector<ll>& ys,\n              const\
+    \ std::vector<typename M::value_type>& zs) {\n        using T = typename M::value_type;\n\
+    \        init([](int, int) {}, xs, ys);\n        std::vector<std::vector<T>> v(h,\
+    \ std::vector<T>(n, M::id()));\n        rep (i, xs.size()) {\n            apply(xs[i],\
+    \ ys[i],\n                  [&](int j, int k) { v[j][k] = M::op(v[j][k], zs[i]);\
+    \ });\n        }\n        f(v);\n    }\n    template<class Upd> void apply(ll\
+    \ x, ll y, Upd&& upd) {\n        int k = points.get(PLL{x, y});\n        int v\
+    \ = ps.get(y);\n        rrep (i, h) {\n            if ((v >> i) & 1) k = dat[i].rank(true,\
+    \ k) + mid[i];\n            else k = dat[i].rank(false, k);\n            upd(i,\
+    \ k);\n        }\n    }\n\nprivate:\n    template<class Mrg> void prod(int l,\
+    \ int r, int upper, Mrg&& mrg) const {\n        rrep (i, h) {\n            const\
+    \ int l0 = dat[i].rank(false, l);\n            const int r0 = dat[i].rank(false,\
+    \ r);\n            if ((upper >> i) & 1) {\n                mrg(i, l0, r0);\n\
+    \                l = l - l0 + mid[i];\n                r = r - r0 + mid[i];\n\
+    \            }\n            else {\n                l = l0;\n                r\
+    \ = r0;\n            }\n        }\n    }\n\npublic:\n    template<class Mrg, class\
+    \ Mrg2>\n    void prod(ll xl, ll xr, ll yl, ll yr, Mrg&& mrg, Mrg2&& mrg2) const\
+    \ {\n        int l = points.lower_bound(PLL{xl, infinity<ll>::mvalue});\n    \
+    \    int r = points.lower_bound(PLL{xr, infinity<ll>::mvalue});\n        int y\
+    \ = ps.lower_bound(yl);\n        int z = ps.lower_bound(yr);\n        prod(l,\
+    \ r, z, mrg);\n        prod(l, r, y, mrg2);\n    }\n};\n#line 2 \"data-struct/segment/SegmentTree.hpp\"\
+    \n\n#line 5 \"data-struct/segment/SegmentTree.hpp\"\n\ntemplate<class M> class\
+    \ SegmentTree {\nprivate:\n    using T = typename M::value_type;\n    int n, ori;\n\
+    \    std::vector<T> data;\n\npublic:\n    SegmentTree() : SegmentTree(0) {}\n\
+    \    SegmentTree(int n) : SegmentTree(std::vector<T>(n, M::id())) {}\n    SegmentTree(int\
+    \ n, const T& v) : SegmentTree(std::vector<T>(n, v)) {}\n    SegmentTree(const\
+    \ std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>& v) {\n\
+    \        ori = v.size();\n        n = 1 << bitop::ceil_log2(ori);\n        data.assign(n\
+    \ << 1, M::id());\n        rep (i, ori) data[n + i] = v[i];\n        rrep (i,\
+    \ n, 1) data[i] = M::op(data[i << 1], data[i << 1 ^ 1]);\n    }\n    template<class\
+    \ Upd> void update(int k, const Upd& upd) {\n        assert(0 <= k && k < ori);\n\
+    \        k += n;\n        data[k] = upd(data[k]);\n        while (k >>= 1) data[k]\
+    \ = M::op(data[k << 1], data[k << 1 ^ 1]);\n    }\n    void set(int k, T x) {\n\
+    \        update(k, [&](T) -> T { return x; });\n    }\n    void apply(int k, T\
+    \ x) {\n        update(k, [&](T a) -> T { return M::op(a, x); });\n    }\n   \
+    \ T prod(int l, int r) const {\n        assert(0 <= l && l <= r && r <= ori);\n\
+    \        l += n;\n        r += n;\n        T lsm = M::id(), rsm = M::id();\n \
+    \       while (l < r) {\n            if (l & 1) lsm = M::op(lsm, data[l++]);\n\
+    \            if (r & 1) rsm = M::op(data[--r], rsm);\n            l >>= 1;\n \
+    \           r >>= 1;\n        }\n        return M::op(lsm, rsm);\n    }\n    T\
+    \ all_prod() const { return data[1]; }\n    T get(int k) const { return data[k\
+    \ + n]; }\n    template<class Cond> int max_right(int l, const Cond& cond) const\
+    \ {\n        assert(0 <= l && l <= ori);\n        assert(cond(M::id()));\n   \
+    \     if (l == ori) return ori;\n        l += n;\n        T sm = M::id();\n  \
+    \      do {\n            while ((l & 1) == 0) l >>= 1;\n            if (!cond(M::op(sm,\
+    \ data[l]))) {\n                while (l < n) {\n                    l <<= 1;\n\
+    \                    if (cond(M::op(sm, data[l]))) sm = M::op(sm, data[l++]);\n\
+    \                }\n                return l - n;\n            }\n           \
+    \ sm = M::op(sm, data[l++]);\n        } while ((l & -l) != l);\n        return\
+    \ ori;\n    }\n    template<class Cond> int min_left(int r, const Cond& cond)\
+    \ const {\n        assert(0 <= r && r <= ori);\n        assert(cond(M::id()));\n\
+    \        if (r == 0) return 0;\n        r += n;\n        T sm = M::id();\n   \
+    \     do {\n            --r;\n            while ((r & 1) && r > 1) r >>= 1;\n\
+    \            if (!cond(M::op(data[r], sm))) {\n                while (r < n) {\n\
+    \                    r = r << 1 ^ 1;\n                    if (cond(M::op(data[r],\
+    \ sm))) sm = M::op(data[r--], sm);\n                }\n                return\
+    \ r + 1 - n;\n            }\n            sm = M::op(data[r], sm);\n        } while\
+    \ ((r & -r) != r);\n        return 0;\n    }\n};\n\n// verified with test/aoj/DSL/DSL_2_A-RMQ.test.cpp\n\
+    template<class T, int id = -1>\nusing RangeMinimumQuery = SegmentTree<Monoid::Min<T,\
+    \ id>>;\n\ntemplate<class T, int id = -1>\nusing RangeMaximumQuery = SegmentTree<Monoid::Max<T,\
+    \ id>>;\n\n// verified with test/aoj/DSL/DSL_2_B-RSQ.test.cpp\ntemplate<class\
+    \ T> using RangeSumQuery = SegmentTree<Monoid::Sum<T>>;\n\n/**\n * @brief SegmentTree(\u30BB\
+    \u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/data-struct/segment/SegmentTree.md\n\
+    \ */\n#line 7 \"data-struct/wavelet/SegmentTreeWM.hpp\"\n\ntemplate<class M> class\
+    \ SegmentTreeWM {\nprivate:\n    using T = typename M::value_type;\n    std::vector<SegmentTree<M>>\
+    \ seg;\n    WaveletMatrixStruct wms;\n\npublic:\n    SegmentTreeWM(const std::vector<ll>&\
+    \ xs, const std::vector<ll>& ys) {\n        wms.init([&](int h, int n) { seg.assign(h,\
+    \ SegmentTree<M>(n)); }, xs,\n                 ys);\n    }\n    SegmentTreeWM(const\
+    \ std::vector<ll>& xs, const std::vector<ll>& ys,\n                  const std::vector<typename\
+    \ M::value_type>& v) {\n        auto f = [&](const std::vector<std::vector<T>>&\
+    \ dat) {\n            seg.resize(dat.size());\n            rep (i, dat.size())\
+    \ seg[i] = SegmentTree<M>(dat[i]);\n        };\n        wms.init<decltype((f)),\
+    \ M>(f, xs, ys, v);\n    }\n\n    void apply(ll x, ll y, T v) {\n        wms.apply(x,\
+    \ y, [&](int j, int k) { seg[j].apply(k, v); });\n    }\n    T prod(ll l, ll r,\
+    \ ll u, ll d) {\n        T res = M::id();\n        wms.prod(\n            l, r,\
+    \ u, d,\n            [&](int k, int a, int b) { res = M::op(res, seg[k].prod(a,\
+    \ b)); },\n            [&](int k, int a, int b) { res = M::inv(res, seg[k].prod(a,\
+    \ b)); });\n        return res;\n    }\n};\n\n/**\n * @brief WaveletMatrixPointAddRectangleSum.hpp\n\
+    \ * @docs docs/data-struct/wavelet/WaveletMatrixPointAddRectangleSum.md\n */\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\
+    \n#include \"WaveletMatrixStruct.hpp\"\n#include \"../segment/SegmentTree.hpp\"\
+    \n\ntemplate<class M> class SegmentTreeWM {\nprivate:\n    using T = typename\
+    \ M::value_type;\n    std::vector<SegmentTree<M>> seg;\n    WaveletMatrixStruct\
+    \ wms;\n\npublic:\n    SegmentTreeWM(const std::vector<ll>& xs, const std::vector<ll>&\
+    \ ys) {\n        wms.init([&](int h, int n) { seg.assign(h, SegmentTree<M>(n));\
+    \ }, xs,\n                 ys);\n    }\n    SegmentTreeWM(const std::vector<ll>&\
+    \ xs, const std::vector<ll>& ys,\n                  const std::vector<typename\
+    \ M::value_type>& v) {\n        auto f = [&](const std::vector<std::vector<T>>&\
+    \ dat) {\n            seg.resize(dat.size());\n            rep (i, dat.size())\
+    \ seg[i] = SegmentTree<M>(dat[i]);\n        };\n        wms.init<decltype((f)),\
+    \ M>(f, xs, ys, v);\n    }\n\n    void apply(ll x, ll y, T v) {\n        wms.apply(x,\
+    \ y, [&](int j, int k) { seg[j].apply(k, v); });\n    }\n    T prod(ll l, ll r,\
+    \ ll u, ll d) {\n        T res = M::id();\n        wms.prod(\n            l, r,\
+    \ u, d,\n            [&](int k, int a, int b) { res = M::op(res, seg[k].prod(a,\
+    \ b)); },\n            [&](int k, int a, int b) { res = M::inv(res, seg[k].prod(a,\
+    \ b)); });\n        return res;\n    }\n};\n\n/**\n * @brief WaveletMatrixPointAddRectangleSum.hpp\n\
+    \ * @docs docs/data-struct/wavelet/WaveletMatrixPointAddRectangleSum.md\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -696,41 +696,29 @@ data:
   - template/func.hpp
   - template/util.hpp
   - other/monoid.hpp
+  - data-struct/wavelet/WaveletMatrixStruct.hpp
+  - data-struct/wavelet/FullyIndexableDictionary.hpp
+  - data-struct/segment/SegmentTree.hpp
   isVerificationFile: false
-  path: other/monoid2.hpp
-  requiredBy:
-  - data-struct/2D/AreaofUnionofRectangles.hpp
-  - data-struct/2D/StaticRectangleAddRectangleSum.hpp
-  - math/convolution/BitwiseXorConvolution.hpp
-  - math/convolution/BitwiseOrConvolution.hpp
-  - math/convolution/BitwiseAndConvolution.hpp
-  - math/DiscreteLogarithm.hpp
-  timestamp: '2024-01-20 14:55:31+09:00'
+  path: data-struct/wavelet/SegmentTreeWM.hpp
+  requiredBy: []
+  timestamp: '2024-04-27 18:45:03+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/convolution/bitwise_and_convolution.test.cpp
-  - test/yosupo/convolution/lcm_convolution.test.cpp
-  - test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
-  - test/yosupo/convolution/bitwise_xor_convolution.test.cpp
-  - test/yosupo/convolution/gcd_convolution.test.cpp
-  - test/yosupo/data_structure/range_affine_range_sum.test.cpp
-  - test/yosupo/data_structure/point_set_range_composite.test.cpp
-  - test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
-  - test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
-  - test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
-  - test/yosupo/data_structure/range_affine_point_get.test.cpp
-  - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
-  - test/yosupo/data_structure/deque_operate_all_composite.test.cpp
-  - test/yosupo/data_structure/range_set_range_composite.test.cpp
-  - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-  - test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
-  - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SplayTree.test.cpp
-  - test/yosupo/data_structure/queue_operate_all_composite.test.cpp
-  - test/yosupo/math/discrete_logarithm_mod.test.cpp
-documentation_of: other/monoid2.hpp
+  - test/yosupo/data_structure/point_add_rectangle_sum-WM.test.cpp
+documentation_of: data-struct/wavelet/SegmentTreeWM.hpp
 layout: document
 redirect_from:
-- /library/other/monoid2.hpp
-- /library/other/monoid2.hpp.html
-title: other/monoid2.hpp
+- /library/data-struct/wavelet/SegmentTreeWM.hpp
+- /library/data-struct/wavelet/SegmentTreeWM.hpp.html
+title: WaveletMatrixPointAddRectangleSum.hpp
 ---
+## 概要
+
+二次元平面上の一点加算矩形取得クエリを扱える。ただし加算する点はあらかじめ決めとかないと動かない。
+
+- `WaveletMatrixPointAddRectangleSum()` : コンストラクタ。 $\Theta(1)$
+- `void add_point(T x, T y)` : 点 $(x, y)$ を追加する。 $\Theta(1)$
+- `void build()` : 構築する。以降 `add_point` を呼び出してはいけない。 $\Theta(n \log n)$
+- `void apply(T x, T y, U z)` : 点 $(x, y)$ に $z$ を加算する。 $\Theta(\log n \log m)$
+- `U prod(T xl, T xr, T yl, T yr)` : $\sum_{xl \leq x < xr \land yl \leq y < yr} (x, y)$ を求める。 $\Theta(\log n \log m)$

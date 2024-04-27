@@ -42,6 +42,9 @@ data:
     path: data-struct/segment/RangeSortQuery.hpp
     title: RangeSortQuery
   - icon: ':heavy_check_mark:'
+    path: data-struct/wavelet/SegmentTreeWM.hpp
+    title: WaveletMatrixPointAddRectangleSum.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
   - icon: ':heavy_check_mark:'
@@ -66,6 +69,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/point_add_rectangle_sum-2DSegTree.test.cpp
     title: test/yosupo/data_structure/point_add_rectangle_sum-2DSegTree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/point_add_rectangle_sum-WM.test.cpp
+    title: test/yosupo/data_structure/point_add_rectangle_sum-WM.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/point_set_range_composite.test.cpp
     title: test/yosupo/data_structure/point_set_range_composite.test.cpp
@@ -703,6 +709,7 @@ data:
   requiredBy:
   - graph/tree/PMORMQLCA.hpp
   - graph/tree/EulerTour.hpp
+  - data-struct/wavelet/SegmentTreeWM.hpp
   - data-struct/2D/SegmentTree2D.hpp
   - data-struct/segment/RangeSortQuery.hpp
   - data-struct/segment/LCARMQ.hpp
@@ -713,6 +720,7 @@ data:
   - test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
   - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
   - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
+  - test/yosupo/data_structure/point_add_rectangle_sum-WM.test.cpp
   - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
   - test/yosupo/data_structure/point_add_rectangle_sum-2DSegTree.test.cpp
   - test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
