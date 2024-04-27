@@ -2,32 +2,26 @@
 
 #include "../../other/template.hpp"
 #include "../../other/monoid.hpp"
-#include "../segment/SegmentTree.hpp"
 #include "FullyIndexableDictionary.hpp"
 
-template<class T, class M = Monoid::Sum<ll>, class BIT = SegmentTree<M>>
-class WaveletMatrixPointAddRectangleSum {
+class WaveletMatrixStruct {
 private:
-    using U = typename M::value_type;
     int n, m, h;
-    compressor<std::pair<T, T>> points;
-    compressor<T> ps;
+    compressor<PLL> points;
+    compressor<ll> ps;
     std::vector<FullyIndexableDictionary> dat;
-    std::vector<BIT> bit;
     std::vector<int> mid;
 
 public:
-    WaveletMatrixPointAddRectangleSum() = default;
-    void add_point(const T& x, const T& y) {
-        points.emplace_back(x, y);
-        ps.push_back(y);
-    }
-    void build() {
+    template<class F>
+    void init(F&& f, const std::vector<ll>& xs, const std::vector<ll>& ys) {
+        rep (i, xs.size()) points.emplace_back(xs[i], ys[i]);
         points.build();
+        ps.push(ys);
         ps.build();
         n = points.size();
         m = ps.size();
-        h = bitop::ceil_log2(m);
+        h = bitop::ceil_log2(m + 1);
         std::vector<int> v(n);
         rep (i, n) v[i] = ps.get(points[i].second);
         dat.assign(h, FullyIndexableDictionary(n));
@@ -49,35 +43,37 @@ public:
             v.swap(lv);
             rep (j, r) v[l + j] = rv[j];
         }
-        bit.assign(h, BIT(n));
+        f(h, n);
     }
-    void apply(const T& x, const T& y, const U& z) {
-        int k = points.get(std::pair<T, T>(x, y));
-        int v = ps.get(y);
-        rrep (i, h) {
-            if ((v >> i) & 1) k = dat[i].rank(true, k) + mid[i];
-            else k = dat[i].rank(false, k);
-            bit[i].apply(k, z);
+    template<class F, class M>
+    void init(F&& f, const std::vector<ll>& xs, const std::vector<ll>& ys,
+              const std::vector<typename M::value_type>& zs) {
+        using T = typename M::value_type;
+        init([](int, int) {}, xs, ys);
+        std::vector<std::vector<T>> v(h, std::vector<T>(n, M::id()));
+        rep (i, xs.size()) {
+            apply(xs[i], ys[i],
+                  [&](int j, int k) { v[j][k] = M::op(v[j][k], zs[i]); });
         }
+        f(v);
     }
-    void set(const T& x, const T& y, const U& z) {
-        int k = points.get(std::pair<T, T>(x, y));
+    template<class Upd> void apply(ll x, ll y, Upd&& upd) {
+        int k = points.get(PLL{x, y});
         int v = ps.get(y);
         rrep (i, h) {
             if ((v >> i) & 1) k = dat[i].rank(true, k) + mid[i];
             else k = dat[i].rank(false, k);
-            bit[i].set(k, z);
+            upd(i, k);
         }
     }
 
 private:
-    U prod(int l, int r, int upper) const {
-        T res = M::id();
+    template<class Mrg> void prod(int l, int r, int upper, Mrg&& mrg) const {
         rrep (i, h) {
             const int l0 = dat[i].rank(false, l);
             const int r0 = dat[i].rank(false, r);
             if ((upper >> i) & 1) {
-                res = M::op(res, bit[i].prod(l0, r0));
+                mrg(i, l0, r0);
                 l = l - l0 + mid[i];
                 r = r - r0 + mid[i];
             }
@@ -86,20 +82,16 @@ private:
                 r = r0;
             }
         }
-        return res;
     }
 
 public:
-    U prod(const T& xl, const T& xr, const T& yl, const T& yr) const {
-        int l = points.lower_bound(std::pair<T, T>(xl, infinity<T>::mvalue));
-        int r = points.lower_bound(std::pair<T, T>(xr, infinity<T>::mvalue));
+    template<class Mrg, class Mrg2>
+    void prod(ll xl, ll xr, ll yl, ll yr, Mrg&& mrg, Mrg2&& mrg2) const {
+        int l = points.lower_bound(PLL{xl, infinity<ll>::mvalue});
+        int r = points.lower_bound(PLL{xr, infinity<ll>::mvalue});
         int y = ps.lower_bound(yl);
         int z = ps.lower_bound(yr);
-        return M::inv(prod(l, r, z), prod(l, r, y));
+        prod(l, r, z, mrg);
+        prod(l, r, y, mrg2);
     }
 };
-
-/**
- * @brief WaveletMatrixPointAddRectangleSum.hpp
- * @docs docs/data-struct/wavelet/WaveletMatrixPointAddRectangleSum.md
- */

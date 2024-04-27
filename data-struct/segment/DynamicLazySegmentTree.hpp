@@ -84,7 +84,8 @@ private:
         if (l <= a && b <= r) return nd->val;
         eval(nd, a, b, t);
         ll m = (a + b) >> 1;
-        return M::op(prod(nd->l, a, m, t - 1, l, r), prod(nd->r, m, b, t - 1, l, r));
+        return M::op(prod(nd->l, a, m, t - 1, l, r),
+                     prod(nd->r, m, b, t - 1, l, r));
     }
     void apply(node_ptr& nd, ll a, ll b, int t, ll l, ll r, const U& x) {
         if (r <= a || b <= l) return;

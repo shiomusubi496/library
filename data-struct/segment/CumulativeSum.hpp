@@ -3,15 +3,15 @@
 #include "../../other/template.hpp"
 #include "../../other/monoid.hpp"
 
-template<class M> class CumulativeSumAnyOperation {
+template<class M, bool = Monoid::is_monoid<M>::value> class CumulativeSum {
 private:
     using T = typename M::value_type;
     int n;
     std::vector<T> data;
 
 public:
-    CumulativeSumAnyOperation() = default;
-    CumulativeSumAnyOperation(const std::vector<T>& v) { init(v); }
+    CumulativeSum() = default;
+    CumulativeSum(const std::vector<T>& v) { init(v); }
     void init(const std::vector<T>& v) {
         n = v.size();
         data.assign(n + 1, M::id());
@@ -29,7 +29,13 @@ public:
 };
 
 template<class T>
-using CumulativeSum = CumulativeSumAnyOperation<Monoid::Sum<T>>;
+class CumulativeSum<T, false> : public CumulativeSum<Monoid::Sum<T>> {
+private:
+    using Base = CumulativeSum<Monoid::Sum<T>>;
+
+public:
+    using Base::Base;
+};
 
 /**
  * @brief CumulativeSum(累積和)
