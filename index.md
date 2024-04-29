@@ -348,6 +348,9 @@ data:
       path: graph/tree/CartesianTree.hpp
       title: CartesianTree
     - icon: ':heavy_check_mark:'
+      path: graph/tree/ContourQuery.hpp
+      title: graph/tree/ContourQuery.hpp
+    - icon: ':heavy_check_mark:'
       path: graph/tree/DoublingLowestCommonAncestor.hpp
       title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
         \u308BLCA)"
@@ -1058,6 +1061,12 @@ data:
       path: test/yosupo/data_structure/vertex_add_path_sum.test.cpp
       title: test/yosupo/data_structure/vertex_add_path_sum.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
+      title: test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree.test.cpp
+      title: test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
       title: test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1066,6 +1075,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
       title: test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/data_structure/vertex_get_range_contour_add_on_tree.test.cpp
+      title: test/yosupo/data_structure/vertex_get_range_contour_add_on_tree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
       title: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp

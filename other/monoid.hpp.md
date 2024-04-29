@@ -330,6 +330,12 @@ data:
     path: test/yosupo/data_structure/vertex_add_path_sum.test.cpp
     title: test/yosupo/data_structure/vertex_add_path_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
+    title: test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree.test.cpp
+    title: test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
     title: test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -338,6 +344,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
     title: test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/vertex_get_range_contour_add_on_tree.test.cpp
+    title: test/yosupo/data_structure/vertex_get_range_contour_add_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
     title: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
@@ -1043,12 +1052,14 @@ data:
   - test/yosupo/data_structure/static_range_sum-CumulativeSum.test.cpp
   - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
   - test/yosupo/data_structure/range_kth_smallest-sqrt.test.cpp
+  - test/yosupo/data_structure/vertex_get_range_contour_add_on_tree.test.cpp
   - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
   - test/yosupo/data_structure/rectangle_sum-2DCum.test.cpp
   - test/yosupo/data_structure/static_range_inversions_query.test.cpp
   - test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp
   - test/yosupo/data_structure/range_kth_smallest-seg.test.cpp
   - test/yosupo/data_structure/range_chmin_chmax_add_range_sum.test.cpp
+  - test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
   - test/yosupo/data_structure/deque_operate_all_composite.test.cpp
   - test/yosupo/data_structure/range_set_range_composite.test.cpp
   - test/yosupo/data_structure/point_add_rectangle_sum-WM.test.cpp
@@ -1059,6 +1070,7 @@ data:
   - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SplayTree.test.cpp
   - test/yosupo/data_structure/rectangle_sum-WM.test.cpp
   - test/yosupo/data_structure/point_add_rectangle_sum-2DSegTree.test.cpp
+  - test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree.test.cpp
   - test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
   - test/yosupo/data_structure/vertex_add_path_sum.test.cpp
   - test/yosupo/data_structure/queue_operate_all_composite.test.cpp

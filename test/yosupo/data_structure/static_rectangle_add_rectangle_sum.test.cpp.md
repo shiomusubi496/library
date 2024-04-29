@@ -755,9 +755,10 @@ data:
     \n\ntemplate<class M, bool = Monoid::is_monoid<M>::value> class RAQBIT {\nprivate:\n\
     \    using T = typename M::value_type;\n    int n;\n    BinaryIndexedTree<M> bit;\n\
     \npublic:\n    RAQBIT(int n_) : n(n_), bit(n_) {}\n    void apply(int l, int r,\
-    \ T x) {\n        assert(0 <= l && l <= r && r <= n);\n        bit.apply(l, x);\n\
-    \        if (r != n) bit.apply(r, M::get_inv(x));\n    }\n    void apply(int k,\
-    \ T x) { apply(k, k + 1, x); }\n    T get(int k) const { return bit.prod(k); }\n\
+    \ T x) {\n        assert(0 <= l && l <= r && r <= n);\n        if (l == r) return;\n\
+    \        bit.apply(l, x);\n        if (r != n) bit.apply(r, M::get_inv(x));\n\
+    \    }\n    void apply(int k, T x) { apply(k, k + 1, x); }\n    T get(int k) const\
+    \ {\n        assert(0 <= k && k < n);\n        return bit.prod(k + 1);\n    }\n\
     \    void set(int k, T x) { apply(k, M::inv(x, get(k))); }\n};\n\ntemplate<class\
     \ T> class RAQBIT<T, false> : public RAQBIT<Monoid::Sum<T>> {\nprivate:\n    using\
     \ Base = RAQBIT<Monoid::Sum<T>>;\n\npublic:\n    using Base::Base;\n    void add(int\
@@ -830,7 +831,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-04-27 18:04:52+09:00'
+  timestamp: '2024-04-29 18:11:21+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp

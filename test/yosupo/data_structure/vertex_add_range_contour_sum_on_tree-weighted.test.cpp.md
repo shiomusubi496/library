@@ -2,6 +2,18 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: data-struct/segment/BinaryIndexedTree.hpp
+    title: BinaryIndexedTree(FenwickTree, BIT)
+  - icon: ':heavy_check_mark:'
+    path: graph/Graph.hpp
+    title: Graph-template
+  - icon: ':heavy_check_mark:'
+    path: graph/tree/ContourQuery.hpp
+    title: graph/tree/ContourQuery.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/tree/TreeCentroid.hpp
+    title: "TreeCentroid(\u6728\u306E\u91CD\u5FC3)"
+  - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -31,71 +43,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: data-struct/2D/StaticRectangleAddRectangleSum.hpp
-    title: data-struct/2D/StaticRectangleAddRectangleSum.hpp
-  - icon: ':heavy_check_mark:'
-    path: data-struct/segment/RAQBIT.hpp
-    title: BinaryIndexedTree(FenwickTree, BIT)
-  - icon: ':heavy_check_mark:'
-    path: data-struct/segment/StaticRangeCountDistinct.hpp
-    title: data-struct/segment/StaticRangeCountDistinct.hpp
-  - icon: ':heavy_check_mark:'
-    path: string/RollingHash.hpp
-    title: "RollingHash(\u30ED\u30EA\u30CF)"
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
-    title: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL/DSL_2_B-BIT.test.cpp
-    title: test/aoj/DSL/DSL_2_B-BIT.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-    title: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/point_add_range_sum.test.cpp
-    title: test/yosupo/data_structure/point_add_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/static_range_count_distinct.test.cpp
-    title: test/yosupo/data_structure/static_range_count_distinct.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/static_range_inversions_query.test.cpp
-    title: test/yosupo/data_structure/static_range_inversions_query.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
-    title: test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_add_path_sum.test.cpp
-    title: test/yosupo/data_structure/vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
-    title: test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree.test.cpp
-    title: test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
-    title: test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
-    title: test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
-    title: test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_get_range_contour_add_on_tree.test.cpp
-    title: test/yosupo/data_structure/vertex_get_range_contour_add_on_tree.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/data-struct/segment/BinaryIndexedTree.md
-    document_title: BinaryIndexedTree(FenwickTree, BIT)
-    links: []
-  bundledCode: "#line 2 \"data-struct/segment/BinaryIndexedTree.hpp\"\n\n#line 2 \"\
-    other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/vertex_add_range_contour_sum_on_tree
+    links:
+    - https://judge.yosupo.jp/problem/vertex_add_range_contour_sum_on_tree
+  bundledCode: "#line 1 \"test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree-weighted.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_range_contour_sum_on_tree\"\
+    \n#line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
     \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
     \ __LINE__\n#endif\n\n#define OVERLOAD5(a, b, c, d, e, ...) e\n#define REP1_0(b,\
     \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
@@ -509,22 +469,22 @@ data:
     \        return res;\n    }\n    void press(std::vector<T>& vec) const {\n   \
     \     assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
-    };\n#line 2 \"other/monoid.hpp\"\n\n#line 4 \"other/monoid.hpp\"\n\nnamespace\
-    \ Monoid {\n\ntemplate<class M, class = void>\nclass has_value_type : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_value_type<M, decltype((void)std::declval<typename\
-    \ M::value_type>())>\n    : public std::true_type {};\n\ntemplate<class M, class\
-    \ = void> class has_op : public std::false_type {};\ntemplate<class M>\nclass\
-    \ has_op<M, decltype((void)M::op)> : public std::true_type {};\n\ntemplate<class\
-    \ M, class = void> class has_id : public std::false_type {};\ntemplate<class M>\n\
-    class has_id<M, decltype((void)M::id)> : public std::true_type {};\n\ntemplate<class\
-    \ M, class = void> class has_inv : public std::false_type {};\ntemplate<class\
-    \ M>\nclass has_inv<M, decltype((void)M::inv)> : public std::true_type {};\n\n\
-    template<class M, class = void> class has_get_inv : public std::false_type {};\n\
-    template<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_init : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init(0, 0))> : public\
-    \ std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op : public\
-    \ std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
+    };\n#line 2 \"data-struct/segment/BinaryIndexedTree.hpp\"\n\n#line 2 \"other/monoid.hpp\"\
+    \n\n#line 4 \"other/monoid.hpp\"\n\nnamespace Monoid {\n\ntemplate<class M, class\
+    \ = void>\nclass has_value_type : public std::false_type {};\ntemplate<class M>\n\
+    class has_value_type<M, decltype((void)std::declval<typename M::value_type>())>\n\
+    \    : public std::true_type {};\n\ntemplate<class M, class = void> class has_op\
+    \ : public std::false_type {};\ntemplate<class M>\nclass has_op<M, decltype((void)M::op)>\
+    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_id\
+    \ : public std::false_type {};\ntemplate<class M>\nclass has_id<M, decltype((void)M::id)>\
+    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_inv\
+    \ : public std::false_type {};\ntemplate<class M>\nclass has_inv<M, decltype((void)M::inv)>\
+    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_get_inv\
+    \ : public std::false_type {};\ntemplate<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)>\
+    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_init\
+    \ : public std::false_type {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init(0,\
+    \ 0))> : public std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op\
+    \ : public std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
     \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_semigroup\
     \ : public std::false_type {};\ntemplate<class T>\nclass is_semigroup<T, decltype(std::declval<typename\
     \ T::value_type>(),\n                               (void)T::op)> : public std::true_type\
@@ -620,29 +580,231 @@ data:
     \ void add(int k, T x) { this->apply(k, x); }\n    T sum(int k) const { return\
     \ this->prod(k); }\n    T sum(int l, int r) const { return this->prod(l, r); }\n\
     };\n\n/**\n * @brief BinaryIndexedTree(FenwickTree, BIT)\n * @docs docs/data-struct/segment/BinaryIndexedTree.md\n\
-    \ */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\
-    \n\ntemplate<class M, bool = Monoid::is_monoid<M>::value> class BinaryIndexedTree\
-    \ {\nprivate:\n    using T = typename M::value_type;\n    int n;\n    std::vector<T>\
-    \ data;\n\npublic:\n    BinaryIndexedTree() : BinaryIndexedTree(0) {}\n    BinaryIndexedTree(int\
-    \ n_) { init(n_); }\n    void init(int n_) {\n        n = n_;\n        data.assign(n\
-    \ + 1, M::id());\n    }\n    void apply(int k, T x) {\n        assert(0 <= k &&\
-    \ k < n);\n        ++k;\n        while (k <= n) {\n            data[k] = M::op(data[k],\
-    \ x);\n            k += k & -k;\n        }\n    }\n    T prod(int k) const {\n\
-    \        assert(0 <= k && k <= n);\n        T res = M::id();\n        while (k)\
-    \ {\n            res = M::op(res, data[k]);\n            k -= k & -k;\n      \
-    \  }\n        return res;\n    }\n    template<bool AlwaysTrue = true,\n     \
-    \        typename std::enable_if<Monoid::has_inv<M>::value &&\n              \
-    \                       AlwaysTrue>::type* = nullptr>\n    T prod(int l, int r)\
-    \ const {\n        assert(l <= r);\n        return M::inv(prod(r), prod(l));\n\
-    \    }\n    T get(int k) const { return prod(k, k + 1); }\n    void set(int k,\
-    \ T x) { apply(k, M::inv(x, get(k))); }\n};\n\ntemplate<class T>\nclass BinaryIndexedTree<T,\
-    \ false> : public BinaryIndexedTree<Monoid::Sum<T>> {\nprivate:\n    using Base\
-    \ = BinaryIndexedTree<Monoid::Sum<T>>;\n\npublic:\n    using Base::Base;\n   \
-    \ void add(int k, T x) { this->apply(k, x); }\n    T sum(int k) const { return\
-    \ this->prod(k); }\n    T sum(int l, int r) const { return this->prod(l, r); }\n\
-    };\n\n/**\n * @brief BinaryIndexedTree(FenwickTree, BIT)\n * @docs docs/data-struct/segment/BinaryIndexedTree.md\n\
-    \ */\n"
+    \ */\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class\
+    \ T = int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
+    \ : from(-1), to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1)\n\
+    \        : from(f), to(t), cost(c), idx(i) {}\n    edge(int f, int t, T&& c, int\
+    \ i = -1)\n        : from(f), to(t), cost(std::move(c)), idx(i) {}\n    operator\
+    \ int() const { return to; }\n    friend bool operator<(const edge<T>& lhs, const\
+    \ edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n    }\n    friend bool\
+    \ operator>(const edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost\
+    \ > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using Edges = std::vector<edge<T>>;\n\
+    template<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class\
+    \ T = int> class Graph : public std::vector<std::vector<edge<T>>> {\nprivate:\n\
+    \    using Base = std::vector<std::vector<edge<T>>>;\n\npublic:\n    int edge_id\
+    \ = 0;\n    using Base::Base;\n    int edge_size() const { return edge_id; }\n\
+    \    int add_edge(int a, int b, const T& c, bool is_directed = false) {\n    \
+    \    assert(0 <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
+    \        (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed)\
+    \ (*this)[b].emplace_back(b, a, c, edge_id);\n        return edge_id++;\n    }\n\
+    \    int add_edge(int a, int b, bool is_directed = false) {\n        assert(0\
+    \ <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
+    \        (*this)[a].emplace_back(a, b, 1, edge_id);\n        if (!is_directed)\
+    \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
+    };\n\ntemplate<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {\n    const\
+    \ int N = G.size();\n    auto res = make_vec<T>(N, N, infinity<T>::value);\n \
+    \   rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n        each_const (e : G[i])\
+    \ res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\ntemplate<class T> Edges<T>\
+    \ UndirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n  \
+    \  const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n     \
+    \   each_const (e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\ntemplate<class\
+    \ T> Edges<T> DirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n\
+    \    const int E = std::accumulate(\n        all(G), 0, [](int a, const std::vector<edge<T>>&\
+    \ v) -> int {\n            return a + v.size();\n        });\n    Edges<T> Ed(G.edge_size());\n\
+    \    Ed.reserve(E);\n    rep (i, V) {\n        each_const (e : G[i]) {\n     \
+    \       if (Ed[e.idx] == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n\
+    \        }\n    }\n    return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const\
+    \ Graph<T>& G) {\n    const int V = G.size();\n    Graph<T> res(V);\n    rep (i,\
+    \ V) {\n        each_const (e : G[i]) {\n            res[e.to].emplace_back(e.to,\
+    \ e.from, e.cost, e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n\
+    \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
+    \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
+    using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
+    \ * @docs docs/graph/Graph.md\n */\n#line 2 \"graph/tree/ContourQuery.hpp\"\n\n\
+    #line 2 \"graph/tree/TreeCentroid.hpp\"\n\n#line 5 \"graph/tree/TreeCentroid.hpp\"\
+    \n\ntemplate<class T> class TreeCentroids {\nprivate:\n    int n;\n    const Graph<T>&\
+    \ G;\n    std::vector<int> sz;\n    std::vector<int> cent;\n    int dfs(int v,\
+    \ int p) {\n        each_const (e : G[v]) {\n            if (e.to == p) continue;\n\
+    \            sz[v] += dfs(e.to, v);\n        }\n        return sz[v];\n    }\n\
+    \    void init() {\n        n = G.size();\n        sz.assign(n, 1);\n        int\
+    \ s = dfs(0, -1);\n        int v = 0, p = -1;\n        while (true) {\n      \
+    \      bool ok = true;\n            each_const (e : G[v]) {\n                if\
+    \ (e.to == p) continue;\n                if (sz[e.to] * 2 > s) {\n           \
+    \         p = v;\n                    v = e.to;\n                    ok = false;\n\
+    \                    break;\n                }\n                if (sz[e.to] *\
+    \ 2 == s) {\n                    cent = {v, e.to};\n                    return;\n\
+    \                }\n            }\n            if (ok) {\n                cent\
+    \ = {v};\n                return;\n            }\n        }\n    }\n\npublic:\n\
+    \    TreeCentroids(const Graph<T>& G) : G(G) { init(); }\n    bool has_one_centroid()\
+    \ const { return cent.size() == 1; }\n    std::vector<int> get() { return cent;\
+    \ }\n};\n\ntemplate<class T> class CentroidDecomposition {\nprivate:\n    int\
+    \ n;\n    const Graph<T>& G;\n    std::vector<bool> seen;\n    std::vector<int>\
+    \ sz;\n    int root;\n    UnweightedGraph C;\n    int dfs(int v, int p) {\n  \
+    \      sz[v] = 1;\n        each_const (e : G[v]) {\n            if (e.to == p)\
+    \ continue;\n            if (seen[e.to]) continue;\n            sz[v] += dfs(e.to,\
+    \ v);\n        }\n        return sz[v];\n    }\n    void init() {\n        n =\
+    \ G.size();\n        seen.assign(n, false);\n        sz.assign(n, 1);\n      \
+    \  std::vector<std::pair<int, int>> st = {{0, -1}};\n        st.reserve(n);\n\
+    \        C = UnweightedGraph(n);\n        while (!st.empty()) {\n            int\
+    \ v = st.back().first, vp = st.back().second;\n            st.pop_back();\n  \
+    \          int s = dfs(v, -1);\n            int p = -1;\n            while (true)\
+    \ {\n                bool ok = true;\n                each_const (e : G[v]) {\n\
+    \                    if (e.to == p) continue;\n                    if (seen[e.to])\
+    \ continue;\n                    if (sz[e.to] * 2 > s) {\n                   \
+    \     p = v;\n                        v = e.to;\n                        ok =\
+    \ false;\n                        break;\n                    }\n            \
+    \    }\n                if (ok) break;\n            }\n            seen[v] = true;\n\
+    \            if (vp != -1) C.add_edge(vp, v, true);\n            else root = v;\n\
+    \            each_const (e : G[v]) {\n                if (seen[e.to]) continue;\n\
+    \                st.emplace_back(e.to, v);\n            }\n        }\n    }\n\n\
+    public:\n    CentroidDecomposition(const Graph<T>& G) : G(G) { init(); }\n   \
+    \ int get_root() { return root; }\n    const UnweightedGraph& get() const& { return\
+    \ C; }\n    UnweightedGraph get() && { return std::move(C); }\n};\n\n/**\n * @brief\
+    \ TreeCentroid(\u6728\u306E\u91CD\u5FC3)\n * @docs docs/graph/tree/TreeCentroid.md\n\
+    \ */\n#line 6 \"graph/tree/ContourQuery.hpp\"\n\ntemplate<class T, bool weighted\
+    \ = false> class ContourQuery {\nprivate:\n    int n;\n    const Graph<T>& G;\n\
+    \    UnweightedGraph H;\n    int root;\n\n    std::vector<int> par, dep;\n   \
+    \ std::vector<std::vector<T>> dist;\n    std::queue<std::pair<int, T>> que;\n\
+    \    std::vector<std::vector<std::pair<T, int>>> vt;\n    std::vector<std::vector<std::vector<std::pair<T,\
+    \ int>>>> ct;\n    std::vector<std::vector<int>> cpar, idx, rdx1, rdx2, ddx1;\n\
+    \    std::vector<std::vector<std::vector<int>>> ddx2, ddx3, ddx4;\n\n    void\
+    \ build_dfs(int v, int p, int d) {\n        par[v] = p;\n        dep[v] = d;\n\
+    \        for (auto e : H[v]) build_dfs(e.to, v, d + 1);\n    }\n\n    void dfs(int\
+    \ v) {\n        int d = dep[v];\n        vt[v].emplace_back(0, v);\n        ct[v].resize(G[v].size());\n\
+    \        cpar[v][d] = v;\n        dist[v][d] = 0;\n        rep (i, G[v].size())\
+    \ {\n            const auto& e = G[v][i];\n            if (dep[e.to] < d) continue;\n\
+    \            cpar[e.to][d] = i;\n            dist[e.to][d] = e.cost;\n       \
+    \     que.emplace(e.to, e.cost);\n        }\n        while (!que.empty()) {\n\
+    \            auto [u, d2] = que.front();\n            que.pop();\n           \
+    \ int c = cpar[u][d];\n            vt[v].emplace_back(d2, u);\n            ct[v][c].emplace_back(d2,\
+    \ u);\n            rep (i, G[u].size()) {\n                const auto& e = G[u][i];\n\
+    \                if (dep[e.to] < d) continue;\n                if (cpar[e.to][d]\
+    \ != -1) continue;\n                cpar[e.to][d] = c;\n                dist[e.to][d]\
+    \ = d2 + e.cost;\n                que.emplace(e.to, d2 + e.cost);\n          \
+    \  }\n        }\n        if IF_CONSTEXPR (weighted) {\n            std::sort(all(vt[v]));\n\
+    \            for (auto& ctv : ct[v]) std::sort(all(ctv));\n        }\n       \
+    \ for (auto e : H[v]) dfs(e.to);\n    }\n\npublic:\n    template<class F> ContourQuery(const\
+    \ Graph<T>& G, F&& f) : G(G) {\n        n = G.size();\n        CentroidDecomposition<T>\
+    \ cd(G);\n        root = cd.get_root();\n        H = cd.get();\n\n        par.assign(n,\
+    \ -1);\n        dep.assign(n, -1);\n        build_dfs(root, -1, 0);\n        int\
+    \ h = *std::max_element(all(dep)) + 1;\n        vt.assign(n, {});\n        ct.assign(n,\
+    \ {});\n        cpar.assign(n, std::vector<int>(h, -1));\n        dist.assign(n,\
+    \ std::vector<T>(h, -1));\n        dfs(root);\n\n        rdx1.assign(n, std::vector<int>(h,\
+    \ -1));\n        rdx2.assign(n, std::vector<int>(h, -1));\n        std::vector<std::vector<int>>\
+    \ dat(2 * n);\n        rep (i, n) {\n            dat[i].resize(vt[i].size());\n\
+    \            rep (j, vt[i].size()) {\n                dat[i][j] = vt[i][j].second;\n\
+    \                rdx1[vt[i][j].second][dep[i]] = j;\n            }\n        }\n\
+    \        idx.resize(n);\n        int cnt = n;\n        rep (i, n) {\n        \
+    \    idx[i].resize(ct[i].size());\n            rep (j, ct[i].size()) {\n     \
+    \           if (ct[i][j].empty()) continue;\n                dat[cnt].resize(ct[i][j].size());\n\
+    \                rep (k, ct[i][j].size()) {\n                    dat[cnt][k] =\
+    \ ct[i][j][k].second;\n                    rdx2[ct[i][j][k].second][dep[i]] =\
+    \ k;\n                }\n                idx[i][j] = cnt++;\n            }\n \
+    \       }\n        f(dat);\n        if IF_CONSTEXPR (weighted) {\n           \
+    \ ddx2.resize(n);\n            rep (i, n) {\n                ddx2[i].resize(ct[i].size());\n\
+    \                rep (j, 1, vt[i].size()) {\n                    ddx2[i][cpar[vt[i][j].second][dep[i]]].push_back(j);\n\
+    \                }\n            }\n        }\n        else {\n            ddx1.resize(n);\n\
+    \            rep (i, n) {\n                T m = vt[i].back().first;\n       \
+    \         ddx1[i].assign(m + 1, -1);\n                rep (j, vt[i].size()) {\n\
+    \                    if (ddx1[i][vt[i][j].first] == -1) {\n                  \
+    \      ddx1[i][vt[i][j].first] = j;\n                    }\n                }\n\
+    \            }\n            ddx2.resize(n);\n            ddx3.resize(n);\n   \
+    \         ddx4.resize(n);\n            rep (i, n) {\n                ddx2[i].resize(ct[i].size());\n\
+    \                ddx3[i].resize(ct[i].size());\n                ddx4[i].resize(ct[i].size());\n\
+    \                rep (j, ct[i].size()) {\n                    if (ct[i][j].empty())\
+    \ continue;\n                    T m = ct[i][j].back().first;\n              \
+    \      ddx2[i][j].assign(m + 1, -1);\n                    ddx3[i][j].assign(m\
+    \ + 1, -1);\n                    ddx4[i][j].assign(m + 1, -1);\n             \
+    \       rep (k, ct[i][j].size()) {\n                        if (ddx4[i][j][ct[i][j][k].first]\
+    \ == -1) {\n                            ddx4[i][j][ct[i][j][k].first] = k;\n \
+    \                       }\n                    }\n                }\n        \
+    \        rep (j, 1, vt[i].size()) {\n                    int cp = cpar[vt[i][j].second][dep[i]];\n\
+    \                    if (ddx2[i][cp][vt[i][j].first] == -1) {\n              \
+    \          ddx2[i][cp][vt[i][j].first] = j;\n                    }\n         \
+    \           ddx3[i][cp][vt[i][j].first] = j;\n                }\n            }\n\
+    \        }\n    }\n    template<class F> void vertex(int v, F&& f) const {\n \
+    \       int d = dep[v];\n        f(v, 0);\n        int u = v;\n        while (d\
+    \ > 0) {\n            --d;\n            int p = par[u];\n            int cp =\
+    \ cpar[u][d];\n            f(p, rdx1[v][d]);\n            f(idx[p][cp], rdx2[v][d]);\n\
+    \            u = p;\n        }\n    }\n    template<class F> void contour(int\
+    \ v, T k, F&& f) const {\n        if IF_CONSTEXPR (weighted) {\n            int\
+    \ itrl =\n                std::lower_bound(all(vt[v]), std::pair(k, -1)) - vt[v].begin();\n\
+    \            int itrr =\n                std::lower_bound(all(vt[v]), std::pair(k,\
+    \ n)) - vt[v].begin();\n            f(v, itrl, itrr);\n        }\n        else\
+    \ {\n            if (k < (T)ddx1[v].size()) {\n                int l = ddx1[v][k];\n\
+    \                int r =\n                    k + 1 < (T)ddx1[v].size() ? ddx1[v][k\
+    \ + 1] : vt[v].size();\n                f(v, l, r);\n            }\n        }\n\
+    \        int d = dep[v];\n        int u = v;\n        while (d > 0) {\n      \
+    \      --d;\n            k -= dist[v][d];\n            int p = par[u];\n     \
+    \       int cp = cpar[u][d];\n            if IF_CONSTEXPR (weighted) {\n     \
+    \           if (0 <= k) {\n                    int l = std::lower_bound(all(vt[p]),\
+    \ std::pair(k, -1)) -\n                        vt[p].begin();\n              \
+    \      int r = std::lower_bound(all(vt[p]), std::pair(k, n)) -\n             \
+    \           vt[p].begin();\n                    int l2 = std::lower_bound(all(ct[p][cp]),\
+    \ std::pair(k, -1)) -\n                        ct[p][cp].begin();\n          \
+    \          int r2 = std::lower_bound(all(ct[p][cp]), std::pair(k, n)) -\n    \
+    \                    ct[p][cp].begin();\n                    if (l2 == r2) f(p,\
+    \ l, r);\n                    else {\n                        if (l2 < ct[p][cp].size())\
+    \ f(p, l, ddx2[p][cp][l2]);\n                        if (r2 < ct[p][cp].size())\
+    \ f(p, ddx3[p][cp][r2], r);\n                    }\n                }\n      \
+    \      }\n            else {\n                if (0 <= k && k < (T)ddx1[p].size())\
+    \ {\n                    int l = ddx1[p][k];\n                    int r =\n  \
+    \                      k + 1 < (T)ddx1[p].size() ? ddx1[p][k + 1] : vt[p].size();\n\
+    \                    if (k < (int)ddx2[p][cp].size()) {\n                    \
+    \    int l2 = ddx2[p][cp][k];\n                        int r2 = ddx3[p][cp][k]\
+    \ + 1;\n                        f(p, l, l2);\n                        f(p, r2,\
+    \ r);\n                    }\n                    else {\n                   \
+    \     f(p, l, r);\n                    }\n                }\n            }\n \
+    \           k += dist[v][d];\n            u = p;\n        }\n    }\n    template<class\
+    \ F, class G>\n    void range_contour(int v, T k, F&& f, G&& g) const {\n    \
+    \    if IF_CONSTEXPR (weighted) {\n            int itrr = std::lower_bound(all(vt[v]),\
+    \ std::pair(k, -1)) - vt[v].begin();\n            f(v, itrr);\n        }\n   \
+    \     else {\n            int r = k < (T)ddx1[v].size() ? ddx1[v][k] : vt[v].size();\n\
+    \            f(v, r);\n        }\n        int d = dep[v];\n        int u = v;\n\
+    \        while (d > 0) {\n            --d;\n            k -= dist[v][d];\n   \
+    \         int p = par[u];\n            int cp = cpar[u][d];\n            if (0\
+    \ < k) {\n                if IF_CONSTEXPR (weighted) {\n                    int\
+    \ r = std::lower_bound(all(vt[p]), std::pair(k, -1)) -\n                     \
+    \   vt[p].begin();\n                    f(p, r);\n                    int r2 =\
+    \ std::lower_bound(all(ct[p][cp]), std::pair(k, -1)) -\n                     \
+    \   ct[p][cp].begin();\n                    g(idx[p][cp], r2);\n             \
+    \   }\n                else {\n                    int r = k < (T)ddx1[p].size()\
+    \ ? ddx1[p][k] : vt[p].size();\n                    f(p, r);\n               \
+    \     int r2 = k < (T)ddx4[p][cp].size() ? ddx4[p][cp][k]\n                  \
+    \                                  : ct[p][cp].size();\n                    g(idx[p][cp],\
+    \ r2);\n                }\n            }\n            k += dist[v][d];\n     \
+    \       u = p;\n        }\n    }\n    template<class F, class G>\n    void range_contour(int\
+    \ v, T l, T r, F&& f, G&& g) const {\n        range_contour(v, l, g, f);\n   \
+    \     range_contour(v, r, f, g);\n    }\n};\n#line 6 \"test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree-weighted.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int N, Q; scan >> N >> Q;\n    vector<ll>\
+    \ A(N); scan >> A;\n    Graph<int> G(N);\n    rep (N - 1) {\n        int a, b;\
+    \ scan >> a >> b;\n        G.add_edge(a, b);\n    }\n    vector<BinaryIndexedTree<ll>>\
+    \ bit;\n    ContourQuery<int, true> cq(G, [&](auto v) {\n        rep (i, v.size())\
+    \ {\n            vector<ll> B(v[i].size());\n            rep (j, v[i].size())\
+    \ B[j] = A[v[i][j]];\n            bit.emplace_back(v[i].size());\n           \
+    \ rep (j, v[i].size()) bit.back().add(j, B[j]);\n        }\n    });\n    rep (Q)\
+    \ {\n        int t; scan >> t;\n        if (t == 0) {\n            int p, x; scan\
+    \ >> p >> x;\n            cq.vertex(p, [&](int a, int b) { bit[a].add(b, x); });\n\
+    \        }\n        else {\n            int p, l, r; scan >> p >> l >> r;\n  \
+    \          ll ans = 0;\n            cq.range_contour(p, l, r, [&](int p, int r)\
+    \ { ans += bit[p].sum(r); }, [&](int p, int r) { ans -= bit[p].sum(r); });\n \
+    \           prints(ans);\n        }\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_range_contour_sum_on_tree\"\
+    \n#include \"../../../other/template.hpp\"\n#include \"../../../data-struct/segment/BinaryIndexedTree.hpp\"\
+    \n#include \"../../../graph/Graph.hpp\"\n#include \"../../../graph/tree/ContourQuery.hpp\"\
+    \nusing namespace std;\nint main() {\n    int N, Q; scan >> N >> Q;\n    vector<ll>\
+    \ A(N); scan >> A;\n    Graph<int> G(N);\n    rep (N - 1) {\n        int a, b;\
+    \ scan >> a >> b;\n        G.add_edge(a, b);\n    }\n    vector<BinaryIndexedTree<ll>>\
+    \ bit;\n    ContourQuery<int, true> cq(G, [&](auto v) {\n        rep (i, v.size())\
+    \ {\n            vector<ll> B(v[i].size());\n            rep (j, v[i].size())\
+    \ B[j] = A[v[i][j]];\n            bit.emplace_back(v[i].size());\n           \
+    \ rep (j, v[i].size()) bit.back().add(j, B[j]);\n        }\n    });\n    rep (Q)\
+    \ {\n        int t; scan >> t;\n        if (t == 0) {\n            int p, x; scan\
+    \ >> p >> x;\n            cq.vertex(p, [&](int a, int b) { bit[a].add(b, x); });\n\
+    \        }\n        else {\n            int p, l, r; scan >> p >> l >> r;\n  \
+    \          ll ans = 0;\n            cq.range_contour(p, l, r, [&](int p, int r)\
+    \ { ans += bit[p].sum(r); }, [&](int p, int r) { ans -= bit[p].sum(r); });\n \
+    \           prints(ans);\n        }\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -653,49 +815,21 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
+  - data-struct/segment/BinaryIndexedTree.hpp
   - other/monoid.hpp
-  isVerificationFile: false
-  path: data-struct/segment/BinaryIndexedTree.hpp
-  requiredBy:
-  - string/RollingHash.hpp
-  - data-struct/2D/StaticRectangleAddRectangleSum.hpp
-  - data-struct/segment/StaticRangeCountDistinct.hpp
-  - data-struct/segment/RAQBIT.hpp
-  timestamp: '2024-01-20 14:55:31+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
-  - test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
-  - test/yosupo/data_structure/point_add_range_sum.test.cpp
-  - test/yosupo/data_structure/vertex_get_range_contour_add_on_tree.test.cpp
-  - test/yosupo/data_structure/static_range_inversions_query.test.cpp
-  - test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
-  - test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
-  - test/yosupo/data_structure/static_range_count_distinct.test.cpp
-  - test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree.test.cpp
-  - test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
-  - test/yosupo/data_structure/vertex_add_path_sum.test.cpp
-  - test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
-  - test/aoj/DSL/DSL_2_B-BIT.test.cpp
-  - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-documentation_of: data-struct/segment/BinaryIndexedTree.hpp
+  - graph/Graph.hpp
+  - graph/tree/ContourQuery.hpp
+  - graph/tree/TreeCentroid.hpp
+  isVerificationFile: true
+  path: test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
+  requiredBy: []
+  timestamp: '2024-04-29 18:11:21+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
 layout: document
 redirect_from:
-- /library/data-struct/segment/BinaryIndexedTree.hpp
-- /library/data-struct/segment/BinaryIndexedTree.hpp.html
-title: BinaryIndexedTree(FenwickTree, BIT)
+- /verify/test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
+- /verify/test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree-weighted.test.cpp.html
+title: test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
 ---
-## 概要
-
-可換モノイドを扱う。 min/max などが扱える。
-
-- `BinaryIndexedTree(int n)` : サイズ `n` の BIT を作成する。 $\Theta(n)$ 。
-- `void add(int k, T x)` : `a[k]` に `op(a[k], x)` を代入する。 $\Theta(\log n)$ 。
-- `T sum(int k)` : `op(a[0], a[1], ..., a[k-1])` を返す。 $\Theta(\log n)$ 。
-
-また、逆演算が存在する場合、以下も使える。足し算や bitwise xor などはこれを満たす。
-
-- `BinaryIndexedTree(int n)` : サイズ `n` の BIT を作成する。 $\Theta(n)$ 。
-- `T sum(int l, int r)` : `op(a[l], a[l+1], ..., a[r-1])` を返す。 $\Theta(\log n)$ 。
-- `T get(int k)` : `a[k]` を返す。 $\Theta(\log n)$ 。
-- `void set(int k, T x)` : `a[k]` に `x` を代入する。 $\Theta(\log n)$ 。

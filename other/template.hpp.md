@@ -338,6 +338,9 @@ data:
     path: graph/tree/CartesianTree.hpp
     title: CartesianTree
   - icon: ':heavy_check_mark:'
+    path: graph/tree/ContourQuery.hpp
+    title: graph/tree/ContourQuery.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/tree/DoublingLowestCommonAncestor.hpp
     title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
       \u308BLCA)"
@@ -983,6 +986,12 @@ data:
     path: test/yosupo/data_structure/vertex_add_path_sum.test.cpp
     title: test/yosupo/data_structure/vertex_add_path_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
+    title: test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree.test.cpp
+    title: test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
     title: test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -991,6 +1000,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
     title: test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/vertex_get_range_contour_add_on_tree.test.cpp
+    title: test/yosupo/data_structure/vertex_get_range_contour_add_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
     title: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
@@ -1782,6 +1794,7 @@ data:
   - graph/tree/DoublingLowestCommonAncestor.hpp
   - graph/tree/TreeCentroid.hpp
   - graph/tree/ReRooting.hpp
+  - graph/tree/ContourQuery.hpp
   - graph/tree/EulerTourSubtree.hpp
   - string/LCPArray.hpp
   - string/LyndonFactorization.hpp
@@ -1957,6 +1970,7 @@ data:
   - test/yosupo/data_structure/static_range_sum-CumulativeSum.test.cpp
   - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
   - test/yosupo/data_structure/range_kth_smallest-sqrt.test.cpp
+  - test/yosupo/data_structure/vertex_get_range_contour_add_on_tree.test.cpp
   - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
   - test/yosupo/data_structure/unionfind.test.cpp
   - test/yosupo/data_structure/line_add_get_min.test.cpp
@@ -1967,6 +1981,7 @@ data:
   - test/yosupo/data_structure/static_range_mode_query.test.cpp
   - test/yosupo/data_structure/range_kth_smallest-seg.test.cpp
   - test/yosupo/data_structure/range_chmin_chmax_add_range_sum.test.cpp
+  - test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
   - test/yosupo/data_structure/deque_operate_all_composite.test.cpp
   - test/yosupo/data_structure/static_range_frequency.test.cpp
   - test/yosupo/data_structure/range_set_range_composite.test.cpp
@@ -1979,6 +1994,7 @@ data:
   - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SplayTree.test.cpp
   - test/yosupo/data_structure/rectangle_sum-WM.test.cpp
   - test/yosupo/data_structure/point_add_rectangle_sum-2DSegTree.test.cpp
+  - test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree.test.cpp
   - test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
   - test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
   - test/yosupo/data_structure/persistent_unionfind.test.cpp
