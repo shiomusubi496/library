@@ -1,59 +1,59 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/mst/CountSpanningTree.hpp
     title: "CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/Combinatorics.hpp
     title: Combinatorics
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix/Determinant.hpp
     title: "Determinant(\u884C\u5217\u5F0F)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix/Matrix.hpp
     title: "Matrix(\u884C\u5217)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc336_g-BEST.test.cpp
     title: test/atcoder/abc336_g-BEST.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/graph/mst/CountEulerianTrail.md
     document_title: CountEulerianTrail(BEST Theorem)
@@ -731,52 +731,55 @@ data:
     \ determinant(Matrix<static_modint<2>> mat) {\n    assert(mat.is_square());\n\
     \    return mat.rank() == mat.height() ? 1 : 0;\n}\n\n/**\n * @brief Determinant(\u884C\
     \u5217\u5F0F)\n * @docs docs/math/matrix/Determinant.md\n */\n#line 6 \"graph/mst/CountSpanningTree.hpp\"\
-    \n\ntemplate<class T, class U> T count_spanning_tree(const Graph<U>& G) {\n  \
-    \  const int N = G.size();\n    Matrix<T> A(N - 1, N - 1);\n    rep (i, N - 1)\
-    \ A[i][i] += G[i + 1].size();\n    rep (i, 1, N) {\n        each_const (e : G[i])\
-    \ {\n            if (e.to == 0) continue;\n            --A[i - 1][e.to - 1];\n\
-    \        }\n    }\n    return determinant(A);\n}\n\n/**\n * @brief CountSpanningTree(\u884C\
-    \u5217\u6728\u5B9A\u7406)\n * @docs docs/graph/mst/CountSpanningTree.md\n */\n\
-    #line 2 \"math/Combinatorics.hpp\"\n\n#line 5 \"math/Combinatorics.hpp\"\n\ntemplate<class\
-    \ T> class Combinatorics {\nprivate:\n    static std::vector<T> factorial;\n \
-    \   static std::vector<T> factinv;\n\npublic:\n    static void init(ll n) {\n\
-    \        const int b = factorial.size();\n        if (n < b) return;\n       \
-    \ factorial.resize(n + 1);\n        rep (i, b, n + 1) factorial[i] = factorial[i\
-    \ - 1] * i;\n        factinv.resize(n + 1);\n        factinv[n] = T(1) / factorial[n];\n\
-    \        rreps (i, n, b) factinv[i - 1] = factinv[i] * i;\n    }\n    static T\
-    \ fact(ll x) {\n        if (x < 0) return 0;\n        init(x);\n        return\
-    \ factorial[x];\n    }\n    static T finv(ll x) {\n        if (x < 0) return 0;\n\
-    \        init(x);\n        return factinv[x];\n    }\n    static T inv(ll x) {\n\
-    \        if (x <= 0) return 0;\n        init(x);\n        return factorial[x -\
-    \ 1] * factinv[x];\n    }\n    static T perm(ll n, ll r) {\n        if (r < 0\
-    \ || r > n) return 0;\n        init(n);\n        return factorial[n] * factinv[n\
-    \ - r];\n    }\n    static T comb(ll n, ll r) {\n        if (n < 0) return 0;\n\
-    \        if (r < 0 || r > n) return 0;\n        init(n);\n        return factorial[n]\
-    \ * factinv[n - r] * factinv[r];\n    }\n    static T homo(ll n, ll r) { return\
-    \ comb(n + r - 1, r); }\n    static T small_perm(ll n, ll r) {\n        if (r\
-    \ < 0 || r > n) return 0;\n        T res = 1;\n        reps (i, r) res *= n -\
-    \ r + i;\n        return res;\n    }\n    static T small_comb(ll n, ll r) {\n\
-    \        if (r < 0 || r > n) return 0;\n        chmin(r, n - r);\n        init(r);\n\
-    \        T res = factinv[r];\n        reps (i, r) res *= n - r + i;\n        return\
-    \ res;\n    }\n    static T small_homo(ll n, ll r) { return small_comb(n + r -\
-    \ 1, r); }\n};\n\ntemplate<class T>\nstd::vector<T> Combinatorics<T>::factorial\
-    \ = std::vector<T>(1, 1);\ntemplate<class T>\nstd::vector<T> Combinatorics<T>::factinv\
-    \ = std::vector<T>(1, 1);\n\n/**\n * @brief Combinatorics\n * @docs docs/math/Combinatorics.md\n\
-    \ */\n#line 6 \"graph/other/CountEulerianTrail.hpp\"\n\ntemplate<class T, class\
-    \ U, class Comb = Combinatorics<T>> T count_eulerian_trail(const Graph<U>& G)\
-    \ {\n    int N = G.size();\n    std::vector<int> degi(N), dego(N);\n    rep (i,\
-    \ N) {\n        for (const auto& e : G[i]) {\n            degi[e.to] += e.cost;\n\
-    \            dego[i] += e.cost;\n        }\n    }\n    rep (i, N) {\n        if\
-    \ (degi[i] != dego[i]) return 0;\n    }\n    std::vector<bool> used(N);\n    rep\
-    \ (i, N) {\n        for (const auto& e : G[i]) {\n            if (e.cost) used[i]\
-    \ = used[e.to] = true;\n        }\n    }\n    std::vector<int> idx(N, -1);\n \
-    \   int M = 0;\n    rep (i, N) {\n        if (used[i]) idx[i] = M++;\n    }\n\
-    \    Graph<U> H(M);\n    rep (i, N) {\n        for (auto& e : G[i]) {\n      \
-    \      if (e.cost) H.add_edge(idx[i], idx[e.to], e.cost, true);\n        }\n \
-    \   }\n    T res = count_spanning_tree<T>(H);\n    rep (i, N) {\n        if (dego[i]\
-    \ != 0) res *= Comb::fact(dego[i] - 1);\n    }\n    return res;\n}\n\n/**\n *\
-    \ @brief CountEulerianTrail(BEST Theorem)\n * @docs docs/graph/mst/CountEulerianTrail.md\n\
-    \ */\n"
+    \n\ntemplate<class T, class U> T count_spanning_tree(const Graph<U>& G, int v\
+    \ = 0) {\n    const int N = G.size();\n    Matrix<T> A(N - 1, N - 1);\n    rep\
+    \ (i, N) {\n        if (i == v) continue;\n        T cnt = 0;\n        for (const\
+    \ auto& e : G[i]) {\n            if (e.to != i) cnt += e.cost;\n        }\n  \
+    \      A[i < v ? i : i - 1][i < v ? i : i - 1] = cnt;\n    }\n    rep (i, N) {\n\
+    \        if (i == v) continue;\n        for (const auto& e : G[i]) {\n       \
+    \     if (e.to == v || e.to == i) continue;\n            A[i < v ? i : i - 1][e.to\
+    \ < v ? e.to : e.to - 1] -= e.cost;\n        }\n    }\n    return determinant(A);\n\
+    }\n\n/**\n * @brief CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)\n * @docs\
+    \ docs/graph/mst/CountSpanningTree.md\n */\n#line 2 \"math/Combinatorics.hpp\"\
+    \n\n#line 5 \"math/Combinatorics.hpp\"\n\ntemplate<class T> class Combinatorics\
+    \ {\nprivate:\n    static std::vector<T> factorial;\n    static std::vector<T>\
+    \ factinv;\n\npublic:\n    static void init(ll n) {\n        const int b = factorial.size();\n\
+    \        if (n < b) return;\n        factorial.resize(n + 1);\n        rep (i,\
+    \ b, n + 1) factorial[i] = factorial[i - 1] * i;\n        factinv.resize(n + 1);\n\
+    \        factinv[n] = T(1) / factorial[n];\n        rreps (i, n, b) factinv[i\
+    \ - 1] = factinv[i] * i;\n    }\n    static T fact(ll x) {\n        if (x < 0)\
+    \ return 0;\n        init(x);\n        return factorial[x];\n    }\n    static\
+    \ T finv(ll x) {\n        if (x < 0) return 0;\n        init(x);\n        return\
+    \ factinv[x];\n    }\n    static T inv(ll x) {\n        if (x <= 0) return 0;\n\
+    \        init(x);\n        return factorial[x - 1] * factinv[x];\n    }\n    static\
+    \ T perm(ll n, ll r) {\n        if (r < 0 || r > n) return 0;\n        init(n);\n\
+    \        return factorial[n] * factinv[n - r];\n    }\n    static T comb(ll n,\
+    \ ll r) {\n        if (n < 0) return 0;\n        if (r < 0 || r > n) return 0;\n\
+    \        init(n);\n        return factorial[n] * factinv[n - r] * factinv[r];\n\
+    \    }\n    static T homo(ll n, ll r) { return comb(n + r - 1, r); }\n    static\
+    \ T small_perm(ll n, ll r) {\n        if (r < 0 || r > n) return 0;\n        T\
+    \ res = 1;\n        reps (i, r) res *= n - r + i;\n        return res;\n    }\n\
+    \    static T small_comb(ll n, ll r) {\n        if (r < 0 || r > n) return 0;\n\
+    \        chmin(r, n - r);\n        init(r);\n        T res = factinv[r];\n   \
+    \     reps (i, r) res *= n - r + i;\n        return res;\n    }\n    static T\
+    \ small_homo(ll n, ll r) { return small_comb(n + r - 1, r); }\n};\n\ntemplate<class\
+    \ T>\nstd::vector<T> Combinatorics<T>::factorial = std::vector<T>(1, 1);\ntemplate<class\
+    \ T>\nstd::vector<T> Combinatorics<T>::factinv = std::vector<T>(1, 1);\n\n/**\n\
+    \ * @brief Combinatorics\n * @docs docs/math/Combinatorics.md\n */\n#line 6 \"\
+    graph/other/CountEulerianTrail.hpp\"\n\ntemplate<class T, class U, class Comb\
+    \ = Combinatorics<T>> T count_eulerian_trail(const Graph<U>& G) {\n    int N =\
+    \ G.size();\n    std::vector<int> degi(N), dego(N);\n    rep (i, N) {\n      \
+    \  for (const auto& e : G[i]) {\n            degi[e.to] += e.cost;\n         \
+    \   dego[i] += e.cost;\n        }\n    }\n    rep (i, N) {\n        if (degi[i]\
+    \ != dego[i]) return 0;\n    }\n    std::vector<bool> used(N);\n    rep (i, N)\
+    \ {\n        for (const auto& e : G[i]) {\n            if (e.cost) used[i] = used[e.to]\
+    \ = true;\n        }\n    }\n    std::vector<int> idx(N, -1);\n    int M = 0;\n\
+    \    rep (i, N) {\n        if (used[i]) idx[i] = M++;\n    }\n    Graph<U> H(M);\n\
+    \    rep (i, N) {\n        for (auto& e : G[i]) {\n            if (e.cost) H.add_edge(idx[i],\
+    \ idx[e.to], e.cost, true);\n        }\n    }\n    T res = count_spanning_tree<T>(H);\n\
+    \    rep (i, N) {\n        if (dego[i] != 0) res *= Comb::fact(dego[i] - 1);\n\
+    \    }\n    return res;\n}\n\n/**\n * @brief CountEulerianTrail(BEST Theorem)\n\
+    \ * @docs docs/graph/mst/CountEulerianTrail.md\n */\n"
   code: "#pragma once\n\n#include \"../Graph.hpp\"\n#include \"../mst/CountSpanningTree.hpp\"\
     \n#include \"../../math/Combinatorics.hpp\"\n\ntemplate<class T, class U, class\
     \ Comb = Combinatorics<T>> T count_eulerian_trail(const Graph<U>& G) {\n    int\
@@ -811,8 +814,8 @@ data:
   isVerificationFile: false
   path: graph/other/CountEulerianTrail.hpp
   requiredBy: []
-  timestamp: '2024-04-29 23:09:29+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-04-29 23:15:20+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/atcoder/abc336_g-BEST.test.cpp
 documentation_of: graph/other/CountEulerianTrail.hpp

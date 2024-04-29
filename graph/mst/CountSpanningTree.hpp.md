@@ -1,56 +1,56 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix/Determinant.hpp
     title: "Determinant(\u884C\u5217\u5F0F)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix/Matrix.hpp
     title: "Matrix(\u884C\u5217)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/other/CountEulerianTrail.hpp
     title: CountEulerianTrail(BEST Theorem)
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc336_g-BEST.test.cpp
     title: test/atcoder/abc336_g-BEST.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/graph/mst/CountSpanningTree.md
     document_title: "CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)"
@@ -728,20 +728,27 @@ data:
     \ determinant(Matrix<static_modint<2>> mat) {\n    assert(mat.is_square());\n\
     \    return mat.rank() == mat.height() ? 1 : 0;\n}\n\n/**\n * @brief Determinant(\u884C\
     \u5217\u5F0F)\n * @docs docs/math/matrix/Determinant.md\n */\n#line 6 \"graph/mst/CountSpanningTree.hpp\"\
-    \n\ntemplate<class T, class U> T count_spanning_tree(const Graph<U>& G) {\n  \
-    \  const int N = G.size();\n    Matrix<T> A(N - 1, N - 1);\n    rep (i, N - 1)\
-    \ A[i][i] += G[i + 1].size();\n    rep (i, 1, N) {\n        each_const (e : G[i])\
-    \ {\n            if (e.to == 0) continue;\n            --A[i - 1][e.to - 1];\n\
-    \        }\n    }\n    return determinant(A);\n}\n\n/**\n * @brief CountSpanningTree(\u884C\
-    \u5217\u6728\u5B9A\u7406)\n * @docs docs/graph/mst/CountSpanningTree.md\n */\n"
+    \n\ntemplate<class T, class U> T count_spanning_tree(const Graph<U>& G, int v\
+    \ = 0) {\n    const int N = G.size();\n    Matrix<T> A(N - 1, N - 1);\n    rep\
+    \ (i, N) {\n        if (i == v) continue;\n        T cnt = 0;\n        for (const\
+    \ auto& e : G[i]) {\n            if (e.to != i) cnt += e.cost;\n        }\n  \
+    \      A[i < v ? i : i - 1][i < v ? i : i - 1] = cnt;\n    }\n    rep (i, N) {\n\
+    \        if (i == v) continue;\n        for (const auto& e : G[i]) {\n       \
+    \     if (e.to == v || e.to == i) continue;\n            A[i < v ? i : i - 1][e.to\
+    \ < v ? e.to : e.to - 1] -= e.cost;\n        }\n    }\n    return determinant(A);\n\
+    }\n\n/**\n * @brief CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)\n * @docs\
+    \ docs/graph/mst/CountSpanningTree.md\n */\n"
   code: "#pragma once\n\n#include \"../Graph.hpp\"\n#include \"../../math/matrix/Matrix.hpp\"\
     \n#include \"../../math/matrix/Determinant.hpp\"\n\ntemplate<class T, class U>\
-    \ T count_spanning_tree(const Graph<U>& G) {\n    const int N = G.size();\n  \
-    \  Matrix<T> A(N - 1, N - 1);\n    rep (i, N - 1) A[i][i] += G[i + 1].size();\n\
-    \    rep (i, 1, N) {\n        each_const (e : G[i]) {\n            if (e.to ==\
-    \ 0) continue;\n            --A[i - 1][e.to - 1];\n        }\n    }\n    return\
-    \ determinant(A);\n}\n\n/**\n * @brief CountSpanningTree(\u884C\u5217\u6728\u5B9A\
-    \u7406)\n * @docs docs/graph/mst/CountSpanningTree.md\n */\n"
+    \ T count_spanning_tree(const Graph<U>& G, int v = 0) {\n    const int N = G.size();\n\
+    \    Matrix<T> A(N - 1, N - 1);\n    rep (i, N) {\n        if (i == v) continue;\n\
+    \        T cnt = 0;\n        for (const auto& e : G[i]) {\n            if (e.to\
+    \ != i) cnt += e.cost;\n        }\n        A[i < v ? i : i - 1][i < v ? i : i\
+    \ - 1] = cnt;\n    }\n    rep (i, N) {\n        if (i == v) continue;\n      \
+    \  for (const auto& e : G[i]) {\n            if (e.to == v || e.to == i) continue;\n\
+    \            A[i < v ? i : i - 1][e.to < v ? e.to : e.to - 1] -= e.cost;\n   \
+    \     }\n    }\n    return determinant(A);\n}\n\n/**\n * @brief CountSpanningTree(\u884C\
+    \u5217\u6728\u5B9A\u7406)\n * @docs docs/graph/mst/CountSpanningTree.md\n */\n"
   dependsOn:
   - graph/Graph.hpp
   - other/template.hpp
@@ -760,8 +767,8 @@ data:
   path: graph/mst/CountSpanningTree.hpp
   requiredBy:
   - graph/other/CountEulerianTrail.hpp
-  timestamp: '2024-03-31 18:06:42+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-04-29 23:15:20+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/atcoder/abc336_g-BEST.test.cpp
 documentation_of: graph/mst/CountSpanningTree.hpp

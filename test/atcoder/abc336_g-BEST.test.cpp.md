@@ -1,59 +1,59 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/mst/CountSpanningTree.hpp
     title: "CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/other/CountEulerianTrail.hpp
     title: CountEulerianTrail(BEST Theorem)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/Combinatorics.hpp
     title: Combinatorics
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix/Determinant.hpp
     title: "Determinant(\u884C\u5217\u5F0F)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix/Matrix.hpp
     title: "Matrix(\u884C\u5217)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc336/tasks/abc336_g
@@ -757,32 +757,36 @@ data:
     \ determinant(Matrix<static_modint<2>> mat) {\n    assert(mat.is_square());\n\
     \    return mat.rank() == mat.height() ? 1 : 0;\n}\n\n/**\n * @brief Determinant(\u884C\
     \u5217\u5F0F)\n * @docs docs/math/matrix/Determinant.md\n */\n#line 6 \"graph/mst/CountSpanningTree.hpp\"\
-    \n\ntemplate<class T, class U> T count_spanning_tree(const Graph<U>& G) {\n  \
-    \  const int N = G.size();\n    Matrix<T> A(N - 1, N - 1);\n    rep (i, N - 1)\
-    \ A[i][i] += G[i + 1].size();\n    rep (i, 1, N) {\n        each_const (e : G[i])\
-    \ {\n            if (e.to == 0) continue;\n            --A[i - 1][e.to - 1];\n\
-    \        }\n    }\n    return determinant(A);\n}\n\n/**\n * @brief CountSpanningTree(\u884C\
-    \u5217\u6728\u5B9A\u7406)\n * @docs docs/graph/mst/CountSpanningTree.md\n */\n\
-    #line 6 \"graph/other/CountEulerianTrail.hpp\"\n\ntemplate<class T, class U, class\
-    \ Comb = Combinatorics<T>> T count_eulerian_trail(const Graph<U>& G) {\n    int\
-    \ N = G.size();\n    std::vector<int> degi(N), dego(N);\n    rep (i, N) {\n  \
-    \      for (const auto& e : G[i]) {\n            degi[e.to] += e.cost;\n     \
-    \       dego[i] += e.cost;\n        }\n    }\n    rep (i, N) {\n        if (degi[i]\
-    \ != dego[i]) return 0;\n    }\n    std::vector<bool> used(N);\n    rep (i, N)\
-    \ {\n        for (const auto& e : G[i]) {\n            if (e.cost) used[i] = used[e.to]\
-    \ = true;\n        }\n    }\n    std::vector<int> idx(N, -1);\n    int M = 0;\n\
-    \    rep (i, N) {\n        if (used[i]) idx[i] = M++;\n    }\n    Graph<U> H(M);\n\
-    \    rep (i, N) {\n        for (auto& e : G[i]) {\n            if (e.cost) H.add_edge(idx[i],\
-    \ idx[e.to], e.cost, true);\n        }\n    }\n    T res = count_spanning_tree<T>(H);\n\
-    \    rep (i, N) {\n        if (dego[i] != 0) res *= Comb::fact(dego[i] - 1);\n\
-    \    }\n    return res;\n}\n\n/**\n * @brief CountEulerianTrail(BEST Theorem)\n\
-    \ * @docs docs/graph/mst/CountEulerianTrail.md\n */\n#line 6 \"test/atcoder/abc336_g-BEST.test.cpp\"\
-    \nusing namespace std;\nusing mint = modint998244353;\nusing comb = Combinatorics<mint>;\n\
-    int main() {\n    vector<int> A(16); scan >> A;\n    Graph<int> G(8);\n    rep\
-    \ (i, 16) {\n        G.add_edge(i / 2, i % 8, A[i], true);\n    }\n    mint ans\
-    \ = 0;\n    rep (i, 8) rep (j, 8) {\n        Graph<int> H = G;\n        H.add_edge(i,\
-    \ j, true);\n        ans += count_eulerian_trail<mint>(H);\n    }\n    rep (i,\
-    \ 16) ans *= comb::finv(A[i]);\n    prints(ans);\n}\n"
+    \n\ntemplate<class T, class U> T count_spanning_tree(const Graph<U>& G, int v\
+    \ = 0) {\n    const int N = G.size();\n    Matrix<T> A(N - 1, N - 1);\n    rep\
+    \ (i, N) {\n        if (i == v) continue;\n        T cnt = 0;\n        for (const\
+    \ auto& e : G[i]) {\n            if (e.to != i) cnt += e.cost;\n        }\n  \
+    \      A[i < v ? i : i - 1][i < v ? i : i - 1] = cnt;\n    }\n    rep (i, N) {\n\
+    \        if (i == v) continue;\n        for (const auto& e : G[i]) {\n       \
+    \     if (e.to == v || e.to == i) continue;\n            A[i < v ? i : i - 1][e.to\
+    \ < v ? e.to : e.to - 1] -= e.cost;\n        }\n    }\n    return determinant(A);\n\
+    }\n\n/**\n * @brief CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)\n * @docs\
+    \ docs/graph/mst/CountSpanningTree.md\n */\n#line 6 \"graph/other/CountEulerianTrail.hpp\"\
+    \n\ntemplate<class T, class U, class Comb = Combinatorics<T>> T count_eulerian_trail(const\
+    \ Graph<U>& G) {\n    int N = G.size();\n    std::vector<int> degi(N), dego(N);\n\
+    \    rep (i, N) {\n        for (const auto& e : G[i]) {\n            degi[e.to]\
+    \ += e.cost;\n            dego[i] += e.cost;\n        }\n    }\n    rep (i, N)\
+    \ {\n        if (degi[i] != dego[i]) return 0;\n    }\n    std::vector<bool> used(N);\n\
+    \    rep (i, N) {\n        for (const auto& e : G[i]) {\n            if (e.cost)\
+    \ used[i] = used[e.to] = true;\n        }\n    }\n    std::vector<int> idx(N,\
+    \ -1);\n    int M = 0;\n    rep (i, N) {\n        if (used[i]) idx[i] = M++;\n\
+    \    }\n    Graph<U> H(M);\n    rep (i, N) {\n        for (auto& e : G[i]) {\n\
+    \            if (e.cost) H.add_edge(idx[i], idx[e.to], e.cost, true);\n      \
+    \  }\n    }\n    T res = count_spanning_tree<T>(H);\n    rep (i, N) {\n      \
+    \  if (dego[i] != 0) res *= Comb::fact(dego[i] - 1);\n    }\n    return res;\n\
+    }\n\n/**\n * @brief CountEulerianTrail(BEST Theorem)\n * @docs docs/graph/mst/CountEulerianTrail.md\n\
+    \ */\n#line 6 \"test/atcoder/abc336_g-BEST.test.cpp\"\nusing namespace std;\n\
+    using mint = modint998244353;\nusing comb = Combinatorics<mint>;\nint main() {\n\
+    \    vector<int> A(16); scan >> A;\n    Graph<int> G(8);\n    rep (i, 16) {\n\
+    \        G.add_edge(i / 2, i % 8, A[i], true);\n    }\n    mint ans = 0;\n   \
+    \ rep (i, 8) rep (j, 8) {\n        Graph<int> H = G;\n        H.add_edge(i, j,\
+    \ true);\n        ans += count_eulerian_trail<mint>(H);\n    }\n    rep (i, 16)\
+    \ ans *= comb::finv(A[i]);\n    prints(ans);\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc336/tasks/abc336_g\"\n#include\
     \ \"../../other/template.hpp\"\n#include \"../../math/Combinatorics.hpp\"\n#include\
     \ \"../../graph/Graph.hpp\"\n#include \"../../graph/other/CountEulerianTrail.hpp\"\
@@ -812,8 +816,8 @@ data:
   isVerificationFile: true
   path: test/atcoder/abc336_g-BEST.test.cpp
   requiredBy: []
-  timestamp: '2024-04-29 23:09:29+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-29 23:15:20+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/atcoder/abc336_g-BEST.test.cpp
 layout: document
