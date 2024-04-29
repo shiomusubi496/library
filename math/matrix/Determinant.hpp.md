@@ -1,53 +1,59 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/matrix/Matrix.hpp
     title: "Matrix(\u884C\u5217)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: graph/mst/CountSpanningTree.hpp
     title: "CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)"
+  - icon: ':x:'
+    path: graph/other/CountEulerianTrail.hpp
+    title: CountEulerianTrail(BEST Theorem)
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/atcoder/abc336_g-BEST.test.cpp
+    title: test/atcoder/abc336_g-BEST.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/matrix/matrix_det.test.cpp
     title: test/yosupo/matrix/matrix_det.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/matrix_det_mod_2.test.cpp
     title: test/yosupo/new/matrix_det_mod_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/math/matrix/Determinant.md
     document_title: "Determinant(\u884C\u5217\u5F0F)"
@@ -713,12 +719,14 @@ data:
   isVerificationFile: false
   path: math/matrix/Determinant.hpp
   requiredBy:
+  - graph/other/CountEulerianTrail.hpp
   - graph/mst/CountSpanningTree.hpp
   timestamp: '2024-03-31 18:06:42+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/new/matrix_det_mod_2.test.cpp
   - test/yosupo/matrix/matrix_det.test.cpp
+  - test/atcoder/abc336_g-BEST.test.cpp
 documentation_of: math/matrix/Determinant.hpp
 layout: document
 redirect_from:

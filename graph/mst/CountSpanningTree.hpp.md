@@ -1,50 +1,56 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/matrix/Determinant.hpp
     title: "Determinant(\u884C\u5217\u5F0F)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/matrix/Matrix.hpp
     title: "Matrix(\u884C\u5217)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: graph/other/CountEulerianTrail.hpp
+    title: CountEulerianTrail(BEST Theorem)
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/atcoder/abc336_g-BEST.test.cpp
+    title: test/atcoder/abc336_g-BEST.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/graph/mst/CountSpanningTree.md
     document_title: "CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)"
@@ -752,10 +758,12 @@ data:
   - math/matrix/Determinant.hpp
   isVerificationFile: false
   path: graph/mst/CountSpanningTree.hpp
-  requiredBy: []
+  requiredBy:
+  - graph/other/CountEulerianTrail.hpp
   timestamp: '2024-03-31 18:06:42+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/atcoder/abc336_g-BEST.test.cpp
 documentation_of: graph/mst/CountSpanningTree.hpp
 layout: document
 redirect_from:
@@ -765,6 +773,8 @@ title: "CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)"
 ---
 ## 概要
 
-全域木の個数を求める。行列木定理を用いている。
+全域木の個数を求める。行列木定理から多項式時間で可能。
+
+有向全域木の個数も求められる。第二引数に根となる頂点を指定する。
 
 - `T count_spanning_tree(Graph<U> G)` : グラフ `G` の全域木の個数を返す。 $\Theta(N^3)$ 。
