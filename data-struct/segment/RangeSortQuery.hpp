@@ -182,5 +182,5 @@ public:
 
 /**
  * @brief RangeSortQuery
- * @docs RangeSortQuery.md
+ * @docs docs/data-struct/segment/RangeSortQuery.md
  */
