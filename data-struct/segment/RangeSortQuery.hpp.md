@@ -46,7 +46,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: RangeSortQuery.md
+    _deprecated_at_docs: docs/data-struct/segment/RangeSortQuery.md
     document_title: RangeSortQuery
     links: []
   bundledCode: "#line 2 \"data-struct/segment/RangeSortQuery.hpp\"\n\n#line 2 \"other/template.hpp\"\
@@ -772,7 +772,8 @@ data:
     \        ll t = seg[r2].min_left(mx, [&](const auto& x) {\n                return\
     \ x.second <= r - r2;\n            }) - 1;\n            res = M::op(res, seg[r2].prod(t\
     \ + 1, mx + 1).first[1]);\n        }\n        return res;\n    }\n};\n\n/**\n\
-    \ * @brief RangeSortQuery\n * @docs RangeSortQuery.md\n */\n"
+    \ * @brief RangeSortQuery\n * @docs docs/data-struct/segment/RangeSortQuery.md\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"DynamicSegmentTree.hpp\"\
     \n#include \"SegmentTree.hpp\"\n\ntemplate<class M> class RangeSortQuery {\nprivate:\n\
     \    using T = typename M::value_type;\n    class M2 {\n    public:\n        using\
@@ -857,7 +858,8 @@ data:
     \        ll t = seg[r2].min_left(mx, [&](const auto& x) {\n                return\
     \ x.second <= r - r2;\n            }) - 1;\n            res = M::op(res, seg[r2].prod(t\
     \ + 1, mx + 1).first[1]);\n        }\n        return res;\n    }\n};\n\n/**\n\
-    \ * @brief RangeSortQuery\n * @docs RangeSortQuery.md\n */\n"
+    \ * @brief RangeSortQuery\n * @docs docs/data-struct/segment/RangeSortQuery.md\n\
+    \ */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -874,7 +876,7 @@ data:
   isVerificationFile: false
   path: data-struct/segment/RangeSortQuery.hpp
   requiredBy: []
-  timestamp: '2024-04-27 18:04:52+09:00'
+  timestamp: '2024-04-29 16:55:08+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
@@ -885,3 +887,16 @@ redirect_from:
 - /library/data-struct/segment/RangeSortQuery.hpp.html
 title: RangeSortQuery
 ---
+## 概要
+
+区間をソートできるセグ木。動的セグ木のマージを用いる。重め。
+
+キーは distinct であるとする。
+
+- `RangeSortQuery()` : コンストラクタ。
+- `RangeSortQuery(ll n, ll mx = inf)` : キーの値の最大値を指定する。
+- `RangeSortQuery(vector<T> v, vector<int> key, ll mx = inf)` : 初期値を指定する。
+- `void set(int k, ll key, T val)` : セットする。 $\Theta(\log mx)$ 。
+- `void sort(int l, int r, bool reverse = false)` : ソートする。逆順ソートもできる。償却 $\Theta(\log mx)$ ？
+- `T get(int k)` : 値を得る。 $\Theta(\log mx)$ 。
+- `T prod(int l, int r)` : 区間和を得る。 $\Theta(\log mx)$ 。

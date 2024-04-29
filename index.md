@@ -146,6 +146,9 @@ data:
       path: data-struct/segment/SqrtDecomposition.hpp
       title: "SqrtDecomposition(\u5E73\u65B9\u5206\u5272)"
     - icon: ':heavy_check_mark:'
+      path: data-struct/segment/StaticRangeCountDistinct.hpp
+      title: data-struct/segment/StaticRangeCountDistinct.hpp
+    - icon: ':heavy_check_mark:'
       path: data-struct/segment/StaticRangeFrequency.hpp
       title: StaticRangeFrequency
     - icon: ':heavy_check_mark:'
@@ -1012,6 +1015,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/set_xor_min.test.cpp
       title: test/yosupo/data_structure/set_xor_min.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/data_structure/static_range_count_distinct.test.cpp
+      title: test/yosupo/data_structure/static_range_count_distinct.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/static_range_frequency.test.cpp
       title: test/yosupo/data_structure/static_range_frequency.test.cpp

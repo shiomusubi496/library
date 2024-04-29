@@ -931,7 +931,8 @@ data:
     \        ll t = seg[r2].min_left(mx, [&](const auto& x) {\n                return\
     \ x.second <= r - r2;\n            }) - 1;\n            res = M::op(res, seg[r2].prod(t\
     \ + 1, mx + 1).first[1]);\n        }\n        return res;\n    }\n};\n\n/**\n\
-    \ * @brief RangeSortQuery\n * @docs RangeSortQuery.md\n */\n#line 6 \"test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp\"\
+    \ * @brief RangeSortQuery\n * @docs docs/data-struct/segment/RangeSortQuery.md\n\
+    \ */\n#line 6 \"test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp\"\
     \nusing namespace std;\nusing mint = modint998244353;\nint main() {\n    int n,\
     \ q; scan >> n >> q;\n    vector<ll> p(n);\n    vector<pair<mint, mint>> a(n);\n\
     \    rep (i, n) scan >> p[i] >> a[i];\n    RangeSortQuery<Monoid::Composite<mint>>\
@@ -978,7 +979,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
   requiredBy: []
-  timestamp: '2024-04-27 18:04:52+09:00'
+  timestamp: '2024-04-29 16:55:08+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
