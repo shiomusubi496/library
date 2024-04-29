@@ -85,6 +85,7 @@
 "test/atcoder/abc176_f-DefaultMap.test.cpp": "2024-01-20 14:55:31 +0900",
 "test/atcoder/abc218_h-AlienDP.test.cpp": "2024-04-18 14:58:23 +0900",
 "test/atcoder/abc265_c-Timer.test.cpp": "2024-01-20 14:55:31 +0900",
+"test/atcoder/abc336_g-BEST.test.cpp": "2024-04-29 23:15:20 +0900",
 "test/atcoder/agc002_d-PartialPersistentArray.test.cpp": "2024-01-20 18:04:20 +0900",
 "test/atcoder/agc002_d-PartialPersistentUF.test.cpp": "2024-01-20 14:55:31 +0900",
 "test/atcoder/arc070_c-SlopeTrick.test.cpp": "2024-01-20 14:55:31 +0900",
