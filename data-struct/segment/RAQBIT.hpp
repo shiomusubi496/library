@@ -15,11 +15,15 @@ public:
     RAQBIT(int n_) : n(n_), bit(n_) {}
     void apply(int l, int r, T x) {
         assert(0 <= l && l <= r && r <= n);
+        if (l == r) return;
         bit.apply(l, x);
         if (r != n) bit.apply(r, M::get_inv(x));
     }
     void apply(int k, T x) { apply(k, k + 1, x); }
-    T get(int k) const { return bit.prod(k); }
+    T get(int k) const {
+        assert(0 <= k && k < n);
+        return bit.prod(k + 1);
+    }
     void set(int k, T x) { apply(k, M::inv(x, get(k))); }
 };
 
