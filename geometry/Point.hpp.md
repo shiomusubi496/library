@@ -117,6 +117,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/geometry/sort_points_by_argument.test.cpp
     title: test/yosupo/geometry/sort_points_by_argument.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/static_convex_hull.test.cpp
+    title: test/yosupo/new/static_convex_hull.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -675,6 +678,7 @@ data:
   timestamp: '2024-01-20 14:55:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/new/static_convex_hull.test.cpp
   - test/yosupo/geometry/sort_points_by_argument.test.cpp
   - test/aoj/CGL/CGL_5_A-closest.test.cpp
   - test/aoj/CGL/CGL_7_E-intersection.test.cpp

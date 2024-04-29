@@ -1232,6 +1232,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/new/rational_approximation.test.cpp
       title: test/yosupo/new/rational_approximation.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/new/static_convex_hull.test.cpp
+      title: test/yosupo/new/static_convex_hull.test.cpp
   - name: test/yosupo/polynomial
     pages:
     - icon: ':heavy_check_mark:'

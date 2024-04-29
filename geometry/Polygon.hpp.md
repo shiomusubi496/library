@@ -66,6 +66,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/geometry/sort_points_by_argument.test.cpp
     title: test/yosupo/geometry/sort_points_by_argument.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/static_convex_hull.test.cpp
+    title: test/yosupo/new/static_convex_hull.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -606,19 +609,19 @@ data:
     \ = p[(i + 1) % n] - q;\n        if (cmp(a.y, b.y) > 0) std::swap(a, b);\n   \
     \     if (cmp(a.y, 0) <= 0 && cmp(b.y, 0) > 0 && cmp(cross(a, b), 0) < 0) {\n\
     \            res = !res;\n        }\n    }\n    return res;\n}\n\nPolygon convex_hull(std::vector<Point>\
-    \ A, bool allow_straight = false) {\n    const int n = A.size();\n    if (n <=\
-    \ 2) return Polygon{A};\n    std::sort(A.begin(), A.end(), [](const Point& a,\
+    \ A, bool allow_straight = false) {\n    std::sort(all(A), [](const Point& a,\
     \ const Point& b) {\n        return cmp(a.x, b.x) != 0 ? cmp(a.x, b.x) < 0 : cmp(a.y,\
-    \ b.y) < 0;\n    });\n    Polygon res;\n    rep (i, n) {\n        while ((int)res.size()\
-    \ >= 2) {\n            CCW c = ccw(res[res.size() - 2], res.back(), A[i]);\n \
-    \           if (c == CCW::CLOCKWISE ||\n                (!allow_straight && c\
+    \ b.y) < 0;\n    });\n    A.erase(std::unique(all(A)), A.end());\n    const int\
+    \ n = A.size();\n    if (n <= 2) return Polygon{A};\n    Polygon res;\n    rep\
+    \ (i, n) {\n        while ((int)res.size() >= 2) {\n            CCW c = ccw(res[res.size()\
+    \ - 2], res.back(), A[i]);\n            if (c == CCW::CLOCKWISE ||\n         \
+    \       (!allow_straight && c == CCW::ONLINE_FRONT)) {\n                res.pop_back();\n\
+    \            }\n            else break;\n        }\n        res.push_back(A[i]);\n\
+    \    }\n    int t = res.size();\n    rrep (i, n - 1) {\n        while ((int)res.size()\
+    \ >= t + 1) {\n            CCW c = ccw(res[res.size() - 2], res.back(), A[i]);\n\
+    \            if (c == CCW::CLOCKWISE ||\n                (!allow_straight && c\
     \ == CCW::ONLINE_FRONT)) {\n                res.pop_back();\n            }\n \
-    \           else break;\n        }\n        res.push_back(A[i]);\n    }\n    int\
-    \ t = res.size();\n    rrep (i, n - 1) {\n        while ((int)res.size() >= t\
-    \ + 1) {\n            CCW c = ccw(res[res.size() - 2], res.back(), A[i]);\n  \
-    \          if (c == CCW::CLOCKWISE ||\n                (!allow_straight && c ==\
-    \ CCW::ONLINE_FRONT)) {\n                res.pop_back();\n            }\n    \
-    \        else break;\n        }\n        res.push_back(A[i]);\n    }\n    res.pop_back();\n\
+    \           else break;\n        }\n        res.push_back(A[i]);\n    }\n    res.pop_back();\n\
     \    return res;\n}\n\nstd::pair<Point, Point> diameter(const Polygon& p) {\n\
     \    const int n = p.size();\n    int i = 0, j = 0;\n    rep (k, n) {\n      \
     \  if (cmp(p[k].x, p[i].x) > 0) i = k;\n        if (cmp(p[k].x, p[j].x) < 0) j\
@@ -672,19 +675,19 @@ data:
     \ = p[(i + 1) % n] - q;\n        if (cmp(a.y, b.y) > 0) std::swap(a, b);\n   \
     \     if (cmp(a.y, 0) <= 0 && cmp(b.y, 0) > 0 && cmp(cross(a, b), 0) < 0) {\n\
     \            res = !res;\n        }\n    }\n    return res;\n}\n\nPolygon convex_hull(std::vector<Point>\
-    \ A, bool allow_straight = false) {\n    const int n = A.size();\n    if (n <=\
-    \ 2) return Polygon{A};\n    std::sort(A.begin(), A.end(), [](const Point& a,\
+    \ A, bool allow_straight = false) {\n    std::sort(all(A), [](const Point& a,\
     \ const Point& b) {\n        return cmp(a.x, b.x) != 0 ? cmp(a.x, b.x) < 0 : cmp(a.y,\
-    \ b.y) < 0;\n    });\n    Polygon res;\n    rep (i, n) {\n        while ((int)res.size()\
-    \ >= 2) {\n            CCW c = ccw(res[res.size() - 2], res.back(), A[i]);\n \
-    \           if (c == CCW::CLOCKWISE ||\n                (!allow_straight && c\
+    \ b.y) < 0;\n    });\n    A.erase(std::unique(all(A)), A.end());\n    const int\
+    \ n = A.size();\n    if (n <= 2) return Polygon{A};\n    Polygon res;\n    rep\
+    \ (i, n) {\n        while ((int)res.size() >= 2) {\n            CCW c = ccw(res[res.size()\
+    \ - 2], res.back(), A[i]);\n            if (c == CCW::CLOCKWISE ||\n         \
+    \       (!allow_straight && c == CCW::ONLINE_FRONT)) {\n                res.pop_back();\n\
+    \            }\n            else break;\n        }\n        res.push_back(A[i]);\n\
+    \    }\n    int t = res.size();\n    rrep (i, n - 1) {\n        while ((int)res.size()\
+    \ >= t + 1) {\n            CCW c = ccw(res[res.size() - 2], res.back(), A[i]);\n\
+    \            if (c == CCW::CLOCKWISE ||\n                (!allow_straight && c\
     \ == CCW::ONLINE_FRONT)) {\n                res.pop_back();\n            }\n \
-    \           else break;\n        }\n        res.push_back(A[i]);\n    }\n    int\
-    \ t = res.size();\n    rrep (i, n - 1) {\n        while ((int)res.size() >= t\
-    \ + 1) {\n            CCW c = ccw(res[res.size() - 2], res.back(), A[i]);\n  \
-    \          if (c == CCW::CLOCKWISE ||\n                (!allow_straight && c ==\
-    \ CCW::ONLINE_FRONT)) {\n                res.pop_back();\n            }\n    \
-    \        else break;\n        }\n        res.push_back(A[i]);\n    }\n    res.pop_back();\n\
+    \           else break;\n        }\n        res.push_back(A[i]);\n    }\n    res.pop_back();\n\
     \    return res;\n}\n\nstd::pair<Point, Point> diameter(const Polygon& p) {\n\
     \    const int n = p.size();\n    int i = 0, j = 0;\n    rep (k, n) {\n      \
     \  if (cmp(p[k].x, p[i].x) > 0) i = k;\n        if (cmp(p[k].x, p[j].x) < 0) j\
@@ -735,9 +738,10 @@ data:
   path: geometry/Polygon.hpp
   requiredBy:
   - geometry/All.hpp
-  timestamp: '2024-01-20 14:55:31+09:00'
+  timestamp: '2024-04-29 17:09:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/new/static_convex_hull.test.cpp
   - test/yosupo/geometry/sort_points_by_argument.test.cpp
   - test/aoj/CGL/CGL_5_A-closest.test.cpp
   - test/aoj/CGL/CGL_3_A-area.test.cpp

@@ -1133,6 +1133,9 @@ data:
     path: test/yosupo/new/rational_approximation.test.cpp
     title: test/yosupo/new/rational_approximation.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/static_convex_hull.test.cpp
+    title: test/yosupo/new/static_convex_hull.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/composition_of_formal_power_series.test.cpp
     title: test/yosupo/polynomial/composition_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1560,6 +1563,7 @@ data:
   - test/yosupo/convolution/gcd_convolution.test.cpp
   - test/yosupo/sample/aplusb.test.cpp
   - test/yosupo/sample/many_aplusb.test.cpp
+  - test/yosupo/new/static_convex_hull.test.cpp
   - test/yosupo/new/matrix_product_mod_2.test.cpp
   - test/yosupo/new/matrix_det_mod_2.test.cpp
   - test/yosupo/new/rational_approximation.test.cpp

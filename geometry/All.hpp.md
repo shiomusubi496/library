@@ -632,51 +632,51 @@ data:
     \ > 0) std::swap(a, b);\n        if (cmp(a.y, 0) <= 0 && cmp(b.y, 0) > 0 && cmp(cross(a,\
     \ b), 0) < 0) {\n            res = !res;\n        }\n    }\n    return res;\n\
     }\n\nPolygon convex_hull(std::vector<Point> A, bool allow_straight = false) {\n\
-    \    const int n = A.size();\n    if (n <= 2) return Polygon{A};\n    std::sort(A.begin(),\
-    \ A.end(), [](const Point& a, const Point& b) {\n        return cmp(a.x, b.x)\
-    \ != 0 ? cmp(a.x, b.x) < 0 : cmp(a.y, b.y) < 0;\n    });\n    Polygon res;\n \
-    \   rep (i, n) {\n        while ((int)res.size() >= 2) {\n            CCW c =\
-    \ ccw(res[res.size() - 2], res.back(), A[i]);\n            if (c == CCW::CLOCKWISE\
+    \    std::sort(all(A), [](const Point& a, const Point& b) {\n        return cmp(a.x,\
+    \ b.x) != 0 ? cmp(a.x, b.x) < 0 : cmp(a.y, b.y) < 0;\n    });\n    A.erase(std::unique(all(A)),\
+    \ A.end());\n    const int n = A.size();\n    if (n <= 2) return Polygon{A};\n\
+    \    Polygon res;\n    rep (i, n) {\n        while ((int)res.size() >= 2) {\n\
+    \            CCW c = ccw(res[res.size() - 2], res.back(), A[i]);\n           \
+    \ if (c == CCW::CLOCKWISE ||\n                (!allow_straight && c == CCW::ONLINE_FRONT))\
+    \ {\n                res.pop_back();\n            }\n            else break;\n\
+    \        }\n        res.push_back(A[i]);\n    }\n    int t = res.size();\n   \
+    \ rrep (i, n - 1) {\n        while ((int)res.size() >= t + 1) {\n            CCW\
+    \ c = ccw(res[res.size() - 2], res.back(), A[i]);\n            if (c == CCW::CLOCKWISE\
     \ ||\n                (!allow_straight && c == CCW::ONLINE_FRONT)) {\n       \
     \         res.pop_back();\n            }\n            else break;\n        }\n\
-    \        res.push_back(A[i]);\n    }\n    int t = res.size();\n    rrep (i, n\
-    \ - 1) {\n        while ((int)res.size() >= t + 1) {\n            CCW c = ccw(res[res.size()\
-    \ - 2], res.back(), A[i]);\n            if (c == CCW::CLOCKWISE ||\n         \
-    \       (!allow_straight && c == CCW::ONLINE_FRONT)) {\n                res.pop_back();\n\
-    \            }\n            else break;\n        }\n        res.push_back(A[i]);\n\
-    \    }\n    res.pop_back();\n    return res;\n}\n\nstd::pair<Point, Point> diameter(const\
-    \ Polygon& p) {\n    const int n = p.size();\n    int i = 0, j = 0;\n    rep (k,\
-    \ n) {\n        if (cmp(p[k].x, p[i].x) > 0) i = k;\n        if (cmp(p[k].x, p[j].x)\
-    \ < 0) j = k;\n    }\n    Real res = abs(p[i] - p[j]);\n    int ri = i, rj = j;\n\
-    \    int si = i, sj = j;\n    do {\n        if (cross(p[(i + 1) % n] - p[i], p[(j\
-    \ + 1) % n] - p[j]) < 0) {\n            i = (i + 1) % n;\n        }\n        else\
-    \ {\n            j = (j + 1) % n;\n        }\n        if (chmax(res, abs(p[i]\
-    \ - p[j]),\n                  [](const Real& a, const Real& b) { return cmp(a,\
-    \ b) < 0; })) {\n            ri = i;\n            rj = j;\n        }\n    } while\
-    \ (i != si || j != sj);\n    return {p[ri], p[rj]};\n}\n\nstd::pair<Point, Point>\
-    \ farthest_pair(const std::vector<Point>& p) {\n    auto poly = convex_hull(p);\n\
-    \    return diameter(poly);\n}\n\nstd::pair<Point, Point> closest_pair(std::vector<Point>\
-    \ p) {\n    assert(p.size() >= 2);\n    const int n = p.size();\n    std::sort(all(p));\n\
-    \    Real res = infinity<Real>::value;\n    Point a, b;\n    rec_lambda([&](auto&&\
-    \ self, int l, int r) -> void {\n        const int m = (l + r) / 2;\n        if\
-    \ (r - l <= 1) return;\n        const Real x = p[m].x;\n        self(l, m);\n\
-    \        self(m, r);\n        std::inplace_merge(\n            p.begin() + l,\
-    \ p.begin() + m, p.begin() + r,\n            [](const Point& a, const Point& b)\
-    \ { return cmp(a.y, b.y) < 0; });\n        std::vector<int> B;\n        rep (i,\
-    \ l, r) {\n            if (cmp(std::abs(p[i].x - x), res) >= 0) continue;\n  \
-    \          rrep (j, B.size()) {\n                if (cmp(p[i].y - p[B[j]].y, res)\
-    \ >= 0) break;\n                if (chmin(res, distance(p[i], p[B[j]]),\n    \
-    \                      [](const Real& a, const Real& b) {\n                  \
-    \            return cmp(a, b) < 0;\n                          })) {\n        \
-    \            a = p[i];\n                    b = p[B[j]];\n                }\n\
-    \            }\n            B.push_back(i);\n        }\n    })(0, n);\n    return\
-    \ {a, b};\n}\n\n// cut with line p0-p1 and return left side\nPolygon polygon_cut(const\
-    \ Polygon& p, const Point& p0, const Point& p1) {\n    const int n = p.size();\n\
-    \    Polygon res;\n    rep (i, n) {\n        Point a = p[i], b = p[(i + 1) % n];\n\
-    \        Real ca = cross(p0 - a, p1 - a);\n        Real cb = cross(p0 - b, p1\
-    \ - b);\n        if (cmp(ca, 0) >= 0) res.push_back(a);\n        if (cmp(ca, 0)\
-    \ * cmp(cb, 0) < 0) {\n            res.push_back(intersection(Line(a, b), Line(p0,\
-    \ p1)));\n        }\n    }\n    return res;\n}\n#line 2 \"geometry/Triangle.hpp\"\
+    \        res.push_back(A[i]);\n    }\n    res.pop_back();\n    return res;\n}\n\
+    \nstd::pair<Point, Point> diameter(const Polygon& p) {\n    const int n = p.size();\n\
+    \    int i = 0, j = 0;\n    rep (k, n) {\n        if (cmp(p[k].x, p[i].x) > 0)\
+    \ i = k;\n        if (cmp(p[k].x, p[j].x) < 0) j = k;\n    }\n    Real res = abs(p[i]\
+    \ - p[j]);\n    int ri = i, rj = j;\n    int si = i, sj = j;\n    do {\n     \
+    \   if (cross(p[(i + 1) % n] - p[i], p[(j + 1) % n] - p[j]) < 0) {\n         \
+    \   i = (i + 1) % n;\n        }\n        else {\n            j = (j + 1) % n;\n\
+    \        }\n        if (chmax(res, abs(p[i] - p[j]),\n                  [](const\
+    \ Real& a, const Real& b) { return cmp(a, b) < 0; })) {\n            ri = i;\n\
+    \            rj = j;\n        }\n    } while (i != si || j != sj);\n    return\
+    \ {p[ri], p[rj]};\n}\n\nstd::pair<Point, Point> farthest_pair(const std::vector<Point>&\
+    \ p) {\n    auto poly = convex_hull(p);\n    return diameter(poly);\n}\n\nstd::pair<Point,\
+    \ Point> closest_pair(std::vector<Point> p) {\n    assert(p.size() >= 2);\n  \
+    \  const int n = p.size();\n    std::sort(all(p));\n    Real res = infinity<Real>::value;\n\
+    \    Point a, b;\n    rec_lambda([&](auto&& self, int l, int r) -> void {\n  \
+    \      const int m = (l + r) / 2;\n        if (r - l <= 1) return;\n        const\
+    \ Real x = p[m].x;\n        self(l, m);\n        self(m, r);\n        std::inplace_merge(\n\
+    \            p.begin() + l, p.begin() + m, p.begin() + r,\n            [](const\
+    \ Point& a, const Point& b) { return cmp(a.y, b.y) < 0; });\n        std::vector<int>\
+    \ B;\n        rep (i, l, r) {\n            if (cmp(std::abs(p[i].x - x), res)\
+    \ >= 0) continue;\n            rrep (j, B.size()) {\n                if (cmp(p[i].y\
+    \ - p[B[j]].y, res) >= 0) break;\n                if (chmin(res, distance(p[i],\
+    \ p[B[j]]),\n                          [](const Real& a, const Real& b) {\n  \
+    \                            return cmp(a, b) < 0;\n                         \
+    \ })) {\n                    a = p[i];\n                    b = p[B[j]];\n   \
+    \             }\n            }\n            B.push_back(i);\n        }\n    })(0,\
+    \ n);\n    return {a, b};\n}\n\n// cut with line p0-p1 and return left side\n\
+    Polygon polygon_cut(const Polygon& p, const Point& p0, const Point& p1) {\n  \
+    \  const int n = p.size();\n    Polygon res;\n    rep (i, n) {\n        Point\
+    \ a = p[i], b = p[(i + 1) % n];\n        Real ca = cross(p0 - a, p1 - a);\n  \
+    \      Real cb = cross(p0 - b, p1 - b);\n        if (cmp(ca, 0) >= 0) res.push_back(a);\n\
+    \        if (cmp(ca, 0) * cmp(cb, 0) < 0) {\n            res.push_back(intersection(Line(a,\
+    \ b), Line(p0, p1)));\n        }\n    }\n    return res;\n}\n#line 2 \"geometry/Triangle.hpp\"\
     \n\n#line 6 \"geometry/Triangle.hpp\"\n\nclass Triangle {\npublic:\n    Point\
     \ p1, p2, p3;\n    Triangle() = default;\n    Triangle(const Point& p1, const\
     \ Point& p2, const Point& p3)\n        : p1(p1), p2(p2), p3(p3) {}\n\n    Real\
@@ -802,7 +802,7 @@ data:
   isVerificationFile: false
   path: geometry/All.hpp
   requiredBy: []
-  timestamp: '2024-01-20 14:55:31+09:00'
+  timestamp: '2024-04-29 17:09:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/geometry/sort_points_by_argument.test.cpp
