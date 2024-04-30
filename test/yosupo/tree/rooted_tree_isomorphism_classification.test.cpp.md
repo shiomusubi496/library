@@ -1,59 +1,59 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/BinaryIndexedTree.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/ReRooting.hpp
     title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/TreeHash.hpp
     title: TreeHash
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/Random.hpp
     title: Random
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/RollingHash.hpp
     title: "RollingHash(\u30ED\u30EA\u30CF)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification
@@ -798,13 +798,13 @@ data:
     \    }\n\n    template<class T>\n    int dfs(const Graph<T>& G, std::vector<mint>&\
     \ ans, int v, int p) {\n        mint res = 1;\n        int dep = 0;\n        for\
     \ (const auto& e : G[v]) {\n            if (e.to == p) continue;\n           \
-    \ int d = dfs(G, ans, e.to, v);\n            chmax(dep, d);\n            res *=\
-    \ ans[e.to] + base[d];\n        }\n        if ((int)base.size() == dep) {\n  \
-    \          base.push_back(mint::raw((1ull << 31) + (rand32() & MASK31)));\n  \
-    \      }\n        ans[v] = res;\n        return dep + 1;\n    }\n\n    struct\
-    \ M {\n        using value_type = std::pair<mint, int>;\n        static value_type\
-    \ id() { return {1, 0}; }\n        static value_type op(const value_type& a, const\
-    \ value_type& b) {\n            return {a.first * b.first, std::max(a.second,\
+    \ int d = dfs(G, ans, e.to, v);\n            chmax(dep, d + 1);\n            if\
+    \ ((int)base.size() == d) {\n                base.push_back(mint::raw((1ull <<\
+    \ 31) + (rand32() & MASK31)));\n            }\n            res *= ans[e.to] +\
+    \ base[d];\n        }\n        ans[v] = res;\n        return dep;\n    }\n\n \
+    \   struct M {\n        using value_type = std::pair<mint, int>;\n        static\
+    \ value_type id() { return {1, 0}; }\n        static value_type op(const value_type&\
+    \ a, const value_type& b) {\n            return {a.first * b.first, std::max(a.second,\
     \ b.second)};\n        }\n    };\n    template<class T>\n    std::pair<mint, int>\
     \ f(const std::pair<mint, int>& a, const edge<T>& b) {\n        if ((int)base.size()\
     \ == a.second) {\n            base.push_back(mint::raw((1ull << 31) + (rand32()\
@@ -859,8 +859,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
   requiredBy: []
-  timestamp: '2024-04-30 09:30:31+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-30 12:54:09+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
 layout: document
