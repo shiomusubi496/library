@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: graph/Graph.hpp
+    title: Graph-template
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   - icon: ':heavy_check_mark:'
@@ -28,367 +31,64 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: data-struct/segment/LCARMQ.hpp
-    title: LCARMQ
-  - icon: ':heavy_check_mark:'
-    path: graph/connected/BiConnectedComponents.hpp
-    title: "BiConnectedComponents(\u4E8C\u91CD\u9802\u70B9\u9023\u7D50\u6210\u5206\
-      \u5206\u89E3)"
-  - icon: ':heavy_check_mark:'
-    path: graph/connected/ConnectedComponents.hpp
-    title: "ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)"
-  - icon: ':heavy_check_mark:'
-    path: graph/connected/StronglyConnectedComponents.hpp
-    title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
-      )"
-  - icon: ':heavy_check_mark:'
-    path: graph/connected/ThreeEdgeConnectedComponents.hpp
-    title: "ThreeEdgeConnectedComponents(\u4E09\u8FBA\u9023\u7D50\u6210\u5206\u5206\
-      \u89E3)"
-  - icon: ':heavy_check_mark:'
-    path: graph/connected/TwoEdgeConnectedComponents.hpp
-    title: "TwoEdgeConnectedComponents(\u4E8C\u8FBA\u9023\u7D50\u6210\u5206\u5206\u89E3\
-      )"
-  - icon: ':heavy_check_mark:'
-    path: graph/mst/CountSpanningTree.hpp
-    title: "CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)"
-  - icon: ':heavy_check_mark:'
-    path: graph/mst/DirectedMST.hpp
-    title: "DirectedMST(\u6700\u5C0F\u6709\u5411\u5168\u57DF\u6728)"
-  - icon: ':heavy_check_mark:'
-    path: graph/mst/Kruskal.hpp
-    title: "Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
-  - icon: ':heavy_check_mark:'
-    path: graph/mst/ManhattanMST.hpp
-    title: Manhattan Minimum Spanning Tree
-  - icon: ':heavy_check_mark:'
-    path: graph/mst/Prim.hpp
-    title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
-  - icon: ':heavy_check_mark:'
-    path: graph/other/BipartiteGraph.hpp
-    title: "BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A)"
-  - icon: ':heavy_check_mark:'
-    path: graph/other/ChromaticNumber.hpp
-    title: "ChromaticNumber(\u5F69\u8272\u6570)"
-  - icon: ':heavy_check_mark:'
-    path: graph/other/CountEulerianTrail.hpp
-    title: CountEulerianTrail(BEST Theorem)
-  - icon: ':heavy_check_mark:'
-    path: graph/other/EnumerateCliques.hpp
-    title: EnumerateCliques
-  - icon: ':heavy_check_mark:'
-    path: graph/other/EnumerateTriangles.hpp
-    title: EnumerateTriangles
-  - icon: ':heavy_check_mark:'
-    path: graph/other/EulerianTrail.hpp
-    title: EulerianTrail
-  - icon: ':heavy_check_mark:'
-    path: graph/other/GraphCycle.hpp
-    title: "GraphCycle(\u9589\u8DEF\u691C\u51FA)"
-  - icon: ':heavy_check_mark:'
-    path: graph/other/LowLink.hpp
-    title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
-  - icon: ':heavy_check_mark:'
-    path: graph/other/MaximumIndependentSet.hpp
-    title: "MaximumIndependentSet(\u6700\u5927\u72EC\u7ACB\u96C6\u5408)"
-  - icon: ':heavy_check_mark:'
-    path: graph/other/TopologicalSort.hpp
-    title: "TopologicalSort(\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8\
-      )"
-  - icon: ':heavy_check_mark:'
-    path: graph/other/TwoSatisfiability.hpp
-    title: TwoSatisfiability(2-SAT)
-  - icon: ':heavy_check_mark:'
-    path: graph/shortest-path/BellmanFord.hpp
-    title: "Bellman-Ford(\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5)"
-  - icon: ':heavy_check_mark:'
-    path: graph/shortest-path/BreadthFirstSearch.hpp
-    title: "BFS(\u5E45\u512A\u5148\u63A2\u7D22)"
-  - icon: ':heavy_check_mark:'
-    path: graph/shortest-path/Dijkstra.hpp
-    title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
-  - icon: ':heavy_check_mark:'
-    path: graph/shortest-path/Restore.hpp
-    title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
-  - icon: ':heavy_check_mark:'
-    path: graph/shortest-path/WarshallFloyd.hpp
-    title: "Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\u6CD5\
-      )"
-  - icon: ':heavy_check_mark:'
-    path: graph/shortest-path/ZeroOneBFS.hpp
-    title: ZeroOneBFS(01-BFS)
-  - icon: ':heavy_check_mark:'
-    path: graph/tree/CartesianTree.hpp
-    title: CartesianTree
-  - icon: ':heavy_check_mark:'
-    path: graph/tree/ContourQuery.hpp
-    title: graph/tree/ContourQuery.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/tree/DoublingLowestCommonAncestor.hpp
-    title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
-      \u308BLCA)"
-  - icon: ':heavy_check_mark:'
-    path: graph/tree/EulerTour.hpp
-    title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
-  - icon: ':heavy_check_mark:'
-    path: graph/tree/EulerTourSubtree.hpp
-    title: "EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\
-      \u6728\u30AF\u30A8\u30EA)"
-  - icon: ':heavy_check_mark:'
-    path: graph/tree/FrequencyTableofTreeDistance.hpp
-    title: Frequency Table of Tree Distance
-  - icon: ':heavy_check_mark:'
-    path: graph/tree/HeavyLightDecomposition.hpp
-    title: "HeavyLightDecomposition(HL\u5206\u89E3)"
-  - icon: ':heavy_check_mark:'
-    path: graph/tree/PMORMQLCA.hpp
-    title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
-  - icon: ':heavy_check_mark:'
-    path: graph/tree/ReRooting.hpp
-    title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
-  - icon: ':heavy_check_mark:'
-    path: graph/tree/TreeCentroid.hpp
-    title: "TreeCentroid(\u6728\u306E\u91CD\u5FC3)"
-  - icon: ':heavy_check_mark:'
-    path: graph/tree/TreeDiameter.hpp
-    title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"
-  - icon: ':heavy_check_mark:'
-    path: graph/tree/TreeHash.hpp
-    title: TreeHash
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp
-    title: test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
-    title: test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
-    title: test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
-    title: test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
-    title: test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp
-    title: test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
-    title: test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
-    title: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
-    title: test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
-    title: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
-    title: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_2_A-Prim.test.cpp
-    title: test/aoj/GRL/GRL_2_A-Prim.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
-    title: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_3_B-LowLink.test.cpp
-    title: test/aoj/GRL/GRL_3_B-LowLink.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_3_C-SCC.test.cpp
-    title: test/aoj/GRL/GRL_3_C-SCC.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
-    title: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
-    title: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
-    title: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
-    title: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
-    title: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_5_C-LCA.test.cpp
-    title: test/aoj/GRL/GRL_5_C-LCA.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
-    title: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-    title: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_5_E-HLD.test.cpp
-    title: test/aoj/GRL/GRL_5_E-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/other/2945-01BFS.test.cpp
-    title: test/aoj/other/2945-01BFS.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc336_g-BEST.test.cpp
-    title: test/atcoder/abc336_g-BEST.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/arc099_c-Bipartite.test.cpp
-    title: test/atcoder/arc099_c-Bipartite.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
-    title: test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
-    title: test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_add_path_sum.test.cpp
-    title: test/yosupo/data_structure/vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
-    title: test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree.test.cpp
-    title: test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
-    title: test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
-    title: test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
-    title: test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_get_range_contour_add_on_tree.test.cpp
-    title: test/yosupo/data_structure/vertex_get_range_contour_add_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-    title: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
-    title: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/graph/biconnected_components.test.cpp
-    title: test/yosupo/graph/biconnected_components.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/graph/bipartitematching.test.cpp
-    title: test/yosupo/graph/bipartitematching.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/graph/chromatic_number.test.cpp
-    title: test/yosupo/graph/chromatic_number.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/graph/cycle_detection.test.cpp
-    title: test/yosupo/graph/cycle_detection.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/graph/directedmst.test.cpp
-    title: test/yosupo/graph/directedmst.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/graph/enumerate_cliques.test.cpp
-    title: test/yosupo/graph/enumerate_cliques.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/graph/enumerate_triangles.test.cpp
-    title: test/yosupo/graph/enumerate_triangles.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/graph/eulerian_trail_directed.test.cpp
-    title: test/yosupo/graph/eulerian_trail_directed.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/graph/eulerian_trail_undirected.test.cpp
-    title: test/yosupo/graph/eulerian_trail_undirected.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/graph/manhattanmst.test.cpp
-    title: test/yosupo/graph/manhattanmst.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/graph/maximum_independent_set.test.cpp
-    title: test/yosupo/graph/maximum_independent_set.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/graph/shortest_path.test.cpp
-    title: test/yosupo/graph/shortest_path.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/three_edge_connected_components.test.cpp
     title: test/yosupo/graph/three_edge_connected_components.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/graph/two_edge_connected_components.test.cpp
-    title: test/yosupo/graph/two_edge_connected_components.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/math/two_sat.test.cpp
-    title: test/yosupo/math/two_sat.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/tree/cartesian_tree.test.cpp
-    title: test/yosupo/tree/cartesian_tree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
-    title: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/tree/jump_on_tree.test.cpp
-    title: test/yosupo/tree/jump_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/tree/lca-HLD.test.cpp
-    title: test/yosupo/tree/lca-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
-    title: test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/tree/tree_diameter.test.cpp
-    title: test/yosupo/tree/tree_diameter.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/tree/tree_path_composite_sum.test.cpp
-    title: test/yosupo/tree/tree_path_composite_sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/graph/Graph.md
-    document_title: Graph-template
+    _deprecated_at_docs: docs/graph/connected/ThreeEdgeConnectedComponents.md
+    document_title: "ThreeEdgeConnectedComponents(\u4E09\u8FBA\u9023\u7D50\u6210\u5206\
+      \u5206\u89E3)"
     links: []
-  bundledCode: "#line 2 \"graph/Graph.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
-    #include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
-    \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define OVERLOAD5(a,\
-    \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
-    \                                                           \\\n    for (ll REP_COUNTER_##c\
-    \ = 0; REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b,\
-    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
-    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
-    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) OVERLOAD5(__VA_ARGS__,\
-    \ REP4, REP3, REP2, REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1;\
-    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n\
-    #define RREP4(i, a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n\
-    #define rrep(...) OVERLOAD5(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define\
-    \ REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b) for (ll\
-    \ i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll i = (ll)(a)\
-    \ + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) OVERLOAD5(__VA_ARGS__, REPS4,\
-    \ REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a); i > 0;\
-    \ --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n#define\
-    \ RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
-    \ rreps(...) OVERLOAD5(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define\
-    \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
-    \ __VA_ARGS__)\n\n#define all(v) std::begin(v), std::end(v)\n#if __cplusplus >=\
-    \ 201402L\n#define rall(v) std::rbegin(v), std::rend(v)\n#else\n#define rall(v)\
-    \ v.rbegin(), v.rend()\n#endif\n\n#if __cpp_constexpr >= 201304L\n#define CONSTEXPR\
-    \ constexpr\n#else\n#define CONSTEXPR\n#endif\n\n#if __cpp_if_constexpr >= 201606L\n\
-    #define IF_CONSTEXPR constexpr\n#else\n#define IF_CONSTEXPR\n#endif\n\n#define\
-    \ IO_BUFFER_SIZE 2048\n#line 2 \"template/alias.hpp\"\n\n#line 4 \"template/alias.hpp\"\
-    \n\nusing ll = long long;\nusing uint = unsigned int;\nusing ull = unsigned long\
-    \ long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\nusing ld = long\
-    \ double;\nusing PLL = std::pair<ll, ll>;\ntemplate<class T>\nusing prique = std::priority_queue<T,\
-    \ std::vector<T>, std::greater<T>>;\n\ntemplate<class T> struct infinity {\n \
-    \   static constexpr T value = std::numeric_limits<T>::max() / 2;\n    static\
-    \ constexpr T mvalue = std::numeric_limits<T>::lowest() / 2;\n    static constexpr\
-    \ T max = std::numeric_limits<T>::max();\n    static constexpr T min = std::numeric_limits<T>::lowest();\n\
-    };\n\n#if __cplusplus <= 201402L\ntemplate<class T> constexpr T infinity<T>::value;\n\
-    template<class T> constexpr T infinity<T>::mvalue;\ntemplate<class T> constexpr\
-    \ T infinity<T>::max;\ntemplate<class T> constexpr T infinity<T>::min;\n#endif\n\
-    \n#if __cpp_variable_templates >= 201304L\ntemplate<class T> constexpr T INF =\
-    \ infinity<T>::value;\n#endif\n\nconstexpr ll inf = infinity<ll>::value;\nconstexpr\
-    \ ld EPS = 1e-8;\nconstexpr ld PI = 3.1415926535897932384626;\n#line 2 \"template/type_traits.hpp\"\
-    \n\n#line 5 \"template/type_traits.hpp\"\n\ntemplate<class T, class... Args> struct\
-    \ function_traits_impl {\n    using result_type = T;\n    template<std::size_t\
-    \ idx>\n    using argument_type =\n        typename std::tuple_element<idx, std::tuple<Args...>>::type;\n\
-    \    using argument_tuple = std::tuple<Args...>;\n    static constexpr std::size_t\
+  bundledCode: "#line 2 \"graph/connected/ThreeEdgeConnectedComponents.hpp\"\n\n#line\
+    \ 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
+    \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
+    \ __LINE__\n#endif\n\n#define OVERLOAD5(a, b, c, d, e, ...) e\n#define REP1_0(b,\
+    \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
+    \                     \\\n    for (ll REP_COUNTER_##c = 0; REP_COUNTER_##c < (ll)(b);\
+    \ ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define REP2(i,\
+    \ b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i = (ll)(a);\
+    \ i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b);\
+    \ i += (ll)(c))\n#define rep(...) OVERLOAD5(__VA_ARGS__, REP4, REP3, REP2, REP1)(__VA_ARGS__)\n\
+    #define RREP2(i, a) for (ll i = (ll)(a)-1; i >= 0; --i)\n#define RREP3(i, a, b)\
+    \ for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n#define RREP4(i, a, b, c) for (ll\
+    \ i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n#define rrep(...) OVERLOAD5(__VA_ARGS__,\
+    \ RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define REPS2(i, b) for (ll i = 1; i <= (ll)(b);\
+    \ ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define\
+    \ REPS4(i, a, b, c) for (ll i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define\
+    \ reps(...) OVERLOAD5(__VA_ARGS__, REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define\
+    \ RREPS2(i, a) for (ll i = (ll)(a); i > 0; --i)\n#define RREPS3(i, a, b) for (ll\
+    \ i = (ll)(a); i > (ll)(b); --i)\n#define RREPS4(i, a, b, c) for (ll i = (ll)(a);\
+    \ i > (ll)(b); i -= (ll)(c))\n#define rreps(...) OVERLOAD5(__VA_ARGS__, RREPS4,\
+    \ RREPS3, RREPS2)(__VA_ARGS__)\n\n#define each_for(...) for (auto&& __VA_ARGS__)\n\
+    #define each_const(...) for (const auto& __VA_ARGS__)\n\n#define all(v) std::begin(v),\
+    \ std::end(v)\n#if __cplusplus >= 201402L\n#define rall(v) std::rbegin(v), std::rend(v)\n\
+    #else\n#define rall(v) v.rbegin(), v.rend()\n#endif\n\n#if __cpp_constexpr >=\
+    \ 201304L\n#define CONSTEXPR constexpr\n#else\n#define CONSTEXPR\n#endif\n\n#if\
+    \ __cpp_if_constexpr >= 201606L\n#define IF_CONSTEXPR constexpr\n#else\n#define\
+    \ IF_CONSTEXPR\n#endif\n\n#define IO_BUFFER_SIZE 2048\n#line 2 \"template/alias.hpp\"\
+    \n\n#line 4 \"template/alias.hpp\"\n\nusing ll = long long;\nusing uint = unsigned\
+    \ int;\nusing ull = unsigned long long;\nusing i128 = __int128_t;\nusing u128\
+    \ = __uint128_t;\nusing ld = long double;\nusing PLL = std::pair<ll, ll>;\ntemplate<class\
+    \ T>\nusing prique = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\
+    \ntemplate<class T> struct infinity {\n    static constexpr T value = std::numeric_limits<T>::max()\
+    \ / 2;\n    static constexpr T mvalue = std::numeric_limits<T>::lowest() / 2;\n\
+    \    static constexpr T max = std::numeric_limits<T>::max();\n    static constexpr\
+    \ T min = std::numeric_limits<T>::lowest();\n};\n\n#if __cplusplus <= 201402L\n\
+    template<class T> constexpr T infinity<T>::value;\ntemplate<class T> constexpr\
+    \ T infinity<T>::mvalue;\ntemplate<class T> constexpr T infinity<T>::max;\ntemplate<class\
+    \ T> constexpr T infinity<T>::min;\n#endif\n\n#if __cpp_variable_templates >=\
+    \ 201304L\ntemplate<class T> constexpr T INF = infinity<T>::value;\n#endif\n\n\
+    constexpr ll inf = infinity<ll>::value;\nconstexpr ld EPS = 1e-8;\nconstexpr ld\
+    \ PI = 3.1415926535897932384626;\n#line 2 \"template/type_traits.hpp\"\n\n#line\
+    \ 5 \"template/type_traits.hpp\"\n\ntemplate<class T, class... Args> struct function_traits_impl\
+    \ {\n    using result_type = T;\n    template<std::size_t idx>\n    using argument_type\
+    \ =\n        typename std::tuple_element<idx, std::tuple<Args...>>::type;\n  \
+    \  using argument_tuple = std::tuple<Args...>;\n    static constexpr std::size_t\
     \ arg_size() { return sizeof...(Args); }\n};\n\ntemplate<class> struct function_traits_helper;\n\
     \ntemplate<class Res, class Tp, class... Args>\nstruct function_traits_helper<Res\
     \ (Tp::*)(Args...)> {\n    using type = function_traits_impl<Res, Args...>;\n\
@@ -759,49 +459,8 @@ data:
     \        return res;\n    }\n    void press(std::vector<T>& vec) const {\n   \
     \     assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
-    };\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int> struct edge {\n   \
-    \ int from, to;\n    T cost;\n    int idx;\n    edge() : from(-1), to(-1) {}\n\
-    \    edge(int f, int t, const T& c = 1, int i = -1)\n        : from(f), to(t),\
-    \ cost(c), idx(i) {}\n    edge(int f, int t, T&& c, int i = -1)\n        : from(f),\
-    \ to(t), cost(std::move(c)), idx(i) {}\n    operator int() const { return to;\
-    \ }\n    friend bool operator<(const edge<T>& lhs, const edge<T>& rhs) {\n   \
-    \     return lhs.cost < rhs.cost;\n    }\n    friend bool operator>(const edge<T>&\
-    \ lhs, const edge<T>& rhs) {\n        return lhs.cost > rhs.cost;\n    }\n};\n\
-    \ntemplate<class T = int> using Edges = std::vector<edge<T>>;\ntemplate<class\
-    \ T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class T =\
-    \ int> class Graph : public std::vector<std::vector<edge<T>>> {\nprivate:\n  \
-    \  using Base = std::vector<std::vector<edge<T>>>;\n\npublic:\n    int edge_id\
-    \ = 0;\n    using Base::Base;\n    int edge_size() const { return edge_id; }\n\
-    \    int add_edge(int a, int b, const T& c, bool is_directed = false) {\n    \
-    \    assert(0 <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
-    \        (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed)\
-    \ (*this)[b].emplace_back(b, a, c, edge_id);\n        return edge_id++;\n    }\n\
-    \    int add_edge(int a, int b, bool is_directed = false) {\n        assert(0\
-    \ <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
-    \        (*this)[a].emplace_back(a, b, 1, edge_id);\n        if (!is_directed)\
-    \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
-    };\n\ntemplate<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {\n    const\
-    \ int N = G.size();\n    auto res = make_vec<T>(N, N, infinity<T>::value);\n \
-    \   rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n        each_const (e : G[i])\
-    \ res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\ntemplate<class T> Edges<T>\
-    \ UndirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n  \
-    \  const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n     \
-    \   each_const (e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\ntemplate<class\
-    \ T> Edges<T> DirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n\
-    \    const int E = std::accumulate(\n        all(G), 0, [](int a, const std::vector<edge<T>>&\
-    \ v) -> int {\n            return a + v.size();\n        });\n    Edges<T> Ed(G.edge_size());\n\
-    \    Ed.reserve(E);\n    rep (i, V) {\n        each_const (e : G[i]) {\n     \
-    \       if (Ed[e.idx] == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n\
-    \        }\n    }\n    return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const\
-    \ Graph<T>& G) {\n    const int V = G.size();\n    Graph<T> res(V);\n    rep (i,\
-    \ V) {\n        each_const (e : G[i]) {\n            res[e.to].emplace_back(e.to,\
-    \ e.from, e.cost, e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n\
-    \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
-    \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
-    using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/graph/Graph.md\n */\n"
-  code: "#pragma once\n\n#include \"../other/template.hpp\"\n\ntemplate<class T =\
-    \ int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
+    };\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class\
+    \ T = int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
     \ : from(-1), to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1)\n\
     \        : from(f), to(t), cost(c), idx(i) {}\n    edge(int f, int t, T&& c, int\
     \ i = -1)\n        : from(f), to(t), cost(std::move(c)), idx(i) {}\n    operator\
@@ -840,7 +499,146 @@ data:
     \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/graph/Graph.md\n */\n"
+    \ * @docs docs/graph/Graph.md\n */\n#line 5 \"graph/connected/ThreeEdgeConnectedComponents.hpp\"\
+    \n\ntemplate<class T> class ThreeEdgeConnectedComponents {\nprivate:\n    int\
+    \ n, cnt;\n    const Graph<T>& G;\n    std::vector<int> ord, low, lowv, low2,\
+    \ lowv2, nd;\n    std::vector<bool> is_cut;\n    std::vector<std::stack<std::tuple<int,\
+    \ int, bool, int, int>>> st;\n    std::vector<int> link;\n\n    void dfs(int v,\
+    \ int pid) {\n        ord[v] = low[v] = low2[v] = cnt++;\n        lowv[v] = lowv2[v]\
+    \ = v;\n        std::vector<int> tes;\n        int tl = -1, tv = -1;\n       \
+    \ for (const auto& e : G[v]) {\n            if (e.idx == pid) continue;\n    \
+    \        if (ord[e.to] == -1) {\n                dfs(e.to, e.idx);\n         \
+    \       nd[v] += nd[e.to];\n                tes.push_back(e.idx);\n          \
+    \      if (ord[v] < low[e.to]) {\n                    is_cut[e.idx] = true;\n\
+    \                    continue;\n                }\n                if (!st[e.to].empty()\
+    \ && std::get<4>(st[e.to].top()) == e.to) {\n                    const auto [i,\
+    \ y, b, p, _] = st[e.to].top();\n                    st[e.to].pop();\n       \
+    \             is_cut[i] = is_cut[e.idx] = true;\n                    link[y] =\
+    \ v;\n                    if (p != v) st[e.to].emplace(i, y, b, p, v);\n     \
+    \           }\n                if (low[e.to] < low[v]) {\n                   \
+    \ low2[v] = low[v];\n                    lowv2[v] = lowv[v];\n               \
+    \     low[v] = low[e.to];\n                    lowv[v] = lowv[e.to];\n       \
+    \             st[v] = std::move(st[e.to]);\n                    tl = e.idx;\n\
+    \                    tv = e.to;\n                }\n                else if (low[e.to]\
+    \ < low2[v]) {\n                    low2[v] = low[e.to];\n                   \
+    \ lowv2[v] = lowv[e.to];\n                }\n            }\n            else if\
+    \ (ord[e.to] < ord[v]) {\n                if (ord[e.to] <= low[v]) {\n       \
+    \             low2[v] = low[v];\n                    lowv2[v] = lowv[v];\n   \
+    \                 low[v] = ord[e.to];\n                    lowv[v] = e.to;\n \
+    \                   while (!st[v].empty()) st[v].pop();\n                    tl\
+    \ = e.idx;\n                    tv = e.to;\n                }\n              \
+    \  else if (ord[e.to] < low2[v]) {\n                    low2[v] = ord[e.to];\n\
+    \                    lowv2[v] = e.to;\n                }\n            }\n    \
+    \    }\n        if (st[v].empty()) {\n            if (low[v] < low2[v])\n    \
+    \            st[v].emplace(tl, tv, ord[tv] < ord[v], lowv[v], lowv2[v]);\n   \
+    \     }\n        else {\n            const auto [i, y, b, p, q] = st[v].top();\n\
+    \            if (ord[q] < low2[v])\n                st[v].emplace(tl, tv, ord[tv]\
+    \ < ord[v], q, lowv2[v]);\n            else {\n                while (!st[v].empty()\
+    \ &&\n                       low2[v] <= ord[std::get<3>(st[v].top())])\n     \
+    \               st[v].pop();\n                if (!st[v].empty()) {\n        \
+    \            const auto [i, y, b, p, q] = st[v].top();\n                    if\
+    \ (low2[v] < ord[q]) {\n                        st[v].pop();\n               \
+    \         st[v].emplace(i, y, b, p, lowv2[v]);\n                    }\n      \
+    \          }\n            }\n        }\n        int k = 0;\n        for (const\
+    \ auto& e : G[v]) {\n            if (ord[e.to] <= ord[v]) continue;\n        \
+    \    if (k < (int)tes.size() && tes[k] == e.idx) {\n                ++k;\n   \
+    \             continue;\n            }\n            while (!st[v].empty()) {\n\
+    \                const auto [i, y, b, p, q] = st[v].top();\n                if\
+    \ (!b && ord[y] <= ord[e.to] && ord[e.to] < ord[y] + nd[y])\n                \
+    \    st[v].pop();\n                else break;\n            }\n        }\n   \
+    \ }\n\n    int sz;\n    std::vector<int> cmp;\n    std::vector<std::vector<int>>\
+    \ G2;\n\n    void dcmp(int v) {\n        for (const auto& e : G[v]) {\n      \
+    \      if (cmp[e.to] != -1) continue;\n            if (is_cut[e.idx]) continue;\n\
+    \            cmp[e.to] = cmp[v];\n            dcmp(e.to);\n        }\n       \
+    \ for (const auto& e : G2[v]) {\n            if (cmp[e] != -1) continue;\n   \
+    \         cmp[e] = cmp[v];\n            dcmp(e);\n        }\n    }\n\npublic:\n\
+    \    ThreeEdgeConnectedComponents(const Graph<T>& G) : n(G.size()), G(G) {\n \
+    \       ord.assign(n, -1);\n        low.assign(n, n + 1);\n        lowv.assign(n,\
+    \ -1);\n        low2.assign(n, n + 1);\n        lowv2.assign(n, -1);\n       \
+    \ nd.assign(n, 1);\n        is_cut.assign(G.edge_size(), false);\n        st.resize(n);\n\
+    \        link.assign(n, -1);\n        cnt = 0;\n        rep (i, n) {\n       \
+    \     if (ord[i] == -1) dfs(i, -1);\n        }\n        G2.resize(n);\n      \
+    \  rep (i, n) {\n            if (link[i] != -1) {\n                G2[i].push_back(link[i]);\n\
+    \                G2[link[i]].push_back(i);\n            }\n        }\n       \
+    \ sz = 0;\n        cmp.assign(n, -1);\n        rep (i, n) {\n            if (cmp[i]\
+    \ == -1) {\n                cmp[i] = sz++;\n                dcmp(i);\n       \
+    \     }\n        }\n    }\n    int size() const { return sz; }\n    int operator[](int\
+    \ k) const { return cmp[k]; }\n    std::vector<std::vector<int>> groups() const\
+    \ {\n        std::vector<std::vector<int>> res(sz);\n        rep (i, n) res[cmp[i]].push_back(i);\n\
+    \        return res;\n    }\n    bool is_cut_edge(int k) const { return is_cut[k];\
+    \ }\n};\n\n/**\n * @brief ThreeEdgeConnectedComponents(\u4E09\u8FBA\u9023\u7D50\
+    \u6210\u5206\u5206\u89E3)\n * @docs docs/graph/connected/ThreeEdgeConnectedComponents.md\n\
+    \ */\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
+    \n\ntemplate<class T> class ThreeEdgeConnectedComponents {\nprivate:\n    int\
+    \ n, cnt;\n    const Graph<T>& G;\n    std::vector<int> ord, low, lowv, low2,\
+    \ lowv2, nd;\n    std::vector<bool> is_cut;\n    std::vector<std::stack<std::tuple<int,\
+    \ int, bool, int, int>>> st;\n    std::vector<int> link;\n\n    void dfs(int v,\
+    \ int pid) {\n        ord[v] = low[v] = low2[v] = cnt++;\n        lowv[v] = lowv2[v]\
+    \ = v;\n        std::vector<int> tes;\n        int tl = -1, tv = -1;\n       \
+    \ for (const auto& e : G[v]) {\n            if (e.idx == pid) continue;\n    \
+    \        if (ord[e.to] == -1) {\n                dfs(e.to, e.idx);\n         \
+    \       nd[v] += nd[e.to];\n                tes.push_back(e.idx);\n          \
+    \      if (ord[v] < low[e.to]) {\n                    is_cut[e.idx] = true;\n\
+    \                    continue;\n                }\n                if (!st[e.to].empty()\
+    \ && std::get<4>(st[e.to].top()) == e.to) {\n                    const auto [i,\
+    \ y, b, p, _] = st[e.to].top();\n                    st[e.to].pop();\n       \
+    \             is_cut[i] = is_cut[e.idx] = true;\n                    link[y] =\
+    \ v;\n                    if (p != v) st[e.to].emplace(i, y, b, p, v);\n     \
+    \           }\n                if (low[e.to] < low[v]) {\n                   \
+    \ low2[v] = low[v];\n                    lowv2[v] = lowv[v];\n               \
+    \     low[v] = low[e.to];\n                    lowv[v] = lowv[e.to];\n       \
+    \             st[v] = std::move(st[e.to]);\n                    tl = e.idx;\n\
+    \                    tv = e.to;\n                }\n                else if (low[e.to]\
+    \ < low2[v]) {\n                    low2[v] = low[e.to];\n                   \
+    \ lowv2[v] = lowv[e.to];\n                }\n            }\n            else if\
+    \ (ord[e.to] < ord[v]) {\n                if (ord[e.to] <= low[v]) {\n       \
+    \             low2[v] = low[v];\n                    lowv2[v] = lowv[v];\n   \
+    \                 low[v] = ord[e.to];\n                    lowv[v] = e.to;\n \
+    \                   while (!st[v].empty()) st[v].pop();\n                    tl\
+    \ = e.idx;\n                    tv = e.to;\n                }\n              \
+    \  else if (ord[e.to] < low2[v]) {\n                    low2[v] = ord[e.to];\n\
+    \                    lowv2[v] = e.to;\n                }\n            }\n    \
+    \    }\n        if (st[v].empty()) {\n            if (low[v] < low2[v])\n    \
+    \            st[v].emplace(tl, tv, ord[tv] < ord[v], lowv[v], lowv2[v]);\n   \
+    \     }\n        else {\n            const auto [i, y, b, p, q] = st[v].top();\n\
+    \            if (ord[q] < low2[v])\n                st[v].emplace(tl, tv, ord[tv]\
+    \ < ord[v], q, lowv2[v]);\n            else {\n                while (!st[v].empty()\
+    \ &&\n                       low2[v] <= ord[std::get<3>(st[v].top())])\n     \
+    \               st[v].pop();\n                if (!st[v].empty()) {\n        \
+    \            const auto [i, y, b, p, q] = st[v].top();\n                    if\
+    \ (low2[v] < ord[q]) {\n                        st[v].pop();\n               \
+    \         st[v].emplace(i, y, b, p, lowv2[v]);\n                    }\n      \
+    \          }\n            }\n        }\n        int k = 0;\n        for (const\
+    \ auto& e : G[v]) {\n            if (ord[e.to] <= ord[v]) continue;\n        \
+    \    if (k < (int)tes.size() && tes[k] == e.idx) {\n                ++k;\n   \
+    \             continue;\n            }\n            while (!st[v].empty()) {\n\
+    \                const auto [i, y, b, p, q] = st[v].top();\n                if\
+    \ (!b && ord[y] <= ord[e.to] && ord[e.to] < ord[y] + nd[y])\n                \
+    \    st[v].pop();\n                else break;\n            }\n        }\n   \
+    \ }\n\n    int sz;\n    std::vector<int> cmp;\n    std::vector<std::vector<int>>\
+    \ G2;\n\n    void dcmp(int v) {\n        for (const auto& e : G[v]) {\n      \
+    \      if (cmp[e.to] != -1) continue;\n            if (is_cut[e.idx]) continue;\n\
+    \            cmp[e.to] = cmp[v];\n            dcmp(e.to);\n        }\n       \
+    \ for (const auto& e : G2[v]) {\n            if (cmp[e] != -1) continue;\n   \
+    \         cmp[e] = cmp[v];\n            dcmp(e);\n        }\n    }\n\npublic:\n\
+    \    ThreeEdgeConnectedComponents(const Graph<T>& G) : n(G.size()), G(G) {\n \
+    \       ord.assign(n, -1);\n        low.assign(n, n + 1);\n        lowv.assign(n,\
+    \ -1);\n        low2.assign(n, n + 1);\n        lowv2.assign(n, -1);\n       \
+    \ nd.assign(n, 1);\n        is_cut.assign(G.edge_size(), false);\n        st.resize(n);\n\
+    \        link.assign(n, -1);\n        cnt = 0;\n        rep (i, n) {\n       \
+    \     if (ord[i] == -1) dfs(i, -1);\n        }\n        G2.resize(n);\n      \
+    \  rep (i, n) {\n            if (link[i] != -1) {\n                G2[i].push_back(link[i]);\n\
+    \                G2[link[i]].push_back(i);\n            }\n        }\n       \
+    \ sz = 0;\n        cmp.assign(n, -1);\n        rep (i, n) {\n            if (cmp[i]\
+    \ == -1) {\n                cmp[i] = sz++;\n                dcmp(i);\n       \
+    \     }\n        }\n    }\n    int size() const { return sz; }\n    int operator[](int\
+    \ k) const { return cmp[k]; }\n    std::vector<std::vector<int>> groups() const\
+    \ {\n        std::vector<std::vector<int>> res(sz);\n        rep (i, n) res[cmp[i]].push_back(i);\n\
+    \        return res;\n    }\n    bool is_cut_edge(int k) const { return is_cut[k];\
+    \ }\n};\n\n/**\n * @brief ThreeEdgeConnectedComponents(\u4E09\u8FBA\u9023\u7D50\
+    \u6210\u5206\u5206\u89E3)\n * @docs docs/graph/connected/ThreeEdgeConnectedComponents.md\n\
+    \ */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -851,123 +649,27 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
+  - graph/Graph.hpp
   isVerificationFile: false
-  path: graph/Graph.hpp
-  requiredBy:
-  - graph/connected/ThreeEdgeConnectedComponents.hpp
-  - graph/connected/TwoEdgeConnectedComponents.hpp
-  - graph/connected/StronglyConnectedComponents.hpp
-  - graph/connected/BiConnectedComponents.hpp
-  - graph/connected/ConnectedComponents.hpp
-  - graph/shortest-path/ZeroOneBFS.hpp
-  - graph/shortest-path/BreadthFirstSearch.hpp
-  - graph/shortest-path/BellmanFord.hpp
-  - graph/shortest-path/Restore.hpp
-  - graph/shortest-path/WarshallFloyd.hpp
-  - graph/shortest-path/Dijkstra.hpp
-  - graph/other/EnumerateCliques.hpp
-  - graph/other/EulerianTrail.hpp
-  - graph/other/MaximumIndependentSet.hpp
-  - graph/other/BipartiteGraph.hpp
-  - graph/other/CountEulerianTrail.hpp
-  - graph/other/TwoSatisfiability.hpp
-  - graph/other/LowLink.hpp
-  - graph/other/TopologicalSort.hpp
-  - graph/other/ChromaticNumber.hpp
-  - graph/other/EnumerateTriangles.hpp
-  - graph/other/GraphCycle.hpp
-  - graph/mst/Kruskal.hpp
-  - graph/mst/DirectedMST.hpp
-  - graph/mst/Prim.hpp
-  - graph/mst/CountSpanningTree.hpp
-  - graph/mst/ManhattanMST.hpp
-  - graph/tree/PMORMQLCA.hpp
-  - graph/tree/TreeDiameter.hpp
-  - graph/tree/TreeHash.hpp
-  - graph/tree/EulerTour.hpp
-  - graph/tree/HeavyLightDecomposition.hpp
-  - graph/tree/CartesianTree.hpp
-  - graph/tree/FrequencyTableofTreeDistance.hpp
-  - graph/tree/DoublingLowestCommonAncestor.hpp
-  - graph/tree/TreeCentroid.hpp
-  - graph/tree/ReRooting.hpp
-  - graph/tree/ContourQuery.hpp
-  - graph/tree/EulerTourSubtree.hpp
-  - data-struct/segment/LCARMQ.hpp
-  timestamp: '2024-01-20 14:55:31+09:00'
+  path: graph/connected/ThreeEdgeConnectedComponents.hpp
+  requiredBy: []
+  timestamp: '2024-04-30 23:27:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/graph/manhattanmst.test.cpp
-  - test/yosupo/graph/shortest_path.test.cpp
-  - test/yosupo/graph/eulerian_trail_undirected.test.cpp
   - test/yosupo/graph/three_edge_connected_components.test.cpp
-  - test/yosupo/graph/enumerate_cliques.test.cpp
-  - test/yosupo/graph/biconnected_components.test.cpp
-  - test/yosupo/graph/enumerate_triangles.test.cpp
-  - test/yosupo/graph/bipartitematching.test.cpp
-  - test/yosupo/graph/maximum_independent_set.test.cpp
-  - test/yosupo/graph/eulerian_trail_directed.test.cpp
-  - test/yosupo/graph/two_edge_connected_components.test.cpp
-  - test/yosupo/graph/directedmst.test.cpp
-  - test/yosupo/graph/chromatic_number.test.cpp
-  - test/yosupo/graph/cycle_detection.test.cpp
-  - test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
-  - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
-  - test/yosupo/data_structure/vertex_get_range_contour_add_on_tree.test.cpp
-  - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
-  - test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
-  - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-  - test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
-  - test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree.test.cpp
-  - test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
-  - test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
-  - test/yosupo/data_structure/vertex_add_path_sum.test.cpp
-  - test/yosupo/math/two_sat.test.cpp
-  - test/yosupo/tree/tree_path_composite_sum.test.cpp
-  - test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
-  - test/yosupo/tree/lca-HLD.test.cpp
-  - test/yosupo/tree/cartesian_tree.test.cpp
-  - test/yosupo/tree/jump_on_tree.test.cpp
-  - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
-  - test/yosupo/tree/tree_diameter.test.cpp
-  - test/atcoder/abc336_g-BEST.test.cpp
-  - test/atcoder/arc099_c-Bipartite.test.cpp
-  - test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
-  - test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
-  - test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp
-  - test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
-  - test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp
-  - test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
-  - test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
-  - test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
-  - test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
-  - test/aoj/GRL/GRL_2_A-Prim.test.cpp
-  - test/aoj/GRL/GRL_3_A-LowLink.test.cpp
-  - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
-  - test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
-  - test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
-  - test/aoj/GRL/GRL_5_C-LCA.test.cpp
-  - test/aoj/GRL/GRL_3_B-LowLink.test.cpp
-  - test/aoj/GRL/GRL_4_A-Cycle.test.cpp
-  - test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
-  - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-  - test/aoj/GRL/GRL_3_C-SCC.test.cpp
-  - test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
-  - test/aoj/GRL/GRL_4_B-Toposo.test.cpp
-  - test/aoj/GRL/GRL_5_E-HLD.test.cpp
-  - test/aoj/GRL/GRL_5_A-Diameter.test.cpp
-  - test/aoj/other/2945-01BFS.test.cpp
-documentation_of: graph/Graph.hpp
+documentation_of: graph/connected/ThreeEdgeConnectedComponents.hpp
 layout: document
 redirect_from:
-- /library/graph/Graph.hpp
-- /library/graph/Graph.hpp.html
-title: Graph-template
+- /library/graph/connected/ThreeEdgeConnectedComponents.hpp
+- /library/graph/connected/ThreeEdgeConnectedComponents.hpp.html
+title: "ThreeEdgeConnectedComponents(\u4E09\u8FBA\u9023\u7D50\u6210\u5206\u5206\u89E3\
+  )"
 ---
 ## 概要
 
-グラフの構造体。 `vector<vector<edge<T>>>` を継承している。
+三重辺連結成分にグラフを分解する。
 
-- `Graph(int N)` : 頂点数 `N` のグラフを作成する。
-- `int add_edge(int a, int b, bool d = false)` : 頂点 `a` と頂点 `b` の間に辺をはる。 `d` が `true` ならば有向辺、 `d` が `false` なら無向辺。何本目の辺かを返す。
-- `int add_edge(int a, int b, T c, bool d = false)` : 頂点 `a` と頂点 `b` の間にコスト `c` の辺をはる。 `d` が `true` ならば有向辺、 `d` が `false` なら無向辺。何本目の辺かを返す。
+- `ThreeEdgeConnectedComponents(Graph<T> G)` : グラフ `G` で初期化する。 $\Theta(V + E)$ 。
+- `int size()` : 二辺連結成分の個数を返す。 $\Theta(1)$ 。
+- `int operator[](int k)` : 頂点 `k` の属する二辺連結成分の番号を返す。 $\Theta(1)$ 。
+- `vector<vector<int>> groups()` : 二辺連結成分のリストを返す。 $\Theta(V)$ 。
