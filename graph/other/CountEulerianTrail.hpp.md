@@ -767,10 +767,10 @@ data:
     \ T>\nstd::vector<T> Combinatorics<T>::factinv = std::vector<T>(1, 1);\n\n/**\n\
     \ * @brief Combinatorics\n * @docs docs/math/Combinatorics.md\n */\n#line 6 \"\
     graph/other/CountEulerianTrail.hpp\"\n\ntemplate<class T, class U, class Comb\
-    \ = Combinatorics<T>> T count_eulerian_trail(const Graph<U>& G) {\n    int N =\
-    \ G.size();\n    std::vector<int> degi(N), dego(N);\n    rep (i, N) {\n      \
-    \  for (const auto& e : G[i]) {\n            degi[e.to] += e.cost;\n         \
-    \   dego[i] += e.cost;\n        }\n    }\n    rep (i, N) {\n        if (degi[i]\
+    \ = Combinatorics<T>>\nT count_eulerian_trail(const Graph<U>& G) {\n    int N\
+    \ = G.size();\n    std::vector<int> degi(N), dego(N);\n    rep (i, N) {\n    \
+    \    for (const auto& e : G[i]) {\n            degi[e.to] += e.cost;\n       \
+    \     dego[i] += e.cost;\n        }\n    }\n    rep (i, N) {\n        if (degi[i]\
     \ != dego[i]) return 0;\n    }\n    std::vector<bool> used(N);\n    rep (i, N)\
     \ {\n        for (const auto& e : G[i]) {\n            if (e.cost) used[i] = used[e.to]\
     \ = true;\n        }\n    }\n    std::vector<int> idx(N, -1);\n    int M = 0;\n\
@@ -782,7 +782,7 @@ data:
     \ * @docs docs/graph/mst/CountEulerianTrail.md\n */\n"
   code: "#pragma once\n\n#include \"../Graph.hpp\"\n#include \"../mst/CountSpanningTree.hpp\"\
     \n#include \"../../math/Combinatorics.hpp\"\n\ntemplate<class T, class U, class\
-    \ Comb = Combinatorics<T>> T count_eulerian_trail(const Graph<U>& G) {\n    int\
+    \ Comb = Combinatorics<T>>\nT count_eulerian_trail(const Graph<U>& G) {\n    int\
     \ N = G.size();\n    std::vector<int> degi(N), dego(N);\n    rep (i, N) {\n  \
     \      for (const auto& e : G[i]) {\n            degi[e.to] += e.cost;\n     \
     \       dego[i] += e.cost;\n        }\n    }\n    rep (i, N) {\n        if (degi[i]\
@@ -814,7 +814,7 @@ data:
   isVerificationFile: false
   path: graph/other/CountEulerianTrail.hpp
   requiredBy: []
-  timestamp: '2024-04-29 23:15:20+09:00'
+  timestamp: '2024-04-30 13:46:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/atcoder/abc336_g-BEST.test.cpp

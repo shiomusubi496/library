@@ -767,7 +767,7 @@ data:
     \ < v ? e.to : e.to - 1] -= e.cost;\n        }\n    }\n    return determinant(A);\n\
     }\n\n/**\n * @brief CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)\n * @docs\
     \ docs/graph/mst/CountSpanningTree.md\n */\n#line 6 \"graph/other/CountEulerianTrail.hpp\"\
-    \n\ntemplate<class T, class U, class Comb = Combinatorics<T>> T count_eulerian_trail(const\
+    \n\ntemplate<class T, class U, class Comb = Combinatorics<T>>\nT count_eulerian_trail(const\
     \ Graph<U>& G) {\n    int N = G.size();\n    std::vector<int> degi(N), dego(N);\n\
     \    rep (i, N) {\n        for (const auto& e : G[i]) {\n            degi[e.to]\
     \ += e.cost;\n            dego[i] += e.cost;\n        }\n    }\n    rep (i, N)\
@@ -816,7 +816,7 @@ data:
   isVerificationFile: true
   path: test/atcoder/abc336_g-BEST.test.cpp
   requiredBy: []
-  timestamp: '2024-04-29 23:15:20+09:00'
+  timestamp: '2024-04-30 13:46:05+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/atcoder/abc336_g-BEST.test.cpp

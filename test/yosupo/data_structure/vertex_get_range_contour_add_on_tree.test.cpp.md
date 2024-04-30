@@ -787,18 +787,19 @@ data:
     \      --d;\n            k -= dist[v][d];\n            int p = par[u];\n     \
     \       int cp = cpar[u][d];\n            if IF_CONSTEXPR (weighted) {\n     \
     \           if (0 <= k) {\n                    int l = std::lower_bound(all(vt[p]),\
-    \ std::pair(k, -1)) -\n                        vt[p].begin();\n              \
-    \      int r = std::lower_bound(all(vt[p]), std::pair(k, n)) -\n             \
-    \           vt[p].begin();\n                    int l2 = std::lower_bound(all(ct[p][cp]),\
-    \ std::pair(k, -1)) -\n                        ct[p][cp].begin();\n          \
-    \          int r2 = std::lower_bound(all(ct[p][cp]), std::pair(k, n)) -\n    \
-    \                    ct[p][cp].begin();\n                    if (l2 == r2) f(p,\
-    \ l, r);\n                    else {\n                        if (l2 < ct[p][cp].size())\
-    \ f(p, l, ddx2[p][cp][l2]);\n                        if (r2 < ct[p][cp].size())\
-    \ f(p, ddx3[p][cp][r2], r);\n                    }\n                }\n      \
-    \      }\n            else {\n                if (0 <= k && k < (T)ddx1[p].size())\
-    \ {\n                    int l = ddx1[p][k];\n                    int r =\n  \
-    \                      k + 1 < (T)ddx1[p].size() ? ddx1[p][k + 1] : vt[p].size();\n\
+    \ std::pair(k, -1)) -\n                            vt[p].begin();\n          \
+    \          int r = std::lower_bound(all(vt[p]), std::pair(k, n)) -\n         \
+    \                   vt[p].begin();\n                    int l2 =\n           \
+    \             std::lower_bound(all(ct[p][cp]), std::pair(k, -1)) -\n         \
+    \               ct[p][cp].begin();\n                    int r2 = std::lower_bound(all(ct[p][cp]),\
+    \ std::pair(k, n)) -\n                             ct[p][cp].begin();\n      \
+    \              if (l2 == r2) f(p, l, r);\n                    else {\n       \
+    \                 if (l2 < ct[p][cp].size()) f(p, l, ddx2[p][cp][l2]);\n     \
+    \                   if (r2 < ct[p][cp].size()) f(p, ddx3[p][cp][r2], r);\n   \
+    \                 }\n                }\n            }\n            else {\n  \
+    \              if (0 <= k && k < (T)ddx1[p].size()) {\n                    int\
+    \ l = ddx1[p][k];\n                    int r = k + 1 < (T)ddx1[p].size() ? ddx1[p][k\
+    \ + 1]\n                                                      : vt[p].size();\n\
     \                    if (k < (int)ddx2[p][cp].size()) {\n                    \
     \    int l2 = ddx2[p][cp][k];\n                        int r2 = ddx3[p][cp][k]\
     \ + 1;\n                        f(p, l, l2);\n                        f(p, r2,\
@@ -806,7 +807,7 @@ data:
     \     f(p, l, r);\n                    }\n                }\n            }\n \
     \           k += dist[v][d];\n            u = p;\n        }\n    }\n    template<class\
     \ F, class G>\n    void range_contour(int v, T k, F&& f, G&& g) const {\n    \
-    \    if IF_CONSTEXPR (weighted) {\n            int itrr = std::lower_bound(all(vt[v]),\
+    \    if IF_CONSTEXPR (weighted) {\n            int itrr =\n                std::lower_bound(all(vt[v]),\
     \ std::pair(k, -1)) - vt[v].begin();\n            f(v, itrr);\n        }\n   \
     \     else {\n            int r = k < (T)ddx1[v].size() ? ddx1[v][k] : vt[v].size();\n\
     \            f(v, r);\n        }\n        int d = dep[v];\n        int u = v;\n\
@@ -814,17 +815,18 @@ data:
     \         int p = par[u];\n            int cp = cpar[u][d];\n            if (0\
     \ < k) {\n                if IF_CONSTEXPR (weighted) {\n                    int\
     \ r = std::lower_bound(all(vt[p]), std::pair(k, -1)) -\n                     \
-    \   vt[p].begin();\n                    f(p, r);\n                    int r2 =\
-    \ std::lower_bound(all(ct[p][cp]), std::pair(k, -1)) -\n                     \
-    \   ct[p][cp].begin();\n                    g(idx[p][cp], r2);\n             \
-    \   }\n                else {\n                    int r = k < (T)ddx1[p].size()\
-    \ ? ddx1[p][k] : vt[p].size();\n                    f(p, r);\n               \
-    \     int r2 = k < (T)ddx4[p][cp].size() ? ddx4[p][cp][k]\n                  \
-    \                                  : ct[p][cp].size();\n                    g(idx[p][cp],\
-    \ r2);\n                }\n            }\n            k += dist[v][d];\n     \
-    \       u = p;\n        }\n    }\n    template<class F, class G>\n    void range_contour(int\
-    \ v, T l, T r, F&& f, G&& g) const {\n        range_contour(v, l, g, f);\n   \
-    \     range_contour(v, r, f, g);\n    }\n};\n#line 6 \"test/yosupo/data_structure/vertex_get_range_contour_add_on_tree.test.cpp\"\
+    \       vt[p].begin();\n                    f(p, r);\n                    int\
+    \ r2 =\n                        std::lower_bound(all(ct[p][cp]), std::pair(k,\
+    \ -1)) -\n                        ct[p][cp].begin();\n                    g(idx[p][cp],\
+    \ r2);\n                }\n                else {\n                    int r =\
+    \ k < (T)ddx1[p].size() ? ddx1[p][k] : vt[p].size();\n                    f(p,\
+    \ r);\n                    int r2 = k < (T)ddx4[p][cp].size() ? ddx4[p][cp][k]\n\
+    \                                                       : ct[p][cp].size();\n\
+    \                    g(idx[p][cp], r2);\n                }\n            }\n  \
+    \          k += dist[v][d];\n            u = p;\n        }\n    }\n    template<class\
+    \ F, class G>\n    void range_contour(int v, T l, T r, F&& f, G&& g) const {\n\
+    \        range_contour(v, l, g, f);\n        range_contour(v, r, f, g);\n    }\n\
+    };\n#line 6 \"test/yosupo/data_structure/vertex_get_range_contour_add_on_tree.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int N, Q; scan >> N >> Q;\n    vector<ll>\
     \ A(N); scan >> A;\n    Graph<int> G(N);\n    rep (N - 1) {\n        int a, b;\
     \ scan >> a >> b;\n        G.add_edge(a, b);\n    }\n    vector<RAQBIT<ll>> bit;\n\
@@ -868,7 +870,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/vertex_get_range_contour_add_on_tree.test.cpp
   requiredBy: []
-  timestamp: '2024-04-29 18:11:21+09:00'
+  timestamp: '2024-04-30 13:46:05+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/vertex_get_range_contour_add_on_tree.test.cpp
