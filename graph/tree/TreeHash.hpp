@@ -25,14 +25,14 @@ private:
         for (const auto& e : G[v]) {
             if (e.to == p) continue;
             int d = dfs(G, ans, e.to, v);
-            chmax(dep, d);
+            chmax(dep, d + 1);
+            if ((int)base.size() == d) {
+                base.push_back(mint::raw((1ull << 31) + (rand32() & MASK31)));
+            }
             res *= ans[e.to] + base[d];
         }
-        if ((int)base.size() == dep) {
-            base.push_back(mint::raw((1ull << 31) + (rand32() & MASK31)));
-        }
         ans[v] = res;
-        return dep + 1;
+        return dep;
     }
 
     struct M {
