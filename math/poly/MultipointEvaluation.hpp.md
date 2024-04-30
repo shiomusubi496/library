@@ -66,6 +66,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/polynomial_interpolation.test.cpp
     title: test/yosupo/polynomial/polynomial_interpolation.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/polynomial/polynomial_interpolation_on_geometric_sequence.test.cpp
+    title: test/yosupo/polynomial/polynomial_interpolation_on_geometric_sequence.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -1141,6 +1144,7 @@ data:
   - test/yosupo/polynomial/polynomial_interpolation.test.cpp
   - test/yosupo/polynomial/multipoint_evaluation.test.cpp
   - test/yosupo/polynomial/multipoint_evaluation_on_geometric_sequence.test.cpp
+  - test/yosupo/polynomial/polynomial_interpolation_on_geometric_sequence.test.cpp
 documentation_of: math/poly/MultipointEvaluation.hpp
 layout: document
 redirect_from:

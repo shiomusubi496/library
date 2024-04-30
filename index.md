@@ -1298,6 +1298,9 @@ data:
       path: test/yosupo/polynomial/polynomial_interpolation.test.cpp
       title: test/yosupo/polynomial/polynomial_interpolation.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/polynomial/polynomial_interpolation_on_geometric_sequence.test.cpp
+      title: test/yosupo/polynomial/polynomial_interpolation_on_geometric_sequence.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
       title: test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
     - icon: ':heavy_check_mark:'

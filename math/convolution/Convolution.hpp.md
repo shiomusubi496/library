@@ -148,6 +148,9 @@ data:
     path: test/yosupo/polynomial/polynomial_interpolation.test.cpp
     title: test/yosupo/polynomial/polynomial_interpolation.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/polynomial/polynomial_interpolation_on_geometric_sequence.test.cpp
+    title: test/yosupo/polynomial/polynomial_interpolation_on_geometric_sequence.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
     title: test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
   - icon: ':heavy_check_mark:'
@@ -971,6 +974,7 @@ data:
   - test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
   - test/yosupo/polynomial/exp_of_formal_power_series_sparse.test.cpp
   - test/yosupo/polynomial/log_of_formal_power_series_sparse.test.cpp
+  - test/yosupo/polynomial/polynomial_interpolation_on_geometric_sequence.test.cpp
   - test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
   - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
   - test/aoj/DPL/DPL_5_G.test.cpp
