@@ -1,40 +1,40 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree/ReRooting.hpp
     title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -503,22 +503,22 @@ data:
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
     \ * @docs docs/graph/Graph.md\n */\n#line 2 \"graph/tree/ReRooting.hpp\"\n\n#line\
-    \ 4 \"graph/tree/ReRooting.hpp\"\n\n#line 2 \"other/monoid.hpp\"\n\n#line 4 \"\
-    other/monoid.hpp\"\n\nnamespace Monoid {\n\ntemplate<class M, class = void>\n\
-    class has_value_type : public std::false_type {};\ntemplate<class M>\nclass has_value_type<M,\
-    \ decltype((void)std::declval<typename M::value_type>())>\n    : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_op : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_op<M, decltype((void)M::op)> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_id : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_id<M, decltype((void)M::id)> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_inv : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_inv<M, decltype((void)M::inv)> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_get_inv : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)> : public\
-    \ std::true_type {};\n\ntemplate<class M, class = void> class has_init : public\
-    \ std::false_type {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init(0,\
-    \ 0))> : public std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op\
-    \ : public std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
+    \ 2 \"other/monoid.hpp\"\n\n#line 4 \"other/monoid.hpp\"\n\nnamespace Monoid {\n\
+    \ntemplate<class M, class = void>\nclass has_value_type : public std::false_type\
+    \ {};\ntemplate<class M>\nclass has_value_type<M, decltype((void)std::declval<typename\
+    \ M::value_type>())>\n    : public std::true_type {};\n\ntemplate<class M, class\
+    \ = void> class has_op : public std::false_type {};\ntemplate<class M>\nclass\
+    \ has_op<M, decltype((void)M::op)> : public std::true_type {};\n\ntemplate<class\
+    \ M, class = void> class has_id : public std::false_type {};\ntemplate<class M>\n\
+    class has_id<M, decltype((void)M::id)> : public std::true_type {};\n\ntemplate<class\
+    \ M, class = void> class has_inv : public std::false_type {};\ntemplate<class\
+    \ M>\nclass has_inv<M, decltype((void)M::inv)> : public std::true_type {};\n\n\
+    template<class M, class = void> class has_get_inv : public std::false_type {};\n\
+    template<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)> : public std::true_type\
+    \ {};\n\ntemplate<class M, class = void> class has_init : public std::false_type\
+    \ {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init(0, 0))> : public\
+    \ std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op : public\
+    \ std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
     \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_semigroup\
     \ : public std::false_type {};\ntemplate<class T>\nclass is_semigroup<T, decltype(std::declval<typename\
     \ T::value_type>(),\n                               (void)T::op)> : public std::true_type\
@@ -593,7 +593,7 @@ data:
     \ not defined\");\n        return M::get_inv(a);\n    }\n};\n\ntemplate<class\
     \ E_> struct MakeAction {\n    using M = E_;\n    using E = E_;\n    using T =\
     \ typename E_::value_type;\n    static T op(const T& a, const T& b) { return E_::op(b,\
-    \ a); }\n};\n\n} // namespace Monoid\n#line 6 \"graph/tree/ReRooting.hpp\"\n\n\
+    \ a); }\n};\n\n} // namespace Monoid\n#line 5 \"graph/tree/ReRooting.hpp\"\n\n\
     template<class M, class T, class F> class ReRooting {\nprivate:\n    using U =\
     \ typename M::value_type;\n    const F& f;\n    int n;\n    const Graph<T>& G;\n\
     \    std::vector<U> init_data;\n    std::vector<std::vector<U>> dp;\n    std::vector<U>\
@@ -664,7 +664,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
   requiredBy: []
-  timestamp: '2024-01-20 14:55:31+09:00'
+  timestamp: '2024-04-30 09:30:31+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp

@@ -1,31 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
@@ -65,7 +65,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/other/SlidingWindowAggregation.hpp
     title: SlidingWindowAggregation(SWAG)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/BinaryIndexedTree.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
   - icon: ':heavy_check_mark:'
@@ -145,9 +145,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree/PMORMQLCA.hpp
     title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree/ReRooting.hpp
     title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
+  - icon: ':x:'
+    path: graph/tree/TreeHash.hpp
+    title: TreeHash
   - icon: ':heavy_check_mark:'
     path: math/DiscreteLogarithm.hpp
     title: "Discrete Logarithm(\u96E2\u6563\u5BFE\u6570)"
@@ -163,7 +166,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/RollingHash.hpp
     title: "RollingHash(\u30ED\u30EA\u30CF)"
   _extendedVerifiedWith:
@@ -359,6 +362,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/math/discrete_logarithm_mod.test.cpp
     title: test/yosupo/math/discrete_logarithm_mod.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
+    title: test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/tree_path_composite_sum.test.cpp
     title: test/yosupo/tree/tree_path_composite_sum.test.cpp
@@ -371,9 +377,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki/855_DynamicSegTree.test.cpp
     title: test/yuki/855_DynamicSegTree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"other/monoid.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
@@ -985,6 +991,7 @@ data:
   requiredBy:
   - graph/mst/DirectedMST.hpp
   - graph/tree/PMORMQLCA.hpp
+  - graph/tree/TreeHash.hpp
   - graph/tree/EulerTour.hpp
   - graph/tree/ReRooting.hpp
   - string/RollingHash.hpp
@@ -1029,7 +1036,7 @@ data:
   - math/DiscreteLogarithm.hpp
   - other/monoid2.hpp
   timestamp: '2024-01-20 14:55:31+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/convolution/bitwise_and_convolution.test.cpp
   - test/yosupo/convolution/lcm_convolution.test.cpp
@@ -1077,6 +1084,7 @@ data:
   - test/yosupo/data_structure/staticrmq-LinearRMQ.test.cpp
   - test/yosupo/math/discrete_logarithm_mod.test.cpp
   - test/yosupo/tree/tree_path_composite_sum.test.cpp
+  - test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
   - test/yuki/1435_SegTree-BinarySearch.test.cpp
   - test/yuki/855_DynamicSegTree.test.cpp
   - test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp

@@ -89,7 +89,7 @@ data:
       title: SlopeTrick
   - name: data-struct/segment
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: data-struct/segment/BinaryIndexedTree.hpp
       title: BinaryIndexedTree(FenwickTree, BIT)
     - icon: ':heavy_check_mark:'
@@ -239,7 +239,7 @@ data:
       title: geometry/template.hpp
   - name: graph
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/Graph.hpp
       title: Graph-template
   - name: graph/connected
@@ -373,7 +373,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/tree/PMORMQLCA.hpp
       title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/tree/ReRooting.hpp
       title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
     - icon: ':heavy_check_mark:'
@@ -382,6 +382,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/tree/TreeDiameter.hpp
       title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"
+    - icon: ':x:'
+      path: graph/tree/TreeHash.hpp
+      title: TreeHash
   - name: math
     pages:
     - icon: ':heavy_check_mark:'
@@ -550,18 +553,18 @@ data:
       title: TaylorShift
   - name: other
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/monoid.hpp
       title: other/monoid.hpp
     - icon: ':heavy_check_mark:'
       path: other/monoid2.hpp
       title: other/monoid2.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/template.hpp
       title: other/template.hpp
   - name: random
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: random/Random.hpp
       title: Random
     - icon: ':heavy_check_mark:'
@@ -582,7 +585,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/Manacher.hpp
       title: "Manacher's Algortihm(\u6700\u9577\u56DE\u6587\u9577\u691C\u51FA)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: string/RollingHash.hpp
       title: "RollingHash(\u30ED\u30EA\u30CF)"
     - icon: ':heavy_check_mark:'
@@ -596,28 +599,28 @@ data:
       title: Z-Algorithm
   - name: template
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/alias.hpp
       title: template/alias.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/bitop.hpp
       title: template/bitop.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/func.hpp
       title: template/func.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/in.hpp
       title: template/in.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/macros.hpp
       title: template/macros.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/out.hpp
       title: template/out.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/type_traits.hpp
       title: template/type_traits.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/util.hpp
       title: template/util.hpp
   verificationCategories:
@@ -1354,6 +1357,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/tree/lca-HLD.test.cpp
       title: test/yosupo/tree/lca-HLD.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
+      title: test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/tree/tree_diameter.test.cpp
       title: test/yosupo/tree/tree_diameter.test.cpp

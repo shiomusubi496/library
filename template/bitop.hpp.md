@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
   _extendedRequiredBy:
@@ -84,7 +84,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/other/SlopeTrick.hpp
     title: SlopeTrick
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/BinaryIndexedTree.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
   - icon: ':heavy_check_mark:'
@@ -224,7 +224,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geometry/template.hpp
     title: geometry/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':heavy_check_mark:'
@@ -345,7 +345,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree/PMORMQLCA.hpp
     title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree/ReRooting.hpp
     title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
   - icon: ':heavy_check_mark:'
@@ -354,6 +354,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree/TreeDiameter.hpp
     title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"
+  - icon: ':x:'
+    path: graph/tree/TreeHash.hpp
+    title: TreeHash
   - icon: ':heavy_check_mark:'
     path: math/ArbitraryModCombinatorics.hpp
     title: "ArbitraryModCombinatorics(\u4EFB\u610FmodCombination)"
@@ -512,16 +515,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/poly/TaylorShift.hpp
     title: TaylorShift
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
   - icon: ':heavy_check_mark:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/Random.hpp
     title: Random
   - icon: ':heavy_check_mark:'
@@ -540,7 +543,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/Manacher.hpp
     title: "Manacher's Algortihm(\u6700\u9577\u56DE\u6587\u9577\u691C\u51FA)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/RollingHash.hpp
     title: "RollingHash(\u30ED\u30EA\u30CF)"
   - icon: ':heavy_check_mark:'
@@ -1246,6 +1249,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/lca-HLD.test.cpp
     title: test/yosupo/tree/lca-HLD.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
+    title: test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/tree_diameter.test.cpp
     title: test/yosupo/tree/tree_diameter.test.cpp
@@ -1285,9 +1291,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki/855_DynamicSegTree.test.cpp
     title: test/yuki/855_DynamicSegTree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"template/bitop.hpp\"\n\n#include <bits/stdc++.h>\n#line\
@@ -1431,6 +1437,7 @@ data:
   - graph/mst/ManhattanMST.hpp
   - graph/tree/PMORMQLCA.hpp
   - graph/tree/TreeDiameter.hpp
+  - graph/tree/TreeHash.hpp
   - graph/tree/EulerTour.hpp
   - graph/tree/HeavyLightDecomposition.hpp
   - graph/tree/CartesianTree.hpp
@@ -1567,7 +1574,7 @@ data:
   - other/template.hpp
   - other/monoid2.hpp
   timestamp: '2023-12-29 01:31:31+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/convolution/bitwise_and_convolution.test.cpp
   - test/yosupo/convolution/lcm_convolution.test.cpp
@@ -1706,6 +1713,7 @@ data:
   - test/yosupo/polynomial/log_of_formal_power_series_sparse.test.cpp
   - test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
   - test/yosupo/tree/tree_path_composite_sum.test.cpp
+  - test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
   - test/yosupo/tree/lca-HLD.test.cpp
   - test/yosupo/tree/cartesian_tree.test.cpp
   - test/yosupo/tree/jump_on_tree.test.cpp
