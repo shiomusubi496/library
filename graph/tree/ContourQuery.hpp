@@ -190,13 +190,14 @@ public:
             if IF_CONSTEXPR (weighted) {
                 if (0 <= k) {
                     int l = std::lower_bound(all(vt[p]), std::pair(k, -1)) -
-                        vt[p].begin();
+                            vt[p].begin();
                     int r = std::lower_bound(all(vt[p]), std::pair(k, n)) -
-                        vt[p].begin();
-                    int l2 = std::lower_bound(all(ct[p][cp]), std::pair(k, -1)) -
+                            vt[p].begin();
+                    int l2 =
+                        std::lower_bound(all(ct[p][cp]), std::pair(k, -1)) -
                         ct[p][cp].begin();
                     int r2 = std::lower_bound(all(ct[p][cp]), std::pair(k, n)) -
-                        ct[p][cp].begin();
+                             ct[p][cp].begin();
                     if (l2 == r2) f(p, l, r);
                     else {
                         if (l2 < ct[p][cp].size()) f(p, l, ddx2[p][cp][l2]);
@@ -207,8 +208,8 @@ public:
             else {
                 if (0 <= k && k < (T)ddx1[p].size()) {
                     int l = ddx1[p][k];
-                    int r =
-                        k + 1 < (T)ddx1[p].size() ? ddx1[p][k + 1] : vt[p].size();
+                    int r = k + 1 < (T)ddx1[p].size() ? ddx1[p][k + 1]
+                                                      : vt[p].size();
                     if (k < (int)ddx2[p][cp].size()) {
                         int l2 = ddx2[p][cp][k];
                         int r2 = ddx3[p][cp][k] + 1;
@@ -227,7 +228,8 @@ public:
     template<class F, class G>
     void range_contour(int v, T k, F&& f, G&& g) const {
         if IF_CONSTEXPR (weighted) {
-            int itrr = std::lower_bound(all(vt[v]), std::pair(k, -1)) - vt[v].begin();
+            int itrr =
+                std::lower_bound(all(vt[v]), std::pair(k, -1)) - vt[v].begin();
             f(v, itrr);
         }
         else {
@@ -244,9 +246,10 @@ public:
             if (0 < k) {
                 if IF_CONSTEXPR (weighted) {
                     int r = std::lower_bound(all(vt[p]), std::pair(k, -1)) -
-                        vt[p].begin();
+                            vt[p].begin();
                     f(p, r);
-                    int r2 = std::lower_bound(all(ct[p][cp]), std::pair(k, -1)) -
+                    int r2 =
+                        std::lower_bound(all(ct[p][cp]), std::pair(k, -1)) -
                         ct[p][cp].begin();
                     g(idx[p][cp], r2);
                 }
@@ -254,7 +257,7 @@ public:
                     int r = k < (T)ddx1[p].size() ? ddx1[p][k] : vt[p].size();
                     f(p, r);
                     int r2 = k < (T)ddx4[p][cp].size() ? ddx4[p][cp][k]
-                                                    : ct[p][cp].size();
+                                                       : ct[p][cp].size();
                     g(idx[p][cp], r2);
                 }
             }

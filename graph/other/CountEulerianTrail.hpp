@@ -4,7 +4,8 @@
 #include "../mst/CountSpanningTree.hpp"
 #include "../../math/Combinatorics.hpp"
 
-template<class T, class U, class Comb = Combinatorics<T>> T count_eulerian_trail(const Graph<U>& G) {
+template<class T, class U, class Comb = Combinatorics<T>>
+T count_eulerian_trail(const Graph<U>& G) {
     int N = G.size();
     std::vector<int> degi(N), dego(N);
     rep (i, N) {
