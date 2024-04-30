@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../Graph.hpp"
-
 #include "../../other/monoid.hpp"
 
 template<class M, class T, class F> class ReRooting {
