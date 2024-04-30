@@ -64,6 +64,9 @@ data:
     path: math/convolution/Convolution.hpp
     title: "Convolution(\u7573\u307F\u8FBC\u307F)"
   - icon: ':heavy_check_mark:'
+    path: math/convolution/MultidimensionalConvolution.hpp
+    title: MultidimensionalConvolution
+  - icon: ':heavy_check_mark:'
     path: math/convolution/RelaxedConvolution.hpp
     title: "Relaxed Convolution(\u30AA\u30F3\u30E9\u30A4\u30F3\u7573\u307F\u8FBC\u307F\
       )"
@@ -147,6 +150,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/lcm_convolution.test.cpp
     title: test/yosupo/convolution/lcm_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/convolution/multivariate_convolution.test.cpp
+    title: test/yosupo/convolution/multivariate_convolution.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
     title: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
@@ -993,6 +999,7 @@ data:
   - graph/tree/FrequencyTableofTreeDistance.hpp
   - math/PrimitiveRoot.hpp
   - math/convolution/RelaxedConvolution.hpp
+  - math/convolution/MultidimensionalConvolution.hpp
   - math/convolution/Convolution.hpp
   - math/poly/SparseFormalPowerSeries.hpp
   - math/poly/BostanMori.hpp
@@ -1015,6 +1022,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/convolution/bitwise_and_convolution.test.cpp
+  - test/yosupo/convolution/multivariate_convolution.test.cpp
   - test/yosupo/convolution/lcm_convolution.test.cpp
   - test/yosupo/convolution/convolution_mod.test.cpp
   - test/yosupo/convolution/bitwise_and_convolution-or.test.cpp

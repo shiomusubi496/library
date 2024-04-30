@@ -2,29 +2,14 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: math/Combinatorics.hpp
-    title: Combinatorics
-  - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':heavy_check_mark:'
-    path: math/MontgomeryModInt.hpp
-    title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
-  - icon: ':heavy_check_mark:'
-    path: math/SqrtMod.hpp
-    title: "SqrtMod(\u5E73\u65B9\u5270\u4F59)"
   - icon: ':heavy_check_mark:'
     path: math/convolution/Convolution.hpp
     title: "Convolution(\u7573\u307F\u8FBC\u307F)"
   - icon: ':heavy_check_mark:'
-    path: math/poly/FormalPowerSeries.hpp
-    title: "FormalPowerSeries(\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570)"
-  - icon: ':heavy_check_mark:'
-    path: math/poly/MultipointEvaluation.hpp
-    title: "MultipointEvaluation(\u591A\u70B9\u8A55\u4FA1)"
-  - icon: ':heavy_check_mark:'
-    path: math/poly/PolynomialInterpolation.hpp
-    title: "PolynomialInterpolation(\u591A\u9805\u5F0F\u88DC\u9593)"
+    path: math/convolution/MultidimensionalConvolution.hpp
+    title: MultidimensionalConvolution
   - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
@@ -59,11 +44,11 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/polynomial_interpolation_on_geometric_sequence
+    PROBLEM: https://judge.yosupo.jp/problem/multivariate_convolution
     links:
-    - https://judge.yosupo.jp/problem/polynomial_interpolation_on_geometric_sequence
-  bundledCode: "#line 1 \"test/yosupo/polynomial/polynomial_interpolation_on_geometric_sequence.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/polynomial_interpolation_on_geometric_sequence\"\
+    - https://judge.yosupo.jp/problem/multivariate_convolution
+  bundledCode: "#line 1 \"test/yosupo/convolution/multivariate_convolution.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/multivariate_convolution\"\
     \n#line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
     \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
     \ __LINE__\n#endif\n\n#define OVERLOAD5(a, b, c, d, e, ...) e\n#define REP1_0(b,\
@@ -478,8 +463,7 @@ data:
     \        return res;\n    }\n    void press(std::vector<T>& vec) const {\n   \
     \     assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
-    };\n#line 2 \"math/poly/FormalPowerSeries.hpp\"\n\n#line 2 \"math/convolution/Convolution.hpp\"\
-    \n\n#line 2 \"math/ModInt.hpp\"\n\n#line 4 \"math/ModInt.hpp\"\n\ntemplate<class\
+    };\n#line 2 \"math/ModInt.hpp\"\n\n#line 4 \"math/ModInt.hpp\"\n\ntemplate<class\
     \ T, T mod> class StaticModInt {\n    static_assert(std::is_integral<T>::value,\
     \ \"T must be integral\");\n    static_assert(std::is_unsigned<T>::value, \"T\
     \ must be unsigned\");\n    static_assert(mod > 0, \"mod must be positive\");\n\
@@ -595,7 +579,8 @@ data:
     \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\ntemplate<class\
     \ T, int id> T DynamicModInt<T, id>::mod = 998244353;\n\ntemplate<int id> using\
     \ dynamic_modint = DynamicModInt<unsigned int, id>;\nusing modint = dynamic_modint<-1>;\n\
-    \n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n#line 5 \"math/convolution/Convolution.hpp\"\
+    \n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n#line 2 \"math/convolution/MultidimensionalConvolution.hpp\"\
+    \n\n#line 2 \"math/convolution/Convolution.hpp\"\n\n#line 5 \"math/convolution/Convolution.hpp\"\
     \n\nCONSTEXPR ull primitive_root_for_convolution(ull p) {\n    if (p == 2) return\
     \ 1;\n    if (p == 998244353) return 3;\n    if (p == 469762049) return 3;\n \
     \   if (p == 1811939329) return 11;\n    if (p == 2013265921) return 11;\n   \
@@ -696,415 +681,35 @@ data:
     }\n\ntemplate<unsigned int p> struct is_ntt_friendly : std::false_type {};\n\n\
     template<> struct is_ntt_friendly<998244353> : std::true_type {};\n\n/**\n * @brief\
     \ Convolution(\u7573\u307F\u8FBC\u307F)\n * @docs docs/math/convolution/Convolution.md\n\
-    \ */\n#line 2 \"math/Combinatorics.hpp\"\n\n#line 5 \"math/Combinatorics.hpp\"\
-    \n\ntemplate<class T> class Combinatorics {\nprivate:\n    static std::vector<T>\
-    \ factorial;\n    static std::vector<T> factinv;\n\npublic:\n    static void init(ll\
-    \ n) {\n        const int b = factorial.size();\n        if (n < b) return;\n\
-    \        factorial.resize(n + 1);\n        rep (i, b, n + 1) factorial[i] = factorial[i\
-    \ - 1] * i;\n        factinv.resize(n + 1);\n        factinv[n] = T(1) / factorial[n];\n\
-    \        rreps (i, n, b) factinv[i - 1] = factinv[i] * i;\n    }\n    static T\
-    \ fact(ll x) {\n        if (x < 0) return 0;\n        init(x);\n        return\
-    \ factorial[x];\n    }\n    static T finv(ll x) {\n        if (x < 0) return 0;\n\
-    \        init(x);\n        return factinv[x];\n    }\n    static T inv(ll x) {\n\
-    \        if (x <= 0) return 0;\n        init(x);\n        return factorial[x -\
-    \ 1] * factinv[x];\n    }\n    static T perm(ll n, ll r) {\n        if (r < 0\
-    \ || r > n) return 0;\n        init(n);\n        return factorial[n] * factinv[n\
-    \ - r];\n    }\n    static T comb(ll n, ll r) {\n        if (n < 0) return 0;\n\
-    \        if (r < 0 || r > n) return 0;\n        init(n);\n        return factorial[n]\
-    \ * factinv[n - r] * factinv[r];\n    }\n    static T homo(ll n, ll r) { return\
-    \ comb(n + r - 1, r); }\n    static T small_perm(ll n, ll r) {\n        if (r\
-    \ < 0 || r > n) return 0;\n        T res = 1;\n        reps (i, r) res *= n -\
-    \ r + i;\n        return res;\n    }\n    static T small_comb(ll n, ll r) {\n\
-    \        if (r < 0 || r > n) return 0;\n        chmin(r, n - r);\n        init(r);\n\
-    \        T res = factinv[r];\n        reps (i, r) res *= n - r + i;\n        return\
-    \ res;\n    }\n    static T small_homo(ll n, ll r) { return small_comb(n + r -\
-    \ 1, r); }\n};\n\ntemplate<class T>\nstd::vector<T> Combinatorics<T>::factorial\
-    \ = std::vector<T>(1, 1);\ntemplate<class T>\nstd::vector<T> Combinatorics<T>::factinv\
-    \ = std::vector<T>(1, 1);\n\n/**\n * @brief Combinatorics\n * @docs docs/math/Combinatorics.md\n\
-    \ */\n#line 2 \"math/SqrtMod.hpp\"\n\n#line 2 \"math/MontgomeryModInt.hpp\"\n\n\
-    #line 4 \"math/MontgomeryModInt.hpp\"\n\ntemplate<class T> class MontgomeryReduction\
-    \ {\n    static_assert(std::is_integral<T>::value, \"T must be integral\");\n\
-    \    static_assert(std::is_unsigned<T>::value, \"T must be unsigned\");\n\nprivate:\n\
-    \    using large_t = typename double_size_uint<T>::type;\n    static constexpr\
-    \ int lg = std::numeric_limits<T>::digits;\n    T mod;\n    T r;\n    T r2; //\
-    \ r^2 mod m\n    T calc_minv() {\n        T t = 0, res = 0;\n        rep (i, lg)\
-    \ {\n            if (~t & 1) {\n                t += mod;\n                res\
-    \ += static_cast<T>(1) << i;\n            }\n            t >>= 1;\n        }\n\
-    \        return res;\n    }\n    T minv;\n\npublic:\n    MontgomeryReduction(T\
-    \ v) { set_mod(v); }\n    static constexpr int get_lg() { return lg; }\n    void\
-    \ set_mod(T v) {\n        assert(v > 0);\n        assert(v & 1);\n        assert(v\
-    \ <= std::numeric_limits<T>::max() / 2);\n        mod = v;\n        r = (-static_cast<T>(mod))\
-    \ % mod;\n        r2 = (-static_cast<large_t>(mod)) % mod;\n        minv = calc_minv();\n\
-    \    }\n    inline T get_mod() const { return mod; }\n    inline T get_r() const\
-    \ { return r; }\n    T reduce(large_t x) const {\n        large_t tmp =\n    \
-    \        (x + static_cast<large_t>(static_cast<T>(x) * minv) * mod) >> lg;\n \
-    \       return tmp >= mod ? tmp - mod : tmp;\n    }\n    T transform(large_t x)\
-    \ const { return reduce(x * r2); }\n};\n\ntemplate<class T, int id> class MontgomeryModInt\
-    \ {\nprivate:\n    using large_t = typename double_size_uint<T>::type;\n    using\
-    \ signed_t = typename std::make_signed<T>::type;\n    T val;\n\n    static MontgomeryReduction<T>\
-    \ mont;\n\npublic:\n    MontgomeryModInt() : val(0) {}\n    template<class U,\
-    \ typename std::enable_if<\n                          std::is_integral<U>::value\
-    \ &&\n                          std::is_unsigned<U>::value>::type* = nullptr>\n\
-    \    MontgomeryModInt(U x)\n        : val(mont.transform(\n              x < (static_cast<large_t>(mont.get_mod())\
-    \ << mont.get_lg())\n                  ? x\n                  : x % mont.get_mod()))\
-    \ {}\n    template<class U,\n             typename std::enable_if<std::is_integral<U>::value\
-    \ &&\n                                     std::is_signed<U>::value>::type* =\
-    \ nullptr>\n    MontgomeryModInt(U x)\n        : MontgomeryModInt(static_cast<typename\
-    \ std::make_unsigned<U>::type>(\n              x < 0 ? -x : x)) {\n        if\
-    \ (x < 0 && val) val = mont.get_mod() - val;\n    }\n\n    T get() const { return\
-    \ mont.reduce(val); }\n    static T get_mod() { return mont.get_mod(); }\n\n \
-    \   static void set_mod(T v) { mont.set_mod(v); }\n\n    MontgomeryModInt operator+()\
-    \ const { return *this; }\n    MontgomeryModInt operator-() const {\n        MontgomeryModInt\
-    \ res;\n        if (val) res.val = mont.get_mod() - val;\n        return res;\n\
-    \    }\n    MontgomeryModInt& operator++() {\n        val += mont.get_r();\n \
-    \       if (val >= mont.get_mod()) val -= mont.get_mod();\n        return *this;\n\
-    \    }\n    MontgomeryModInt& operator--() {\n        if (val < mont.get_r())\
-    \ val += mont.get_mod();\n        val -= mont.get_r();\n        return *this;\n\
-    \    }\n    MontgomeryModInt operator++(int) {\n        MontgomeryModInt res =\
-    \ *this;\n        ++*this;\n        return res;\n    }\n    MontgomeryModInt operator--(int)\
-    \ {\n        MontgomeryModInt res = *this;\n        --*this;\n        return res;\n\
-    \    }\n\n    MontgomeryModInt& operator+=(const MontgomeryModInt& rhs) {\n  \
-    \      val += rhs.val;\n        if (val >= mont.get_mod()) val -= mont.get_mod();\n\
-    \        return *this;\n    }\n    MontgomeryModInt& operator-=(const MontgomeryModInt&\
-    \ rhs) {\n        if (val < rhs.val) val += mont.get_mod();\n        val -= rhs.val;\n\
-    \        return *this;\n    }\n    MontgomeryModInt& operator*=(const MontgomeryModInt&\
-    \ rhs) {\n        val = mont.reduce(static_cast<large_t>(val) * rhs.val);\n  \
-    \      return *this;\n    }\n\n    MontgomeryModInt pow(ull n) const {\n     \
-    \   MontgomeryModInt res = 1, x = *this;\n        while (n) {\n            if\
-    \ (n & 1) res *= x;\n            x *= x;\n            n >>= 1;\n        }\n  \
-    \      return res;\n    }\n    MontgomeryModInt inv() const { return pow(mont.get_mod()\
-    \ - 2); }\n\n    MontgomeryModInt& operator/=(const MontgomeryModInt& rhs) {\n\
-    \        return *this *= rhs.inv();\n    }\n\n    friend MontgomeryModInt operator+(const\
-    \ MontgomeryModInt& lhs,\n                                      const MontgomeryModInt&\
-    \ rhs) {\n        return MontgomeryModInt(lhs) += rhs;\n    }\n    friend MontgomeryModInt\
-    \ operator-(const MontgomeryModInt& lhs,\n                                   \
-    \   const MontgomeryModInt& rhs) {\n        return MontgomeryModInt(lhs) -= rhs;\n\
-    \    }\n    friend MontgomeryModInt operator*(const MontgomeryModInt& lhs,\n \
-    \                                     const MontgomeryModInt& rhs) {\n       \
-    \ return MontgomeryModInt(lhs) *= rhs;\n    }\n    friend MontgomeryModInt operator/(const\
-    \ MontgomeryModInt& lhs,\n                                      const MontgomeryModInt&\
-    \ rhs) {\n        return MontgomeryModInt(lhs) /= rhs;\n    }\n\n    friend bool\
-    \ operator==(const MontgomeryModInt& lhs,\n                           const MontgomeryModInt&\
-    \ rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
-    \ MontgomeryModInt& lhs,\n                           const MontgomeryModInt& rhs)\
-    \ {\n        return lhs.val != rhs.val;\n    }\n\n    template<class Pr> void\
-    \ print(Pr& a) const { a.print(mont.reduce(val)); }\n    template<class Pr> void\
-    \ debug(Pr& a) const { a.print(mont.reduce(val)); }\n    template<class Sc> void\
-    \ scan(Sc& a) {\n        ll v;\n        a.scan(v);\n        *this = v;\n    }\n\
-    };\n\ntemplate<class T, int id>\nMontgomeryReduction<T>\n    MontgomeryModInt<T,\
-    \ id>::mont = MontgomeryReduction<T>(998244353);\n\nusing mmodint = MontgomeryModInt<unsigned\
-    \ int, -1>;\n\n/**\n * @brief MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\
-    \u7B97)\n * @docs docs/math/MontgomeryModInt.md\n */\n#line 5 \"math/SqrtMod.hpp\"\
-    \n\ntemplate<class T> ll sqrt_mod(ll a) {\n    const ll p = T::get_mod();\n  \
-    \  if (p == 2) return a;\n    if (a == 0) return 0;\n    if (T{a}.pow((p - 1)\
-    \ >> 1) != 1) return -1;\n    T b = 2;\n    while (T{b}.pow((p - 1) >> 1) == 1)\
-    \ ++b;\n    ll s = 0, t = p - 1;\n    while ((t & 1) == 0) t >>= 1, ++s;\n   \
-    \ T x = T{a}.pow((t + 1) >> 1);\n    T w = T{a}.pow(t);\n    T v = T{b}.pow(t);\n\
-    \    while (w != 1) {\n        ll k = 0;\n        T y = w;\n        while (y !=\
-    \ 1) {\n            y *= y;\n            ++k;\n        }\n        T z = v;\n \
-    \       rep (s - k - 1) z *= z;\n        x *= z;\n        w *= z * z;\n    }\n\
-    \    return std::min<ll>(x.get(), p - x.get());\n}\n\nll sqrt_mod(ll a, ll p)\
-    \ {\n    if (p == 2) return a;\n    using mint = MontgomeryModInt<unsigned int,\
-    \ 493174342>;\n    mint::set_mod(p);\n    return sqrt_mod<mint>(a);\n}\n\n/**\n\
-    \ * @brief SqrtMod(\u5E73\u65B9\u5270\u4F59)\n * @docs docs/math/SqrtMod.md\n\
-    \ * @see https://37zigen.com/tonelli-shanks-algorithm/\n */\n#line 7 \"math/poly/FormalPowerSeries.hpp\"\
-    \n\ntemplate<class T> class FormalPowerSeries : public std::vector<T> {\nprivate:\n\
-    \    using Base = std::vector<T>;\n    using Comb = Combinatorics<T>;\n\npublic:\n\
-    \    using Base::Base;\n    FormalPowerSeries(const Base& v) : Base(v) {}\n  \
-    \  FormalPowerSeries(Base&& v) : Base(std::move(v)) {}\n\n    FormalPowerSeries&\
-    \ shrink() {\n        while (!this->empty() && this->back() == T{0}) this->pop_back();\n\
-    \        return *this;\n    }\n\n    T eval(T x) const {\n        T res = 0;\n\
-    \        rrep (i, this->size()) {\n            res *= x;\n            res += (*this)[i];\n\
-    \        }\n        return res;\n    }\n\n    FormalPowerSeries prefix(int deg)\
-    \ const {\n        assert(0 <= deg);\n        if (deg < (int)this->size()) {\n\
-    \            return FormalPowerSeries(this->begin(), this->begin() + deg);\n \
-    \       }\n        FormalPowerSeries res(*this);\n        res.resize(deg);\n \
-    \       return res;\n    }\n\n    FormalPowerSeries operator+() const { return\
-    \ *this; }\n    FormalPowerSeries operator-() const {\n        FormalPowerSeries\
-    \ res(this->size());\n        rep (i, this->size()) res[i] = -(*this)[i];\n  \
-    \      return res;\n    }\n    FormalPowerSeries& operator<<=(int n) {\n     \
-    \   this->insert(this->begin(), n, T{0});\n        return *this;\n    }\n    FormalPowerSeries&\
-    \ operator>>=(int n) {\n        this->erase(this->begin(),\n                 \
-    \   this->begin() + std::min(n, (int)this->size()));\n        return *this;\n\
-    \    }\n    friend FormalPowerSeries operator<<(const FormalPowerSeries& lhs,\
-    \ int rhs) {\n        return FormalPowerSeries(lhs) <<= rhs;\n    }\n    friend\
-    \ FormalPowerSeries operator>>(const FormalPowerSeries& lhs, int rhs) {\n    \
-    \    return FormalPowerSeries(lhs) >>= rhs;\n    }\n    FormalPowerSeries& operator+=(const\
-    \ FormalPowerSeries& rhs) {\n        if (this->size() < rhs.size()) this->resize(rhs.size());\n\
-    \        rep (i, rhs.size()) (*this)[i] += rhs[i];\n        return *this;\n  \
-    \  }\n    FormalPowerSeries& operator-=(const FormalPowerSeries& rhs) {\n    \
-    \    if (this->size() < rhs.size()) this->resize(rhs.size());\n        rep (i,\
-    \ rhs.size()) (*this)[i] -= rhs[i];\n        return *this;\n    }\n    friend\
-    \ FormalPowerSeries operator+(const FormalPowerSeries& lhs,\n                \
-    \                       const FormalPowerSeries& rhs) {\n        return FormalPowerSeries(lhs)\
-    \ += rhs;\n    }\n    friend FormalPowerSeries operator-(const FormalPowerSeries&\
-    \ lhs,\n                                       const FormalPowerSeries& rhs) {\n\
-    \        return FormalPowerSeries(lhs) -= rhs;\n    }\n    friend FormalPowerSeries\
-    \ operator*(const FormalPowerSeries& lhs,\n                                  \
-    \     const FormalPowerSeries& rhs) {\n        return FormalPowerSeries(convolution(lhs,\
-    \ rhs));\n    }\n    FormalPowerSeries& operator*=(const FormalPowerSeries& rhs)\
-    \ {\n        return *this = *this * rhs;\n    }\n    FormalPowerSeries& operator*=(const\
-    \ T& rhs) {\n        rep (i, this->size()) (*this)[i] *= rhs;\n        return\
-    \ *this;\n    }\n    friend FormalPowerSeries operator*(const FormalPowerSeries&\
-    \ lhs,\n                                       const T& rhs) {\n        return\
-    \ FormalPowerSeries(lhs) *= rhs;\n    }\n    friend FormalPowerSeries operator*(const\
-    \ T& lhs,\n                                       const FormalPowerSeries& rhs)\
-    \ {\n        return FormalPowerSeries(rhs) *= lhs;\n    }\n    FormalPowerSeries&\
-    \ operator/=(const T& rhs) {\n        rep (i, this->size()) (*this)[i] /= rhs;\n\
-    \        return *this;\n    }\n    friend FormalPowerSeries operator/(const FormalPowerSeries&\
-    \ lhs,\n                                       const T& rhs) {\n        return\
-    \ FormalPowerSeries(lhs) /= rhs;\n    }\n\n    FormalPowerSeries rev() const {\n\
-    \        FormalPowerSeries res(*this);\n        std::reverse(all(res));\n    \
-    \    return res;\n    }\n\n    friend FormalPowerSeries div(FormalPowerSeries\
-    \ lhs, FormalPowerSeries rhs) {\n        lhs.shrink();\n        rhs.shrink();\n\
-    \        if (lhs.size() < rhs.size()) {\n            return FormalPowerSeries{};\n\
-    \        }\n        int n = lhs.size() - rhs.size() + 1;\n        if (rhs.size()\
-    \ <= 32) {\n            FormalPowerSeries res(n);\n            T iv = rhs.back().inv();\n\
-    \            rrep (i, n) {\n                T d = lhs[i + rhs.size() - 1] * iv;\n\
-    \                res[i] = d;\n                rep (j, rhs.size()) lhs[i + j] -=\
-    \ d * rhs[j];\n            }\n            return res;\n        }\n        return\
-    \ (lhs.rev().prefix(n) * rhs.rev().inv(n)).prefix(n).rev();\n    }\n    friend\
-    \ FormalPowerSeries operator%(FormalPowerSeries lhs,\n                       \
-    \                FormalPowerSeries rhs) {\n        lhs.shrink();\n        rhs.shrink();\n\
-    \        if (lhs.size() < rhs.size()) {\n            return lhs;\n        }\n\
-    \        int n = lhs.size() - rhs.size() + 1;\n        if (rhs.size() <= 32) {\n\
-    \            T iv = rhs.back().inv();\n            rrep (i, n) {\n           \
-    \     T d = lhs[i + rhs.size() - 1] * iv;\n                rep (j, rhs.size())\
-    \ lhs[i + j] -= d * rhs[j];\n            }\n            return lhs.shrink();\n\
-    \        }\n        return (lhs - div(lhs, rhs) * rhs).shrink();\n    }\n    friend\
-    \ std::pair<FormalPowerSeries, FormalPowerSeries>\n    divmod(FormalPowerSeries\
-    \ lhs, FormalPowerSeries rhs) {\n        lhs.shrink();\n        rhs.shrink();\n\
-    \        if (lhs.size() < rhs.size()) {\n            return {FormalPowerSeries{},\
-    \ lhs};\n        }\n        int n = lhs.size() - rhs.size() + 1;\n        if (rhs.size()\
-    \ <= 32) {\n            FormalPowerSeries res(n);\n            T iv = rhs.back().inv();\n\
-    \            rrep (i, n) {\n                T d = lhs[i + rhs.size() - 1] * iv;\n\
-    \                res[i] = d;\n                rep (j, rhs.size()) lhs[i + j] -=\
-    \ d * rhs[j];\n            }\n            return {res, lhs.shrink()};\n      \
-    \  }\n        FormalPowerSeries q = div(lhs, rhs);\n        return {q, (lhs -\
-    \ q * rhs).shrink()};\n    }\n    FormalPowerSeries& operator%=(const FormalPowerSeries&\
-    \ rhs) {\n        return *this = *this % rhs;\n    }\n\n    FormalPowerSeries\
-    \ diff() const {\n        if (this->empty()) return {};\n        FormalPowerSeries\
-    \ res(this->size() - 1);\n        rep (i, res.size()) res[i] = (*this)[i + 1]\
-    \ * (i + 1);\n        return res;\n    }\n    FormalPowerSeries integral() const\
-    \ {\n        FormalPowerSeries res(this->size() + 1);\n        res[0] = 0;\n \
-    \       Comb::init(this->size());\n        rep (i, this->size()) res[i + 1] =\
-    \ (*this)[i] * Comb::inv(i + 1);\n        return res;\n    }\n\n    template<bool\
-    \ AlwaysTrue = true,\n             typename std::enable_if<\n                \
-    \ AlwaysTrue && is_ntt_friendly<T::get_mod()>::value>::type* =\n             \
-    \    nullptr>\n    FormalPowerSeries inv(int deg = -1) const {\n        assert(this->size()\
-    \ > 0 && (*this)[0] != 0);\n        if (deg == -1) deg = this->size();\n     \
-    \   FormalPowerSeries res(1, (*this)[0].inv());\n        for (int m = 1; m < deg;\
-    \ m <<= 1) {\n            FormalPowerSeries f(2 * m);\n            for (int i\
-    \ = 0; i < std::min(2 * m, (int)this->size()); i++)\n                f[i] = (*this)[i];\n\
-    \            res.resize(2 * m);\n            FormalPowerSeries dft = res;\n  \
-    \          number_theoretic_transform(f);\n            number_theoretic_transform(dft);\n\
-    \            rep (i, 2 * m) f[i] *= dft[i];\n            inverse_number_theoretic_transform(f);\n\
-    \            std::fill(f.begin(), f.begin() + m, T{0});\n            number_theoretic_transform(f);\n\
-    \            rep (i, 2 * m) dft[i] *= f[i];\n            inverse_number_theoretic_transform(dft);\n\
-    \            rep (i, m, 2 * m) res[i] = -dft[i];\n        }\n        return res.prefix(deg);\n\
-    \    }\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<\n\
-    \                 AlwaysTrue && !is_ntt_friendly<T::get_mod()>::value>::type*\
-    \ =\n                 nullptr>\n    FormalPowerSeries inv(int deg = -1) const\
-    \ {\n        assert(this->size() > 0 && (*this)[0] != 0);\n        if (deg ==\
-    \ -1) deg = this->size();\n        FormalPowerSeries res(1, (*this)[0].inv());\n\
-    \        for (int m = 1; m < deg; m <<= 1) {\n            res = (res * 2 - (res\
-    \ * res * this->prefix(2 * m)).prefix(2 * m))\n                      .prefix(2\
-    \ * m);\n        }\n        return res.prefix(deg);\n    }\n    FormalPowerSeries\
-    \ log(int deg = -1) const {\n        assert(this->size() > 0 && (*this)[0] ==\
-    \ 1);\n        if (deg == -1) deg = this->size();\n        return (diff() * inv(deg)).prefix(deg\
-    \ - 1).integral();\n    }\n    template<bool AlwaysTrue = true,\n            \
-    \ typename std::enable_if<\n                 AlwaysTrue && is_ntt_friendly<T::get_mod()>::value>::type*\
-    \ =\n                 nullptr>\n    FormalPowerSeries exp(int deg = -1) const\
-    \ {\n        assert(this->size() > 0 && (*this)[0] == 0);\n        if (deg ==\
-    \ -1) deg = this->size();\n        FormalPowerSeries f(1, 1);\n        FormalPowerSeries\
-    \ g(1, 1);\n        FormalPowerSeries dft_f(1, 1);\n        for (int m = 1; m\
-    \ < deg; m <<= 1) {\n            FormalPowerSeries q = prefix(m).diff();\n   \
-    \         q.resize(m);\n            number_theoretic_transform(q);\n         \
-    \   rep (i, m) q[i] *= dft_f[i];\n            inverse_number_theoretic_transform(q);\n\
-    \            FormalPowerSeries s = f.diff();\n            s.resize(m);\n     \
-    \       rep (i, m) s[i] -= q[i];\n            s.insert(s.begin(), (T)s.back());\n\
-    \            s.pop_back();\n            FormalPowerSeries dft_g = g;\n       \
-    \     s.resize(2 * m);\n            dft_g.resize(2 * m);\n            number_theoretic_transform(s);\n\
-    \            number_theoretic_transform(dft_g);\n            rep (i, 2 * m) s[i]\
-    \ *= dft_g[i];\n            inverse_number_theoretic_transform(s);\n         \
-    \   FormalPowerSeries u =\n                (prefix(2 * m) - (s.prefix(m) << (m\
-    \ - 1)).integral()) >> m;\n            u.resize(2 * m);\n            FormalPowerSeries\
-    \ dft_f_2 = f;\n            dft_f_2.resize(2 * m);\n            number_theoretic_transform(u);\n\
-    \            number_theoretic_transform(dft_f_2);\n            rep (i, 2 * m)\
-    \ u[i] *= dft_f_2[i];\n            inverse_number_theoretic_transform(u);\n  \
-    \          f = f + (u.prefix(m) << m);\n            if (2 * m < deg) {\n     \
-    \           g.resize(2 * m);\n                FormalPowerSeries dft_g_2 = g;\n\
-    \                FormalPowerSeries dft_f_2 = f;\n                number_theoretic_transform(dft_g_2);\n\
-    \                number_theoretic_transform(dft_f_2);\n                dft_f =\
-    \ dft_f_2;\n                rep (i, 2 * m) dft_f_2[i] *= dft_g_2[i];\n       \
-    \         inverse_number_theoretic_transform(dft_f_2);\n                std::fill(dft_f_2.begin(),\
-    \ dft_f_2.begin() + m, T{0});\n                number_theoretic_transform(dft_f_2);\n\
-    \                rep (i, 2 * m) dft_f_2[i] *= dft_g_2[i];\n                inverse_number_theoretic_transform(dft_f_2);\n\
-    \                rep (i, m, 2 * m) g[i] = -dft_f_2[i];\n            }\n      \
-    \  }\n        return f.prefix(deg);\n    }\n    template<bool AlwaysTrue = true,\n\
-    \             typename std::enable_if<\n                 AlwaysTrue && !is_ntt_friendly<T::get_mod()>::value>::type*\
-    \ =\n                 nullptr>\n    FormalPowerSeries exp(int deg = -1) const\
-    \ {\n        assert(this->size() > 0 && (*this)[0] == 0);\n        if (deg ==\
-    \ -1) deg = this->size();\n        FormalPowerSeries res(1, 1);\n        for (int\
-    \ m = 1; m < deg; m <<= 1) {\n            res = (res * (prefix(2 * m) - res.log(2\
-    \ * m)) + res).prefix(2 * m);\n        }\n        return res.prefix(deg);\n  \
-    \  }\n    FormalPowerSeries pow(ll k, int deg = -1) const {\n        if (deg ==\
-    \ -1) deg = this->size();\n        if (deg == 0) return {};\n        if (k ==\
-    \ 0) {\n            FormalPowerSeries res(deg);\n            res[0] = 1;\n   \
-    \         return res;\n        }\n        if (k == 1) return prefix(deg);\n  \
-    \      if (k == 2) return (*this * *this).prefix(deg);\n        T a;\n       \
-    \ int d = -1;\n        rep (i, this->size()) {\n            if ((*this)[i] !=\
-    \ 0) {\n                a = (*this)[i];\n                d = i;\n            \
-    \    break;\n            }\n        }\n        if (d == -1) {\n            FormalPowerSeries\
-    \ res(deg);\n            return res;\n        }\n        if ((i128)(d)*k >= deg)\
-    \ {\n            FormalPowerSeries res(deg);\n            return res;\n      \
-    \  }\n        deg -= d * k;\n        FormalPowerSeries res = (((*this >> d) /\
-    \ a).log(deg) * k).exp(deg);\n        res *= a.pow(k);\n        res <<= d * k;\n\
-    \        return res;\n    }\n    FormalPowerSeries sqrt(int deg = -1) const {\n\
-    \        if (deg == -1) deg = this->size();\n        T a;\n        int d = -1;\n\
-    \        rep (i, this->size()) {\n            if ((*this)[i] != 0) {\n       \
-    \         a = (*this)[i];\n                d = i;\n                break;\n  \
-    \          }\n        }\n        if (d == -1) {\n            FormalPowerSeries\
-    \ res(deg);\n            return res;\n        }\n        if (d & 1) return {};\n\
-    \        deg -= (d >> 1);\n        if (deg <= 0) {\n            FormalPowerSeries\
-    \ res(deg);\n            return res;\n        }\n        FormalPowerSeries f =\
-    \ (*this >> d);\n        T sq = sqrt_mod<T>(a.get());\n        if (sq == -1) return\
-    \ {};\n        FormalPowerSeries g(1, sq);\n        for (int m = 1; m < deg; m\
-    \ <<= 1) {\n            g = (g + (f.prefix(2 * m) * g.inv(2 * m)).prefix(2 * m))\
-    \ / 2;\n        }\n        g.resize(deg);\n        return g << (d >> 1);\n   \
-    \ }\n    FormalPowerSeries compose(FormalPowerSeries g, int deg = -1) const {\n\
-    \        if (this->empty()) return {};\n        if (g.empty()) return {(*this)[0]};\n\
-    \        assert(g[0] == 0);\n        int n = deg == -1 ? this->size() : deg;\n\
-    \        int m = 1 << (bitop::ceil_log2(\n                          std::max<int>(1,\
-    \ std::sqrt(n / std::log2(n)))) +\n                      1);\n        FormalPowerSeries\
-    \ p = g.prefix(m), q = g >> m;\n        p.shrink();\n        q.shrink();\n   \
-    \     int l = (n + m - 1) / m;\n        std::vector<FormalPowerSeries> fs(this->size());\n\
-    \        rep (i, this->size()) fs[i] = FormalPowerSeries{(*this)[i]};\n      \
-    \  FormalPowerSeries pd = p.diff();\n        int z = 0;\n        while (z < (int)pd.size()\
-    \ && pd[z] == T{0}) z++;\n        if (z == (int)pd.size()) {\n            FormalPowerSeries\
-    \ ans;\n            rrep (i, l) {\n                ans = ((ans * q) << m).prefix(n\
-    \ - i * m) +\n                      FormalPowerSeries{(*this)[i]};\n         \
-    \   }\n            return ans;\n        }\n        pd = (pd >> z).inv(n);\n  \
-    \      FormalPowerSeries t = p;\n        for (int k = 1; fs.size() > 1; k <<=\
-    \ 1) {\n            std::vector<FormalPowerSeries> nfs((fs.size() + 1) / 2);\n\
-    \            t.resize(1 << (bitop::ceil_log2(t.size()) + 1));\n            number_theoretic_transform(t);\n\
-    \            rep (i, fs.size() / 2) {\n                nfs[i] = std::move(fs[2\
-    \ * i]);\n                fs[2 * i + 1].resize(t.size());\n                number_theoretic_transform(fs[2\
-    \ * i + 1]);\n                rep (j, t.size()) fs[2 * i + 1][j] *= t[j];\n  \
-    \              inverse_number_theoretic_transform(fs[2 * i + 1]);\n          \
-    \      if ((int)fs[2 * i + 1].size() > n) fs[2 * i + 1].resize(n);\n         \
-    \       nfs[i] += fs[2 * i + 1];\n            }\n            if (fs.size() & 1)\
-    \ nfs.back() = std::move(fs.back());\n            fs = std::move(nfs);\n     \
-    \       if (fs.size() > 1) {\n                rep (i, t.size()) t[i] *= t[i];\n\
-    \                inverse_number_theoretic_transform(t);\n                if ((int)t.size()\
-    \ > n) t.resize(n);\n            }\n        }\n        FormalPowerSeries fp =\
-    \ fs[0].prefix(n);\n        FormalPowerSeries res = fp;\n        int n2 = 1 <<\
-    \ (bitop::ceil_log2(n) + 1);\n        FormalPowerSeries qpow(n2);\n        qpow[0]\
-    \ = 1;\n        q.resize(n2);\n        number_theoretic_transform(q);\n      \
-    \  pd.resize(n2);\n        number_theoretic_transform(pd);\n        rep (i, 1,\
-    \ l) {\n            if ((n - i * m) * 4 <= n2) {\n                while ((n -\
-    \ i * m) * 4 <= n2) {\n                    n2 /= 2;\n                }\n     \
-    \           inverse_number_theoretic_transform(q);\n                q.resize(n\
-    \ - i * m);\n                q.resize(n2);\n                number_theoretic_transform(q);\n\
-    \                inverse_number_theoretic_transform(pd);\n                pd.resize(n\
-    \ - i * m);\n                pd.resize(n2);\n                number_theoretic_transform(pd);\n\
-    \            }\n            qpow.resize(n - i * m);\n            qpow.resize(n2);\n\
-    \            number_theoretic_transform(qpow);\n            rep (j, n2) qpow[j]\
-    \ *= q[j];\n            inverse_number_theoretic_transform(qpow);\n          \
-    \  qpow.resize(n - i * m);\n\n            fp = fp.diff() >> z;\n            fp.resize(n\
-    \ - i * m);\n            fp.resize(n2);\n            number_theoretic_transform(fp);\n\
-    \            rep (j, n2) fp[j] *= pd[j];\n            inverse_number_theoretic_transform(fp);\n\
-    \            fp.resize(n - i * m);\n\n            res += ((qpow * fp).prefix(n\
-    \ - i * m) * Comb::finv(i)) << (i * m);\n        }\n        return res;\n    }\n\
-    \    FormalPowerSeries compinv(int deg = -1) const {\n        assert(this->size()\
-    \ >= 2 && (*this)[0] == 0 && (*this)[1] != 0);\n        if (deg == -1) deg = this->size();\n\
-    \        FormalPowerSeries fd = diff();\n        FormalPowerSeries x{0, 1};\n\
-    \        FormalPowerSeries res{0, (*this)[1].inv()};\n        for (int m = 2;\
-    \ m < deg; m <<= 1) {\n            auto tmp = prefix(2 * m).compose(res);\n  \
-    \          auto d = tmp.diff();\n            auto gd = res.diff();\n         \
-    \   res -=\n                ((tmp - x) * (d.inv(2 * m) * gd).prefix(2 * m)).prefix(2\
-    \ * m);\n        }\n        return res.prefix(deg);\n    }\n    template<bool\
-    \ AlwaysTrue = true,\n             typename std::enable_if<\n                \
-    \ AlwaysTrue && is_ntt_friendly<T::get_mod()>::value>::type* =\n             \
-    \    nullptr>\n    FormalPowerSeries& ntt_doubling() {\n        ntt_doubling_(*this);\n\
-    \        return *this;\n    }\n};\n\n/**\n * @brief FormalPowerSeries(\u5F62\u5F0F\
-    \u7684\u51AA\u7D1A\u6570)\n * @docs docs/math/poly/FormalPowerSeries.md\n * @see\
-    \ https://nyaannyaan.github.io/library/fps/formal-power-series.hpp\n */\n#line\
-    \ 2 \"math/poly/PolynomialInterpolation.hpp\"\n\n#line 2 \"math/poly/MultipointEvaluation.hpp\"\
-    \n\n#line 5 \"math/poly/MultipointEvaluation.hpp\"\n\nnamespace internal {\n\n\
-    template<class T> class ProductTree {\nprivate:\n    int n;\n    std::vector<FormalPowerSeries<T>>\
-    \ dat;\n\npublic:\n    ProductTree(const std::vector<T>& xs) {\n        n = xs.size();\n\
-    \        dat.resize(n << 1);\n        rep (i, n) dat[i + n] = FormalPowerSeries<T>{-xs[i],\
-    \ 1};\n        rrep (i, n, 1) dat[i] = dat[i << 1] * dat[i << 1 | 1];\n    }\n\
-    \    const FormalPowerSeries<T>& operator[](int k) const& { return dat[k]; }\n\
-    \    FormalPowerSeries<T> operator[](int k) && { return std::move(dat[k]); }\n\
-    };\n\ntemplate<class T>\nstd::vector<T> multipoint_evaluation(const FormalPowerSeries<T>&\
-    \ a,\n                                     const std::vector<T>& b,\n        \
-    \                             const ProductTree<T>& c) {\n    int m = b.size();\n\
-    \    std::vector<FormalPowerSeries<T>> d(m << 1);\n    d[1] = a % c[1];\n    rep\
-    \ (i, 2, m << 1) d[i] = d[i >> 1] % c[i];\n    std::vector<T> e(m);\n    rep (i,\
-    \ m) e[i] = d[m + i].empty() ? T{0} : d[m + i][0];\n    return e;\n}\n\n} // namespace\
-    \ internal\n\ntemplate<class T>\nstd::vector<T> multipoint_evaluation(const FormalPowerSeries<T>&\
-    \ a,\n                                     const std::vector<T>& b) {\n    if\
-    \ (a.empty() || b.empty()) return std::vector<T>(b.size(), T{0});\n    if (a.size()\
-    \ <= 32 || b.size() <= 32) {\n        std::vector<T> res(b.size());\n        rep\
-    \ (i, b.size()) res[i] = a.eval(b[i]);\n        return res;\n    }\n    return\
-    \ internal::multipoint_evaluation(a, b, internal::ProductTree<T>(b));\n}\n\ntemplate<class\
-    \ T>\nstd::vector<T> multipoint_evaluation_geometric(const FormalPowerSeries<T>&\
-    \ f,\n                                               T a, T r, int m) {\n    if\
-    \ (f.empty() || m == 0) return std::vector<T>(m, T{0});\n    if (a == 0 || r ==\
-    \ 1) return std::vector<T>(m, f.eval(a));\n    if (f.size() <= 32 || m <= 32)\
-    \ {\n        std::vector<T> res(m);\n        rep (i, m) {\n            res[i]\
-    \ = f.eval(a);\n            a *= r;\n        }\n        return res;\n    }\n \
-    \   if (r == 0) {\n        std::vector<T> res(m, f.eval(0));\n        res[0] =\
-    \ f.eval(a);\n        return res;\n    }\n    int n = f.size();\n    int l = 1\
-    \ << bitop::ceil_log2(n + m - 1);\n    std::vector<T> p(l), q(l);\n    T ir =\
-    \ T{1} / r, t = 1, t2 = 1;\n    rep (i, n) {\n        p[n - i - 1] = f[i] * t;\n\
-    \        t *= a * t2;\n        t2 *= ir;\n    }\n    t = t2 = 1;\n    rep (i,\
-    \ n + m - 1) {\n        q[i] = t;\n        t *= t2;\n        t2 *= r;\n    }\n\
-    \    number_theoretic_transform(p);\n    number_theoretic_transform(q);\n    rep\
-    \ (i, l) p[i] *= q[i];\n    inverse_number_theoretic_transform(p);\n    std::vector<T>\
-    \ ans(p.begin() + (n - 1), p.begin() + (n + m - 1));\n    t = t2 = 1;\n    rep\
-    \ (i, m) {\n        ans[i] *= t;\n        t *= t2;\n        t2 *= ir;\n    }\n\
-    \    return ans;\n}\n\n/**\n * @brief MultipointEvaluation(\u591A\u70B9\u8A55\u4FA1\
-    )\n * @docs docs/math/poly/MultipointEvaluation.md\n */\n#line 6 \"math/poly/PolynomialInterpolation.hpp\"\
-    \n\ntemplate<class T>\nFormalPowerSeries<T> polynomial_interpolation(const std::vector<T>&\
-    \ xs,\n                                              const std::vector<T>& ys)\
-    \ {\n    internal::ProductTree<T> pt(xs);\n    std::vector<T> c = internal::multipoint_evaluation(pt[1].diff(),\
-    \ xs, pt);\n    std::queue<FormalPowerSeries<T>> que1, que2;\n    rep (i, xs.size())\
-    \ {\n        que1.emplace(FormalPowerSeries<T>{ys[i] / c[i]});\n        que2.emplace(FormalPowerSeries<T>{-xs[i],\
-    \ 1});\n    }\n    while (que1.size() > 1) {\n        auto f1 = que1.front();\n\
-    \        que1.pop();\n        auto f2 = que2.front();\n        que2.pop();\n \
-    \       auto g1 = que1.front();\n        que1.pop();\n        auto g2 = que2.front();\n\
-    \        que2.pop();\n        que1.emplace(f1 * g2 + f2 * g1);\n        que2.emplace(f2\
-    \ * g2);\n    }\n    que1.front().resize(xs.size());\n    return que1.front();\n\
-    }\n\ntemplate<class T>\nFormalPowerSeries<T> polynomial_interpolation_geometric(T\
-    \ a, T r,\n                                                        std::vector<T>\
-    \ ys) {\n    int n = ys.size();\n    if (n == 0) return {};\n    if (n == 1) return\
-    \ {ys[0]};\n    assert(a != 0 && r != 1);\n    if (r == 0) {\n        assert(n\
-    \ == 2);\n        return {ys[1], (ys[0] - ys[1]) / a};\n    }\n    std::vector<T>\
-    \ p(n + 1), q(n + 1);\n    p[0] = q[0] = 1;\n    reps (i, n) {\n        p[i] =\
-    \ p[i - 1] * r;\n        q[i] = q[i - 1] * (1 - p[i]);\n    }\n    T v = 1;\n\
-    \    rep (i, n) {\n        ys[i] /= v * q[i] * q[n - 1 - i];\n        if (i %\
-    \ 2) ys[i] = -ys[i];\n        if (i != n - 1) v *= p[n - 2 - i];\n    }\n    FormalPowerSeries<T>\
-    \ res1(n + 1);\n    v = 1;\n    rep (i, n + 1) {\n        if (i == 0 || i == n)\
-    \ res1[i] = v * q[0];\n        else res1[i] = v * q[n] / (q[i] * q[n - i]);\n\
-    \        if (i % 2) res1[i] = -res1[i];\n        if (i != n) v *= p[i];\n    }\n\
-    \    FormalPowerSeries<T> res2 =\n        multipoint_evaluation_geometric(FormalPowerSeries<T>(ys),\
-    \ T{1}, r, n);\n    auto res = (res1 * res2).prefix(n);\n    reverse(all(res));\n\
-    \    T ainv = 1 / a;\n    v = 1;\n    rep (i, n) {\n        res[i] *= v;\n   \
-    \     v *= ainv;\n    }\n    return res;\n}\n\n/**\n * @brief PolynomialInterpolation(\u591A\
-    \u9805\u5F0F\u88DC\u9593)\n * @docs docs/math/poly/PolynomialInterpolation.md\n\
-    \ */\n#line 6 \"test/yosupo/polynomial/polynomial_interpolation_on_geometric_sequence.test.cpp\"\
-    \nusing namespace std;\nusing mint = modint998244353;\nint main() {\n    int n;\
-    \ scan >> n;\n    mint a, r; scan >> a >> r;\n    vector<mint> ys(n); scan >>\
-    \ ys;\n    prints(polynomial_interpolation_geometric(a, r, ys));\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/polynomial_interpolation_on_geometric_sequence\"\
-    \n#include \"../../../other/template.hpp\"\n#include \"../../../math/poly/FormalPowerSeries.hpp\"\
-    \n#include \"../../../math/poly/PolynomialInterpolation.hpp\"\n#include \"../../../math/ModInt.hpp\"\
-    \nusing namespace std;\nusing mint = modint998244353;\nint main() {\n    int n;\
-    \ scan >> n;\n    mint a, r; scan >> a >> r;\n    vector<mint> ys(n); scan >>\
-    \ ys;\n    prints(polynomial_interpolation_geometric(a, r, ys));\n}\n"
+    \ */\n#line 5 \"math/convolution/MultidimensionalConvolution.hpp\"\n\ntemplate<class\
+    \ T>\nstd::vector<T> multidimensional_convolution(const std::vector<T>& a,\n \
+    \                                           const std::vector<T>& b,\n       \
+    \                                     const std::vector<int>& base) {\n    int\
+    \ n = 1;\n    while (n < (int)a.size() + (int)b.size() - 1) n *= 2;\n    int K\
+    \ = base.size();\n    auto f = [&](int i) -> int {\n        int res = 0;\n   \
+    \     for (int j : base) {\n            res += i / j;\n            i /= j;\n \
+    \       }\n        return res % (K + 1);\n    };\n    std::vector<std::vector<T>>\
+    \ A(K + 1, std::vector<T>(n, 0));\n    std::vector<std::vector<T>> B(K + 1, std::vector<T>(n,\
+    \ 0));\n    std::vector<std::vector<T>> C(K + 1, std::vector<T>(n, 0));\n    rep\
+    \ (i, a.size()) A[f(i)][i] = a[i];\n    rep (i, b.size()) B[f(i)][i] = b[i];\n\
+    \    rep (i, K + 1) {\n        number_theoretic_transform(A[i]);\n        number_theoretic_transform(B[i]);\n\
+    \    }\n    rep (i, K + 1) rep (j, K + 1) {\n        int k = (i + j) % (K + 1);\n\
+    \        rep (l, n) C[k][l] += A[i][l] * B[j][l];\n    }\n    rep (i, K + 1) {\n\
+    \        inverse_number_theoretic_transform(C[i]);\n    }\n    std::vector<T>\
+    \ res(a.size(), 0);\n    rep (i, a.size()) res[i] = C[f(i)][i];\n    return res;\n\
+    }\n\n/**\n * @brief MultidimensionalConvolution\n * @docs docs/math/convolution/MultidimensionalConvolution.md\n\
+    \ */\n#line 5 \"test/yosupo/convolution/multivariate_convolution.test.cpp\"\n\
+    using namespace std;\nusing mint = modint998244353;\nint main() {\n    int K;\
+    \ scan >> K;\n    vector<int> N(K); scan >> N;\n    int n = 1;\n    rep (i, K)\
+    \ n *= N[i];\n    vector<mint> A(n), B(n); scan >> A >> B;\n    prints(multidimensional_convolution(A,\
+    \ B, N));\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/multivariate_convolution\"\
+    \n#include \"../../../other/template.hpp\"\n#include \"../../../math/ModInt.hpp\"\
+    \n#include \"../../../math/convolution/MultidimensionalConvolution.hpp\"\nusing\
+    \ namespace std;\nusing mint = modint998244353;\nint main() {\n    int K; scan\
+    \ >> K;\n    vector<int> N(K); scan >> N;\n    int n = 1;\n    rep (i, K) n *=\
+    \ N[i];\n    vector<mint> A(n), B(n); scan >> A >> B;\n    prints(multidimensional_convolution(A,\
+    \ B, N));\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -1115,24 +720,19 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  - math/poly/FormalPowerSeries.hpp
-  - math/convolution/Convolution.hpp
   - math/ModInt.hpp
-  - math/Combinatorics.hpp
-  - math/SqrtMod.hpp
-  - math/MontgomeryModInt.hpp
-  - math/poly/PolynomialInterpolation.hpp
-  - math/poly/MultipointEvaluation.hpp
+  - math/convolution/MultidimensionalConvolution.hpp
+  - math/convolution/Convolution.hpp
   isVerificationFile: true
-  path: test/yosupo/polynomial/polynomial_interpolation_on_geometric_sequence.test.cpp
+  path: test/yosupo/convolution/multivariate_convolution.test.cpp
   requiredBy: []
   timestamp: '2024-04-30 21:25:40+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yosupo/polynomial/polynomial_interpolation_on_geometric_sequence.test.cpp
+documentation_of: test/yosupo/convolution/multivariate_convolution.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/polynomial/polynomial_interpolation_on_geometric_sequence.test.cpp
-- /verify/test/yosupo/polynomial/polynomial_interpolation_on_geometric_sequence.test.cpp.html
-title: test/yosupo/polynomial/polynomial_interpolation_on_geometric_sequence.test.cpp
+- /verify/test/yosupo/convolution/multivariate_convolution.test.cpp
+- /verify/test/yosupo/convolution/multivariate_convolution.test.cpp.html
+title: test/yosupo/convolution/multivariate_convolution.test.cpp
 ---

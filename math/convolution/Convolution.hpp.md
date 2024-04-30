@@ -46,6 +46,9 @@ data:
     path: math/SubsetSum.hpp
     title: SubsetSum
   - icon: ':heavy_check_mark:'
+    path: math/convolution/MultidimensionalConvolution.hpp
+    title: MultidimensionalConvolution
+  - icon: ':heavy_check_mark:'
     path: math/convolution/RelaxedConvolution.hpp
     title: "Relaxed Convolution(\u30AA\u30F3\u30E9\u30A4\u30F3\u7573\u307F\u8FBC\u307F\
       )"
@@ -81,6 +84,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/convolution_mod_1000000007.test.cpp
     title: test/yosupo/convolution/convolution_mod_1000000007.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/convolution/multivariate_convolution.test.cpp
+    title: test/yosupo/convolution/multivariate_convolution.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/math/bernoulli_number.test.cpp
     title: test/yosupo/math/bernoulli_number.test.cpp
@@ -931,6 +937,7 @@ data:
   requiredBy:
   - graph/tree/FrequencyTableofTreeDistance.hpp
   - math/convolution/RelaxedConvolution.hpp
+  - math/convolution/MultidimensionalConvolution.hpp
   - math/poly/SparseFormalPowerSeries.hpp
   - math/poly/BostanMori.hpp
   - math/poly/PolynomialInterpolation.hpp
@@ -944,6 +951,7 @@ data:
   timestamp: '2024-04-21 15:04:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/convolution/multivariate_convolution.test.cpp
   - test/yosupo/convolution/convolution_mod.test.cpp
   - test/yosupo/convolution/convolution_mod_1000000007.test.cpp
   - test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp

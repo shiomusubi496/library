@@ -1079,22 +1079,23 @@ data:
     \        que2.pop();\n        que1.emplace(f1 * g2 + f2 * g1);\n        que2.emplace(f2\
     \ * g2);\n    }\n    que1.front().resize(xs.size());\n    return que1.front();\n\
     }\n\ntemplate<class T>\nFormalPowerSeries<T> polynomial_interpolation_geometric(T\
-    \ a, T r, std::vector<T> ys) {\n    int n = ys.size();\n    if (n == 0) return\
-    \ {};\n    if (n == 1) return {ys[0]};\n    assert(a != 0 && r != 1);\n    if\
-    \ (r == 0) {\n        assert(n == 2);\n        return {ys[1], (ys[0] - ys[1])\
-    \ / a};\n    }\n    std::vector<T> p(n + 1), q(n + 1);\n    p[0] = q[0] = 1;\n\
-    \    reps (i, n) {\n        p[i] = p[i - 1] * r;\n        q[i] = q[i - 1] * (1\
-    \ - p[i]);\n    }\n    T v = 1;\n    rep (i, n) {\n        ys[i] /= v * q[i] *\
-    \ q[n - 1 - i];\n        if (i % 2) ys[i] = -ys[i];\n        if (i != n - 1) v\
-    \ *= p[n - 2 - i];\n    }\n    FormalPowerSeries<T> res1(n + 1);\n    v = 1;\n\
-    \    rep (i, n + 1) {\n        if (i == 0 || i == n) res1[i] = v * q[0];\n   \
-    \     else res1[i] = v * q[n] / (q[i] * q[n - i]);\n        if (i % 2) res1[i]\
-    \ = -res1[i];\n        if (i != n) v *= p[i];\n    }\n    FormalPowerSeries<T>\
-    \ res2 = multipoint_evaluation_geometric(FormalPowerSeries<T>(ys), T{1}, r, n);\n\
-    \    auto res = (res1 * res2).prefix(n);\n    reverse(all(res));\n    T ainv =\
-    \ 1 / a;\n    v = 1;\n    rep (i, n) {\n        res[i] *= v;\n        v *= ainv;\n\
-    \    }\n    return res;\n}\n\n/**\n * @brief PolynomialInterpolation(\u591A\u9805\
-    \u5F0F\u88DC\u9593)\n * @docs docs/math/poly/PolynomialInterpolation.md\n */\n"
+    \ a, T r,\n                                                        std::vector<T>\
+    \ ys) {\n    int n = ys.size();\n    if (n == 0) return {};\n    if (n == 1) return\
+    \ {ys[0]};\n    assert(a != 0 && r != 1);\n    if (r == 0) {\n        assert(n\
+    \ == 2);\n        return {ys[1], (ys[0] - ys[1]) / a};\n    }\n    std::vector<T>\
+    \ p(n + 1), q(n + 1);\n    p[0] = q[0] = 1;\n    reps (i, n) {\n        p[i] =\
+    \ p[i - 1] * r;\n        q[i] = q[i - 1] * (1 - p[i]);\n    }\n    T v = 1;\n\
+    \    rep (i, n) {\n        ys[i] /= v * q[i] * q[n - 1 - i];\n        if (i %\
+    \ 2) ys[i] = -ys[i];\n        if (i != n - 1) v *= p[n - 2 - i];\n    }\n    FormalPowerSeries<T>\
+    \ res1(n + 1);\n    v = 1;\n    rep (i, n + 1) {\n        if (i == 0 || i == n)\
+    \ res1[i] = v * q[0];\n        else res1[i] = v * q[n] / (q[i] * q[n - i]);\n\
+    \        if (i % 2) res1[i] = -res1[i];\n        if (i != n) v *= p[i];\n    }\n\
+    \    FormalPowerSeries<T> res2 =\n        multipoint_evaluation_geometric(FormalPowerSeries<T>(ys),\
+    \ T{1}, r, n);\n    auto res = (res1 * res2).prefix(n);\n    reverse(all(res));\n\
+    \    T ainv = 1 / a;\n    v = 1;\n    rep (i, n) {\n        res[i] *= v;\n   \
+    \     v *= ainv;\n    }\n    return res;\n}\n\n/**\n * @brief PolynomialInterpolation(\u591A\
+    \u9805\u5F0F\u88DC\u9593)\n * @docs docs/math/poly/PolynomialInterpolation.md\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"FormalPowerSeries.hpp\"\
     \n#include \"MultipointEvaluation.hpp\"\n\ntemplate<class T>\nFormalPowerSeries<T>\
     \ polynomial_interpolation(const std::vector<T>& xs,\n                       \
@@ -1108,22 +1109,23 @@ data:
     \        que2.pop();\n        que1.emplace(f1 * g2 + f2 * g1);\n        que2.emplace(f2\
     \ * g2);\n    }\n    que1.front().resize(xs.size());\n    return que1.front();\n\
     }\n\ntemplate<class T>\nFormalPowerSeries<T> polynomial_interpolation_geometric(T\
-    \ a, T r, std::vector<T> ys) {\n    int n = ys.size();\n    if (n == 0) return\
-    \ {};\n    if (n == 1) return {ys[0]};\n    assert(a != 0 && r != 1);\n    if\
-    \ (r == 0) {\n        assert(n == 2);\n        return {ys[1], (ys[0] - ys[1])\
-    \ / a};\n    }\n    std::vector<T> p(n + 1), q(n + 1);\n    p[0] = q[0] = 1;\n\
-    \    reps (i, n) {\n        p[i] = p[i - 1] * r;\n        q[i] = q[i - 1] * (1\
-    \ - p[i]);\n    }\n    T v = 1;\n    rep (i, n) {\n        ys[i] /= v * q[i] *\
-    \ q[n - 1 - i];\n        if (i % 2) ys[i] = -ys[i];\n        if (i != n - 1) v\
-    \ *= p[n - 2 - i];\n    }\n    FormalPowerSeries<T> res1(n + 1);\n    v = 1;\n\
-    \    rep (i, n + 1) {\n        if (i == 0 || i == n) res1[i] = v * q[0];\n   \
-    \     else res1[i] = v * q[n] / (q[i] * q[n - i]);\n        if (i % 2) res1[i]\
-    \ = -res1[i];\n        if (i != n) v *= p[i];\n    }\n    FormalPowerSeries<T>\
-    \ res2 = multipoint_evaluation_geometric(FormalPowerSeries<T>(ys), T{1}, r, n);\n\
-    \    auto res = (res1 * res2).prefix(n);\n    reverse(all(res));\n    T ainv =\
-    \ 1 / a;\n    v = 1;\n    rep (i, n) {\n        res[i] *= v;\n        v *= ainv;\n\
-    \    }\n    return res;\n}\n\n/**\n * @brief PolynomialInterpolation(\u591A\u9805\
-    \u5F0F\u88DC\u9593)\n * @docs docs/math/poly/PolynomialInterpolation.md\n */\n"
+    \ a, T r,\n                                                        std::vector<T>\
+    \ ys) {\n    int n = ys.size();\n    if (n == 0) return {};\n    if (n == 1) return\
+    \ {ys[0]};\n    assert(a != 0 && r != 1);\n    if (r == 0) {\n        assert(n\
+    \ == 2);\n        return {ys[1], (ys[0] - ys[1]) / a};\n    }\n    std::vector<T>\
+    \ p(n + 1), q(n + 1);\n    p[0] = q[0] = 1;\n    reps (i, n) {\n        p[i] =\
+    \ p[i - 1] * r;\n        q[i] = q[i - 1] * (1 - p[i]);\n    }\n    T v = 1;\n\
+    \    rep (i, n) {\n        ys[i] /= v * q[i] * q[n - 1 - i];\n        if (i %\
+    \ 2) ys[i] = -ys[i];\n        if (i != n - 1) v *= p[n - 2 - i];\n    }\n    FormalPowerSeries<T>\
+    \ res1(n + 1);\n    v = 1;\n    rep (i, n + 1) {\n        if (i == 0 || i == n)\
+    \ res1[i] = v * q[0];\n        else res1[i] = v * q[n] / (q[i] * q[n - i]);\n\
+    \        if (i % 2) res1[i] = -res1[i];\n        if (i != n) v *= p[i];\n    }\n\
+    \    FormalPowerSeries<T> res2 =\n        multipoint_evaluation_geometric(FormalPowerSeries<T>(ys),\
+    \ T{1}, r, n);\n    auto res = (res1 * res2).prefix(n);\n    reverse(all(res));\n\
+    \    T ainv = 1 / a;\n    v = 1;\n    rep (i, n) {\n        res[i] *= v;\n   \
+    \     v *= ainv;\n    }\n    return res;\n}\n\n/**\n * @brief PolynomialInterpolation(\u591A\
+    \u9805\u5F0F\u88DC\u9593)\n * @docs docs/math/poly/PolynomialInterpolation.md\n\
+    \ */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -1144,7 +1146,7 @@ data:
   isVerificationFile: false
   path: math/poly/PolynomialInterpolation.hpp
   requiredBy: []
-  timestamp: '2024-04-30 20:28:00+09:00'
+  timestamp: '2024-04-30 21:25:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/polynomial/polynomial_interpolation.test.cpp

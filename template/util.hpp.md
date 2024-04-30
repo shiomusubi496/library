@@ -466,6 +466,9 @@ data:
     path: math/convolution/MinPlusConvolution.hpp
     title: Min Plus Convolution
   - icon: ':heavy_check_mark:'
+    path: math/convolution/MultidimensionalConvolution.hpp
+    title: MultidimensionalConvolution
+  - icon: ':heavy_check_mark:'
     path: math/convolution/MultipleZetaMoebiusTransform.hpp
     title: "MultipleZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
       \u30A6\u30B9\u5909\u63DB)"
@@ -853,6 +856,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/min_plus_convolution_convex_arbitrary.test.cpp
     title: test/yosupo/convolution/min_plus_convolution_convex_arbitrary.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/convolution/multivariate_convolution.test.cpp
+    title: test/yosupo/convolution/multivariate_convolution.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
     title: test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
@@ -1571,6 +1577,7 @@ data:
   - math/convolution/BitwiseXorConvolution.hpp
   - math/convolution/RelaxedConvolution.hpp
   - math/convolution/BitwiseOrConvolution.hpp
+  - math/convolution/MultidimensionalConvolution.hpp
   - math/convolution/SupersetZetaMoebiusTransform.hpp
   - math/convolution/SubsetZetaMoebiusTransform.hpp
   - math/convolution/DivisorZetaMoebiusTransform.hpp
@@ -1630,6 +1637,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/convolution/bitwise_and_convolution.test.cpp
+  - test/yosupo/convolution/multivariate_convolution.test.cpp
   - test/yosupo/convolution/lcm_convolution.test.cpp
   - test/yosupo/convolution/min_plus_convolution_convex_arbitrary.test.cpp
   - test/yosupo/convolution/convolution_mod.test.cpp

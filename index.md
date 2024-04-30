@@ -498,6 +498,9 @@ data:
       path: math/convolution/MinPlusConvolution.hpp
       title: Min Plus Convolution
     - icon: ':heavy_check_mark:'
+      path: math/convolution/MultidimensionalConvolution.hpp
+      title: MultidimensionalConvolution
+    - icon: ':heavy_check_mark:'
       path: math/convolution/MultipleZetaMoebiusTransform.hpp
       title: "MultipleZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
         \u30A6\u30B9\u5909\u63DB)"
@@ -941,6 +944,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/convolution/min_plus_convolution_convex_arbitrary.test.cpp
       title: test/yosupo/convolution/min_plus_convolution_convex_arbitrary.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/convolution/multivariate_convolution.test.cpp
+      title: test/yosupo/convolution/multivariate_convolution.test.cpp
   - name: test/yosupo/data_structure
     pages:
     - icon: ':heavy_check_mark:'
