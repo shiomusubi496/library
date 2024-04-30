@@ -31,7 +31,8 @@ FormalPowerSeries<T> polynomial_interpolation(const std::vector<T>& xs,
 }
 
 template<class T>
-FormalPowerSeries<T> polynomial_interpolation_geometric(T a, T r, std::vector<T> ys) {
+FormalPowerSeries<T> polynomial_interpolation_geometric(T a, T r,
+                                                        std::vector<T> ys) {
     int n = ys.size();
     if (n == 0) return {};
     if (n == 1) return {ys[0]};
@@ -60,7 +61,8 @@ FormalPowerSeries<T> polynomial_interpolation_geometric(T a, T r, std::vector<T>
         if (i % 2) res1[i] = -res1[i];
         if (i != n) v *= p[i];
     }
-    FormalPowerSeries<T> res2 = multipoint_evaluation_geometric(FormalPowerSeries<T>(ys), T{1}, r, n);
+    FormalPowerSeries<T> res2 =
+        multipoint_evaluation_geometric(FormalPowerSeries<T>(ys), T{1}, r, n);
     auto res = (res1 * res2).prefix(n);
     reverse(all(res));
     T ainv = 1 / a;
