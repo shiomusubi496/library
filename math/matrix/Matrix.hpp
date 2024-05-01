@@ -122,7 +122,7 @@ public:
                 }
             }
             if (pivot == -1) continue;
-            swap((*this)[pivot], (*this)[r]);
+            std::swap((*this)[pivot], (*this)[r]);
             const T s = (*this)[r][i], iv = T{1} / s;
             rep (j, i, w) (*this)[r][j] *= iv;
             rep (j, h) {
@@ -196,7 +196,7 @@ template<int len> void gauss_mod2_sub(Mat2& a) {
             }
         }
         if (pivot == -1) continue;
-        swap(b[pivot], b[r]);
+        std::swap(b[pivot], b[r]);
         rep (j, h) {
             if (j == r) continue;
             if (b[j][i] != 0) b[j] ^= b[r];
