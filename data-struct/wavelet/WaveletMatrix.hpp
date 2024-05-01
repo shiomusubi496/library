@@ -143,13 +143,13 @@ public:
     // max v[i] s.t. (l <= i < r) && (v[i] < upper)
     T prev_value(int l, int r, const T& upper) const {
         int cnt = range_freq(l, r, upper);
-        if (cnt == 0) return T{-1};
+        if (cnt == 0) return infinity<T>::mvalue;
         return kth_smallest(l, r, cnt - 1);
     }
     // min v[i] s.t. (l <= i < r) && (lower <= v[i])
     T next_value(int l, int r, const T& lower) const {
         int cnt = range_freq(l, r, lower);
-        if (cnt == r - l) return T{-1};
+        if (cnt == r - l) return infinity<T>::value;
         return kth_smallest(l, r, cnt);
     }
 };
