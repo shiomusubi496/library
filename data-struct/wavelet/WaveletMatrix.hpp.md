@@ -4,31 +4,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/wavelet/FullyIndexableDictionary.hpp
     title: "FullyIndexableDictionary(\u5B8C\u5099\u8F9E\u66F8)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -529,12 +529,12 @@ data:
     \ const T& upper) const {\n        return range_freq(l, r, upper) - range_freq(l,\
     \ r, lower);\n    }\n    // max v[i] s.t. (l <= i < r) && (v[i] < upper)\n   \
     \ T prev_value(int l, int r, const T& upper) const {\n        int cnt = range_freq(l,\
-    \ r, upper);\n        if (cnt == 0) return T{-1};\n        return kth_smallest(l,\
-    \ r, cnt - 1);\n    }\n    // min v[i] s.t. (l <= i < r) && (lower <= v[i])\n\
-    \    T next_value(int l, int r, const T& lower) const {\n        int cnt = range_freq(l,\
-    \ r, lower);\n        if (cnt == r - l) return T{-1};\n        return kth_smallest(l,\
-    \ r, cnt);\n    }\n};\n\n/**\n * @brief WaveletMatrix\n * @docs docs/data-struct/wavelet/WaveletMatrix.md\n\
-    \ */\n"
+    \ r, upper);\n        if (cnt == 0) return infinity<T>::mvalue;\n        return\
+    \ kth_smallest(l, r, cnt - 1);\n    }\n    // min v[i] s.t. (l <= i < r) && (lower\
+    \ <= v[i])\n    T next_value(int l, int r, const T& lower) const {\n        int\
+    \ cnt = range_freq(l, r, lower);\n        if (cnt == r - l) return infinity<T>::value;\n\
+    \        return kth_smallest(l, r, cnt);\n    }\n};\n\n/**\n * @brief WaveletMatrix\n\
+    \ * @docs docs/data-struct/wavelet/WaveletMatrix.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"FullyIndexableDictionary.hpp\"\
     \n\ntemplate<class T> class WaveletMatrix {\nprivate:\n    int n, m, h;\n    compressor<T>\
     \ ps;\n    std::vector<FullyIndexableDictionary> dat;\n    std::vector<int> mid,\
@@ -592,12 +592,12 @@ data:
     \ const T& upper) const {\n        return range_freq(l, r, upper) - range_freq(l,\
     \ r, lower);\n    }\n    // max v[i] s.t. (l <= i < r) && (v[i] < upper)\n   \
     \ T prev_value(int l, int r, const T& upper) const {\n        int cnt = range_freq(l,\
-    \ r, upper);\n        if (cnt == 0) return T{-1};\n        return kth_smallest(l,\
-    \ r, cnt - 1);\n    }\n    // min v[i] s.t. (l <= i < r) && (lower <= v[i])\n\
-    \    T next_value(int l, int r, const T& lower) const {\n        int cnt = range_freq(l,\
-    \ r, lower);\n        if (cnt == r - l) return T{-1};\n        return kth_smallest(l,\
-    \ r, cnt);\n    }\n};\n\n/**\n * @brief WaveletMatrix\n * @docs docs/data-struct/wavelet/WaveletMatrix.md\n\
-    \ */\n"
+    \ r, upper);\n        if (cnt == 0) return infinity<T>::mvalue;\n        return\
+    \ kth_smallest(l, r, cnt - 1);\n    }\n    // min v[i] s.t. (l <= i < r) && (lower\
+    \ <= v[i])\n    T next_value(int l, int r, const T& lower) const {\n        int\
+    \ cnt = range_freq(l, r, lower);\n        if (cnt == r - l) return infinity<T>::value;\n\
+    \        return kth_smallest(l, r, cnt);\n    }\n};\n\n/**\n * @brief WaveletMatrix\n\
+    \ * @docs docs/data-struct/wavelet/WaveletMatrix.md\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -612,7 +612,7 @@ data:
   isVerificationFile: false
   path: data-struct/wavelet/WaveletMatrix.hpp
   requiredBy: []
-  timestamp: '2024-01-20 14:55:31+09:00'
+  timestamp: '2024-05-01 15:17:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
@@ -636,5 +636,5 @@ title: WaveletMatrix
 - `T kth_smallest(int l, int r, int k)` : `a[l:r)` を昇順ソートしたとき `k` 番目の値を返す。 $\Theta(\log m)$ 。
 - `T kth_largest(int l, int r, int k)` : `a[l:r)` を降順ソートしたとき `k` 番目の値を返す。 $\Theta(\log m)$ 。
 - `int range_freq(int l, int r, T lower, T upper)` : `a[l:r)` のうち `[lower:upper)` に収まる値の個数を返す。 $\Theta(\log m)$ 。
-- `T prev_value(int l, int r, T upper)` : `a[l:r)` のうち `upper` より大きい最小の値を返す。 $\Theta(\log m)$ 。
-- `T next_value(int l, int r, T lower)` : `a[l:r)` のうち `lower` 以下の最大の値を返す。 $\Theta(\log m)$ 。
+- `T prev_value(int l, int r, T upper)` : `a[l:r)` のうち `upper` より小さい最大の値を返す。存在しなければ -inf を返す。 $\Theta(\log m)$ 。
+- `T next_value(int l, int r, T lower)` : `a[l:r)` のうち `lower` 以上の最小の値を返す。存在しなければ inf を返す。 $\Theta(\log m)$ 。

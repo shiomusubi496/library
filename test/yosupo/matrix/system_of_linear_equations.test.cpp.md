@@ -1,40 +1,40 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
   - icon: ':heavy_check_mark:'
     path: math/matrix/LinearEquations.hpp
     title: "LinearEquations(\u7DDA\u5F62\u65B9\u7A0B\u5F0F)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/matrix/Matrix.hpp
     title: "Matrix(\u884C\u5217)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -631,7 +631,7 @@ data:
     \            int pivot = -1;\n            rep (j, r, h) {\n                if\
     \ ((*this)[j][i] != 0) {\n                    pivot = j;\n                   \
     \ break;\n                }\n            }\n            if (pivot == -1) continue;\n\
-    \            swap((*this)[pivot], (*this)[r]);\n            const T s = (*this)[r][i],\
+    \            std::swap((*this)[pivot], (*this)[r]);\n            const T s = (*this)[r][i],\
     \ iv = T{1} / s;\n            rep (j, i, w) (*this)[r][j] *= iv;\n           \
     \ rep (j, h) {\n                if (j == r) continue;\n                const T\
     \ s = (*this)[j][i];\n                if (s == 0) continue;\n                rep\
@@ -660,12 +660,12 @@ data:
     \    int r = 0;\n    rep (i, w) {\n        int pivot = -1;\n        rep (j, r,\
     \ h) {\n            if (b[j][i] != 0) {\n                pivot = j;\n        \
     \        break;\n            }\n        }\n        if (pivot == -1) continue;\n\
-    \        swap(b[pivot], b[r]);\n        rep (j, h) {\n            if (j == r)\
-    \ continue;\n            if (b[j][i] != 0) b[j] ^= b[r];\n        }\n        ++r;\n\
-    \    }\n    rep (i, h) {\n        rep (j, w) a[i][j] = (b[i][j] ? 1 : 0);\n  \
-    \  }\n}\ntemplate<> void gauss_mod2_sub<1 << 30>(Mat2&) {}\n\n} // namespace internal\n\
-    \n/**\n * @brief Matrix(\u884C\u5217)\n * @docs docs/math/matrix/Matrix.md\n */\n\
-    #line 2 \"math/matrix/LinearEquations.hpp\"\n\n#line 5 \"math/matrix/LinearEquations.hpp\"\
+    \        std::swap(b[pivot], b[r]);\n        rep (j, h) {\n            if (j ==\
+    \ r) continue;\n            if (b[j][i] != 0) b[j] ^= b[r];\n        }\n     \
+    \   ++r;\n    }\n    rep (i, h) {\n        rep (j, w) a[i][j] = (b[i][j] ? 1 :\
+    \ 0);\n    }\n}\ntemplate<> void gauss_mod2_sub<1 << 30>(Mat2&) {}\n\n} // namespace\
+    \ internal\n\n/**\n * @brief Matrix(\u884C\u5217)\n * @docs docs/math/matrix/Matrix.md\n\
+    \ */\n#line 2 \"math/matrix/LinearEquations.hpp\"\n\n#line 5 \"math/matrix/LinearEquations.hpp\"\
     \n\ntemplate<class T> class LinearEquations {\nprivate:\n    Matrix<T> A;\n  \
     \  int n, m;\n    bool is_solved = false;\n    std::vector<T> solution;\n    Matrix<T>\
     \ solution_space;\n\npublic:\n    LinearEquations() = default;\n    LinearEquations(int\
@@ -732,7 +732,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/matrix/system_of_linear_equations.test.cpp
   requiredBy: []
-  timestamp: '2024-03-31 18:06:42+09:00'
+  timestamp: '2024-05-01 15:27:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/matrix/system_of_linear_equations.test.cpp

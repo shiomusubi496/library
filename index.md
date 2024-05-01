@@ -239,7 +239,7 @@ data:
       title: geometry/template.hpp
   - name: graph
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/Graph.hpp
       title: Graph-template
   - name: graph/connected
@@ -277,7 +277,7 @@ data:
       title: "ProjectSelectionProblem(\u71C3\u3084\u3059\u57CB\u3081\u308B)"
   - name: graph/mst
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/mst/CountSpanningTree.hpp
       title: "CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)"
     - icon: ':heavy_check_mark:'
@@ -300,7 +300,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/other/ChromaticNumber.hpp
       title: "ChromaticNumber(\u5F69\u8272\u6570)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/other/CountEulerianTrail.hpp
       title: CountEulerianTrail(BEST Theorem)
     - icon: ':heavy_check_mark:'
@@ -400,7 +400,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/ChineseRemainder.hpp
       title: "Chinese Remainder(\u4E2D\u56FD\u5270\u4F59\u5B9A\u7406)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/Combinatorics.hpp
       title: Combinatorics
     - icon: ':heavy_check_mark:'
@@ -434,7 +434,7 @@ data:
       path: math/MillerRabin.hpp
       title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
         )"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/ModInt.hpp
       title: ModInt
     - icon: ':heavy_check_mark:'
@@ -522,7 +522,7 @@ data:
         \u30A6\u30B9\u5909\u63DB)"
   - name: math/matrix
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/matrix/Determinant.hpp
       title: "Determinant(\u884C\u5217\u5F0F)"
     - icon: ':heavy_check_mark:'
@@ -531,7 +531,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/matrix/LinearEquations.hpp
       title: "LinearEquations(\u7DDA\u5F62\u65B9\u7A0B\u5F0F)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/matrix/Matrix.hpp
       title: "Matrix(\u884C\u5217)"
   - name: math/poly
@@ -566,7 +566,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/monoid2.hpp
       title: other/monoid2.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/template.hpp
       title: other/template.hpp
   - name: random
@@ -606,28 +606,28 @@ data:
       title: Z-Algorithm
   - name: template
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/alias.hpp
       title: template/alias.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/bitop.hpp
       title: template/bitop.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/func.hpp
       title: template/func.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/in.hpp
       title: template/in.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/macros.hpp
       title: template/macros.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/out.hpp
       title: template/out.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/type_traits.hpp
       title: template/type_traits.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/util.hpp
       title: template/util.hpp
   verificationCategories:
@@ -907,7 +907,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/atcoder/abc265_c-Timer.test.cpp
       title: test/atcoder/abc265_c-Timer.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/atcoder/abc336_g-BEST.test.cpp
       title: test/atcoder/abc336_g-BEST.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1243,6 +1243,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/matrix/matrix_det.test.cpp
       title: test/yosupo/matrix/matrix_det.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/matrix/matrix_det_arbitrary_mod.test.cpp
+      title: test/yosupo/matrix/matrix_det_arbitrary_mod.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/matrix/matrix_product.test.cpp
       title: test/yosupo/matrix/matrix_product.test.cpp

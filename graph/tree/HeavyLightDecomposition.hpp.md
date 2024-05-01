@@ -1,34 +1,34 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -507,31 +507,34 @@ data:
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
     \ * @docs docs/graph/Graph.md\n */\n#line 5 \"graph/tree/HeavyLightDecomposition.hpp\"\
-    \n\ntemplate<class T> class HeavyLightDecomposition {\nprivate:\n    int n, root,\
-    \ cnt;\n    std::vector<int> ssz, head, vin, vout, par;\n    const Graph<T>& G;\n\
-    \    int szdfs(int v, int p) {\n        ssz[v] = 1;\n        each_const (e : G[v])\
-    \ {\n            if (e.to == p) continue;\n            ssz[v] += szdfs(e.to, v);\n\
-    \        }\n        return ssz[v];\n    }\n    void bldfs(int v, int p) {\n  \
-    \      par[v] = p;\n        vin[v] = cnt++;\n        int idx = -1;\n        each_const\
-    \ (e : G[v]) {\n            if (e.to != p) {\n                if (idx == -1 ||\
-    \ ssz[idx] < ssz[e.to]) idx = e.to;\n            }\n        }\n        if (idx\
-    \ != -1) {\n            head[idx] = head[v];\n            bldfs(idx, v);\n   \
-    \     }\n        each_const (e : G[v]) {\n            if (e.to != p && e.to !=\
-    \ idx) {\n                head[e.to] = e.to;\n                bldfs(e.to, v);\n\
-    \            }\n        }\n        vout[v] = cnt;\n    }\n    void init() {\n\
-    \        n = G.size();\n        ssz.assign(n, -1);\n        szdfs(root, -1);\n\
-    \        rep (i, n) {\n            if (ssz[i] == -1) szdfs(i, -1);\n        }\n\
-    \        cnt = 0;\n        head.assign(n, -1);\n        head[root] = root;\n \
-    \       vin.resize(n);\n        vout.resize(n);\n        par.resize(n);\n    \
-    \    bldfs(root, -1);\n        rep (i, n) {\n            if (head[i] == -1) {\n\
-    \                head[i] = i;\n                bldfs(i, -1);\n            }\n\
-    \        }\n    }\n\npublic:\n    HeavyLightDecomposition(const Graph<T>& G, int\
-    \ root = 0)\n        : root(root), G(G) {\n        init();\n    }\n    int get_size(int\
-    \ k) const { return ssz[k]; }\n    std::pair<int, int> get_idx(int k) const {\
-    \ return {vin[k], vout[k]}; }\n    std::pair<int, int> get_pach(int a, int b)\
-    \ const {\n        if (vin[a] < vin[b]) return {a, b};\n        return {b, a};\n\
-    \    }\n    int lca(int u, int v) const {\n        while (head[u] != head[v])\
-    \ {\n            if (vin[u] > vin[v]) std::swap(u, v);\n            v = par[head[v]];\n\
+    \n\ntemplate<class T> class HeavyLightDecomposition {\nprivate:\n    int n, cnt;\n\
+    \    std::vector<int> root;\n    std::vector<int> ssz, head, vin, vout, par;\n\
+    \    const Graph<T>& G;\n    int szdfs(int v, int p) {\n        ssz[v] = 1;\n\
+    \        each_const (e : G[v]) {\n            if (e.to == p) continue;\n     \
+    \       ssz[v] += szdfs(e.to, v);\n        }\n        return ssz[v];\n    }\n\
+    \    void bldfs(int v, int p) {\n        par[v] = p;\n        vin[v] = cnt++;\n\
+    \        int idx = -1;\n        each_const (e : G[v]) {\n            if (e.to\
+    \ != p) {\n                if (idx == -1 || ssz[idx] < ssz[e.to]) idx = e.to;\n\
+    \            }\n        }\n        if (idx != -1) {\n            head[idx] = head[v];\n\
+    \            bldfs(idx, v);\n        }\n        each_const (e : G[v]) {\n    \
+    \        if (e.to != p && e.to != idx) {\n                head[e.to] = e.to;\n\
+    \                bldfs(e.to, v);\n            }\n        }\n        vout[v] =\
+    \ cnt;\n    }\n    void init() {\n        n = G.size();\n        ssz.assign(n,\
+    \ -1);\n        for (int r : root) szdfs(r, -1);\n        rep (i, n) {\n     \
+    \       if (ssz[i] == -1) szdfs(i, -1);\n        }\n        cnt = 0;\n       \
+    \ head.assign(n, -1);\n        vin.resize(n);\n        vout.resize(n);\n     \
+    \   par.resize(n);\n        for (int r : root) {\n            head[r] = r;\n \
+    \           bldfs(r, -1);\n        }\n        rep (i, n) {\n            if (head[i]\
+    \ == -1) {\n                head[i] = i;\n                bldfs(i, -1);\n    \
+    \        }\n        }\n    }\n\npublic:\n    HeavyLightDecomposition(const Graph<T>&\
+    \ G, int root = 0)\n        : root({root}), G(G) {\n        init();\n    }\n \
+    \   HeavyLightDecomposition(const Graph<T>& G, const std::vector<int>& root)\n\
+    \        : root(root), G(G) {\n        init();\n    }\n    int get_size(int k)\
+    \ const { return ssz[k]; }\n    std::pair<int, int> get_idx(int k) const { return\
+    \ {vin[k], vout[k]}; }\n    std::pair<int, int> get_pach(int a, int b) const {\n\
+    \        if (vin[a] < vin[b]) return {a, b};\n        return {b, a};\n    }\n\
+    \    int lca(int u, int v) const {\n        while (head[u] != head[v]) {\n   \
+    \         if (vin[u] > vin[v]) std::swap(u, v);\n            v = par[head[v]];\n\
     \        }\n        return vin[u] < vin[v] ? u : v;\n    }\n    std::vector<std::pair<int,\
     \ int>> up_path(int u, int v) const {\n        std::vector<std::pair<int, int>>\
     \ res;\n        while (head[u] != head[v]) {\n            res.emplace_back(vin[u],\
@@ -558,31 +561,34 @@ data:
     \ {\n        f(vin[u] + 1, vout[u]);\n    }\n};\n\n/**\n * @brief HeavyLightDecomposition(HL\u5206\
     \u89E3)\n * @docs docs/graph/tree/HeavyLightDecomposition.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
-    \n\ntemplate<class T> class HeavyLightDecomposition {\nprivate:\n    int n, root,\
-    \ cnt;\n    std::vector<int> ssz, head, vin, vout, par;\n    const Graph<T>& G;\n\
-    \    int szdfs(int v, int p) {\n        ssz[v] = 1;\n        each_const (e : G[v])\
-    \ {\n            if (e.to == p) continue;\n            ssz[v] += szdfs(e.to, v);\n\
-    \        }\n        return ssz[v];\n    }\n    void bldfs(int v, int p) {\n  \
-    \      par[v] = p;\n        vin[v] = cnt++;\n        int idx = -1;\n        each_const\
-    \ (e : G[v]) {\n            if (e.to != p) {\n                if (idx == -1 ||\
-    \ ssz[idx] < ssz[e.to]) idx = e.to;\n            }\n        }\n        if (idx\
-    \ != -1) {\n            head[idx] = head[v];\n            bldfs(idx, v);\n   \
-    \     }\n        each_const (e : G[v]) {\n            if (e.to != p && e.to !=\
-    \ idx) {\n                head[e.to] = e.to;\n                bldfs(e.to, v);\n\
-    \            }\n        }\n        vout[v] = cnt;\n    }\n    void init() {\n\
-    \        n = G.size();\n        ssz.assign(n, -1);\n        szdfs(root, -1);\n\
-    \        rep (i, n) {\n            if (ssz[i] == -1) szdfs(i, -1);\n        }\n\
-    \        cnt = 0;\n        head.assign(n, -1);\n        head[root] = root;\n \
-    \       vin.resize(n);\n        vout.resize(n);\n        par.resize(n);\n    \
-    \    bldfs(root, -1);\n        rep (i, n) {\n            if (head[i] == -1) {\n\
-    \                head[i] = i;\n                bldfs(i, -1);\n            }\n\
-    \        }\n    }\n\npublic:\n    HeavyLightDecomposition(const Graph<T>& G, int\
-    \ root = 0)\n        : root(root), G(G) {\n        init();\n    }\n    int get_size(int\
-    \ k) const { return ssz[k]; }\n    std::pair<int, int> get_idx(int k) const {\
-    \ return {vin[k], vout[k]}; }\n    std::pair<int, int> get_pach(int a, int b)\
-    \ const {\n        if (vin[a] < vin[b]) return {a, b};\n        return {b, a};\n\
-    \    }\n    int lca(int u, int v) const {\n        while (head[u] != head[v])\
-    \ {\n            if (vin[u] > vin[v]) std::swap(u, v);\n            v = par[head[v]];\n\
+    \n\ntemplate<class T> class HeavyLightDecomposition {\nprivate:\n    int n, cnt;\n\
+    \    std::vector<int> root;\n    std::vector<int> ssz, head, vin, vout, par;\n\
+    \    const Graph<T>& G;\n    int szdfs(int v, int p) {\n        ssz[v] = 1;\n\
+    \        each_const (e : G[v]) {\n            if (e.to == p) continue;\n     \
+    \       ssz[v] += szdfs(e.to, v);\n        }\n        return ssz[v];\n    }\n\
+    \    void bldfs(int v, int p) {\n        par[v] = p;\n        vin[v] = cnt++;\n\
+    \        int idx = -1;\n        each_const (e : G[v]) {\n            if (e.to\
+    \ != p) {\n                if (idx == -1 || ssz[idx] < ssz[e.to]) idx = e.to;\n\
+    \            }\n        }\n        if (idx != -1) {\n            head[idx] = head[v];\n\
+    \            bldfs(idx, v);\n        }\n        each_const (e : G[v]) {\n    \
+    \        if (e.to != p && e.to != idx) {\n                head[e.to] = e.to;\n\
+    \                bldfs(e.to, v);\n            }\n        }\n        vout[v] =\
+    \ cnt;\n    }\n    void init() {\n        n = G.size();\n        ssz.assign(n,\
+    \ -1);\n        for (int r : root) szdfs(r, -1);\n        rep (i, n) {\n     \
+    \       if (ssz[i] == -1) szdfs(i, -1);\n        }\n        cnt = 0;\n       \
+    \ head.assign(n, -1);\n        vin.resize(n);\n        vout.resize(n);\n     \
+    \   par.resize(n);\n        for (int r : root) {\n            head[r] = r;\n \
+    \           bldfs(r, -1);\n        }\n        rep (i, n) {\n            if (head[i]\
+    \ == -1) {\n                head[i] = i;\n                bldfs(i, -1);\n    \
+    \        }\n        }\n    }\n\npublic:\n    HeavyLightDecomposition(const Graph<T>&\
+    \ G, int root = 0)\n        : root({root}), G(G) {\n        init();\n    }\n \
+    \   HeavyLightDecomposition(const Graph<T>& G, const std::vector<int>& root)\n\
+    \        : root(root), G(G) {\n        init();\n    }\n    int get_size(int k)\
+    \ const { return ssz[k]; }\n    std::pair<int, int> get_idx(int k) const { return\
+    \ {vin[k], vout[k]}; }\n    std::pair<int, int> get_pach(int a, int b) const {\n\
+    \        if (vin[a] < vin[b]) return {a, b};\n        return {b, a};\n    }\n\
+    \    int lca(int u, int v) const {\n        while (head[u] != head[v]) {\n   \
+    \         if (vin[u] > vin[v]) std::swap(u, v);\n            v = par[head[v]];\n\
     \        }\n        return vin[u] < vin[v] ? u : v;\n    }\n    std::vector<std::pair<int,\
     \ int>> up_path(int u, int v) const {\n        std::vector<std::pair<int, int>>\
     \ res;\n        while (head[u] != head[v]) {\n            res.emplace_back(vin[u],\
@@ -622,7 +628,7 @@ data:
   isVerificationFile: false
   path: graph/tree/HeavyLightDecomposition.hpp
   requiredBy: []
-  timestamp: '2024-01-20 14:55:31+09:00'
+  timestamp: '2024-05-01 15:22:27+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp

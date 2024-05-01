@@ -1,37 +1,37 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/matrix/Matrix.hpp
     title: "Matrix(\u884C\u5217)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -627,7 +627,7 @@ data:
     \        int r = 0;\n        rep (i, w) {\n            int pivot = -1;\n     \
     \       rep (j, r, h) {\n                if ((*this)[j][i] != 0) {\n         \
     \           pivot = j;\n                    break;\n                }\n      \
-    \      }\n            if (pivot == -1) continue;\n            swap((*this)[pivot],\
+    \      }\n            if (pivot == -1) continue;\n            std::swap((*this)[pivot],\
     \ (*this)[r]);\n            const T s = (*this)[r][i], iv = T{1} / s;\n      \
     \      rep (j, i, w) (*this)[r][j] *= iv;\n            rep (j, h) {\n        \
     \        if (j == r) continue;\n                const T s = (*this)[j][i];\n \
@@ -656,7 +656,7 @@ data:
     \ (i, h) {\n        rep (j, w) b[i][j] = a[i][j] != 0;\n    }\n    int r = 0;\n\
     \    rep (i, w) {\n        int pivot = -1;\n        rep (j, r, h) {\n        \
     \    if (b[j][i] != 0) {\n                pivot = j;\n                break;\n\
-    \            }\n        }\n        if (pivot == -1) continue;\n        swap(b[pivot],\
+    \            }\n        }\n        if (pivot == -1) continue;\n        std::swap(b[pivot],\
     \ b[r]);\n        rep (j, h) {\n            if (j == r) continue;\n          \
     \  if (b[j][i] != 0) b[j] ^= b[r];\n        }\n        ++r;\n    }\n    rep (i,\
     \ h) {\n        rep (j, w) a[i][j] = (b[i][j] ? 1 : 0);\n    }\n}\ntemplate<>\
@@ -692,7 +692,7 @@ data:
   isVerificationFile: false
   path: math/matrix/Inverse.hpp
   requiredBy: []
-  timestamp: '2024-03-31 18:06:42+09:00'
+  timestamp: '2024-05-01 15:27:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/matrix/inverse_matrix.test.cpp

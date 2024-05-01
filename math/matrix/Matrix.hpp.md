@@ -1,44 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/mst/CountSpanningTree.hpp
     title: "CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/other/CountEulerianTrail.hpp
     title: CountEulerianTrail(BEST Theorem)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/matrix/Determinant.hpp
     title: "Determinant(\u884C\u5217\u5F0F)"
   - icon: ':heavy_check_mark:'
@@ -48,7 +48,7 @@ data:
     path: math/matrix/LinearEquations.hpp
     title: "LinearEquations(\u7DDA\u5F62\u65B9\u7A0B\u5F0F)"
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/atcoder/abc336_g-BEST.test.cpp
     title: test/atcoder/abc336_g-BEST.test.cpp
   - icon: ':heavy_check_mark:'
@@ -57,6 +57,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/matrix/matrix_det.test.cpp
     title: test/yosupo/matrix/matrix_det.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/matrix/matrix_det_arbitrary_mod.test.cpp
+    title: test/yosupo/matrix/matrix_det_arbitrary_mod.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/matrix/matrix_product.test.cpp
     title: test/yosupo/matrix/matrix_product.test.cpp
@@ -75,9 +78,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/matrix_product_mod_2.test.cpp
     title: test/yosupo/new/matrix_product_mod_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/math/matrix/Matrix.md
     document_title: "Matrix(\u884C\u5217)"
@@ -663,7 +666,7 @@ data:
     \        int r = 0;\n        rep (i, w) {\n            int pivot = -1;\n     \
     \       rep (j, r, h) {\n                if ((*this)[j][i] != 0) {\n         \
     \           pivot = j;\n                    break;\n                }\n      \
-    \      }\n            if (pivot == -1) continue;\n            swap((*this)[pivot],\
+    \      }\n            if (pivot == -1) continue;\n            std::swap((*this)[pivot],\
     \ (*this)[r]);\n            const T s = (*this)[r][i], iv = T{1} / s;\n      \
     \      rep (j, i, w) (*this)[r][j] *= iv;\n            rep (j, h) {\n        \
     \        if (j == r) continue;\n                const T s = (*this)[j][i];\n \
@@ -692,7 +695,7 @@ data:
     \ (i, h) {\n        rep (j, w) b[i][j] = a[i][j] != 0;\n    }\n    int r = 0;\n\
     \    rep (i, w) {\n        int pivot = -1;\n        rep (j, r, h) {\n        \
     \    if (b[j][i] != 0) {\n                pivot = j;\n                break;\n\
-    \            }\n        }\n        if (pivot == -1) continue;\n        swap(b[pivot],\
+    \            }\n        }\n        if (pivot == -1) continue;\n        std::swap(b[pivot],\
     \ b[r]);\n        rep (j, h) {\n            if (j == r) continue;\n          \
     \  if (b[j][i] != 0) b[j] ^= b[r];\n        }\n        ++r;\n    }\n    rep (i,\
     \ h) {\n        rep (j, w) a[i][j] = (b[i][j] ? 1 : 0);\n    }\n}\ntemplate<>\
@@ -749,7 +752,7 @@ data:
     \        int r = 0;\n        rep (i, w) {\n            int pivot = -1;\n     \
     \       rep (j, r, h) {\n                if ((*this)[j][i] != 0) {\n         \
     \           pivot = j;\n                    break;\n                }\n      \
-    \      }\n            if (pivot == -1) continue;\n            swap((*this)[pivot],\
+    \      }\n            if (pivot == -1) continue;\n            std::swap((*this)[pivot],\
     \ (*this)[r]);\n            const T s = (*this)[r][i], iv = T{1} / s;\n      \
     \      rep (j, i, w) (*this)[r][j] *= iv;\n            rep (j, h) {\n        \
     \        if (j == r) continue;\n                const T s = (*this)[j][i];\n \
@@ -778,7 +781,7 @@ data:
     \ (i, h) {\n        rep (j, w) b[i][j] = a[i][j] != 0;\n    }\n    int r = 0;\n\
     \    rep (i, w) {\n        int pivot = -1;\n        rep (j, r, h) {\n        \
     \    if (b[j][i] != 0) {\n                pivot = j;\n                break;\n\
-    \            }\n        }\n        if (pivot == -1) continue;\n        swap(b[pivot],\
+    \            }\n        }\n        if (pivot == -1) continue;\n        std::swap(b[pivot],\
     \ b[r]);\n        rep (j, h) {\n            if (j == r) continue;\n          \
     \  if (b[j][i] != 0) b[j] ^= b[r];\n        }\n        ++r;\n    }\n    rep (i,\
     \ h) {\n        rep (j, w) a[i][j] = (b[i][j] ? 1 : 0);\n    }\n}\ntemplate<>\
@@ -803,8 +806,8 @@ data:
   - math/matrix/Inverse.hpp
   - math/matrix/Determinant.hpp
   - math/matrix/LinearEquations.hpp
-  timestamp: '2024-03-31 18:06:42+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-05-01 15:27:18+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/new/matrix_product_mod_2.test.cpp
   - test/yosupo/new/matrix_det_mod_2.test.cpp
@@ -812,6 +815,7 @@ data:
   - test/yosupo/matrix/matrix_product.test.cpp
   - test/yosupo/matrix/inverse_matrix.test.cpp
   - test/yosupo/matrix/matrix_rank.test.cpp
+  - test/yosupo/matrix/matrix_det_arbitrary_mod.test.cpp
   - test/yosupo/matrix/system_of_linear_equations.test.cpp
   - test/yosupo/matrix/pow_of_matrix.test.cpp
   - test/atcoder/abc336_g-BEST.test.cpp

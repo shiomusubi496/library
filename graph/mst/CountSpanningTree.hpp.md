@@ -1,56 +1,56 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/matrix/Determinant.hpp
     title: "Determinant(\u884C\u5217\u5F0F)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/matrix/Matrix.hpp
     title: "Matrix(\u884C\u5217)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/other/CountEulerianTrail.hpp
     title: CountEulerianTrail(BEST Theorem)
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/atcoder/abc336_g-BEST.test.cpp
     title: test/atcoder/abc336_g-BEST.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/graph/mst/CountSpanningTree.md
     document_title: "CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)"
@@ -678,7 +678,7 @@ data:
     \        int r = 0;\n        rep (i, w) {\n            int pivot = -1;\n     \
     \       rep (j, r, h) {\n                if ((*this)[j][i] != 0) {\n         \
     \           pivot = j;\n                    break;\n                }\n      \
-    \      }\n            if (pivot == -1) continue;\n            swap((*this)[pivot],\
+    \      }\n            if (pivot == -1) continue;\n            std::swap((*this)[pivot],\
     \ (*this)[r]);\n            const T s = (*this)[r][i], iv = T{1} / s;\n      \
     \      rep (j, i, w) (*this)[r][j] *= iv;\n            rep (j, h) {\n        \
     \        if (j == r) continue;\n                const T s = (*this)[j][i];\n \
@@ -707,7 +707,7 @@ data:
     \ (i, h) {\n        rep (j, w) b[i][j] = a[i][j] != 0;\n    }\n    int r = 0;\n\
     \    rep (i, w) {\n        int pivot = -1;\n        rep (j, r, h) {\n        \
     \    if (b[j][i] != 0) {\n                pivot = j;\n                break;\n\
-    \            }\n        }\n        if (pivot == -1) continue;\n        swap(b[pivot],\
+    \            }\n        }\n        if (pivot == -1) continue;\n        std::swap(b[pivot],\
     \ b[r]);\n        rep (j, h) {\n            if (j == r) continue;\n          \
     \  if (b[j][i] != 0) b[j] ^= b[r];\n        }\n        ++r;\n    }\n    rep (i,\
     \ h) {\n        rep (j, w) a[i][j] = (b[i][j] ? 1 : 0);\n    }\n}\ntemplate<>\
@@ -717,17 +717,32 @@ data:
     \n\ntemplate<class T> T determinant(Matrix<T> mat) {\n    assert(mat.is_square());\n\
     \    const int n = mat.height();\n    if (n == 0) return 1;\n    T res = 1;\n\
     \    rep (i, n) {\n        if (mat[i][i] == 0) {\n            rep (j, i + 1, n)\
-    \ {\n                if (mat[j][i] != 0) {\n                    swap(mat[i], mat[j]);\n\
-    \                    res = -res;\n                    break;\n               \
-    \ }\n            }\n        }\n        if (mat[i][i] == 0) {\n            return\
-    \ T{0};\n        }\n        {\n            const T s = mat[i][i];\n          \
-    \  res *= s;\n            rep (j, n) mat[i][j] /= s;\n        }\n        rep (j,\
-    \ n) {\n            if (j == i) continue;\n            const T s = mat[j][i];\n\
-    \            rep (k, n) mat[j][k] -= mat[i][k] * s;\n        }\n    }\n    rep\
-    \ (i, n) res *= mat[i][i];\n    return res;\n}\n\ntemplate<> static_modint<2>\
-    \ determinant(Matrix<static_modint<2>> mat) {\n    assert(mat.is_square());\n\
-    \    return mat.rank() == mat.height() ? 1 : 0;\n}\n\n/**\n * @brief Determinant(\u884C\
-    \u5217\u5F0F)\n * @docs docs/math/matrix/Determinant.md\n */\n#line 6 \"graph/mst/CountSpanningTree.hpp\"\
+    \ {\n                if (mat[j][i] != 0) {\n                    std::swap(mat[i],\
+    \ mat[j]);\n                    res = -res;\n                    break;\n    \
+    \            }\n            }\n        }\n        if (mat[i][i] == 0) {\n    \
+    \        return T{0};\n        }\n        {\n            const T s = mat[i][i];\n\
+    \            res *= s;\n            rep (j, n) mat[i][j] /= s;\n        }\n  \
+    \      rep (j, i + 1, n) {\n            const T s = mat[j][i];\n            rep\
+    \ (k, n) mat[j][k] -= mat[i][k] * s;\n        }\n    }\n    rep (i, n) res *=\
+    \ mat[i][i];\n    return res;\n}\n\ntemplate<> static_modint<2> determinant(Matrix<static_modint<2>>\
+    \ mat) {\n    assert(mat.is_square());\n    return mat.rank() == mat.height()\
+    \ ? 1 : 0;\n}\n\ntemplate<class T> T determinant_arbitrary_mod(Matrix<T> mat)\
+    \ {\n    assert(mat.is_square());\n    const int n = mat.height();\n    if (n\
+    \ == 0) return 1;\n    T res = 1;\n    rep (i, n) {\n        if (mat[i][i] ==\
+    \ 0) {\n            rep (j, i + 1, n) {\n                if (mat[j][i] != 0) {\n\
+    \                    std::swap(mat[i], mat[j]);\n                    res = -res;\n\
+    \                    break;\n                }\n            }\n        }\n   \
+    \     if (mat[i][i] == 0) {\n            return T{0};\n        }\n        rep\
+    \ (j, i + 1, n) {\n            T a = 1, b = 0, c = 0, d = 1;\n            ll x\
+    \ = mat[i][i].get(), y = mat[j][i].get();\n            while (y != 0) {\n    \
+    \            ll q = x / y;\n                std::swap(x -= q * y, y);\n      \
+    \          std::swap(a -= q * c, c);\n                std::swap(b -= q * d, d);\n\
+    \                res = -res;\n            }\n            rep (k, i, n) {\n   \
+    \             T ni = a * mat[i][k] + b * mat[j][k];\n                T nj = c\
+    \ * mat[i][k] + d * mat[j][k];\n                mat[i][k] = ni;\n            \
+    \    mat[j][k] = nj;\n            }\n        }\n    }\n    rep (i, n) res *= mat[i][i];\n\
+    \    return res;\n}\n\n/**\n * @brief Determinant(\u884C\u5217\u5F0F)\n * @docs\
+    \ docs/math/matrix/Determinant.md\n */\n#line 6 \"graph/mst/CountSpanningTree.hpp\"\
     \n\ntemplate<class T, class U> T count_spanning_tree(const Graph<U>& G, int v\
     \ = 0) {\n    const int N = G.size();\n    Matrix<T> A(N - 1, N - 1);\n    rep\
     \ (i, N) {\n        if (i == v) continue;\n        T cnt = 0;\n        for (const\
@@ -767,8 +782,8 @@ data:
   path: graph/mst/CountSpanningTree.hpp
   requiredBy:
   - graph/other/CountEulerianTrail.hpp
-  timestamp: '2024-04-29 23:15:20+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-05-01 15:27:18+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/atcoder/abc336_g-BEST.test.cpp
 documentation_of: graph/mst/CountSpanningTree.hpp

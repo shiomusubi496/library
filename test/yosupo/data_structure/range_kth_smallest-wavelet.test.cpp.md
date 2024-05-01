@@ -7,31 +7,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/wavelet/WaveletMatrix.hpp
     title: WaveletMatrix
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -532,12 +532,12 @@ data:
     \ const T& upper) const {\n        return range_freq(l, r, upper) - range_freq(l,\
     \ r, lower);\n    }\n    // max v[i] s.t. (l <= i < r) && (v[i] < upper)\n   \
     \ T prev_value(int l, int r, const T& upper) const {\n        int cnt = range_freq(l,\
-    \ r, upper);\n        if (cnt == 0) return T{-1};\n        return kth_smallest(l,\
-    \ r, cnt - 1);\n    }\n    // min v[i] s.t. (l <= i < r) && (lower <= v[i])\n\
-    \    T next_value(int l, int r, const T& lower) const {\n        int cnt = range_freq(l,\
-    \ r, lower);\n        if (cnt == r - l) return T{-1};\n        return kth_smallest(l,\
-    \ r, cnt);\n    }\n};\n\n/**\n * @brief WaveletMatrix\n * @docs docs/data-struct/wavelet/WaveletMatrix.md\n\
-    \ */\n#line 4 \"test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp\"\
+    \ r, upper);\n        if (cnt == 0) return infinity<T>::mvalue;\n        return\
+    \ kth_smallest(l, r, cnt - 1);\n    }\n    // min v[i] s.t. (l <= i < r) && (lower\
+    \ <= v[i])\n    T next_value(int l, int r, const T& lower) const {\n        int\
+    \ cnt = range_freq(l, r, lower);\n        if (cnt == r - l) return infinity<T>::value;\n\
+    \        return kth_smallest(l, r, cnt);\n    }\n};\n\n/**\n * @brief WaveletMatrix\n\
+    \ * @docs docs/data-struct/wavelet/WaveletMatrix.md\n */\n#line 4 \"test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int n, q; scan >> n >> q;\n    vector<int>\
     \ A(n); scan >> A;\n    WaveletMatrix<int> wm(A);\n    rep (q) {\n        int\
     \ l, r, k; scan >> l >> r >> k;\n        print << wm.kth_smallest(l, r, k) <<\
@@ -563,7 +563,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
   requiredBy: []
-  timestamp: '2024-01-20 14:55:31+09:00'
+  timestamp: '2024-05-01 15:17:52+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
