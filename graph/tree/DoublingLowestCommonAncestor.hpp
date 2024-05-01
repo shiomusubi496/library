@@ -5,7 +5,8 @@
 
 template<class T> class DoublingLCA {
 private:
-    int root, n, h;
+    int n, h;
+    std::vector<int> root;
     Graph<T> G_;
     const Graph<T>& G;
     std::vector<edge<T>> par;
@@ -24,10 +25,18 @@ private:
         n = G.size();
         h = bitop::ceil_log2(n) + 1;
         par.resize(n);
-        par[root] = edge<T>{};
-        dep.resize(n);
-        dep[root] = 0;
-        dfs_build(root, -1);
+        dep.assign(n, -1);
+        for (int r : root) {
+            par[r] = edge<T>{};
+            dep[r] = 0;
+            dfs_build(r, -1);
+        }
+        rep (i, n) {
+            if (dep[i] != -1) continue;
+            par[i] = edge<T>{};
+            dep[i] = 0;
+            dfs_build(i, -1);
+        }
         dbl.assign(n, std::vector<int>(h, -1));
         rep (i, n) dbl[i][0] = par[i].to;
         rep (i, h - 1) {
@@ -36,8 +45,12 @@ private:
     }
 
 public:
-    DoublingLCA(const Graph<T>& G, int r = 0) : root(r), G(G) { init(); }
-    DoublingLCA(Graph<T>&& G, int r = 0) : root(r), G_(std::move(G)), G(G_) {
+    DoublingLCA(const Graph<T>& G, int r = 0) : root({r}), G(G) { init(); }
+    DoublingLCA(Graph<T>&& G, int r = 0) : root({r}), G_(std::move(G)), G(G_) {
+        init();
+    }
+    DoublingLCA(const Graph<T>& G, const std::vector<int>& r) : root(r), G(G) { init(); }
+    DoublingLCA(Graph<T>&& G, const std::vector<int>& r) : root(r), G_(std::move(G)), G(G_) {
         init();
     }
     int depth(int v) const { return dep[v]; }

@@ -5,7 +5,8 @@
 
 template<class T> class HeavyLightDecomposition {
 private:
-    int n, root, cnt;
+    int n, cnt;
+    std::vector<int> root;
     std::vector<int> ssz, head, vin, vout, par;
     const Graph<T>& G;
     int szdfs(int v, int p) {
@@ -40,17 +41,19 @@ private:
     void init() {
         n = G.size();
         ssz.assign(n, -1);
-        szdfs(root, -1);
+        for (int r : root) szdfs(r, -1);
         rep (i, n) {
             if (ssz[i] == -1) szdfs(i, -1);
         }
         cnt = 0;
         head.assign(n, -1);
-        head[root] = root;
         vin.resize(n);
         vout.resize(n);
         par.resize(n);
-        bldfs(root, -1);
+        for (int r : root) {
+            head[r] = r;
+            bldfs(r, -1);
+        }
         rep (i, n) {
             if (head[i] == -1) {
                 head[i] = i;
@@ -61,6 +64,10 @@ private:
 
 public:
     HeavyLightDecomposition(const Graph<T>& G, int root = 0)
+        : root({root}), G(G) {
+        init();
+    }
+    HeavyLightDecomposition(const Graph<T>& G, const std::vector<int>& root)
         : root(root), G(G) {
         init();
     }
