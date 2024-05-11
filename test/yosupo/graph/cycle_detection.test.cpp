@@ -15,6 +15,6 @@ int main() {
     else {
         auto v = GC.get_cycle();
         print << v.size() << endl;
-        each_const (e : GC.get_cycle()) print << e.idx << endl;
+        for (const auto& e : GC.get_cycle()) print << e.idx << endl;
     }
 }

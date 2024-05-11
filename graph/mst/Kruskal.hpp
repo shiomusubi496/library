@@ -9,7 +9,7 @@ template<class T> std::pair<T, Edges<T>> Kruskal(int N, Edges<T> Ed) {
     UnionFind UF(N);
     T res = 0;
     Edges<T> es;
-    each_const (e : Ed) {
+    for (const auto& e : Ed) {
         if (UF.merge(e.from, e.to).second >= 0) {
             res += e.cost;
             es.push_back(e);

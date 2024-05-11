@@ -12,7 +12,7 @@ private:
         if (seen[v]) return v;
         if (visited[v]) return -1;
         visited[v] = seen[v] = true;
-        each_const (e : G[v]) {
+        for (const auto& e : G[v]) {
             if (e.idx == k) continue;
             int d = dfs(e.to, e.idx);
             if (d != -1) {

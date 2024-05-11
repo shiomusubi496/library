@@ -28,7 +28,7 @@ public:
                           : data[a].second > data[b].second;
         });
         int l = 0, r = 0;
-        each_const (i : idx) {
+        for (const auto& i : idx) {
             while (data[i].first < l) add_left(--l);
             while (data[i].second > r) add_right(r++);
             while (data[i].first > l) delete_left(l++);

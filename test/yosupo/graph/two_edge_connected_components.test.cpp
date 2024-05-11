@@ -12,7 +12,7 @@ int main() {
     }
     auto tecc = TwoEdgeConnectedComponents<int>(G).groups();
     print << tecc.size() << endl;
-    each_const (v : tecc) {
+    for (const auto& v : tecc) {
         print << v.size() << ' ' << v << endl;
     }
 }

@@ -13,8 +13,8 @@ std::vector<std::array<int, 3>> enumerate_triangles(const Graph<T>& G) {
     UnweightedGraph H(n);
     {
         std::vector<bool> used(n, false);
-        each_const (i : ord) {
-            each_const (e : G[i]) {
+        for (const auto& i : ord) {
+            for (const auto& e : G[i]) {
                 if (!used[e.to]) H.add_edge(i, e.to, true);
             }
             used[i] = true;
@@ -23,13 +23,13 @@ std::vector<std::array<int, 3>> enumerate_triangles(const Graph<T>& G) {
     std::vector<std::array<int, 3>> res;
     std::vector<bool> used(n, false);
     rep (i, n) {
-        each_const (e : H[i]) used[e.to] = true;
-        each_const (e : H[i]) {
-            each_const (f : H[e.to]) {
+        for (const auto& e : H[i]) used[e.to] = true;
+        for (const auto& e : H[i]) {
+            for (const auto& f : H[e.to]) {
                 if (used[f.to]) res.push_back({(int)i, e.to, f.to});
             }
         }
-        each_const (e : H[i]) used[e.to] = false;
+        for (const auto& e : H[i]) used[e.to] = false;
     }
     return res;
 }

@@ -33,7 +33,7 @@ private:
             seen[v] = true;
             std::vector<std::vector<M>> dist;
             dist.reserve(G[v].size());
-            each_const (s : G[v]) {
+            for (const auto& s : G[v]) {
                 if (seen[s.to]) continue;
                 dist.push_back(std::vector<M>(2, 0));
                 st2.emplace_back(s.to, -1, 1);
@@ -43,7 +43,7 @@ private:
                     st2.pop_back();
                     if ((int)dist.back().size() == d) dist.back().push_back(1);
                     else ++dist.back()[d];
-                    each_const (e : G[u]) {
+                    for (const auto& e : G[u]) {
                         if (e.to == p || seen[e.to]) continue;
                         st2.emplace_back(e.to, u, d + 1);
                     }
@@ -54,7 +54,7 @@ private:
                      return a.size() < b.size();
                  });
             std::vector<M> tmp;
-            each_const (d : dist) {
+            for (const auto& d : dist) {
                 if (tmp.empty()) {
                     tmp = d;
                     continue;
@@ -65,7 +65,7 @@ private:
                 rep (i, d.size()) tmp[i] += d[i];
             }
             rep (i, tmp.size()) ans[i] += tmp[i];
-            each_const (e : C.get()[v]) st.push_back(e.to);
+            for (const auto& e : C.get()[v]) st.push_back(e.to);
         }
     }
 

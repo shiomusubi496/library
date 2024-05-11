@@ -10,7 +10,7 @@ private:
     std::vector<int> sz;
     std::vector<int> cent;
     int dfs(int v, int p) {
-        each_const (e : G[v]) {
+        for (const auto& e : G[v]) {
             if (e.to == p) continue;
             sz[v] += dfs(e.to, v);
         }
@@ -23,7 +23,7 @@ private:
         int v = 0, p = -1;
         while (true) {
             bool ok = true;
-            each_const (e : G[v]) {
+            for (const auto& e : G[v]) {
                 if (e.to == p) continue;
                 if (sz[e.to] * 2 > s) {
                     p = v;
@@ -59,7 +59,7 @@ private:
     UnweightedGraph C;
     int dfs(int v, int p) {
         sz[v] = 1;
-        each_const (e : G[v]) {
+        for (const auto& e : G[v]) {
             if (e.to == p) continue;
             if (seen[e.to]) continue;
             sz[v] += dfs(e.to, v);
@@ -80,7 +80,7 @@ private:
             int p = -1;
             while (true) {
                 bool ok = true;
-                each_const (e : G[v]) {
+                for (const auto& e : G[v]) {
                     if (e.to == p) continue;
                     if (seen[e.to]) continue;
                     if (sz[e.to] * 2 > s) {
@@ -95,7 +95,7 @@ private:
             seen[v] = true;
             if (vp != -1) C.add_edge(vp, v, true);
             else root = v;
-            each_const (e : G[v]) {
+            for (const auto& e : G[v]) {
                 if (seen[e.to]) continue;
                 st.emplace_back(e.to, v);
             }

@@ -10,7 +10,7 @@ int main() {
     ps.press(A);
     auto f = [&](vector<int>&& v) -> vector<int> {
         vector<int> A(ps.size());
-        each_const (i : v) ++A[i];
+        for (const auto& i : v) ++A[i];
         rep (i, ps.size() - 1) A[i + 1] += A[i];
         return A;
     };

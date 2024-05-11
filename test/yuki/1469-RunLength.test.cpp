@@ -4,6 +4,6 @@
 using namespace std;
 int main() {
     string S; scan >> S;
-    each_const (p : RunLength(S)) print << p.first;
+    for (const auto& p : RunLength(S)) print << p.first;
     print << endl;
 }

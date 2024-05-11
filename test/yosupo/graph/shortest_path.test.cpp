@@ -18,5 +18,5 @@ int main() {
     }
     Edges<ll> R = RestorePath(G, D, s, t);
     print << D[t] << ' ' << R.size() << endl;
-    each_const (e : R) print << e.from << ' ' << e.to << endl;
+    for (const auto& e : R) print << e.from << ' ' << e.to << endl;
 }

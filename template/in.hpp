@@ -6,136 +6,99 @@
 #include "alias.hpp"
 #include "type_traits.hpp"
 
-template<std::size_t buf_size = IO_BUFFER_SIZE> class Reader {
-private:
-    int fd, idx, sz;
-    bool state;
-    std::array<char, buf_size> buffer;
-    inline void read_buf() {
-        sz = read(fd, buffer.begin(), buf_size);
-        idx = 0;
-        if (sz < 0) throw std::runtime_error("input failed");
-    }
-
-public:
-    static constexpr int get_buf_size() { return buf_size; }
-    Reader() noexcept : fd(0), idx(0), sz(0), state(true) {}
-    Reader(int fd) noexcept : fd(fd), idx(0), sz(0), state(true) {}
-    Reader(FILE* fp) noexcept : fd(fileno(fp)), idx(0), sz(0), state(true) {}
-
-    class iterator {
-    private:
-        Reader* reader;
-
-    public:
-        using difference_type = void;
-        using value_type = void;
-        using pointer = void;
-        using reference = void;
-        using iterator_category = std::input_iterator_tag;
-
-        iterator() : reader(nullptr) {}
-        explicit iterator(Reader& reader) : reader(&reader) {}
-        explicit iterator(Reader* reader) : reader(reader) {}
-
-        iterator& operator++() {
-            if (reader->idx == reader->sz) reader->read_buf();
-            ++reader->idx;
-            return *this;
-        }
-        iterator operator++(int) {
-            iterator res = *this;
-            ++(*this);
-            return res;
-        }
-        char operator*() const {
-            if (reader->idx == reader->sz) reader->read_buf();
-            if (reader->idx < reader->sz) return reader->buffer[reader->idx];
-            reader->state = false;
-            return '\0';
-        }
-        bool rdstate() const { return reader->state; }
-        void setstate(bool state) { reader->state = state; }
-    };
-
-    iterator begin() noexcept { return iterator(this); }
-};
-
-Reader<> reader(0);
-
-template<class Iterator, std::size_t decimal_precision = 16> class Scanner {
-public:
-    using iterator_type = Iterator;
-
+template<std::size_t buf_size = IO_BUFFER_SIZE, std::size_t decimal_precision = 16> class Scanner {
 private:
     template<class, class = void> struct has_scan : std::false_type {};
     template<class T>
     struct has_scan<
         T, decltype(std::declval<T>().scan(std::declval<Scanner&>()), (void)0)>
         : std::true_type {};
-    Iterator itr;
+    int fd;
+    int idx, sz;
+    bool state;
+    std::array<char, IO_BUFFER_SIZE + 1> buffer;
+    inline char cur() {
+        if (idx == sz) load();
+        if (idx == sz) {
+            state = false;
+            return '\0';
+        }
+        return buffer[idx];
+    }
+    inline void next() {
+        if (idx == sz) load();
+        if (idx == sz) return;
+        ++idx;
+    }
 
 public:
-    Scanner() = default;
-    Scanner(const Iterator& itr) : itr(itr) {}
+    inline void load() {
+        int len = sz - idx;
+        if (idx < len) return;
+        std::memcpy(buffer.begin(), buffer.begin() + idx, len);
+        sz = len + read(fd, buffer.data() + len, buf_size - len);
+        buffer[sz] = 0;
+        idx = 0;
+    }
 
-    char scan_char() {
-        char c = *itr;
-        ++itr;
-        return c;
+    Scanner(int fd) : fd(fd), idx(0), sz(0) {}
+    Scanner(FILE* fp) : fd(fileno(fp)), idx(0), sz(0) {}
+
+    inline char scan_char() {
+        if (idx == sz) load();
+        return idx == sz ? '\0' : buffer[idx++];
     }
 
     Scanner ignore(int n = 1) {
-        rep (n) ++itr;
+        if (idx + n > sz) load();
+        idx += n;
         return *this;
     }
 
     inline void discard_space() {
-        while (('\t' <= *itr && *itr <= '\r') || *itr == ' ') ++itr;
+        if (idx == sz) load();
+        while (('\t' <= buffer[idx] && buffer[idx] <= '\r') || buffer[idx] == ' ') {
+            if (++idx == sz) load();
+        }
     }
     void scan(char& a) {
         discard_space();
-        a = *itr;
-        ++itr;
+        a = scan_char();
     }
     void scan(bool& a) {
         discard_space();
-        a = *itr != '0';
-        ++itr;
+        a = scan_char() != '0';
     }
     void scan(std::string& a) {
         discard_space();
         a.clear();
-        while ((*itr < '\t' || '\r' < *itr) && *itr != ' ' && *itr != '\0') {
-            a += *itr;
-            ++itr;
+        while (cur() != '\0' && (buffer[idx] < '\t' || '\r' < buffer[idx]) && buffer[idx] != ' ') {
+            a += scan_char();
         }
     }
     template<std::size_t len> void scan(std::bitset<len>& a) {
         discard_space();
-        rrep (i, len) {
-            a[i] = *itr != '0';
-            ++itr;
-        }
+        if (idx + len > sz) load();
+        rrep (i, len) a[i] = buffer[idx++] != '0';
     }
     template<class T,
              typename std::enable_if<is_signed_int<T>::value &&
                                      !has_scan<T>::value>::type* = nullptr>
     void scan(T& a) {
         discard_space();
-        if (*itr == '-') {
-            ++itr;
+        if (buffer[idx] == '-') {
+            ++idx;
+            if (idx + 20 > sz && '0' <= buffer[sz - 1] && buffer[sz - 1] <= '9') load();
             a = 0;
-            while ('0' <= *itr && *itr <= '9') {
-                a = a * 10 - (*itr - '0');
-                ++itr;
+            while ('0' <= buffer[idx] && buffer[idx] <= '9') {
+                a = a * 10 - (buffer[idx++] - '0');
             }
         }
         else {
+            if (idx + 20 > sz && '0' <= buffer[sz - 1] && buffer[sz - 1] <= '9') load();
             a = 0;
-            while ('0' <= *itr && *itr <= '9') {
-                a = a * 10 + (*itr - '0');
-                ++itr;
+            while ('0' <= buffer[idx] && buffer[idx] <= '9') {
+                a = a * 10 + (buffer[idx++] - '0');
             }
         }
     }
@@ -144,10 +107,10 @@ public:
                                      !has_scan<T>::value>::type* = nullptr>
     void scan(T& a) {
         discard_space();
+        if (idx + 20 > sz && '0' <= buffer[sz - 1] && buffer[sz - 1] <= '9') load();
         a = 0;
-        while ('0' <= *itr && *itr <= '9') {
-            a = a * 10 + *itr - '0';
-            ++itr;
+        while ('0' <= buffer[idx] && buffer[idx] <= '9') {
+            a = a * 10 + (buffer[idx++] - '0');
         }
     }
     template<class T,
@@ -156,26 +119,26 @@ public:
     void scan(T& a) {
         discard_space();
         bool sgn = false;
-        if (*itr == '-') {
+        if (cur() == '-') {
             sgn = true;
-            ++itr;
+            next();
         }
         a = 0;
-        while ('0' <= *itr && *itr <= '9') {
-            a = a * 10 + *itr - '0';
-            ++itr;
+        while ('0' <= cur() && cur() <= '9') {
+            a = a * 10 + cur() - '0';
+            next();
         }
-        if (*itr == '.') {
-            ++itr;
+        if (cur() == '.') {
+            next();
             T n = 0, d = 1;
             for (int i = 0;
-                 '0' <= *itr && *itr <= '9' && i < (int)decimal_precision;
+                 '0' <= cur() && cur() <= '9' && i < (int)decimal_precision;
                  ++i) {
-                n = n * 10 + *itr - '0';
+                n = n * 10 + cur() - '0';
                 d *= 10;
-                ++itr;
+                next();
             }
-            while ('0' <= *itr && *itr <= '9') ++itr;
+            while ('0' <= cur() && cur() <= '9') next();
             a += n / d;
         }
         if (sgn) a = -a;
@@ -201,7 +164,7 @@ public:
              typename std::enable_if<is_range<T>::value &&
                                      !has_scan<T>::value>::type* = nullptr>
     void scan(T& a) {
-        each_for (i : a) scan(i);
+        for (auto&& i : a) scan(i);
     }
     template<class T,
              typename std::enable_if<has_scan<T>::value>::type* = nullptr>
@@ -221,7 +184,7 @@ public:
         return *this;
     }
 
-    explicit operator bool() const { return itr.rdstate(); }
+    explicit operator bool() const { return state; }
 
     friend Scanner& getline(Scanner& scan, std::string& a) {
         a.erase();
@@ -229,9 +192,9 @@ public:
         if ((c = scan.scan_char()) == '\n' || c == '\0') return scan;
         a += c;
         while ((c = scan.scan_char()) != '\n' && c != '\0') a += c;
-        scan.itr.setstate(true);
+        scan.state = true;
         return scan;
     }
 };
 
-Scanner<Reader<>::iterator> scan(reader.begin());
+Scanner<> scan(0);

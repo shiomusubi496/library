@@ -19,16 +19,16 @@ int main() {
     ConnectedComponents<unweighted_edge> CC(G);
     auto g = CC.groups();
     vector<int> B(N);
-    each_const (v : g) {
+    for (const auto& v : g) {
         rep (i, v.size()) B[v[i]] = i;
     }
     vector<UnweightedGraph> C(CC.size());
     rep (i, CC.size()) C[i] = UnweightedGraph(g[i].size());
-    each_const (e : UndirectedListToEdges(G)) {
+    for (const auto& e : UndirectedListToEdges(G)) {
         C[CC[e.from]].add_edge(B[e.from], B[e.to]);
     }
     bitset<701> bs(1);
-    each_const (g : C) {
+    for (const auto& g : C) {
         int n = g.size();
         BipartiteGraph<unweighted_edge> BG(g);
         if (!BG.is_bipartite()) {

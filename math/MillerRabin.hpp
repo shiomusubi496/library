@@ -7,7 +7,7 @@ constexpr ull base_miller_rabin_int[3] = {2, 7, 61};
 constexpr ull base_miller_rabin_ll[7] = {2,      325,     9375,      28178,
                                          450775, 9780504, 1795265022};
 
-template<class T> CONSTEXPR bool miller_rabin(ull n, const ull base[], int s) {
+template<class T> constexpr bool miller_rabin(ull n, const ull base[], int s) {
     if (T::get_mod() != n) T::set_mod(n);
     ull d = n - 1;
     while (~d & 1) d >>= 1;
@@ -26,7 +26,7 @@ template<class T> CONSTEXPR bool miller_rabin(ull n, const ull base[], int s) {
     return true;
 }
 
-CONSTEXPR bool is_prime_mr(ll n) {
+constexpr bool is_prime_mr(ll n) {
     if (n == 2) return true;
     if (n < 2 || n % 2 == 0) return false;
     if (n < (1u << 31))

@@ -13,12 +13,12 @@ template<class T = MontgomeryModInt<ull, -4>> ull primitive_root(ull p) {
     if (T::get_mod() != p) T::set_mod(p);
     auto pf = factorize(p - 1);
     pf.erase(std::unique(all(pf)), pf.end());
-    each_for (x : pf) x = (p - 1) / x;
+    for (auto&& x : pf) x = (p - 1) / x;
     T one = 1;
     while (1) {
         ull g = rand64.uniform(2ull, p - 1);
         bool ok = true;
-        each_const (x : pf) {
+        for (const auto& x : pf) {
             if (T(g).pow(x) == one) {
                 ok = false;
                 break;

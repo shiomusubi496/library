@@ -16,7 +16,7 @@ int main() {
     mint ans = 0;
     for (auto v : enumerate_cliques(G)) {
         mint p = 1;
-        each_const (i : v) p *= a[i];
+        for (const auto& i : v) p *= a[i];
         ans += p;
     }
     prints(ans);

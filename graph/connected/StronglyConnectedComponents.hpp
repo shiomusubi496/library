@@ -14,7 +14,7 @@ private:
     void dfs(int v) {
         low[v] = ord[v] = cnt++;
         st.push_back(v);
-        each_const (e : G[v]) {
+        for (const auto& e : G[v]) {
             if (ord[e.to] != -1) chmin(low[v], ord[e.to]);
             else {
                 dfs(e.to);
@@ -43,7 +43,7 @@ private:
         rep (i, n) {
             if (ord[i] == -1) dfs(i);
         }
-        each_for (i : cmp) i = sz - i - 1;
+        for (auto&& i : cmp) i = sz - i - 1;
     }
 
 public:
@@ -61,7 +61,7 @@ public:
     Graph<T> dag() const {
         Graph<T> res(sz);
         rep (i, n) {
-            each_const (e : G[i]) {
+            for (const auto& e : G[i]) {
                 if (cmp[i] != cmp[e.to])
                     res.add_edge(cmp[i], cmp[e.to], e.cost, true);
             }

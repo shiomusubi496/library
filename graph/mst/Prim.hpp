@@ -9,7 +9,7 @@ template<class T> std::pair<T, Edges<T>> Prim(const Graph<T>& G) {
     std::vector<bool> seen(N, false);
     seen[0] = true;
     prique<edge<T>> que;
-    each_const (e : G[0]) que.emplace(e);
+    for (const auto& e : G[0]) que.emplace(e);
     T res = 0;
     Edges<T> es;
     while (!que.empty()) {
@@ -19,7 +19,7 @@ template<class T> std::pair<T, Edges<T>> Prim(const Graph<T>& G) {
         res += cre.cost;
         es.push_back(cre);
         seen[cre.to] = true;
-        each_const (e : G[cre.to]) {
+        for (const auto& e : G[cre.to]) {
             if (seen[e.to]) continue;
             que.emplace(e);
         }

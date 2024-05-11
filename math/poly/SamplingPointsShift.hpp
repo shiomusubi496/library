@@ -29,6 +29,20 @@ std::vector<T> sampling_points_shift(std::vector<T> a, int m, T t) {
     return std::vector<T>(f);
 }
 
+template<class T, class Comb = Combinatorics<T>>
+T sampling_points_shift(std::vector<T> a, T t) {
+    const int n = a.size();
+    Comb::init(n - 1);
+    std::vector<T> cum(n, 1);
+    rep (i, n - 1) cum[i + 1] = cum[i] * (i - t);
+    T res = 0, cur = 1;
+    rrep (i, n) {
+        res += a[i] * cum[i] * cur * (i & 1 ? -Comb::finv(i) : Comb::finv(i)) * Comb::finv(n - i - 1);
+        cur *= i - t;
+    }
+    return res;
+}
+
 /**
  * @brief SamplingPointsShift(標本点シフト)
  * @docs docs/math/poly/SamplingPointsShift.md

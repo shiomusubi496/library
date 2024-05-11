@@ -9,7 +9,7 @@ int main() {
     vector<ConvexHullTrickAddMonotone<ll, true>> dp(T + 1);
     dp[0].add_line(0, 0);
     ll ans = 0;
-    each_const (arr : s) {
+    for (const auto& arr : s) {
         ll t = arr[0], p = arr[1], f = arr[2];
         rrep (i, T + 1) {
             if (dp[i].empty()) continue;

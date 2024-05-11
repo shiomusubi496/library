@@ -11,7 +11,7 @@ private:
     std::vector<bool> used, label;
     void dfs(int v) {
         used[v] = true;
-        each_const (e : G[v]) {
+        for (const auto& e : G[v]) {
             if (!used[e.to]) {
                 used[e.to] = true;
                 label[e.to] = !label[v];

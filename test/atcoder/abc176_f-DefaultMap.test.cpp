@@ -41,8 +41,8 @@ int main() {
             chmax(mp[b][k], mx[k]);
             chmax(mp[c][k], mx[k]);
         }
-        each_const ([j, m] : mp) {
-            each_const ([k, v] : m) {
+        for (const auto& [j, m] : mp) {
+            for (const auto& [k, v] : m) {
                 chmax(dp[j][k], v); chmax(dp[k][j], v);
                 chmax(mx[j], v); chmax(mx[k], v);
             }

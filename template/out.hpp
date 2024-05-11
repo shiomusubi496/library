@@ -6,61 +6,20 @@
 #include "alias.hpp"
 #include "type_traits.hpp"
 
-template<std::size_t buf_size = IO_BUFFER_SIZE> class Writer {
-private:
-    int fd, idx;
-    std::array<char, buf_size> buffer;
-    inline void write_buf() {
-        int num = write(fd, buffer.begin(), idx);
-        idx = 0;
-        if (num < 0) throw std::runtime_error("output failed");
+struct NumberToString {
+    char buf[10000][4];
+    constexpr NumberToString() : buf{} {
+        rep (i, 10000) {
+            int n = i;
+            rrep (j, 4) {
+                buf[i][j] = (char)('0' + n % 10);
+                n /= 10;
+            }
+        }
     }
+} constexpr precalc_number_to_string;
 
-public:
-    Writer() noexcept : fd(1), idx(0) {}
-    Writer(int fd) noexcept : fd(fd), idx(0) {}
-    Writer(FILE* fp) noexcept : fd(fileno(fp)), idx(0) {}
-
-    ~Writer() { write_buf(); }
-
-    class iterator {
-    private:
-        Writer* writer;
-
-    public:
-        using difference_type = void;
-        using value_type = void;
-        using pointer = void;
-        using reference = void;
-        using iterator_category = std::output_iterator_tag;
-
-        iterator() noexcept : writer(nullptr) {}
-        explicit iterator(Writer& writer) noexcept : writer(&writer) {}
-        explicit iterator(Writer* writer) noexcept : writer(writer) {}
-
-        iterator& operator++() {
-            ++writer->idx;
-            if (writer->idx == buf_size) writer->write_buf();
-            return *this;
-        }
-        iterator operator++(int) {
-            iterator res = *this;
-            ++(*this);
-            return res;
-        }
-        char& operator*() const { return writer->buffer[writer->idx]; }
-        void flush() const { writer->write_buf(); }
-    };
-
-    iterator begin() noexcept { return iterator(this); }
-};
-
-Writer<> writer(1), ewriter(2);
-
-template<class Iterator, bool debug = false> class Printer {
-public:
-    using iterator_type = Iterator;
-
+template<std::size_t buf_size = IO_BUFFER_SIZE, bool debug = false> class Printer {
 private:
     template<class, bool = debug, class = void>
     struct has_print : std::false_type {};
@@ -72,20 +31,32 @@ private:
     struct has_print<T, true,
                      decltype(std::declval<T>().debug(std::declval<Printer&>()),
                               (void)0)> : std::true_type {};
-    Iterator itr;
+    int fd;
+    std::size_t idx;
+    std::array<char, buf_size> buffer;
+
     std::size_t decimal_precision;
 
 public:
-    void print_char(char c) {
-        *itr = c;
-        ++itr;
+    inline void print_char(char c) {
+#if SHIO_LOCAL
+        buffer[idx++] = c;
+        if (idx == buf_size) flush();
+#else
+        if IF_CONSTEXPR (!debug) {
+            buffer[idx++] = c;
+            if (idx == buf_size) flush();
+        }
+#endif
+    }
+    inline void flush() {
+        idx = write(fd, buffer.begin(), idx);
+        idx = 0;
     }
 
-    void flush() { itr.flush(); }
-
-    Printer() noexcept = default;
-    explicit Printer(const Iterator& itr) noexcept
-        : itr(itr), decimal_precision(16) {}
+    Printer(int fd) : fd(fd), idx(0), decimal_precision(16) {}
+    Printer(FILE* fp) : fd(fileno(fp)), idx(0), decimal_precision(16) {}
+    ~Printer() { flush(); }
 
     void set_decimal_precision(std::size_t decimal_precision) {
         this->decimal_precision = decimal_precision;
@@ -131,12 +102,32 @@ public:
                 return;
             }
         }
-        std::string s;
-        while (a) {
-            s += (char)(a % 10 + '0');
-            a /= 10;
+        if (idx + 40 >= buf_size) flush();
+        static char s[40];
+        int t = 40;
+        while (a >= 10000) {
+            int i = a % 10000;
+            a /= 10000;
+            t -= 4;
+            std::memcpy(s + t, precalc_number_to_string.buf[i], 4);
         }
-        for (auto i = s.rbegin(); i != s.rend(); ++i) print_char(*i);
+        if (a >= 1000) {
+            std::memcpy(buffer.begin() + idx, precalc_number_to_string.buf[a], 4);
+            idx += 4;
+        }
+        else if (a >= 100) {
+            std::memcpy(buffer.begin() + idx, precalc_number_to_string.buf[a] + 1, 3);
+            idx += 3;
+        }
+        else if (a >= 10) {
+            std::memcpy(buffer.begin() + idx, precalc_number_to_string.buf[a] + 2, 2);
+            idx += 2;
+        }
+        else {
+            buffer[idx++] = '0' | a;
+        }
+        std::memcpy(buffer.begin() + idx, s + t, 40 - t);
+        idx += 40 - t;
     }
     template<class T,
              typename std::enable_if<std::is_floating_point<T>::value &&
@@ -243,14 +234,14 @@ public:
     Printer& operator<<(Printer& (*pf)(Printer&)) { return pf(*this); }
 };
 
-template<class Iterator, bool debug>
-Printer<Iterator, debug>& endl(Printer<Iterator, debug>& pr) {
+template<std::size_t buf_size, bool debug>
+Printer<buf_size, debug>& endl(Printer<buf_size, debug>& pr) {
     pr.print_char('\n');
     pr.flush();
     return pr;
 }
-template<class Iterator, bool debug>
-Printer<Iterator, debug>& flush(Printer<Iterator, debug>& pr) {
+template<std::size_t buf_size, bool debug>
+Printer<buf_size, debug>& flush(Printer<buf_size, debug>& pr) {
     pr.flush();
     return pr;
 }
@@ -262,7 +253,7 @@ struct SetPrec {
 };
 SetPrec setprec(int n) { return SetPrec{n}; };
 
-Printer<Writer<>::iterator> print(writer.begin()), eprint(ewriter.begin());
+Printer<> print(1), eprint(2);
 
 void prints() { print.print_char('\n'); }
 
@@ -279,21 +270,7 @@ auto prints(const Head& head, const Tail&... tail)
     prints(tail...);
 }
 
-#ifdef SHIO_LOCAL
-Printer<Writer<>::iterator, true> debug(writer.begin()),
-    edebug(ewriter.begin());
-#else
-char debug_iterator_character;
-class DebugIterator {
-public:
-    DebugIterator() noexcept = default;
-    DebugIterator& operator++() { return *this; }
-    DebugIterator& operator++(int) { return *this; }
-    char& operator*() const { return debug_iterator_character; }
-    void flush() const {}
-};
-Printer<DebugIterator> debug, edebug;
-#endif
+Printer<IO_BUFFER_SIZE, true> debug(1), edebug(2);
 
 void debugs() { debug.print_char('\n'); }
 

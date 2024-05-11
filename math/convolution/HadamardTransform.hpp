@@ -20,7 +20,7 @@ template<class Sum>
 void inv_hadamard_transform(std::vector<typename Sum::value_type>& v) {
     const int n = v.size();
     hadamard_transform<Sum>(v);
-    each_for (x : v) x /= n;
+    for (auto&& x : v) x /= n;
 }
 
 /**

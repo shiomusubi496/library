@@ -128,7 +128,7 @@ public:
     }
     void press(std::vector<T>& vec) const {
         assert(sorted);
-        each_for (i : vec) i = get(i);
+        for (auto&& i : vec) i = get(i);
     }
     int size() const {
         assert(sorted);

@@ -99,9 +99,9 @@ int main() {
         }
     }
     ll ans = 0;
-    each_const (p : mpl) ans += p.second;
-    each_const (p : mpr) ans += W + 1 - p.second;
-    each_const (p : mpu) ans += p.second;
-    each_const (p : mpd) ans += H + 1 - p.second;
+    for (const auto& p : mpl) ans += p.second;
+    for (const auto& p : mpr) ans += W + 1 - p.second;
+    for (const auto& p : mpu) ans += p.second;
+    for (const auto& p : mpd) ans += H + 1 - p.second;
     print << ans << endl;
 }

@@ -13,7 +13,7 @@ protected:
         low[v] = ord[v] = cnt++;
         int deg = 0;
         bool is_ap = false, mul = false;
-        each_const (e : G[v]) {
+        for (const auto& e : G[v]) {
             if (e.to == p && !mul) {
                 mul = true;
                 continue;

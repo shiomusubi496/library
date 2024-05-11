@@ -7,5 +7,5 @@ int main() {
     int n; scan >> n;
     vector<Point> ps(n); scan >> ps;
     sort(all(ps), [&](const Point& a, const Point& b) { return comp_arg(a, b); });
-    each_const (p : ps) print << p << endl;
+    for (const auto& p : ps) print << p << endl;
 }

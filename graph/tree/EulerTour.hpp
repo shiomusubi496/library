@@ -27,7 +27,7 @@ private:
     void dfs(int v, int p) {
         idx[v].first = cnt++;
         rmqvec.emplace_back(dep[v], v);
-        each_const (e : G[v]) {
+        for (const auto& e : G[v]) {
             if (e.to == p) continue;
             dep[e.to] = dep[v] + 1;
             dfs(e.to, v);
@@ -41,7 +41,7 @@ private:
         idx.assign(n, {-1, -1});
         rmqvec.reserve(n << 1);
         cnt = 0;
-        each_const (r : root) {
+        for (const auto& r : root) {
             dfs(r, -1);
             rmqvec.emplace_back(-1, -1);
         }

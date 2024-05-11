@@ -14,7 +14,7 @@ template<class T> std::vector<T> ZeroOneBFS(const Graph<T>& G, int start = 0) {
         int v = que.front().second;
         que.pop_front();
         if (dist[v] != c) continue;
-        each_const (e : G[v]) {
+        for (const auto& e : G[v]) {
             if (e.cost == 0) {
                 if (chmin(dist[e.to], c + e.cost))
                     que.emplace_front(dist[e.to], e.to);

@@ -29,5 +29,5 @@ int main() {
     }, [&](int k) -> void {
         ans[k] = cur;
     });
-    each_const (i : ans) print << i << endl;
+    for (const auto& i : ans) print << i << endl;
 }

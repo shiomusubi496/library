@@ -59,7 +59,7 @@ public:
                 while (!que.empty()) {
                     int v = que.front();
                     que.pop();
-                    each_const (e : g[v]) {
+                    for (const auto& e : g[v]) {
                         if (e.cap > T{0} && dist[e.to] == -1) {
                             dist[e.to] = dist[v] + 1;
                             que.push(e.to);
@@ -98,7 +98,7 @@ public:
         while (!que.empty()) {
             int v = que.front();
             que.pop();
-            each_const (e : g[v]) {
+            for (const auto& e : g[v]) {
                 if (e.cap > T{0} && !visited[e.to]) {
                     visited[e.to] = true;
                     que.push(e.to);

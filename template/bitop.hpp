@@ -20,7 +20,7 @@ inline ull next_combination(int n, ull x) {
     for (ull i = (1ull << (k)) - 1; i < (1ull << (n));                         \
          i = bitop::next_combination((n), i))
 
-inline CONSTEXPR int msb(ull x) {
+inline constexpr int msb(ull x) {
     int res = x ? 0 : -1;
     if (x & 0xFFFFFFFF00000000) x &= 0xFFFFFFFF00000000, res += 32;
     if (x & 0xFFFF0000FFFF0000) x &= 0xFFFF0000FFFF0000, res += 16;
@@ -30,9 +30,9 @@ inline CONSTEXPR int msb(ull x) {
     return res + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);
 }
 
-inline CONSTEXPR int ceil_log2(ull x) { return x ? msb(x - 1) + 1 : 0; }
+inline constexpr int ceil_log2(ull x) { return x ? msb(x - 1) + 1 : 0; }
 
-inline CONSTEXPR ull reverse(ull x) {
+inline constexpr ull reverse(ull x) {
     x = ((x & 0xAAAAAAAAAAAAAAAA) >> 1) | ((x & 0x5555555555555555) << 1);
     x = ((x & 0xCCCCCCCCCCCCCCCC) >> 2) | ((x & 0x3333333333333333) << 2);
     x = ((x & 0xF0F0F0F0F0F0F0F0) >> 4) | ((x & 0x0F0F0F0F0F0F0F0F) << 4);
@@ -41,11 +41,11 @@ inline CONSTEXPR ull reverse(ull x) {
     return (x >> 32) | (x << 32);
 }
 
-inline CONSTEXPR ull reverse(ull x, int n) { return reverse(x) >> (64 - n); }
+inline constexpr ull reverse(ull x, int n) { return reverse(x) >> (64 - n); }
 
 } // namespace bitop
 
-inline CONSTEXPR int popcnt(ull x) noexcept {
+inline constexpr int popcnt(ull x) noexcept {
 #if __cplusplus >= 202002L
     return std::popcount(x);
 #endif

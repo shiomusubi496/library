@@ -32,17 +32,7 @@
 #define each_const(...) for (const auto& __VA_ARGS__)
 
 #define all(v) std::begin(v), std::end(v)
-#if __cplusplus >= 201402L
 #define rall(v) std::rbegin(v), std::rend(v)
-#else
-#define rall(v) v.rbegin(), v.rend()
-#endif
-
-#if __cpp_constexpr >= 201304L
-#define CONSTEXPR constexpr
-#else
-#define CONSTEXPR
-#endif
 
 #if __cpp_if_constexpr >= 201606L
 #define IF_CONSTEXPR constexpr
@@ -50,4 +40,4 @@
 #define IF_CONSTEXPR
 #endif
 
-#define IO_BUFFER_SIZE 2048
+#define IO_BUFFER_SIZE (1 << 17)

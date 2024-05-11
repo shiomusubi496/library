@@ -11,7 +11,7 @@ private:
     std::vector<std::pair<int, int>> idx;
     void dfs(int v, int p) {
         idx[v].first = cnt++;
-        each_const (e : G[v]) {
+        for (const auto& e : G[v]) {
             if (e.to != p) dfs(e.to, v);
         }
         idx[v].second = cnt;
@@ -20,7 +20,7 @@ private:
         n = G.size();
         idx.assign(n, {-1, -1});
         cnt = 0;
-        each_const (r : root) dfs(r, -1);
+        for (const auto& r : root) dfs(r, -1);
         rep (i, n) {
             if (idx[i].first == -1) dfs(i, -1);
         }

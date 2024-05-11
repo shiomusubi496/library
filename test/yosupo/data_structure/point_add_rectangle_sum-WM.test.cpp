@@ -7,7 +7,7 @@ int main() {
     int N, Q; scan >> N >> Q;
     vector<array<ll, 3>> A(N); scan >> A;
     vector<array<ll, 5>> B(Q);
-    each_for ([a, b, c, d, e] : B) {
+    for (auto&& [a, b, c, d, e] : B) {
         scan >> a;
         if (a == 0) scan >> b >> c >> d;
         else scan >> b >> c >> d >> e;
@@ -22,7 +22,7 @@ int main() {
         }
     }
     SegmentTreeWM<Monoid::Sum<ll>> wm(xs, ys, zs);
-    each_const ([a, b, c, d, e] : B) {
+    for (const auto& [a, b, c, d, e] : B) {
         if (a == 0) wm.apply(b, c, d);
         else print << wm.prod(b, d, c, e) << endl;
     }

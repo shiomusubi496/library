@@ -8,16 +8,16 @@ std::vector<std::vector<int>> enumerate_cliques(const Graph<T>& G) {
     int n = G.size();
     std::vector<std::vector<bool>> adj(n, std::vector<bool>(n, false));
     rep (i, n) {
-        each_const (e : G[i]) adj[i][e.to] = true;
+        for (const auto& e : G[i]) adj[i][e.to] = true;
     }
     std::vector<int> vert(n);
     std::iota(all(vert), 0);
     std::vector<std::vector<int>> res;
     while (!vert.empty()) {
         int v = -1, mn_d = n + 1;
-        each_const (i : vert) {
+        for (const auto& i : vert) {
             int d = 0;
-            each_const (j : vert) {
+            for (const auto& j : vert) {
                 if (adj[i][j]) ++d;
             }
             if (chmin(mn_d, d)) v = i;
@@ -34,7 +34,7 @@ std::vector<std::vector<int>> enumerate_cliques(const Graph<T>& G) {
             }
             self(i + 1);
             bool f = true;
-            each_const (j : clique) {
+            for (const auto& j : clique) {
                 if (!adj[vert[i]][j]) {
                     f = false;
                     break;

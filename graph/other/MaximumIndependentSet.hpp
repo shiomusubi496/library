@@ -50,7 +50,7 @@ public:
         n = G_.size();
         G.assign(n, std::bitset<SZ>());
         rep (i, n) {
-            each_const (e : G_[i]) G[i].set(e.to);
+            for (const auto& e : G_[i]) G[i].set(e.to);
         }
         ans.set();
         dfs(std::bitset<SZ>(), std::bitset<SZ>().set());

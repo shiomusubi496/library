@@ -6,13 +6,13 @@ int main() {
     int N, Q; scan >> N >> Q;
     vector<array<ll, 4>> A(N); scan >> A;
     vector<array<ll, 5>> B(Q);
-    each_for ([a, b, c, d, e] : B) {
+    for (auto&& [a, b, c, d, e] : B) {
         scan >> a;
         if (a == 0) scan >> b >> c >> d >> e;
         else scan >> b;
     }
     compressor<ll> ps;
-    each_const ([a, b, c, d, e] : B) {
+    for (const auto& [a, b, c, d, e] : B) {
         if (a == 1) ps.push_back(b);
     }
     ps.build();
@@ -22,10 +22,10 @@ int main() {
         rep (i, ps.size()) v.push_back(ps[i]);
         return v;
     }());
-    each_const ([a, b, c, d] : A) {
+    for (const auto& [a, b, c, d] : A) {
         lct.add_segment(ps.lower_bound(a), ps.lower_bound(b), c, d);
     }
-    each_const ([a, b, c, d, e] : B) {
+    for (const auto& [a, b, c, d, e] : B) {
         if (a == 0) lct.add_segment(ps.lower_bound(b), ps.lower_bound(c), d, e);
         else {
             ll res = lct.get_min(ps.get(b));

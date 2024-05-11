@@ -8,7 +8,7 @@ int main() {
     vector<Fraction> A(N); scan >> A;
     sort(all(A), greater<Fraction>());
     Fraction ans;
-    each_const (f : A) {
+    for (const auto& f : A) {
         ans += min<ll>(W, f.get_den()) * f;
         W -= f.get_den();
         chmax(W, 0);

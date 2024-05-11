@@ -12,7 +12,7 @@ template<class T> std::vector<T> BFS(const Graph<T>& G, int start = 0) {
     while (!que.empty()) {
         int v = que.front();
         que.pop();
-        each_const (e : G[v]) {
+        for (const auto& e : G[v]) {
             if (dist[e.to] == -1) {
                 dist[e.to] = dist[v] + e.cost;
                 que.push(e.to);
@@ -31,7 +31,7 @@ template<class T> std::vector<T> BFSedge(const Graph<T>& G, int start = 0) {
     while (!que.empty()) {
         int v = que.front();
         que.pop();
-        each_const (e : G[v]) {
+        for (const auto& e : G[v]) {
             if (dist[e.to] == -1) {
                 dist[e.to] = dist[v] + 1;
                 que.push(e.to);

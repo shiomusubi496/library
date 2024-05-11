@@ -6,6 +6,6 @@ using namespace std;
 int main() {
     int V, E; scan >> V >> E;
     Edges<int> Ed(E);
-    each_for (e : Ed) scan >> e.from >> e.to >> e.cost;
+    for (auto&& e : Ed) scan >> e.from >> e.to >> e.cost;
     print << Kruskal(V, Ed).first << endl;
 }

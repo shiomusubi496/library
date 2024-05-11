@@ -20,6 +20,23 @@ private:
         0,         1,         499122177, 332748118, 748683265, 598946612,
         166374059, 855638017, 873463809, 443664157, 299473306};
 
+    static constexpr ll mod_inv(ll a) {
+        ll b = mod;
+        ll x = 1, u = 0;
+        ll t = 0, tmp = 0;
+        while (b) {
+            t = a / b;
+            tmp = (a - t * b);
+            a = b;
+            b = tmp;
+            tmp = (x - t * u);
+            x = u;
+            u = tmp;
+        }
+        if (x < 0) x += mod;
+        return x;
+    }
+
 public:
     constexpr StaticModInt() : val(0) {}
     template<class U,
@@ -34,88 +51,88 @@ public:
                           std::is_integral<U>::value &&
                           std::is_unsigned<U>::value>::type* = nullptr>
     constexpr StaticModInt(U v) : val(v % mod) {}
-    T get() const { return val; }
+    constexpr T get() const { return val; }
     static constexpr T get_mod() { return mod; }
-    static StaticModInt raw(T v) {
+    static constexpr StaticModInt raw(T v) {
         StaticModInt res;
         res.val = v;
         return res;
     }
-    StaticModInt inv() const {
+    constexpr StaticModInt inv() const {
         if IF_CONSTEXPR (mod == 1000000007) {
             if (val <= 10) return inv1000000007[val];
         }
         else if IF_CONSTEXPR (mod == 998244353) {
             if (val <= 10) return inv998244353[val];
         }
-        return mod_inv(val, mod);
+        return mod_inv(val);
     }
-    StaticModInt& operator++() {
+    constexpr StaticModInt& operator++() {
         ++val;
         if (val == mod) val = 0;
         return *this;
     }
-    StaticModInt operator++(int) {
+    constexpr StaticModInt operator++(int) {
         StaticModInt res = *this;
         ++*this;
         return res;
     }
-    StaticModInt& operator--() {
+    constexpr StaticModInt& operator--() {
         if (val == 0) val = mod;
         --val;
         return *this;
     }
-    StaticModInt operator--(int) {
+    constexpr StaticModInt operator--(int) {
         StaticModInt res = *this;
         --*this;
         return res;
     }
-    StaticModInt& operator+=(const StaticModInt& other) {
+    constexpr StaticModInt& operator+=(const StaticModInt& other) {
         val += other.val;
         if (val >= mod) val -= mod;
         return *this;
     }
-    StaticModInt& operator-=(const StaticModInt& other) {
+    constexpr StaticModInt& operator-=(const StaticModInt& other) {
         if (val < other.val) val += mod;
         val -= other.val;
         return *this;
     }
-    StaticModInt& operator*=(const StaticModInt& other) {
+    constexpr StaticModInt& operator*=(const StaticModInt& other) {
         large_t a = val;
         a *= other.val;
         a %= mod;
         val = a;
         return *this;
     }
-    StaticModInt& operator/=(const StaticModInt& other) {
+    constexpr StaticModInt& operator/=(const StaticModInt& other) {
         *this *= other.inv();
         return *this;
     }
-    friend StaticModInt operator+(const StaticModInt& lhs,
+    friend constexpr StaticModInt operator+(const StaticModInt& lhs,
                                   const StaticModInt& rhs) {
         return StaticModInt(lhs) += rhs;
     }
-    friend StaticModInt operator-(const StaticModInt& lhs,
+    friend constexpr StaticModInt operator-(const StaticModInt& lhs,
                                   const StaticModInt& rhs) {
         return StaticModInt(lhs) -= rhs;
     }
-    friend StaticModInt operator*(const StaticModInt& lhs,
+    friend constexpr StaticModInt operator*(const StaticModInt& lhs,
                                   const StaticModInt& rhs) {
         return StaticModInt(lhs) *= rhs;
     }
-    friend StaticModInt operator/(const StaticModInt& lhs,
+    friend constexpr StaticModInt operator/(const StaticModInt& lhs,
                                   const StaticModInt& rhs) {
         return StaticModInt(lhs) /= rhs;
     }
-    StaticModInt operator+() const { return StaticModInt(*this); }
-    StaticModInt operator-() const { return StaticModInt() - *this; }
-    friend bool operator==(const StaticModInt& lhs, const StaticModInt& rhs) {
+    constexpr StaticModInt operator+() const { return StaticModInt(*this); }
+    constexpr StaticModInt operator-() const { return StaticModInt() - *this; }
+    friend constexpr bool operator==(const StaticModInt& lhs, const StaticModInt& rhs) {
         return lhs.val == rhs.val;
     }
-    friend bool operator!=(const StaticModInt& lhs, const StaticModInt& rhs) {
+    friend constexpr bool operator!=(const StaticModInt& lhs, const StaticModInt& rhs) {
         return lhs.val != rhs.val;
     }
-    StaticModInt pow(ll a) const {
+    constexpr StaticModInt pow(ll a) const {
         StaticModInt v = *this, res = 1;
         while (a) {
             if (a & 1) res *= v;

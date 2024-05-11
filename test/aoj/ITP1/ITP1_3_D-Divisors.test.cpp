@@ -5,7 +5,7 @@ using namespace std;
 int main() {
     ll a, b, c; scan >> a >> b >> c;
     ll ans = 0;
-    each_const (i : divisors(c)) {
+    for (const auto& i : divisors(c)) {
         if (a <= i && i <= b) ++ans;
     }
     print << ans << endl;

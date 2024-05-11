@@ -10,5 +10,5 @@ int main() {
         int a, b; scan >> a >> b;
         G.add_edge(a, b, true);
     }
-    each_const (i : TopologicalSort<int>(G).get()) print << i << endl;
+    for (const auto& i : TopologicalSort<int>(G).get()) print << i << endl;
 }

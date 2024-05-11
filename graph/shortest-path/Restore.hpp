@@ -13,7 +13,7 @@ Edges<T> Restore(const Graph<T>& G, const std::vector<T>& dist, int start = 0) {
     while (!que.empty()) {
         int v = que.front();
         que.pop();
-        each_const (e : G[v]) {
+        for (const auto& e : G[v]) {
             if (res[e.to].to == -2 && dist[e.to] == dist[v] + e.cost) {
                 res[e.to] = e;
                 que.push(e.to);
@@ -32,7 +32,7 @@ Edges<T> RestorePath(const Graph<T>& G, const std::vector<T>& dist, int s,
     Edges<T> res;
     while (s != t) {
         bool flg = false;
-        each_const (e : RG[t]) {
+        for (const auto& e : RG[t]) {
             if (!seen[e.to] && dist[e.to] + e.cost == dist[t]) {
                 seen[e.to] = true;
                 res.emplace_back(e.to, e.from, std::move(e.cost), e.idx);

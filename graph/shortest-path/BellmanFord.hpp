@@ -10,7 +10,7 @@ std::vector<T> BellmanFord(int V, const Edges<T>& Ed, int start = 0) {
     dist[start] = 0;
     rep (i, V) {
         bool changed = false;
-        each_const (e : Ed) {
+        for (const auto& e : Ed) {
             if (dist[e.from] != infinity<T>::value &&
                 chmin(dist[e.to], dist[e.from] + e.cost)) {
                 changed = true;
@@ -18,7 +18,7 @@ std::vector<T> BellmanFord(int V, const Edges<T>& Ed, int start = 0) {
         }
         if (!changed) return dist;
     }
-    each_const (e : Ed) {
+    for (const auto& e : Ed) {
         if (dist[e.from] != infinity<T>::value &&
             dist[e.to] > dist[e.from] + e.cost) {
             dist[e.to] = -infinity<T>::value;
@@ -26,7 +26,7 @@ std::vector<T> BellmanFord(int V, const Edges<T>& Ed, int start = 0) {
     }
     rep (i, V - 1) {
         bool changed = false;
-        each_const (e : Ed) {
+        for (const auto& e : Ed) {
             if (dist[e.from] == -infinity<T>::value) {
                 dist[e.to] = -infinity<T>::value;
                 changed = true;

@@ -14,6 +14,6 @@ int main() {
     auto v = TD.get_path();
     print << TD.diameter() << ' ' << v.size() + 1 << endl;
     print << v[0].from;
-    each_const (e : v) print << ' ' << e.to;
+    for (const auto& e : v) print << ' ' << e.to;
     print << endl;
 }

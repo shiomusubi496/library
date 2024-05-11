@@ -19,7 +19,7 @@ private:
 public:
     RangeSet() : sz(0) {}
     RangeSet(const std::set<std::pair<ll, ll>>& st_) : sz(0) {
-        each_const (p : st_) insert(p.first, p.second);
+        for (const auto& p : st_) insert(p.first, p.second);
     }
     iterator begin() const { return st.begin(); }
     iterator end() const { return st.end(); }
@@ -99,7 +99,7 @@ public:
     }
     friend RangeSet operator||(const RangeSet& lhs, const RangeSet& rhs) {
         RangeSet res = lhs;
-        each_const (p : rhs) res.insert(p.first, p.second);
+        for (const auto& p : rhs) res.insert(p.first, p.second);
         return res;
     }
     friend RangeSet operator&&(const RangeSet& lhs, const RangeSet& rhs) {

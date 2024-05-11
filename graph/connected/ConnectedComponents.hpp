@@ -9,7 +9,7 @@ private:
     const Graph<T>& G;
     std::vector<int> cmp;
     void dfs(int v) {
-        each_const (e : G[v]) {
+        for (const auto& e : G[v]) {
             if (cmp[e.to] != -1) continue;
             cmp[e.to] = cmp[v];
             dfs(e.to);

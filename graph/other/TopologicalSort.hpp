@@ -11,7 +11,7 @@ private:
     std::vector<bool> seen;
     void dfs(int v) {
         seen[v] = true;
-        each_const (e : G[v]) {
+        for (const auto& e : G[v]) {
             if (seen[e.to]) continue;
             dfs(e.to);
         }

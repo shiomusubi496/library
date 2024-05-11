@@ -18,7 +18,7 @@ int main() {
     vector<mint> A(N); scan >> A;
     auto f = [&](vector<mint>&& v) -> pair<mint, int> {
         mint ans = 0;
-        each_const (i : v) ans += i;
+        for (const auto& i : v) ans += i;
         return {ans, v.size()};
     };
     auto g = [&](const PMM& x, pair<mint, int>& p) -> void {

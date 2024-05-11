@@ -11,6 +11,8 @@ public:
     Random() : Random(std::random_device{}()) {}
     Random(result_type seed) : rnd(seed) {}
     result_type operator()() { return rnd(); }
+    result_type min() const { return rnd.min(); }
+    result_type max() const { return rnd.max(); }
     template<class IntType = ll> IntType uniform(IntType l, IntType r) {
         static_assert(std::is_integral<IntType>::value,
                       "template argument must be an integral type");

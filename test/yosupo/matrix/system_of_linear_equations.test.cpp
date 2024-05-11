@@ -16,5 +16,5 @@ int main() {
     }
     prints(le.dimension());
     prints(le.get_solution());
-    each_const (v : le.get_solution_space()) prints(v);
+    for (const auto& v : le.get_solution_space()) prints(v);
 }

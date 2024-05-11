@@ -14,7 +14,7 @@ int main() {
         }
     }
     GMatrix<int> GM = ListToMatrix(G);
-    each_const (v : GM) {
+    for (const auto& v : GM) {
         rep (i, N) {
             if (v[i] == 1) print << 1;
             else print << 0;

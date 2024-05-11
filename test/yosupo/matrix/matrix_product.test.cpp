@@ -10,5 +10,5 @@ int main() {
     Mat A(N, M); scan >> A;
     Mat B(M, K); scan >> B;
     Mat C = A * B;
-    each_const (v : C) print << v << endl;
+    for (const auto& v : C) print << v << endl;
 }

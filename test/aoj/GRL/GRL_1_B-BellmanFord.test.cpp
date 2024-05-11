@@ -6,7 +6,7 @@ using namespace std;
 int main() {
     int V, E, r; scan >> V >> E >> r;
     Edges<int> Ed(E);
-    each_for (e : Ed) scan >> e.from >> e.to >> e.cost;
+    for (auto&& e : Ed) scan >> e.from >> e.to >> e.cost;
     auto dist = BellmanFord(V, Ed, r);
     if (count(all(dist), -infinity<int>::value)) {
         print << "NEGATIVE CYCLE" << endl;

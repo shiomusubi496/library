@@ -10,7 +10,7 @@ private:
     int s, t;
     std::vector<T> dist;
     void dfs(int v, int p) {
-        each_const (e : G[v]) {
+        for (const auto& e : G[v]) {
             if (e.to == p) continue;
             dist[e.to] = dist[v] + e.cost;
             dfs(e.to, v);
