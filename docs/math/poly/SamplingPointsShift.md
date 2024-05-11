@@ -14,3 +14,7 @@ f(x) &= \sum_{i=0}^{n-1} f(i) \prod_{0 \leq j < n, i\neq j} \frac{x-j}{i-j} \\
 これに $k=0, 1, \ldots, n-1$ について $x=k$ を代入することを考えると、 $f(T+k) = \sum_{i=0}^{\min(n-1,k)}b_i\frac{k!}{(k-i)!}$ と表せる。適当に畳み込むことで求めたいものが得られる。
 
 - `vector<T> sampling_points_shift(vector<T> a, int m, T t)` : 上記の通り。 $\Theta((n+m) \log (n+m))$ 。
+
+また、 $m=1$ の場合などでは、単に $t$ を代入をするだけで良く、適当に累積積を取ることで線形時間/空間で計算できる。
+
+- `T sampling_points_shift(vector<T> a, T t)` : 上記の通り。 $\Theta(n)$ 。
