@@ -145,10 +145,10 @@ data:
     \ double_size_int<T>,\n                              double_size_uint<T>>::type;\n\
     template<class T> using double_size_t = typename double_size<T>::type;\n#line\
     \ 2 \"template/in.hpp\"\n\n#line 4 \"template/in.hpp\"\n#include <unistd.h>\n\
-    #line 8 \"template/in.hpp\"\n\ntemplate<std::size_t buf_size = IO_BUFFER_SIZE,\
-    \ std::size_t decimal_precision = 16> class Scanner {\nprivate:\n    template<class,\
-    \ class = void> struct has_scan : std::false_type {};\n    template<class T>\n\
-    \    struct has_scan<\n        T, decltype(std::declval<T>().scan(std::declval<Scanner&>()),\
+    #line 8 \"template/in.hpp\"\n\ntemplate<std::size_t buf_size = IO_BUFFER_SIZE,\n\
+    \         std::size_t decimal_precision = 16>\nclass Scanner {\nprivate:\n   \
+    \ template<class, class = void> struct has_scan : std::false_type {};\n    template<class\
+    \ T>\n    struct has_scan<\n        T, decltype(std::declval<T>().scan(std::declval<Scanner&>()),\
     \ (void)0)>\n        : std::true_type {};\n    int fd;\n    int idx, sz;\n   \
     \ bool state;\n    std::array<char, IO_BUFFER_SIZE + 1> buffer;\n    inline char\
     \ cur() {\n        if (idx == sz) load();\n        if (idx == sz) {\n        \
@@ -163,58 +163,59 @@ data:
     \        return idx == sz ? '\\0' : buffer[idx++];\n    }\n\n    Scanner ignore(int\
     \ n = 1) {\n        if (idx + n > sz) load();\n        idx += n;\n        return\
     \ *this;\n    }\n\n    inline void discard_space() {\n        if (idx == sz) load();\n\
-    \        while (('\\t' <= buffer[idx] && buffer[idx] <= '\\r') || buffer[idx]\
-    \ == ' ') {\n            if (++idx == sz) load();\n        }\n    }\n    void\
-    \ scan(char& a) {\n        discard_space();\n        a = scan_char();\n    }\n\
-    \    void scan(bool& a) {\n        discard_space();\n        a = scan_char() !=\
-    \ '0';\n    }\n    void scan(std::string& a) {\n        discard_space();\n   \
-    \     a.clear();\n        while (cur() != '\\0' && (buffer[idx] < '\\t' || '\\\
-    r' < buffer[idx]) && buffer[idx] != ' ') {\n            a += scan_char();\n  \
-    \      }\n    }\n    template<std::size_t len> void scan(std::bitset<len>& a)\
-    \ {\n        discard_space();\n        if (idx + len > sz) load();\n        rrep\
-    \ (i, len) a[i] = buffer[idx++] != '0';\n    }\n    template<class T,\n      \
-    \       typename std::enable_if<is_signed_int<T>::value &&\n                 \
-    \                    !has_scan<T>::value>::type* = nullptr>\n    void scan(T&\
+    \        while (('\\t' <= buffer[idx] && buffer[idx] <= '\\r') ||\n          \
+    \     buffer[idx] == ' ') {\n            if (++idx == sz) load();\n        }\n\
+    \    }\n    void scan(char& a) {\n        discard_space();\n        a = scan_char();\n\
+    \    }\n    void scan(bool& a) {\n        discard_space();\n        a = scan_char()\
+    \ != '0';\n    }\n    void scan(std::string& a) {\n        discard_space();\n\
+    \        a.clear();\n        while (cur() != '\\0' && (buffer[idx] < '\\t' ||\
+    \ '\\r' < buffer[idx]) &&\n               buffer[idx] != ' ') {\n            a\
+    \ += scan_char();\n        }\n    }\n    template<std::size_t len> void scan(std::bitset<len>&\
+    \ a) {\n        discard_space();\n        if (idx + len > sz) load();\n      \
+    \  rrep (i, len) a[i] = buffer[idx++] != '0';\n    }\n    template<class T,\n\
+    \             typename std::enable_if<is_signed_int<T>::value &&\n           \
+    \                          !has_scan<T>::value>::type* = nullptr>\n    void scan(T&\
     \ a) {\n        discard_space();\n        if (buffer[idx] == '-') {\n        \
-    \    ++idx;\n            if (idx + 20 > sz && '0' <= buffer[sz - 1] && buffer[sz\
-    \ - 1] <= '9') load();\n            a = 0;\n            while ('0' <= buffer[idx]\
-    \ && buffer[idx] <= '9') {\n                a = a * 10 - (buffer[idx++] - '0');\n\
-    \            }\n        }\n        else {\n            if (idx + 20 > sz && '0'\
-    \ <= buffer[sz - 1] && buffer[sz - 1] <= '9') load();\n            a = 0;\n  \
-    \          while ('0' <= buffer[idx] && buffer[idx] <= '9') {\n              \
-    \  a = a * 10 + (buffer[idx++] - '0');\n            }\n        }\n    }\n    template<class\
+    \    ++idx;\n            if (idx + 40 > sz &&\n                (idx == sz || ('0'\
+    \ <= buffer[sz - 1] && buffer[sz - 1] <= '9')))\n                load();\n   \
+    \         a = 0;\n            while ('0' <= buffer[idx] && buffer[idx] <= '9')\
+    \ {\n                a = a * 10 - (buffer[idx++] - '0');\n            }\n    \
+    \    }\n        else {\n            if (idx + 40 > sz && '0' <= buffer[sz - 1]\
+    \ && buffer[sz - 1] <= '9')\n                load();\n            a = 0;\n   \
+    \         while ('0' <= buffer[idx] && buffer[idx] <= '9') {\n               \
+    \ a = a * 10 + (buffer[idx++] - '0');\n            }\n        }\n    }\n    template<class\
     \ T,\n             typename std::enable_if<is_unsigned_int<T>::value &&\n    \
     \                                 !has_scan<T>::value>::type* = nullptr>\n   \
-    \ void scan(T& a) {\n        discard_space();\n        if (idx + 20 > sz && '0'\
-    \ <= buffer[sz - 1] && buffer[sz - 1] <= '9') load();\n        a = 0;\n      \
-    \  while ('0' <= buffer[idx] && buffer[idx] <= '9') {\n            a = a * 10\
-    \ + (buffer[idx++] - '0');\n        }\n    }\n    template<class T,\n        \
-    \     typename std::enable_if<std::is_floating_point<T>::value &&\n          \
-    \                           !has_scan<T>::value>::type* = nullptr>\n    void scan(T&\
-    \ a) {\n        discard_space();\n        bool sgn = false;\n        if (cur()\
-    \ == '-') {\n            sgn = true;\n            next();\n        }\n       \
-    \ a = 0;\n        while ('0' <= cur() && cur() <= '9') {\n            a = a *\
-    \ 10 + cur() - '0';\n            next();\n        }\n        if (cur() == '.')\
-    \ {\n            next();\n            T n = 0, d = 1;\n            for (int i\
-    \ = 0;\n                 '0' <= cur() && cur() <= '9' && i < (int)decimal_precision;\n\
-    \                 ++i) {\n                n = n * 10 + cur() - '0';\n        \
-    \        d *= 10;\n                next();\n            }\n            while ('0'\
-    \ <= cur() && cur() <= '9') next();\n            a += n / d;\n        }\n    \
-    \    if (sgn) a = -a;\n    }\n\nprivate:\n    template<std::size_t i, class...\
-    \ Args> void scan(std::tuple<Args...>& a) {\n        if IF_CONSTEXPR (i < sizeof...(Args))\
-    \ {\n            scan(std::get<i>(a));\n            scan<i + 1, Args...>(a);\n\
-    \        }\n    }\n\npublic:\n    template<class... Args> void scan(std::tuple<Args...>&\
-    \ a) {\n        scan<0, Args...>(a);\n    }\n    template<class T, class U> void\
-    \ scan(std::pair<T, U>& a) {\n        scan(a.first);\n        scan(a.second);\n\
-    \    }\n    template<class T,\n             typename std::enable_if<is_range<T>::value\
-    \ &&\n                                     !has_scan<T>::value>::type* = nullptr>\n\
-    \    void scan(T& a) {\n        for (auto&& i : a) scan(i);\n    }\n    template<class\
-    \ T,\n             typename std::enable_if<has_scan<T>::value>::type* = nullptr>\n\
-    \    void scan(T& a) {\n        a.scan(*this);\n    }\n\n    void operator()()\
-    \ {}\n    template<class Head, class... Args>\n    void operator()(Head& head,\
-    \ Args&... args) {\n        scan(head);\n        operator()(args...);\n    }\n\
-    \n    template<class T> Scanner& operator>>(T& a) {\n        scan(a);\n      \
-    \  return *this;\n    }\n\n    explicit operator bool() const { return state;\
+    \ void scan(T& a) {\n        discard_space();\n        if (idx + 40 > sz && '0'\
+    \ <= buffer[sz - 1] && buffer[sz - 1] <= '9')\n            load();\n        a\
+    \ = 0;\n        while ('0' <= buffer[idx] && buffer[idx] <= '9') {\n         \
+    \   a = a * 10 + (buffer[idx++] - '0');\n        }\n    }\n    template<class\
+    \ T,\n             typename std::enable_if<std::is_floating_point<T>::value &&\n\
+    \                                     !has_scan<T>::value>::type* = nullptr>\n\
+    \    void scan(T& a) {\n        discard_space();\n        bool sgn = false;\n\
+    \        if (cur() == '-') {\n            sgn = true;\n            next();\n \
+    \       }\n        a = 0;\n        while ('0' <= cur() && cur() <= '9') {\n  \
+    \          a = a * 10 + cur() - '0';\n            next();\n        }\n       \
+    \ if (cur() == '.') {\n            next();\n            T n = 0, d = 1;\n    \
+    \        for (int i = 0;\n                 '0' <= cur() && cur() <= '9' && i <\
+    \ (int)decimal_precision;\n                 ++i) {\n                n = n * 10\
+    \ + cur() - '0';\n                d *= 10;\n                next();\n        \
+    \    }\n            while ('0' <= cur() && cur() <= '9') next();\n           \
+    \ a += n / d;\n        }\n        if (sgn) a = -a;\n    }\n\nprivate:\n    template<std::size_t\
+    \ i, class... Args> void scan(std::tuple<Args...>& a) {\n        if IF_CONSTEXPR\
+    \ (i < sizeof...(Args)) {\n            scan(std::get<i>(a));\n            scan<i\
+    \ + 1, Args...>(a);\n        }\n    }\n\npublic:\n    template<class... Args>\
+    \ void scan(std::tuple<Args...>& a) {\n        scan<0, Args...>(a);\n    }\n \
+    \   template<class T, class U> void scan(std::pair<T, U>& a) {\n        scan(a.first);\n\
+    \        scan(a.second);\n    }\n    template<class T,\n             typename\
+    \ std::enable_if<is_range<T>::value &&\n                                     !has_scan<T>::value>::type*\
+    \ = nullptr>\n    void scan(T& a) {\n        for (auto&& i : a) scan(i);\n   \
+    \ }\n    template<class T,\n             typename std::enable_if<has_scan<T>::value>::type*\
+    \ = nullptr>\n    void scan(T& a) {\n        a.scan(*this);\n    }\n\n    void\
+    \ operator()() {}\n    template<class Head, class... Args>\n    void operator()(Head&\
+    \ head, Args&... args) {\n        scan(head);\n        operator()(args...);\n\
+    \    }\n\n    template<class T> Scanner& operator>>(T& a) {\n        scan(a);\n\
+    \        return *this;\n    }\n\n    explicit operator bool() const { return state;\
     \ }\n\n    friend Scanner& getline(Scanner& scan, std::string& a) {\n        a.erase();\n\
     \        char c;\n        if ((c = scan.scan_char()) == '\\n' || c == '\\0') return\
     \ scan;\n        a += c;\n        while ((c = scan.scan_char()) != '\\n' && c\
@@ -224,7 +225,7 @@ data:
     \ : buf{} {\n        rep (i, 10000) {\n            int n = i;\n            rrep\
     \ (j, 4) {\n                buf[i][j] = (char)('0' + n % 10);\n              \
     \  n /= 10;\n            }\n        }\n    }\n} constexpr precalc_number_to_string;\n\
-    \ntemplate<std::size_t buf_size = IO_BUFFER_SIZE, bool debug = false> class Printer\
+    \ntemplate<std::size_t buf_size = IO_BUFFER_SIZE, bool debug = false>\nclass Printer\
     \ {\nprivate:\n    template<class, bool = debug, class = void>\n    struct has_print\
     \ : std::false_type {};\n    template<class T>\n    struct has_print<T, false,\n\
     \                     decltype(std::declval<T>().print(std::declval<Printer&>()),\n\
@@ -264,29 +265,29 @@ data:
     \ >= 10000) {\n            int i = a % 10000;\n            a /= 10000;\n     \
     \       t -= 4;\n            std::memcpy(s + t, precalc_number_to_string.buf[i],\
     \ 4);\n        }\n        if (a >= 1000) {\n            std::memcpy(buffer.begin()\
-    \ + idx, precalc_number_to_string.buf[a], 4);\n            idx += 4;\n       \
-    \ }\n        else if (a >= 100) {\n            std::memcpy(buffer.begin() + idx,\
-    \ precalc_number_to_string.buf[a] + 1, 3);\n            idx += 3;\n        }\n\
-    \        else if (a >= 10) {\n            std::memcpy(buffer.begin() + idx, precalc_number_to_string.buf[a]\
-    \ + 2, 2);\n            idx += 2;\n        }\n        else {\n            buffer[idx++]\
-    \ = '0' | a;\n        }\n        std::memcpy(buffer.begin() + idx, s + t, 40 -\
-    \ t);\n        idx += 40 - t;\n    }\n    template<class T,\n             typename\
-    \ std::enable_if<std::is_floating_point<T>::value &&\n                       \
-    \              !has_print<T>::value>::type* = nullptr>\n    void print(T a) {\n\
-    \        if (a == std::numeric_limits<T>::infinity()) {\n            print(\"\
-    inf\");\n            return;\n        }\n        if (a == -std::numeric_limits<T>::infinity())\
-    \ {\n            print(\"-inf\");\n            return;\n        }\n        if\
-    \ (std::isnan(a)) {\n            print(\"nan\");\n            return;\n      \
-    \  }\n        if (a < 0) {\n            print_char('-');\n            a = -a;\n\
-    \        }\n        T b = a;\n        if (b < 1) {\n            print_char('0');\n\
-    \        }\n        else {\n            std::string s;\n            while (b >=\
-    \ 1) {\n                s += (char)('0' + (int)std::fmod(b, 10.0));\n        \
-    \        b /= 10;\n            }\n            for (auto i = s.rbegin(); i != s.rend();\
-    \ ++i) print_char(*i);\n        }\n        print_char('.');\n        rep (decimal_precision)\
-    \ {\n            a *= 10;\n            print_char((char)('0' + (int)std::fmod(a,\
-    \ 10.0)));\n        }\n    }\n\nprivate:\n    template<std::size_t i, class...\
-    \ Args>\n    void print(const std::tuple<Args...>& a) {\n        if IF_CONSTEXPR\
-    \ (i < sizeof...(Args)) {\n            if IF_CONSTEXPR (debug) print_char(',');\n\
+    \ + idx, precalc_number_to_string.buf[a],\n                        4);\n     \
+    \       idx += 4;\n        }\n        else if (a >= 100) {\n            std::memcpy(buffer.begin()\
+    \ + idx,\n                        precalc_number_to_string.buf[a] + 1, 3);\n \
+    \           idx += 3;\n        }\n        else if (a >= 10) {\n            std::memcpy(buffer.begin()\
+    \ + idx,\n                        precalc_number_to_string.buf[a] + 2, 2);\n \
+    \           idx += 2;\n        }\n        else {\n            buffer[idx++] =\
+    \ '0' | a;\n        }\n        std::memcpy(buffer.begin() + idx, s + t, 40 - t);\n\
+    \        idx += 40 - t;\n    }\n    template<class T,\n             typename std::enable_if<std::is_floating_point<T>::value\
+    \ &&\n                                     !has_print<T>::value>::type* = nullptr>\n\
+    \    void print(T a) {\n        if (a == std::numeric_limits<T>::infinity()) {\n\
+    \            print(\"inf\");\n            return;\n        }\n        if (a ==\
+    \ -std::numeric_limits<T>::infinity()) {\n            print(\"-inf\");\n     \
+    \       return;\n        }\n        if (std::isnan(a)) {\n            print(\"\
+    nan\");\n            return;\n        }\n        if (a < 0) {\n            print_char('-');\n\
+    \            a = -a;\n        }\n        T b = a;\n        if (b < 1) {\n    \
+    \        print_char('0');\n        }\n        else {\n            std::string\
+    \ s;\n            while (b >= 1) {\n                s += (char)('0' + (int)std::fmod(b,\
+    \ 10.0));\n                b /= 10;\n            }\n            for (auto i =\
+    \ s.rbegin(); i != s.rend(); ++i) print_char(*i);\n        }\n        print_char('.');\n\
+    \        rep (decimal_precision) {\n            a *= 10;\n            print_char((char)('0'\
+    \ + (int)std::fmod(a, 10.0)));\n        }\n    }\n\nprivate:\n    template<std::size_t\
+    \ i, class... Args>\n    void print(const std::tuple<Args...>& a) {\n        if\
+    \ IF_CONSTEXPR (i < sizeof...(Args)) {\n            if IF_CONSTEXPR (debug) print_char(',');\n\
     \            print_char(' ');\n            print(std::get<i>(a));\n          \
     \  print<i + 1, Args...>(a);\n        }\n    }\n\npublic:\n    template<class...\
     \ Args> void print(const std::tuple<Args...>& a) {\n        if IF_CONSTEXPR (debug)\
@@ -458,7 +459,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1/ALDS1_1_C-PrimeSqrt.test.cpp
   requiredBy: []
-  timestamp: '2024-05-12 00:53:40+09:00'
+  timestamp: '2024-05-12 12:21:41+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1/ALDS1_1_C-PrimeSqrt.test.cpp

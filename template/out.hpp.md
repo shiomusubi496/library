@@ -632,7 +632,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_3_C-contain.test.cpp
     title: test/aoj/CGL/CGL_3_C-contain.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
     title: test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
   - icon: ':heavy_check_mark:'
@@ -680,7 +680,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_C.test.cpp
     title: test/aoj/DPL/DPL_5_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_D.test.cpp
     title: test/aoj/DPL/DPL_5_D.test.cpp
   - icon: ':x:'
@@ -1428,7 +1428,7 @@ data:
     \    int n = i;\n            rrep (j, 4) {\n                buf[i][j] = (char)('0'\
     \ + n % 10);\n                n /= 10;\n            }\n        }\n    }\n} constexpr\
     \ precalc_number_to_string;\n\ntemplate<std::size_t buf_size = IO_BUFFER_SIZE,\
-    \ bool debug = false> class Printer {\nprivate:\n    template<class, bool = debug,\
+    \ bool debug = false>\nclass Printer {\nprivate:\n    template<class, bool = debug,\
     \ class = void>\n    struct has_print : std::false_type {};\n    template<class\
     \ T>\n    struct has_print<T, false,\n                     decltype(std::declval<T>().print(std::declval<Printer&>()),\n\
     \                              (void)0)> : std::true_type {};\n    template<class\
@@ -1467,29 +1467,29 @@ data:
     \ >= 10000) {\n            int i = a % 10000;\n            a /= 10000;\n     \
     \       t -= 4;\n            std::memcpy(s + t, precalc_number_to_string.buf[i],\
     \ 4);\n        }\n        if (a >= 1000) {\n            std::memcpy(buffer.begin()\
-    \ + idx, precalc_number_to_string.buf[a], 4);\n            idx += 4;\n       \
-    \ }\n        else if (a >= 100) {\n            std::memcpy(buffer.begin() + idx,\
-    \ precalc_number_to_string.buf[a] + 1, 3);\n            idx += 3;\n        }\n\
-    \        else if (a >= 10) {\n            std::memcpy(buffer.begin() + idx, precalc_number_to_string.buf[a]\
-    \ + 2, 2);\n            idx += 2;\n        }\n        else {\n            buffer[idx++]\
-    \ = '0' | a;\n        }\n        std::memcpy(buffer.begin() + idx, s + t, 40 -\
-    \ t);\n        idx += 40 - t;\n    }\n    template<class T,\n             typename\
-    \ std::enable_if<std::is_floating_point<T>::value &&\n                       \
-    \              !has_print<T>::value>::type* = nullptr>\n    void print(T a) {\n\
-    \        if (a == std::numeric_limits<T>::infinity()) {\n            print(\"\
-    inf\");\n            return;\n        }\n        if (a == -std::numeric_limits<T>::infinity())\
-    \ {\n            print(\"-inf\");\n            return;\n        }\n        if\
-    \ (std::isnan(a)) {\n            print(\"nan\");\n            return;\n      \
-    \  }\n        if (a < 0) {\n            print_char('-');\n            a = -a;\n\
-    \        }\n        T b = a;\n        if (b < 1) {\n            print_char('0');\n\
-    \        }\n        else {\n            std::string s;\n            while (b >=\
-    \ 1) {\n                s += (char)('0' + (int)std::fmod(b, 10.0));\n        \
-    \        b /= 10;\n            }\n            for (auto i = s.rbegin(); i != s.rend();\
-    \ ++i) print_char(*i);\n        }\n        print_char('.');\n        rep (decimal_precision)\
-    \ {\n            a *= 10;\n            print_char((char)('0' + (int)std::fmod(a,\
-    \ 10.0)));\n        }\n    }\n\nprivate:\n    template<std::size_t i, class...\
-    \ Args>\n    void print(const std::tuple<Args...>& a) {\n        if IF_CONSTEXPR\
-    \ (i < sizeof...(Args)) {\n            if IF_CONSTEXPR (debug) print_char(',');\n\
+    \ + idx, precalc_number_to_string.buf[a],\n                        4);\n     \
+    \       idx += 4;\n        }\n        else if (a >= 100) {\n            std::memcpy(buffer.begin()\
+    \ + idx,\n                        precalc_number_to_string.buf[a] + 1, 3);\n \
+    \           idx += 3;\n        }\n        else if (a >= 10) {\n            std::memcpy(buffer.begin()\
+    \ + idx,\n                        precalc_number_to_string.buf[a] + 2, 2);\n \
+    \           idx += 2;\n        }\n        else {\n            buffer[idx++] =\
+    \ '0' | a;\n        }\n        std::memcpy(buffer.begin() + idx, s + t, 40 - t);\n\
+    \        idx += 40 - t;\n    }\n    template<class T,\n             typename std::enable_if<std::is_floating_point<T>::value\
+    \ &&\n                                     !has_print<T>::value>::type* = nullptr>\n\
+    \    void print(T a) {\n        if (a == std::numeric_limits<T>::infinity()) {\n\
+    \            print(\"inf\");\n            return;\n        }\n        if (a ==\
+    \ -std::numeric_limits<T>::infinity()) {\n            print(\"-inf\");\n     \
+    \       return;\n        }\n        if (std::isnan(a)) {\n            print(\"\
+    nan\");\n            return;\n        }\n        if (a < 0) {\n            print_char('-');\n\
+    \            a = -a;\n        }\n        T b = a;\n        if (b < 1) {\n    \
+    \        print_char('0');\n        }\n        else {\n            std::string\
+    \ s;\n            while (b >= 1) {\n                s += (char)('0' + (int)std::fmod(b,\
+    \ 10.0));\n                b /= 10;\n            }\n            for (auto i =\
+    \ s.rbegin(); i != s.rend(); ++i) print_char(*i);\n        }\n        print_char('.');\n\
+    \        rep (decimal_precision) {\n            a *= 10;\n            print_char((char)('0'\
+    \ + (int)std::fmod(a, 10.0)));\n        }\n    }\n\nprivate:\n    template<std::size_t\
+    \ i, class... Args>\n    void print(const std::tuple<Args...>& a) {\n        if\
+    \ IF_CONSTEXPR (i < sizeof...(Args)) {\n            if IF_CONSTEXPR (debug) print_char(',');\n\
     \            print_char(' ');\n            print(std::get<i>(a));\n          \
     \  print<i + 1, Args...>(a);\n        }\n    }\n\npublic:\n    template<class...\
     \ Args> void print(const std::tuple<Args...>& a) {\n        if IF_CONSTEXPR (debug)\
@@ -1540,8 +1540,8 @@ data:
     \   rep (i, 10000) {\n            int n = i;\n            rrep (j, 4) {\n    \
     \            buf[i][j] = (char)('0' + n % 10);\n                n /= 10;\n   \
     \         }\n        }\n    }\n} constexpr precalc_number_to_string;\n\ntemplate<std::size_t\
-    \ buf_size = IO_BUFFER_SIZE, bool debug = false> class Printer {\nprivate:\n \
-    \   template<class, bool = debug, class = void>\n    struct has_print : std::false_type\
+    \ buf_size = IO_BUFFER_SIZE, bool debug = false>\nclass Printer {\nprivate:\n\
+    \    template<class, bool = debug, class = void>\n    struct has_print : std::false_type\
     \ {};\n    template<class T>\n    struct has_print<T, false,\n               \
     \      decltype(std::declval<T>().print(std::declval<Printer&>()),\n         \
     \                     (void)0)> : std::true_type {};\n    template<class T>\n\
@@ -1580,29 +1580,29 @@ data:
     \ >= 10000) {\n            int i = a % 10000;\n            a /= 10000;\n     \
     \       t -= 4;\n            std::memcpy(s + t, precalc_number_to_string.buf[i],\
     \ 4);\n        }\n        if (a >= 1000) {\n            std::memcpy(buffer.begin()\
-    \ + idx, precalc_number_to_string.buf[a], 4);\n            idx += 4;\n       \
-    \ }\n        else if (a >= 100) {\n            std::memcpy(buffer.begin() + idx,\
-    \ precalc_number_to_string.buf[a] + 1, 3);\n            idx += 3;\n        }\n\
-    \        else if (a >= 10) {\n            std::memcpy(buffer.begin() + idx, precalc_number_to_string.buf[a]\
-    \ + 2, 2);\n            idx += 2;\n        }\n        else {\n            buffer[idx++]\
-    \ = '0' | a;\n        }\n        std::memcpy(buffer.begin() + idx, s + t, 40 -\
-    \ t);\n        idx += 40 - t;\n    }\n    template<class T,\n             typename\
-    \ std::enable_if<std::is_floating_point<T>::value &&\n                       \
-    \              !has_print<T>::value>::type* = nullptr>\n    void print(T a) {\n\
-    \        if (a == std::numeric_limits<T>::infinity()) {\n            print(\"\
-    inf\");\n            return;\n        }\n        if (a == -std::numeric_limits<T>::infinity())\
-    \ {\n            print(\"-inf\");\n            return;\n        }\n        if\
-    \ (std::isnan(a)) {\n            print(\"nan\");\n            return;\n      \
-    \  }\n        if (a < 0) {\n            print_char('-');\n            a = -a;\n\
-    \        }\n        T b = a;\n        if (b < 1) {\n            print_char('0');\n\
-    \        }\n        else {\n            std::string s;\n            while (b >=\
-    \ 1) {\n                s += (char)('0' + (int)std::fmod(b, 10.0));\n        \
-    \        b /= 10;\n            }\n            for (auto i = s.rbegin(); i != s.rend();\
-    \ ++i) print_char(*i);\n        }\n        print_char('.');\n        rep (decimal_precision)\
-    \ {\n            a *= 10;\n            print_char((char)('0' + (int)std::fmod(a,\
-    \ 10.0)));\n        }\n    }\n\nprivate:\n    template<std::size_t i, class...\
-    \ Args>\n    void print(const std::tuple<Args...>& a) {\n        if IF_CONSTEXPR\
-    \ (i < sizeof...(Args)) {\n            if IF_CONSTEXPR (debug) print_char(',');\n\
+    \ + idx, precalc_number_to_string.buf[a],\n                        4);\n     \
+    \       idx += 4;\n        }\n        else if (a >= 100) {\n            std::memcpy(buffer.begin()\
+    \ + idx,\n                        precalc_number_to_string.buf[a] + 1, 3);\n \
+    \           idx += 3;\n        }\n        else if (a >= 10) {\n            std::memcpy(buffer.begin()\
+    \ + idx,\n                        precalc_number_to_string.buf[a] + 2, 2);\n \
+    \           idx += 2;\n        }\n        else {\n            buffer[idx++] =\
+    \ '0' | a;\n        }\n        std::memcpy(buffer.begin() + idx, s + t, 40 - t);\n\
+    \        idx += 40 - t;\n    }\n    template<class T,\n             typename std::enable_if<std::is_floating_point<T>::value\
+    \ &&\n                                     !has_print<T>::value>::type* = nullptr>\n\
+    \    void print(T a) {\n        if (a == std::numeric_limits<T>::infinity()) {\n\
+    \            print(\"inf\");\n            return;\n        }\n        if (a ==\
+    \ -std::numeric_limits<T>::infinity()) {\n            print(\"-inf\");\n     \
+    \       return;\n        }\n        if (std::isnan(a)) {\n            print(\"\
+    nan\");\n            return;\n        }\n        if (a < 0) {\n            print_char('-');\n\
+    \            a = -a;\n        }\n        T b = a;\n        if (b < 1) {\n    \
+    \        print_char('0');\n        }\n        else {\n            std::string\
+    \ s;\n            while (b >= 1) {\n                s += (char)('0' + (int)std::fmod(b,\
+    \ 10.0));\n                b /= 10;\n            }\n            for (auto i =\
+    \ s.rbegin(); i != s.rend(); ++i) print_char(*i);\n        }\n        print_char('.');\n\
+    \        rep (decimal_precision) {\n            a *= 10;\n            print_char((char)('0'\
+    \ + (int)std::fmod(a, 10.0)));\n        }\n    }\n\nprivate:\n    template<std::size_t\
+    \ i, class... Args>\n    void print(const std::tuple<Args...>& a) {\n        if\
+    \ IF_CONSTEXPR (i < sizeof...(Args)) {\n            if IF_CONSTEXPR (debug) print_char(',');\n\
     \            print_char(' ');\n            print(std::get<i>(a));\n          \
     \  print<i + 1, Args...>(a);\n        }\n    }\n\npublic:\n    template<class...\
     \ Args> void print(const std::tuple<Args...>& a) {\n        if IF_CONSTEXPR (debug)\
@@ -1832,7 +1832,7 @@ data:
   - other/monoid.hpp
   - other/template.hpp
   - other/monoid2.hpp
-  timestamp: '2024-05-12 00:53:40+09:00'
+  timestamp: '2024-05-12 12:21:41+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/convolution/bitwise_and_convolution.test.cpp

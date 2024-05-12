@@ -164,10 +164,10 @@ data:
     \ double_size_int<T>,\n                              double_size_uint<T>>::type;\n\
     template<class T> using double_size_t = typename double_size<T>::type;\n#line\
     \ 2 \"template/in.hpp\"\n\n#line 4 \"template/in.hpp\"\n#include <unistd.h>\n\
-    #line 8 \"template/in.hpp\"\n\ntemplate<std::size_t buf_size = IO_BUFFER_SIZE,\
-    \ std::size_t decimal_precision = 16> class Scanner {\nprivate:\n    template<class,\
-    \ class = void> struct has_scan : std::false_type {};\n    template<class T>\n\
-    \    struct has_scan<\n        T, decltype(std::declval<T>().scan(std::declval<Scanner&>()),\
+    #line 8 \"template/in.hpp\"\n\ntemplate<std::size_t buf_size = IO_BUFFER_SIZE,\n\
+    \         std::size_t decimal_precision = 16>\nclass Scanner {\nprivate:\n   \
+    \ template<class, class = void> struct has_scan : std::false_type {};\n    template<class\
+    \ T>\n    struct has_scan<\n        T, decltype(std::declval<T>().scan(std::declval<Scanner&>()),\
     \ (void)0)>\n        : std::true_type {};\n    int fd;\n    int idx, sz;\n   \
     \ bool state;\n    std::array<char, IO_BUFFER_SIZE + 1> buffer;\n    inline char\
     \ cur() {\n        if (idx == sz) load();\n        if (idx == sz) {\n        \
@@ -182,58 +182,59 @@ data:
     \        return idx == sz ? '\\0' : buffer[idx++];\n    }\n\n    Scanner ignore(int\
     \ n = 1) {\n        if (idx + n > sz) load();\n        idx += n;\n        return\
     \ *this;\n    }\n\n    inline void discard_space() {\n        if (idx == sz) load();\n\
-    \        while (('\\t' <= buffer[idx] && buffer[idx] <= '\\r') || buffer[idx]\
-    \ == ' ') {\n            if (++idx == sz) load();\n        }\n    }\n    void\
-    \ scan(char& a) {\n        discard_space();\n        a = scan_char();\n    }\n\
-    \    void scan(bool& a) {\n        discard_space();\n        a = scan_char() !=\
-    \ '0';\n    }\n    void scan(std::string& a) {\n        discard_space();\n   \
-    \     a.clear();\n        while (cur() != '\\0' && (buffer[idx] < '\\t' || '\\\
-    r' < buffer[idx]) && buffer[idx] != ' ') {\n            a += scan_char();\n  \
-    \      }\n    }\n    template<std::size_t len> void scan(std::bitset<len>& a)\
-    \ {\n        discard_space();\n        if (idx + len > sz) load();\n        rrep\
-    \ (i, len) a[i] = buffer[idx++] != '0';\n    }\n    template<class T,\n      \
-    \       typename std::enable_if<is_signed_int<T>::value &&\n                 \
-    \                    !has_scan<T>::value>::type* = nullptr>\n    void scan(T&\
+    \        while (('\\t' <= buffer[idx] && buffer[idx] <= '\\r') ||\n          \
+    \     buffer[idx] == ' ') {\n            if (++idx == sz) load();\n        }\n\
+    \    }\n    void scan(char& a) {\n        discard_space();\n        a = scan_char();\n\
+    \    }\n    void scan(bool& a) {\n        discard_space();\n        a = scan_char()\
+    \ != '0';\n    }\n    void scan(std::string& a) {\n        discard_space();\n\
+    \        a.clear();\n        while (cur() != '\\0' && (buffer[idx] < '\\t' ||\
+    \ '\\r' < buffer[idx]) &&\n               buffer[idx] != ' ') {\n            a\
+    \ += scan_char();\n        }\n    }\n    template<std::size_t len> void scan(std::bitset<len>&\
+    \ a) {\n        discard_space();\n        if (idx + len > sz) load();\n      \
+    \  rrep (i, len) a[i] = buffer[idx++] != '0';\n    }\n    template<class T,\n\
+    \             typename std::enable_if<is_signed_int<T>::value &&\n           \
+    \                          !has_scan<T>::value>::type* = nullptr>\n    void scan(T&\
     \ a) {\n        discard_space();\n        if (buffer[idx] == '-') {\n        \
-    \    ++idx;\n            if (idx + 20 > sz && '0' <= buffer[sz - 1] && buffer[sz\
-    \ - 1] <= '9') load();\n            a = 0;\n            while ('0' <= buffer[idx]\
-    \ && buffer[idx] <= '9') {\n                a = a * 10 - (buffer[idx++] - '0');\n\
-    \            }\n        }\n        else {\n            if (idx + 20 > sz && '0'\
-    \ <= buffer[sz - 1] && buffer[sz - 1] <= '9') load();\n            a = 0;\n  \
-    \          while ('0' <= buffer[idx] && buffer[idx] <= '9') {\n              \
-    \  a = a * 10 + (buffer[idx++] - '0');\n            }\n        }\n    }\n    template<class\
+    \    ++idx;\n            if (idx + 40 > sz &&\n                (idx == sz || ('0'\
+    \ <= buffer[sz - 1] && buffer[sz - 1] <= '9')))\n                load();\n   \
+    \         a = 0;\n            while ('0' <= buffer[idx] && buffer[idx] <= '9')\
+    \ {\n                a = a * 10 - (buffer[idx++] - '0');\n            }\n    \
+    \    }\n        else {\n            if (idx + 40 > sz && '0' <= buffer[sz - 1]\
+    \ && buffer[sz - 1] <= '9')\n                load();\n            a = 0;\n   \
+    \         while ('0' <= buffer[idx] && buffer[idx] <= '9') {\n               \
+    \ a = a * 10 + (buffer[idx++] - '0');\n            }\n        }\n    }\n    template<class\
     \ T,\n             typename std::enable_if<is_unsigned_int<T>::value &&\n    \
     \                                 !has_scan<T>::value>::type* = nullptr>\n   \
-    \ void scan(T& a) {\n        discard_space();\n        if (idx + 20 > sz && '0'\
-    \ <= buffer[sz - 1] && buffer[sz - 1] <= '9') load();\n        a = 0;\n      \
-    \  while ('0' <= buffer[idx] && buffer[idx] <= '9') {\n            a = a * 10\
-    \ + (buffer[idx++] - '0');\n        }\n    }\n    template<class T,\n        \
-    \     typename std::enable_if<std::is_floating_point<T>::value &&\n          \
-    \                           !has_scan<T>::value>::type* = nullptr>\n    void scan(T&\
-    \ a) {\n        discard_space();\n        bool sgn = false;\n        if (cur()\
-    \ == '-') {\n            sgn = true;\n            next();\n        }\n       \
-    \ a = 0;\n        while ('0' <= cur() && cur() <= '9') {\n            a = a *\
-    \ 10 + cur() - '0';\n            next();\n        }\n        if (cur() == '.')\
-    \ {\n            next();\n            T n = 0, d = 1;\n            for (int i\
-    \ = 0;\n                 '0' <= cur() && cur() <= '9' && i < (int)decimal_precision;\n\
-    \                 ++i) {\n                n = n * 10 + cur() - '0';\n        \
-    \        d *= 10;\n                next();\n            }\n            while ('0'\
-    \ <= cur() && cur() <= '9') next();\n            a += n / d;\n        }\n    \
-    \    if (sgn) a = -a;\n    }\n\nprivate:\n    template<std::size_t i, class...\
-    \ Args> void scan(std::tuple<Args...>& a) {\n        if IF_CONSTEXPR (i < sizeof...(Args))\
-    \ {\n            scan(std::get<i>(a));\n            scan<i + 1, Args...>(a);\n\
-    \        }\n    }\n\npublic:\n    template<class... Args> void scan(std::tuple<Args...>&\
-    \ a) {\n        scan<0, Args...>(a);\n    }\n    template<class T, class U> void\
-    \ scan(std::pair<T, U>& a) {\n        scan(a.first);\n        scan(a.second);\n\
-    \    }\n    template<class T,\n             typename std::enable_if<is_range<T>::value\
-    \ &&\n                                     !has_scan<T>::value>::type* = nullptr>\n\
-    \    void scan(T& a) {\n        for (auto&& i : a) scan(i);\n    }\n    template<class\
-    \ T,\n             typename std::enable_if<has_scan<T>::value>::type* = nullptr>\n\
-    \    void scan(T& a) {\n        a.scan(*this);\n    }\n\n    void operator()()\
-    \ {}\n    template<class Head, class... Args>\n    void operator()(Head& head,\
-    \ Args&... args) {\n        scan(head);\n        operator()(args...);\n    }\n\
-    \n    template<class T> Scanner& operator>>(T& a) {\n        scan(a);\n      \
-    \  return *this;\n    }\n\n    explicit operator bool() const { return state;\
+    \ void scan(T& a) {\n        discard_space();\n        if (idx + 40 > sz && '0'\
+    \ <= buffer[sz - 1] && buffer[sz - 1] <= '9')\n            load();\n        a\
+    \ = 0;\n        while ('0' <= buffer[idx] && buffer[idx] <= '9') {\n         \
+    \   a = a * 10 + (buffer[idx++] - '0');\n        }\n    }\n    template<class\
+    \ T,\n             typename std::enable_if<std::is_floating_point<T>::value &&\n\
+    \                                     !has_scan<T>::value>::type* = nullptr>\n\
+    \    void scan(T& a) {\n        discard_space();\n        bool sgn = false;\n\
+    \        if (cur() == '-') {\n            sgn = true;\n            next();\n \
+    \       }\n        a = 0;\n        while ('0' <= cur() && cur() <= '9') {\n  \
+    \          a = a * 10 + cur() - '0';\n            next();\n        }\n       \
+    \ if (cur() == '.') {\n            next();\n            T n = 0, d = 1;\n    \
+    \        for (int i = 0;\n                 '0' <= cur() && cur() <= '9' && i <\
+    \ (int)decimal_precision;\n                 ++i) {\n                n = n * 10\
+    \ + cur() - '0';\n                d *= 10;\n                next();\n        \
+    \    }\n            while ('0' <= cur() && cur() <= '9') next();\n           \
+    \ a += n / d;\n        }\n        if (sgn) a = -a;\n    }\n\nprivate:\n    template<std::size_t\
+    \ i, class... Args> void scan(std::tuple<Args...>& a) {\n        if IF_CONSTEXPR\
+    \ (i < sizeof...(Args)) {\n            scan(std::get<i>(a));\n            scan<i\
+    \ + 1, Args...>(a);\n        }\n    }\n\npublic:\n    template<class... Args>\
+    \ void scan(std::tuple<Args...>& a) {\n        scan<0, Args...>(a);\n    }\n \
+    \   template<class T, class U> void scan(std::pair<T, U>& a) {\n        scan(a.first);\n\
+    \        scan(a.second);\n    }\n    template<class T,\n             typename\
+    \ std::enable_if<is_range<T>::value &&\n                                     !has_scan<T>::value>::type*\
+    \ = nullptr>\n    void scan(T& a) {\n        for (auto&& i : a) scan(i);\n   \
+    \ }\n    template<class T,\n             typename std::enable_if<has_scan<T>::value>::type*\
+    \ = nullptr>\n    void scan(T& a) {\n        a.scan(*this);\n    }\n\n    void\
+    \ operator()() {}\n    template<class Head, class... Args>\n    void operator()(Head&\
+    \ head, Args&... args) {\n        scan(head);\n        operator()(args...);\n\
+    \    }\n\n    template<class T> Scanner& operator>>(T& a) {\n        scan(a);\n\
+    \        return *this;\n    }\n\n    explicit operator bool() const { return state;\
     \ }\n\n    friend Scanner& getline(Scanner& scan, std::string& a) {\n        a.erase();\n\
     \        char c;\n        if ((c = scan.scan_char()) == '\\n' || c == '\\0') return\
     \ scan;\n        a += c;\n        while ((c = scan.scan_char()) != '\\n' && c\
@@ -243,7 +244,7 @@ data:
     \ : buf{} {\n        rep (i, 10000) {\n            int n = i;\n            rrep\
     \ (j, 4) {\n                buf[i][j] = (char)('0' + n % 10);\n              \
     \  n /= 10;\n            }\n        }\n    }\n} constexpr precalc_number_to_string;\n\
-    \ntemplate<std::size_t buf_size = IO_BUFFER_SIZE, bool debug = false> class Printer\
+    \ntemplate<std::size_t buf_size = IO_BUFFER_SIZE, bool debug = false>\nclass Printer\
     \ {\nprivate:\n    template<class, bool = debug, class = void>\n    struct has_print\
     \ : std::false_type {};\n    template<class T>\n    struct has_print<T, false,\n\
     \                     decltype(std::declval<T>().print(std::declval<Printer&>()),\n\
@@ -283,29 +284,29 @@ data:
     \ >= 10000) {\n            int i = a % 10000;\n            a /= 10000;\n     \
     \       t -= 4;\n            std::memcpy(s + t, precalc_number_to_string.buf[i],\
     \ 4);\n        }\n        if (a >= 1000) {\n            std::memcpy(buffer.begin()\
-    \ + idx, precalc_number_to_string.buf[a], 4);\n            idx += 4;\n       \
-    \ }\n        else if (a >= 100) {\n            std::memcpy(buffer.begin() + idx,\
-    \ precalc_number_to_string.buf[a] + 1, 3);\n            idx += 3;\n        }\n\
-    \        else if (a >= 10) {\n            std::memcpy(buffer.begin() + idx, precalc_number_to_string.buf[a]\
-    \ + 2, 2);\n            idx += 2;\n        }\n        else {\n            buffer[idx++]\
-    \ = '0' | a;\n        }\n        std::memcpy(buffer.begin() + idx, s + t, 40 -\
-    \ t);\n        idx += 40 - t;\n    }\n    template<class T,\n             typename\
-    \ std::enable_if<std::is_floating_point<T>::value &&\n                       \
-    \              !has_print<T>::value>::type* = nullptr>\n    void print(T a) {\n\
-    \        if (a == std::numeric_limits<T>::infinity()) {\n            print(\"\
-    inf\");\n            return;\n        }\n        if (a == -std::numeric_limits<T>::infinity())\
-    \ {\n            print(\"-inf\");\n            return;\n        }\n        if\
-    \ (std::isnan(a)) {\n            print(\"nan\");\n            return;\n      \
-    \  }\n        if (a < 0) {\n            print_char('-');\n            a = -a;\n\
-    \        }\n        T b = a;\n        if (b < 1) {\n            print_char('0');\n\
-    \        }\n        else {\n            std::string s;\n            while (b >=\
-    \ 1) {\n                s += (char)('0' + (int)std::fmod(b, 10.0));\n        \
-    \        b /= 10;\n            }\n            for (auto i = s.rbegin(); i != s.rend();\
-    \ ++i) print_char(*i);\n        }\n        print_char('.');\n        rep (decimal_precision)\
-    \ {\n            a *= 10;\n            print_char((char)('0' + (int)std::fmod(a,\
-    \ 10.0)));\n        }\n    }\n\nprivate:\n    template<std::size_t i, class...\
-    \ Args>\n    void print(const std::tuple<Args...>& a) {\n        if IF_CONSTEXPR\
-    \ (i < sizeof...(Args)) {\n            if IF_CONSTEXPR (debug) print_char(',');\n\
+    \ + idx, precalc_number_to_string.buf[a],\n                        4);\n     \
+    \       idx += 4;\n        }\n        else if (a >= 100) {\n            std::memcpy(buffer.begin()\
+    \ + idx,\n                        precalc_number_to_string.buf[a] + 1, 3);\n \
+    \           idx += 3;\n        }\n        else if (a >= 10) {\n            std::memcpy(buffer.begin()\
+    \ + idx,\n                        precalc_number_to_string.buf[a] + 2, 2);\n \
+    \           idx += 2;\n        }\n        else {\n            buffer[idx++] =\
+    \ '0' | a;\n        }\n        std::memcpy(buffer.begin() + idx, s + t, 40 - t);\n\
+    \        idx += 40 - t;\n    }\n    template<class T,\n             typename std::enable_if<std::is_floating_point<T>::value\
+    \ &&\n                                     !has_print<T>::value>::type* = nullptr>\n\
+    \    void print(T a) {\n        if (a == std::numeric_limits<T>::infinity()) {\n\
+    \            print(\"inf\");\n            return;\n        }\n        if (a ==\
+    \ -std::numeric_limits<T>::infinity()) {\n            print(\"-inf\");\n     \
+    \       return;\n        }\n        if (std::isnan(a)) {\n            print(\"\
+    nan\");\n            return;\n        }\n        if (a < 0) {\n            print_char('-');\n\
+    \            a = -a;\n        }\n        T b = a;\n        if (b < 1) {\n    \
+    \        print_char('0');\n        }\n        else {\n            std::string\
+    \ s;\n            while (b >= 1) {\n                s += (char)('0' + (int)std::fmod(b,\
+    \ 10.0));\n                b /= 10;\n            }\n            for (auto i =\
+    \ s.rbegin(); i != s.rend(); ++i) print_char(*i);\n        }\n        print_char('.');\n\
+    \        rep (decimal_precision) {\n            a *= 10;\n            print_char((char)('0'\
+    \ + (int)std::fmod(a, 10.0)));\n        }\n    }\n\nprivate:\n    template<std::size_t\
+    \ i, class... Args>\n    void print(const std::tuple<Args...>& a) {\n        if\
+    \ IF_CONSTEXPR (i < sizeof...(Args)) {\n            if IF_CONSTEXPR (debug) print_char(',');\n\
     \            print_char(' ');\n            print(std::get<i>(a));\n          \
     \  print<i + 1, Args...>(a);\n        }\n    }\n\npublic:\n    template<class...\
     \ Args> void print(const std::tuple<Args...>& a) {\n        if IF_CONSTEXPR (debug)\
@@ -504,26 +505,28 @@ data:
     \ *this;\n    }\n    constexpr StaticModInt& operator/=(const StaticModInt& other)\
     \ {\n        *this *= other.inv();\n        return *this;\n    }\n    friend constexpr\
     \ StaticModInt operator+(const StaticModInt& lhs,\n                          \
-    \        const StaticModInt& rhs) {\n        return StaticModInt(lhs) += rhs;\n\
-    \    }\n    friend constexpr StaticModInt operator-(const StaticModInt& lhs,\n\
-    \                                  const StaticModInt& rhs) {\n        return\
-    \ StaticModInt(lhs) -= rhs;\n    }\n    friend constexpr StaticModInt operator*(const\
-    \ StaticModInt& lhs,\n                                  const StaticModInt& rhs)\
-    \ {\n        return StaticModInt(lhs) *= rhs;\n    }\n    friend constexpr StaticModInt\
-    \ operator/(const StaticModInt& lhs,\n                                  const\
-    \ StaticModInt& rhs) {\n        return StaticModInt(lhs) /= rhs;\n    }\n    constexpr\
-    \ StaticModInt operator+() const { return StaticModInt(*this); }\n    constexpr\
-    \ StaticModInt operator-() const { return StaticModInt() - *this; }\n    friend\
-    \ constexpr bool operator==(const StaticModInt& lhs, const StaticModInt& rhs)\
-    \ {\n        return lhs.val == rhs.val;\n    }\n    friend constexpr bool operator!=(const\
-    \ StaticModInt& lhs, const StaticModInt& rhs) {\n        return lhs.val != rhs.val;\n\
-    \    }\n    constexpr StaticModInt pow(ll a) const {\n        StaticModInt v =\
-    \ *this, res = 1;\n        while (a) {\n            if (a & 1) res *= v;\n   \
-    \         a >>= 1;\n            v *= v;\n        }\n        return res;\n    }\n\
-    \    template<class Pr> void print(Pr& a) const { a.print(val); }\n    template<class\
-    \ Pr> void debug(Pr& a) const { a.print(val); }\n    template<class Sc> void scan(Sc&\
-    \ a) {\n        ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\n#if\
-    \ __cplusplus < 201703L\ntemplate<class T, T mod>\nconstexpr unsigned int StaticModInt<T,\
+    \                  const StaticModInt& rhs) {\n        return StaticModInt(lhs)\
+    \ += rhs;\n    }\n    friend constexpr StaticModInt operator-(const StaticModInt&\
+    \ lhs,\n                                            const StaticModInt& rhs) {\n\
+    \        return StaticModInt(lhs) -= rhs;\n    }\n    friend constexpr StaticModInt\
+    \ operator*(const StaticModInt& lhs,\n                                       \
+    \     const StaticModInt& rhs) {\n        return StaticModInt(lhs) *= rhs;\n \
+    \   }\n    friend constexpr StaticModInt operator/(const StaticModInt& lhs,\n\
+    \                                            const StaticModInt& rhs) {\n    \
+    \    return StaticModInt(lhs) /= rhs;\n    }\n    constexpr StaticModInt operator+()\
+    \ const { return StaticModInt(*this); }\n    constexpr StaticModInt operator-()\
+    \ const { return StaticModInt() - *this; }\n    friend constexpr bool operator==(const\
+    \ StaticModInt& lhs,\n                                     const StaticModInt&\
+    \ rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend constexpr bool\
+    \ operator!=(const StaticModInt& lhs,\n                                     const\
+    \ StaticModInt& rhs) {\n        return lhs.val != rhs.val;\n    }\n    constexpr\
+    \ StaticModInt pow(ll a) const {\n        StaticModInt v = *this, res = 1;\n \
+    \       while (a) {\n            if (a & 1) res *= v;\n            a >>= 1;\n\
+    \            v *= v;\n        }\n        return res;\n    }\n    template<class\
+    \ Pr> void print(Pr& a) const { a.print(val); }\n    template<class Pr> void debug(Pr&\
+    \ a) const { a.print(val); }\n    template<class Sc> void scan(Sc& a) {\n    \
+    \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\n#if __cplusplus\
+    \ < 201703L\ntemplate<class T, T mod>\nconstexpr unsigned int StaticModInt<T,\
     \ mod>::inv1000000007[];\ntemplate<class T, T mod>\nconstexpr unsigned int StaticModInt<T,\
     \ mod>::inv998244353[];\n#endif\n\ntemplate<unsigned int p> using static_modint\
     \ = StaticModInt<unsigned int, p>;\nusing modint1000000007 = static_modint<1000000007>;\n\
@@ -586,37 +589,37 @@ data:
     \   if (p == 1811939329) return 11;\n    if (p == 2013265921) return 11;\n   \
     \ rep (g, 2, p) {\n        if (mod_pow(g, (p - 1) >> 1, p) != 1) return g;\n \
     \   }\n    return -1;\n}\n\nnamespace internal {\n\ntemplate<class T> class NthRoot\
-    \ {\nprivate:\n    static constexpr unsigned int lg = bitop::msb((T::get_mod()\
+    \ {\nprivate:\n    static constexpr unsigned int lg =\n        bitop::msb((T::get_mod()\
     \ - 1) & (1 - T::get_mod()));\n    T root[lg + 1];\n    T inv_root[lg + 1];\n\
     \    T rate[lg + 1];\n    T inv_rate[lg + 1];\n\npublic:\n    constexpr NthRoot()\
-    \ : root{}, inv_root{}, rate{}, inv_rate{} {\n        root[lg] = T{primitive_root_for_convolution(T::get_mod())}.pow((T::get_mod()\
-    \ - 1) >> lg);\n        inv_root[lg] = root[lg].inv();\n        rrep (i, lg) {\n\
-    \            root[i] = root[i + 1] * root[i + 1];\n            inv_root[i] = inv_root[i\
-    \ + 1] * inv_root[i + 1];\n        }\n        T r = 1;\n        rep (i, 2, lg\
-    \ + 1) {\n            rate[i - 2] = r * root[i];\n            r = r * inv_root[i];\n\
-    \        }\n        r = 1;\n        rep (i, 2, lg + 1) {\n            inv_rate[i\
-    \ - 2] = r * inv_root[i];\n            r = r * root[i];\n        }\n    }\n  \
-    \  static constexpr unsigned int get_lg() { return lg; }\n    constexpr T get(int\
-    \ n) const { return root[n]; }\n    constexpr T inv(int n) const { return inv_root[n];\
-    \ }\n    constexpr T get_rate(int n) const { return rate[n]; }\n    constexpr\
-    \ T get_inv_rate(int n) const { return inv_rate[n]; }\n};\n\ntemplate<class T>\
-    \ void number_theoretic_transform(std::vector<T>& a) {\n    static constexpr NthRoot<T>\
-    \ nth_root;\n    int n = a.size();\n    int lg = bitop::ceil_log2(n);\n    for\
-    \ (int i = n >> 1; i > 0; i >>= 1) {\n        T z = T::raw(1);\n        rep (j,\
+    \ : root{}, inv_root{}, rate{}, inv_rate{} {\n        root[lg] = T{primitive_root_for_convolution(T::get_mod())}.pow(\n\
+    \            (T::get_mod() - 1) >> lg);\n        inv_root[lg] = root[lg].inv();\n\
+    \        rrep (i, lg) {\n            root[i] = root[i + 1] * root[i + 1];\n  \
+    \          inv_root[i] = inv_root[i + 1] * inv_root[i + 1];\n        }\n     \
+    \   T r = 1;\n        rep (i, 2, lg + 1) {\n            rate[i - 2] = r * root[i];\n\
+    \            r = r * inv_root[i];\n        }\n        r = 1;\n        rep (i,\
+    \ 2, lg + 1) {\n            inv_rate[i - 2] = r * inv_root[i];\n            r\
+    \ = r * root[i];\n        }\n    }\n    static constexpr unsigned int get_lg()\
+    \ { return lg; }\n    constexpr T get(int n) const { return root[n]; }\n    constexpr\
+    \ T inv(int n) const { return inv_root[n]; }\n    constexpr T get_rate(int n)\
+    \ const { return rate[n]; }\n    constexpr T get_inv_rate(int n) const { return\
+    \ inv_rate[n]; }\n};\n\ntemplate<class T> void number_theoretic_transform(std::vector<T>&\
+    \ a) {\n    static constexpr NthRoot<T> nth_root;\n    int n = a.size();\n   \
+    \ int lg = bitop::ceil_log2(n);\n    for (int i = n >> 1; i > 0; i >>= 1) {\n\
+    \        T z = T::raw(1);\n        rep (j, 0, n, i << 1) {\n            rep (k,\
+    \ i) {\n                const T x = a[j + k];\n                const T y = a[j\
+    \ + i + k] * z;\n                a[j + k] = x + y;\n                a[j + i +\
+    \ k] = x - y;\n            }\n            z *= nth_root.get_rate(popcnt(j & ~(j\
+    \ + (i << 1))));\n        }\n    }\n}\n\ntemplate<class T> void inverse_number_theoretic_transform(std::vector<T>&\
+    \ a) {\n    static constexpr NthRoot<T> nth_root;\n    int n = a.size();\n   \
+    \ for (int i = 1; i < n; i <<= 1) {\n        T z = T::raw(1);\n        rep (j,\
     \ 0, n, i << 1) {\n            rep (k, i) {\n                const T x = a[j +\
-    \ k];\n                const T y = a[j + i + k] * z;\n                a[j + k]\
-    \ = x + y;\n                a[j + i + k] = x - y;\n            }\n           \
-    \ z *= nth_root.get_rate(popcnt(j & ~(j + (i << 1))));\n        }\n    }\n}\n\n\
-    template<class T> void inverse_number_theoretic_transform(std::vector<T>& a) {\n\
-    \    static constexpr NthRoot<T> nth_root;\n    int n = a.size();\n    for (int\
-    \ i = 1; i < n; i <<= 1) {\n        T z = T::raw(1);\n        rep (j, 0, n, i\
-    \ << 1) {\n            rep (k, i) {\n                const T x = a[j + k];\n \
-    \               const T y = a[j + i + k];\n                a[j + k] = x + y;\n\
-    \                a[j + i + k] = (x - y) * z;\n            }\n            z *=\
-    \ nth_root.get_inv_rate(popcnt(j & ~(j + (i << 1))));\n        }\n    }\n    T\
-    \ inv_n = T(1) / n;\n    for (auto&& x : a) x *= inv_n;\n}\n\ntemplate<class T>\n\
-    std::vector<T> convolution_naive(const std::vector<T>& a,\n                  \
-    \               const std::vector<T>& b) {\n    int n = a.size(), m = b.size();\n\
+    \ k];\n                const T y = a[j + i + k];\n                a[j + k] = x\
+    \ + y;\n                a[j + i + k] = (x - y) * z;\n            }\n         \
+    \   z *= nth_root.get_inv_rate(popcnt(j & ~(j + (i << 1))));\n        }\n    }\n\
+    \    T inv_n = T(1) / n;\n    for (auto&& x : a) x *= inv_n;\n}\n\ntemplate<class\
+    \ T>\nstd::vector<T> convolution_naive(const std::vector<T>& a,\n            \
+    \                     const std::vector<T>& b) {\n    int n = a.size(), m = b.size();\n\
     \    std::vector<T> c(n + m - 1);\n    rep (i, n)\n        rep (j, m) c[i + j]\
     \ += a[i] * b[j];\n    return c;\n}\n\ntemplate<class T> std::vector<T> convolution_pow2(std::vector<T>\
     \ a) {\n    int n = a.size() * 2 - 1;\n    int lg = bitop::msb(n - 1) + 1;\n \
@@ -1037,7 +1040,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/polynomial/exp_of_formal_power_series.test.cpp
   requiredBy: []
-  timestamp: '2024-05-12 00:53:40+09:00'
+  timestamp: '2024-05-12 12:21:41+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/polynomial/exp_of_formal_power_series.test.cpp

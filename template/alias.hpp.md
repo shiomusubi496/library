@@ -638,7 +638,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_3_C-contain.test.cpp
     title: test/aoj/CGL/CGL_3_C-contain.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
     title: test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
   - icon: ':heavy_check_mark:'
@@ -686,7 +686,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_C.test.cpp
     title: test/aoj/DPL/DPL_5_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_D.test.cpp
     title: test/aoj/DPL/DPL_5_D.test.cpp
   - icon: ':x:'
