@@ -32,7 +32,7 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/2D/AreaofUnionofRectangles.hpp
     title: data-struct/2D/AreaofUnionofRectangles.hpp
   - icon: ':x:'
@@ -41,44 +41,44 @@ data:
   - icon: ':x:'
     path: math/DiscreteLogarithm.hpp
     title: "Discrete Logarithm(\u96E2\u6563\u5BFE\u6570)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/convolution/BitwiseAndConvolution.hpp
     title: BitwiseAndConvolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/convolution/BitwiseOrConvolution.hpp
     title: BitwiseOrConvolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/convolution/BitwiseXorConvolution.hpp
     title: BitwiseXorConvolution
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
     title: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/convolution/bitwise_and_convolution.test.cpp
     title: test/yosupo/convolution/bitwise_and_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/convolution/bitwise_xor_convolution.test.cpp
     title: test/yosupo/convolution/bitwise_xor_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/convolution/gcd_convolution.test.cpp
     title: test/yosupo/convolution/gcd_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/convolution/lcm_convolution.test.cpp
     title: test/yosupo/convolution/lcm_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
     title: test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
     title: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SplayTree.test.cpp
     title: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SplayTree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/point_set_range_composite.test.cpp
     title: test/yosupo/data_structure/point_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
     title: test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
   - icon: ':x:'
@@ -110,7 +110,7 @@ data:
     title: test/yosupo/math/discrete_logarithm_mod.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"other/monoid2.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
@@ -232,38 +232,38 @@ data:
     \        int len = sz - idx;\n        if (idx < len) return;\n        std::memcpy(buffer.begin(),\
     \ buffer.begin() + idx, len);\n        sz = len + read(fd, buffer.data() + len,\
     \ buf_size - len);\n        buffer[sz] = 0;\n        idx = 0;\n    }\n\n    Scanner(int\
-    \ fd) : fd(fd), idx(0), sz(0) {}\n    Scanner(FILE* fp) : fd(fileno(fp)), idx(0),\
-    \ sz(0) {}\n\n    inline char scan_char() {\n        if (idx == sz) load();\n\
-    \        return idx == sz ? '\\0' : buffer[idx++];\n    }\n\n    Scanner ignore(int\
-    \ n = 1) {\n        if (idx + n > sz) load();\n        idx += n;\n        return\
-    \ *this;\n    }\n\n    inline void discard_space() {\n        if (idx == sz) load();\n\
-    \        while (('\\t' <= buffer[idx] && buffer[idx] <= '\\r') ||\n          \
-    \     buffer[idx] == ' ') {\n            if (++idx == sz) load();\n        }\n\
-    \    }\n    void scan(char& a) {\n        discard_space();\n        a = scan_char();\n\
-    \    }\n    void scan(bool& a) {\n        discard_space();\n        a = scan_char()\
-    \ != '0';\n    }\n    void scan(std::string& a) {\n        discard_space();\n\
-    \        a.clear();\n        while (cur() != '\\0' && (buffer[idx] < '\\t' ||\
-    \ '\\r' < buffer[idx]) &&\n               buffer[idx] != ' ') {\n            a\
-    \ += scan_char();\n        }\n    }\n    template<std::size_t len> void scan(std::bitset<len>&\
-    \ a) {\n        discard_space();\n        if (idx + len > sz) load();\n      \
-    \  rrep (i, len) a[i] = buffer[idx++] != '0';\n    }\n    template<class T,\n\
-    \             typename std::enable_if<is_signed_int<T>::value &&\n           \
-    \                          !has_scan<T>::value>::type* = nullptr>\n    void scan(T&\
-    \ a) {\n        discard_space();\n        if (buffer[idx] == '-') {\n        \
-    \    ++idx;\n            if (idx + 40 > sz &&\n                (idx == sz || ('0'\
-    \ <= buffer[sz - 1] && buffer[sz - 1] <= '9')))\n                load();\n   \
-    \         a = 0;\n            while ('0' <= buffer[idx] && buffer[idx] <= '9')\
-    \ {\n                a = a * 10 - (buffer[idx++] - '0');\n            }\n    \
-    \    }\n        else {\n            if (idx + 40 > sz && '0' <= buffer[sz - 1]\
-    \ && buffer[sz - 1] <= '9')\n                load();\n            a = 0;\n   \
-    \         while ('0' <= buffer[idx] && buffer[idx] <= '9') {\n               \
-    \ a = a * 10 + (buffer[idx++] - '0');\n            }\n        }\n    }\n    template<class\
-    \ T,\n             typename std::enable_if<is_unsigned_int<T>::value &&\n    \
-    \                                 !has_scan<T>::value>::type* = nullptr>\n   \
-    \ void scan(T& a) {\n        discard_space();\n        if (idx + 40 > sz && '0'\
-    \ <= buffer[sz - 1] && buffer[sz - 1] <= '9')\n            load();\n        a\
-    \ = 0;\n        while ('0' <= buffer[idx] && buffer[idx] <= '9') {\n         \
-    \   a = a * 10 + (buffer[idx++] - '0');\n        }\n    }\n    template<class\
+    \ fd) : fd(fd), idx(0), sz(0), state(true) {}\n    Scanner(FILE* fp) : fd(fileno(fp)),\
+    \ idx(0), sz(0), state(true) {}\n\n    inline char scan_char() {\n        if (idx\
+    \ == sz) load();\n        return idx == sz ? '\\0' : buffer[idx++];\n    }\n\n\
+    \    Scanner ignore(int n = 1) {\n        if (idx + n > sz) load();\n        idx\
+    \ += n;\n        return *this;\n    }\n\n    inline void discard_space() {\n \
+    \       if (idx == sz) load();\n        while (('\\t' <= buffer[idx] && buffer[idx]\
+    \ <= '\\r') ||\n               buffer[idx] == ' ') {\n            if (++idx ==\
+    \ sz) load();\n        }\n    }\n    void scan(char& a) {\n        discard_space();\n\
+    \        a = scan_char();\n    }\n    void scan(bool& a) {\n        discard_space();\n\
+    \        a = scan_char() != '0';\n    }\n    void scan(std::string& a) {\n   \
+    \     discard_space();\n        a.clear();\n        while (cur() != '\\0' && (buffer[idx]\
+    \ < '\\t' || '\\r' < buffer[idx]) &&\n               buffer[idx] != ' ') {\n \
+    \           a += scan_char();\n        }\n    }\n    template<std::size_t len>\
+    \ void scan(std::bitset<len>& a) {\n        discard_space();\n        if (idx\
+    \ + len > sz) load();\n        rrep (i, len) a[i] = buffer[idx++] != '0';\n  \
+    \  }\n    template<class T,\n             typename std::enable_if<is_signed_int<T>::value\
+    \ &&\n                                     !has_scan<T>::value>::type* = nullptr>\n\
+    \    void scan(T& a) {\n        discard_space();\n        if (buffer[idx] == '-')\
+    \ {\n            ++idx;\n            if (idx + 40 > sz &&\n                (idx\
+    \ == sz || ('0' <= buffer[sz - 1] && buffer[sz - 1] <= '9')))\n              \
+    \  load();\n            a = 0;\n            while ('0' <= buffer[idx] && buffer[idx]\
+    \ <= '9') {\n                a = a * 10 - (buffer[idx++] - '0');\n           \
+    \ }\n        }\n        else {\n            if (idx + 40 > sz && '0' <= buffer[sz\
+    \ - 1] && buffer[sz - 1] <= '9')\n                load();\n            a = 0;\n\
+    \            while ('0' <= buffer[idx] && buffer[idx] <= '9') {\n            \
+    \    a = a * 10 + (buffer[idx++] - '0');\n            }\n        }\n    }\n  \
+    \  template<class T,\n             typename std::enable_if<is_unsigned_int<T>::value\
+    \ &&\n                                     !has_scan<T>::value>::type* = nullptr>\n\
+    \    void scan(T& a) {\n        discard_space();\n        if (idx + 40 > sz &&\
+    \ '0' <= buffer[sz - 1] && buffer[sz - 1] <= '9')\n            load();\n     \
+    \   a = 0;\n        while ('0' <= buffer[idx] && buffer[idx] <= '9') {\n     \
+    \       a = a * 10 + (buffer[idx++] - '0');\n        }\n    }\n    template<class\
     \ T,\n             typename std::enable_if<std::is_floating_point<T>::value &&\n\
     \                                     !has_scan<T>::value>::type* = nullptr>\n\
     \    void scan(T& a) {\n        discard_space();\n        bool sgn = false;\n\
@@ -690,8 +690,8 @@ data:
   - math/convolution/BitwiseOrConvolution.hpp
   - math/convolution/BitwiseAndConvolution.hpp
   - math/DiscreteLogarithm.hpp
-  timestamp: '2024-05-12 12:21:41+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2024-05-12 17:35:55+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/convolution/bitwise_and_convolution.test.cpp
   - test/yosupo/convolution/lcm_convolution.test.cpp

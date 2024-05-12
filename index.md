@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: data-struct/2D
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-struct/2D/AreaofUnionofRectangles.hpp
       title: data-struct/2D/AreaofUnionofRectangles.hpp
     - icon: ':x:'
@@ -12,26 +12,26 @@ data:
     - icon: ':x:'
       path: data-struct/2D/DualSegmentTree2D.hpp
       title: data-struct/2D/DualSegmentTree2D.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-struct/2D/SegmentTree2D.hpp
       title: SegmentTree2D
     - icon: ':x:'
       path: data-struct/2D/StaticRectangleAddRectangleSum.hpp
       title: data-struct/2D/StaticRectangleAddRectangleSum.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: data-struct/2D/Struct2D.hpp
       title: data-struct/2D/Struct2D.hpp
   - name: data-struct/bst
     pages:
-    - icon: ':question:'
+    - icon: ':x:'
       path: data-struct/bst/SplayTree.hpp
       title: data-struct/bst/SplayTree.hpp
   - name: data-struct/cht
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-struct/cht/ConvexHullTrick.hpp
       title: ConvexHullTrick
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-struct/cht/ConvexHullTrickAddMonotone.hpp
       title: ConvexHullTrickAddMonotone
     - icon: ':x:'
@@ -42,7 +42,7 @@ data:
     - icon: ':warning:'
       path: data-struct/heap/ErasableHeap.hpp
       title: data-struct/heap/ErasableHeap.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-struct/heap/IntervalHeap.hpp
       title: IntervalHeap
     - icon: ':warning:'
@@ -59,7 +59,7 @@ data:
     - icon: ':x:'
       path: data-struct/other/DefaultMap.hpp
       title: DefaultMap
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-struct/other/DequeOperateAggregation.hpp
       title: DequeOperateAggregation
     - icon: ':heavy_check_mark:'
@@ -71,7 +71,7 @@ data:
     - icon: ':x:'
       path: data-struct/other/PartialPersistentArray.hpp
       title: "PartialPersistentArray(\u90E8\u5206\u6C38\u7D9A\u914D\u5217)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-struct/other/PersistentArray.hpp
       title: "PersistentArray(\u5B8C\u5168\u6C38\u7D9A\u914D\u5217)"
     - icon: ':x:'
@@ -98,20 +98,20 @@ data:
     - icon: ':x:'
       path: data-struct/segment/DisjointSparseTable.hpp
       title: DisjointSparseTable
-    - icon: ':question:'
+    - icon: ':x:'
       path: data-struct/segment/DualSegmentTree.hpp
       title: "DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-struct/segment/DynamicLazySegmentTree.hpp
       title: "DynamicLazySegmentTree(\u52D5\u7684\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\
         \u30C8\u6728)"
-    - icon: ':question:'
+    - icon: ':x:'
       path: data-struct/segment/DynamicSegmentTree.hpp
       title: "DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
     - icon: ':x:'
       path: data-struct/segment/LCARMQ.hpp
       title: LCARMQ
-    - icon: ':question:'
+    - icon: ':x:'
       path: data-struct/segment/LazySegmentTree.hpp
       title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
     - icon: ':x:'
@@ -121,7 +121,7 @@ data:
     - icon: ':x:'
       path: data-struct/segment/NonMergeSegmentTree.hpp
       title: NonMergeSegmentTree
-    - icon: ':question:'
+    - icon: ':x:'
       path: data-struct/segment/PlusMinusOneRMQ.hpp
       title: PlusMinusOneRMQ($\pm1$RMQ)
     - icon: ':x:'
@@ -130,16 +130,16 @@ data:
     - icon: ':x:'
       path: data-struct/segment/RangeAssignSegmentTree.hpp
       title: RangeAssignSegmentTree
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-struct/segment/RangeSortQuery.hpp
       title: RangeSortQuery
-    - icon: ':question:'
+    - icon: ':x:'
       path: data-struct/segment/SegmentTree.hpp
       title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
     - icon: ':x:'
       path: data-struct/segment/SegmentTreeBeats.hpp
       title: SegmentTreeBeats!
-    - icon: ':question:'
+    - icon: ':x:'
       path: data-struct/segment/SparseTable.hpp
       title: SparseTable
     - icon: ':x:'
@@ -162,16 +162,16 @@ data:
     - icon: ':x:'
       path: data-struct/unionfind/PartialPersistentUnionFind.hpp
       title: "PartialPersistentUnionFind(\u90E8\u5206\u6C38\u7D9AUF)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-struct/unionfind/PersistentUnionFind.hpp
       title: "PersistentUnionFind(\u5B8C\u5168\u6C38\u7D9AUF)"
     - icon: ':question:'
       path: data-struct/unionfind/UnionFind.hpp
       title: UnionFind
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-struct/unionfind/UnionFindUndo.hpp
       title: "UnionFindUndo(Undo\u53EF\u80FDUnionFind)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-struct/unionfind/WeightedUnionFind.hpp
       title: "WeightedUnionFind(\u91CD\u307F\u4ED8\u304DUF)"
   - name: data-struct/wavelet
@@ -179,16 +179,16 @@ data:
     - icon: ':x:'
       path: data-struct/wavelet/CumulativeSumWM.hpp
       title: WaveletMatrixPointAddRectangleSum.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: data-struct/wavelet/FullyIndexableDictionary.hpp
       title: "FullyIndexableDictionary(\u5B8C\u5099\u8F9E\u66F8)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-struct/wavelet/SegmentTreeWM.hpp
       title: WaveletMatrixPointAddRectangleSum.hpp
     - icon: ':x:'
       path: data-struct/wavelet/WaveletMatrix.hpp
       title: WaveletMatrix
-    - icon: ':question:'
+    - icon: ':x:'
       path: data-struct/wavelet/WaveletMatrixStruct.hpp
       title: data-struct/wavelet/WaveletMatrixStruct.hpp
   - name: dp
@@ -196,19 +196,19 @@ data:
     - icon: ':x:'
       path: dp/AlienDP.hpp
       title: AlienDP
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: dp/DivideAndConquerOptimization.hpp
       title: Divide and Conquer Optimization
     - icon: ':x:'
       path: dp/FibonacciSearch.hpp
       title: FibonacciSearch
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: dp/MonotoneMinima.hpp
       title: MonotoneMinima
     - icon: ':x:'
       path: dp/OnlineOfflineDP.hpp
       title: Online Offline DP
-    - icon: ':question:'
+    - icon: ':x:'
       path: dp/SMAWK.hpp
       title: SMAWK
   - name: geometry
@@ -251,7 +251,7 @@ data:
     - icon: ':question:'
       path: graph/connected/ConnectedComponents.hpp
       title: "ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)"
-    - icon: ':question:'
+    - icon: ':x:'
       path: graph/connected/StronglyConnectedComponents.hpp
       title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
         )"
@@ -289,7 +289,7 @@ data:
     - icon: ':x:'
       path: graph/mst/ManhattanMST.hpp
       title: Manhattan Minimum Spanning Tree
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/mst/Prim.hpp
       title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
   - name: graph/other
@@ -312,16 +312,16 @@ data:
     - icon: ':x:'
       path: graph/other/EulerianTrail.hpp
       title: EulerianTrail
-    - icon: ':question:'
+    - icon: ':x:'
       path: graph/other/GraphCycle.hpp
       title: "GraphCycle(\u9589\u8DEF\u691C\u51FA)"
-    - icon: ':question:'
+    - icon: ':x:'
       path: graph/other/LowLink.hpp
       title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
     - icon: ':x:'
       path: graph/other/MaximumIndependentSet.hpp
       title: "MaximumIndependentSet(\u6700\u5927\u72EC\u7ACB\u96C6\u5408)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/other/TopologicalSort.hpp
       title: "TopologicalSort(\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8\
         )"
@@ -330,7 +330,7 @@ data:
       title: TwoSatisfiability(2-SAT)
   - name: graph/shortest-path
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/shortest-path/BellmanFord.hpp
       title: "Bellman-Ford(\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5)"
     - icon: ':heavy_check_mark:'
@@ -339,10 +339,10 @@ data:
     - icon: ':question:'
       path: graph/shortest-path/Dijkstra.hpp
       title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
-    - icon: ':question:'
+    - icon: ':x:'
       path: graph/shortest-path/Restore.hpp
       title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/shortest-path/WarshallFloyd.hpp
       title: "Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\
         \u6CD5)"
@@ -357,11 +357,11 @@ data:
     - icon: ':x:'
       path: graph/tree/ContourQuery.hpp
       title: graph/tree/ContourQuery.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: graph/tree/DoublingLowestCommonAncestor.hpp
       title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
         \u308BLCA)"
-    - icon: ':question:'
+    - icon: ':x:'
       path: graph/tree/EulerTour.hpp
       title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
     - icon: ':x:'
@@ -371,19 +371,19 @@ data:
     - icon: ':x:'
       path: graph/tree/FrequencyTableofTreeDistance.hpp
       title: Frequency Table of Tree Distance
-    - icon: ':question:'
+    - icon: ':x:'
       path: graph/tree/HeavyLightDecomposition.hpp
       title: "HeavyLightDecomposition(HL\u5206\u89E3)"
-    - icon: ':question:'
+    - icon: ':x:'
       path: graph/tree/PMORMQLCA.hpp
       title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
-    - icon: ':question:'
+    - icon: ':x:'
       path: graph/tree/ReRooting.hpp
       title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
     - icon: ':x:'
       path: graph/tree/TreeCentroid.hpp
       title: "TreeCentroid(\u6728\u306E\u91CD\u5FC3)"
-    - icon: ':question:'
+    - icon: ':x:'
       path: graph/tree/TreeDiameter.hpp
       title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"
     - icon: ':x:'
@@ -406,13 +406,13 @@ data:
     - icon: ':x:'
       path: math/DiscreteLogarithm.hpp
       title: "Discrete Logarithm(\u96E2\u6563\u5BFE\u6570)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/Divisor.hpp
       title: "Divisors(\u7D04\u6570\u5217\u6319)"
     - icon: ':x:'
       path: math/EnumerateQuotients.hpp
       title: "Enumerate Quotients(\u5546\u5217\u6319)"
-    - icon: ':question:'
+    - icon: ':x:'
       path: math/EulerPhi.hpp
       title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
     - icon: ':x:'
@@ -433,20 +433,20 @@ data:
     - icon: ':x:'
       path: math/LinearModMin.hpp
       title: LinearModMin
-    - icon: ':question:'
+    - icon: ':x:'
       path: math/MillerRabin.hpp
       title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
         )"
     - icon: ':question:'
       path: math/ModInt.hpp
       title: ModInt
-    - icon: ':question:'
+    - icon: ':x:'
       path: math/MontgomeryModInt.hpp
       title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
     - icon: ':x:'
       path: math/MontmortNumber.hpp
       title: "MontmortNumber(\u652A\u4E71\u9806\u5217)"
-    - icon: ':question:'
+    - icon: ':x:'
       path: math/PollardRho.hpp
       title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
     - icon: ':x:'
@@ -461,13 +461,13 @@ data:
     - icon: ':question:'
       path: math/Rational.hpp
       title: "Rational(\u6709\u7406\u6570\u578B)"
-    - icon: ':question:'
+    - icon: ':x:'
       path: math/SqrtMod.hpp
       title: "SqrtMod(\u5E73\u65B9\u5270\u4F59)"
-    - icon: ':question:'
+    - icon: ':x:'
       path: math/SternBrocotTree.hpp
       title: Stern-Brocot Tree
-    - icon: ':question:'
+    - icon: ':x:'
       path: math/StirlingNumber.hpp
       title: "StirlingNumber(\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\u30EB\
         \u6570, \u30D9\u30EB\u30CC\u30FC\u30A4\u6570, \u5206\u5272\u6570)"
@@ -479,38 +479,38 @@ data:
       title: TetrationMod
   - name: math/convolution
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/convolution/BitwiseAndConvolution.hpp
       title: BitwiseAndConvolution
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/convolution/BitwiseOrConvolution.hpp
       title: BitwiseOrConvolution
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/convolution/BitwiseXorConvolution.hpp
       title: BitwiseXorConvolution
-    - icon: ':question:'
+    - icon: ':x:'
       path: math/convolution/Convolution.hpp
       title: "Convolution(\u7573\u307F\u8FBC\u307F)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/convolution/DivisorZetaMoebiusTransform.hpp
       title: "DivisorZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
         \u30A6\u30B9\u5909\u63DB)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/convolution/GcdConvolution.hpp
       title: GCDConvolution
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/convolution/HadamardTransform.hpp
       title: HadmardTransform
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/convolution/LcmConvolution.hpp
       title: LCMConvolution
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/convolution/MinPlusConvolution.hpp
       title: Min Plus Convolution
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/convolution/MultidimensionalConvolution.hpp
       title: MultidimensionalConvolution
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/convolution/MultipleZetaMoebiusTransform.hpp
       title: "MultipleZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
         \u30A6\u30B9\u5909\u63DB)"
@@ -518,11 +518,11 @@ data:
       path: math/convolution/RelaxedConvolution.hpp
       title: "Relaxed Convolution(\u30AA\u30F3\u30E9\u30A4\u30F3\u7573\u307F\u8FBC\
         \u307F)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/convolution/SubsetZetaMoebiusTransform.hpp
       title: "SubsetZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
         \u30A6\u30B9\u5909\u63DB)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/convolution/SupersetZetaMoebiusTransform.hpp
       title: "SupersetZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
         \u30A6\u30B9\u5909\u63DB)"
@@ -545,7 +545,7 @@ data:
     - icon: ':x:'
       path: math/poly/BostanMori.hpp
       title: "Bostan-Mori(\u7DDA\u5F62\u6F38\u5316\u5F0F\u306En\u9805\u76EE)"
-    - icon: ':question:'
+    - icon: ':x:'
       path: math/poly/FormalPowerSeries.hpp
       title: "FormalPowerSeries(\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570)"
     - icon: ':x:'
@@ -557,11 +557,11 @@ data:
     - icon: ':x:'
       path: math/poly/SamplingPointsShift.hpp
       title: "SamplingPointsShift(\u6A19\u672C\u70B9\u30B7\u30D5\u30C8)"
-    - icon: ':question:'
+    - icon: ':x:'
       path: math/poly/SparseFormalPowerSeries.hpp
       title: "SparseFormalPowerSeries(\u758E\u306A\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570\
         )"
-    - icon: ':question:'
+    - icon: ':x:'
       path: math/poly/TaylorShift.hpp
       title: TaylorShift
   - name: other
@@ -569,7 +569,7 @@ data:
     - icon: ':question:'
       path: other/monoid.hpp
       title: other/monoid.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: other/monoid2.hpp
       title: other/monoid2.hpp
     - icon: ':question:'
@@ -601,7 +601,7 @@ data:
     - icon: ':question:'
       path: string/RollingHash.hpp
       title: "RollingHash(\u30ED\u30EA\u30CF)"
-    - icon: ':question:'
+    - icon: ':x:'
       path: string/RunLength.hpp
       title: "RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
     - icon: ':x:'
@@ -754,149 +754,149 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DPL/DPL_5_B.test.cpp
       title: test/aoj/DPL/DPL_5_B.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DPL/DPL_5_C.test.cpp
       title: test/aoj/DPL/DPL_5_C.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DPL/DPL_5_D.test.cpp
       title: test/aoj/DPL/DPL_5_D.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DPL/DPL_5_E.test.cpp
       title: test/aoj/DPL/DPL_5_E.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DPL/DPL_5_F.test.cpp
       title: test/aoj/DPL/DPL_5_F.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DPL/DPL_5_G.test.cpp
       title: test/aoj/DPL/DPL_5_G.test.cpp
   - name: test/aoj/DSL
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DSL/DSL_1_A-UF.test.cpp
       title: test/aoj/DSL/DSL_1_A-UF.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
       title: test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
       title: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
       title: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DSL/DSL_2_B-BIT.test.cpp
       title: test/aoj/DSL/DSL_2_B-BIT.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DSL/DSL_2_B-RSQ.test.cpp
       title: test/aoj/DSL/DSL_2_B-RSQ.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DSL/DSL_2_D-RUQ.test.cpp
       title: test/aoj/DSL/DSL_2_D-RUQ.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DSL/DSL_2_E-RAQ.test.cpp
       title: test/aoj/DSL/DSL_2_E-RAQ.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
       title: test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
       title: test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
       title: test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
       title: test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
       title: test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
       title: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
   - name: test/aoj/GRL
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
       title: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
       title: test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
       title: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
       title: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/GRL/GRL_2_A-Prim.test.cpp
       title: test/aoj/GRL/GRL_2_A-Prim.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
       title: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/GRL/GRL_3_B-LowLink.test.cpp
       title: test/aoj/GRL/GRL_3_B-LowLink.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/GRL/GRL_3_C-SCC.test.cpp
       title: test/aoj/GRL/GRL_3_C-SCC.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
       title: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
       title: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
       title: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
       title: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
       title: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/GRL/GRL_5_C-LCA.test.cpp
       title: test/aoj/GRL/GRL_5_C-LCA.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
       title: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
       title: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/GRL/GRL_5_E-HLD.test.cpp
       title: test/aoj/GRL/GRL_5_E-HLD.test.cpp
   - name: test/aoj/ITP1
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp
       title: test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp
   - name: test/aoj/NTL
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/NTL/NTL_1_A-Prime.test.cpp
       title: test/aoj/NTL/NTL_1_A-Prime.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/NTL/NTL_1_B-Pow.test.cpp
       title: test/aoj/NTL/NTL_1_B-Pow.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/NTL/NTL_1_C-LCM.test.cpp
       title: test/aoj/NTL/NTL_1_C-LCM.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/NTL/NTL_1_D-Phi.test.cpp
       title: test/aoj/NTL/NTL_1_D-Phi.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/NTL/NTL_1_E-ExtGCD.test.cpp
       title: test/aoj/NTL/NTL_1_E-ExtGCD.test.cpp
   - name: test/aoj/other
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/other/1208-SternBrocotTree.test.cpp
       title: test/aoj/other/1208-SternBrocotTree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/other/2603-SMAWK.test.cpp
       title: test/aoj/other/2603-SMAWK.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/other/2725-CHT.test.cpp
       title: test/aoj/other/2725-CHT.test.cpp
     - icon: ':x:'
@@ -930,72 +930,72 @@ data:
       title: test/atcoder/arc099_c-Bipartite.test.cpp
   - name: test/yosupo/convolution
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
       title: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/convolution/bitwise_and_convolution.test.cpp
       title: test/yosupo/convolution/bitwise_and_convolution.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/convolution/bitwise_xor_convolution.test.cpp
       title: test/yosupo/convolution/bitwise_xor_convolution.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/convolution/convolution_mod.test.cpp
       title: test/yosupo/convolution/convolution_mod.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/convolution/convolution_mod_1000000007.test.cpp
       title: test/yosupo/convolution/convolution_mod_1000000007.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/convolution/gcd_convolution.test.cpp
       title: test/yosupo/convolution/gcd_convolution.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/convolution/lcm_convolution.test.cpp
       title: test/yosupo/convolution/lcm_convolution.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/convolution/min_plus_convolution_convex_arbitrary.test.cpp
       title: test/yosupo/convolution/min_plus_convolution_convex_arbitrary.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/convolution/multivariate_convolution.test.cpp
       title: test/yosupo/convolution/multivariate_convolution.test.cpp
   - name: test/yosupo/data_structure
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
       title: test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
       title: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/data_structure/double_ended_priority_queue.test.cpp
       title: test/yosupo/data_structure/double_ended_priority_queue.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SplayTree.test.cpp
       title: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SplayTree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/data_structure/line_add_get_min.test.cpp
       title: test/yosupo/data_structure/line_add_get_min.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/data_structure/persistent_queue-Array.test.cpp
       title: test/yosupo/data_structure/persistent_queue-Array.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
       title: test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/data_structure/persistent_unionfind.test.cpp
       title: test/yosupo/data_structure/persistent_unionfind.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/data_structure/point_add_range_sum.test.cpp
       title: test/yosupo/data_structure/point_add_range_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/data_structure/point_add_rectangle_sum-2DSegTree.test.cpp
       title: test/yosupo/data_structure/point_add_rectangle_sum-2DSegTree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/data_structure/point_add_rectangle_sum-WM.test.cpp
       title: test/yosupo/data_structure/point_add_rectangle_sum-WM.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/data_structure/point_set_range_composite.test.cpp
       title: test/yosupo/data_structure/point_set_range_composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
       title: test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
     - icon: ':x:'

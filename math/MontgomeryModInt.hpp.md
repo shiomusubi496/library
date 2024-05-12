@@ -29,7 +29,7 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: math/EulerPhi.hpp
     title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
   - icon: ':x:'
@@ -38,20 +38,20 @@ data:
   - icon: ':x:'
     path: math/Factorial.hpp
     title: "Factorial(\u968E\u4E57)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: math/MillerRabin.hpp
     title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
       )"
-  - icon: ':question:'
+  - icon: ':x:'
     path: math/PollardRho.hpp
     title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
   - icon: ':x:'
     path: math/PrimitiveRoot.hpp
     title: "PrimitiveRoot(\u539F\u59CB\u6839)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: math/SqrtMod.hpp
     title: "SqrtMod(\u5E73\u65B9\u5270\u4F59)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: math/StirlingNumber.hpp
     title: "StirlingNumber(\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\u30EB\
       \u6570, \u30D9\u30EB\u30CC\u30FC\u30A4\u6570, \u5206\u5272\u6570)"
@@ -64,7 +64,7 @@ data:
   - icon: ':x:'
     path: math/poly/BostanMori.hpp
     title: "Bostan-Mori(\u7DDA\u5F62\u6F38\u5316\u5F0F\u306En\u9805\u76EE)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: math/poly/FormalPowerSeries.hpp
     title: "FormalPowerSeries(\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570)"
   - icon: ':x:'
@@ -76,18 +76,18 @@ data:
   - icon: ':x:'
     path: math/poly/SamplingPointsShift.hpp
     title: "SamplingPointsShift(\u6A19\u672C\u70B9\u30B7\u30D5\u30C8)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: math/poly/SparseFormalPowerSeries.hpp
     title: "SparseFormalPowerSeries(\u758E\u306A\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570\
       )"
-  - icon: ':question:'
+  - icon: ':x:'
     path: math/poly/TaylorShift.hpp
     title: TaylorShift
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DPL/DPL_5_G.test.cpp
     title: test/aoj/DPL/DPL_5_G.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/NTL/NTL_1_D-Phi.test.cpp
     title: test/aoj/NTL/NTL_1_D-Phi.test.cpp
   - icon: ':x:'
@@ -206,7 +206,7 @@ data:
     title: test/yuki/3030-MRPrime.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/math/MontgomeryModInt.md
     document_title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
@@ -330,38 +330,38 @@ data:
     \        int len = sz - idx;\n        if (idx < len) return;\n        std::memcpy(buffer.begin(),\
     \ buffer.begin() + idx, len);\n        sz = len + read(fd, buffer.data() + len,\
     \ buf_size - len);\n        buffer[sz] = 0;\n        idx = 0;\n    }\n\n    Scanner(int\
-    \ fd) : fd(fd), idx(0), sz(0) {}\n    Scanner(FILE* fp) : fd(fileno(fp)), idx(0),\
-    \ sz(0) {}\n\n    inline char scan_char() {\n        if (idx == sz) load();\n\
-    \        return idx == sz ? '\\0' : buffer[idx++];\n    }\n\n    Scanner ignore(int\
-    \ n = 1) {\n        if (idx + n > sz) load();\n        idx += n;\n        return\
-    \ *this;\n    }\n\n    inline void discard_space() {\n        if (idx == sz) load();\n\
-    \        while (('\\t' <= buffer[idx] && buffer[idx] <= '\\r') ||\n          \
-    \     buffer[idx] == ' ') {\n            if (++idx == sz) load();\n        }\n\
-    \    }\n    void scan(char& a) {\n        discard_space();\n        a = scan_char();\n\
-    \    }\n    void scan(bool& a) {\n        discard_space();\n        a = scan_char()\
-    \ != '0';\n    }\n    void scan(std::string& a) {\n        discard_space();\n\
-    \        a.clear();\n        while (cur() != '\\0' && (buffer[idx] < '\\t' ||\
-    \ '\\r' < buffer[idx]) &&\n               buffer[idx] != ' ') {\n            a\
-    \ += scan_char();\n        }\n    }\n    template<std::size_t len> void scan(std::bitset<len>&\
-    \ a) {\n        discard_space();\n        if (idx + len > sz) load();\n      \
-    \  rrep (i, len) a[i] = buffer[idx++] != '0';\n    }\n    template<class T,\n\
-    \             typename std::enable_if<is_signed_int<T>::value &&\n           \
-    \                          !has_scan<T>::value>::type* = nullptr>\n    void scan(T&\
-    \ a) {\n        discard_space();\n        if (buffer[idx] == '-') {\n        \
-    \    ++idx;\n            if (idx + 40 > sz &&\n                (idx == sz || ('0'\
-    \ <= buffer[sz - 1] && buffer[sz - 1] <= '9')))\n                load();\n   \
-    \         a = 0;\n            while ('0' <= buffer[idx] && buffer[idx] <= '9')\
-    \ {\n                a = a * 10 - (buffer[idx++] - '0');\n            }\n    \
-    \    }\n        else {\n            if (idx + 40 > sz && '0' <= buffer[sz - 1]\
-    \ && buffer[sz - 1] <= '9')\n                load();\n            a = 0;\n   \
-    \         while ('0' <= buffer[idx] && buffer[idx] <= '9') {\n               \
-    \ a = a * 10 + (buffer[idx++] - '0');\n            }\n        }\n    }\n    template<class\
-    \ T,\n             typename std::enable_if<is_unsigned_int<T>::value &&\n    \
-    \                                 !has_scan<T>::value>::type* = nullptr>\n   \
-    \ void scan(T& a) {\n        discard_space();\n        if (idx + 40 > sz && '0'\
-    \ <= buffer[sz - 1] && buffer[sz - 1] <= '9')\n            load();\n        a\
-    \ = 0;\n        while ('0' <= buffer[idx] && buffer[idx] <= '9') {\n         \
-    \   a = a * 10 + (buffer[idx++] - '0');\n        }\n    }\n    template<class\
+    \ fd) : fd(fd), idx(0), sz(0), state(true) {}\n    Scanner(FILE* fp) : fd(fileno(fp)),\
+    \ idx(0), sz(0), state(true) {}\n\n    inline char scan_char() {\n        if (idx\
+    \ == sz) load();\n        return idx == sz ? '\\0' : buffer[idx++];\n    }\n\n\
+    \    Scanner ignore(int n = 1) {\n        if (idx + n > sz) load();\n        idx\
+    \ += n;\n        return *this;\n    }\n\n    inline void discard_space() {\n \
+    \       if (idx == sz) load();\n        while (('\\t' <= buffer[idx] && buffer[idx]\
+    \ <= '\\r') ||\n               buffer[idx] == ' ') {\n            if (++idx ==\
+    \ sz) load();\n        }\n    }\n    void scan(char& a) {\n        discard_space();\n\
+    \        a = scan_char();\n    }\n    void scan(bool& a) {\n        discard_space();\n\
+    \        a = scan_char() != '0';\n    }\n    void scan(std::string& a) {\n   \
+    \     discard_space();\n        a.clear();\n        while (cur() != '\\0' && (buffer[idx]\
+    \ < '\\t' || '\\r' < buffer[idx]) &&\n               buffer[idx] != ' ') {\n \
+    \           a += scan_char();\n        }\n    }\n    template<std::size_t len>\
+    \ void scan(std::bitset<len>& a) {\n        discard_space();\n        if (idx\
+    \ + len > sz) load();\n        rrep (i, len) a[i] = buffer[idx++] != '0';\n  \
+    \  }\n    template<class T,\n             typename std::enable_if<is_signed_int<T>::value\
+    \ &&\n                                     !has_scan<T>::value>::type* = nullptr>\n\
+    \    void scan(T& a) {\n        discard_space();\n        if (buffer[idx] == '-')\
+    \ {\n            ++idx;\n            if (idx + 40 > sz &&\n                (idx\
+    \ == sz || ('0' <= buffer[sz - 1] && buffer[sz - 1] <= '9')))\n              \
+    \  load();\n            a = 0;\n            while ('0' <= buffer[idx] && buffer[idx]\
+    \ <= '9') {\n                a = a * 10 - (buffer[idx++] - '0');\n           \
+    \ }\n        }\n        else {\n            if (idx + 40 > sz && '0' <= buffer[sz\
+    \ - 1] && buffer[sz - 1] <= '9')\n                load();\n            a = 0;\n\
+    \            while ('0' <= buffer[idx] && buffer[idx] <= '9') {\n            \
+    \    a = a * 10 + (buffer[idx++] - '0');\n            }\n        }\n    }\n  \
+    \  template<class T,\n             typename std::enable_if<is_unsigned_int<T>::value\
+    \ &&\n                                     !has_scan<T>::value>::type* = nullptr>\n\
+    \    void scan(T& a) {\n        discard_space();\n        if (idx + 40 > sz &&\
+    \ '0' <= buffer[sz - 1] && buffer[sz - 1] <= '9')\n            load();\n     \
+    \   a = 0;\n        while ('0' <= buffer[idx] && buffer[idx] <= '9') {\n     \
+    \       a = a * 10 + (buffer[idx++] - '0');\n        }\n    }\n    template<class\
     \ T,\n             typename std::enable_if<std::is_floating_point<T>::value &&\n\
     \                                     !has_scan<T>::value>::type* = nullptr>\n\
     \    void scan(T& a) {\n        discard_space();\n        bool sgn = false;\n\
@@ -786,8 +786,8 @@ data:
   - math/SubsetSum.hpp
   - math/Factorial.hpp
   - math/MillerRabin.hpp
-  timestamp: '2024-05-12 12:21:41+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2024-05-12 17:35:55+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/math/factorize.test.cpp
   - test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp

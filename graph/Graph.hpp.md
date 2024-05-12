@@ -39,7 +39,7 @@ data:
   - icon: ':question:'
     path: graph/connected/ConnectedComponents.hpp
     title: "ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/connected/StronglyConnectedComponents.hpp
     title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
@@ -63,7 +63,7 @@ data:
   - icon: ':x:'
     path: graph/mst/ManhattanMST.hpp
     title: Manhattan Minimum Spanning Tree
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/mst/Prim.hpp
     title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
   - icon: ':x:'
@@ -84,23 +84,23 @@ data:
   - icon: ':x:'
     path: graph/other/EulerianTrail.hpp
     title: EulerianTrail
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/other/GraphCycle.hpp
     title: "GraphCycle(\u9589\u8DEF\u691C\u51FA)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/other/LowLink.hpp
     title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
   - icon: ':x:'
     path: graph/other/MaximumIndependentSet.hpp
     title: "MaximumIndependentSet(\u6700\u5927\u72EC\u7ACB\u96C6\u5408)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/other/TopologicalSort.hpp
     title: "TopologicalSort(\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8\
       )"
   - icon: ':x:'
     path: graph/other/TwoSatisfiability.hpp
     title: TwoSatisfiability(2-SAT)
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/shortest-path/BellmanFord.hpp
     title: "Bellman-Ford(\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5)"
   - icon: ':heavy_check_mark:'
@@ -109,10 +109,10 @@ data:
   - icon: ':question:'
     path: graph/shortest-path/Dijkstra.hpp
     title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/shortest-path/Restore.hpp
     title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/shortest-path/WarshallFloyd.hpp
     title: "Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\u6CD5\
       )"
@@ -125,11 +125,11 @@ data:
   - icon: ':x:'
     path: graph/tree/ContourQuery.hpp
     title: graph/tree/ContourQuery.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/tree/DoublingLowestCommonAncestor.hpp
     title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
       \u308BLCA)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
   - icon: ':x:'
@@ -139,19 +139,19 @@ data:
   - icon: ':x:'
     path: graph/tree/FrequencyTableofTreeDistance.hpp
     title: Frequency Table of Tree Distance
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/tree/HeavyLightDecomposition.hpp
     title: "HeavyLightDecomposition(HL\u5206\u89E3)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/tree/PMORMQLCA.hpp
     title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/tree/ReRooting.hpp
     title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
   - icon: ':x:'
     path: graph/tree/TreeCentroid.hpp
     title: "TreeCentroid(\u6728\u306E\u91CD\u5FC3)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/tree/TreeDiameter.hpp
     title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"
   - icon: ':x:'
@@ -179,55 +179,55 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
     title: test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
     title: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
     title: test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
     title: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
     title: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_2_A-Prim.test.cpp
     title: test/aoj/GRL/GRL_2_A-Prim.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
     title: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_3_B-LowLink.test.cpp
     title: test/aoj/GRL/GRL_3_B-LowLink.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_3_C-SCC.test.cpp
     title: test/aoj/GRL/GRL_3_C-SCC.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
     title: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
     title: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
     title: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
     title: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_C-LCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-LCA.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
     title: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_E-HLD.test.cpp
     title: test/aoj/GRL/GRL_5_E-HLD.test.cpp
   - icon: ':x:'
@@ -239,7 +239,7 @@ data:
   - icon: ':x:'
     path: test/atcoder/arc099_c-Bipartite.test.cpp
     title: test/atcoder/arc099_c-Bipartite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
     title: test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
   - icon: ':x:'
@@ -464,38 +464,38 @@ data:
     \        int len = sz - idx;\n        if (idx < len) return;\n        std::memcpy(buffer.begin(),\
     \ buffer.begin() + idx, len);\n        sz = len + read(fd, buffer.data() + len,\
     \ buf_size - len);\n        buffer[sz] = 0;\n        idx = 0;\n    }\n\n    Scanner(int\
-    \ fd) : fd(fd), idx(0), sz(0) {}\n    Scanner(FILE* fp) : fd(fileno(fp)), idx(0),\
-    \ sz(0) {}\n\n    inline char scan_char() {\n        if (idx == sz) load();\n\
-    \        return idx == sz ? '\\0' : buffer[idx++];\n    }\n\n    Scanner ignore(int\
-    \ n = 1) {\n        if (idx + n > sz) load();\n        idx += n;\n        return\
-    \ *this;\n    }\n\n    inline void discard_space() {\n        if (idx == sz) load();\n\
-    \        while (('\\t' <= buffer[idx] && buffer[idx] <= '\\r') ||\n          \
-    \     buffer[idx] == ' ') {\n            if (++idx == sz) load();\n        }\n\
-    \    }\n    void scan(char& a) {\n        discard_space();\n        a = scan_char();\n\
-    \    }\n    void scan(bool& a) {\n        discard_space();\n        a = scan_char()\
-    \ != '0';\n    }\n    void scan(std::string& a) {\n        discard_space();\n\
-    \        a.clear();\n        while (cur() != '\\0' && (buffer[idx] < '\\t' ||\
-    \ '\\r' < buffer[idx]) &&\n               buffer[idx] != ' ') {\n            a\
-    \ += scan_char();\n        }\n    }\n    template<std::size_t len> void scan(std::bitset<len>&\
-    \ a) {\n        discard_space();\n        if (idx + len > sz) load();\n      \
-    \  rrep (i, len) a[i] = buffer[idx++] != '0';\n    }\n    template<class T,\n\
-    \             typename std::enable_if<is_signed_int<T>::value &&\n           \
-    \                          !has_scan<T>::value>::type* = nullptr>\n    void scan(T&\
-    \ a) {\n        discard_space();\n        if (buffer[idx] == '-') {\n        \
-    \    ++idx;\n            if (idx + 40 > sz &&\n                (idx == sz || ('0'\
-    \ <= buffer[sz - 1] && buffer[sz - 1] <= '9')))\n                load();\n   \
-    \         a = 0;\n            while ('0' <= buffer[idx] && buffer[idx] <= '9')\
-    \ {\n                a = a * 10 - (buffer[idx++] - '0');\n            }\n    \
-    \    }\n        else {\n            if (idx + 40 > sz && '0' <= buffer[sz - 1]\
-    \ && buffer[sz - 1] <= '9')\n                load();\n            a = 0;\n   \
-    \         while ('0' <= buffer[idx] && buffer[idx] <= '9') {\n               \
-    \ a = a * 10 + (buffer[idx++] - '0');\n            }\n        }\n    }\n    template<class\
-    \ T,\n             typename std::enable_if<is_unsigned_int<T>::value &&\n    \
-    \                                 !has_scan<T>::value>::type* = nullptr>\n   \
-    \ void scan(T& a) {\n        discard_space();\n        if (idx + 40 > sz && '0'\
-    \ <= buffer[sz - 1] && buffer[sz - 1] <= '9')\n            load();\n        a\
-    \ = 0;\n        while ('0' <= buffer[idx] && buffer[idx] <= '9') {\n         \
-    \   a = a * 10 + (buffer[idx++] - '0');\n        }\n    }\n    template<class\
+    \ fd) : fd(fd), idx(0), sz(0), state(true) {}\n    Scanner(FILE* fp) : fd(fileno(fp)),\
+    \ idx(0), sz(0), state(true) {}\n\n    inline char scan_char() {\n        if (idx\
+    \ == sz) load();\n        return idx == sz ? '\\0' : buffer[idx++];\n    }\n\n\
+    \    Scanner ignore(int n = 1) {\n        if (idx + n > sz) load();\n        idx\
+    \ += n;\n        return *this;\n    }\n\n    inline void discard_space() {\n \
+    \       if (idx == sz) load();\n        while (('\\t' <= buffer[idx] && buffer[idx]\
+    \ <= '\\r') ||\n               buffer[idx] == ' ') {\n            if (++idx ==\
+    \ sz) load();\n        }\n    }\n    void scan(char& a) {\n        discard_space();\n\
+    \        a = scan_char();\n    }\n    void scan(bool& a) {\n        discard_space();\n\
+    \        a = scan_char() != '0';\n    }\n    void scan(std::string& a) {\n   \
+    \     discard_space();\n        a.clear();\n        while (cur() != '\\0' && (buffer[idx]\
+    \ < '\\t' || '\\r' < buffer[idx]) &&\n               buffer[idx] != ' ') {\n \
+    \           a += scan_char();\n        }\n    }\n    template<std::size_t len>\
+    \ void scan(std::bitset<len>& a) {\n        discard_space();\n        if (idx\
+    \ + len > sz) load();\n        rrep (i, len) a[i] = buffer[idx++] != '0';\n  \
+    \  }\n    template<class T,\n             typename std::enable_if<is_signed_int<T>::value\
+    \ &&\n                                     !has_scan<T>::value>::type* = nullptr>\n\
+    \    void scan(T& a) {\n        discard_space();\n        if (buffer[idx] == '-')\
+    \ {\n            ++idx;\n            if (idx + 40 > sz &&\n                (idx\
+    \ == sz || ('0' <= buffer[sz - 1] && buffer[sz - 1] <= '9')))\n              \
+    \  load();\n            a = 0;\n            while ('0' <= buffer[idx] && buffer[idx]\
+    \ <= '9') {\n                a = a * 10 - (buffer[idx++] - '0');\n           \
+    \ }\n        }\n        else {\n            if (idx + 40 > sz && '0' <= buffer[sz\
+    \ - 1] && buffer[sz - 1] <= '9')\n                load();\n            a = 0;\n\
+    \            while ('0' <= buffer[idx] && buffer[idx] <= '9') {\n            \
+    \    a = a * 10 + (buffer[idx++] - '0');\n            }\n        }\n    }\n  \
+    \  template<class T,\n             typename std::enable_if<is_unsigned_int<T>::value\
+    \ &&\n                                     !has_scan<T>::value>::type* = nullptr>\n\
+    \    void scan(T& a) {\n        discard_space();\n        if (idx + 40 > sz &&\
+    \ '0' <= buffer[sz - 1] && buffer[sz - 1] <= '9')\n            load();\n     \
+    \   a = 0;\n        while ('0' <= buffer[idx] && buffer[idx] <= '9') {\n     \
+    \       a = a * 10 + (buffer[idx++] - '0');\n        }\n    }\n    template<class\
     \ T,\n             typename std::enable_if<std::is_floating_point<T>::value &&\n\
     \                                     !has_scan<T>::value>::type* = nullptr>\n\
     \    void scan(T& a) {\n        discard_space();\n        bool sgn = false;\n\
@@ -881,7 +881,7 @@ data:
   - graph/tree/ContourQuery.hpp
   - graph/tree/EulerTourSubtree.hpp
   - data-struct/segment/LCARMQ.hpp
-  timestamp: '2024-05-12 12:21:41+09:00'
+  timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/graph/manhattanmst.test.cpp

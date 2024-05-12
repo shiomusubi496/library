@@ -32,50 +32,50 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/2D/SegmentTree2D.hpp
     title: SegmentTree2D
   - icon: ':x:'
     path: data-struct/segment/LCARMQ.hpp
     title: LCARMQ
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/RangeSortQuery.hpp
     title: RangeSortQuery
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/wavelet/SegmentTreeWM.hpp
     title: WaveletMatrixPointAddRectangleSum.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/tree/PMORMQLCA.hpp
     title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
     title: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_B-RSQ.test.cpp
     title: test/aoj/DSL/DSL_2_B-RSQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
     title: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/point_add_rectangle_sum-2DSegTree.test.cpp
     title: test/yosupo/data_structure/point_add_rectangle_sum-2DSegTree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/point_add_rectangle_sum-WM.test.cpp
     title: test/yosupo/data_structure/point_add_rectangle_sum-WM.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/point_set_range_composite.test.cpp
     title: test/yosupo/data_structure/point_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
     title: test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
   - icon: ':x:'
@@ -98,7 +98,7 @@ data:
     title: test/yuki/1435_SegTree-BinarySearch.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/data-struct/segment/SegmentTree.md
     document_title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
@@ -222,38 +222,38 @@ data:
     \        int len = sz - idx;\n        if (idx < len) return;\n        std::memcpy(buffer.begin(),\
     \ buffer.begin() + idx, len);\n        sz = len + read(fd, buffer.data() + len,\
     \ buf_size - len);\n        buffer[sz] = 0;\n        idx = 0;\n    }\n\n    Scanner(int\
-    \ fd) : fd(fd), idx(0), sz(0) {}\n    Scanner(FILE* fp) : fd(fileno(fp)), idx(0),\
-    \ sz(0) {}\n\n    inline char scan_char() {\n        if (idx == sz) load();\n\
-    \        return idx == sz ? '\\0' : buffer[idx++];\n    }\n\n    Scanner ignore(int\
-    \ n = 1) {\n        if (idx + n > sz) load();\n        idx += n;\n        return\
-    \ *this;\n    }\n\n    inline void discard_space() {\n        if (idx == sz) load();\n\
-    \        while (('\\t' <= buffer[idx] && buffer[idx] <= '\\r') ||\n          \
-    \     buffer[idx] == ' ') {\n            if (++idx == sz) load();\n        }\n\
-    \    }\n    void scan(char& a) {\n        discard_space();\n        a = scan_char();\n\
-    \    }\n    void scan(bool& a) {\n        discard_space();\n        a = scan_char()\
-    \ != '0';\n    }\n    void scan(std::string& a) {\n        discard_space();\n\
-    \        a.clear();\n        while (cur() != '\\0' && (buffer[idx] < '\\t' ||\
-    \ '\\r' < buffer[idx]) &&\n               buffer[idx] != ' ') {\n            a\
-    \ += scan_char();\n        }\n    }\n    template<std::size_t len> void scan(std::bitset<len>&\
-    \ a) {\n        discard_space();\n        if (idx + len > sz) load();\n      \
-    \  rrep (i, len) a[i] = buffer[idx++] != '0';\n    }\n    template<class T,\n\
-    \             typename std::enable_if<is_signed_int<T>::value &&\n           \
-    \                          !has_scan<T>::value>::type* = nullptr>\n    void scan(T&\
-    \ a) {\n        discard_space();\n        if (buffer[idx] == '-') {\n        \
-    \    ++idx;\n            if (idx + 40 > sz &&\n                (idx == sz || ('0'\
-    \ <= buffer[sz - 1] && buffer[sz - 1] <= '9')))\n                load();\n   \
-    \         a = 0;\n            while ('0' <= buffer[idx] && buffer[idx] <= '9')\
-    \ {\n                a = a * 10 - (buffer[idx++] - '0');\n            }\n    \
-    \    }\n        else {\n            if (idx + 40 > sz && '0' <= buffer[sz - 1]\
-    \ && buffer[sz - 1] <= '9')\n                load();\n            a = 0;\n   \
-    \         while ('0' <= buffer[idx] && buffer[idx] <= '9') {\n               \
-    \ a = a * 10 + (buffer[idx++] - '0');\n            }\n        }\n    }\n    template<class\
-    \ T,\n             typename std::enable_if<is_unsigned_int<T>::value &&\n    \
-    \                                 !has_scan<T>::value>::type* = nullptr>\n   \
-    \ void scan(T& a) {\n        discard_space();\n        if (idx + 40 > sz && '0'\
-    \ <= buffer[sz - 1] && buffer[sz - 1] <= '9')\n            load();\n        a\
-    \ = 0;\n        while ('0' <= buffer[idx] && buffer[idx] <= '9') {\n         \
-    \   a = a * 10 + (buffer[idx++] - '0');\n        }\n    }\n    template<class\
+    \ fd) : fd(fd), idx(0), sz(0), state(true) {}\n    Scanner(FILE* fp) : fd(fileno(fp)),\
+    \ idx(0), sz(0), state(true) {}\n\n    inline char scan_char() {\n        if (idx\
+    \ == sz) load();\n        return idx == sz ? '\\0' : buffer[idx++];\n    }\n\n\
+    \    Scanner ignore(int n = 1) {\n        if (idx + n > sz) load();\n        idx\
+    \ += n;\n        return *this;\n    }\n\n    inline void discard_space() {\n \
+    \       if (idx == sz) load();\n        while (('\\t' <= buffer[idx] && buffer[idx]\
+    \ <= '\\r') ||\n               buffer[idx] == ' ') {\n            if (++idx ==\
+    \ sz) load();\n        }\n    }\n    void scan(char& a) {\n        discard_space();\n\
+    \        a = scan_char();\n    }\n    void scan(bool& a) {\n        discard_space();\n\
+    \        a = scan_char() != '0';\n    }\n    void scan(std::string& a) {\n   \
+    \     discard_space();\n        a.clear();\n        while (cur() != '\\0' && (buffer[idx]\
+    \ < '\\t' || '\\r' < buffer[idx]) &&\n               buffer[idx] != ' ') {\n \
+    \           a += scan_char();\n        }\n    }\n    template<std::size_t len>\
+    \ void scan(std::bitset<len>& a) {\n        discard_space();\n        if (idx\
+    \ + len > sz) load();\n        rrep (i, len) a[i] = buffer[idx++] != '0';\n  \
+    \  }\n    template<class T,\n             typename std::enable_if<is_signed_int<T>::value\
+    \ &&\n                                     !has_scan<T>::value>::type* = nullptr>\n\
+    \    void scan(T& a) {\n        discard_space();\n        if (buffer[idx] == '-')\
+    \ {\n            ++idx;\n            if (idx + 40 > sz &&\n                (idx\
+    \ == sz || ('0' <= buffer[sz - 1] && buffer[sz - 1] <= '9')))\n              \
+    \  load();\n            a = 0;\n            while ('0' <= buffer[idx] && buffer[idx]\
+    \ <= '9') {\n                a = a * 10 - (buffer[idx++] - '0');\n           \
+    \ }\n        }\n        else {\n            if (idx + 40 > sz && '0' <= buffer[sz\
+    \ - 1] && buffer[sz - 1] <= '9')\n                load();\n            a = 0;\n\
+    \            while ('0' <= buffer[idx] && buffer[idx] <= '9') {\n            \
+    \    a = a * 10 + (buffer[idx++] - '0');\n            }\n        }\n    }\n  \
+    \  template<class T,\n             typename std::enable_if<is_unsigned_int<T>::value\
+    \ &&\n                                     !has_scan<T>::value>::type* = nullptr>\n\
+    \    void scan(T& a) {\n        discard_space();\n        if (idx + 40 > sz &&\
+    \ '0' <= buffer[sz - 1] && buffer[sz - 1] <= '9')\n            load();\n     \
+    \   a = 0;\n        while ('0' <= buffer[idx] && buffer[idx] <= '9') {\n     \
+    \       a = a * 10 + (buffer[idx++] - '0');\n        }\n    }\n    template<class\
     \ T,\n             typename std::enable_if<std::is_floating_point<T>::value &&\n\
     \                                     !has_scan<T>::value>::type* = nullptr>\n\
     \    void scan(T& a) {\n        discard_space();\n        bool sgn = false;\n\
@@ -698,8 +698,8 @@ data:
   - data-struct/2D/SegmentTree2D.hpp
   - data-struct/segment/RangeSortQuery.hpp
   - data-struct/segment/LCARMQ.hpp
-  timestamp: '2024-05-12 12:21:41+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2024-05-12 17:35:55+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/data_structure/point_set_range_composite.test.cpp
   - test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
