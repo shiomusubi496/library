@@ -43,8 +43,8 @@ public:
         idx = 0;
     }
 
-    Scanner(int fd) : fd(fd), idx(0), sz(0) {}
-    Scanner(FILE* fp) : fd(fileno(fp)), idx(0), sz(0) {}
+    Scanner(int fd) : fd(fd), idx(0), sz(0), state(true) {}
+    Scanner(FILE* fp) : fd(fileno(fp)), idx(0), sz(0), state(true) {}
 
     inline char scan_char() {
         if (idx == sz) load();
