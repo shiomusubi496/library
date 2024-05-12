@@ -49,8 +49,11 @@ public:
     DoublingLCA(Graph<T>&& G, int r = 0) : root({r}), G_(std::move(G)), G(G_) {
         init();
     }
-    DoublingLCA(const Graph<T>& G, const std::vector<int>& r) : root(r), G(G) { init(); }
-    DoublingLCA(Graph<T>&& G, const std::vector<int>& r) : root(r), G_(std::move(G)), G(G_) {
+    DoublingLCA(const Graph<T>& G, const std::vector<int>& r) : root(r), G(G) {
+        init();
+    }
+    DoublingLCA(Graph<T>&& G, const std::vector<int>& r)
+        : root(r), G_(std::move(G)), G(G_) {
         init();
     }
     int depth(int v) const { return dep[v]; }

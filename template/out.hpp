@@ -19,7 +19,8 @@ struct NumberToString {
     }
 } constexpr precalc_number_to_string;
 
-template<std::size_t buf_size = IO_BUFFER_SIZE, bool debug = false> class Printer {
+template<std::size_t buf_size = IO_BUFFER_SIZE, bool debug = false>
+class Printer {
 private:
     template<class, bool = debug, class = void>
     struct has_print : std::false_type {};
@@ -112,15 +113,18 @@ public:
             std::memcpy(s + t, precalc_number_to_string.buf[i], 4);
         }
         if (a >= 1000) {
-            std::memcpy(buffer.begin() + idx, precalc_number_to_string.buf[a], 4);
+            std::memcpy(buffer.begin() + idx, precalc_number_to_string.buf[a],
+                        4);
             idx += 4;
         }
         else if (a >= 100) {
-            std::memcpy(buffer.begin() + idx, precalc_number_to_string.buf[a] + 1, 3);
+            std::memcpy(buffer.begin() + idx,
+                        precalc_number_to_string.buf[a] + 1, 3);
             idx += 3;
         }
         else if (a >= 10) {
-            std::memcpy(buffer.begin() + idx, precalc_number_to_string.buf[a] + 2, 2);
+            std::memcpy(buffer.begin() + idx,
+                        precalc_number_to_string.buf[a] + 2, 2);
             idx += 2;
         }
         else {

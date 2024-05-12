@@ -6,7 +6,9 @@
 #include "alias.hpp"
 #include "type_traits.hpp"
 
-template<std::size_t buf_size = IO_BUFFER_SIZE, std::size_t decimal_precision = 16> class Scanner {
+template<std::size_t buf_size = IO_BUFFER_SIZE,
+         std::size_t decimal_precision = 16>
+class Scanner {
 private:
     template<class, class = void> struct has_scan : std::false_type {};
     template<class T>
@@ -57,7 +59,8 @@ public:
 
     inline void discard_space() {
         if (idx == sz) load();
-        while (('\t' <= buffer[idx] && buffer[idx] <= '\r') || buffer[idx] == ' ') {
+        while (('\t' <= buffer[idx] && buffer[idx] <= '\r') ||
+               buffer[idx] == ' ') {
             if (++idx == sz) load();
         }
     }
@@ -72,7 +75,8 @@ public:
     void scan(std::string& a) {
         discard_space();
         a.clear();
-        while (cur() != '\0' && (buffer[idx] < '\t' || '\r' < buffer[idx]) && buffer[idx] != ' ') {
+        while (cur() != '\0' && (buffer[idx] < '\t' || '\r' < buffer[idx]) &&
+               buffer[idx] != ' ') {
             a += scan_char();
         }
     }
@@ -88,14 +92,17 @@ public:
         discard_space();
         if (buffer[idx] == '-') {
             ++idx;
-            if (idx + 20 > sz && '0' <= buffer[sz - 1] && buffer[sz - 1] <= '9') load();
+            if (idx + 40 > sz &&
+                (idx == sz || ('0' <= buffer[sz - 1] && buffer[sz - 1] <= '9')))
+                load();
             a = 0;
             while ('0' <= buffer[idx] && buffer[idx] <= '9') {
                 a = a * 10 - (buffer[idx++] - '0');
             }
         }
         else {
-            if (idx + 20 > sz && '0' <= buffer[sz - 1] && buffer[sz - 1] <= '9') load();
+            if (idx + 40 > sz && '0' <= buffer[sz - 1] && buffer[sz - 1] <= '9')
+                load();
             a = 0;
             while ('0' <= buffer[idx] && buffer[idx] <= '9') {
                 a = a * 10 + (buffer[idx++] - '0');
@@ -107,7 +114,8 @@ public:
                                      !has_scan<T>::value>::type* = nullptr>
     void scan(T& a) {
         discard_space();
-        if (idx + 20 > sz && '0' <= buffer[sz - 1] && buffer[sz - 1] <= '9') load();
+        if (idx + 40 > sz && '0' <= buffer[sz - 1] && buffer[sz - 1] <= '9')
+            load();
         a = 0;
         while ('0' <= buffer[idx] && buffer[idx] <= '9') {
             a = a * 10 + (buffer[idx++] - '0');

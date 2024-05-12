@@ -109,27 +109,29 @@ public:
         return *this;
     }
     friend constexpr StaticModInt operator+(const StaticModInt& lhs,
-                                  const StaticModInt& rhs) {
+                                            const StaticModInt& rhs) {
         return StaticModInt(lhs) += rhs;
     }
     friend constexpr StaticModInt operator-(const StaticModInt& lhs,
-                                  const StaticModInt& rhs) {
+                                            const StaticModInt& rhs) {
         return StaticModInt(lhs) -= rhs;
     }
     friend constexpr StaticModInt operator*(const StaticModInt& lhs,
-                                  const StaticModInt& rhs) {
+                                            const StaticModInt& rhs) {
         return StaticModInt(lhs) *= rhs;
     }
     friend constexpr StaticModInt operator/(const StaticModInt& lhs,
-                                  const StaticModInt& rhs) {
+                                            const StaticModInt& rhs) {
         return StaticModInt(lhs) /= rhs;
     }
     constexpr StaticModInt operator+() const { return StaticModInt(*this); }
     constexpr StaticModInt operator-() const { return StaticModInt() - *this; }
-    friend constexpr bool operator==(const StaticModInt& lhs, const StaticModInt& rhs) {
+    friend constexpr bool operator==(const StaticModInt& lhs,
+                                     const StaticModInt& rhs) {
         return lhs.val == rhs.val;
     }
-    friend constexpr bool operator!=(const StaticModInt& lhs, const StaticModInt& rhs) {
+    friend constexpr bool operator!=(const StaticModInt& lhs,
+                                     const StaticModInt& rhs) {
         return lhs.val != rhs.val;
     }
     constexpr StaticModInt pow(ll a) const {

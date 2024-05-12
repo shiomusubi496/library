@@ -27,10 +27,11 @@ std::vector<T> multidimensional_convolution(const std::vector<T>& a,
         number_theoretic_transform(A[i]);
         number_theoretic_transform(B[i]);
     }
-    rep (i, K + 1) rep (j, K + 1) {
-        int k = (i + j) % (K + 1);
-        rep (l, n) C[k][l] += A[i][l] * B[j][l];
-    }
+    rep (i, K + 1)
+        rep (j, K + 1) {
+            int k = (i + j) % (K + 1);
+            rep (l, n) C[k][l] += A[i][l] * B[j][l];
+        }
     rep (i, K + 1) {
         inverse_number_theoretic_transform(C[i]);
     }

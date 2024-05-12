@@ -19,7 +19,8 @@ namespace internal {
 
 template<class T> class NthRoot {
 private:
-    static constexpr unsigned int lg = bitop::msb((T::get_mod() - 1) & (1 - T::get_mod()));
+    static constexpr unsigned int lg =
+        bitop::msb((T::get_mod() - 1) & (1 - T::get_mod()));
     T root[lg + 1];
     T inv_root[lg + 1];
     T rate[lg + 1];
@@ -27,7 +28,8 @@ private:
 
 public:
     constexpr NthRoot() : root{}, inv_root{}, rate{}, inv_rate{} {
-        root[lg] = T{primitive_root_for_convolution(T::get_mod())}.pow((T::get_mod() - 1) >> lg);
+        root[lg] = T{primitive_root_for_convolution(T::get_mod())}.pow(
+            (T::get_mod() - 1) >> lg);
         inv_root[lg] = root[lg].inv();
         rrep (i, lg) {
             root[i] = root[i + 1] * root[i + 1];
