@@ -42,6 +42,9 @@ data:
     path: math/Combinatorics.hpp
     title: Combinatorics
   - icon: ':x:'
+    path: math/ExpPolySum.hpp
+    title: ExpPolySum($\sum_{i=0}^{\infty}r^ii^d$)
+  - icon: ':x:'
     path: math/Factorial.hpp
     title: "Factorial(\u968E\u4E57)"
   - icon: ':x:'
@@ -50,7 +53,7 @@ data:
   - icon: ':x:'
     path: math/PrimitiveRoot.hpp
     title: "PrimitiveRoot(\u539F\u59CB\u6839)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/StirlingNumber.hpp
     title: "StirlingNumber(\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\u30EB\
       \u6570, \u30D9\u30EB\u30CC\u30FC\u30A4\u6570, \u5206\u5272\u6570)"
@@ -60,7 +63,7 @@ data:
   - icon: ':x:'
     path: math/TetrationMod.hpp
     title: TetrationMod
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/convolution/Convolution.hpp
     title: "Convolution(\u7573\u307F\u8FBC\u307F)"
   - icon: ':x:'
@@ -85,7 +88,7 @@ data:
   - icon: ':x:'
     path: math/poly/BostanMori.hpp
     title: "Bostan-Mori(\u7DDA\u5F62\u6F38\u5316\u5F0F\u306En\u9805\u76EE)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/poly/FormalPowerSeries.hpp
     title: "FormalPowerSeries(\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570)"
   - icon: ':x:'
@@ -97,11 +100,11 @@ data:
   - icon: ':x:'
     path: math/poly/SamplingPointsShift.hpp
     title: "SamplingPointsShift(\u6A19\u672C\u70B9\u30B7\u30D5\u30C8)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/poly/SparseFormalPowerSeries.hpp
     title: "SparseFormalPowerSeries(\u758E\u306A\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570\
       )"
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/poly/TaylorShift.hpp
     title: TaylorShift
   _extendedVerifiedWith:
@@ -117,13 +120,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_D.test.cpp
     title: test/aoj/DPL/DPL_5_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_E.test.cpp
     title: test/aoj/DPL/DPL_5_E.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_F.test.cpp
     title: test/aoj/DPL/DPL_5_F.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_G.test.cpp
     title: test/aoj/DPL/DPL_5_G.test.cpp
   - icon: ':x:'
@@ -231,6 +234,12 @@ data:
   - icon: ':x:'
     path: test/yosupo/math/stirling_number_of_the_second_kind_fixed_k.test.cpp
     title: test/yosupo/math/stirling_number_of_the_second_kind_fixed_k.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/math/sum_of_exponential_times_polynomial.test.cpp
+    title: test/yosupo/math/sum_of_exponential_times_polynomial.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/math/sum_of_exponential_times_polynomial_limit.test.cpp
+    title: test/yosupo/math/sum_of_exponential_times_polynomial_limit.test.cpp
   - icon: ':x:'
     path: test/yosupo/math/tetration_mod.test.cpp
     title: test/yosupo/math/tetration_mod.test.cpp
@@ -1016,6 +1025,7 @@ data:
   - math/poly/MultipointEvaluation.hpp
   - math/TetrationMod.hpp
   - math/MontmortNumber.hpp
+  - math/ExpPolySum.hpp
   - math/matrix/Inverse.hpp
   - math/matrix/Determinant.hpp
   - math/matrix/LinearEquations.hpp
@@ -1067,7 +1077,9 @@ data:
   - test/yosupo/math/stirling_number_of_the_second_kind_fixed_k.test.cpp
   - test/yosupo/math/sharp_p_subset_sum.test.cpp
   - test/yosupo/math/tetration_mod.test.cpp
+  - test/yosupo/math/sum_of_exponential_times_polynomial.test.cpp
   - test/yosupo/math/montmort_number_mod.test.cpp
+  - test/yosupo/math/sum_of_exponential_times_polynomial_limit.test.cpp
   - test/yosupo/math/bernoulli_number.test.cpp
   - test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
   - test/yosupo/math/stirling_number_of_the_first_kind.test.cpp

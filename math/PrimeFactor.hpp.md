@@ -28,7 +28,13 @@ data:
   - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: math/ExpPolySum.hpp
+    title: ExpPolySum($\sum_{i=0}^{\infty}r^ii^d$)
+  - icon: ':x:'
+    path: math/PowEnumerate.hpp
+    title: PowEnumerate
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp
@@ -36,6 +42,12 @@ data:
   - icon: ':x:'
     path: test/yosupo/math/enumerate_primes.test.cpp
     title: test/yosupo/math/enumerate_primes.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/math/sum_of_exponential_times_polynomial.test.cpp
+    title: test/yosupo/math/sum_of_exponential_times_polynomial.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/math/sum_of_exponential_times_polynomial_limit.test.cpp
+    title: test/yosupo/math/sum_of_exponential_times_polynomial_limit.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -497,11 +509,15 @@ data:
   - template/util.hpp
   isVerificationFile: false
   path: math/PrimeFactor.hpp
-  requiredBy: []
+  requiredBy:
+  - math/PowEnumerate.hpp
+  - math/ExpPolySum.hpp
   timestamp: '2024-05-12 12:21:41+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/math/enumerate_primes.test.cpp
+  - test/yosupo/math/sum_of_exponential_times_polynomial.test.cpp
+  - test/yosupo/math/sum_of_exponential_times_polynomial_limit.test.cpp
   - test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp
 documentation_of: math/PrimeFactor.hpp
 layout: document

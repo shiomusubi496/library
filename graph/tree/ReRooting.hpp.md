@@ -39,7 +39,7 @@ data:
     path: graph/tree/TreeHash.hpp
     title: TreeHash
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
     title: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
   - icon: ':x:'
@@ -50,7 +50,7 @@ data:
     title: test/yosupo/tree/tree_path_composite_sum.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/graph/tree/ReRooting.md
     document_title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
@@ -687,7 +687,7 @@ data:
   requiredBy:
   - graph/tree/TreeHash.hpp
   timestamp: '2024-05-12 12:21:41+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/tree/tree_path_composite_sum.test.cpp
   - test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp

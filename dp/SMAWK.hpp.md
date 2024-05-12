@@ -32,7 +32,7 @@ data:
   - icon: ':x:'
     path: dp/AlienDP.hpp
     title: AlienDP
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: dp/DivideAndConquerOptimization.hpp
     title: Divide and Conquer Optimization
   - icon: ':x:'
@@ -42,7 +42,7 @@ data:
     path: math/convolution/MinPlusConvolution.hpp
     title: Min Plus Convolution
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/other/2603-SMAWK.test.cpp
     title: test/aoj/other/2603-SMAWK.test.cpp
   - icon: ':x:'
@@ -56,7 +56,7 @@ data:
     title: test/yuki/705-Monge.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/dp/SMAWK.md
     document_title: SMAWK
@@ -518,7 +518,7 @@ data:
   - dp/DivideAndConquerOptimization.hpp
   - math/convolution/MinPlusConvolution.hpp
   timestamp: '2024-05-12 12:21:41+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/convolution/min_plus_convolution_convex_arbitrary.test.cpp
   - test/yuki/705-Monge.test.cpp
