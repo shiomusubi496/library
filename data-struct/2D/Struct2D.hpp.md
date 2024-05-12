@@ -38,11 +38,11 @@ data:
   - icon: ':x:'
     path: data-struct/2D/DualSegmentTree2D.hpp
     title: data-struct/2D/DualSegmentTree2D.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/2D/SegmentTree2D.hpp
     title: SegmentTree2D
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/point_add_rectangle_sum-2DSegTree.test.cpp
     title: test/yosupo/data_structure/point_add_rectangle_sum-2DSegTree.test.cpp
   - icon: ':x:'
@@ -53,7 +53,7 @@ data:
     title: test/yosupo/data_structure/rectangle_sum-2DCum.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"data-struct/2D/Struct2D.hpp\"\n\n#line 2 \"other/template.hpp\"\
@@ -697,7 +697,7 @@ data:
   - data-struct/2D/CumulativeSum2D.hpp
   - data-struct/2D/SegmentTree2D.hpp
   timestamp: '2024-05-12 12:21:41+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/data_structure/rectangle_add_point_get.test.cpp
   - test/yosupo/data_structure/rectangle_sum-2DCum.test.cpp
