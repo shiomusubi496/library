@@ -1,16 +1,21 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
-    path: math/MillerRabin.hpp
-    title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
-      )"
   - icon: ':question:'
-    path: math/MontgomeryModInt.hpp
-    title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
+    path: math/ModInt.hpp
+    title: ModInt
+  - icon: ':question:'
+    path: math/convolution/Convolution.hpp
+    title: "Convolution(\u7573\u307F\u8FBC\u307F)"
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
+  - icon: ':question:'
+    path: random/Random.hpp
+    title: Random
+  - icon: ':x:'
+    path: string/WildcardPatternMatching.hpp
+    title: WildcardPatternMatching
   - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
@@ -42,52 +47,53 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/primality_test
+    PROBLEM: https://judge.yosupo.jp/problem/wildcard_pattern_matching
     links:
-    - https://judge.yosupo.jp/problem/primality_test
-  bundledCode: "#line 1 \"test/yosupo/math/primality_test.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/primality_test\"\n#line 2 \"other/template.hpp\"\
-    \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
-    \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define OVERLOAD5(a,\
-    \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
-    \                                                           \\\n    for (ll REP_COUNTER_##c\
-    \ = 0; REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b,\
-    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
-    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
-    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) OVERLOAD5(__VA_ARGS__,\
-    \ REP4, REP3, REP2, REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1;\
-    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n\
-    #define RREP4(i, a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n\
-    #define rrep(...) OVERLOAD5(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define\
-    \ REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b) for (ll\
-    \ i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll i = (ll)(a)\
-    \ + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) OVERLOAD5(__VA_ARGS__, REPS4,\
-    \ REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a); i > 0;\
-    \ --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n#define\
-    \ RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
-    \ rreps(...) OVERLOAD5(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define\
-    \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
-    \ __VA_ARGS__)\n\n#define all(v) std::begin(v), std::end(v)\n#define rall(v) std::rbegin(v),\
-    \ std::rend(v)\n\n#if __cpp_if_constexpr >= 201606L\n#define IF_CONSTEXPR constexpr\n\
-    #else\n#define IF_CONSTEXPR\n#endif\n\n#define IO_BUFFER_SIZE (1 << 17)\n#line\
-    \ 2 \"template/alias.hpp\"\n\n#line 4 \"template/alias.hpp\"\n\nusing ll = long\
-    \ long;\nusing uint = unsigned int;\nusing ull = unsigned long long;\nusing i128\
-    \ = __int128_t;\nusing u128 = __uint128_t;\nusing ld = long double;\nusing PLL\
-    \ = std::pair<ll, ll>;\ntemplate<class T>\nusing prique = std::priority_queue<T,\
-    \ std::vector<T>, std::greater<T>>;\n\ntemplate<class T> struct infinity {\n \
-    \   static constexpr T value = std::numeric_limits<T>::max() / 2;\n    static\
-    \ constexpr T mvalue = std::numeric_limits<T>::lowest() / 2;\n    static constexpr\
-    \ T max = std::numeric_limits<T>::max();\n    static constexpr T min = std::numeric_limits<T>::lowest();\n\
-    };\n\n#if __cplusplus <= 201402L\ntemplate<class T> constexpr T infinity<T>::value;\n\
-    template<class T> constexpr T infinity<T>::mvalue;\ntemplate<class T> constexpr\
-    \ T infinity<T>::max;\ntemplate<class T> constexpr T infinity<T>::min;\n#endif\n\
-    \n#if __cpp_variable_templates >= 201304L\ntemplate<class T> constexpr T INF =\
-    \ infinity<T>::value;\n#endif\n\nconstexpr ll inf = infinity<ll>::value;\nconstexpr\
-    \ ld EPS = 1e-8;\nconstexpr ld PI = 3.1415926535897932384626;\n#line 2 \"template/type_traits.hpp\"\
-    \n\n#line 5 \"template/type_traits.hpp\"\n\ntemplate<class T, class... Args> struct\
-    \ function_traits_impl {\n    using result_type = T;\n    template<std::size_t\
-    \ idx>\n    using argument_type =\n        typename std::tuple_element<idx, std::tuple<Args...>>::type;\n\
-    \    using argument_tuple = std::tuple<Args...>;\n    static constexpr std::size_t\
+    - https://judge.yosupo.jp/problem/wildcard_pattern_matching
+  bundledCode: "#line 1 \"test/yosupo/new/wildcard_pattern_matching.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/wildcard_pattern_matching\"\n#line\
+    \ 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
+    \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
+    \ __LINE__\n#endif\n\n#define OVERLOAD5(a, b, c, d, e, ...) e\n#define REP1_0(b,\
+    \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
+    \                     \\\n    for (ll REP_COUNTER_##c = 0; REP_COUNTER_##c < (ll)(b);\
+    \ ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define REP2(i,\
+    \ b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i = (ll)(a);\
+    \ i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b);\
+    \ i += (ll)(c))\n#define rep(...) OVERLOAD5(__VA_ARGS__, REP4, REP3, REP2, REP1)(__VA_ARGS__)\n\
+    #define RREP2(i, a) for (ll i = (ll)(a)-1; i >= 0; --i)\n#define RREP3(i, a, b)\
+    \ for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n#define RREP4(i, a, b, c) for (ll\
+    \ i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n#define rrep(...) OVERLOAD5(__VA_ARGS__,\
+    \ RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define REPS2(i, b) for (ll i = 1; i <= (ll)(b);\
+    \ ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define\
+    \ REPS4(i, a, b, c) for (ll i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define\
+    \ reps(...) OVERLOAD5(__VA_ARGS__, REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define\
+    \ RREPS2(i, a) for (ll i = (ll)(a); i > 0; --i)\n#define RREPS3(i, a, b) for (ll\
+    \ i = (ll)(a); i > (ll)(b); --i)\n#define RREPS4(i, a, b, c) for (ll i = (ll)(a);\
+    \ i > (ll)(b); i -= (ll)(c))\n#define rreps(...) OVERLOAD5(__VA_ARGS__, RREPS4,\
+    \ RREPS3, RREPS2)(__VA_ARGS__)\n\n#define each_for(...) for (auto&& __VA_ARGS__)\n\
+    #define each_const(...) for (const auto& __VA_ARGS__)\n\n#define all(v) std::begin(v),\
+    \ std::end(v)\n#define rall(v) std::rbegin(v), std::rend(v)\n\n#if __cpp_if_constexpr\
+    \ >= 201606L\n#define IF_CONSTEXPR constexpr\n#else\n#define IF_CONSTEXPR\n#endif\n\
+    \n#define IO_BUFFER_SIZE (1 << 17)\n#line 2 \"template/alias.hpp\"\n\n#line 4\
+    \ \"template/alias.hpp\"\n\nusing ll = long long;\nusing uint = unsigned int;\n\
+    using ull = unsigned long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\
+    using ld = long double;\nusing PLL = std::pair<ll, ll>;\ntemplate<class T>\nusing\
+    \ prique = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\ntemplate<class\
+    \ T> struct infinity {\n    static constexpr T value = std::numeric_limits<T>::max()\
+    \ / 2;\n    static constexpr T mvalue = std::numeric_limits<T>::lowest() / 2;\n\
+    \    static constexpr T max = std::numeric_limits<T>::max();\n    static constexpr\
+    \ T min = std::numeric_limits<T>::lowest();\n};\n\n#if __cplusplus <= 201402L\n\
+    template<class T> constexpr T infinity<T>::value;\ntemplate<class T> constexpr\
+    \ T infinity<T>::mvalue;\ntemplate<class T> constexpr T infinity<T>::max;\ntemplate<class\
+    \ T> constexpr T infinity<T>::min;\n#endif\n\n#if __cpp_variable_templates >=\
+    \ 201304L\ntemplate<class T> constexpr T INF = infinity<T>::value;\n#endif\n\n\
+    constexpr ll inf = infinity<ll>::value;\nconstexpr ld EPS = 1e-8;\nconstexpr ld\
+    \ PI = 3.1415926535897932384626;\n#line 2 \"template/type_traits.hpp\"\n\n#line\
+    \ 5 \"template/type_traits.hpp\"\n\ntemplate<class T, class... Args> struct function_traits_impl\
+    \ {\n    using result_type = T;\n    template<std::size_t idx>\n    using argument_type\
+    \ =\n        typename std::tuple_element<idx, std::tuple<Args...>>::type;\n  \
+    \  using argument_tuple = std::tuple<Args...>;\n    static constexpr std::size_t\
     \ arg_size() { return sizeof...(Args); }\n};\n\ntemplate<class> struct function_traits_helper;\n\
     \ntemplate<class Res, class Tp, class... Args>\nstruct function_traits_helper<Res\
     \ (Tp::*)(Args...)> {\n    using type = function_traits_impl<Res, Args...>;\n\
@@ -445,104 +451,318 @@ data:
     \        return res;\n    }\n    void press(std::vector<T>& vec) const {\n   \
     \     assert(sorted);\n        for (auto&& i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
-    };\n#line 2 \"math/MillerRabin.hpp\"\n\n#line 2 \"math/MontgomeryModInt.hpp\"\n\
-    \n#line 4 \"math/MontgomeryModInt.hpp\"\n\ntemplate<class T> class MontgomeryReduction\
+    };\n#line 2 \"string/WildcardPatternMatching.hpp\"\n\n#line 2 \"random/Random.hpp\"\
+    \n\n#line 4 \"random/Random.hpp\"\n\ntemplate<class Engine> class Random {\nprivate:\n\
+    \    Engine rnd;\n\npublic:\n    using result_type = typename Engine::result_type;\n\
+    \    Random() : Random(std::random_device{}()) {}\n    Random(result_type seed)\
+    \ : rnd(seed) {}\n    result_type operator()() { return rnd(); }\n    result_type\
+    \ min() const { return rnd.min(); }\n    result_type max() const { return rnd.max();\
+    \ }\n    template<class IntType = ll> IntType uniform(IntType l, IntType r) {\n\
+    \        static_assert(std::is_integral<IntType>::value,\n                   \
+    \   \"template argument must be an integral type\");\n        assert(l <= r);\n\
+    \        return std::uniform_int_distribution<IntType>{l, r}(rnd);\n    }\n  \
+    \  template<class RealType = double>\n    RealType uniform_real(RealType l, RealType\
+    \ r) {\n        static_assert(std::is_floating_point<RealType>::value,\n     \
+    \                 \"template argument must be an floating point type\");\n   \
+    \     assert(l <= r);\n        return std::uniform_real_distribution<RealType>{l,\
+    \ r}(rnd);\n    }\n    bool uniform_bool() { return uniform<int>(0, 1) == 1; }\n\
+    \    template<class T = ll> std::pair<T, T> uniform_pair(T l, T r) {\n       \
+    \ assert(l < r);\n        T a, b;\n        do {\n            a = uniform<T>(l,\
+    \ r);\n            b = uniform<T>(l, r);\n        } while (a == b);\n        if\
+    \ (a > b) swap(a, b);\n        return {a, b};\n    }\n    template<class T = ll>\
+    \ std::vector<T> choice(int n, T l, T r) {\n        assert(l <= r);\n        assert(T(n)\
+    \ <= (r - l + 1));\n        std::set<T> res;\n        while ((int)res.size() <\
+    \ n) res.insert(uniform<T>(l, r));\n        return {res.begin(), res.end()};\n\
+    \    }\n    template<class Iter> void shuffle(const Iter& first, const Iter& last)\
+    \ {\n        std::shuffle(first, last, rnd);\n    }\n    template<class T> std::vector<T>\
+    \ permutation(T n) {\n        std::vector<T> res(n);\n        rep (i, n) res[i]\
+    \ = i;\n        shuffle(all(res));\n        return res;\n    }\n    template<class\
+    \ T = ll>\n    std::vector<T> choice_shuffle(int n, T l, T r, bool sorted = true)\
+    \ {\n        assert(l <= r);\n        assert(T(n) <= (r - l + 1));\n        std::vector<T>\
+    \ res(r - l + 1);\n        rep (i, l, r + 1) res[i - l] = i;\n        shuffle(all(res));\n\
+    \        res.erase(res.begin() + n, res.end());\n        if (sorted) sort(all(res));\n\
+    \        return res;\n    }\n};\n\nusing Random32 = Random<std::mt19937>;\nRandom32\
+    \ rand32;\nusing Random64 = Random<std::mt19937_64>;\nRandom64 rand64;\n\n/**\n\
+    \ * @brief Random\n * @docs docs/random/Random.md\n */\n#line 2 \"math/ModInt.hpp\"\
+    \n\n#line 4 \"math/ModInt.hpp\"\n\ntemplate<class T, T mod> class StaticModInt\
     \ {\n    static_assert(std::is_integral<T>::value, \"T must be integral\");\n\
-    \    static_assert(std::is_unsigned<T>::value, \"T must be unsigned\");\n\nprivate:\n\
-    \    using large_t = typename double_size_uint<T>::type;\n    static constexpr\
-    \ int lg = std::numeric_limits<T>::digits;\n    T mod;\n    T r;\n    T r2; //\
-    \ r^2 mod m\n    T calc_minv() {\n        T t = 0, res = 0;\n        rep (i, lg)\
-    \ {\n            if (~t & 1) {\n                t += mod;\n                res\
-    \ += static_cast<T>(1) << i;\n            }\n            t >>= 1;\n        }\n\
-    \        return res;\n    }\n    T minv;\n\npublic:\n    MontgomeryReduction(T\
-    \ v) { set_mod(v); }\n    static constexpr int get_lg() { return lg; }\n    void\
-    \ set_mod(T v) {\n        assert(v > 0);\n        assert(v & 1);\n        assert(v\
-    \ <= std::numeric_limits<T>::max() / 2);\n        mod = v;\n        r = (-static_cast<T>(mod))\
-    \ % mod;\n        r2 = (-static_cast<large_t>(mod)) % mod;\n        minv = calc_minv();\n\
-    \    }\n    inline T get_mod() const { return mod; }\n    inline T get_r() const\
-    \ { return r; }\n    T reduce(large_t x) const {\n        large_t tmp =\n    \
-    \        (x + static_cast<large_t>(static_cast<T>(x) * minv) * mod) >> lg;\n \
-    \       return tmp >= mod ? tmp - mod : tmp;\n    }\n    T transform(large_t x)\
-    \ const { return reduce(x * r2); }\n};\n\ntemplate<class T, int id> class MontgomeryModInt\
-    \ {\nprivate:\n    using large_t = typename double_size_uint<T>::type;\n    using\
-    \ signed_t = typename std::make_signed<T>::type;\n    T val;\n\n    static MontgomeryReduction<T>\
-    \ mont;\n\npublic:\n    MontgomeryModInt() : val(0) {}\n    template<class U,\
-    \ typename std::enable_if<\n                          std::is_integral<U>::value\
-    \ &&\n                          std::is_unsigned<U>::value>::type* = nullptr>\n\
-    \    MontgomeryModInt(U x)\n        : val(mont.transform(\n              x < (static_cast<large_t>(mont.get_mod())\
-    \ << mont.get_lg())\n                  ? x\n                  : x % mont.get_mod()))\
-    \ {}\n    template<class U,\n             typename std::enable_if<std::is_integral<U>::value\
+    \    static_assert(std::is_unsigned<T>::value, \"T must be unsigned\");\n    static_assert(mod\
+    \ > 0, \"mod must be positive\");\n    static_assert(mod <= std::numeric_limits<T>::max()\
+    \ / 2,\n                  \"mod * 2 must be less than or equal to T::max()\");\n\
+    \nprivate:\n    using large_t = typename double_size_uint<T>::type;\n    using\
+    \ signed_t = typename std::make_signed<T>::type;\n    T val;\n    static constexpr\
+    \ unsigned int inv1000000007[] = {\n        0,         1,         500000004, 333333336,\
+    \ 250000002, 400000003,\n        166666668, 142857144, 125000001, 111111112, 700000005};\n\
+    \    static constexpr unsigned int inv998244353[] = {\n        0,         1, \
+    \        499122177, 332748118, 748683265, 598946612,\n        166374059, 855638017,\
+    \ 873463809, 443664157, 299473306};\n\n    static constexpr ll mod_inv(ll a) {\n\
+    \        ll b = mod;\n        ll x = 1, u = 0;\n        ll t = 0, tmp = 0;\n \
+    \       while (b) {\n            t = a / b;\n            tmp = (a - t * b);\n\
+    \            a = b;\n            b = tmp;\n            tmp = (x - t * u);\n  \
+    \          x = u;\n            u = tmp;\n        }\n        if (x < 0) x += mod;\n\
+    \        return x;\n    }\n\npublic:\n    constexpr StaticModInt() : val(0) {}\n\
+    \    template<class U,\n             typename std::enable_if<std::is_integral<U>::value\
     \ &&\n                                     std::is_signed<U>::value>::type* =\
-    \ nullptr>\n    MontgomeryModInt(U x)\n        : MontgomeryModInt(static_cast<typename\
-    \ std::make_unsigned<U>::type>(\n              x < 0 ? -x : x)) {\n        if\
-    \ (x < 0 && val) val = mont.get_mod() - val;\n    }\n\n    T get() const { return\
-    \ mont.reduce(val); }\n    static T get_mod() { return mont.get_mod(); }\n\n \
-    \   static void set_mod(T v) { mont.set_mod(v); }\n\n    MontgomeryModInt operator+()\
-    \ const { return *this; }\n    MontgomeryModInt operator-() const {\n        MontgomeryModInt\
-    \ res;\n        if (val) res.val = mont.get_mod() - val;\n        return res;\n\
-    \    }\n    MontgomeryModInt& operator++() {\n        val += mont.get_r();\n \
-    \       if (val >= mont.get_mod()) val -= mont.get_mod();\n        return *this;\n\
-    \    }\n    MontgomeryModInt& operator--() {\n        if (val < mont.get_r())\
-    \ val += mont.get_mod();\n        val -= mont.get_r();\n        return *this;\n\
-    \    }\n    MontgomeryModInt operator++(int) {\n        MontgomeryModInt res =\
-    \ *this;\n        ++*this;\n        return res;\n    }\n    MontgomeryModInt operator--(int)\
-    \ {\n        MontgomeryModInt res = *this;\n        --*this;\n        return res;\n\
-    \    }\n\n    MontgomeryModInt& operator+=(const MontgomeryModInt& rhs) {\n  \
-    \      val += rhs.val;\n        if (val >= mont.get_mod()) val -= mont.get_mod();\n\
-    \        return *this;\n    }\n    MontgomeryModInt& operator-=(const MontgomeryModInt&\
-    \ rhs) {\n        if (val < rhs.val) val += mont.get_mod();\n        val -= rhs.val;\n\
-    \        return *this;\n    }\n    MontgomeryModInt& operator*=(const MontgomeryModInt&\
-    \ rhs) {\n        val = mont.reduce(static_cast<large_t>(val) * rhs.val);\n  \
-    \      return *this;\n    }\n\n    MontgomeryModInt pow(ull n) const {\n     \
-    \   MontgomeryModInt res = 1, x = *this;\n        while (n) {\n            if\
-    \ (n & 1) res *= x;\n            x *= x;\n            n >>= 1;\n        }\n  \
-    \      return res;\n    }\n    MontgomeryModInt inv() const { return pow(mont.get_mod()\
-    \ - 2); }\n\n    MontgomeryModInt& operator/=(const MontgomeryModInt& rhs) {\n\
-    \        return *this *= rhs.inv();\n    }\n\n    friend MontgomeryModInt operator+(const\
-    \ MontgomeryModInt& lhs,\n                                      const MontgomeryModInt&\
-    \ rhs) {\n        return MontgomeryModInt(lhs) += rhs;\n    }\n    friend MontgomeryModInt\
-    \ operator-(const MontgomeryModInt& lhs,\n                                   \
-    \   const MontgomeryModInt& rhs) {\n        return MontgomeryModInt(lhs) -= rhs;\n\
-    \    }\n    friend MontgomeryModInt operator*(const MontgomeryModInt& lhs,\n \
-    \                                     const MontgomeryModInt& rhs) {\n       \
-    \ return MontgomeryModInt(lhs) *= rhs;\n    }\n    friend MontgomeryModInt operator/(const\
-    \ MontgomeryModInt& lhs,\n                                      const MontgomeryModInt&\
-    \ rhs) {\n        return MontgomeryModInt(lhs) /= rhs;\n    }\n\n    friend bool\
-    \ operator==(const MontgomeryModInt& lhs,\n                           const MontgomeryModInt&\
-    \ rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
-    \ MontgomeryModInt& lhs,\n                           const MontgomeryModInt& rhs)\
-    \ {\n        return lhs.val != rhs.val;\n    }\n\n    template<class Pr> void\
-    \ print(Pr& a) const { a.print(mont.reduce(val)); }\n    template<class Pr> void\
-    \ debug(Pr& a) const { a.print(mont.reduce(val)); }\n    template<class Sc> void\
-    \ scan(Sc& a) {\n        ll v;\n        a.scan(v);\n        *this = v;\n    }\n\
-    };\n\ntemplate<class T, int id>\nMontgomeryReduction<T>\n    MontgomeryModInt<T,\
-    \ id>::mont = MontgomeryReduction<T>(998244353);\n\nusing mmodint = MontgomeryModInt<unsigned\
-    \ int, -1>;\n\n/**\n * @brief MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\
-    \u7B97)\n * @docs docs/math/MontgomeryModInt.md\n */\n#line 5 \"math/MillerRabin.hpp\"\
-    \n\nconstexpr ull base_miller_rabin_int[3] = {2, 7, 61};\nconstexpr ull base_miller_rabin_ll[7]\
-    \ = {2,      325,     9375,      28178,\n                                    \
-    \     450775, 9780504, 1795265022};\n\ntemplate<class T> constexpr bool miller_rabin(ull\
-    \ n, const ull base[], int s) {\n    if (T::get_mod() != n) T::set_mod(n);\n \
-    \   ull d = n - 1;\n    while (~d & 1) d >>= 1;\n    T e{1}, re{n - 1};\n    rep\
-    \ (i, s) {\n        ull a = base[i];\n        if (a >= n) return true;\n     \
-    \   ull t = d;\n        T y = T(a).pow(t);\n        while (t != n - 1 && y !=\
-    \ e && y != re) {\n            y *= y;\n            t <<= 1;\n        }\n    \
-    \    if (y != re && !(t & 1)) return false;\n    }\n    return true;\n}\n\nconstexpr\
-    \ bool is_prime_mr(ll n) {\n    if (n == 2) return true;\n    if (n < 2 || n %\
-    \ 2 == 0) return false;\n    if (n < (1u << 31))\n        return miller_rabin<MontgomeryModInt<unsigned\
-    \ int, -2>>(\n            n, base_miller_rabin_int, 3);\n    return miller_rabin<MontgomeryModInt<ull,\
-    \ -2>>(n, base_miller_rabin_ll, 7);\n}\n\n#if __cpp_variable_templates >= 201304L\
-    \ && __cpp_constexpr >= 201304L\ntemplate<ull n> constexpr bool is_prime_v = is_prime_mr(n);\n\
-    #endif\n\n/**\n * @brief MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\
-    \u6570\u5224\u5B9A)\n * @docs docs/math/MillerRabin.md\n */\n#line 4 \"test/yosupo/math/primality_test.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int T; scan >> T;\n    rep (T) {\n \
-    \       ll n; scan >> n;\n        prints(is_prime_mr(n) ? \"Yes\" : \"No\");\n\
-    \    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/primality_test\"\n#include\
-    \ \"../../../other/template.hpp\"\n#include \"../../../math/MillerRabin.hpp\"\n\
-    using namespace std;\nint main() {\n    int T; scan >> T;\n    rep (T) {\n   \
-    \     ll n; scan >> n;\n        prints(is_prime_mr(n) ? \"Yes\" : \"No\");\n \
-    \   }\n}\n"
+    \ nullptr>\n    constexpr StaticModInt(U v) : val{} {\n        v %= static_cast<signed_t>(mod);\n\
+    \        if (v < 0) v += static_cast<signed_t>(mod);\n        val = static_cast<T>(v);\n\
+    \    }\n    template<class U, typename std::enable_if<\n                     \
+    \     std::is_integral<U>::value &&\n                          std::is_unsigned<U>::value>::type*\
+    \ = nullptr>\n    constexpr StaticModInt(U v) : val(v % mod) {}\n    constexpr\
+    \ T get() const { return val; }\n    static constexpr T get_mod() { return mod;\
+    \ }\n    static constexpr StaticModInt raw(T v) {\n        StaticModInt res;\n\
+    \        res.val = v;\n        return res;\n    }\n    constexpr StaticModInt\
+    \ inv() const {\n        if IF_CONSTEXPR (mod == 1000000007) {\n            if\
+    \ (val <= 10) return inv1000000007[val];\n        }\n        else if IF_CONSTEXPR\
+    \ (mod == 998244353) {\n            if (val <= 10) return inv998244353[val];\n\
+    \        }\n        return mod_inv(val);\n    }\n    constexpr StaticModInt& operator++()\
+    \ {\n        ++val;\n        if (val == mod) val = 0;\n        return *this;\n\
+    \    }\n    constexpr StaticModInt operator++(int) {\n        StaticModInt res\
+    \ = *this;\n        ++*this;\n        return res;\n    }\n    constexpr StaticModInt&\
+    \ operator--() {\n        if (val == 0) val = mod;\n        --val;\n        return\
+    \ *this;\n    }\n    constexpr StaticModInt operator--(int) {\n        StaticModInt\
+    \ res = *this;\n        --*this;\n        return res;\n    }\n    constexpr StaticModInt&\
+    \ operator+=(const StaticModInt& other) {\n        val += other.val;\n       \
+    \ if (val >= mod) val -= mod;\n        return *this;\n    }\n    constexpr StaticModInt&\
+    \ operator-=(const StaticModInt& other) {\n        if (val < other.val) val +=\
+    \ mod;\n        val -= other.val;\n        return *this;\n    }\n    constexpr\
+    \ StaticModInt& operator*=(const StaticModInt& other) {\n        large_t a = val;\n\
+    \        a *= other.val;\n        a %= mod;\n        val = a;\n        return\
+    \ *this;\n    }\n    constexpr StaticModInt& operator/=(const StaticModInt& other)\
+    \ {\n        *this *= other.inv();\n        return *this;\n    }\n    friend constexpr\
+    \ StaticModInt operator+(const StaticModInt& lhs,\n                          \
+    \                  const StaticModInt& rhs) {\n        return StaticModInt(lhs)\
+    \ += rhs;\n    }\n    friend constexpr StaticModInt operator-(const StaticModInt&\
+    \ lhs,\n                                            const StaticModInt& rhs) {\n\
+    \        return StaticModInt(lhs) -= rhs;\n    }\n    friend constexpr StaticModInt\
+    \ operator*(const StaticModInt& lhs,\n                                       \
+    \     const StaticModInt& rhs) {\n        return StaticModInt(lhs) *= rhs;\n \
+    \   }\n    friend constexpr StaticModInt operator/(const StaticModInt& lhs,\n\
+    \                                            const StaticModInt& rhs) {\n    \
+    \    return StaticModInt(lhs) /= rhs;\n    }\n    constexpr StaticModInt operator+()\
+    \ const { return StaticModInt(*this); }\n    constexpr StaticModInt operator-()\
+    \ const { return StaticModInt() - *this; }\n    friend constexpr bool operator==(const\
+    \ StaticModInt& lhs,\n                                     const StaticModInt&\
+    \ rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend constexpr bool\
+    \ operator!=(const StaticModInt& lhs,\n                                     const\
+    \ StaticModInt& rhs) {\n        return lhs.val != rhs.val;\n    }\n    constexpr\
+    \ StaticModInt pow(ll a) const {\n        StaticModInt v = *this, res = 1;\n \
+    \       while (a) {\n            if (a & 1) res *= v;\n            a >>= 1;\n\
+    \            v *= v;\n        }\n        return res;\n    }\n    template<class\
+    \ Pr> void print(Pr& a) const { a.print(val); }\n    template<class Pr> void debug(Pr&\
+    \ a) const { a.print(val); }\n    template<class Sc> void scan(Sc& a) {\n    \
+    \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\n#if __cplusplus\
+    \ < 201703L\ntemplate<class T, T mod>\nconstexpr unsigned int StaticModInt<T,\
+    \ mod>::inv1000000007[];\ntemplate<class T, T mod>\nconstexpr unsigned int StaticModInt<T,\
+    \ mod>::inv998244353[];\n#endif\n\ntemplate<unsigned int p> using static_modint\
+    \ = StaticModInt<unsigned int, p>;\nusing modint1000000007 = static_modint<1000000007>;\n\
+    using modint998244353 = static_modint<998244353>;\n\ntemplate<class T, int id>\
+    \ class DynamicModInt {\n    static_assert(std::is_integral<T>::value, \"T must\
+    \ be integral\");\n    static_assert(std::is_unsigned<T>::value, \"T must be unsigned\"\
+    );\n\nprivate:\n    using large_t = typename double_size_uint<T>::type;\n    using\
+    \ signed_t = typename std::make_signed<T>::type;\n    T val;\n    static T mod;\n\
+    \npublic:\n    constexpr DynamicModInt() : val(0) {}\n    template<class U,\n\
+    \             typename std::enable_if<std::is_integral<U>::value &&\n        \
+    \                             std::is_signed<U>::value>::type* = nullptr>\n  \
+    \  constexpr DynamicModInt(U v) : val{} {\n        v %= static_cast<signed_t>(mod);\n\
+    \        if (v < 0) v += static_cast<signed_t>(mod);\n        val = static_cast<T>(v);\n\
+    \    }\n    template<class U, typename std::enable_if<\n                     \
+    \     std::is_integral<U>::value &&\n                          std::is_unsigned<U>::value>::type*\
+    \ = nullptr>\n    constexpr DynamicModInt(U v) : val(v % mod) {}\n    T get()\
+    \ const { return val; }\n    static T get_mod() { return mod; }\n    static void\
+    \ set_mod(T v) {\n        assert(v > 0);\n        assert(v <= std::numeric_limits<T>::max()\
+    \ / 2);\n        mod = v;\n    }\n    static DynamicModInt raw(T v) {\n      \
+    \  DynamicModInt res;\n        res.val = v;\n        return res;\n    }\n    DynamicModInt\
+    \ inv() const { return mod_inv(val, mod); }\n    DynamicModInt& operator++() {\n\
+    \        ++val;\n        if (val == mod) val = 0;\n        return *this;\n   \
+    \ }\n    DynamicModInt operator++(int) {\n        DynamicModInt res = *this;\n\
+    \        ++*this;\n        return res;\n    }\n    DynamicModInt& operator--()\
+    \ {\n        if (val == 0) val = mod;\n        --val;\n        return *this;\n\
+    \    }\n    DynamicModInt operator--(int) {\n        DynamicModInt res = *this;\n\
+    \        --*this;\n        return res;\n    }\n    DynamicModInt& operator+=(const\
+    \ DynamicModInt& other) {\n        val += other.val;\n        if (val >= mod)\
+    \ val -= mod;\n        return *this;\n    }\n    DynamicModInt& operator-=(const\
+    \ DynamicModInt& other) {\n        if (val < other.val) val += mod;\n        val\
+    \ -= other.val;\n        return *this;\n    }\n    DynamicModInt& operator*=(const\
+    \ DynamicModInt& other) {\n        large_t a = val;\n        a *= other.val;\n\
+    \        a %= mod;\n        val = a;\n        return *this;\n    }\n    DynamicModInt&\
+    \ operator/=(const DynamicModInt& other) {\n        *this *= other.inv();\n  \
+    \      return *this;\n    }\n    friend DynamicModInt operator+(const DynamicModInt&\
+    \ lhs,\n                                   const DynamicModInt& rhs) {\n     \
+    \   return DynamicModInt(lhs) += rhs;\n    }\n    friend DynamicModInt operator-(const\
+    \ DynamicModInt& lhs,\n                                   const DynamicModInt&\
+    \ rhs) {\n        return DynamicModInt(lhs) -= rhs;\n    }\n    friend DynamicModInt\
+    \ operator*(const DynamicModInt& lhs,\n                                   const\
+    \ DynamicModInt& rhs) {\n        return DynamicModInt(lhs) *= rhs;\n    }\n  \
+    \  friend DynamicModInt operator/(const DynamicModInt& lhs,\n                \
+    \                   const DynamicModInt& rhs) {\n        return DynamicModInt(lhs)\
+    \ /= rhs;\n    }\n    DynamicModInt operator+() const { return DynamicModInt(*this);\
+    \ }\n    DynamicModInt operator-() const { return DynamicModInt() - *this; }\n\
+    \    friend bool operator==(const DynamicModInt& lhs, const DynamicModInt& rhs)\
+    \ {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
+    \ DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return lhs.val != rhs.val;\n\
+    \    }\n    DynamicModInt pow(ll a) const {\n        DynamicModInt v = *this,\
+    \ res = 1;\n        while (a) {\n            if (a & 1) res *= v;\n          \
+    \  a >>= 1;\n            v *= v;\n        }\n        return res;\n    }\n    template<class\
+    \ Pr> void print(Pr& a) const { a.print(val); }\n    template<class Pr> void debug(Pr&\
+    \ a) const { a.print(val); }\n    template<class Sc> void scan(Sc& a) {\n    \
+    \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\ntemplate<class\
+    \ T, int id> T DynamicModInt<T, id>::mod = 998244353;\n\ntemplate<int id> using\
+    \ dynamic_modint = DynamicModInt<unsigned int, id>;\nusing modint = dynamic_modint<-1>;\n\
+    \n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n#line 2 \"math/convolution/Convolution.hpp\"\
+    \n\n#line 5 \"math/convolution/Convolution.hpp\"\n\nconstexpr ull primitive_root_for_convolution(ull\
+    \ p) {\n    if (p == 2) return 1;\n    if (p == 998244353) return 3;\n    if (p\
+    \ == 469762049) return 3;\n    if (p == 1811939329) return 11;\n    if (p == 2013265921)\
+    \ return 11;\n    rep (g, 2, p) {\n        if (mod_pow(g, (p - 1) >> 1, p) !=\
+    \ 1) return g;\n    }\n    return -1;\n}\n\nnamespace internal {\n\ntemplate<class\
+    \ T> class NthRoot {\nprivate:\n    static constexpr unsigned int lg =\n     \
+    \   bitop::msb((T::get_mod() - 1) & (1 - T::get_mod()));\n    T root[lg + 1];\n\
+    \    T inv_root[lg + 1];\n    T rate[lg + 1];\n    T inv_rate[lg + 1];\n\npublic:\n\
+    \    constexpr NthRoot() : root{}, inv_root{}, rate{}, inv_rate{} {\n        root[lg]\
+    \ = T{primitive_root_for_convolution(T::get_mod())}.pow(\n            (T::get_mod()\
+    \ - 1) >> lg);\n        inv_root[lg] = root[lg].inv();\n        rrep (i, lg) {\n\
+    \            root[i] = root[i + 1] * root[i + 1];\n            inv_root[i] = inv_root[i\
+    \ + 1] * inv_root[i + 1];\n        }\n        T r = 1;\n        rep (i, 2, lg\
+    \ + 1) {\n            rate[i - 2] = r * root[i];\n            r = r * inv_root[i];\n\
+    \        }\n        r = 1;\n        rep (i, 2, lg + 1) {\n            inv_rate[i\
+    \ - 2] = r * inv_root[i];\n            r = r * root[i];\n        }\n    }\n  \
+    \  static constexpr unsigned int get_lg() { return lg; }\n    constexpr T get(int\
+    \ n) const { return root[n]; }\n    constexpr T inv(int n) const { return inv_root[n];\
+    \ }\n    constexpr T get_rate(int n) const { return rate[n]; }\n    constexpr\
+    \ T get_inv_rate(int n) const { return inv_rate[n]; }\n};\n\ntemplate<class T>\
+    \ void number_theoretic_transform(std::vector<T>& a) {\n    static constexpr NthRoot<T>\
+    \ nth_root;\n    int n = a.size();\n    int lg = bitop::ceil_log2(n);\n    for\
+    \ (int i = n >> 1; i > 0; i >>= 1) {\n        T z = T::raw(1);\n        rep (j,\
+    \ 0, n, i << 1) {\n            rep (k, i) {\n                const T x = a[j +\
+    \ k];\n                const T y = a[j + i + k] * z;\n                a[j + k]\
+    \ = x + y;\n                a[j + i + k] = x - y;\n            }\n           \
+    \ z *= nth_root.get_rate(popcnt(j & ~(j + (i << 1))));\n        }\n    }\n}\n\n\
+    template<class T> void inverse_number_theoretic_transform(std::vector<T>& a) {\n\
+    \    static constexpr NthRoot<T> nth_root;\n    int n = a.size();\n    for (int\
+    \ i = 1; i < n; i <<= 1) {\n        T z = T::raw(1);\n        rep (j, 0, n, i\
+    \ << 1) {\n            rep (k, i) {\n                const T x = a[j + k];\n \
+    \               const T y = a[j + i + k];\n                a[j + k] = x + y;\n\
+    \                a[j + i + k] = (x - y) * z;\n            }\n            z *=\
+    \ nth_root.get_inv_rate(popcnt(j & ~(j + (i << 1))));\n        }\n    }\n    T\
+    \ inv_n = T(1) / n;\n    for (auto&& x : a) x *= inv_n;\n}\n\ntemplate<class T>\n\
+    std::vector<T> convolution_naive(const std::vector<T>& a,\n                  \
+    \               const std::vector<T>& b) {\n    int n = a.size(), m = b.size();\n\
+    \    std::vector<T> c(n + m - 1);\n    rep (i, n)\n        rep (j, m) c[i + j]\
+    \ += a[i] * b[j];\n    return c;\n}\n\ntemplate<class T> std::vector<T> convolution_pow2(std::vector<T>\
+    \ a) {\n    int n = a.size() * 2 - 1;\n    int lg = bitop::msb(n - 1) + 1;\n \
+    \   if (n - (1 << (lg - 1)) <= 5) {\n        --lg;\n        int m = a.size() -\
+    \ (1 << (lg - 1));\n        std::vector<T> a1(a.begin(), a.begin() + m), a2(a.begin()\
+    \ + m, a.end());\n        std::vector<T> c(n);\n        std::vector<T> c1 = convolution_naive(a1,\
+    \ a1);\n        std::vector<T> c2 = convolution_naive(a1, a2);\n        std::vector<T>\
+    \ c3 = convolution_pow2(a2);\n        rep (i, c1.size()) c[i] += c1[i];\n    \
+    \    rep (i, c2.size()) c[i + m] += c2[i] * 2;\n        rep (i, c3.size()) c[i\
+    \ + m * 2] += c3[i];\n        return c;\n    }\n    int m = 1 << lg;\n    a.resize(m);\n\
+    \    number_theoretic_transform(a);\n    rep (i, m) a[i] *= a[i];\n    inverse_number_theoretic_transform(a);\n\
+    \    a.resize(n);\n    return a;\n}\n\ntemplate<class T>\nstd::vector<T> convolution(std::vector<T>\
+    \ a, std::vector<T> b) {\n    int n = a.size() + b.size() - 1;\n    int lg = bitop::ceil_log2(n);\n\
+    \    int m = 1 << lg;\n    if (n - (1 << (lg - 1)) <= 5) {\n        --lg;\n  \
+    \      if (a.size() < b.size()) std::swap(a, b);\n        int m = n - (1 << lg);\n\
+    \        std::vector<T> a1(a.begin(), a.begin() + m), a2(a.begin() + m, a.end());\n\
+    \        std::vector<T> c(n);\n        std::vector<T> c1 = convolution_naive(a1,\
+    \ b);\n        std::vector<T> c2 = convolution(a2, b);\n        rep (i, c1.size())\
+    \ c[i] += c1[i];\n        rep (i, c2.size()) c[i + m] += c2[i];\n        return\
+    \ c;\n    }\n    a.resize(m);\n    b.resize(m);\n    number_theoretic_transform(a);\n\
+    \    number_theoretic_transform(b);\n    rep (i, m) a[i] *= b[i];\n    inverse_number_theoretic_transform(a);\n\
+    \    a.resize(n);\n    return a;\n}\n\n} // namespace internal\n\nusing internal::inverse_number_theoretic_transform;\n\
+    using internal::number_theoretic_transform;\n\ntemplate<unsigned int p>\nstd::vector<static_modint<p>>\n\
+    convolution_for_any_mod(const std::vector<static_modint<p>>& a,\n            \
+    \            const std::vector<static_modint<p>>& b);\n\ntemplate<unsigned int\
+    \ p>\nstd::vector<static_modint<p>>\nconvolution(const std::vector<static_modint<p>>&\
+    \ a,\n            const std::vector<static_modint<p>>& b) {\n    unsigned int\
+    \ n = a.size(), m = b.size();\n    if (n == 0 || m == 0) return {};\n    if (n\
+    \ <= 60 || m <= 60) return internal::convolution_naive(a, b);\n    if (n + m -\
+    \ 1 <= ((1 - p) & (p - 1))) {\n        if (n == m && a == b) return internal::convolution_pow2(a);\n\
+    \        return internal::convolution(a, b);\n    }\n    return convolution_for_any_mod(a,\
+    \ b);\n}\n\ntemplate<unsigned int p>\nstd::vector<ll> convolution(const std::vector<ll>&\
+    \ a,\n                            const std::vector<ll>& b) {\n    int n = a.size(),\
+    \ m = b.size();\n    std::vector<static_modint<p>> a2(n), b2(m);\n    rep (i,\
+    \ n) a2[i] = a[i];\n    rep (i, m) b2[i] = b[i];\n    auto c2 = convolution(a2,\
+    \ b2);\n    std::vector<ll> c(c2.size());\n    rep (i, c2.size()) c[i] = c2[i].get();\n\
+    \    return c;\n}\n\ntemplate<unsigned int p>\nstd::vector<static_modint<p>>\n\
+    convolution_for_any_mod(const std::vector<static_modint<p>>& a,\n            \
+    \            const std::vector<static_modint<p>>& b) {\n    int n = a.size(),\
+    \ m = b.size();\n    assert(n + m - 1 <= (1 << 26));\n    std::vector<ll> a2(n),\
+    \ b2(m);\n    rep (i, n) a2[i] = a[i].get();\n    rep (i, m) b2[i] = b[i].get();\n\
+    \    static constexpr ll MOD1 = 469762049;\n    static constexpr ll MOD2 = 1811939329;\n\
+    \    static constexpr ll MOD3 = 2013265921;\n    static constexpr ll INV1_2 =\
+    \ mod_pow(MOD1, MOD2 - 2, MOD2);\n    static constexpr ll INV1_3 = mod_pow(MOD1,\
+    \ MOD3 - 2, MOD3);\n    static constexpr ll INV2_3 = mod_pow(MOD2, MOD3 - 2, MOD3);\n\
+    \    auto c1 = convolution<MOD1>(a2, b2);\n    auto c2 = convolution<MOD2>(a2,\
+    \ b2);\n    auto c3 = convolution<MOD3>(a2, b2);\n    std::vector<static_modint<p>>\
+    \ res(n + m - 1);\n    rep (i, n + m - 1) {\n        ll t1 = c1[i];\n        ll\
+    \ t2 = (c2[i] - t1 + MOD2) * INV1_2 % MOD2;\n        if (t2 < 0) t2 += MOD2;\n\
+    \        ll t3 =\n            ((c3[i] - t1 + MOD3) * INV1_3 % MOD3 - t2 + MOD3)\
+    \ * INV2_3 % MOD3;\n        if (t3 < 0) t3 += MOD3;\n        res[i] = static_modint<p>(t1\
+    \ + (t2 + t3 * MOD2) % p * MOD1);\n    }\n    return res;\n}\n\ntemplate<class\
+    \ T> void ntt_doubling_(std::vector<T>& a) {\n    static constexpr internal::NthRoot<T>\
+    \ nth_root;\n    int n = a.size();\n    auto b = a;\n    inverse_number_theoretic_transform(b);\n\
+    \    const T z = nth_root.get(bitop::msb(n) + 1);\n    T r = 1;\n    rep (i, n)\
+    \ {\n        b[i] *= r;\n        r *= z;\n    }\n    number_theoretic_transform(b);\n\
+    \    std::copy(all(b), std::back_inserter(a));\n}\n\ntemplate<unsigned int p>\
+    \ struct is_ntt_friendly : std::false_type {};\n\ntemplate<> struct is_ntt_friendly<998244353>\
+    \ : std::true_type {};\n\n/**\n * @brief Convolution(\u7573\u307F\u8FBC\u307F\
+    )\n * @docs docs/math/convolution/Convolution.md\n */\n#line 7 \"string/WildcardPatternMatching.hpp\"\
+    \n\nnamespace internal {\n\ntemplate<class T>\nstd::vector<bool> wildcard_mod(const\
+    \ std::vector<int>& a,\n                               const std::vector<int>&\
+    \ b, bool a0, bool b0) {\n    const int n = a.size(), m = b.size();\n    const\
+    \ int lg = bitop::ceil_log2(n), N = 1 << lg;\n    std::vector<T> A1(N), B1(N),\
+    \ A2(N), B2(N), A3(N), B3(N);\n    rep (i, n) A1[i] = a0 ? a[i] : 1;\n    rep\
+    \ (i, m) B1[i] = b0 ? b[m - 1 - i] : 1;\n    rep (i, n) A2[i] = A1[i] * A1[i];\n\
+    \    rep (i, m) B2[i] = B1[i] * B1[i];\n    rep (i, n) A3[i] = A1[i] * A2[i];\n\
+    \    rep (i, m) B3[i] = B1[i] * B2[i];\n    number_theoretic_transform(A1);\n\
+    \    number_theoretic_transform(B1);\n    number_theoretic_transform(A2);\n  \
+    \  number_theoretic_transform(B2);\n    number_theoretic_transform(A3);\n    number_theoretic_transform(B3);\n\
+    \    rep (i, N) A1[i] = A1[i] * B3[i] - 2 * A2[i] * B2[i] + A3[i] * B1[i];\n \
+    \   inverse_number_theoretic_transform(A1);\n    std::vector<bool> c(n - m + 1);\n\
+    \    rep (i, n - m + 1) c[i] = A1[i + m - 1] == 0;\n    return c;\n}\n\n} // namespace\
+    \ internal\n\nstd::vector<bool> wildcard_pattern_matching(std::vector<int> a,\n\
+    \                                            std::vector<int> b, int MAX,\n  \
+    \                                          bool deterministic = true) {\n    const\
+    \ int n = a.size(), m = b.size();\n    if (n < m) return {};\n    bool a0 = find(all(a),\
+    \ 0) != a.end(), b0 = find(all(b), 0) != b.end();\n    i128 MAX_VAL = (i128)MAX\
+    \ * MAX * m;\n    if (a0) MAX_VAL *= MAX;\n    if (b0) MAX_VAL *= MAX;\n    static\
+    \ constexpr int MOD1 = 2113929217, MOD2 = 2013265921,\n                      \
+    \   MOD3 = 1811939329, MOD4 = 1711276033;\n    if (!deterministic) {\n       \
+    \ MAX_VAL = 1;\n        std::vector<int> val(MAX + 1);\n        rep (i, 1, MAX\
+    \ + 1) val[i] = rand32() % (MOD1 - 1) + 1;\n        rep (i, n) a[i] = val[a[i]];\n\
+    \        rep (i, m) b[i] = val[b[i]];\n    }\n    std::vector<bool> res =\n  \
+    \      internal::wildcard_mod<static_modint<MOD1>>(a, b, a0, b0);\n    if (MAX_VAL\
+    \ >= MOD1) {\n        auto c = internal::wildcard_mod<static_modint<MOD2>>(a,\
+    \ b, a0, b0);\n        rep (i, n - m + 1) res[i] = res[i] && c[i];\n    }\n  \
+    \  if (MAX_VAL >= (i128)MOD1 * MOD2) {\n        auto c = internal::wildcard_mod<static_modint<MOD3>>(a,\
+    \ b, a0, b0);\n        rep (i, n - m + 1) res[i] = res[i] && c[i];\n    }\n  \
+    \  if (MAX_VAL >= (i128)MOD1 * MOD2 * MOD3) {\n        auto c = internal::wildcard_mod<static_modint<MOD4>>(a,\
+    \ b, a0, b0);\n        rep (i, n - m + 1) res[i] = res[i] && c[i];\n    }\n  \
+    \  return res;\n}\n\nstd::vector<bool> wildcard_pattern_matching(const std::vector<int>&\
+    \ a,\n                                            const std::vector<int>& b,\n\
+    \                                            bool deterministic = true) {\n  \
+    \  compressor<int> comp{0};\n    comp.push(a);\n    comp.push(b);\n    comp.build();\n\
+    \    return wildcard_pattern_matching(comp.pressed(a), comp.pressed(b),\n    \
+    \                                 comp.size() - 1, deterministic);\n}\n\nstd::vector<bool>\
+    \ wildcard_pattern_matching(const std::string& a,\n                          \
+    \                  const std::string& b,\n                                   \
+    \         char wildcard = '*',\n                                            bool\
+    \ deterministic = true) {\n    static std::vector<int> idx(128, -1);\n    std::vector<int>\
+    \ A(a.size()), B(b.size());\n    int cnt = 1;\n    rep (i, a.size()) {\n     \
+    \   A[i] = a[i] == wildcard  ? 0\n               : idx[a[i]] == -1 ? idx[a[i]]\
+    \ = cnt++\n                                 : idx[a[i]];\n    }\n    rep (i, b.size())\
+    \ {\n        B[i] = b[i] == wildcard  ? 0\n               : idx[b[i]] == -1 ?\
+    \ idx[b[i]] = cnt++\n                                 : idx[b[i]];\n    }\n  \
+    \  rep (i, a.size()) idx[a[i]] = -1;\n    rep (i, b.size()) idx[b[i]] = -1;\n\
+    \    return wildcard_pattern_matching(A, B, cnt - 1, deterministic);\n}\n\n/**\n\
+    \ * @brief WildcardPatternMatching\n * @docs docs/string/WildcardPatternMatching.md\n\
+    \ */\n#line 4 \"test/yosupo/new/wildcard_pattern_matching.test.cpp\"\nusing namespace\
+    \ std;\nint main() {\n    string S, T; scan >> S >> T;\n    auto res = wildcard_pattern_matching(S,\
+    \ T);\n    rep (i, res.size()) print << res[i];\n    print << endl;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/wildcard_pattern_matching\"\
+    \n#include \"../../../other/template.hpp\"\n#include \"../../../string/WildcardPatternMatching.hpp\"\
+    \nusing namespace std;\nint main() {\n    string S, T; scan >> S >> T;\n    auto\
+    \ res = wildcard_pattern_matching(S, T);\n    rep (i, res.size()) print << res[i];\n\
+    \    print << endl;\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -553,18 +773,20 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  - math/MillerRabin.hpp
-  - math/MontgomeryModInt.hpp
+  - string/WildcardPatternMatching.hpp
+  - random/Random.hpp
+  - math/ModInt.hpp
+  - math/convolution/Convolution.hpp
   isVerificationFile: true
-  path: test/yosupo/math/primality_test.test.cpp
+  path: test/yosupo/new/wildcard_pattern_matching.test.cpp
   requiredBy: []
-  timestamp: '2024-05-12 17:35:55+09:00'
+  timestamp: '2024-05-15 12:01:30+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/yosupo/math/primality_test.test.cpp
+documentation_of: test/yosupo/new/wildcard_pattern_matching.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/math/primality_test.test.cpp
-- /verify/test/yosupo/math/primality_test.test.cpp.html
-title: test/yosupo/math/primality_test.test.cpp
+- /verify/test/yosupo/new/wildcard_pattern_matching.test.cpp
+- /verify/test/yosupo/new/wildcard_pattern_matching.test.cpp.html
+title: test/yosupo/new/wildcard_pattern_matching.test.cpp
 ---

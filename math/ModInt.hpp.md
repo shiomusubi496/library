@@ -53,7 +53,7 @@ data:
   - icon: ':x:'
     path: math/PrimitiveRoot.hpp
     title: "PrimitiveRoot(\u539F\u59CB\u6839)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/StirlingNumber.hpp
     title: "StirlingNumber(\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\u30EB\
       \u6570, \u30D9\u30EB\u30CC\u30FC\u30A4\u6570, \u5206\u5272\u6570)"
@@ -63,7 +63,7 @@ data:
   - icon: ':x:'
     path: math/TetrationMod.hpp
     title: TetrationMod
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/convolution/Convolution.hpp
     title: "Convolution(\u7573\u307F\u8FBC\u307F)"
   - icon: ':x:'
@@ -88,7 +88,7 @@ data:
   - icon: ':x:'
     path: math/poly/BostanMori.hpp
     title: "Bostan-Mori(\u7DDA\u5F62\u6F38\u5316\u5F0F\u306En\u9805\u76EE)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/poly/FormalPowerSeries.hpp
     title: "FormalPowerSeries(\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570)"
   - icon: ':x:'
@@ -100,13 +100,16 @@ data:
   - icon: ':x:'
     path: math/poly/SamplingPointsShift.hpp
     title: "SamplingPointsShift(\u6A19\u672C\u70B9\u30B7\u30D5\u30C8)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/poly/SparseFormalPowerSeries.hpp
     title: "SparseFormalPowerSeries(\u758E\u306A\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570\
       )"
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/poly/TaylorShift.hpp
     title: TaylorShift
+  - icon: ':x:'
+    path: string/WildcardPatternMatching.hpp
+    title: WildcardPatternMatching
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_A.test.cpp
@@ -114,19 +117,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_B.test.cpp
     title: test/aoj/DPL/DPL_5_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_C.test.cpp
     title: test/aoj/DPL/DPL_5_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_D.test.cpp
     title: test/aoj/DPL/DPL_5_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_E.test.cpp
     title: test/aoj/DPL/DPL_5_E.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_F.test.cpp
     title: test/aoj/DPL/DPL_5_F.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_G.test.cpp
     title: test/aoj/DPL/DPL_5_G.test.cpp
   - icon: ':x:'
@@ -270,6 +273,9 @@ data:
   - icon: ':x:'
     path: test/yosupo/new/matrix_product_mod_2.test.cpp
     title: test/yosupo/new/matrix_product_mod_2.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/new/wildcard_pattern_matching.test.cpp
+    title: test/yosupo/new/wildcard_pattern_matching.test.cpp
   - icon: ':x:'
     path: test/yosupo/polynomial/composition_of_formal_power_series.test.cpp
     title: test/yosupo/polynomial/composition_of_formal_power_series.test.cpp
@@ -1012,6 +1018,7 @@ data:
   - graph/other/CountEulerianTrail.hpp
   - graph/mst/CountSpanningTree.hpp
   - graph/tree/FrequencyTableofTreeDistance.hpp
+  - string/WildcardPatternMatching.hpp
   - math/PrimitiveRoot.hpp
   - math/convolution/RelaxedConvolution.hpp
   - math/convolution/MultidimensionalConvolution.hpp
@@ -1047,6 +1054,7 @@ data:
   - test/yosupo/convolution/gcd_convolution.test.cpp
   - test/yosupo/new/matrix_product_mod_2.test.cpp
   - test/yosupo/new/matrix_det_mod_2.test.cpp
+  - test/yosupo/new/wildcard_pattern_matching.test.cpp
   - test/yosupo/graph/enumerate_cliques.test.cpp
   - test/yosupo/graph/enumerate_triangles.test.cpp
   - test/yosupo/data_structure/range_affine_range_sum.test.cpp

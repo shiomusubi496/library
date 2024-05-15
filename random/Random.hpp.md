@@ -50,6 +50,9 @@ data:
   - icon: ':question:'
     path: string/RollingHash.hpp
     title: "RollingHash(\u30ED\u30EA\u30CF)"
+  - icon: ':x:'
+    path: string/WildcardPatternMatching.hpp
+    title: WildcardPatternMatching
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
@@ -66,6 +69,9 @@ data:
   - icon: ':x:'
     path: test/yosupo/math/tetration_mod.test.cpp
     title: test/yosupo/math/tetration_mod.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/new/wildcard_pattern_matching.test.cpp
+    title: test/yosupo/new/wildcard_pattern_matching.test.cpp
   - icon: ':x:'
     path: test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
     title: test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
@@ -554,6 +560,7 @@ data:
   requiredBy:
   - graph/tree/TreeHash.hpp
   - string/RollingHash.hpp
+  - string/WildcardPatternMatching.hpp
   - data-struct/other/SkipList.hpp
   - math/PrimitiveRoot.hpp
   - math/TetrationMod.hpp
@@ -562,6 +569,7 @@ data:
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yosupo/new/wildcard_pattern_matching.test.cpp
   - test/yosupo/math/factorize.test.cpp
   - test/yosupo/math/primitive_root.test.cpp
   - test/yosupo/math/tetration_mod.test.cpp

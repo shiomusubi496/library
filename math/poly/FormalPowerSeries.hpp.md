@@ -7,13 +7,13 @@ data:
   - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/MontgomeryModInt.hpp
     title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/SqrtMod.hpp
     title: "SqrtMod(\u5E73\u65B9\u5270\u4F59)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/convolution/Convolution.hpp
     title: "Convolution(\u7573\u307F\u8FBC\u307F)"
   - icon: ':question:'
@@ -50,7 +50,7 @@ data:
   - icon: ':x:'
     path: math/Factorial.hpp
     title: "Factorial(\u968E\u4E57)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/StirlingNumber.hpp
     title: "StirlingNumber(\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\u30EB\
       \u6570, \u30D9\u30EB\u30CC\u30FC\u30A4\u6570, \u5206\u5272\u6570)"
@@ -69,15 +69,15 @@ data:
   - icon: ':x:'
     path: math/poly/SamplingPointsShift.hpp
     title: "SamplingPointsShift(\u6A19\u672C\u70B9\u30B7\u30D5\u30C8)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/poly/SparseFormalPowerSeries.hpp
     title: "SparseFormalPowerSeries(\u758E\u306A\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570\
       )"
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/poly/TaylorShift.hpp
     title: TaylorShift
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_G.test.cpp
     title: test/aoj/DPL/DPL_5_G.test.cpp
   - icon: ':x:'
@@ -178,7 +178,7 @@ data:
     title: test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/math/poly/FormalPowerSeries.md
     document_title: "FormalPowerSeries(\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570)"
@@ -1391,7 +1391,7 @@ data:
   - math/SubsetSum.hpp
   - math/Factorial.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/yosupo/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
