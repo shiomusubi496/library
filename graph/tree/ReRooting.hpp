@@ -96,6 +96,11 @@ public:
     U get_dp(int v, int p_idx) && { return std::move(dp[v][p_idx]); }
 };
 
+template<class M, class T, class F>
+ReRooting<M, T, F> make_rerooting(const Graph<T>& G, const F& f) {
+    return ReRooting<M, T, F>(G, f);
+}
+
 /**
  * @brief ReRooting(全方位木DP)
  * @docs docs/graph/tree/ReRooting.md

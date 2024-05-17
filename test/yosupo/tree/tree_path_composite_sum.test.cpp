@@ -24,6 +24,6 @@ int main() {
     auto f = [&](pair<mint, mint> x, const edge<pair<mint, mint>>& e) -> pair<mint, mint> {
         return {e.cost.first * (x.first + a[e.from]) + e.cost.second * (x.second + 1), x.second + 1};
     };
-    ReRooting<PairSum, pair<mint, mint>, decltype(f)> rr(G, f);
+    auto rr = make_rerooting<PairSum>(G, f);
     rep (i, n) print << rr[i].first + a[i] << " \n"[i == n - 1];
 }
