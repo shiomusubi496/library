@@ -618,8 +618,10 @@ data:
     \    const std::vector<std::vector<U>>& get_dp() const& { return dp; }\n    std::vector<std::vector<U>>\
     \ get_dp() && { return std::move(dp); }\n    const U& get_dp(int v, int p_idx)\
     \ const& { return dp[v][p_idx]; }\n    U get_dp(int v, int p_idx) && { return\
-    \ std::move(dp[v][p_idx]); }\n};\n\n/**\n * @brief ReRooting(\u5168\u65B9\u4F4D\
-    \u6728DP)\n * @docs docs/graph/tree/ReRooting.md\n */\n#line 5 \"test/aoj/GRL/GRL_5_B-ReRooting.test.cpp\"\
+    \ std::move(dp[v][p_idx]); }\n};\n\ntemplate<class M, class T, class F>\nReRooting<M,\
+    \ T, F> make_rerooting(const Graph<T>& G, const F& f) {\n    return ReRooting<M,\
+    \ T, F>(G, f);\n}\n\n/**\n * @brief ReRooting(\u5168\u65B9\u4F4D\u6728DP)\n *\
+    \ @docs docs/graph/tree/ReRooting.md\n */\n#line 5 \"test/aoj/GRL/GRL_5_B-ReRooting.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int N; scan >> N;\n    Graph<ll> G(N);\n\
     \    rep (N - 1) {\n        ll a, b, c; scan >> a >> b >> c;\n        G.add_edge(a,\
     \ b, c);\n    }\n    auto f = [&](ll x, auto e) {\n        return x + e.cost;\n\
@@ -649,7 +651,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
   requiredBy: []
-  timestamp: '2024-05-12 17:35:55+09:00'
+  timestamp: '2024-05-17 13:49:08+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp

@@ -748,8 +748,10 @@ data:
     \    const std::vector<std::vector<U>>& get_dp() const& { return dp; }\n    std::vector<std::vector<U>>\
     \ get_dp() && { return std::move(dp); }\n    const U& get_dp(int v, int p_idx)\
     \ const& { return dp[v][p_idx]; }\n    U get_dp(int v, int p_idx) && { return\
-    \ std::move(dp[v][p_idx]); }\n};\n\n/**\n * @brief ReRooting(\u5168\u65B9\u4F4D\
-    \u6728DP)\n * @docs docs/graph/tree/ReRooting.md\n */\n#line 6 \"test/yosupo/tree/tree_path_composite_sum.test.cpp\"\
+    \ std::move(dp[v][p_idx]); }\n};\n\ntemplate<class M, class T, class F>\nReRooting<M,\
+    \ T, F> make_rerooting(const Graph<T>& G, const F& f) {\n    return ReRooting<M,\
+    \ T, F>(G, f);\n}\n\n/**\n * @brief ReRooting(\u5168\u65B9\u4F4D\u6728DP)\n *\
+    \ @docs docs/graph/tree/ReRooting.md\n */\n#line 6 \"test/yosupo/tree/tree_path_composite_sum.test.cpp\"\
     \nusing namespace std;\nusing mint = modint998244353;\nstruct PairSum {\n    using\
     \ value_type = pair<mint, mint>;\n    static value_type op(const value_type& a,\
     \ const value_type& b) {\n        return {a.first + b.first, a.second + b.second};\n\
@@ -759,8 +761,8 @@ data:
     \ d; scan >> c >> d;\n        G.add_edge(a, b, {c, d});\n    }\n    auto f = [&](pair<mint,\
     \ mint> x, const edge<pair<mint, mint>>& e) -> pair<mint, mint> {\n        return\
     \ {e.cost.first * (x.first + a[e.from]) + e.cost.second * (x.second + 1), x.second\
-    \ + 1};\n    };\n    ReRooting<PairSum, pair<mint, mint>, decltype(f)> rr(G, f);\n\
-    \    rep (i, n) print << rr[i].first + a[i] << \" \\n\"[i == n - 1];\n}\n"
+    \ + 1};\n    };\n    auto rr = make_rerooting<PairSum>(G, f);\n    rep (i, n)\
+    \ print << rr[i].first + a[i] << \" \\n\"[i == n - 1];\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/tree_path_composite_sum\"\
     \n#include \"../../../other/template.hpp\"\n#include \"../../../math/ModInt.hpp\"\
     \n#include \"../../../graph/Graph.hpp\"\n#include \"../../../graph/tree/ReRooting.hpp\"\
@@ -773,8 +775,8 @@ data:
     \ d; scan >> c >> d;\n        G.add_edge(a, b, {c, d});\n    }\n    auto f = [&](pair<mint,\
     \ mint> x, const edge<pair<mint, mint>>& e) -> pair<mint, mint> {\n        return\
     \ {e.cost.first * (x.first + a[e.from]) + e.cost.second * (x.second + 1), x.second\
-    \ + 1};\n    };\n    ReRooting<PairSum, pair<mint, mint>, decltype(f)> rr(G, f);\n\
-    \    rep (i, n) print << rr[i].first + a[i] << \" \\n\"[i == n - 1];\n}\n"
+    \ + 1};\n    };\n    auto rr = make_rerooting<PairSum>(G, f);\n    rep (i, n)\
+    \ print << rr[i].first + a[i] << \" \\n\"[i == n - 1];\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -792,7 +794,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/tree/tree_path_composite_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-05-12 17:35:55+09:00'
+  timestamp: '2024-05-17 13:49:08+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/tree/tree_path_composite_sum.test.cpp

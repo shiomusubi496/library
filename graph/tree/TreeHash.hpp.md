@@ -772,8 +772,10 @@ data:
     \    const std::vector<std::vector<U>>& get_dp() const& { return dp; }\n    std::vector<std::vector<U>>\
     \ get_dp() && { return std::move(dp); }\n    const U& get_dp(int v, int p_idx)\
     \ const& { return dp[v][p_idx]; }\n    U get_dp(int v, int p_idx) && { return\
-    \ std::move(dp[v][p_idx]); }\n};\n\n/**\n * @brief ReRooting(\u5168\u65B9\u4F4D\
-    \u6728DP)\n * @docs docs/graph/tree/ReRooting.md\n */\n#line 8 \"graph/tree/TreeHash.hpp\"\
+    \ std::move(dp[v][p_idx]); }\n};\n\ntemplate<class M, class T, class F>\nReRooting<M,\
+    \ T, F> make_rerooting(const Graph<T>& G, const F& f) {\n    return ReRooting<M,\
+    \ T, F>(G, f);\n}\n\n/**\n * @brief ReRooting(\u5168\u65B9\u4F4D\u6728DP)\n *\
+    \ @docs docs/graph/tree/ReRooting.md\n */\n#line 8 \"graph/tree/TreeHash.hpp\"\
     \n\nclass TreeHash {\nprivate:\n    static constexpr ull MASK31 = (1ull << 31)\
     \ - 1;\n    using mint = modint61;\n    std::vector<mint> base;\n    void init(int\
     \ n) {\n        int m = base.size();\n        if (m >= n) return;\n        base.resize(n);\n\
@@ -859,7 +861,7 @@ data:
   isVerificationFile: false
   path: graph/tree/TreeHash.hpp
   requiredBy: []
-  timestamp: '2024-05-12 17:35:55+09:00'
+  timestamp: '2024-05-17 13:49:08+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp

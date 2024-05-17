@@ -626,8 +626,10 @@ data:
     \    const std::vector<std::vector<U>>& get_dp() const& { return dp; }\n    std::vector<std::vector<U>>\
     \ get_dp() && { return std::move(dp); }\n    const U& get_dp(int v, int p_idx)\
     \ const& { return dp[v][p_idx]; }\n    U get_dp(int v, int p_idx) && { return\
-    \ std::move(dp[v][p_idx]); }\n};\n\n/**\n * @brief ReRooting(\u5168\u65B9\u4F4D\
-    \u6728DP)\n * @docs docs/graph/tree/ReRooting.md\n */\n"
+    \ std::move(dp[v][p_idx]); }\n};\n\ntemplate<class M, class T, class F>\nReRooting<M,\
+    \ T, F> make_rerooting(const Graph<T>& G, const F& f) {\n    return ReRooting<M,\
+    \ T, F>(G, f);\n}\n\n/**\n * @brief ReRooting(\u5168\u65B9\u4F4D\u6728DP)\n *\
+    \ @docs docs/graph/tree/ReRooting.md\n */\n"
   code: "#pragma once\n\n#include \"../Graph.hpp\"\n#include \"../../other/monoid.hpp\"\
     \n\ntemplate<class M, class T, class F> class ReRooting {\nprivate:\n    using\
     \ U = typename M::value_type;\n    const F& f;\n    int n;\n    const Graph<T>&\
@@ -668,8 +670,10 @@ data:
     \    const std::vector<std::vector<U>>& get_dp() const& { return dp; }\n    std::vector<std::vector<U>>\
     \ get_dp() && { return std::move(dp); }\n    const U& get_dp(int v, int p_idx)\
     \ const& { return dp[v][p_idx]; }\n    U get_dp(int v, int p_idx) && { return\
-    \ std::move(dp[v][p_idx]); }\n};\n\n/**\n * @brief ReRooting(\u5168\u65B9\u4F4D\
-    \u6728DP)\n * @docs docs/graph/tree/ReRooting.md\n */\n"
+    \ std::move(dp[v][p_idx]); }\n};\n\ntemplate<class M, class T, class F>\nReRooting<M,\
+    \ T, F> make_rerooting(const Graph<T>& G, const F& f) {\n    return ReRooting<M,\
+    \ T, F>(G, f);\n}\n\n/**\n * @brief ReRooting(\u5168\u65B9\u4F4D\u6728DP)\n *\
+    \ @docs docs/graph/tree/ReRooting.md\n */\n"
   dependsOn:
   - graph/Graph.hpp
   - other/template.hpp
@@ -686,7 +690,7 @@ data:
   path: graph/tree/ReRooting.hpp
   requiredBy:
   - graph/tree/TreeHash.hpp
-  timestamp: '2024-05-12 17:35:55+09:00'
+  timestamp: '2024-05-17 13:49:08+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
