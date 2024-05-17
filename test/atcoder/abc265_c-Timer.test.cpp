@@ -6,7 +6,7 @@ int main() {
     int H, W; scan >> H >> W;
     vector<string> A(H); scan >> A;
     int x = 0, y = 0;
-    while (timer.elapsed() < 1950) {
+    while (timer.elapsed() < 50) {
         int nx = x, ny = y;
         switch (A[x][y]) {
             case 'L': ny--; break;
