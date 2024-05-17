@@ -32,14 +32,14 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/RangeSortQuery.hpp
     title: RangeSortQuery
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
     title: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
     title: test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
   - icon: ':x:'

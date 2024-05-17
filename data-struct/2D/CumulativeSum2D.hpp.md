@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: data-struct/2D/Struct2D.hpp
     title: data-struct/2D/Struct2D.hpp
   - icon: ':x:'

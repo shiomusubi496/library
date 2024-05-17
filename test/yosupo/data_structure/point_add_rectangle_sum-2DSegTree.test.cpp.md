@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/2D/SegmentTree2D.hpp
     title: SegmentTree2D
-  - icon: ':x:'
+  - icon: ':question:'
     path: data-struct/2D/Struct2D.hpp
     title: data-struct/2D/Struct2D.hpp
   - icon: ':question:'
@@ -42,9 +42,9 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_add_rectangle_sum
@@ -677,8 +677,7 @@ data:
     \        });\n        return M::op(lsm, rsm);\n    }\n    T get(ll x, ll y) {\n\
     \        T res = M::id();\n        str.get(x, y, [&](int k, int i) { res = seg[k].get(i);\
     \ });\n        return res;\n    }\n    T all_prod() const { return seg[1].all_prod();\
-    \ }\n};\n\n/**\n * @brief SegmentTree2D\n * @docs docs/data-struct/2D/SegmentTree2D.md\n\
-    \ */\n#line 5 \"test/yosupo/data_structure/point_add_rectangle_sum-2DSegTree.test.cpp\"\
+    \ }\n};\n\n/**\n * @brief SegmentTree2D\n */\n#line 5 \"test/yosupo/data_structure/point_add_rectangle_sum-2DSegTree.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int N, Q; scan >> N >> Q;\n    vector<ll>\
     \ A(N), B(N), C(N);\n    rep (i, N) scan >> A[i] >> B[i] >> C[i];\n    vector<array<ll,\
     \ 5>> D(Q);\n    for (auto&& [a, b, c, d, e] : D) {\n        scan >> a;\n    \
@@ -715,8 +714,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/point_add_rectangle_sum-2DSegTree.test.cpp
   requiredBy: []
-  timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-05-17 13:27:23+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/point_add_rectangle_sum-2DSegTree.test.cpp
 layout: document

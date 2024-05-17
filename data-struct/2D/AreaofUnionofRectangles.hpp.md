@@ -39,12 +39,12 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
     title: test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"data-struct/2D/AreaofUnionofRectangles.hpp\"\n\n#line 2\
@@ -706,7 +706,7 @@ data:
   path: data-struct/2D/AreaofUnionofRectangles.hpp
   requiredBy: []
   timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
 documentation_of: data-struct/2D/AreaofUnionofRectangles.hpp

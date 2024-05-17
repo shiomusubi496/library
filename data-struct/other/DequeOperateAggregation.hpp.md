@@ -33,12 +33,12 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
     title: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/data-struct/other/DequeOperateAggregation.md
     document_title: DequeOperateAggregation
@@ -642,7 +642,7 @@ data:
   path: data-struct/other/DequeOperateAggregation.hpp
   requiredBy: []
   timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/data_structure/deque_operate_all_composite.test.cpp
 documentation_of: data-struct/other/DequeOperateAggregation.hpp

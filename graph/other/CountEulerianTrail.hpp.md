@@ -55,7 +55,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/graph/mst/CountEulerianTrail.md
+    _deprecated_at_docs: docs/graph/other/CountEulerianTrail.md
     document_title: CountEulerianTrail(BEST Theorem)
     links: []
   bundledCode: "#line 2 \"graph/other/CountEulerianTrail.hpp\"\n\n#line 2 \"graph/Graph.hpp\"\
@@ -789,7 +789,7 @@ data:
     \ idx[e.to], e.cost, true);\n        }\n    }\n    T res = count_spanning_tree<T>(H);\n\
     \    rep (i, N) {\n        if (dego[i] != 0) res *= Comb::fact(dego[i] - 1);\n\
     \    }\n    return res;\n}\n\n/**\n * @brief CountEulerianTrail(BEST Theorem)\n\
-    \ * @docs docs/graph/mst/CountEulerianTrail.md\n */\n"
+    \ * @docs docs/graph/other/CountEulerianTrail.md\n */\n"
   code: "#pragma once\n\n#include \"../Graph.hpp\"\n#include \"../mst/CountSpanningTree.hpp\"\
     \n#include \"../../math/Combinatorics.hpp\"\n\ntemplate<class T, class U, class\
     \ Comb = Combinatorics<T>>\nT count_eulerian_trail(const Graph<U>& G) {\n    int\
@@ -804,7 +804,7 @@ data:
     \ idx[e.to], e.cost, true);\n        }\n    }\n    T res = count_spanning_tree<T>(H);\n\
     \    rep (i, N) {\n        if (dego[i] != 0) res *= Comb::fact(dego[i] - 1);\n\
     \    }\n    return res;\n}\n\n/**\n * @brief CountEulerianTrail(BEST Theorem)\n\
-    \ * @docs docs/graph/mst/CountEulerianTrail.md\n */\n"
+    \ * @docs docs/graph/other/CountEulerianTrail.md\n */\n"
   dependsOn:
   - graph/Graph.hpp
   - other/template.hpp
@@ -824,7 +824,7 @@ data:
   isVerificationFile: false
   path: graph/other/CountEulerianTrail.hpp
   requiredBy: []
-  timestamp: '2024-05-12 17:35:55+09:00'
+  timestamp: '2024-05-17 13:27:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/atcoder/abc336_g-BEST.test.cpp
@@ -835,3 +835,8 @@ redirect_from:
 - /library/graph/other/CountEulerianTrail.hpp.html
 title: CountEulerianTrail(BEST Theorem)
 ---
+## 概要
+
+オイラー路(全辺を一度ずつ通る路)を数え上げる。 BEST Theorem により、頂点 $1$ を根とする有向全域木の個数を $c$ (根によらず同じ値になる)、 $v$ の出次数を $\deg(v)$ として $c \times \prod_{v} (\deg(v)-1)!$ になる。
+
+- `T count_eulerian_trail(Graph<U> G)` : $\Theta(N^3)$ 。

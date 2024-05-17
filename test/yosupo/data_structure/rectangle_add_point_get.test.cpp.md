@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: data-struct/2D/DualSegmentTree2D.hpp
     title: data-struct/2D/DualSegmentTree2D.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: data-struct/2D/Struct2D.hpp
     title: data-struct/2D/Struct2D.hpp
   - icon: ':question:'

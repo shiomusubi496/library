@@ -789,7 +789,7 @@ data:
     \            if (e.cost) H.add_edge(idx[i], idx[e.to], e.cost, true);\n      \
     \  }\n    }\n    T res = count_spanning_tree<T>(H);\n    rep (i, N) {\n      \
     \  if (dego[i] != 0) res *= Comb::fact(dego[i] - 1);\n    }\n    return res;\n\
-    }\n\n/**\n * @brief CountEulerianTrail(BEST Theorem)\n * @docs docs/graph/mst/CountEulerianTrail.md\n\
+    }\n\n/**\n * @brief CountEulerianTrail(BEST Theorem)\n * @docs docs/graph/other/CountEulerianTrail.md\n\
     \ */\n#line 6 \"test/atcoder/abc336_g-BEST.test.cpp\"\nusing namespace std;\n\
     using mint = modint998244353;\nusing comb = Combinatorics<mint>;\nint main() {\n\
     \    vector<int> A(16); scan >> A;\n    Graph<int> G(8);\n    rep (i, 16) {\n\
@@ -826,7 +826,7 @@ data:
   isVerificationFile: true
   path: test/atcoder/abc336_g-BEST.test.cpp
   requiredBy: []
-  timestamp: '2024-05-12 17:35:55+09:00'
+  timestamp: '2024-05-17 13:27:23+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/atcoder/abc336_g-BEST.test.cpp

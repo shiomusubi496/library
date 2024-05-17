@@ -42,7 +42,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_E-RAQ.test.cpp
     title: test/aoj/DSL/DSL_2_E-RAQ.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/range_affine_point_get.test.cpp
     title: test/yosupo/data_structure/range_affine_point_get.test.cpp
   - icon: ':x:'

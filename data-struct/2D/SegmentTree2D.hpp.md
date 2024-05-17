@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: data-struct/2D/Struct2D.hpp
     title: data-struct/2D/Struct2D.hpp
   - icon: ':question:'
@@ -39,14 +39,13 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/point_add_rectangle_sum-2DSegTree.test.cpp
     title: test/yosupo/data_structure/point_add_rectangle_sum-2DSegTree.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/data-struct/2D/SegmentTree2D.md
     document_title: SegmentTree2D
     links: []
   bundledCode: "#line 2 \"data-struct/2D/SegmentTree2D.hpp\"\n\n#line 2 \"other/template.hpp\"\
@@ -674,8 +673,7 @@ data:
     \        });\n        return M::op(lsm, rsm);\n    }\n    T get(ll x, ll y) {\n\
     \        T res = M::id();\n        str.get(x, y, [&](int k, int i) { res = seg[k].get(i);\
     \ });\n        return res;\n    }\n    T all_prod() const { return seg[1].all_prod();\
-    \ }\n};\n\n/**\n * @brief SegmentTree2D\n * @docs docs/data-struct/2D/SegmentTree2D.md\n\
-    \ */\n"
+    \ }\n};\n\n/**\n * @brief SegmentTree2D\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\
     \n#include \"../segment/SegmentTree.hpp\"\n#include \"Struct2D.hpp\"\n\ntemplate<class\
     \ M> class SegmentTree2D {\nprivate:\n    using T = typename M::value_type;\n\
@@ -704,8 +702,7 @@ data:
     \        });\n        return M::op(lsm, rsm);\n    }\n    T get(ll x, ll y) {\n\
     \        T res = M::id();\n        str.get(x, y, [&](int k, int i) { res = seg[k].get(i);\
     \ });\n        return res;\n    }\n    T all_prod() const { return seg[1].all_prod();\
-    \ }\n};\n\n/**\n * @brief SegmentTree2D\n * @docs docs/data-struct/2D/SegmentTree2D.md\n\
-    \ */\n"
+    \ }\n};\n\n/**\n * @brief SegmentTree2D\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -722,8 +719,8 @@ data:
   isVerificationFile: false
   path: data-struct/2D/SegmentTree2D.hpp
   requiredBy: []
-  timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-05-17 13:27:23+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/data_structure/point_add_rectangle_sum-2DSegTree.test.cpp
 documentation_of: data-struct/2D/SegmentTree2D.hpp
