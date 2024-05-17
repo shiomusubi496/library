@@ -35,10 +35,10 @@ data:
   - icon: ':x:'
     path: graph/tree/TreeHash.hpp
     title: TreeHash
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/EulerPhi.hpp
     title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/PollardRho.hpp
     title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
   - icon: ':x:'
@@ -57,7 +57,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
     title: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/NTL/NTL_1_D-Phi.test.cpp
     title: test/aoj/NTL/NTL_1_D-Phi.test.cpp
   - icon: ':x:'
@@ -561,21 +561,21 @@ data:
   - graph/tree/TreeHash.hpp
   - string/RollingHash.hpp
   - string/WildcardPatternMatching.hpp
-  - data-struct/other/SkipList.hpp
-  - math/PrimitiveRoot.hpp
   - math/TetrationMod.hpp
-  - math/PollardRho.hpp
   - math/EulerPhi.hpp
+  - math/PollardRho.hpp
+  - math/PrimitiveRoot.hpp
+  - data-struct/other/SkipList.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yosupo/new/wildcard_pattern_matching.test.cpp
+  - test/aoj/NTL/NTL_1_D-Phi.test.cpp
+  - test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
   - test/yosupo/math/factorize.test.cpp
   - test/yosupo/math/primitive_root.test.cpp
   - test/yosupo/math/tetration_mod.test.cpp
+  - test/yosupo/new/wildcard_pattern_matching.test.cpp
   - test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
-  - test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
-  - test/aoj/NTL/NTL_1_D-Phi.test.cpp
 documentation_of: random/Random.hpp
 layout: document
 redirect_from:

@@ -32,13 +32,13 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/mst/CountSpanningTree.hpp
     title: "CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/other/CountEulerianTrail.hpp
     title: CountEulerianTrail(BEST Theorem)
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/matrix/Determinant.hpp
     title: "Determinant(\u884C\u5217\u5F0F)"
   - icon: ':x:'
@@ -48,7 +48,7 @@ data:
     path: math/matrix/LinearEquations.hpp
     title: "LinearEquations(\u7DDA\u5F62\u65B9\u7A0B\u5F0F)"
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc336_g-BEST.test.cpp
     title: test/atcoder/abc336_g-BEST.test.cpp
   - icon: ':x:'
@@ -80,7 +80,7 @@ data:
     title: test/yosupo/new/matrix_product_mod_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/math/matrix/Matrix.md
     document_title: "Matrix(\u884C\u5217)"
@@ -795,24 +795,24 @@ data:
   isVerificationFile: false
   path: math/matrix/Matrix.hpp
   requiredBy:
-  - graph/other/CountEulerianTrail.hpp
   - graph/mst/CountSpanningTree.hpp
+  - graph/other/CountEulerianTrail.hpp
   - math/matrix/Inverse.hpp
-  - math/matrix/Determinant.hpp
   - math/matrix/LinearEquations.hpp
+  - math/matrix/Determinant.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/atcoder/abc336_g-BEST.test.cpp
+  - test/yosupo/matrix/system_of_linear_equations.test.cpp
+  - test/yosupo/matrix/inverse_matrix.test.cpp
+  - test/yosupo/matrix/matrix_product.test.cpp
+  - test/yosupo/matrix/matrix_det_arbitrary_mod.test.cpp
+  - test/yosupo/matrix/pow_of_matrix.test.cpp
+  - test/yosupo/matrix/matrix_det.test.cpp
+  - test/yosupo/matrix/matrix_rank.test.cpp
   - test/yosupo/new/matrix_product_mod_2.test.cpp
   - test/yosupo/new/matrix_det_mod_2.test.cpp
-  - test/yosupo/matrix/matrix_det.test.cpp
-  - test/yosupo/matrix/matrix_product.test.cpp
-  - test/yosupo/matrix/inverse_matrix.test.cpp
-  - test/yosupo/matrix/matrix_rank.test.cpp
-  - test/yosupo/matrix/matrix_det_arbitrary_mod.test.cpp
-  - test/yosupo/matrix/system_of_linear_equations.test.cpp
-  - test/yosupo/matrix/pow_of_matrix.test.cpp
-  - test/atcoder/abc336_g-BEST.test.cpp
 documentation_of: math/matrix/Matrix.hpp
 layout: document
 redirect_from:

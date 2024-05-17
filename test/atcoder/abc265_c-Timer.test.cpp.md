@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: random/Timer.hpp
     title: Timer
   - icon: ':question:'
@@ -33,9 +33,9 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc265/tasks/abc265_c
@@ -452,23 +452,22 @@ data:
     } timer;\n\n/**\n * @brief Timer\n * @docs docs/random/Timer.md\n */\n#line 4\
     \ \"test/atcoder/abc265_c-Timer.test.cpp\"\nusing namespace std;\nint main() {\n\
     \    int H, W; scan >> H >> W;\n    vector<string> A(H); scan >> A;\n    int x\
-    \ = 0, y = 0;\n    while (timer.elapsed() < 1950) {\n        int nx = x, ny =\
-    \ y;\n        switch (A[x][y]) {\n            case 'L': ny--; break;\n       \
-    \     case 'R': ny++; break;\n            case 'U': nx--; break;\n           \
-    \ case 'D': nx++; break;\n        }\n        if (nx < 0 || nx >= H || ny < 0 ||\
-    \ ny >= W) {\n            print << x + 1 << \" \" << y + 1 << endl;\n        \
-    \    return 0;\n        }\n        x = nx, y = ny;\n    }\n    prints(\"-1\");\n\
-    }\n"
+    \ = 0, y = 0;\n    while (timer.elapsed() < 50) {\n        int nx = x, ny = y;\n\
+    \        switch (A[x][y]) {\n            case 'L': ny--; break;\n            case\
+    \ 'R': ny++; break;\n            case 'U': nx--; break;\n            case 'D':\
+    \ nx++; break;\n        }\n        if (nx < 0 || nx >= H || ny < 0 || ny >= W)\
+    \ {\n            print << x + 1 << \" \" << y + 1 << endl;\n            return\
+    \ 0;\n        }\n        x = nx, y = ny;\n    }\n    prints(\"-1\");\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc265/tasks/abc265_c\"\n#include\
     \ \"../../other/template.hpp\"\n#include \"../../random/Timer.hpp\"\nusing namespace\
     \ std;\nint main() {\n    int H, W; scan >> H >> W;\n    vector<string> A(H);\
-    \ scan >> A;\n    int x = 0, y = 0;\n    while (timer.elapsed() < 1950) {\n  \
-    \      int nx = x, ny = y;\n        switch (A[x][y]) {\n            case 'L':\
-    \ ny--; break;\n            case 'R': ny++; break;\n            case 'U': nx--;\
-    \ break;\n            case 'D': nx++; break;\n        }\n        if (nx < 0 ||\
-    \ nx >= H || ny < 0 || ny >= W) {\n            print << x + 1 << \" \" << y +\
-    \ 1 << endl;\n            return 0;\n        }\n        x = nx, y = ny;\n    }\n\
-    \    prints(\"-1\");\n}\n"
+    \ scan >> A;\n    int x = 0, y = 0;\n    while (timer.elapsed() < 50) {\n    \
+    \    int nx = x, ny = y;\n        switch (A[x][y]) {\n            case 'L': ny--;\
+    \ break;\n            case 'R': ny++; break;\n            case 'U': nx--; break;\n\
+    \            case 'D': nx++; break;\n        }\n        if (nx < 0 || nx >= H\
+    \ || ny < 0 || ny >= W) {\n            print << x + 1 << \" \" << y + 1 << endl;\n\
+    \            return 0;\n        }\n        x = nx, y = ny;\n    }\n    prints(\"\
+    -1\");\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -483,8 +482,8 @@ data:
   isVerificationFile: true
   path: test/atcoder/abc265_c-Timer.test.cpp
   requiredBy: []
-  timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-05-17 09:57:31+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/atcoder/abc265_c-Timer.test.cpp
 layout: document

@@ -532,8 +532,8 @@ data:
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/atcoder/arc099_c-Bipartite.test.cpp
   - test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
+  - test/atcoder/arc099_c-Bipartite.test.cpp
 documentation_of: graph/connected/ConnectedComponents.hpp
 layout: document
 redirect_from:

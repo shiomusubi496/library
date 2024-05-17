@@ -580,15 +580,15 @@ data:
   isVerificationFile: false
   path: math/BarrettReduction.hpp
   requiredBy:
-  - math/DiscreteLogarithm.hpp
   - math/ArbitraryModCombinatorics.hpp
+  - math/DiscreteLogarithm.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yosupo/matrix/matrix_det_arbitrary_mod.test.cpp
-  - test/yosupo/math/discrete_logarithm_mod.test.cpp
   - test/yosupo/math/binomial_coefficient.test.cpp
   - test/yosupo/math/binomial_coefficient_prime_mod.test.cpp
+  - test/yosupo/math/discrete_logarithm_mod.test.cpp
+  - test/yosupo/matrix/matrix_det_arbitrary_mod.test.cpp
 documentation_of: math/BarrettReduction.hpp
 layout: document
 redirect_from:

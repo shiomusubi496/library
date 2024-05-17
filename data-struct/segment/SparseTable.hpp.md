@@ -611,16 +611,16 @@ data:
   path: data-struct/segment/SparseTable.hpp
   requiredBy:
   - graph/tree/PMORMQLCA.hpp
-  - data-struct/segment/LinearRMQ.hpp
   - data-struct/segment/PlusMinusOneRMQ.hpp
+  - data-struct/segment/LinearRMQ.hpp
   - data-struct/segment/LCARMQ.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yosupo/data_structure/staticrmq-SparseTable.test.cpp
-  - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
-  - test/yosupo/data_structure/staticrmq-LinearRMQ.test.cpp
   - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
+  - test/yosupo/data_structure/staticrmq-SparseTable.test.cpp
+  - test/yosupo/data_structure/staticrmq-LinearRMQ.test.cpp
+  - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
 documentation_of: data-struct/segment/SparseTable.hpp
 layout: document
 redirect_from:

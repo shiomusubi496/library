@@ -632,9 +632,9 @@ data:
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yosupo/geometry/sort_points_by_argument.test.cpp
-  - test/aoj/CGL/CGL_7_B-incenter.test.cpp
   - test/aoj/CGL/CGL_7_C-circumcenter.test.cpp
+  - test/aoj/CGL/CGL_7_B-incenter.test.cpp
+  - test/yosupo/geometry/sort_points_by_argument.test.cpp
 documentation_of: geometry/Triangle.hpp
 layout: document
 redirect_from:

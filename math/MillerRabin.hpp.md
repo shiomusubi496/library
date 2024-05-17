@@ -32,10 +32,10 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/EulerPhi.hpp
     title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/PollardRho.hpp
     title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
   - icon: ':x:'
@@ -45,7 +45,7 @@ data:
     path: math/TetrationMod.hpp
     title: TetrationMod
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/NTL/NTL_1_D-Phi.test.cpp
     title: test/aoj/NTL/NTL_1_D-Phi.test.cpp
   - icon: ':x:'
@@ -65,7 +65,7 @@ data:
     title: test/yuki/3030-MRPrime.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/math/MillerRabin.md
     document_title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\
@@ -590,19 +590,19 @@ data:
   isVerificationFile: false
   path: math/MillerRabin.hpp
   requiredBy:
-  - math/PrimitiveRoot.hpp
   - math/TetrationMod.hpp
-  - math/PollardRho.hpp
   - math/EulerPhi.hpp
+  - math/PollardRho.hpp
+  - math/PrimitiveRoot.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yosupo/math/factorize.test.cpp
-  - test/yosupo/math/primality_test.test.cpp
-  - test/yosupo/math/primitive_root.test.cpp
-  - test/yosupo/math/tetration_mod.test.cpp
   - test/yuki/3030-MRPrime.test.cpp
   - test/aoj/NTL/NTL_1_D-Phi.test.cpp
+  - test/yosupo/math/factorize.test.cpp
+  - test/yosupo/math/primitive_root.test.cpp
+  - test/yosupo/math/primality_test.test.cpp
+  - test/yosupo/math/tetration_mod.test.cpp
 documentation_of: math/MillerRabin.hpp
 layout: document
 redirect_from:

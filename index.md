@@ -31,7 +31,7 @@ data:
     - icon: ':x:'
       path: data-struct/cht/ConvexHullTrick.hpp
       title: ConvexHullTrick
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/cht/ConvexHullTrickAddMonotone.hpp
       title: ConvexHullTrickAddMonotone
     - icon: ':x:'
@@ -56,7 +56,7 @@ data:
     - icon: ':x:'
       path: data-struct/other/BinaryTrie.hpp
       title: BinaryTrie
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/other/DefaultMap.hpp
       title: DefaultMap
     - icon: ':x:'
@@ -193,22 +193,22 @@ data:
       title: data-struct/wavelet/WaveletMatrixStruct.hpp
   - name: dp
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: dp/AlienDP.hpp
       title: AlienDP
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: dp/DivideAndConquerOptimization.hpp
       title: Divide and Conquer Optimization
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: dp/FibonacciSearch.hpp
       title: FibonacciSearch
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: dp/MonotoneMinima.hpp
       title: MonotoneMinima
-    - icon: ':x:'
+    - icon: ':question:'
       path: dp/OnlineOfflineDP.hpp
       title: Online Offline DP
-    - icon: ':x:'
+    - icon: ':question:'
       path: dp/SMAWK.hpp
       title: SMAWK
   - name: geometry
@@ -277,7 +277,7 @@ data:
       title: "ProjectSelectionProblem(\u71C3\u3084\u3059\u57CB\u3081\u308B)"
   - name: graph/mst
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/mst/CountSpanningTree.hpp
       title: "CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)"
     - icon: ':x:'
@@ -300,7 +300,7 @@ data:
     - icon: ':x:'
       path: graph/other/ChromaticNumber.hpp
       title: "ChromaticNumber(\u5F69\u8272\u6570)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/other/CountEulerianTrail.hpp
       title: CountEulerianTrail(BEST Theorem)
     - icon: ':x:'
@@ -346,7 +346,7 @@ data:
       path: graph/shortest-path/WarshallFloyd.hpp
       title: "Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\
         \u6CD5)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/shortest-path/ZeroOneBFS.hpp
       title: ZeroOneBFS(01-BFS)
   - name: graph/tree
@@ -412,7 +412,7 @@ data:
     - icon: ':x:'
       path: math/EnumerateQuotients.hpp
       title: "Enumerate Quotients(\u5546\u5217\u6319)"
-    - icon: ':x:'
+    - icon: ':question:'
       path: math/EulerPhi.hpp
       title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
     - icon: ':x:'
@@ -433,7 +433,7 @@ data:
     - icon: ':x:'
       path: math/LinearModMin.hpp
       title: LinearModMin
-    - icon: ':x:'
+    - icon: ':question:'
       path: math/MillerRabin.hpp
       title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
         )"
@@ -446,7 +446,7 @@ data:
     - icon: ':x:'
       path: math/MontmortNumber.hpp
       title: "MontmortNumber(\u652A\u4E71\u9806\u5217)"
-    - icon: ':x:'
+    - icon: ':question:'
       path: math/PollardRho.hpp
       title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
     - icon: ':x:'
@@ -464,7 +464,7 @@ data:
     - icon: ':question:'
       path: math/SqrtMod.hpp
       title: "SqrtMod(\u5E73\u65B9\u5270\u4F59)"
-    - icon: ':x:'
+    - icon: ':question:'
       path: math/SternBrocotTree.hpp
       title: Stern-Brocot Tree
     - icon: ':question:'
@@ -528,7 +528,7 @@ data:
         \u30A6\u30B9\u5909\u63DB)"
   - name: math/matrix
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: math/matrix/Determinant.hpp
       title: "Determinant(\u884C\u5217\u5F0F)"
     - icon: ':x:'
@@ -537,7 +537,7 @@ data:
     - icon: ':x:'
       path: math/matrix/LinearEquations.hpp
       title: "LinearEquations(\u7DDA\u5F62\u65B9\u7A0B\u5F0F)"
-    - icon: ':x:'
+    - icon: ':question:'
       path: math/matrix/Matrix.hpp
       title: "Matrix(\u884C\u5217)"
   - name: math/poly
@@ -580,7 +580,7 @@ data:
     - icon: ':question:'
       path: random/Random.hpp
       title: Random
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: random/Timer.hpp
       title: Timer
   - name: string
@@ -601,7 +601,7 @@ data:
     - icon: ':question:'
       path: string/RollingHash.hpp
       title: "RollingHash(\u30ED\u30EA\u30CF)"
-    - icon: ':x:'
+    - icon: ':question:'
       path: string/RunLength.hpp
       title: "RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
     - icon: ':x:'
@@ -876,47 +876,47 @@ data:
       title: test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp
   - name: test/aoj/NTL
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/NTL/NTL_1_A-Prime.test.cpp
       title: test/aoj/NTL/NTL_1_A-Prime.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/NTL/NTL_1_B-Pow.test.cpp
       title: test/aoj/NTL/NTL_1_B-Pow.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/NTL/NTL_1_C-LCM.test.cpp
       title: test/aoj/NTL/NTL_1_C-LCM.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/NTL/NTL_1_D-Phi.test.cpp
       title: test/aoj/NTL/NTL_1_D-Phi.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/NTL/NTL_1_E-ExtGCD.test.cpp
       title: test/aoj/NTL/NTL_1_E-ExtGCD.test.cpp
   - name: test/aoj/other
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/other/1208-SternBrocotTree.test.cpp
       title: test/aoj/other/1208-SternBrocotTree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/other/2603-SMAWK.test.cpp
       title: test/aoj/other/2603-SMAWK.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/other/2725-CHT.test.cpp
       title: test/aoj/other/2725-CHT.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/other/2945-01BFS.test.cpp
       title: test/aoj/other/2945-01BFS.test.cpp
   - name: test/atcoder
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc176_f-DefaultMap.test.cpp
       title: test/atcoder/abc176_f-DefaultMap.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc218_h-AlienDP.test.cpp
       title: test/atcoder/abc218_h-AlienDP.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc265_c-Timer.test.cpp
       title: test/atcoder/abc265_c-Timer.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc336_g-BEST.test.cpp
       title: test/atcoder/abc336_g-BEST.test.cpp
     - icon: ':x:'

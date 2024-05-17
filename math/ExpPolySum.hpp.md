@@ -1143,8 +1143,8 @@ data:
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yosupo/math/sum_of_exponential_times_polynomial.test.cpp
   - test/yosupo/math/sum_of_exponential_times_polynomial_limit.test.cpp
+  - test/yosupo/math/sum_of_exponential_times_polynomial.test.cpp
 documentation_of: math/ExpPolySum.hpp
 layout: document
 redirect_from:

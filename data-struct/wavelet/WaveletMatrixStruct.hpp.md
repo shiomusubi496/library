@@ -648,8 +648,8 @@ data:
   isVerificationFile: false
   path: data-struct/wavelet/WaveletMatrixStruct.hpp
   requiredBy:
-  - data-struct/wavelet/SegmentTreeWM.hpp
   - data-struct/wavelet/CumulativeSumWM.hpp
+  - data-struct/wavelet/SegmentTreeWM.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:

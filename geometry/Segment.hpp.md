@@ -653,10 +653,10 @@ data:
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yosupo/geometry/sort_points_by_argument.test.cpp
   - test/aoj/CGL/CGL_2_B-intersect.test.cpp
   - test/aoj/CGL/CGL_2_C-intersection.test.cpp
   - test/aoj/CGL/CGL_2_D-distance.test.cpp
+  - test/yosupo/geometry/sort_points_by_argument.test.cpp
 documentation_of: geometry/Segment.hpp
 layout: document
 redirect_from:

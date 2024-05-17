@@ -36,7 +36,7 @@ data:
     path: math/LinearModMin.hpp
     title: LinearModMin
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/other/1208-SternBrocotTree.test.cpp
     title: test/aoj/other/1208-SternBrocotTree.test.cpp
   - icon: ':x:'
@@ -50,7 +50,7 @@ data:
     title: test/yosupo/new/rational_approximation.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/math/SternBrocotTree.md
     document_title: Stern-Brocot Tree
@@ -629,12 +629,12 @@ data:
   requiredBy:
   - math/LinearModMin.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yosupo/new/rational_approximation.test.cpp
+  - test/aoj/other/1208-SternBrocotTree.test.cpp
   - test/yosupo/math/stern_brocot_tree.test.cpp
   - test/yosupo/math/min_of_mod_of_linear.test.cpp
-  - test/aoj/other/1208-SternBrocotTree.test.cpp
+  - test/yosupo/new/rational_approximation.test.cpp
 documentation_of: math/SternBrocotTree.hpp
 layout: document
 redirect_from:

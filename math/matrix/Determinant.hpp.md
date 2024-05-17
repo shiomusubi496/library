@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/matrix/Matrix.hpp
     title: "Matrix(\u884C\u5217)"
   - icon: ':question:'
@@ -35,14 +35,14 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/mst/CountSpanningTree.hpp
     title: "CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/other/CountEulerianTrail.hpp
     title: CountEulerianTrail(BEST Theorem)
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc336_g-BEST.test.cpp
     title: test/atcoder/abc336_g-BEST.test.cpp
   - icon: ':x:'
@@ -56,7 +56,7 @@ data:
     title: test/yosupo/new/matrix_det_mod_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/math/matrix/Determinant.md
     document_title: "Determinant(\u884C\u5217\u5F0F)"
@@ -746,15 +746,15 @@ data:
   isVerificationFile: false
   path: math/matrix/Determinant.hpp
   requiredBy:
-  - graph/other/CountEulerianTrail.hpp
   - graph/mst/CountSpanningTree.hpp
+  - graph/other/CountEulerianTrail.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yosupo/new/matrix_det_mod_2.test.cpp
-  - test/yosupo/matrix/matrix_det.test.cpp
-  - test/yosupo/matrix/matrix_det_arbitrary_mod.test.cpp
   - test/atcoder/abc336_g-BEST.test.cpp
+  - test/yosupo/matrix/matrix_det_arbitrary_mod.test.cpp
+  - test/yosupo/matrix/matrix_det.test.cpp
+  - test/yosupo/new/matrix_det_mod_2.test.cpp
 documentation_of: math/matrix/Determinant.hpp
 layout: document
 redirect_from:

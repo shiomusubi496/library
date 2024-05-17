@@ -1088,23 +1088,23 @@ data:
   isVerificationFile: false
   path: math/poly/TaylorShift.hpp
   requiredBy:
-  - math/poly/SamplingPointsShift.hpp
   - math/ExpPolySum.hpp
+  - math/poly/SamplingPointsShift.hpp
   - math/StirlingNumber.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yosupo/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
+  - test/aoj/DPL/DPL_5_G.test.cpp
+  - test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
+  - test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
+  - test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
   - test/yosupo/math/partition_function.test.cpp
   - test/yosupo/math/stirling_number_of_the_second_kind_fixed_k.test.cpp
-  - test/yosupo/math/sum_of_exponential_times_polynomial.test.cpp
-  - test/yosupo/math/sum_of_exponential_times_polynomial_limit.test.cpp
-  - test/yosupo/math/bernoulli_number.test.cpp
   - test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
-  - test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
-  - test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-  - test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
-  - test/aoj/DPL/DPL_5_G.test.cpp
+  - test/yosupo/math/bernoulli_number.test.cpp
+  - test/yosupo/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
+  - test/yosupo/math/sum_of_exponential_times_polynomial_limit.test.cpp
+  - test/yosupo/math/sum_of_exponential_times_polynomial.test.cpp
 documentation_of: math/poly/TaylorShift.hpp
 layout: document
 redirect_from:

@@ -601,17 +601,17 @@ data:
   path: data-struct/segment/CumulativeSum.hpp
   requiredBy:
   - data-struct/wavelet/CumulativeSumWM.hpp
+  - data-struct/segment/RAQBIT.hpp
   - data-struct/2D/CumulativeSum2D.hpp
   - data-struct/2D/StaticRectangleAddRectangleSum.hpp
-  - data-struct/segment/RAQBIT.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
-  - test/yosupo/data_structure/static_range_sum-CumulativeSum.test.cpp
-  - test/yosupo/data_structure/vertex_get_range_contour_add_on_tree.test.cpp
   - test/yosupo/data_structure/rectangle_sum-2DCum.test.cpp
+  - test/yosupo/data_structure/vertex_get_range_contour_add_on_tree.test.cpp
+  - test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
   - test/yosupo/data_structure/rectangle_sum-WM.test.cpp
+  - test/yosupo/data_structure/static_range_sum-CumulativeSum.test.cpp
 documentation_of: data-struct/segment/CumulativeSum.hpp
 layout: document
 redirect_from:

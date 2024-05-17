@@ -936,60 +936,60 @@ data:
   requiredBy:
   - graph/tree/FrequencyTableofTreeDistance.hpp
   - string/WildcardPatternMatching.hpp
-  - math/convolution/RelaxedConvolution.hpp
-  - math/convolution/MultidimensionalConvolution.hpp
-  - math/poly/SparseFormalPowerSeries.hpp
-  - math/poly/BostanMori.hpp
-  - math/poly/PolynomialInterpolation.hpp
-  - math/poly/TaylorShift.hpp
-  - math/poly/FormalPowerSeries.hpp
-  - math/poly/SamplingPointsShift.hpp
-  - math/poly/MultipointEvaluation.hpp
-  - math/ExpPolySum.hpp
-  - math/StirlingNumber.hpp
   - math/SubsetSum.hpp
+  - math/ExpPolySum.hpp
+  - math/poly/TaylorShift.hpp
+  - math/poly/SamplingPointsShift.hpp
+  - math/poly/BostanMori.hpp
+  - math/poly/SparseFormalPowerSeries.hpp
+  - math/poly/MultipointEvaluation.hpp
+  - math/poly/FormalPowerSeries.hpp
+  - math/poly/PolynomialInterpolation.hpp
   - math/Factorial.hpp
+  - math/convolution/MultidimensionalConvolution.hpp
+  - math/convolution/RelaxedConvolution.hpp
+  - math/StirlingNumber.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yosupo/convolution/multivariate_convolution.test.cpp
-  - test/yosupo/convolution/convolution_mod.test.cpp
-  - test/yosupo/convolution/convolution_mod_1000000007.test.cpp
-  - test/yosupo/new/wildcard_pattern_matching.test.cpp
+  - test/aoj/DPL/DPL_5_G.test.cpp
+  - test/yosupo/polynomial/exp_of_formal_power_series_sparse.test.cpp
+  - test/yosupo/polynomial/log_of_formal_power_series.test.cpp
+  - test/yosupo/polynomial/log_of_formal_power_series_sparse.test.cpp
+  - test/yosupo/polynomial/product_of_polynomial_sequence.test.cpp
+  - test/yosupo/polynomial/division_of_polynomials.test.cpp
+  - test/yosupo/polynomial/composition_of_formal_power_series.test.cpp
+  - test/yosupo/polynomial/pow_of_formal_power_series_sparse.test.cpp
+  - test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
+  - test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
+  - test/yosupo/polynomial/multipoint_evaluation.test.cpp
+  - test/yosupo/polynomial/exp_of_formal_power_series-RelaxedConvolution.test.cpp
+  - test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
+  - test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
+  - test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp
+  - test/yosupo/polynomial/polynomial_interpolation.test.cpp
+  - test/yosupo/polynomial/inv_of_formal_power_series.test.cpp
+  - test/yosupo/polynomial/exp_of_formal_power_series.test.cpp
+  - test/yosupo/polynomial/polynomial_interpolation_on_geometric_sequence.test.cpp
+  - test/yosupo/polynomial/multipoint_evaluation_on_geometric_sequence.test.cpp
+  - test/yosupo/polynomial/compositional_inverse_of_formal_power_series.test.cpp
+  - test/yosupo/polynomial/inv_of_formal_power_series_sparse.test.cpp
   - test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - test/yosupo/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
+  - test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
   - test/yosupo/math/partition_function.test.cpp
   - test/yosupo/math/factorial.test.cpp
   - test/yosupo/math/stirling_number_of_the_second_kind_fixed_k.test.cpp
-  - test/yosupo/math/sharp_p_subset_sum.test.cpp
-  - test/yosupo/math/sum_of_exponential_times_polynomial.test.cpp
-  - test/yosupo/math/sum_of_exponential_times_polynomial_limit.test.cpp
-  - test/yosupo/math/bernoulli_number.test.cpp
   - test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
-  - test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
-  - test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-  - test/yosupo/polynomial/exp_of_formal_power_series.test.cpp
-  - test/yosupo/polynomial/log_of_formal_power_series.test.cpp
-  - test/yosupo/polynomial/product_of_polynomial_sequence.test.cpp
-  - test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp
-  - test/yosupo/polynomial/inv_of_formal_power_series.test.cpp
-  - test/yosupo/polynomial/polynomial_interpolation.test.cpp
-  - test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
-  - test/yosupo/polynomial/exp_of_formal_power_series-RelaxedConvolution.test.cpp
-  - test/yosupo/polynomial/compositional_inverse_of_formal_power_series.test.cpp
-  - test/yosupo/polynomial/inv_of_formal_power_series_sparse.test.cpp
-  - test/yosupo/polynomial/multipoint_evaluation.test.cpp
-  - test/yosupo/polynomial/division_of_polynomials.test.cpp
-  - test/yosupo/polynomial/composition_of_formal_power_series.test.cpp
-  - test/yosupo/polynomial/multipoint_evaluation_on_geometric_sequence.test.cpp
-  - test/yosupo/polynomial/pow_of_formal_power_series_sparse.test.cpp
-  - test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
-  - test/yosupo/polynomial/exp_of_formal_power_series_sparse.test.cpp
-  - test/yosupo/polynomial/log_of_formal_power_series_sparse.test.cpp
-  - test/yosupo/polynomial/polynomial_interpolation_on_geometric_sequence.test.cpp
-  - test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
+  - test/yosupo/math/bernoulli_number.test.cpp
+  - test/yosupo/math/sharp_p_subset_sum.test.cpp
+  - test/yosupo/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
+  - test/yosupo/math/sum_of_exponential_times_polynomial_limit.test.cpp
+  - test/yosupo/math/sum_of_exponential_times_polynomial.test.cpp
+  - test/yosupo/new/wildcard_pattern_matching.test.cpp
+  - test/yosupo/convolution/convolution_mod.test.cpp
+  - test/yosupo/convolution/multivariate_convolution.test.cpp
+  - test/yosupo/convolution/convolution_mod_1000000007.test.cpp
   - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
-  - test/aoj/DPL/DPL_5_G.test.cpp
 documentation_of: math/convolution/Convolution.hpp
 layout: document
 redirect_from:
