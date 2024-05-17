@@ -160,6 +160,9 @@ data:
     path: test/yosupo/convolution/multivariate_convolution.test.cpp
     title: test/yosupo/convolution/multivariate_convolution.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/convolution/subset_convolution.test.cpp
+    title: test/yosupo/convolution/subset_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
     title: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -189,16 +192,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
     title: test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
     title: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
     title: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/enumerate_cliques.test.cpp
     title: test/yosupo/graph/enumerate_cliques.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/enumerate_triangles.test.cpp
     title: test/yosupo/graph/enumerate_triangles.test.cpp
   - icon: ':x:'
@@ -1117,6 +1120,7 @@ data:
   - test/yosupo/convolution/bitwise_and_convolution.test.cpp
   - test/yosupo/convolution/multivariate_convolution.test.cpp
   - test/yosupo/convolution/bitwise_xor_convolution.test.cpp
+  - test/yosupo/convolution/subset_convolution.test.cpp
   - test/yosupo/convolution/gcd_convolution.test.cpp
   - test/yosupo/convolution/convolution_mod_1000000007.test.cpp
   - test/yosupo/convolution/bitwise_and_convolution-or.test.cpp

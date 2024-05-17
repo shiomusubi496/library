@@ -41,7 +41,7 @@ data:
   - icon: ':warning:'
     path: data-struct/heap/LeftistHeap.hpp
     title: LeftistHeap
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/heap/SkewHeap.hpp
     title: SkewHeap
   - icon: ':heavy_check_mark:'
@@ -81,7 +81,7 @@ data:
   - icon: ':question:'
     path: data-struct/segment/BinaryIndexedTree.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/CumulativeSum.hpp
     title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
   - icon: ':heavy_check_mark:'
@@ -113,7 +113,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/PlusMinusOneRMQ.hpp
     title: PlusMinusOneRMQ($\pm1$RMQ)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/RAQBIT.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
   - icon: ':heavy_check_mark:'
@@ -143,7 +143,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/StaticRangeMode.hpp
     title: "StaticRangeMode(\u533A\u9593\u6700\u983B\u5024)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/unionfind/DynamicUnionFind.hpp
     title: "DynamicUnionFind(\u52D5\u7684UnionFind)"
   - icon: ':warning:'
@@ -197,10 +197,10 @@ data:
   - icon: ':question:'
     path: dp/SMAWK.hpp
     title: SMAWK
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geometry/All.hpp
     title: geometry/All.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/Circle.hpp
     title: geometry/Circle.hpp
   - icon: ':question:'
@@ -212,10 +212,10 @@ data:
   - icon: ':question:'
     path: geometry/Polygon.hpp
     title: geometry/Polygon.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/Segment.hpp
     title: geometry/Segment.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/Triangle.hpp
     title: geometry/Triangle.hpp
   - icon: ':question:'
@@ -224,7 +224,7 @@ data:
   - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/connected/BiConnectedComponents.hpp
     title: "BiConnectedComponents(\u4E8C\u91CD\u9802\u70B9\u9023\u7D50\u6210\u5206\
       \u5206\u89E3)"
@@ -246,7 +246,7 @@ data:
   - icon: ':x:'
     path: graph/flow/KProjectSelectionProblem.hpp
     title: "KProjectSelectionProblem(K\u5024\u71C3\u3084\u3059\u57CB\u3081\u308B)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/flow/MaxFlow.hpp
     title: "MaxFlow(\u6700\u5927\u6D41)"
   - icon: ':x:'
@@ -255,7 +255,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/mst/CountSpanningTree.hpp
     title: "CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/mst/DirectedMST.hpp
     title: "DirectedMST(\u6700\u5C0F\u6709\u5411\u5168\u57DF\u6728)"
   - icon: ':question:'
@@ -270,22 +270,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/other/BipartiteGraph.hpp
     title: "BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/other/ChromaticNumber.hpp
     title: "ChromaticNumber(\u5F69\u8272\u6570)"
   - icon: ':heavy_check_mark:'
     path: graph/other/CountEulerianTrail.hpp
     title: CountEulerianTrail(BEST Theorem)
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/other/EnumerateCliques.hpp
     title: EnumerateCliques
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/other/EnumerateTriangles.hpp
     title: EnumerateTriangles
   - icon: ':x:'
     path: graph/other/EulerianTrail.hpp
     title: EulerianTrail
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/other/GraphCycle.hpp
     title: "GraphCycle(\u9589\u8DEF\u691C\u51FA)"
   - icon: ':question:'
@@ -323,17 +323,17 @@ data:
   - icon: ':question:'
     path: graph/tree/CartesianTree.hpp
     title: CartesianTree
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/ContourQuery.hpp
     title: graph/tree/ContourQuery.hpp
   - icon: ':question:'
     path: graph/tree/DoublingLowestCommonAncestor.hpp
     title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
       \u308BLCA)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/EulerTourSubtree.hpp
     title: "EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\
       \u6728\u30AF\u30A8\u30EA)"
@@ -349,7 +349,7 @@ data:
   - icon: ':question:'
     path: graph/tree/ReRooting.hpp
     title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree/TreeCentroid.hpp
     title: "TreeCentroid(\u6728\u306E\u91CD\u5FC3)"
   - icon: ':question:'
@@ -483,6 +483,9 @@ data:
     path: math/convolution/RelaxedConvolution.hpp
     title: "Relaxed Convolution(\u30AA\u30F3\u30E9\u30A4\u30F3\u7573\u307F\u8FBC\u307F\
       )"
+  - icon: ':heavy_check_mark:'
+    path: math/convolution/SubsetConvolution.hpp
+    title: SubsetConvolution
   - icon: ':heavy_check_mark:'
     path: math/convolution/SubsetZetaMoebiusTransform.hpp
     title: "SubsetZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
@@ -888,6 +891,9 @@ data:
     path: test/yosupo/convolution/multivariate_convolution.test.cpp
     title: test/yosupo/convolution/multivariate_convolution.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/convolution/subset_convolution.test.cpp
+    title: test/yosupo/convolution/subset_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
     title: test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1004,61 +1010,61 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/staticrmq-SparseTable.test.cpp
     title: test/yosupo/data_structure/staticrmq-SparseTable.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/unionfind-Dynamic.test.cpp
     title: test/yosupo/data_structure/unionfind-Dynamic.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/unionfind.test.cpp
     title: test/yosupo/data_structure/unionfind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/vertex_add_path_sum.test.cpp
     title: test/yosupo/data_structure/vertex_add_path_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
     title: test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree.test.cpp
     title: test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
     title: test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
     title: test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
     title: test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/vertex_get_range_contour_add_on_tree.test.cpp
     title: test/yosupo/data_structure/vertex_get_range_contour_add_on_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
     title: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
     title: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/geometry/sort_points_by_argument.test.cpp
     title: test/yosupo/geometry/sort_points_by_argument.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/biconnected_components.test.cpp
     title: test/yosupo/graph/biconnected_components.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/bipartitematching.test.cpp
     title: test/yosupo/graph/bipartitematching.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/chromatic_number.test.cpp
     title: test/yosupo/graph/chromatic_number.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/cycle_detection.test.cpp
     title: test/yosupo/graph/cycle_detection.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/directedmst.test.cpp
     title: test/yosupo/graph/directedmst.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/enumerate_cliques.test.cpp
     title: test/yosupo/graph/enumerate_cliques.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/enumerate_triangles.test.cpp
     title: test/yosupo/graph/enumerate_triangles.test.cpp
   - icon: ':x:'
@@ -1495,6 +1501,7 @@ data:
   - math/matrix/Determinant.hpp
   - math/convolution/MinPlusConvolution.hpp
   - math/convolution/BitwiseOrConvolution.hpp
+  - math/convolution/SubsetConvolution.hpp
   - math/convolution/MultipleZetaMoebiusTransform.hpp
   - math/convolution/Convolution.hpp
   - math/convolution/BitwiseXorConvolution.hpp
@@ -1834,6 +1841,7 @@ data:
   - test/yosupo/convolution/bitwise_and_convolution.test.cpp
   - test/yosupo/convolution/multivariate_convolution.test.cpp
   - test/yosupo/convolution/bitwise_xor_convolution.test.cpp
+  - test/yosupo/convolution/subset_convolution.test.cpp
   - test/yosupo/convolution/min_plus_convolution_convex_arbitrary.test.cpp
   - test/yosupo/convolution/gcd_convolution.test.cpp
   - test/yosupo/convolution/convolution_mod_1000000007.test.cpp

@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: data-struct/segment/BinaryIndexedTree.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/CumulativeSum.hpp
     title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
   - icon: ':question:'
@@ -45,12 +45,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
     title: test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/vertex_get_range_contour_add_on_tree.test.cpp
     title: test/yosupo/data_structure/vertex_get_range_contour_add_on_tree.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/data-struct/segment/BinaryIndexedTree.md
     document_title: BinaryIndexedTree(FenwickTree, BIT)
@@ -655,7 +655,7 @@ data:
   requiredBy:
   - data-struct/2D/StaticRectangleAddRectangleSum.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/data_structure/vertex_get_range_contour_add_on_tree.test.cpp
   - test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp

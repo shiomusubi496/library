@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: graph/flow/KProjectSelectionProblem.hpp
     title: "KProjectSelectionProblem(K\u5024\u71C3\u3084\u3059\u57CB\u3081\u308B)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/flow/MaxFlow.hpp
     title: "MaxFlow(\u6700\u5927\u6D41)"
   - icon: ':x:'

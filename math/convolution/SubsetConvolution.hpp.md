@@ -2,9 +2,6 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: graph/Graph.hpp
-    title: Graph-template
-  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   - icon: ':question:'
@@ -34,19 +31,16 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
-    title: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/graph/cycle_detection.test.cpp
-    title: test/yosupo/graph/cycle_detection.test.cpp
+    path: test/yosupo/convolution/subset_convolution.test.cpp
+    title: test/yosupo/convolution/subset_convolution.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/graph/other/GraphCycle.md
-    document_title: "GraphCycle(\u9589\u8DEF\u691C\u51FA)"
+    _deprecated_at_docs: docs/math/convolution/SubsetConvolution.md
+    document_title: SubsetConvolution
     links: []
-  bundledCode: "#line 2 \"graph/other/GraphCycle.hpp\"\n\n#line 2 \"other/template.hpp\"\
+  bundledCode: "#line 2 \"math/convolution/SubsetConvolution.hpp\"\n\n#line 2 \"other/template.hpp\"\
     \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
     \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define OVERLOAD5(a,\
     \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
@@ -445,81 +439,46 @@ data:
     \        return res;\n    }\n    void press(std::vector<T>& vec) const {\n   \
     \     assert(sorted);\n        for (auto&& i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
-    };\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class\
-    \ T = int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
-    \ : from(-1), to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1)\n\
-    \        : from(f), to(t), cost(c), idx(i) {}\n    edge(int f, int t, T&& c, int\
-    \ i = -1)\n        : from(f), to(t), cost(std::move(c)), idx(i) {}\n    operator\
-    \ int() const { return to; }\n    friend bool operator<(const edge<T>& lhs, const\
-    \ edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n    }\n    friend bool\
-    \ operator>(const edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost\
-    \ > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using Edges = std::vector<edge<T>>;\n\
-    template<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class\
-    \ T = int> class Graph : public std::vector<std::vector<edge<T>>> {\nprivate:\n\
-    \    using Base = std::vector<std::vector<edge<T>>>;\n\npublic:\n    int edge_id\
-    \ = 0;\n    using Base::Base;\n    int edge_size() const { return edge_id; }\n\
-    \    int add_edge(int a, int b, const T& c, bool is_directed = false) {\n    \
-    \    assert(0 <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
-    \        (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed)\
-    \ (*this)[b].emplace_back(b, a, c, edge_id);\n        return edge_id++;\n    }\n\
-    \    int add_edge(int a, int b, bool is_directed = false) {\n        assert(0\
-    \ <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
-    \        (*this)[a].emplace_back(a, b, 1, edge_id);\n        if (!is_directed)\
-    \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
-    };\n\ntemplate<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {\n    const\
-    \ int N = G.size();\n    auto res = make_vec<T>(N, N, infinity<T>::value);\n \
-    \   rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n        for (const auto& e :\
-    \ G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\ntemplate<class T>\
-    \ Edges<T> UndirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n\
-    \    const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n   \
-    \     for (const auto& e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\n\
-    template<class T> Edges<T> DirectedListToEdges(const Graph<T>& G) {\n    const\
-    \ int V = G.size();\n    const int E = std::accumulate(\n        all(G), 0, [](int\
-    \ a, const std::vector<edge<T>>& v) -> int {\n            return a + v.size();\n\
-    \        });\n    Edges<T> Ed(G.edge_size());\n    Ed.reserve(E);\n    rep (i,\
-    \ V) {\n        for (const auto& e : G[i]) {\n            if (Ed[e.idx] == -1)\
-    \ Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n    return\
-    \ Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n   \
-    \ const int V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n        for\
-    \ (const auto& e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from, e.cost,\
-    \ e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n    return res;\n\
-    }\n\n\nstruct unweighted_edge {\n    template<class... Args> unweighted_edge(const\
-    \ Args&...) {}\n    operator int() { return 1; }\n};\n\nusing UnweightedGraph\
-    \ = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n * @docs docs/graph/Graph.md\n\
-    \ */\n#line 5 \"graph/other/GraphCycle.hpp\"\n\ntemplate<class T> class GraphCycle\
-    \ {\nprivate:\n    const Graph<T>& G;\n    std::vector<bool> visited, seen;\n\
-    \    Edges<T> cycle;\n    int dfs(int v, int k) {\n        if (seen[v]) return\
-    \ v;\n        if (visited[v]) return -1;\n        visited[v] = seen[v] = true;\n\
-    \        for (const auto& e : G[v]) {\n            if (e.idx == k) continue;\n\
-    \            int d = dfs(e.to, e.idx);\n            if (d != -1) {\n         \
-    \       if (d == -2) return -2;\n                cycle.push_back(e);\n       \
-    \         if (d == v) return -2;\n                return d;\n            }\n \
-    \       }\n        seen[v] = false;\n        return -1;\n    }\n    void init()\
-    \ {\n        const int N = G.size();\n        visited.assign(N, false);\n    \
-    \    seen.assign(N, false);\n        rep (i, N) {\n            if (dfs(i, -1)\
-    \ == -2) {\n                std::reverse(all(cycle));\n                break;\n\
-    \            }\n        }\n    }\n\npublic:\n    GraphCycle(const Graph<T>& G)\
-    \ : G(G) { init(); }\n    bool has_cycle() const { return !cycle.empty(); }\n\
-    \    const Edges<T>& get_cycle() const& { return cycle; }\n    Edges<T> get_cycle()\
-    \ && { return std::move(cycle); }\n};\n\n/**\n * @brief GraphCycle(\u9589\u8DEF\
-    \u691C\u51FA)\n * @docs docs/graph/other/GraphCycle.md\n */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
-    \n\ntemplate<class T> class GraphCycle {\nprivate:\n    const Graph<T>& G;\n \
-    \   std::vector<bool> visited, seen;\n    Edges<T> cycle;\n    int dfs(int v,\
-    \ int k) {\n        if (seen[v]) return v;\n        if (visited[v]) return -1;\n\
-    \        visited[v] = seen[v] = true;\n        for (const auto& e : G[v]) {\n\
-    \            if (e.idx == k) continue;\n            int d = dfs(e.to, e.idx);\n\
-    \            if (d != -1) {\n                if (d == -2) return -2;\n       \
-    \         cycle.push_back(e);\n                if (d == v) return -2;\n      \
-    \          return d;\n            }\n        }\n        seen[v] = false;\n   \
-    \     return -1;\n    }\n    void init() {\n        const int N = G.size();\n\
-    \        visited.assign(N, false);\n        seen.assign(N, false);\n        rep\
-    \ (i, N) {\n            if (dfs(i, -1) == -2) {\n                std::reverse(all(cycle));\n\
-    \                break;\n            }\n        }\n    }\n\npublic:\n    GraphCycle(const\
-    \ Graph<T>& G) : G(G) { init(); }\n    bool has_cycle() const { return !cycle.empty();\
-    \ }\n    const Edges<T>& get_cycle() const& { return cycle; }\n    Edges<T> get_cycle()\
-    \ && { return std::move(cycle); }\n};\n\n/**\n * @brief GraphCycle(\u9589\u8DEF\
-    \u691C\u51FA)\n * @docs docs/graph/other/GraphCycle.md\n */\n"
+    };\n#line 4 \"math/convolution/SubsetConvolution.hpp\"\n\nnamespace internal {\n\
+    \ntemplate<class T, int L> void ranked_zeta(std::vector<std::array<T, L>>& a)\
+    \ {\n    int n = a.size();\n    for (int i = 1; i < n; i <<= 1) {\n        rep\
+    \ (j, 0, n, i << 1) {\n            rep (k, j, j + i) {\n                rep (l,\
+    \ L) a[k + i][l] += a[k][l];\n            }\n        }\n    }\n}\ntemplate<class\
+    \ T, int L> void ranked_moebius(std::vector<std::array<T, L>>& a) {\n    int n\
+    \ = a.size();\n    for (int i = 1; i < n; i <<= 1) {\n        rep (j, 0, n, i\
+    \ << 1) {\n            rep (k, j, j + i) {\n                rep (l, L) a[k + i][l]\
+    \ -= a[k][l];\n            }\n        }\n    }\n}\n\n} // namespace internal\n\
+    \ntemplate<class T, int L = 20>\nstd::vector<T> subset_convolution(const std::vector<T>&\
+    \ a,\n                                  const std::vector<T>& b) {\n    int n\
+    \ = a.size(), m = bitop::ceil_log2(n);\n    std::vector<std::array<T, L + 1>>\
+    \ a2(n), b2(n);\n    rep (i, n) a2[i][popcnt(i)] = a[i];\n    rep (i, n) b2[i][popcnt(i)]\
+    \ = b[i];\n    internal::ranked_zeta<T, L + 1>(a2);\n    internal::ranked_zeta<T,\
+    \ L + 1>(b2);\n    rep (k, n) {\n        auto& f = a2[k];\n        const auto&\
+    \ g = b2[k];\n        rrep (i, m + 1) {\n            T sm = 0;\n            rep\
+    \ (j, i + 1) sm += f[j] * g[i - j];\n            f[i] = sm;\n        }\n    }\n\
+    \    internal::ranked_moebius<T, L + 1>(a2);\n    std::vector<T> c(n);\n    rep\
+    \ (i, n) c[i] = a2[i][popcnt(i)];\n    return c;\n}\n\n/**\n * @brief SubsetConvolution\n\
+    \ * @docs docs/math/convolution/SubsetConvolution.md\n */\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\nnamespace internal\
+    \ {\n\ntemplate<class T, int L> void ranked_zeta(std::vector<std::array<T, L>>&\
+    \ a) {\n    int n = a.size();\n    for (int i = 1; i < n; i <<= 1) {\n       \
+    \ rep (j, 0, n, i << 1) {\n            rep (k, j, j + i) {\n                rep\
+    \ (l, L) a[k + i][l] += a[k][l];\n            }\n        }\n    }\n}\ntemplate<class\
+    \ T, int L> void ranked_moebius(std::vector<std::array<T, L>>& a) {\n    int n\
+    \ = a.size();\n    for (int i = 1; i < n; i <<= 1) {\n        rep (j, 0, n, i\
+    \ << 1) {\n            rep (k, j, j + i) {\n                rep (l, L) a[k + i][l]\
+    \ -= a[k][l];\n            }\n        }\n    }\n}\n\n} // namespace internal\n\
+    \ntemplate<class T, int L = 20>\nstd::vector<T> subset_convolution(const std::vector<T>&\
+    \ a,\n                                  const std::vector<T>& b) {\n    int n\
+    \ = a.size(), m = bitop::ceil_log2(n);\n    std::vector<std::array<T, L + 1>>\
+    \ a2(n), b2(n);\n    rep (i, n) a2[i][popcnt(i)] = a[i];\n    rep (i, n) b2[i][popcnt(i)]\
+    \ = b[i];\n    internal::ranked_zeta<T, L + 1>(a2);\n    internal::ranked_zeta<T,\
+    \ L + 1>(b2);\n    rep (k, n) {\n        auto& f = a2[k];\n        const auto&\
+    \ g = b2[k];\n        rrep (i, m + 1) {\n            T sm = 0;\n            rep\
+    \ (j, i + 1) sm += f[j] * g[i - j];\n            f[i] = sm;\n        }\n    }\n\
+    \    internal::ranked_moebius<T, L + 1>(a2);\n    std::vector<T> c(n);\n    rep\
+    \ (i, n) c[i] = a2[i][popcnt(i)];\n    return c;\n}\n\n/**\n * @brief SubsetConvolution\n\
+    \ * @docs docs/math/convolution/SubsetConvolution.md\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -530,26 +489,24 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  - graph/Graph.hpp
   isVerificationFile: false
-  path: graph/other/GraphCycle.hpp
+  path: math/convolution/SubsetConvolution.hpp
   requiredBy: []
-  timestamp: '2024-05-12 17:35:55+09:00'
+  timestamp: '2024-05-17 14:31:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/GRL/GRL_4_A-Cycle.test.cpp
-  - test/yosupo/graph/cycle_detection.test.cpp
-documentation_of: graph/other/GraphCycle.hpp
+  - test/yosupo/convolution/subset_convolution.test.cpp
+documentation_of: math/convolution/SubsetConvolution.hpp
 layout: document
 redirect_from:
-- /library/graph/other/GraphCycle.hpp
-- /library/graph/other/GraphCycle.hpp.html
-title: "GraphCycle(\u9589\u8DEF\u691C\u51FA)"
+- /library/math/convolution/SubsetConvolution.hpp
+- /library/math/convolution/SubsetConvolution.hpp.html
+title: SubsetConvolution
 ---
 ## 概要
 
-有向グラフに対して閉路を検出する。
+長さ $2^n$ の列 $a, b$ に対し、 $c_k = \sum_{i\|j=k, i\&j=0} a_ib_j$ で定義される列 $c$ を返す。
 
-- `GraphCycle(Graph<T> G)` : グラフ `G` で初期化する。 $\Theta(V + E)$ 。
-- `bool has_cycle()` : 閉路を持つかを返す。 $\Theta(1)$ 。
-- `Edges<T> get_cycle()` : 閉路 $p$ を $1$ つ返す。存在しない場合は空のリストが返る。 $\Theta(\lvert p \rvert)$ 。
+Library Checker で試したら pragma 書くと結構速くなったので、 TLE したら試してみても良いかも
+
+- `vector<T> subset_convolution(vector<T> a, vector<T> b)` : $\Theta(n^22^n)$ 。

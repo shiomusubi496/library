@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: geometry/Point.hpp
     title: geometry/Point.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/Segment.hpp
     title: geometry/Segment.hpp
   - icon: ':question:'

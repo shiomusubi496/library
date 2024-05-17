@@ -29,10 +29,10 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geometry/All.hpp
     title: geometry/All.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/Circle.hpp
     title: geometry/Circle.hpp
   - icon: ':question:'
@@ -44,10 +44,10 @@ data:
   - icon: ':question:'
     path: geometry/Polygon.hpp
     title: geometry/Polygon.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/Segment.hpp
     title: geometry/Segment.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/Triangle.hpp
     title: geometry/Triangle.hpp
   _extendedVerifiedWith:
@@ -114,7 +114,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
     title: test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/geometry/sort_points_by_argument.test.cpp
     title: test/yosupo/geometry/sort_points_by_argument.test.cpp
   - icon: ':x:'

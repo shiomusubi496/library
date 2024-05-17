@@ -38,7 +38,7 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geometry/All.hpp
     title: geometry/All.hpp
   _extendedVerifiedWith:
@@ -48,12 +48,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_7_C-circumcenter.test.cpp
     title: test/aoj/CGL/CGL_7_C-circumcenter.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/geometry/sort_points_by_argument.test.cpp
     title: test/yosupo/geometry/sort_points_by_argument.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geometry/Triangle.hpp\"\n\n#line 2 \"geometry/template.hpp\"\
@@ -630,7 +630,7 @@ data:
   requiredBy:
   - geometry/All.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/CGL/CGL_7_C-circumcenter.test.cpp
   - test/aoj/CGL/CGL_7_B-incenter.test.cpp

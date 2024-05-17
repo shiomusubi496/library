@@ -2,8 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: graph/Graph.hpp
-    title: Graph-template
+    path: math/ModInt.hpp
+    title: ModInt
+  - icon: ':heavy_check_mark:'
+    path: math/convolution/SubsetConvolution.hpp
+    title: SubsetConvolution
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
@@ -32,62 +35,59 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
-    title: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/graph/cycle_detection.test.cpp
-    title: test/yosupo/graph/cycle_detection.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/graph/other/GraphCycle.md
-    document_title: "GraphCycle(\u9589\u8DEF\u691C\u51FA)"
-    links: []
-  bundledCode: "#line 2 \"graph/other/GraphCycle.hpp\"\n\n#line 2 \"other/template.hpp\"\
-    \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
-    \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define OVERLOAD5(a,\
-    \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
-    \                                                           \\\n    for (ll REP_COUNTER_##c\
-    \ = 0; REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b,\
-    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
-    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
-    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) OVERLOAD5(__VA_ARGS__,\
-    \ REP4, REP3, REP2, REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1;\
-    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n\
-    #define RREP4(i, a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n\
-    #define rrep(...) OVERLOAD5(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define\
-    \ REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b) for (ll\
-    \ i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll i = (ll)(a)\
-    \ + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) OVERLOAD5(__VA_ARGS__, REPS4,\
-    \ REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a); i > 0;\
-    \ --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n#define\
-    \ RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
-    \ rreps(...) OVERLOAD5(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define\
-    \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
-    \ __VA_ARGS__)\n\n#define all(v) std::begin(v), std::end(v)\n#define rall(v) std::rbegin(v),\
-    \ std::rend(v)\n\n#if __cpp_if_constexpr >= 201606L\n#define IF_CONSTEXPR constexpr\n\
-    #else\n#define IF_CONSTEXPR\n#endif\n\n#define IO_BUFFER_SIZE (1 << 17)\n#line\
-    \ 2 \"template/alias.hpp\"\n\n#line 4 \"template/alias.hpp\"\n\nusing ll = long\
-    \ long;\nusing uint = unsigned int;\nusing ull = unsigned long long;\nusing i128\
-    \ = __int128_t;\nusing u128 = __uint128_t;\nusing ld = long double;\nusing PLL\
-    \ = std::pair<ll, ll>;\ntemplate<class T>\nusing prique = std::priority_queue<T,\
-    \ std::vector<T>, std::greater<T>>;\n\ntemplate<class T> struct infinity {\n \
-    \   static constexpr T value = std::numeric_limits<T>::max() / 2;\n    static\
-    \ constexpr T mvalue = std::numeric_limits<T>::lowest() / 2;\n    static constexpr\
-    \ T max = std::numeric_limits<T>::max();\n    static constexpr T min = std::numeric_limits<T>::lowest();\n\
-    };\n\n#if __cplusplus <= 201402L\ntemplate<class T> constexpr T infinity<T>::value;\n\
-    template<class T> constexpr T infinity<T>::mvalue;\ntemplate<class T> constexpr\
-    \ T infinity<T>::max;\ntemplate<class T> constexpr T infinity<T>::min;\n#endif\n\
-    \n#if __cpp_variable_templates >= 201304L\ntemplate<class T> constexpr T INF =\
-    \ infinity<T>::value;\n#endif\n\nconstexpr ll inf = infinity<ll>::value;\nconstexpr\
-    \ ld EPS = 1e-8;\nconstexpr ld PI = 3.1415926535897932384626;\n#line 2 \"template/type_traits.hpp\"\
-    \n\n#line 5 \"template/type_traits.hpp\"\n\ntemplate<class T, class... Args> struct\
-    \ function_traits_impl {\n    using result_type = T;\n    template<std::size_t\
-    \ idx>\n    using argument_type =\n        typename std::tuple_element<idx, std::tuple<Args...>>::type;\n\
-    \    using argument_tuple = std::tuple<Args...>;\n    static constexpr std::size_t\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/subset_convolution
+    links:
+    - https://judge.yosupo.jp/problem/subset_convolution
+  bundledCode: "#line 1 \"test/yosupo/convolution/subset_convolution.test.cpp\"\n\
+    #define PROBLEM \"https://judge.yosupo.jp/problem/subset_convolution\"\n#line\
+    \ 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
+    \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
+    \ __LINE__\n#endif\n\n#define OVERLOAD5(a, b, c, d, e, ...) e\n#define REP1_0(b,\
+    \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
+    \                     \\\n    for (ll REP_COUNTER_##c = 0; REP_COUNTER_##c < (ll)(b);\
+    \ ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define REP2(i,\
+    \ b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i = (ll)(a);\
+    \ i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b);\
+    \ i += (ll)(c))\n#define rep(...) OVERLOAD5(__VA_ARGS__, REP4, REP3, REP2, REP1)(__VA_ARGS__)\n\
+    #define RREP2(i, a) for (ll i = (ll)(a)-1; i >= 0; --i)\n#define RREP3(i, a, b)\
+    \ for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n#define RREP4(i, a, b, c) for (ll\
+    \ i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n#define rrep(...) OVERLOAD5(__VA_ARGS__,\
+    \ RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define REPS2(i, b) for (ll i = 1; i <= (ll)(b);\
+    \ ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define\
+    \ REPS4(i, a, b, c) for (ll i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define\
+    \ reps(...) OVERLOAD5(__VA_ARGS__, REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define\
+    \ RREPS2(i, a) for (ll i = (ll)(a); i > 0; --i)\n#define RREPS3(i, a, b) for (ll\
+    \ i = (ll)(a); i > (ll)(b); --i)\n#define RREPS4(i, a, b, c) for (ll i = (ll)(a);\
+    \ i > (ll)(b); i -= (ll)(c))\n#define rreps(...) OVERLOAD5(__VA_ARGS__, RREPS4,\
+    \ RREPS3, RREPS2)(__VA_ARGS__)\n\n#define each_for(...) for (auto&& __VA_ARGS__)\n\
+    #define each_const(...) for (const auto& __VA_ARGS__)\n\n#define all(v) std::begin(v),\
+    \ std::end(v)\n#define rall(v) std::rbegin(v), std::rend(v)\n\n#if __cpp_if_constexpr\
+    \ >= 201606L\n#define IF_CONSTEXPR constexpr\n#else\n#define IF_CONSTEXPR\n#endif\n\
+    \n#define IO_BUFFER_SIZE (1 << 17)\n#line 2 \"template/alias.hpp\"\n\n#line 4\
+    \ \"template/alias.hpp\"\n\nusing ll = long long;\nusing uint = unsigned int;\n\
+    using ull = unsigned long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\
+    using ld = long double;\nusing PLL = std::pair<ll, ll>;\ntemplate<class T>\nusing\
+    \ prique = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\ntemplate<class\
+    \ T> struct infinity {\n    static constexpr T value = std::numeric_limits<T>::max()\
+    \ / 2;\n    static constexpr T mvalue = std::numeric_limits<T>::lowest() / 2;\n\
+    \    static constexpr T max = std::numeric_limits<T>::max();\n    static constexpr\
+    \ T min = std::numeric_limits<T>::lowest();\n};\n\n#if __cplusplus <= 201402L\n\
+    template<class T> constexpr T infinity<T>::value;\ntemplate<class T> constexpr\
+    \ T infinity<T>::mvalue;\ntemplate<class T> constexpr T infinity<T>::max;\ntemplate<class\
+    \ T> constexpr T infinity<T>::min;\n#endif\n\n#if __cpp_variable_templates >=\
+    \ 201304L\ntemplate<class T> constexpr T INF = infinity<T>::value;\n#endif\n\n\
+    constexpr ll inf = infinity<ll>::value;\nconstexpr ld EPS = 1e-8;\nconstexpr ld\
+    \ PI = 3.1415926535897932384626;\n#line 2 \"template/type_traits.hpp\"\n\n#line\
+    \ 5 \"template/type_traits.hpp\"\n\ntemplate<class T, class... Args> struct function_traits_impl\
+    \ {\n    using result_type = T;\n    template<std::size_t idx>\n    using argument_type\
+    \ =\n        typename std::tuple_element<idx, std::tuple<Args...>>::type;\n  \
+    \  using argument_tuple = std::tuple<Args...>;\n    static constexpr std::size_t\
     \ arg_size() { return sizeof...(Args); }\n};\n\ntemplate<class> struct function_traits_helper;\n\
     \ntemplate<class Res, class Tp, class... Args>\nstruct function_traits_helper<Res\
     \ (Tp::*)(Args...)> {\n    using type = function_traits_impl<Res, Args...>;\n\
@@ -445,81 +445,161 @@ data:
     \        return res;\n    }\n    void press(std::vector<T>& vec) const {\n   \
     \     assert(sorted);\n        for (auto&& i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
-    };\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class\
-    \ T = int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
-    \ : from(-1), to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1)\n\
-    \        : from(f), to(t), cost(c), idx(i) {}\n    edge(int f, int t, T&& c, int\
-    \ i = -1)\n        : from(f), to(t), cost(std::move(c)), idx(i) {}\n    operator\
-    \ int() const { return to; }\n    friend bool operator<(const edge<T>& lhs, const\
-    \ edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n    }\n    friend bool\
-    \ operator>(const edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost\
-    \ > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using Edges = std::vector<edge<T>>;\n\
-    template<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class\
-    \ T = int> class Graph : public std::vector<std::vector<edge<T>>> {\nprivate:\n\
-    \    using Base = std::vector<std::vector<edge<T>>>;\n\npublic:\n    int edge_id\
-    \ = 0;\n    using Base::Base;\n    int edge_size() const { return edge_id; }\n\
-    \    int add_edge(int a, int b, const T& c, bool is_directed = false) {\n    \
-    \    assert(0 <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
-    \        (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed)\
-    \ (*this)[b].emplace_back(b, a, c, edge_id);\n        return edge_id++;\n    }\n\
-    \    int add_edge(int a, int b, bool is_directed = false) {\n        assert(0\
-    \ <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
-    \        (*this)[a].emplace_back(a, b, 1, edge_id);\n        if (!is_directed)\
-    \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
-    };\n\ntemplate<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {\n    const\
-    \ int N = G.size();\n    auto res = make_vec<T>(N, N, infinity<T>::value);\n \
-    \   rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n        for (const auto& e :\
-    \ G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\ntemplate<class T>\
-    \ Edges<T> UndirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n\
-    \    const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n   \
-    \     for (const auto& e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\n\
-    template<class T> Edges<T> DirectedListToEdges(const Graph<T>& G) {\n    const\
-    \ int V = G.size();\n    const int E = std::accumulate(\n        all(G), 0, [](int\
-    \ a, const std::vector<edge<T>>& v) -> int {\n            return a + v.size();\n\
-    \        });\n    Edges<T> Ed(G.edge_size());\n    Ed.reserve(E);\n    rep (i,\
-    \ V) {\n        for (const auto& e : G[i]) {\n            if (Ed[e.idx] == -1)\
-    \ Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n    return\
-    \ Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n   \
-    \ const int V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n        for\
-    \ (const auto& e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from, e.cost,\
-    \ e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n    return res;\n\
-    }\n\n\nstruct unweighted_edge {\n    template<class... Args> unweighted_edge(const\
-    \ Args&...) {}\n    operator int() { return 1; }\n};\n\nusing UnweightedGraph\
-    \ = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n * @docs docs/graph/Graph.md\n\
-    \ */\n#line 5 \"graph/other/GraphCycle.hpp\"\n\ntemplate<class T> class GraphCycle\
-    \ {\nprivate:\n    const Graph<T>& G;\n    std::vector<bool> visited, seen;\n\
-    \    Edges<T> cycle;\n    int dfs(int v, int k) {\n        if (seen[v]) return\
-    \ v;\n        if (visited[v]) return -1;\n        visited[v] = seen[v] = true;\n\
-    \        for (const auto& e : G[v]) {\n            if (e.idx == k) continue;\n\
-    \            int d = dfs(e.to, e.idx);\n            if (d != -1) {\n         \
-    \       if (d == -2) return -2;\n                cycle.push_back(e);\n       \
-    \         if (d == v) return -2;\n                return d;\n            }\n \
-    \       }\n        seen[v] = false;\n        return -1;\n    }\n    void init()\
-    \ {\n        const int N = G.size();\n        visited.assign(N, false);\n    \
-    \    seen.assign(N, false);\n        rep (i, N) {\n            if (dfs(i, -1)\
-    \ == -2) {\n                std::reverse(all(cycle));\n                break;\n\
-    \            }\n        }\n    }\n\npublic:\n    GraphCycle(const Graph<T>& G)\
-    \ : G(G) { init(); }\n    bool has_cycle() const { return !cycle.empty(); }\n\
-    \    const Edges<T>& get_cycle() const& { return cycle; }\n    Edges<T> get_cycle()\
-    \ && { return std::move(cycle); }\n};\n\n/**\n * @brief GraphCycle(\u9589\u8DEF\
-    \u691C\u51FA)\n * @docs docs/graph/other/GraphCycle.md\n */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
-    \n\ntemplate<class T> class GraphCycle {\nprivate:\n    const Graph<T>& G;\n \
-    \   std::vector<bool> visited, seen;\n    Edges<T> cycle;\n    int dfs(int v,\
-    \ int k) {\n        if (seen[v]) return v;\n        if (visited[v]) return -1;\n\
-    \        visited[v] = seen[v] = true;\n        for (const auto& e : G[v]) {\n\
-    \            if (e.idx == k) continue;\n            int d = dfs(e.to, e.idx);\n\
-    \            if (d != -1) {\n                if (d == -2) return -2;\n       \
-    \         cycle.push_back(e);\n                if (d == v) return -2;\n      \
-    \          return d;\n            }\n        }\n        seen[v] = false;\n   \
-    \     return -1;\n    }\n    void init() {\n        const int N = G.size();\n\
-    \        visited.assign(N, false);\n        seen.assign(N, false);\n        rep\
-    \ (i, N) {\n            if (dfs(i, -1) == -2) {\n                std::reverse(all(cycle));\n\
-    \                break;\n            }\n        }\n    }\n\npublic:\n    GraphCycle(const\
-    \ Graph<T>& G) : G(G) { init(); }\n    bool has_cycle() const { return !cycle.empty();\
-    \ }\n    const Edges<T>& get_cycle() const& { return cycle; }\n    Edges<T> get_cycle()\
-    \ && { return std::move(cycle); }\n};\n\n/**\n * @brief GraphCycle(\u9589\u8DEF\
-    \u691C\u51FA)\n * @docs docs/graph/other/GraphCycle.md\n */\n"
+    };\n#line 2 \"math/ModInt.hpp\"\n\n#line 4 \"math/ModInt.hpp\"\n\ntemplate<class\
+    \ T, T mod> class StaticModInt {\n    static_assert(std::is_integral<T>::value,\
+    \ \"T must be integral\");\n    static_assert(std::is_unsigned<T>::value, \"T\
+    \ must be unsigned\");\n    static_assert(mod > 0, \"mod must be positive\");\n\
+    \    static_assert(mod <= std::numeric_limits<T>::max() / 2,\n               \
+    \   \"mod * 2 must be less than or equal to T::max()\");\n\nprivate:\n    using\
+    \ large_t = typename double_size_uint<T>::type;\n    using signed_t = typename\
+    \ std::make_signed<T>::type;\n    T val;\n    static constexpr unsigned int inv1000000007[]\
+    \ = {\n        0,         1,         500000004, 333333336, 250000002, 400000003,\n\
+    \        166666668, 142857144, 125000001, 111111112, 700000005};\n    static constexpr\
+    \ unsigned int inv998244353[] = {\n        0,         1,         499122177, 332748118,\
+    \ 748683265, 598946612,\n        166374059, 855638017, 873463809, 443664157, 299473306};\n\
+    \n    static constexpr ll mod_inv(ll a) {\n        ll b = mod;\n        ll x =\
+    \ 1, u = 0;\n        ll t = 0, tmp = 0;\n        while (b) {\n            t =\
+    \ a / b;\n            tmp = (a - t * b);\n            a = b;\n            b =\
+    \ tmp;\n            tmp = (x - t * u);\n            x = u;\n            u = tmp;\n\
+    \        }\n        if (x < 0) x += mod;\n        return x;\n    }\n\npublic:\n\
+    \    constexpr StaticModInt() : val(0) {}\n    template<class U,\n           \
+    \  typename std::enable_if<std::is_integral<U>::value &&\n                   \
+    \                  std::is_signed<U>::value>::type* = nullptr>\n    constexpr\
+    \ StaticModInt(U v) : val{} {\n        v %= static_cast<signed_t>(mod);\n    \
+    \    if (v < 0) v += static_cast<signed_t>(mod);\n        val = static_cast<T>(v);\n\
+    \    }\n    template<class U, typename std::enable_if<\n                     \
+    \     std::is_integral<U>::value &&\n                          std::is_unsigned<U>::value>::type*\
+    \ = nullptr>\n    constexpr StaticModInt(U v) : val(v % mod) {}\n    constexpr\
+    \ T get() const { return val; }\n    static constexpr T get_mod() { return mod;\
+    \ }\n    static constexpr StaticModInt raw(T v) {\n        StaticModInt res;\n\
+    \        res.val = v;\n        return res;\n    }\n    constexpr StaticModInt\
+    \ inv() const {\n        if IF_CONSTEXPR (mod == 1000000007) {\n            if\
+    \ (val <= 10) return inv1000000007[val];\n        }\n        else if IF_CONSTEXPR\
+    \ (mod == 998244353) {\n            if (val <= 10) return inv998244353[val];\n\
+    \        }\n        return mod_inv(val);\n    }\n    constexpr StaticModInt& operator++()\
+    \ {\n        ++val;\n        if (val == mod) val = 0;\n        return *this;\n\
+    \    }\n    constexpr StaticModInt operator++(int) {\n        StaticModInt res\
+    \ = *this;\n        ++*this;\n        return res;\n    }\n    constexpr StaticModInt&\
+    \ operator--() {\n        if (val == 0) val = mod;\n        --val;\n        return\
+    \ *this;\n    }\n    constexpr StaticModInt operator--(int) {\n        StaticModInt\
+    \ res = *this;\n        --*this;\n        return res;\n    }\n    constexpr StaticModInt&\
+    \ operator+=(const StaticModInt& other) {\n        val += other.val;\n       \
+    \ if (val >= mod) val -= mod;\n        return *this;\n    }\n    constexpr StaticModInt&\
+    \ operator-=(const StaticModInt& other) {\n        if (val < other.val) val +=\
+    \ mod;\n        val -= other.val;\n        return *this;\n    }\n    constexpr\
+    \ StaticModInt& operator*=(const StaticModInt& other) {\n        large_t a = val;\n\
+    \        a *= other.val;\n        a %= mod;\n        val = a;\n        return\
+    \ *this;\n    }\n    constexpr StaticModInt& operator/=(const StaticModInt& other)\
+    \ {\n        *this *= other.inv();\n        return *this;\n    }\n    friend constexpr\
+    \ StaticModInt operator+(const StaticModInt& lhs,\n                          \
+    \                  const StaticModInt& rhs) {\n        return StaticModInt(lhs)\
+    \ += rhs;\n    }\n    friend constexpr StaticModInt operator-(const StaticModInt&\
+    \ lhs,\n                                            const StaticModInt& rhs) {\n\
+    \        return StaticModInt(lhs) -= rhs;\n    }\n    friend constexpr StaticModInt\
+    \ operator*(const StaticModInt& lhs,\n                                       \
+    \     const StaticModInt& rhs) {\n        return StaticModInt(lhs) *= rhs;\n \
+    \   }\n    friend constexpr StaticModInt operator/(const StaticModInt& lhs,\n\
+    \                                            const StaticModInt& rhs) {\n    \
+    \    return StaticModInt(lhs) /= rhs;\n    }\n    constexpr StaticModInt operator+()\
+    \ const { return StaticModInt(*this); }\n    constexpr StaticModInt operator-()\
+    \ const { return StaticModInt() - *this; }\n    friend constexpr bool operator==(const\
+    \ StaticModInt& lhs,\n                                     const StaticModInt&\
+    \ rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend constexpr bool\
+    \ operator!=(const StaticModInt& lhs,\n                                     const\
+    \ StaticModInt& rhs) {\n        return lhs.val != rhs.val;\n    }\n    constexpr\
+    \ StaticModInt pow(ll a) const {\n        StaticModInt v = *this, res = 1;\n \
+    \       while (a) {\n            if (a & 1) res *= v;\n            a >>= 1;\n\
+    \            v *= v;\n        }\n        return res;\n    }\n    template<class\
+    \ Pr> void print(Pr& a) const { a.print(val); }\n    template<class Pr> void debug(Pr&\
+    \ a) const { a.print(val); }\n    template<class Sc> void scan(Sc& a) {\n    \
+    \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\n#if __cplusplus\
+    \ < 201703L\ntemplate<class T, T mod>\nconstexpr unsigned int StaticModInt<T,\
+    \ mod>::inv1000000007[];\ntemplate<class T, T mod>\nconstexpr unsigned int StaticModInt<T,\
+    \ mod>::inv998244353[];\n#endif\n\ntemplate<unsigned int p> using static_modint\
+    \ = StaticModInt<unsigned int, p>;\nusing modint1000000007 = static_modint<1000000007>;\n\
+    using modint998244353 = static_modint<998244353>;\n\ntemplate<class T, int id>\
+    \ class DynamicModInt {\n    static_assert(std::is_integral<T>::value, \"T must\
+    \ be integral\");\n    static_assert(std::is_unsigned<T>::value, \"T must be unsigned\"\
+    );\n\nprivate:\n    using large_t = typename double_size_uint<T>::type;\n    using\
+    \ signed_t = typename std::make_signed<T>::type;\n    T val;\n    static T mod;\n\
+    \npublic:\n    constexpr DynamicModInt() : val(0) {}\n    template<class U,\n\
+    \             typename std::enable_if<std::is_integral<U>::value &&\n        \
+    \                             std::is_signed<U>::value>::type* = nullptr>\n  \
+    \  constexpr DynamicModInt(U v) : val{} {\n        v %= static_cast<signed_t>(mod);\n\
+    \        if (v < 0) v += static_cast<signed_t>(mod);\n        val = static_cast<T>(v);\n\
+    \    }\n    template<class U, typename std::enable_if<\n                     \
+    \     std::is_integral<U>::value &&\n                          std::is_unsigned<U>::value>::type*\
+    \ = nullptr>\n    constexpr DynamicModInt(U v) : val(v % mod) {}\n    T get()\
+    \ const { return val; }\n    static T get_mod() { return mod; }\n    static void\
+    \ set_mod(T v) {\n        assert(v > 0);\n        assert(v <= std::numeric_limits<T>::max()\
+    \ / 2);\n        mod = v;\n    }\n    static DynamicModInt raw(T v) {\n      \
+    \  DynamicModInt res;\n        res.val = v;\n        return res;\n    }\n    DynamicModInt\
+    \ inv() const { return mod_inv(val, mod); }\n    DynamicModInt& operator++() {\n\
+    \        ++val;\n        if (val == mod) val = 0;\n        return *this;\n   \
+    \ }\n    DynamicModInt operator++(int) {\n        DynamicModInt res = *this;\n\
+    \        ++*this;\n        return res;\n    }\n    DynamicModInt& operator--()\
+    \ {\n        if (val == 0) val = mod;\n        --val;\n        return *this;\n\
+    \    }\n    DynamicModInt operator--(int) {\n        DynamicModInt res = *this;\n\
+    \        --*this;\n        return res;\n    }\n    DynamicModInt& operator+=(const\
+    \ DynamicModInt& other) {\n        val += other.val;\n        if (val >= mod)\
+    \ val -= mod;\n        return *this;\n    }\n    DynamicModInt& operator-=(const\
+    \ DynamicModInt& other) {\n        if (val < other.val) val += mod;\n        val\
+    \ -= other.val;\n        return *this;\n    }\n    DynamicModInt& operator*=(const\
+    \ DynamicModInt& other) {\n        large_t a = val;\n        a *= other.val;\n\
+    \        a %= mod;\n        val = a;\n        return *this;\n    }\n    DynamicModInt&\
+    \ operator/=(const DynamicModInt& other) {\n        *this *= other.inv();\n  \
+    \      return *this;\n    }\n    friend DynamicModInt operator+(const DynamicModInt&\
+    \ lhs,\n                                   const DynamicModInt& rhs) {\n     \
+    \   return DynamicModInt(lhs) += rhs;\n    }\n    friend DynamicModInt operator-(const\
+    \ DynamicModInt& lhs,\n                                   const DynamicModInt&\
+    \ rhs) {\n        return DynamicModInt(lhs) -= rhs;\n    }\n    friend DynamicModInt\
+    \ operator*(const DynamicModInt& lhs,\n                                   const\
+    \ DynamicModInt& rhs) {\n        return DynamicModInt(lhs) *= rhs;\n    }\n  \
+    \  friend DynamicModInt operator/(const DynamicModInt& lhs,\n                \
+    \                   const DynamicModInt& rhs) {\n        return DynamicModInt(lhs)\
+    \ /= rhs;\n    }\n    DynamicModInt operator+() const { return DynamicModInt(*this);\
+    \ }\n    DynamicModInt operator-() const { return DynamicModInt() - *this; }\n\
+    \    friend bool operator==(const DynamicModInt& lhs, const DynamicModInt& rhs)\
+    \ {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
+    \ DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return lhs.val != rhs.val;\n\
+    \    }\n    DynamicModInt pow(ll a) const {\n        DynamicModInt v = *this,\
+    \ res = 1;\n        while (a) {\n            if (a & 1) res *= v;\n          \
+    \  a >>= 1;\n            v *= v;\n        }\n        return res;\n    }\n    template<class\
+    \ Pr> void print(Pr& a) const { a.print(val); }\n    template<class Pr> void debug(Pr&\
+    \ a) const { a.print(val); }\n    template<class Sc> void scan(Sc& a) {\n    \
+    \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\ntemplate<class\
+    \ T, int id> T DynamicModInt<T, id>::mod = 998244353;\n\ntemplate<int id> using\
+    \ dynamic_modint = DynamicModInt<unsigned int, id>;\nusing modint = dynamic_modint<-1>;\n\
+    \n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n#line 2 \"math/convolution/SubsetConvolution.hpp\"\
+    \n\n#line 4 \"math/convolution/SubsetConvolution.hpp\"\n\nnamespace internal {\n\
+    \ntemplate<class T, int L> void ranked_zeta(std::vector<std::array<T, L>>& a)\
+    \ {\n    int n = a.size();\n    for (int i = 1; i < n; i <<= 1) {\n        rep\
+    \ (j, 0, n, i << 1) {\n            rep (k, j, j + i) {\n                rep (l,\
+    \ L) a[k + i][l] += a[k][l];\n            }\n        }\n    }\n}\ntemplate<class\
+    \ T, int L> void ranked_moebius(std::vector<std::array<T, L>>& a) {\n    int n\
+    \ = a.size();\n    for (int i = 1; i < n; i <<= 1) {\n        rep (j, 0, n, i\
+    \ << 1) {\n            rep (k, j, j + i) {\n                rep (l, L) a[k + i][l]\
+    \ -= a[k][l];\n            }\n        }\n    }\n}\n\n} // namespace internal\n\
+    \ntemplate<class T, int L = 20>\nstd::vector<T> subset_convolution(const std::vector<T>&\
+    \ a,\n                                  const std::vector<T>& b) {\n    int n\
+    \ = a.size(), m = bitop::ceil_log2(n);\n    std::vector<std::array<T, L + 1>>\
+    \ a2(n), b2(n);\n    rep (i, n) a2[i][popcnt(i)] = a[i];\n    rep (i, n) b2[i][popcnt(i)]\
+    \ = b[i];\n    internal::ranked_zeta<T, L + 1>(a2);\n    internal::ranked_zeta<T,\
+    \ L + 1>(b2);\n    rep (k, n) {\n        auto& f = a2[k];\n        const auto&\
+    \ g = b2[k];\n        rrep (i, m + 1) {\n            T sm = 0;\n            rep\
+    \ (j, i + 1) sm += f[j] * g[i - j];\n            f[i] = sm;\n        }\n    }\n\
+    \    internal::ranked_moebius<T, L + 1>(a2);\n    std::vector<T> c(n);\n    rep\
+    \ (i, n) c[i] = a2[i][popcnt(i)];\n    return c;\n}\n\n/**\n * @brief SubsetConvolution\n\
+    \ * @docs docs/math/convolution/SubsetConvolution.md\n */\n#line 5 \"test/yosupo/convolution/subset_convolution.test.cpp\"\
+    \nusing namespace std;\nusing mint = modint998244353;\nint main() {\n    int N;\
+    \ scan >> N;\n    vector<mint> a(1 << N), b(1 << N); scan >> a >> b;\n    prints(subset_convolution(a,\
+    \ b));\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/subset_convolution\"\n\
+    #include \"../../../other/template.hpp\"\n#include \"../../../math/ModInt.hpp\"\
+    \n#include \"../../../math/convolution/SubsetConvolution.hpp\"\nusing namespace\
+    \ std;\nusing mint = modint998244353;\nint main() {\n    int N; scan >> N;\n \
+    \   vector<mint> a(1 << N), b(1 << N); scan >> a >> b;\n    prints(subset_convolution(a,\
+    \ b));\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -530,26 +610,18 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  - graph/Graph.hpp
-  isVerificationFile: false
-  path: graph/other/GraphCycle.hpp
+  - math/ModInt.hpp
+  - math/convolution/SubsetConvolution.hpp
+  isVerificationFile: true
+  path: test/yosupo/convolution/subset_convolution.test.cpp
   requiredBy: []
-  timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/aoj/GRL/GRL_4_A-Cycle.test.cpp
-  - test/yosupo/graph/cycle_detection.test.cpp
-documentation_of: graph/other/GraphCycle.hpp
+  timestamp: '2024-05-17 14:31:12+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/yosupo/convolution/subset_convolution.test.cpp
 layout: document
 redirect_from:
-- /library/graph/other/GraphCycle.hpp
-- /library/graph/other/GraphCycle.hpp.html
-title: "GraphCycle(\u9589\u8DEF\u691C\u51FA)"
+- /verify/test/yosupo/convolution/subset_convolution.test.cpp
+- /verify/test/yosupo/convolution/subset_convolution.test.cpp.html
+title: test/yosupo/convolution/subset_convolution.test.cpp
 ---
-## 概要
-
-有向グラフに対して閉路を検出する。
-
-- `GraphCycle(Graph<T> G)` : グラフ `G` で初期化する。 $\Theta(V + E)$ 。
-- `bool has_cycle()` : 閉路を持つかを返す。 $\Theta(1)$ 。
-- `Edges<T> get_cycle()` : 閉路 $p$ を $1$ つ返す。存在しない場合は空のリストが返る。 $\Theta(\lvert p \rvert)$ 。
