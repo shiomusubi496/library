@@ -70,5 +70,4 @@ public:
 
 /**
  * @brief SegmentTree2D
- * @docs docs/data-struct/2D/SegmentTree2D.md
  */

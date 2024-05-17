@@ -43,5 +43,5 @@ T count_eulerian_trail(const Graph<U>& G) {
 
 /**
  * @brief CountEulerianTrail(BEST Theorem)
- * @docs docs/graph/mst/CountEulerianTrail.md
+ * @docs docs/graph/other/CountEulerianTrail.md
  */
