@@ -36,7 +36,7 @@ data:
     path: graph/connected/BiConnectedComponents.hpp
     title: "BiConnectedComponents(\u4E8C\u91CD\u9802\u70B9\u9023\u7D50\u6210\u5206\
       \u5206\u89E3)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/connected/ConnectedComponents.hpp
     title: "ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)"
   - icon: ':question:'
@@ -66,7 +66,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/mst/Prim.hpp
     title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/other/BipartiteGraph.hpp
     title: "BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A)"
   - icon: ':x:'
@@ -236,7 +236,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc336_g-BEST.test.cpp
     title: test/atcoder/abc336_g-BEST.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/arc099_c-Bipartite.test.cpp
     title: test/atcoder/arc099_c-Bipartite.test.cpp
   - icon: ':x:'

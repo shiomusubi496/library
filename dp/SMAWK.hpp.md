@@ -38,7 +38,7 @@ data:
   - icon: ':question:'
     path: dp/OnlineOfflineDP.hpp
     title: Online Offline DP
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/convolution/MinPlusConvolution.hpp
     title: Min Plus Convolution
   _extendedVerifiedWith:
@@ -48,7 +48,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc218_h-AlienDP.test.cpp
     title: test/atcoder/abc218_h-AlienDP.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/min_plus_convolution_convex_arbitrary.test.cpp
     title: test/yosupo/convolution/min_plus_convolution_convex_arbitrary.test.cpp
   - icon: ':x:'

@@ -29,6 +29,9 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: data-struct/unionfind/EnumerateUnionFind.hpp
+    title: data-struct/unionfind/EnumerateUnionFind.hpp
   - icon: ':x:'
     path: graph/mst/DirectedMST.hpp
     title: "DirectedMST(\u6700\u5C0F\u6709\u5411\u5168\u57DF\u6728)"
@@ -521,6 +524,7 @@ data:
   - graph/mst/DirectedMST.hpp
   - graph/mst/Prim.hpp
   - graph/mst/Kruskal.hpp
+  - data-struct/unionfind/EnumerateUnionFind.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:

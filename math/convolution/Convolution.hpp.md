@@ -48,7 +48,7 @@ data:
   - icon: ':x:'
     path: math/SubsetSum.hpp
     title: SubsetSum
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/convolution/MultidimensionalConvolution.hpp
     title: MultidimensionalConvolution
   - icon: ':x:'
@@ -84,13 +84,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_G.test.cpp
     title: test/aoj/DPL/DPL_5_G.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/convolution_mod.test.cpp
     title: test/yosupo/convolution/convolution_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/convolution_mod_1000000007.test.cpp
     title: test/yosupo/convolution/convolution_mod_1000000007.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/multivariate_convolution.test.cpp
     title: test/yosupo/convolution/multivariate_convolution.test.cpp
   - icon: ':x:'

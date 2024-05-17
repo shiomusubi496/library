@@ -2,21 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: math/ModInt.hpp
-    title: ModInt
-  - icon: ':heavy_check_mark:'
-    path: math/convolution/GcdConvolution.hpp
-    title: GCDConvolution
-  - icon: ':heavy_check_mark:'
-    path: math/convolution/MultipleZetaMoebiusTransform.hpp
-    title: "MultipleZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
-      \u30A6\u30B9\u5909\u63DB)"
-  - icon: ':question:'
-    path: other/monoid.hpp
-    title: other/monoid.hpp
-  - icon: ':question:'
-    path: other/monoid2.hpp
-    title: other/monoid2.hpp
+    path: data-struct/unionfind/UnionFind.hpp
+    title: UnionFind
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
@@ -47,56 +34,53 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _pathExtension: hpp
+  _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/gcd_convolution
-    links:
-    - https://judge.yosupo.jp/problem/gcd_convolution
-  bundledCode: "#line 1 \"test/yosupo/convolution/gcd_convolution.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/gcd_convolution\"\n#line 2 \"other/template.hpp\"\
-    \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
-    \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define OVERLOAD5(a,\
-    \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
-    \                                                           \\\n    for (ll REP_COUNTER_##c\
-    \ = 0; REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b,\
-    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
-    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
-    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) OVERLOAD5(__VA_ARGS__,\
-    \ REP4, REP3, REP2, REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1;\
-    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n\
-    #define RREP4(i, a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n\
-    #define rrep(...) OVERLOAD5(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define\
-    \ REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b) for (ll\
-    \ i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll i = (ll)(a)\
-    \ + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) OVERLOAD5(__VA_ARGS__, REPS4,\
-    \ REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a); i > 0;\
-    \ --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n#define\
-    \ RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
-    \ rreps(...) OVERLOAD5(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define\
-    \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
-    \ __VA_ARGS__)\n\n#define all(v) std::begin(v), std::end(v)\n#define rall(v) std::rbegin(v),\
-    \ std::rend(v)\n\n#if __cpp_if_constexpr >= 201606L\n#define IF_CONSTEXPR constexpr\n\
-    #else\n#define IF_CONSTEXPR\n#endif\n\n#define IO_BUFFER_SIZE (1 << 17)\n#line\
-    \ 2 \"template/alias.hpp\"\n\n#line 4 \"template/alias.hpp\"\n\nusing ll = long\
-    \ long;\nusing uint = unsigned int;\nusing ull = unsigned long long;\nusing i128\
-    \ = __int128_t;\nusing u128 = __uint128_t;\nusing ld = long double;\nusing PLL\
-    \ = std::pair<ll, ll>;\ntemplate<class T>\nusing prique = std::priority_queue<T,\
-    \ std::vector<T>, std::greater<T>>;\n\ntemplate<class T> struct infinity {\n \
-    \   static constexpr T value = std::numeric_limits<T>::max() / 2;\n    static\
-    \ constexpr T mvalue = std::numeric_limits<T>::lowest() / 2;\n    static constexpr\
-    \ T max = std::numeric_limits<T>::max();\n    static constexpr T min = std::numeric_limits<T>::lowest();\n\
-    };\n\n#if __cplusplus <= 201402L\ntemplate<class T> constexpr T infinity<T>::value;\n\
-    template<class T> constexpr T infinity<T>::mvalue;\ntemplate<class T> constexpr\
-    \ T infinity<T>::max;\ntemplate<class T> constexpr T infinity<T>::min;\n#endif\n\
-    \n#if __cpp_variable_templates >= 201304L\ntemplate<class T> constexpr T INF =\
-    \ infinity<T>::value;\n#endif\n\nconstexpr ll inf = infinity<ll>::value;\nconstexpr\
-    \ ld EPS = 1e-8;\nconstexpr ld PI = 3.1415926535897932384626;\n#line 2 \"template/type_traits.hpp\"\
-    \n\n#line 5 \"template/type_traits.hpp\"\n\ntemplate<class T, class... Args> struct\
-    \ function_traits_impl {\n    using result_type = T;\n    template<std::size_t\
-    \ idx>\n    using argument_type =\n        typename std::tuple_element<idx, std::tuple<Args...>>::type;\n\
-    \    using argument_tuple = std::tuple<Args...>;\n    static constexpr std::size_t\
+    links: []
+  bundledCode: "#line 2 \"data-struct/unionfind/EnumerateUnionFind.hpp\"\n\n#line\
+    \ 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
+    \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
+    \ __LINE__\n#endif\n\n#define OVERLOAD5(a, b, c, d, e, ...) e\n#define REP1_0(b,\
+    \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
+    \                     \\\n    for (ll REP_COUNTER_##c = 0; REP_COUNTER_##c < (ll)(b);\
+    \ ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define REP2(i,\
+    \ b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i = (ll)(a);\
+    \ i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b);\
+    \ i += (ll)(c))\n#define rep(...) OVERLOAD5(__VA_ARGS__, REP4, REP3, REP2, REP1)(__VA_ARGS__)\n\
+    #define RREP2(i, a) for (ll i = (ll)(a)-1; i >= 0; --i)\n#define RREP3(i, a, b)\
+    \ for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n#define RREP4(i, a, b, c) for (ll\
+    \ i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n#define rrep(...) OVERLOAD5(__VA_ARGS__,\
+    \ RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define REPS2(i, b) for (ll i = 1; i <= (ll)(b);\
+    \ ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define\
+    \ REPS4(i, a, b, c) for (ll i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define\
+    \ reps(...) OVERLOAD5(__VA_ARGS__, REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define\
+    \ RREPS2(i, a) for (ll i = (ll)(a); i > 0; --i)\n#define RREPS3(i, a, b) for (ll\
+    \ i = (ll)(a); i > (ll)(b); --i)\n#define RREPS4(i, a, b, c) for (ll i = (ll)(a);\
+    \ i > (ll)(b); i -= (ll)(c))\n#define rreps(...) OVERLOAD5(__VA_ARGS__, RREPS4,\
+    \ RREPS3, RREPS2)(__VA_ARGS__)\n\n#define each_for(...) for (auto&& __VA_ARGS__)\n\
+    #define each_const(...) for (const auto& __VA_ARGS__)\n\n#define all(v) std::begin(v),\
+    \ std::end(v)\n#define rall(v) std::rbegin(v), std::rend(v)\n\n#if __cpp_if_constexpr\
+    \ >= 201606L\n#define IF_CONSTEXPR constexpr\n#else\n#define IF_CONSTEXPR\n#endif\n\
+    \n#define IO_BUFFER_SIZE (1 << 17)\n#line 2 \"template/alias.hpp\"\n\n#line 4\
+    \ \"template/alias.hpp\"\n\nusing ll = long long;\nusing uint = unsigned int;\n\
+    using ull = unsigned long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\
+    using ld = long double;\nusing PLL = std::pair<ll, ll>;\ntemplate<class T>\nusing\
+    \ prique = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\ntemplate<class\
+    \ T> struct infinity {\n    static constexpr T value = std::numeric_limits<T>::max()\
+    \ / 2;\n    static constexpr T mvalue = std::numeric_limits<T>::lowest() / 2;\n\
+    \    static constexpr T max = std::numeric_limits<T>::max();\n    static constexpr\
+    \ T min = std::numeric_limits<T>::lowest();\n};\n\n#if __cplusplus <= 201402L\n\
+    template<class T> constexpr T infinity<T>::value;\ntemplate<class T> constexpr\
+    \ T infinity<T>::mvalue;\ntemplate<class T> constexpr T infinity<T>::max;\ntemplate<class\
+    \ T> constexpr T infinity<T>::min;\n#endif\n\n#if __cpp_variable_templates >=\
+    \ 201304L\ntemplate<class T> constexpr T INF = infinity<T>::value;\n#endif\n\n\
+    constexpr ll inf = infinity<ll>::value;\nconstexpr ld EPS = 1e-8;\nconstexpr ld\
+    \ PI = 3.1415926535897932384626;\n#line 2 \"template/type_traits.hpp\"\n\n#line\
+    \ 5 \"template/type_traits.hpp\"\n\ntemplate<class T, class... Args> struct function_traits_impl\
+    \ {\n    using result_type = T;\n    template<std::size_t idx>\n    using argument_type\
+    \ =\n        typename std::tuple_element<idx, std::tuple<Args...>>::type;\n  \
+    \  using argument_tuple = std::tuple<Args...>;\n    static constexpr std::size_t\
     \ arg_size() { return sizeof...(Args); }\n};\n\ntemplate<class> struct function_traits_helper;\n\
     \ntemplate<class Res, class Tp, class... Args>\nstruct function_traits_helper<Res\
     \ (Tp::*)(Args...)> {\n    using type = function_traits_impl<Res, Args...>;\n\
@@ -454,287 +438,47 @@ data:
     \        return res;\n    }\n    void press(std::vector<T>& vec) const {\n   \
     \     assert(sorted);\n        for (auto&& i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
-    };\n#line 2 \"other/monoid.hpp\"\n\n#line 4 \"other/monoid.hpp\"\n\nnamespace\
-    \ Monoid {\n\ntemplate<class M, class = void>\nclass has_value_type : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_value_type<M, decltype((void)std::declval<typename\
-    \ M::value_type>())>\n    : public std::true_type {};\n\ntemplate<class M, class\
-    \ = void> class has_op : public std::false_type {};\ntemplate<class M>\nclass\
-    \ has_op<M, decltype((void)M::op)> : public std::true_type {};\n\ntemplate<class\
-    \ M, class = void> class has_id : public std::false_type {};\ntemplate<class M>\n\
-    class has_id<M, decltype((void)M::id)> : public std::true_type {};\n\ntemplate<class\
-    \ M, class = void> class has_inv : public std::false_type {};\ntemplate<class\
-    \ M>\nclass has_inv<M, decltype((void)M::inv)> : public std::true_type {};\n\n\
-    template<class M, class = void> class has_get_inv : public std::false_type {};\n\
-    template<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_init : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init(0, 0))> : public\
-    \ std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op : public\
-    \ std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
-    \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_semigroup\
-    \ : public std::false_type {};\ntemplate<class T>\nclass is_semigroup<T, decltype(std::declval<typename\
-    \ T::value_type>(),\n                               (void)T::op)> : public std::true_type\
-    \ {};\n\ntemplate<class T, class = void> class is_monoid : public std::false_type\
-    \ {};\n\ntemplate<class T>\nclass is_monoid<T, decltype(std::declval<typename\
-    \ T::value_type>(), (void)T::op,\n                            (void)T::id)> :\
-    \ public std::true_type {};\n\ntemplate<class T, class = void> class is_group\
-    \ : public std::false_type {};\n\ntemplate<class T>\nclass is_group<T, decltype(std::declval<typename\
-    \ T::value_type>(), (void)T::op,\n                           (void)T::id, (void)T::get_inv)>\n\
-    \    : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
-    \ : public std::false_type {};\ntemplate<class T>\nclass is_action<T, typename\
-    \ std::enable_if<is_monoid<typename T::M>::value &&\n                        \
-    \                   is_semigroup<typename T::E>::value &&\n                  \
-    \                         (has_op<T>::value ||\n                             \
-    \               has_mul_op<T>::value)>::type>\n    : public std::true_type {};\n\
-    \ntemplate<class T, class = void>\nclass is_distributable_action : public std::false_type\
-    \ {};\ntemplate<class T>\nclass is_distributable_action<\n    T,\n    typename\
-    \ std::enable_if<is_action<T>::value && !has_mul_op<T>::value>::type>\n    : public\
-    \ std::true_type {};\n\ntemplate<class T> struct Sum {\n    using value_type =\
-    \ T;\n    static constexpr T op(const T& a, const T& b) { return a + b; }\n  \
-    \  static constexpr T id() { return T{0}; }\n    static constexpr T inv(const\
-    \ T& a, const T& b) { return a - b; }\n    static constexpr T get_inv(const T&\
-    \ a) { return -a; }\n};\n\ntemplate<class T, int i = -1> struct Min {\n    using\
-    \ value_type = T;\n    static T max_value;\n    static T op(const T& a, const\
-    \ T& b) { return a < b ? a : b; }\n    static T id() { return max_value; }\n};\n\
-    template<class T> struct Min<T, -1> {\n    using value_type = T;\n    static constexpr\
-    \ T op(const T& a, const T& b) { return a < b ? a : b; }\n    static constexpr\
-    \ T id() { return infinity<T>::value; }\n};\ntemplate<class T> struct Min<T, -2>\
-    \ {\n    using value_type = T;\n    static constexpr T op(const T& a, const T&\
-    \ b) { return a < b ? a : b; }\n    static constexpr T id() { return infinity<T>::max;\
-    \ }\n};\ntemplate<class T, int id> T Min<T, id>::max_value;\n\ntemplate<class\
-    \ T, int i = -1> struct Max {\n    using value_type = T;\n    static T min_value;\n\
-    \    static T op(const T& a, const T& b) { return a > b ? a : b; }\n    static\
-    \ T id() { return min_value; }\n};\ntemplate<class T> struct Max<T, -1> {\n  \
-    \  using value_type = T;\n    static constexpr T op(const T& a, const T& b) {\
-    \ return a > b ? a : b; }\n    static constexpr T id() { return infinity<T>::mvalue;\
-    \ }\n};\ntemplate<class T> struct Max<T, -2> {\n    using value_type = T;\n  \
-    \  static constexpr T op(const T& a, const T& b) { return a > b ? a : b; }\n \
-    \   static constexpr T id() { return infinity<T>::min; }\n};\n\ntemplate<class\
-    \ T> struct Assign {\n    using value_type = T;\n    static constexpr T op(const\
-    \ T&, const T& b) { return b; }\n};\n\n\ntemplate<class T, int id = -1> struct\
-    \ AssignMin {\n    using M = Min<T, id>;\n    using E = Assign<T>;\n    static\
-    \ constexpr T op(const T& a, const T&) { return a; }\n};\n\ntemplate<class T,\
-    \ int id = -1> struct AssignMax {\n    using M = Max<T, id>;\n    using E = Assign<T>;\n\
-    \    static constexpr T op(const T& a, const T&) { return a; }\n};\n\ntemplate<class\
-    \ T> struct AssignSum {\n    using M = Sum<T>;\n    using E = Assign<T>;\n   \
-    \ static constexpr T mul_op(const T& a, int b, const T&) { return a * b; }\n};\n\
-    \ntemplate<class T, int id = -1> struct AddMin {\n    using M = Min<T, id>;\n\
-    \    using E = Sum<T>;\n    static constexpr T op(const T& a, const T& b) { return\
-    \ b + a; }\n};\n\ntemplate<class T, int id = -1> struct AddMax {\n    using M\
-    \ = Max<T, id>;\n    using E = Sum<T>;\n    static constexpr T op(const T& a,\
-    \ const T& b) { return b + a; }\n};\n\ntemplate<class T> struct AddSum {\n   \
-    \ using M = Sum<T>;\n    using E = Sum<T>;\n    static constexpr T mul_op(const\
-    \ T& a, int b, const T& c) {\n        return c + a * b;\n    }\n};\n\ntemplate<class\
-    \ T, int id = -1> struct ChminMin {\n    using M = Min<T, id>;\n    using E =\
-    \ Min<T>;\n    static constexpr T op(const T& a, const T& b) { return std::min(b,\
-    \ a); }\n};\n\ntemplate<class T, int id = -1> struct ChminMax {\n    using M =\
-    \ Max<T, id>;\n    using E = Min<T>;\n    static constexpr T op(const T& a, const\
-    \ T& b) { return std::min(b, a); }\n};\n\ntemplate<class T, int id = -1> struct\
-    \ ChmaxMin {\n    using M = Min<T, id>;\n    using E = Max<T>;\n    static constexpr\
-    \ T op(const T& a, const T& b) { return std::max(b, a); }\n};\n\ntemplate<class\
-    \ T, int id = -1> struct ChmaxMax {\n    using M = Max<T, id>;\n    using E =\
-    \ Max<T>;\n    static constexpr T op(const T& a, const T& b) { return std::max(b,\
-    \ a); }\n};\n\n\ntemplate<class M> struct ReverseMonoid {\n    using value_type\
-    \ = typename M::value_type;\n    static value_type op(const value_type& a, const\
-    \ value_type& b) {\n        return M::op(b, a);\n    }\n    static value_type\
-    \ id() {\n        static_assert(has_id<M>::value, \"id is not defined\");\n  \
-    \      return M::id();\n    }\n    static value_type inv(const value_type& a,\
-    \ const value_type& b) {\n        static_assert(has_inv<M>::value, \"inv is not\
-    \ defined\");\n        return M::inv(b, a);\n    }\n    static value_type get_inv(const\
-    \ value_type& a) {\n        static_assert(has_get_inv<M>::value, \"get_inv is\
-    \ not defined\");\n        return M::get_inv(a);\n    }\n};\n\ntemplate<class\
-    \ E_> struct MakeAction {\n    using M = E_;\n    using E = E_;\n    using T =\
-    \ typename E_::value_type;\n    static T op(const T& a, const T& b) { return E_::op(b,\
-    \ a); }\n};\n\n} // namespace Monoid\n#line 2 \"other/monoid2.hpp\"\n\n#line 5\
-    \ \"other/monoid2.hpp\"\n\nnamespace Monoid {\n\ntemplate<class T> struct Product\
-    \ {\n    using value_type = T;\n    static T op(const T& a, const T& b) { return\
-    \ a * b; }\n    static T id() { return T{1}; }\n    static T inv(const T& a, const\
-    \ T& b) { return a / b; }\n    static T get_inv(const T& a) { return T{1} / a;\
-    \ }\n};\n\ntemplate<class T> struct Composite {\n    using value_type = std::pair<T,\
-    \ T>;\n    static value_type op(const value_type& a, const value_type& b) {\n\
-    \        return {b.first * a.first, b.first * a.second + b.second};\n    }\n \
-    \   static value_type id() { return {T{1}, T{0}}; }\n    static value_type get_inv(const\
-    \ value_type& a) {\n        return {T{1} / a.first, -a.second / a.first};\n  \
-    \  }\n    static value_type inv(const value_type& a, const value_type& b) {\n\
-    \        return op(a, get_inv(b));\n    }\n};\n\ntemplate<class T> struct GCD\
-    \ {\n    using value_type = T;\n    static T op(T a, T b) { return gcd(a, b);\
-    \ }\n    static T id() { return 0; }\n};\ntemplate<class T> struct LCM {\n   \
-    \ using value_type = T;\n    static T op(T a, T b) { return lcm(a, b); }\n   \
-    \ static T id() { return 1; }\n};\n\ntemplate<class T> struct AddAssign {\n  \
-    \  using value_type = std::pair<bool, T>; // false: add, true: assign\n    static\
-    \ value_type op(const value_type& a, const value_type& b) {\n        if (b.first)\
-    \ return b;\n        return {a.first, a.second + b.second};\n    }\n    static\
-    \ value_type id() { return {false, T{0}}; }\n};\n\ntemplate<class T, T max_value\
-    \ = infinity<T>::max> struct MinCount {\n    using value_type = std::pair<T, ll>;\n\
-    \    static value_type op(const value_type& a, const value_type& b) {\n      \
-    \  if (a.first < b.first) return a;\n        if (a.first > b.first) return b;\n\
-    \        return {a.first, a.second + b.second};\n    }\n    static value_type\
-    \ id() { return {max_value, 0}; }\n};\n\n\ntemplate<class T> struct AffineSum\
-    \ {\n    using M = Sum<T>;\n    using E = Composite<T>;\n    using U = typename\
-    \ E::value_type;\n    static T mul_op(const U& a, int b, const T& c) {\n     \
-    \   return a.first * c + a.second * b;\n    }\n};\n\ntemplate<class T> struct\
-    \ AddAssignSum {\n    using M = Sum<T>;\n    using E = AddAssign<T>;\n    using\
-    \ U = typename E::value_type;\n    static T mul_op(const U& a, int b, const T&\
-    \ c) {\n        if (a.first) return a.second * b;\n        return c + a.second\
-    \ * b;\n    }\n};\n\ntemplate<class T> struct AddMinCount {\n    using M = MinCount<T>;\n\
-    \    using E = Sum<T>;\n    using U = typename M::value_type;\n    static U op(const\
-    \ T& a, const U& b) { return {a + b.first, b.second}; }\n};\n\n} // namespace\
-    \ Monoid\n#line 2 \"math/ModInt.hpp\"\n\n#line 4 \"math/ModInt.hpp\"\n\ntemplate<class\
-    \ T, T mod> class StaticModInt {\n    static_assert(std::is_integral<T>::value,\
-    \ \"T must be integral\");\n    static_assert(std::is_unsigned<T>::value, \"T\
-    \ must be unsigned\");\n    static_assert(mod > 0, \"mod must be positive\");\n\
-    \    static_assert(mod <= std::numeric_limits<T>::max() / 2,\n               \
-    \   \"mod * 2 must be less than or equal to T::max()\");\n\nprivate:\n    using\
-    \ large_t = typename double_size_uint<T>::type;\n    using signed_t = typename\
-    \ std::make_signed<T>::type;\n    T val;\n    static constexpr unsigned int inv1000000007[]\
-    \ = {\n        0,         1,         500000004, 333333336, 250000002, 400000003,\n\
-    \        166666668, 142857144, 125000001, 111111112, 700000005};\n    static constexpr\
-    \ unsigned int inv998244353[] = {\n        0,         1,         499122177, 332748118,\
-    \ 748683265, 598946612,\n        166374059, 855638017, 873463809, 443664157, 299473306};\n\
-    \n    static constexpr ll mod_inv(ll a) {\n        ll b = mod;\n        ll x =\
-    \ 1, u = 0;\n        ll t = 0, tmp = 0;\n        while (b) {\n            t =\
-    \ a / b;\n            tmp = (a - t * b);\n            a = b;\n            b =\
-    \ tmp;\n            tmp = (x - t * u);\n            x = u;\n            u = tmp;\n\
-    \        }\n        if (x < 0) x += mod;\n        return x;\n    }\n\npublic:\n\
-    \    constexpr StaticModInt() : val(0) {}\n    template<class U,\n           \
-    \  typename std::enable_if<std::is_integral<U>::value &&\n                   \
-    \                  std::is_signed<U>::value>::type* = nullptr>\n    constexpr\
-    \ StaticModInt(U v) : val{} {\n        v %= static_cast<signed_t>(mod);\n    \
-    \    if (v < 0) v += static_cast<signed_t>(mod);\n        val = static_cast<T>(v);\n\
-    \    }\n    template<class U, typename std::enable_if<\n                     \
-    \     std::is_integral<U>::value &&\n                          std::is_unsigned<U>::value>::type*\
-    \ = nullptr>\n    constexpr StaticModInt(U v) : val(v % mod) {}\n    constexpr\
-    \ T get() const { return val; }\n    static constexpr T get_mod() { return mod;\
-    \ }\n    static constexpr StaticModInt raw(T v) {\n        StaticModInt res;\n\
-    \        res.val = v;\n        return res;\n    }\n    constexpr StaticModInt\
-    \ inv() const {\n        if IF_CONSTEXPR (mod == 1000000007) {\n            if\
-    \ (val <= 10) return inv1000000007[val];\n        }\n        else if IF_CONSTEXPR\
-    \ (mod == 998244353) {\n            if (val <= 10) return inv998244353[val];\n\
-    \        }\n        return mod_inv(val);\n    }\n    constexpr StaticModInt& operator++()\
-    \ {\n        ++val;\n        if (val == mod) val = 0;\n        return *this;\n\
-    \    }\n    constexpr StaticModInt operator++(int) {\n        StaticModInt res\
-    \ = *this;\n        ++*this;\n        return res;\n    }\n    constexpr StaticModInt&\
-    \ operator--() {\n        if (val == 0) val = mod;\n        --val;\n        return\
-    \ *this;\n    }\n    constexpr StaticModInt operator--(int) {\n        StaticModInt\
-    \ res = *this;\n        --*this;\n        return res;\n    }\n    constexpr StaticModInt&\
-    \ operator+=(const StaticModInt& other) {\n        val += other.val;\n       \
-    \ if (val >= mod) val -= mod;\n        return *this;\n    }\n    constexpr StaticModInt&\
-    \ operator-=(const StaticModInt& other) {\n        if (val < other.val) val +=\
-    \ mod;\n        val -= other.val;\n        return *this;\n    }\n    constexpr\
-    \ StaticModInt& operator*=(const StaticModInt& other) {\n        large_t a = val;\n\
-    \        a *= other.val;\n        a %= mod;\n        val = a;\n        return\
-    \ *this;\n    }\n    constexpr StaticModInt& operator/=(const StaticModInt& other)\
-    \ {\n        *this *= other.inv();\n        return *this;\n    }\n    friend constexpr\
-    \ StaticModInt operator+(const StaticModInt& lhs,\n                          \
-    \                  const StaticModInt& rhs) {\n        return StaticModInt(lhs)\
-    \ += rhs;\n    }\n    friend constexpr StaticModInt operator-(const StaticModInt&\
-    \ lhs,\n                                            const StaticModInt& rhs) {\n\
-    \        return StaticModInt(lhs) -= rhs;\n    }\n    friend constexpr StaticModInt\
-    \ operator*(const StaticModInt& lhs,\n                                       \
-    \     const StaticModInt& rhs) {\n        return StaticModInt(lhs) *= rhs;\n \
-    \   }\n    friend constexpr StaticModInt operator/(const StaticModInt& lhs,\n\
-    \                                            const StaticModInt& rhs) {\n    \
-    \    return StaticModInt(lhs) /= rhs;\n    }\n    constexpr StaticModInt operator+()\
-    \ const { return StaticModInt(*this); }\n    constexpr StaticModInt operator-()\
-    \ const { return StaticModInt() - *this; }\n    friend constexpr bool operator==(const\
-    \ StaticModInt& lhs,\n                                     const StaticModInt&\
-    \ rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend constexpr bool\
-    \ operator!=(const StaticModInt& lhs,\n                                     const\
-    \ StaticModInt& rhs) {\n        return lhs.val != rhs.val;\n    }\n    constexpr\
-    \ StaticModInt pow(ll a) const {\n        StaticModInt v = *this, res = 1;\n \
-    \       while (a) {\n            if (a & 1) res *= v;\n            a >>= 1;\n\
-    \            v *= v;\n        }\n        return res;\n    }\n    template<class\
-    \ Pr> void print(Pr& a) const { a.print(val); }\n    template<class Pr> void debug(Pr&\
-    \ a) const { a.print(val); }\n    template<class Sc> void scan(Sc& a) {\n    \
-    \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\n#if __cplusplus\
-    \ < 201703L\ntemplate<class T, T mod>\nconstexpr unsigned int StaticModInt<T,\
-    \ mod>::inv1000000007[];\ntemplate<class T, T mod>\nconstexpr unsigned int StaticModInt<T,\
-    \ mod>::inv998244353[];\n#endif\n\ntemplate<unsigned int p> using static_modint\
-    \ = StaticModInt<unsigned int, p>;\nusing modint1000000007 = static_modint<1000000007>;\n\
-    using modint998244353 = static_modint<998244353>;\n\ntemplate<class T, int id>\
-    \ class DynamicModInt {\n    static_assert(std::is_integral<T>::value, \"T must\
-    \ be integral\");\n    static_assert(std::is_unsigned<T>::value, \"T must be unsigned\"\
-    );\n\nprivate:\n    using large_t = typename double_size_uint<T>::type;\n    using\
-    \ signed_t = typename std::make_signed<T>::type;\n    T val;\n    static T mod;\n\
-    \npublic:\n    constexpr DynamicModInt() : val(0) {}\n    template<class U,\n\
-    \             typename std::enable_if<std::is_integral<U>::value &&\n        \
-    \                             std::is_signed<U>::value>::type* = nullptr>\n  \
-    \  constexpr DynamicModInt(U v) : val{} {\n        v %= static_cast<signed_t>(mod);\n\
-    \        if (v < 0) v += static_cast<signed_t>(mod);\n        val = static_cast<T>(v);\n\
-    \    }\n    template<class U, typename std::enable_if<\n                     \
-    \     std::is_integral<U>::value &&\n                          std::is_unsigned<U>::value>::type*\
-    \ = nullptr>\n    constexpr DynamicModInt(U v) : val(v % mod) {}\n    T get()\
-    \ const { return val; }\n    static T get_mod() { return mod; }\n    static void\
-    \ set_mod(T v) {\n        assert(v > 0);\n        assert(v <= std::numeric_limits<T>::max()\
-    \ / 2);\n        mod = v;\n    }\n    static DynamicModInt raw(T v) {\n      \
-    \  DynamicModInt res;\n        res.val = v;\n        return res;\n    }\n    DynamicModInt\
-    \ inv() const { return mod_inv(val, mod); }\n    DynamicModInt& operator++() {\n\
-    \        ++val;\n        if (val == mod) val = 0;\n        return *this;\n   \
-    \ }\n    DynamicModInt operator++(int) {\n        DynamicModInt res = *this;\n\
-    \        ++*this;\n        return res;\n    }\n    DynamicModInt& operator--()\
-    \ {\n        if (val == 0) val = mod;\n        --val;\n        return *this;\n\
-    \    }\n    DynamicModInt operator--(int) {\n        DynamicModInt res = *this;\n\
-    \        --*this;\n        return res;\n    }\n    DynamicModInt& operator+=(const\
-    \ DynamicModInt& other) {\n        val += other.val;\n        if (val >= mod)\
-    \ val -= mod;\n        return *this;\n    }\n    DynamicModInt& operator-=(const\
-    \ DynamicModInt& other) {\n        if (val < other.val) val += mod;\n        val\
-    \ -= other.val;\n        return *this;\n    }\n    DynamicModInt& operator*=(const\
-    \ DynamicModInt& other) {\n        large_t a = val;\n        a *= other.val;\n\
-    \        a %= mod;\n        val = a;\n        return *this;\n    }\n    DynamicModInt&\
-    \ operator/=(const DynamicModInt& other) {\n        *this *= other.inv();\n  \
-    \      return *this;\n    }\n    friend DynamicModInt operator+(const DynamicModInt&\
-    \ lhs,\n                                   const DynamicModInt& rhs) {\n     \
-    \   return DynamicModInt(lhs) += rhs;\n    }\n    friend DynamicModInt operator-(const\
-    \ DynamicModInt& lhs,\n                                   const DynamicModInt&\
-    \ rhs) {\n        return DynamicModInt(lhs) -= rhs;\n    }\n    friend DynamicModInt\
-    \ operator*(const DynamicModInt& lhs,\n                                   const\
-    \ DynamicModInt& rhs) {\n        return DynamicModInt(lhs) *= rhs;\n    }\n  \
-    \  friend DynamicModInt operator/(const DynamicModInt& lhs,\n                \
-    \                   const DynamicModInt& rhs) {\n        return DynamicModInt(lhs)\
-    \ /= rhs;\n    }\n    DynamicModInt operator+() const { return DynamicModInt(*this);\
-    \ }\n    DynamicModInt operator-() const { return DynamicModInt() - *this; }\n\
-    \    friend bool operator==(const DynamicModInt& lhs, const DynamicModInt& rhs)\
-    \ {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
-    \ DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return lhs.val != rhs.val;\n\
-    \    }\n    DynamicModInt pow(ll a) const {\n        DynamicModInt v = *this,\
-    \ res = 1;\n        while (a) {\n            if (a & 1) res *= v;\n          \
-    \  a >>= 1;\n            v *= v;\n        }\n        return res;\n    }\n    template<class\
-    \ Pr> void print(Pr& a) const { a.print(val); }\n    template<class Pr> void debug(Pr&\
-    \ a) const { a.print(val); }\n    template<class Sc> void scan(Sc& a) {\n    \
-    \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\ntemplate<class\
-    \ T, int id> T DynamicModInt<T, id>::mod = 998244353;\n\ntemplate<int id> using\
-    \ dynamic_modint = DynamicModInt<unsigned int, id>;\nusing modint = dynamic_modint<-1>;\n\
-    \n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n#line 2 \"math/convolution/GcdConvolution.hpp\"\
-    \n\n#line 2 \"math/convolution/MultipleZetaMoebiusTransform.hpp\"\n\n#line 4 \"\
-    math/convolution/MultipleZetaMoebiusTransform.hpp\"\n\ntemplate<class Sum>\nvoid\
-    \ multiple_zeta_transform(std::vector<typename Sum::value_type>& v) {\n    int\
-    \ n = v.size() - 1;\n    std::vector<bool> is_prime(n + 1, true);\n    for (ll\
-    \ i = 2; i <= n; ++i) {\n        if (!is_prime[i]) continue;\n        rreps (j,\
-    \ n / i) {\n            v[j] = Sum::op(v[j], v[j * i]);\n            is_prime[j\
-    \ * i] = false;\n        }\n    }\n}\n\ntemplate<class Sum>\nvoid multiple_moebius_transform(std::vector<typename\
-    \ Sum::value_type>& v) {\n    int n = v.size() - 1;\n    std::vector<bool> is_prime(n\
-    \ + 1, true);\n    for (ll i = 2; i <= n; ++i) {\n        if (!is_prime[i]) continue;\n\
-    \        reps (j, n / i) {\n            v[j] = Sum::inv(v[j], v[j * i]);\n   \
-    \         is_prime[j * i] = false;\n        }\n    }\n}\n\n/**\n * @brief MultipleZeta/MoebiusTransform(\u30BC\
-    \u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\u30A6\u30B9\u5909\u63DB)\n * @docs docs/math/convolution/MultipleZetaMoebiusTransform.md\n\
-    \ */\n#line 5 \"math/convolution/GcdConvolution.hpp\"\n\ntemplate<class Sum, class\
-    \ Prod>\nstd::vector<typename Sum::value_type>\ngcd_convolution(std::vector<typename\
-    \ Sum::value_type> a,\n                std::vector<typename Sum::value_type> b)\
-    \ {\n    multiple_zeta_transform<Sum>(a);\n    multiple_zeta_transform<Sum>(b);\n\
-    \    rep (i, a.size()) a[i] = Prod::op(a[i], b[i]);\n    multiple_moebius_transform<Sum>(a);\n\
-    \    return a;\n}\n\n/**\n * @brief GCDConvolution\n * @docs docs/math/convolution/GcdConvolution.md\n\
-    \ */\n#line 7 \"test/yosupo/convolution/gcd_convolution.test.cpp\"\nusing namespace\
-    \ std;\nusing mint = modint998244353;\nint main() {\n    int N; scan >> N;\n \
-    \   vector<mint> A(N + 1), B(N + 1);\n    reps (i, N) scan >> A[i];\n    reps\
-    \ (i, N) scan >> B[i];\n    auto v = gcd_convolution<Monoid::Sum<mint>, Monoid::Product<mint>>(A,\
-    \ B);\n    reps (i, N) print << v[i] << \" \\n\"[i == N];\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/gcd_convolution\"\n#include\
-    \ \"../../../other/template.hpp\"\n#include \"../../../other/monoid.hpp\"\n#include\
-    \ \"../../../other/monoid2.hpp\"\n#include \"../../../math/ModInt.hpp\"\n#include\
-    \ \"../../../math/convolution/GcdConvolution.hpp\"\nusing namespace std;\nusing\
-    \ mint = modint998244353;\nint main() {\n    int N; scan >> N;\n    vector<mint>\
-    \ A(N + 1), B(N + 1);\n    reps (i, N) scan >> A[i];\n    reps (i, N) scan >>\
-    \ B[i];\n    auto v = gcd_convolution<Monoid::Sum<mint>, Monoid::Product<mint>>(A,\
-    \ B);\n    reps (i, N) print << v[i] << \" \\n\"[i == N];\n}\n"
+    };\n#line 2 \"data-struct/unionfind/UnionFind.hpp\"\n\n#line 4 \"data-struct/unionfind/UnionFind.hpp\"\
+    \n\nclass UnionFind {\nprivate:\n    int n;\n    std::vector<int> par;\n\npublic:\n\
+    \    UnionFind() : UnionFind(0) {}\n    UnionFind(int n) : n(n), par(n, -1) {}\n\
+    \    int find(int x) {\n        assert(0 <= x && x < n);\n        return par[x]\
+    \ < 0 ? x : par[x] = find(par[x]);\n    }\n    std::pair<int, int> merge(int x,\
+    \ int y) {\n        x = find(x);\n        y = find(y);\n        if (x == y) return\
+    \ {x, -1};\n        if (par[x] > par[y]) std::swap(x, y);\n        par[x] += par[y];\n\
+    \        par[y] = x;\n        return {x, y};\n    }\n    bool same(int x, int\
+    \ y) { return find(x) == find(y); }\n    int size(int x) { return -par[find(x)];\
+    \ }\n    std::vector<std::vector<int>> groups() {\n        std::vector<std::vector<int>>\
+    \ res(n);\n        rep (i, n) res[find(i)].push_back(i);\n        res.erase(\n\
+    \            remove_if(all(res),\n                      [](const std::vector<int>&\
+    \ v) { return v.empty(); }),\n            res.end());\n        return res;\n \
+    \   }\n    bool is_root(int x) const {\n        assert(0 <= x && x < n);\n   \
+    \     return par[x] < 0;\n    }\n};\n\n/**\n * @brief UnionFind\n * @docs docs/data-struct/unionfind/UnionFind.md\n\
+    \ */\n#line 5 \"data-struct/unionfind/EnumerateUnionFind.hpp\"\n\nclass EnumerateUnionFind\
+    \ {\nprivate:\n    int n;\n    std::vector<int> link;\n    UnionFind uf;\n\npublic:\n\
+    \    EnumerateUnionFind() : EnumerateUnionFind(0) {}\n    EnumerateUnionFind(int\
+    \ n) : n(n), link(n, -1), uf(n) {}\n    int find(int x) { return uf.find(x); }\n\
+    \    std::pair<int, int> merge(int x, int y) {\n        auto res = uf.merge(x,\
+    \ y);\n        if (res.second != -1) std::swap(link[res.first], link[res.second]);\n\
+    \        return res;\n    }\n    bool same(int x, int y) { return uf.same(x, y);\
+    \ }\n    int size(int x) { return uf.size(x); }\n    std::vector<std::vector<int>>\
+    \ groups() { return uf.groups(); }\n    bool is_root(int x) const { return uf.is_root(x);\
+    \ }\n    std::vector<int> enumerate(int x) const {\n        assert(0 <= x && x\
+    \ < n);\n        std::vector<int> res;\n        do {\n            res.push_back(x);\n\
+    \            x = link[x];\n        } while (res[0] != x);\n        return res;\n\
+    \    }\n};\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"UnionFind.hpp\"\
+    \n\nclass EnumerateUnionFind {\nprivate:\n    int n;\n    std::vector<int> link;\n\
+    \    UnionFind uf;\n\npublic:\n    EnumerateUnionFind() : EnumerateUnionFind(0)\
+    \ {}\n    EnumerateUnionFind(int n) : n(n), link(n, -1), uf(n) {}\n    int find(int\
+    \ x) { return uf.find(x); }\n    std::pair<int, int> merge(int x, int y) {\n \
+    \       auto res = uf.merge(x, y);\n        if (res.second != -1) std::swap(link[res.first],\
+    \ link[res.second]);\n        return res;\n    }\n    bool same(int x, int y)\
+    \ { return uf.same(x, y); }\n    int size(int x) { return uf.size(x); }\n    std::vector<std::vector<int>>\
+    \ groups() { return uf.groups(); }\n    bool is_root(int x) const { return uf.is_root(x);\
+    \ }\n    std::vector<int> enumerate(int x) const {\n        assert(0 <= x && x\
+    \ < n);\n        std::vector<int> res;\n        do {\n            res.push_back(x);\n\
+    \            x = link[x];\n        } while (res[0] != x);\n        return res;\n\
+    \    }\n};\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -745,21 +489,17 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  - other/monoid.hpp
-  - other/monoid2.hpp
-  - math/ModInt.hpp
-  - math/convolution/GcdConvolution.hpp
-  - math/convolution/MultipleZetaMoebiusTransform.hpp
-  isVerificationFile: true
-  path: test/yosupo/convolution/gcd_convolution.test.cpp
+  - data-struct/unionfind/UnionFind.hpp
+  isVerificationFile: false
+  path: data-struct/unionfind/EnumerateUnionFind.hpp
   requiredBy: []
-  timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-17 12:02:17+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: test/yosupo/convolution/gcd_convolution.test.cpp
+documentation_of: data-struct/unionfind/EnumerateUnionFind.hpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/convolution/gcd_convolution.test.cpp
-- /verify/test/yosupo/convolution/gcd_convolution.test.cpp.html
-title: test/yosupo/convolution/gcd_convolution.test.cpp
+- /library/data-struct/unionfind/EnumerateUnionFind.hpp
+- /library/data-struct/unionfind/EnumerateUnionFind.hpp.html
+title: data-struct/unionfind/EnumerateUnionFind.hpp
 ---
