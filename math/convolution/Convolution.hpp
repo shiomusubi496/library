@@ -56,7 +56,6 @@ public:
 template<class T> void number_theoretic_transform(std::vector<T>& a) {
     static constexpr NthRoot<T> nth_root;
     int n = a.size();
-    int lg = bitop::ceil_log2(n);
     for (int i = n >> 1; i > 0; i >>= 1) {
         T z = T::raw(1);
         rep (j, 0, n, i << 1) {
