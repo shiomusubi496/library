@@ -55,7 +55,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_G.test.cpp
     title: test/aoj/DPL/DPL_5_G.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/bernoulli_number.test.cpp
     title: test/yosupo/math/bernoulli_number.test.cpp
   - icon: ':x:'
@@ -642,12 +642,12 @@ data:
     \ const { return rate[n]; }\n    constexpr T get_inv_rate(int n) const { return\
     \ inv_rate[n]; }\n};\n\ntemplate<class T> void number_theoretic_transform(std::vector<T>&\
     \ a) {\n    static constexpr NthRoot<T> nth_root;\n    int n = a.size();\n   \
-    \ int lg = bitop::ceil_log2(n);\n    for (int i = n >> 1; i > 0; i >>= 1) {\n\
-    \        T z = T::raw(1);\n        rep (j, 0, n, i << 1) {\n            rep (k,\
-    \ i) {\n                const T x = a[j + k];\n                const T y = a[j\
-    \ + i + k] * z;\n                a[j + k] = x + y;\n                a[j + i +\
-    \ k] = x - y;\n            }\n            z *= nth_root.get_rate(popcnt(j & ~(j\
-    \ + (i << 1))));\n        }\n    }\n}\n\ntemplate<class T> void inverse_number_theoretic_transform(std::vector<T>&\
+    \ for (int i = n >> 1; i > 0; i >>= 1) {\n        T z = T::raw(1);\n        rep\
+    \ (j, 0, n, i << 1) {\n            rep (k, i) {\n                const T x = a[j\
+    \ + k];\n                const T y = a[j + i + k] * z;\n                a[j +\
+    \ k] = x + y;\n                a[j + i + k] = x - y;\n            }\n        \
+    \    z *= nth_root.get_rate(popcnt(j & ~(j + (i << 1))));\n        }\n    }\n\
+    }\n\ntemplate<class T> void inverse_number_theoretic_transform(std::vector<T>&\
     \ a) {\n    static constexpr NthRoot<T> nth_root;\n    int n = a.size();\n   \
     \ for (int i = 1; i < n; i <<= 1) {\n        T z = T::raw(1);\n        rep (j,\
     \ 0, n, i << 1) {\n            rep (k, i) {\n                const T x = a[j +\
@@ -1261,7 +1261,7 @@ data:
   path: math/poly/SparseFormalPowerSeries.hpp
   requiredBy:
   - math/StirlingNumber.hpp
-  timestamp: '2024-05-12 17:35:55+09:00'
+  timestamp: '2024-05-29 15:54:32+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/DPL/DPL_5_G.test.cpp

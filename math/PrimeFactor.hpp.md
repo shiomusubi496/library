@@ -39,7 +39,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp
     title: test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/enumerate_primes.test.cpp
     title: test/yosupo/math/enumerate_primes.test.cpp
   - icon: ':x:'

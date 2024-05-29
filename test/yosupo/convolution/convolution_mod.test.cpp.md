@@ -591,22 +591,21 @@ data:
     \ }\n    constexpr T get_rate(int n) const { return rate[n]; }\n    constexpr\
     \ T get_inv_rate(int n) const { return inv_rate[n]; }\n};\n\ntemplate<class T>\
     \ void number_theoretic_transform(std::vector<T>& a) {\n    static constexpr NthRoot<T>\
-    \ nth_root;\n    int n = a.size();\n    int lg = bitop::ceil_log2(n);\n    for\
-    \ (int i = n >> 1; i > 0; i >>= 1) {\n        T z = T::raw(1);\n        rep (j,\
+    \ nth_root;\n    int n = a.size();\n    for (int i = n >> 1; i > 0; i >>= 1) {\n\
+    \        T z = T::raw(1);\n        rep (j, 0, n, i << 1) {\n            rep (k,\
+    \ i) {\n                const T x = a[j + k];\n                const T y = a[j\
+    \ + i + k] * z;\n                a[j + k] = x + y;\n                a[j + i +\
+    \ k] = x - y;\n            }\n            z *= nth_root.get_rate(popcnt(j & ~(j\
+    \ + (i << 1))));\n        }\n    }\n}\n\ntemplate<class T> void inverse_number_theoretic_transform(std::vector<T>&\
+    \ a) {\n    static constexpr NthRoot<T> nth_root;\n    int n = a.size();\n   \
+    \ for (int i = 1; i < n; i <<= 1) {\n        T z = T::raw(1);\n        rep (j,\
     \ 0, n, i << 1) {\n            rep (k, i) {\n                const T x = a[j +\
-    \ k];\n                const T y = a[j + i + k] * z;\n                a[j + k]\
-    \ = x + y;\n                a[j + i + k] = x - y;\n            }\n           \
-    \ z *= nth_root.get_rate(popcnt(j & ~(j + (i << 1))));\n        }\n    }\n}\n\n\
-    template<class T> void inverse_number_theoretic_transform(std::vector<T>& a) {\n\
-    \    static constexpr NthRoot<T> nth_root;\n    int n = a.size();\n    for (int\
-    \ i = 1; i < n; i <<= 1) {\n        T z = T::raw(1);\n        rep (j, 0, n, i\
-    \ << 1) {\n            rep (k, i) {\n                const T x = a[j + k];\n \
-    \               const T y = a[j + i + k];\n                a[j + k] = x + y;\n\
-    \                a[j + i + k] = (x - y) * z;\n            }\n            z *=\
-    \ nth_root.get_inv_rate(popcnt(j & ~(j + (i << 1))));\n        }\n    }\n    T\
-    \ inv_n = T(1) / n;\n    for (auto&& x : a) x *= inv_n;\n}\n\ntemplate<class T>\n\
-    std::vector<T> convolution_naive(const std::vector<T>& a,\n                  \
-    \               const std::vector<T>& b) {\n    int n = a.size(), m = b.size();\n\
+    \ k];\n                const T y = a[j + i + k];\n                a[j + k] = x\
+    \ + y;\n                a[j + i + k] = (x - y) * z;\n            }\n         \
+    \   z *= nth_root.get_inv_rate(popcnt(j & ~(j + (i << 1))));\n        }\n    }\n\
+    \    T inv_n = T(1) / n;\n    for (auto&& x : a) x *= inv_n;\n}\n\ntemplate<class\
+    \ T>\nstd::vector<T> convolution_naive(const std::vector<T>& a,\n            \
+    \                     const std::vector<T>& b) {\n    int n = a.size(), m = b.size();\n\
     \    std::vector<T> c(n + m - 1);\n    rep (i, n)\n        rep (j, m) c[i + j]\
     \ += a[i] * b[j];\n    return c;\n}\n\ntemplate<class T> std::vector<T> convolution_pow2(std::vector<T>\
     \ a) {\n    int n = a.size() * 2 - 1;\n    int lg = bitop::msb(n - 1) + 1;\n \
@@ -690,7 +689,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/convolution/convolution_mod.test.cpp
   requiredBy: []
-  timestamp: '2024-05-12 17:35:55+09:00'
+  timestamp: '2024-05-29 15:54:32+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/convolution/convolution_mod.test.cpp

@@ -48,12 +48,12 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/math/poly/BostanMori.md
     document_title: "Bostan-Mori(\u7DDA\u5F62\u6F38\u5316\u5F0F\u306En\u9805\u76EE\
@@ -606,12 +606,12 @@ data:
     \ const { return rate[n]; }\n    constexpr T get_inv_rate(int n) const { return\
     \ inv_rate[n]; }\n};\n\ntemplate<class T> void number_theoretic_transform(std::vector<T>&\
     \ a) {\n    static constexpr NthRoot<T> nth_root;\n    int n = a.size();\n   \
-    \ int lg = bitop::ceil_log2(n);\n    for (int i = n >> 1; i > 0; i >>= 1) {\n\
-    \        T z = T::raw(1);\n        rep (j, 0, n, i << 1) {\n            rep (k,\
-    \ i) {\n                const T x = a[j + k];\n                const T y = a[j\
-    \ + i + k] * z;\n                a[j + k] = x + y;\n                a[j + i +\
-    \ k] = x - y;\n            }\n            z *= nth_root.get_rate(popcnt(j & ~(j\
-    \ + (i << 1))));\n        }\n    }\n}\n\ntemplate<class T> void inverse_number_theoretic_transform(std::vector<T>&\
+    \ for (int i = n >> 1; i > 0; i >>= 1) {\n        T z = T::raw(1);\n        rep\
+    \ (j, 0, n, i << 1) {\n            rep (k, i) {\n                const T x = a[j\
+    \ + k];\n                const T y = a[j + i + k] * z;\n                a[j +\
+    \ k] = x + y;\n                a[j + i + k] = x - y;\n            }\n        \
+    \    z *= nth_root.get_rate(popcnt(j & ~(j + (i << 1))));\n        }\n    }\n\
+    }\n\ntemplate<class T> void inverse_number_theoretic_transform(std::vector<T>&\
     \ a) {\n    static constexpr NthRoot<T> nth_root;\n    int n = a.size();\n   \
     \ for (int i = 1; i < n; i <<= 1) {\n        T z = T::raw(1);\n        rep (j,\
     \ 0, n, i << 1) {\n            rep (k, i) {\n                const T x = a[j +\
@@ -1066,8 +1066,8 @@ data:
   isVerificationFile: false
   path: math/poly/BostanMori.hpp
   requiredBy: []
-  timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-05-29 15:54:32+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp
 documentation_of: math/poly/BostanMori.hpp

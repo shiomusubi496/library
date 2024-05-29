@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/BarrettReduction.hpp
     title: math/BarrettReduction.hpp
   - icon: ':question:'
@@ -33,12 +33,12 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/binomial_coefficient.test.cpp
     title: test/yosupo/math/binomial_coefficient.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/math/ArbitraryModCombinatorics.md
     document_title: "ArbitraryModCombinatorics(\u4EFB\u610FmodCombination)"
@@ -616,7 +616,7 @@ data:
   path: math/ArbitraryModCombinatorics.hpp
   requiredBy: []
   timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/math/binomial_coefficient.test.cpp
 documentation_of: math/ArbitraryModCombinatorics.hpp

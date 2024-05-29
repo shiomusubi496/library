@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: math/poly/FormalPowerSeries.hpp
     title: "FormalPowerSeries(\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/poly/MultipointEvaluation.hpp
     title: "MultipointEvaluation(\u591A\u70B9\u8A55\u4FA1)"
   - icon: ':question:'
@@ -611,12 +611,12 @@ data:
     \ const { return rate[n]; }\n    constexpr T get_inv_rate(int n) const { return\
     \ inv_rate[n]; }\n};\n\ntemplate<class T> void number_theoretic_transform(std::vector<T>&\
     \ a) {\n    static constexpr NthRoot<T> nth_root;\n    int n = a.size();\n   \
-    \ int lg = bitop::ceil_log2(n);\n    for (int i = n >> 1; i > 0; i >>= 1) {\n\
-    \        T z = T::raw(1);\n        rep (j, 0, n, i << 1) {\n            rep (k,\
-    \ i) {\n                const T x = a[j + k];\n                const T y = a[j\
-    \ + i + k] * z;\n                a[j + k] = x + y;\n                a[j + i +\
-    \ k] = x - y;\n            }\n            z *= nth_root.get_rate(popcnt(j & ~(j\
-    \ + (i << 1))));\n        }\n    }\n}\n\ntemplate<class T> void inverse_number_theoretic_transform(std::vector<T>&\
+    \ for (int i = n >> 1; i > 0; i >>= 1) {\n        T z = T::raw(1);\n        rep\
+    \ (j, 0, n, i << 1) {\n            rep (k, i) {\n                const T x = a[j\
+    \ + k];\n                const T y = a[j + i + k] * z;\n                a[j +\
+    \ k] = x + y;\n                a[j + i + k] = x - y;\n            }\n        \
+    \    z *= nth_root.get_rate(popcnt(j & ~(j + (i << 1))));\n        }\n    }\n\
+    }\n\ntemplate<class T> void inverse_number_theoretic_transform(std::vector<T>&\
     \ a) {\n    static constexpr NthRoot<T> nth_root;\n    int n = a.size();\n   \
     \ for (int i = 1; i < n; i <<= 1) {\n        T z = T::raw(1);\n        rep (j,\
     \ 0, n, i << 1) {\n            rep (k, i) {\n                const T x = a[j +\
@@ -1135,7 +1135,7 @@ data:
   isVerificationFile: false
   path: math/poly/PolynomialInterpolation.hpp
   requiredBy: []
-  timestamp: '2024-05-12 17:35:55+09:00'
+  timestamp: '2024-05-29 15:54:32+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/polynomial/polynomial_interpolation.test.cpp

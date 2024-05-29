@@ -33,12 +33,12 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/three_edge_connected_components.test.cpp
     title: test/yosupo/graph/three_edge_connected_components.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/graph/connected/ThreeEdgeConnectedComponents.md
     document_title: "ThreeEdgeConnectedComponents(\u4E09\u8FBA\u9023\u7D50\u6210\u5206\
@@ -639,7 +639,7 @@ data:
   path: graph/connected/ThreeEdgeConnectedComponents.hpp
   requiredBy: []
   timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/graph/three_edge_connected_components.test.cpp
 documentation_of: graph/connected/ThreeEdgeConnectedComponents.hpp
