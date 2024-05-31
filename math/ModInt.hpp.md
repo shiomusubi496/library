@@ -41,26 +41,26 @@ data:
   - icon: ':question:'
     path: math/Combinatorics.hpp
     title: Combinatorics
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/ExpPolySum.hpp
     title: ExpPolySum($\sum_{i=0}^{\infty}r^ii^d$)
   - icon: ':heavy_check_mark:'
     path: math/Factorial.hpp
     title: "Factorial(\u968E\u4E57)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/MontmortNumber.hpp
     title: "MontmortNumber(\u652A\u4E71\u9806\u5217)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/PrimitiveRoot.hpp
     title: "PrimitiveRoot(\u539F\u59CB\u6839)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/StirlingNumber.hpp
     title: "StirlingNumber(\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\u30EB\
       \u6570, \u30D9\u30EB\u30CC\u30FC\u30A4\u6570, \u5206\u5272\u6570)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/SubsetSum.hpp
     title: SubsetSum
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/TetrationMod.hpp
     title: TetrationMod
   - icon: ':question:'
@@ -76,7 +76,7 @@ data:
   - icon: ':question:'
     path: math/matrix/Determinant.hpp
     title: "Determinant(\u884C\u5217\u5F0F)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix/Inverse.hpp
     title: "Inverse(\u9006\u884C\u5217)"
   - icon: ':x:'
@@ -97,7 +97,7 @@ data:
   - icon: ':x:'
     path: math/poly/PolynomialInterpolation.hpp
     title: "PolynomialInterpolation(\u591A\u9805\u5F0F\u88DC\u9593)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/poly/SamplingPointsShift.hpp
     title: "SamplingPointsShift(\u6A19\u672C\u70B9\u30B7\u30D5\u30C8)"
   - icon: ':question:'
@@ -216,55 +216,55 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/montmort_number_mod.test.cpp
     title: test/yosupo/math/montmort_number_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/partition_function.test.cpp
     title: test/yosupo/math/partition_function.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/primitive_root.test.cpp
     title: test/yosupo/math/primitive_root.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/sharp_p_subset_sum.test.cpp
     title: test/yosupo/math/sharp_p_subset_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
     title: test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
     title: test/yosupo/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
     title: test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/stirling_number_of_the_second_kind_fixed_k.test.cpp
     title: test/yosupo/math/stirling_number_of_the_second_kind_fixed_k.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/sum_of_exponential_times_polynomial.test.cpp
     title: test/yosupo/math/sum_of_exponential_times_polynomial.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/sum_of_exponential_times_polynomial_limit.test.cpp
     title: test/yosupo/math/sum_of_exponential_times_polynomial_limit.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/tetration_mod.test.cpp
     title: test/yosupo/math/tetration_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/matrix/inverse_matrix.test.cpp
     title: test/yosupo/matrix/inverse_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/matrix/matrix_det.test.cpp
     title: test/yosupo/matrix/matrix_det.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/matrix/matrix_det_arbitrary_mod.test.cpp
     title: test/yosupo/matrix/matrix_det_arbitrary_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/matrix/matrix_product.test.cpp
     title: test/yosupo/matrix/matrix_product.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/matrix/matrix_rank.test.cpp
     title: test/yosupo/matrix/matrix_rank.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/matrix/pow_of_matrix.test.cpp
     title: test/yosupo/matrix/pow_of_matrix.test.cpp
   - icon: ':x:'

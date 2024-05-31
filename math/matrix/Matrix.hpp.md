@@ -41,7 +41,7 @@ data:
   - icon: ':question:'
     path: math/matrix/Determinant.hpp
     title: "Determinant(\u884C\u5217\u5F0F)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix/Inverse.hpp
     title: "Inverse(\u9006\u884C\u5217)"
   - icon: ':x:'
@@ -51,22 +51,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc336_g-BEST.test.cpp
     title: test/atcoder/abc336_g-BEST.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/matrix/inverse_matrix.test.cpp
     title: test/yosupo/matrix/inverse_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/matrix/matrix_det.test.cpp
     title: test/yosupo/matrix/matrix_det.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/matrix/matrix_det_arbitrary_mod.test.cpp
     title: test/yosupo/matrix/matrix_det_arbitrary_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/matrix/matrix_product.test.cpp
     title: test/yosupo/matrix/matrix_product.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/matrix/matrix_rank.test.cpp
     title: test/yosupo/matrix/matrix_rank.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/matrix/pow_of_matrix.test.cpp
     title: test/yosupo/matrix/pow_of_matrix.test.cpp
   - icon: ':x:'

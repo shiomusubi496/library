@@ -707,36 +707,57 @@ data:
     )\n * @docs docs/math/convolution/Convolution.md\n */\n#line 7 \"string/WildcardPatternMatching.hpp\"\
     \n\nnamespace internal {\n\ntemplate<class T>\nstd::vector<bool> wildcard_mod(const\
     \ std::vector<int>& a,\n                               const std::vector<int>&\
-    \ b, bool a0, bool b0) {\n    const int n = a.size(), m = b.size();\n    const\
-    \ int lg = bitop::ceil_log2(n), N = 1 << lg;\n    std::vector<T> A1(N), B1(N),\
-    \ A2(N), B2(N), A3(N), B3(N);\n    rep (i, n) A1[i] = a0 ? a[i] : 1;\n    rep\
-    \ (i, m) B1[i] = b0 ? b[m - 1 - i] : 1;\n    rep (i, n) A2[i] = A1[i] * A1[i];\n\
-    \    rep (i, m) B2[i] = B1[i] * B1[i];\n    rep (i, n) A3[i] = A1[i] * A2[i];\n\
-    \    rep (i, m) B3[i] = B1[i] * B2[i];\n    number_theoretic_transform(A1);\n\
-    \    number_theoretic_transform(B1);\n    number_theoretic_transform(A2);\n  \
-    \  number_theoretic_transform(B2);\n    number_theoretic_transform(A3);\n    number_theoretic_transform(B3);\n\
-    \    rep (i, N) A1[i] = A1[i] * B3[i] - 2 * A2[i] * B2[i] + A3[i] * B1[i];\n \
-    \   inverse_number_theoretic_transform(A1);\n    std::vector<bool> c(n - m + 1);\n\
-    \    rep (i, n - m + 1) c[i] = A1[i + m - 1] == 0;\n    return c;\n}\n\n} // namespace\
-    \ internal\n\nstd::vector<bool> wildcard_pattern_matching(std::vector<int> a,\n\
-    \                                            std::vector<int> b, int MAX,\n  \
-    \                                          bool deterministic = true) {\n    const\
-    \ int n = a.size(), m = b.size();\n    if (n < m) return {};\n    bool a0 = find(all(a),\
-    \ 0) != a.end(), b0 = find(all(b), 0) != b.end();\n    i128 MAX_VAL = (i128)MAX\
-    \ * MAX * m;\n    if (a0) MAX_VAL *= MAX;\n    if (b0) MAX_VAL *= MAX;\n    static\
-    \ constexpr int MOD1 = 2113929217, MOD2 = 2013265921,\n                      \
-    \   MOD3 = 1811939329, MOD4 = 1711276033;\n    if (!deterministic) {\n       \
-    \ MAX_VAL = 1;\n        std::vector<int> val(MAX + 1);\n        rep (i, 1, MAX\
-    \ + 1) val[i] = rand32() % (MOD1 - 1) + 1;\n        rep (i, n) a[i] = val[a[i]];\n\
-    \        rep (i, m) b[i] = val[b[i]];\n    }\n    std::vector<bool> res =\n  \
-    \      internal::wildcard_mod<static_modint<MOD1>>(a, b, a0, b0);\n    if (MAX_VAL\
-    \ >= MOD1) {\n        auto c = internal::wildcard_mod<static_modint<MOD2>>(a,\
-    \ b, a0, b0);\n        rep (i, n - m + 1) res[i] = res[i] && c[i];\n    }\n  \
-    \  if (MAX_VAL >= (i128)MOD1 * MOD2) {\n        auto c = internal::wildcard_mod<static_modint<MOD3>>(a,\
-    \ b, a0, b0);\n        rep (i, n - m + 1) res[i] = res[i] && c[i];\n    }\n  \
-    \  if (MAX_VAL >= (i128)MOD1 * MOD2 * MOD3) {\n        auto c = internal::wildcard_mod<static_modint<MOD4>>(a,\
-    \ b, a0, b0);\n        rep (i, n - m + 1) res[i] = res[i] && c[i];\n    }\n  \
-    \  return res;\n}\n\nstd::vector<bool> wildcard_pattern_matching(const std::vector<int>&\
+    \ b) {\n    const int n = a.size(), m = b.size();\n    const int lg = bitop::ceil_log2(n),\
+    \ N = 1 << lg;\n    std::vector<T> A1(N), B1(N), A2(N), B2(N), A3(N), B3(N);\n\
+    \    std::vector<T> C1(N), C2(n - m + 1);\n    rep (i, n) A1[i] = a[i] == 0 ?\
+    \ 0 : 1;\n    rep (i, m) B1[i] = b[m - 1 - i] == 0 ? 0 : 1;\n    rep (i, n) A2[i]\
+    \ = a[i] * A1[i];\n    rep (i, m) B2[i] = b[m - 1 - i] * B1[i];\n    rep (i, n)\
+    \ A3[i] = a[i] * A2[i];\n    rep (i, m) B3[i] = b[m - 1 - i] * B2[i];\n    if\
+    \ (find(all(a), 0) == a.end()) {\n        T sm = 0;\n        rep (i, m) sm +=\
+    \ B3[i];\n        rep (i, n - m + 1) C2[i] += sm;\n    }\n    else {\n       \
+    \ number_theoretic_transform(A1);\n        number_theoretic_transform(B3);\n \
+    \       rep (i, N) C1[i] += A1[i] * B3[i];\n    }\n    if (find(all(b), 0) ==\
+    \ b.end()) {\n        std::vector<T> cum(n + 1);\n        rep (i, n) cum[i + 1]\
+    \ = cum[i] + A3[i];\n        rep (i, n - m + 1) C2[i] += cum[i + m] - cum[i];\n\
+    \    }\n    else {\n        number_theoretic_transform(A3);\n        number_theoretic_transform(B1);\n\
+    \        rep (i, N) C1[i] += A3[i] * B1[i];\n    }\n    number_theoretic_transform(A2);\n\
+    \    number_theoretic_transform(B2);\n    rep (i, N) C1[i] -= 2 * A2[i] * B2[i];\n\
+    \    inverse_number_theoretic_transform(C1);\n    std::vector<bool> c(n - m +\
+    \ 1);\n    rep (i, n - m + 1) c[i] = (C1[i + m - 1] + C2[i] == 0);\n    return\
+    \ c;\n}\n\ntemplate<class T>\nstd::vector<bool> wildcard_random(const std::vector<int>&\
+    \ a,\n                                  const std::vector<int>& b) {\n    const\
+    \ int n = a.size(), m = b.size();\n    const int lg = bitop::ceil_log2(n), N =\
+    \ 1 << lg;\n    bool a0 = find(all(a), 0) == a.end();\n    bool b0 = find(all(b),\
+    \ 0) == b.end();\n    std::vector<T> A1(N), B1(N), A2(N), B2(N);\n    std::vector<T>\
+    \ C1(N), C2(n - m + 1);\n    if (a0) {\n        rep (i, n) A1[i] = a[i] == 0 ?\
+    \ 0 : 1;\n        rep (i, m) {\n            B1[i] = b[m - 1 - i] == 0\n      \
+    \                  ? 0\n                        : rand32.uniform<int>(1, T::get_mod()\
+    \ - 1);\n        }\n    }\n    else {\n        rep (i, n) {\n            A1[i]\
+    \ = a[i] == 0 ? 0 : rand32.uniform<int>(1, T::get_mod() - 1);\n        }\n   \
+    \     rep (i, m) B1[i] = b[m - 1 - i] == 0 ? 0 : 1;\n    }\n    rep (i, n) A2[i]\
+    \ = a[i] * A1[i];\n    rep (i, m) B2[i] = b[m - 1 - i] * B1[i];\n    if (a0) {\n\
+    \        T sm = 0;\n        rep (i, m) sm += B2[i];\n        rep (i, n - m + 1)\
+    \ C2[i] -= sm;\n    }\n    else {\n        number_theoretic_transform(A1);\n \
+    \       number_theoretic_transform(B2);\n        rep (i, N) C1[i] -= A1[i] * B2[i];\n\
+    \    }\n    if (!a0 && b0) {\n        std::vector<T> cum(n + 1);\n        rep\
+    \ (i, n) cum[i + 1] = cum[i] + A2[i];\n        rep (i, n - m + 1) C2[i] += cum[i\
+    \ + m] - cum[i];\n    }\n    else {\n        number_theoretic_transform(A2);\n\
+    \        number_theoretic_transform(B1);\n        rep (i, N) C1[i] += A2[i] *\
+    \ B1[i];\n    }\n    inverse_number_theoretic_transform(C1);\n    std::vector<bool>\
+    \ c(n - m + 1);\n    rep (i, n - m + 1) c[i] = (C1[i + m - 1] + C2[i] == 0);\n\
+    \    return c;\n}\n\n} // namespace internal\n\nstd::vector<bool> wildcard_pattern_matching(std::vector<int>\
+    \ a,\n                                            std::vector<int> b, int MAX,\n\
+    \                                            bool deterministic = true) {\n  \
+    \  const int n = a.size(), m = b.size();\n    if (n < m) return {};\n    i128\
+    \ MAX_VAL = (i128)MAX * MAX * m;\n    static constexpr int MOD1 = 2113929217,\
+    \ MOD2 = 2013265921,\n                         MOD3 = 1811939329;\n    if (!deterministic)\
+    \ {\n        return internal::wildcard_random<static_modint<MOD1>>(a, b);\n  \
+    \  }\n    std::vector<bool> res = internal::wildcard_mod<static_modint<MOD1>>(a,\
+    \ b);\n    if (MAX_VAL >= MOD1) {\n        auto c = internal::wildcard_mod<static_modint<MOD2>>(a,\
+    \ b);\n        rep (i, n - m + 1) res[i] = res[i] && c[i];\n    }\n    if (MAX_VAL\
+    \ >= (i128)MOD1 * MOD2) {\n        auto c = internal::wildcard_mod<static_modint<MOD3>>(a,\
+    \ b);\n        rep (i, n - m + 1) res[i] = res[i] && c[i];\n    }\n    return\
+    \ res;\n}\n\nstd::vector<bool> wildcard_pattern_matching(const std::vector<int>&\
     \ a,\n                                            const std::vector<int>& b,\n\
     \                                            bool deterministic = true) {\n  \
     \  compressor<int> comp{0};\n    comp.push(a);\n    comp.push(b);\n    comp.build();\n\
@@ -756,11 +777,14 @@ data:
     \ * @brief WildcardPatternMatching\n * @docs docs/string/WildcardPatternMatching.md\n\
     \ */\n#line 4 \"test/yosupo/new/wildcard_pattern_matching.test.cpp\"\nusing namespace\
     \ std;\nint main() {\n    string S, T; scan >> S >> T;\n    auto res = wildcard_pattern_matching(S,\
-    \ T);\n    rep (i, res.size()) print << res[i];\n    print << endl;\n}\n"
+    \ T, '*', false);\n    auto res2 = wildcard_pattern_matching(S, T, '*', true);\n\
+    \    assert(res == res2);\n    rep (i, res.size()) print << res[i];\n    print\
+    \ << endl;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/wildcard_pattern_matching\"\
     \n#include \"../../../other/template.hpp\"\n#include \"../../../string/WildcardPatternMatching.hpp\"\
     \nusing namespace std;\nint main() {\n    string S, T; scan >> S >> T;\n    auto\
-    \ res = wildcard_pattern_matching(S, T);\n    rep (i, res.size()) print << res[i];\n\
+    \ res = wildcard_pattern_matching(S, T, '*', false);\n    auto res2 = wildcard_pattern_matching(S,\
+    \ T, '*', true);\n    assert(res == res2);\n    rep (i, res.size()) print << res[i];\n\
     \    print << endl;\n}\n"
   dependsOn:
   - other/template.hpp
@@ -779,7 +803,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/new/wildcard_pattern_matching.test.cpp
   requiredBy: []
-  timestamp: '2024-05-29 15:54:32+09:00'
+  timestamp: '2024-05-31 09:59:04+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/new/wildcard_pattern_matching.test.cpp

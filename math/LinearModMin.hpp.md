@@ -36,12 +36,12 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/min_of_mod_of_linear.test.cpp
     title: test/yosupo/math/min_of_mod_of_linear.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/math/LinearModMin.md
     document_title: LinearModMin
@@ -614,7 +614,7 @@ data:
   path: math/LinearModMin.hpp
   requiredBy: []
   timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/math/min_of_mod_of_linear.test.cpp
 documentation_of: math/LinearModMin.hpp

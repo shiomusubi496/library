@@ -29,10 +29,10 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/EulerPhi.hpp
     title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/ExpPolySum.hpp
     title: ExpPolySum($\sum_{i=0}^{\infty}r^ii^d$)
   - icon: ':heavy_check_mark:'
@@ -42,23 +42,23 @@ data:
     path: math/MillerRabin.hpp
     title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
       )"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/PollardRho.hpp
     title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/PrimitiveRoot.hpp
     title: "PrimitiveRoot(\u539F\u59CB\u6839)"
   - icon: ':question:'
     path: math/SqrtMod.hpp
     title: "SqrtMod(\u5E73\u65B9\u5270\u4F59)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/StirlingNumber.hpp
     title: "StirlingNumber(\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\u30EB\
       \u6570, \u30D9\u30EB\u30CC\u30FC\u30A4\u6570, \u5206\u5272\u6570)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/SubsetSum.hpp
     title: SubsetSum
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/TetrationMod.hpp
     title: TetrationMod
   - icon: ':heavy_check_mark:'
@@ -73,7 +73,7 @@ data:
   - icon: ':x:'
     path: math/poly/PolynomialInterpolation.hpp
     title: "PolynomialInterpolation(\u591A\u9805\u5F0F\u88DC\u9593)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/poly/SamplingPointsShift.hpp
     title: "SamplingPointsShift(\u6A19\u672C\u70B9\u30B7\u30D5\u30C8)"
   - icon: ':question:'
@@ -102,40 +102,40 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/partition_function.test.cpp
     title: test/yosupo/math/partition_function.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/primality_test.test.cpp
     title: test/yosupo/math/primality_test.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/primitive_root.test.cpp
     title: test/yosupo/math/primitive_root.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/sharp_p_subset_sum.test.cpp
     title: test/yosupo/math/sharp_p_subset_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/sqrt_mod.test.cpp
     title: test/yosupo/math/sqrt_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
     title: test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
     title: test/yosupo/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
     title: test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/stirling_number_of_the_second_kind_fixed_k.test.cpp
     title: test/yosupo/math/stirling_number_of_the_second_kind_fixed_k.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/sum_of_exponential_times_polynomial.test.cpp
     title: test/yosupo/math/sum_of_exponential_times_polynomial.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/sum_of_exponential_times_polynomial_limit.test.cpp
     title: test/yosupo/math/sum_of_exponential_times_polynomial_limit.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/tetration_mod.test.cpp
     title: test/yosupo/math/tetration_mod.test.cpp
   - icon: ':x:'

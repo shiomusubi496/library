@@ -42,13 +42,13 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/EulerPhi.hpp
     title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/PrimitiveRoot.hpp
     title: "PrimitiveRoot(\u539F\u59CB\u6839)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/TetrationMod.hpp
     title: TetrationMod
   _extendedVerifiedWith:
@@ -58,15 +58,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/math/factorize.test.cpp
     title: test/yosupo/math/factorize.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/primitive_root.test.cpp
     title: test/yosupo/math/primitive_root.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/tetration_mod.test.cpp
     title: test/yosupo/math/tetration_mod.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/math/PollardRho.md
     document_title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
@@ -683,7 +683,7 @@ data:
   - math/EulerPhi.hpp
   - math/PrimitiveRoot.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/NTL/NTL_1_D-Phi.test.cpp
   - test/yosupo/math/factorize.test.cpp

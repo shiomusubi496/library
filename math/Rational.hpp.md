@@ -29,7 +29,7 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/LinearModMin.hpp
     title: LinearModMin
   - icon: ':question:'
@@ -42,10 +42,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/other/1208-SternBrocotTree.test.cpp
     title: test/aoj/other/1208-SternBrocotTree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/min_of_mod_of_linear.test.cpp
     title: test/yosupo/math/min_of_mod_of_linear.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/stern_brocot_tree.test.cpp
     title: test/yosupo/math/stern_brocot_tree.test.cpp
   - icon: ':x:'

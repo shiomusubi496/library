@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/PrimeFactor.hpp
     title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
   - icon: ':question:'
@@ -32,19 +32,19 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/ExpPolySum.hpp
     title: ExpPolySum($\sum_{i=0}^{\infty}r^ii^d$)
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/sum_of_exponential_times_polynomial.test.cpp
     title: test/yosupo/math/sum_of_exponential_times_polynomial.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/sum_of_exponential_times_polynomial_limit.test.cpp
     title: test/yosupo/math/sum_of_exponential_times_polynomial_limit.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/math/PowEnumerate.md
     document_title: PowEnumerate
@@ -509,7 +509,7 @@ data:
   requiredBy:
   - math/ExpPolySum.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/math/sum_of_exponential_times_polynomial_limit.test.cpp
   - test/yosupo/math/sum_of_exponential_times_polynomial.test.cpp
