@@ -7,10 +7,10 @@ data:
   - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix/Determinant.hpp
     title: "Determinant(\u884C\u5217\u5F0F)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix/Matrix.hpp
     title: "Matrix(\u884C\u5217)"
   - icon: ':question:'
@@ -48,6 +48,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc336_g-BEST.test.cpp
     title: test/atcoder/abc336_g-BEST.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/counting_spanning_tree_directed.test.cpp
+    title: test/yosupo/new/counting_spanning_tree_directed.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/counting_spanning_tree_undirected.test.cpp
+    title: test/yosupo/new/counting_spanning_tree_undirected.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -780,6 +786,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/atcoder/abc336_g-BEST.test.cpp
+  - test/yosupo/new/counting_spanning_tree_undirected.test.cpp
+  - test/yosupo/new/counting_spanning_tree_directed.test.cpp
 documentation_of: graph/mst/CountSpanningTree.hpp
 layout: document
 redirect_from:
@@ -791,6 +799,6 @@ title: "CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)"
 
 全域木の個数を求める。行列木定理から多項式時間で可能。
 
-有向全域木の個数も求められる。第二引数に根となる頂点を指定する。
+有向全域木の個数も求められる。第二引数に根となる頂点を指定する。辺は根に向かう方向。
 
 - `T count_spanning_tree(Graph<U> G)` : グラフ `G` の全域木の個数を返す。 $\Theta(N^3)$ 。

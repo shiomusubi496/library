@@ -317,6 +317,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/math/two_sat.test.cpp
     title: test/yosupo/math/two_sat.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/counting_spanning_tree_directed.test.cpp
+    title: test/yosupo/new/counting_spanning_tree_directed.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/counting_spanning_tree_undirected.test.cpp
+    title: test/yosupo/new/counting_spanning_tree_undirected.test.cpp
   - icon: ':x:'
     path: test/yosupo/tree/cartesian_tree.test.cpp
     title: test/yosupo/tree/cartesian_tree.test.cpp
@@ -937,6 +943,8 @@ data:
   - test/yosupo/graph/bipartitematching.test.cpp
   - test/yosupo/graph/manhattanmst.test.cpp
   - test/yosupo/math/two_sat.test.cpp
+  - test/yosupo/new/counting_spanning_tree_undirected.test.cpp
+  - test/yosupo/new/counting_spanning_tree_directed.test.cpp
   - test/yosupo/tree/lca-HLD.test.cpp
   - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
   - test/yosupo/tree/jump_on_tree.test.cpp

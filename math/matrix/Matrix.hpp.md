@@ -38,13 +38,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/other/CountEulerianTrail.hpp
     title: CountEulerianTrail(BEST Theorem)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix/Determinant.hpp
     title: "Determinant(\u884C\u5217\u5F0F)"
   - icon: ':heavy_check_mark:'
     path: math/matrix/Inverse.hpp
     title: "Inverse(\u9006\u884C\u5217)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix/LinearEquations.hpp
     title: "LinearEquations(\u7DDA\u5F62\u65B9\u7A0B\u5F0F)"
   _extendedVerifiedWith:
@@ -69,18 +69,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/matrix/pow_of_matrix.test.cpp
     title: test/yosupo/matrix/pow_of_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/matrix/system_of_linear_equations.test.cpp
     title: test/yosupo/matrix/system_of_linear_equations.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/counting_spanning_tree_directed.test.cpp
+    title: test/yosupo/new/counting_spanning_tree_directed.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/counting_spanning_tree_undirected.test.cpp
+    title: test/yosupo/new/counting_spanning_tree_undirected.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/matrix_det_mod_2.test.cpp
     title: test/yosupo/new/matrix_det_mod_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/matrix_product_mod_2.test.cpp
     title: test/yosupo/new/matrix_product_mod_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/math/matrix/Matrix.md
     document_title: "Matrix(\u884C\u5217)"
@@ -801,7 +807,7 @@ data:
   - math/matrix/LinearEquations.hpp
   - math/matrix/Determinant.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/atcoder/abc336_g-BEST.test.cpp
   - test/yosupo/matrix/system_of_linear_equations.test.cpp
@@ -812,7 +818,9 @@ data:
   - test/yosupo/matrix/matrix_det.test.cpp
   - test/yosupo/matrix/matrix_rank.test.cpp
   - test/yosupo/new/matrix_product_mod_2.test.cpp
+  - test/yosupo/new/counting_spanning_tree_undirected.test.cpp
   - test/yosupo/new/matrix_det_mod_2.test.cpp
+  - test/yosupo/new/counting_spanning_tree_directed.test.cpp
 documentation_of: math/matrix/Matrix.hpp
 layout: document
 redirect_from:
