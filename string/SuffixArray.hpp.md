@@ -29,19 +29,19 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/LCPArray.hpp
     title: LCPArray
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/string/number_of_substrings.test.cpp
     title: test/yosupo/string/number_of_substrings.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/string/suffixarray.test.cpp
     title: test/yosupo/string/suffixarray.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/string/SuffixArray.md
     document_title: SuffixArray
@@ -544,7 +544,7 @@ data:
   requiredBy:
   - string/LCPArray.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/string/number_of_substrings.test.cpp
   - test/yosupo/string/suffixarray.test.cpp

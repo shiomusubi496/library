@@ -229,6 +229,9 @@ data:
     title: "BiConnectedComponents(\u4E8C\u91CD\u9802\u70B9\u9023\u7D50\u6210\u5206\
       \u5206\u89E3)"
   - icon: ':heavy_check_mark:'
+    path: graph/connected/ComplementConnectedComponents.hpp
+    title: graph/connected/ComplementConnectedComponents.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/connected/ConnectedComponents.hpp
     title: "ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)"
   - icon: ':heavy_check_mark:'
@@ -320,7 +323,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest-path/ZeroOneBFS.hpp
     title: ZeroOneBFS(01-BFS)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/CartesianTree.hpp
     title: CartesianTree
   - icon: ':heavy_check_mark:'
@@ -367,7 +370,7 @@ data:
   - icon: ':x:'
     path: math/ChineseRemainder.hpp
     title: "Chinese Remainder(\u4E2D\u56FD\u5270\u4F59\u5B9A\u7406)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/Combinatorics.hpp
     title: Combinatorics
   - icon: ':heavy_check_mark:'
@@ -428,7 +431,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/Rational.hpp
     title: "Rational(\u6709\u7406\u6570\u578B)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/SqrtMod.hpp
     title: "SqrtMod(\u5E73\u65B9\u5270\u4F59)"
   - icon: ':heavy_check_mark:'
@@ -509,23 +512,23 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/poly/BostanMori.hpp
     title: "Bostan-Mori(\u7DDA\u5F62\u6F38\u5316\u5F0F\u306En\u9805\u76EE)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/poly/FormalPowerSeries.hpp
     title: "FormalPowerSeries(\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/poly/MultipointEvaluation.hpp
     title: "MultipointEvaluation(\u591A\u70B9\u8A55\u4FA1)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/poly/PolynomialInterpolation.hpp
     title: "PolynomialInterpolation(\u591A\u9805\u5F0F\u88DC\u9593)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/poly/SamplingPointsShift.hpp
     title: "SamplingPointsShift(\u6A19\u672C\u70B9\u30B7\u30D5\u30C8)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/poly/SparseFormalPowerSeries.hpp
     title: "SparseFormalPowerSeries(\u758E\u306A\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570\
       )"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/poly/TaylorShift.hpp
     title: TaylorShift
   - icon: ':question:'
@@ -543,17 +546,17 @@ data:
   - icon: ':heavy_check_mark:'
     path: random/Timer.hpp
     title: Timer
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/LCPArray.hpp
     title: LCPArray
   - icon: ':heavy_check_mark:'
     path: string/LongestIncreasingSubsequence.hpp
     title: "LongestIncreasingSubsequence(LIS,\u6700\u9577\u5897\u52A0\u90E8\u5206\u5217\
       )"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/LyndonFactorization.hpp
     title: Lyndon Factorization
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/Manacher.hpp
     title: "Manacher's Algortihm(\u6700\u9577\u56DE\u6587\u9577\u691C\u51FA)"
   - icon: ':question:'
@@ -562,13 +565,13 @@ data:
   - icon: ':question:'
     path: string/RunLength.hpp
     title: "RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/SuffixArray.hpp
     title: SuffixArray
   - icon: ':heavy_check_mark:'
     path: string/WildcardPatternMatching.hpp
     title: WildcardPatternMatching
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/ZAlgorithm.hpp
     title: Z-Algorithm
   - icon: ':question:'
@@ -1194,6 +1197,9 @@ data:
     path: test/yosupo/matrix/system_of_linear_equations.test.cpp
     title: test/yosupo/matrix/system_of_linear_equations.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/connected_components_of_complement_graph.test.cpp
+    title: test/yosupo/new/connected_components_of_complement_graph.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/counting_spanning_tree_directed.test.cpp
     title: test/yosupo/new/counting_spanning_tree_directed.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1247,61 +1253,61 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/multipoint_evaluation.test.cpp
     title: test/yosupo/polynomial/multipoint_evaluation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/multipoint_evaluation_on_geometric_sequence.test.cpp
     title: test/yosupo/polynomial/multipoint_evaluation_on_geometric_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/polynomial_interpolation.test.cpp
     title: test/yosupo/polynomial/polynomial_interpolation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/polynomial_interpolation_on_geometric_sequence.test.cpp
     title: test/yosupo/polynomial/polynomial_interpolation_on_geometric_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
     title: test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
     title: test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/pow_of_formal_power_series_sparse.test.cpp
     title: test/yosupo/polynomial/pow_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/product_of_polynomial_sequence.test.cpp
     title: test/yosupo/polynomial/product_of_polynomial_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
     title: test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp
     title: test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
     title: test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/sample/aplusb.test.cpp
     title: test/yosupo/sample/aplusb.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/sample/many_aplusb.test.cpp
     title: test/yosupo/sample/many_aplusb.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/sample/many_aplusb_128bit.test.cpp
     title: test/yosupo/sample/many_aplusb_128bit.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/string/enumerate_palindromes.test.cpp
     title: test/yosupo/string/enumerate_palindromes.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/string/lyndon_factorization.test.cpp
     title: test/yosupo/string/lyndon_factorization.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/string/number_of_substrings.test.cpp
     title: test/yosupo/string/number_of_substrings.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/string/suffixarray.test.cpp
     title: test/yosupo/string/suffixarray.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/string/zalgorithm.test.cpp
     title: test/yosupo/string/zalgorithm.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/cartesian_tree.test.cpp
     title: test/yosupo/tree/cartesian_tree.test.cpp
   - icon: ':x:'
@@ -1418,6 +1424,7 @@ data:
   - graph/other/EnumerateCliques.hpp
   - graph/other/EnumerateTriangles.hpp
   - graph/other/EulerianTrail.hpp
+  - graph/connected/ComplementConnectedComponents.hpp
   - graph/connected/ConnectedComponents.hpp
   - graph/connected/BiConnectedComponents.hpp
   - graph/connected/ThreeEdgeConnectedComponents.hpp
@@ -1820,6 +1827,7 @@ data:
   - test/yosupo/new/matrix_product_mod_2.test.cpp
   - test/yosupo/new/counting_spanning_tree_undirected.test.cpp
   - test/yosupo/new/matrix_det_mod_2.test.cpp
+  - test/yosupo/new/connected_components_of_complement_graph.test.cpp
   - test/yosupo/new/counting_spanning_tree_directed.test.cpp
   - test/yosupo/geometry/sort_points_by_argument.test.cpp
   - test/yosupo/convolution/convolution_mod.test.cpp

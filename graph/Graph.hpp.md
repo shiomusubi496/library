@@ -37,6 +37,9 @@ data:
     title: "BiConnectedComponents(\u4E8C\u91CD\u9802\u70B9\u9023\u7D50\u6210\u5206\
       \u5206\u89E3)"
   - icon: ':heavy_check_mark:'
+    path: graph/connected/ComplementConnectedComponents.hpp
+    title: graph/connected/ComplementConnectedComponents.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/connected/ConnectedComponents.hpp
     title: "ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)"
   - icon: ':heavy_check_mark:'
@@ -119,7 +122,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest-path/ZeroOneBFS.hpp
     title: ZeroOneBFS(01-BFS)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/CartesianTree.hpp
     title: CartesianTree
   - icon: ':heavy_check_mark:'
@@ -318,12 +321,15 @@ data:
     path: test/yosupo/math/two_sat.test.cpp
     title: test/yosupo/math/two_sat.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/connected_components_of_complement_graph.test.cpp
+    title: test/yosupo/new/connected_components_of_complement_graph.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/counting_spanning_tree_directed.test.cpp
     title: test/yosupo/new/counting_spanning_tree_directed.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/counting_spanning_tree_undirected.test.cpp
     title: test/yosupo/new/counting_spanning_tree_undirected.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/cartesian_tree.test.cpp
     title: test/yosupo/tree/cartesian_tree.test.cpp
   - icon: ':x:'
@@ -869,6 +875,7 @@ data:
   - graph/other/EnumerateCliques.hpp
   - graph/other/EnumerateTriangles.hpp
   - graph/other/EulerianTrail.hpp
+  - graph/connected/ComplementConnectedComponents.hpp
   - graph/connected/ConnectedComponents.hpp
   - graph/connected/BiConnectedComponents.hpp
   - graph/connected/ThreeEdgeConnectedComponents.hpp
@@ -944,6 +951,7 @@ data:
   - test/yosupo/graph/manhattanmst.test.cpp
   - test/yosupo/math/two_sat.test.cpp
   - test/yosupo/new/counting_spanning_tree_undirected.test.cpp
+  - test/yosupo/new/connected_components_of_complement_graph.test.cpp
   - test/yosupo/new/counting_spanning_tree_directed.test.cpp
   - test/yosupo/tree/lca-HLD.test.cpp
   - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp

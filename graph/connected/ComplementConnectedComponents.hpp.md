@@ -2,11 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: graph/Graph.hpp
+    title: Graph-template
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
-    path: string/SuffixArray.hpp
-    title: SuffixArray
   - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
@@ -34,57 +34,56 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/string/number_of_substrings.test.cpp
-    title: test/yosupo/string/number_of_substrings.test.cpp
+    path: test/yosupo/new/connected_components_of_complement_graph.test.cpp
+    title: test/yosupo/new/connected_components_of_complement_graph.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/string/LCPArray.md
-    document_title: LCPArray
     links: []
-  bundledCode: "#line 2 \"string/LCPArray.hpp\"\n\n#line 2 \"other/template.hpp\"\n\
-    \n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
-    \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define OVERLOAD5(a,\
-    \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
-    \                                                           \\\n    for (ll REP_COUNTER_##c\
-    \ = 0; REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b,\
-    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
-    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
-    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) OVERLOAD5(__VA_ARGS__,\
-    \ REP4, REP3, REP2, REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1;\
-    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n\
-    #define RREP4(i, a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n\
-    #define rrep(...) OVERLOAD5(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define\
-    \ REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b) for (ll\
-    \ i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll i = (ll)(a)\
-    \ + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) OVERLOAD5(__VA_ARGS__, REPS4,\
-    \ REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a); i > 0;\
-    \ --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n#define\
-    \ RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
-    \ rreps(...) OVERLOAD5(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define\
-    \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
-    \ __VA_ARGS__)\n\n#define all(v) std::begin(v), std::end(v)\n#define rall(v) std::rbegin(v),\
-    \ std::rend(v)\n\n#if __cpp_if_constexpr >= 201606L\n#define IF_CONSTEXPR constexpr\n\
-    #else\n#define IF_CONSTEXPR\n#endif\n\n#define IO_BUFFER_SIZE (1 << 17)\n#line\
-    \ 2 \"template/alias.hpp\"\n\n#line 4 \"template/alias.hpp\"\n\nusing ll = long\
-    \ long;\nusing uint = unsigned int;\nusing ull = unsigned long long;\nusing i128\
-    \ = __int128_t;\nusing u128 = __uint128_t;\nusing ld = long double;\nusing PLL\
-    \ = std::pair<ll, ll>;\ntemplate<class T>\nusing prique = std::priority_queue<T,\
-    \ std::vector<T>, std::greater<T>>;\n\ntemplate<class T> struct infinity {\n \
-    \   static constexpr T value = std::numeric_limits<T>::max() / 2;\n    static\
-    \ constexpr T mvalue = std::numeric_limits<T>::lowest() / 2;\n    static constexpr\
-    \ T max = std::numeric_limits<T>::max();\n    static constexpr T min = std::numeric_limits<T>::lowest();\n\
-    };\n\n#if __cplusplus <= 201402L\ntemplate<class T> constexpr T infinity<T>::value;\n\
-    template<class T> constexpr T infinity<T>::mvalue;\ntemplate<class T> constexpr\
-    \ T infinity<T>::max;\ntemplate<class T> constexpr T infinity<T>::min;\n#endif\n\
-    \n#if __cpp_variable_templates >= 201304L\ntemplate<class T> constexpr T INF =\
-    \ infinity<T>::value;\n#endif\n\nconstexpr ll inf = infinity<ll>::value;\nconstexpr\
-    \ ld EPS = 1e-8;\nconstexpr ld PI = 3.1415926535897932384626;\n#line 2 \"template/type_traits.hpp\"\
-    \n\n#line 5 \"template/type_traits.hpp\"\n\ntemplate<class T, class... Args> struct\
-    \ function_traits_impl {\n    using result_type = T;\n    template<std::size_t\
-    \ idx>\n    using argument_type =\n        typename std::tuple_element<idx, std::tuple<Args...>>::type;\n\
-    \    using argument_tuple = std::tuple<Args...>;\n    static constexpr std::size_t\
+  bundledCode: "#line 2 \"graph/connected/ComplementConnectedComponents.hpp\"\n\n\
+    #line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
+    \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
+    \ __LINE__\n#endif\n\n#define OVERLOAD5(a, b, c, d, e, ...) e\n#define REP1_0(b,\
+    \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
+    \                     \\\n    for (ll REP_COUNTER_##c = 0; REP_COUNTER_##c < (ll)(b);\
+    \ ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define REP2(i,\
+    \ b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i = (ll)(a);\
+    \ i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b);\
+    \ i += (ll)(c))\n#define rep(...) OVERLOAD5(__VA_ARGS__, REP4, REP3, REP2, REP1)(__VA_ARGS__)\n\
+    #define RREP2(i, a) for (ll i = (ll)(a)-1; i >= 0; --i)\n#define RREP3(i, a, b)\
+    \ for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n#define RREP4(i, a, b, c) for (ll\
+    \ i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n#define rrep(...) OVERLOAD5(__VA_ARGS__,\
+    \ RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define REPS2(i, b) for (ll i = 1; i <= (ll)(b);\
+    \ ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define\
+    \ REPS4(i, a, b, c) for (ll i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define\
+    \ reps(...) OVERLOAD5(__VA_ARGS__, REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define\
+    \ RREPS2(i, a) for (ll i = (ll)(a); i > 0; --i)\n#define RREPS3(i, a, b) for (ll\
+    \ i = (ll)(a); i > (ll)(b); --i)\n#define RREPS4(i, a, b, c) for (ll i = (ll)(a);\
+    \ i > (ll)(b); i -= (ll)(c))\n#define rreps(...) OVERLOAD5(__VA_ARGS__, RREPS4,\
+    \ RREPS3, RREPS2)(__VA_ARGS__)\n\n#define each_for(...) for (auto&& __VA_ARGS__)\n\
+    #define each_const(...) for (const auto& __VA_ARGS__)\n\n#define all(v) std::begin(v),\
+    \ std::end(v)\n#define rall(v) std::rbegin(v), std::rend(v)\n\n#if __cpp_if_constexpr\
+    \ >= 201606L\n#define IF_CONSTEXPR constexpr\n#else\n#define IF_CONSTEXPR\n#endif\n\
+    \n#define IO_BUFFER_SIZE (1 << 17)\n#line 2 \"template/alias.hpp\"\n\n#line 4\
+    \ \"template/alias.hpp\"\n\nusing ll = long long;\nusing uint = unsigned int;\n\
+    using ull = unsigned long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\
+    using ld = long double;\nusing PLL = std::pair<ll, ll>;\ntemplate<class T>\nusing\
+    \ prique = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\ntemplate<class\
+    \ T> struct infinity {\n    static constexpr T value = std::numeric_limits<T>::max()\
+    \ / 2;\n    static constexpr T mvalue = std::numeric_limits<T>::lowest() / 2;\n\
+    \    static constexpr T max = std::numeric_limits<T>::max();\n    static constexpr\
+    \ T min = std::numeric_limits<T>::lowest();\n};\n\n#if __cplusplus <= 201402L\n\
+    template<class T> constexpr T infinity<T>::value;\ntemplate<class T> constexpr\
+    \ T infinity<T>::mvalue;\ntemplate<class T> constexpr T infinity<T>::max;\ntemplate<class\
+    \ T> constexpr T infinity<T>::min;\n#endif\n\n#if __cpp_variable_templates >=\
+    \ 201304L\ntemplate<class T> constexpr T INF = infinity<T>::value;\n#endif\n\n\
+    constexpr ll inf = infinity<ll>::value;\nconstexpr ld EPS = 1e-8;\nconstexpr ld\
+    \ PI = 3.1415926535897932384626;\n#line 2 \"template/type_traits.hpp\"\n\n#line\
+    \ 5 \"template/type_traits.hpp\"\n\ntemplate<class T, class... Args> struct function_traits_impl\
+    \ {\n    using result_type = T;\n    template<std::size_t idx>\n    using argument_type\
+    \ =\n        typename std::tuple_element<idx, std::tuple<Args...>>::type;\n  \
+    \  using argument_tuple = std::tuple<Args...>;\n    static constexpr std::size_t\
     \ arg_size() { return sizeof...(Args); }\n};\n\ntemplate<class> struct function_traits_helper;\n\
     \ntemplate<class Res, class Tp, class... Args>\nstruct function_traits_helper<Res\
     \ (Tp::*)(Args...)> {\n    using type = function_traits_impl<Res, Args...>;\n\
@@ -442,63 +441,87 @@ data:
     \        return res;\n    }\n    void press(std::vector<T>& vec) const {\n   \
     \     assert(sorted);\n        for (auto&& i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
-    };\n#line 2 \"string/SuffixArray.hpp\"\n\n#line 4 \"string/SuffixArray.hpp\"\n\
-    \nnamespace internal {\n\ntemplate<class Cont> std::vector<int> sa_is(const Cont&\
-    \ str, int m) {\n    int n = str.size();\n    if (n == 0) return {};\n    if (n\
-    \ == 1) return {0};\n    if (n == 2) {\n        if (str[0] < str[1]) return {0,\
-    \ 1};\n        return {1, 0};\n    }\n\n    std::vector<int> sa(n);\n    std::vector<bool>\
-    \ ls(n);\n    ls[n - 1] = 0;\n    rrep (i, n - 1) {\n        if (str[i] < str[i\
-    \ + 1]) ls[i] = 1;\n        else if (str[i] > str[i + 1]) ls[i] = 0;\n       \
-    \ else ls[i] = ls[i + 1];\n    }\n\n    std::vector<int> sml(m + 1), sms(m + 1);\n\
-    \    rep (i, n) {\n        if (ls[i]) ++sml[str[i] + 1];\n        else ++sms[str[i]];\n\
-    \    }\n    rep (i, m + 1) {\n        sms[i] += sml[i];\n        if (i < m) sml[i\
-    \ + 1] += sms[i];\n    }\n    auto induce_sort = [&](const std::vector<int>& lms)\
-    \ {\n        std::fill(all(sa), -1);\n        std::vector<int> buf = sms;\n  \
-    \      for (auto d : lms) {\n            if (d == n) continue;\n            sa[buf[str[d]]++]\
-    \ = d;\n        }\n        buf = sml;\n        sa[buf[str[n - 1]]++] = n - 1;\n\
-    \        rep (i, n) {\n            int t = sa[i];\n            if (t >= 1 && !ls[t\
-    \ - 1]) sa[buf[str[t - 1]]++] = t - 1;\n        }\n        buf = sml;\n      \
-    \  rrep (i, n) {\n            int t = sa[i];\n            if (t >= 1 && ls[t -\
-    \ 1]) sa[--buf[str[t - 1] + 1]] = t - 1;\n        }\n    };\n    std::vector<int>\
-    \ rlms(n + 1, -1);\n    int k = 0;\n    rep (i, 1, n) {\n        if (!ls[i - 1]\
-    \ && ls[i]) rlms[i] = k++;\n    }\n    std::vector<int> lms;\n    lms.reserve(k);\n\
-    \    rep (i, 1, n) {\n        if (!ls[i - 1] && ls[i]) lms.push_back(i);\n   \
-    \ }\n    induce_sort(lms);\n\n    if (k) {\n        std::vector<int> lms2;\n \
-    \       lms2.reserve(k);\n        for (auto d : sa) {\n            if (rlms[d]\
-    \ != -1) lms2.push_back(d);\n        }\n        std::vector<int> rec_s(k);\n \
-    \       int rec_m = 0;\n        rec_s[rlms[lms2[0]]] = 0;\n        rep (i, 1,\
-    \ k) {\n            int l = lms2[i - 1], r = lms2[i];\n            int l2 = (rlms[l]\
-    \ + 1 < k) ? lms[rlms[l] + 1] : n;\n            int r2 = (rlms[r] + 1 < k) ? lms[rlms[r]\
-    \ + 1] : n;\n            bool flag = true;\n            if (l2 - l != r2 - r)\
-    \ flag = false;\n            else {\n                while (l < l2) {\n      \
-    \              if (str[l] != str[r]) break;\n                    ++l, ++r;\n \
-    \               }\n                if (l == n || str[l] != str[r]) flag = false;\n\
-    \            }\n            if (!flag) ++rec_m;\n            rec_s[rlms[lms2[i]]]\
-    \ = rec_m;\n        }\n        auto rec_sa = sa_is(rec_s, rec_m);\n        rep\
-    \ (i, k) lms2[i] = lms[rec_sa[i]];\n        induce_sort(lms2);\n    }\n    return\
-    \ sa;\n}\n\n} // namespace internal\n\ntemplate<class Cont> std::vector<int> suffix_array(const\
-    \ Cont& str, int m) {\n    return internal::sa_is(str, m + 1);\n}\ntemplate<class\
-    \ Cont> std::vector<int> suffix_array(const Cont& str) {\n    std::vector<typename\
-    \ Cont::value_type> s(all(str));\n    compressor<typename Cont::value_type> cmp(s,\
-    \ true);\n    return internal::sa_is(cmp.pressed(s), cmp.size());\n}\ntemplate<>\
-    \ std::vector<int> suffix_array(const std::string& str) {\n    return internal::sa_is(str,\
-    \ 256);\n}\n\n/**\n * @brief SuffixArray\n * @docs docs/string/SuffixArray.md\n\
-    \ */\n#line 5 \"string/LCPArray.hpp\"\n\ntemplate<class Cont>\nstd::vector<int>\
-    \ lcp_array(const Cont& str, const std::vector<int>& sa) {\n    int n = str.size();\n\
-    \    std::vector<int> rank(n);\n    rep (i, n) rank[sa[i]] = i;\n    std::vector<int>\
-    \ lcp(n - 1);\n    int h = 0;\n    rep (i, n) {\n        if (rank[i] == 0) continue;\n\
-    \        int j = sa[rank[i] - 1];\n        while (i + h < n && j + h < n && str[i\
-    \ + h] == str[j + h]) ++h;\n        lcp[rank[i] - 1] = h;\n        chmax(--h,\
-    \ 0);\n    }\n    return lcp;\n}\n\n/**\n * @brief LCPArray\n * @docs docs/string/LCPArray.md\n\
-    \ */\n"
-  code: "#pragma once\n\n#include \"../other/template.hpp\"\n#include \"SuffixArray.hpp\"\
-    \n\ntemplate<class Cont>\nstd::vector<int> lcp_array(const Cont& str, const std::vector<int>&\
-    \ sa) {\n    int n = str.size();\n    std::vector<int> rank(n);\n    rep (i, n)\
-    \ rank[sa[i]] = i;\n    std::vector<int> lcp(n - 1);\n    int h = 0;\n    rep\
-    \ (i, n) {\n        if (rank[i] == 0) continue;\n        int j = sa[rank[i] -\
-    \ 1];\n        while (i + h < n && j + h < n && str[i + h] == str[j + h]) ++h;\n\
-    \        lcp[rank[i] - 1] = h;\n        chmax(--h, 0);\n    }\n    return lcp;\n\
-    }\n\n/**\n * @brief LCPArray\n * @docs docs/string/LCPArray.md\n */\n"
+    };\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class\
+    \ T = int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
+    \ : from(-1), to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1)\n\
+    \        : from(f), to(t), cost(c), idx(i) {}\n    edge(int f, int t, T&& c, int\
+    \ i = -1)\n        : from(f), to(t), cost(std::move(c)), idx(i) {}\n    operator\
+    \ int() const { return to; }\n    friend bool operator<(const edge<T>& lhs, const\
+    \ edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n    }\n    friend bool\
+    \ operator>(const edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost\
+    \ > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using Edges = std::vector<edge<T>>;\n\
+    template<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class\
+    \ T = int> class Graph : public std::vector<std::vector<edge<T>>> {\nprivate:\n\
+    \    using Base = std::vector<std::vector<edge<T>>>;\n\npublic:\n    int edge_id\
+    \ = 0;\n    using Base::Base;\n    int edge_size() const { return edge_id; }\n\
+    \    int add_edge(int a, int b, const T& c, bool is_directed = false) {\n    \
+    \    assert(0 <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
+    \        (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed)\
+    \ (*this)[b].emplace_back(b, a, c, edge_id);\n        return edge_id++;\n    }\n\
+    \    int add_edge(int a, int b, bool is_directed = false) {\n        assert(0\
+    \ <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
+    \        (*this)[a].emplace_back(a, b, 1, edge_id);\n        if (!is_directed)\
+    \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
+    };\n\ntemplate<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {\n    const\
+    \ int N = G.size();\n    auto res = make_vec<T>(N, N, infinity<T>::value);\n \
+    \   rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n        for (const auto& e :\
+    \ G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\ntemplate<class T>\
+    \ Edges<T> UndirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n\
+    \    const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n   \
+    \     for (const auto& e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\n\
+    template<class T> Edges<T> DirectedListToEdges(const Graph<T>& G) {\n    const\
+    \ int V = G.size();\n    const int E = std::accumulate(\n        all(G), 0, [](int\
+    \ a, const std::vector<edge<T>>& v) -> int {\n            return a + v.size();\n\
+    \        });\n    Edges<T> Ed(G.edge_size());\n    Ed.reserve(E);\n    rep (i,\
+    \ V) {\n        for (const auto& e : G[i]) {\n            if (Ed[e.idx] == -1)\
+    \ Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n    return\
+    \ Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n   \
+    \ const int V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n        for\
+    \ (const auto& e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from, e.cost,\
+    \ e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n    return res;\n\
+    }\n\n\nstruct unweighted_edge {\n    template<class... Args> unweighted_edge(const\
+    \ Args&...) {}\n    operator int() { return 1; }\n};\n\nusing UnweightedGraph\
+    \ = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n * @docs docs/graph/Graph.md\n\
+    \ */\n#line 5 \"graph/connected/ComplementConnectedComponents.hpp\"\n\ntemplate<class\
+    \ T> class ComplementConnectedComponents {\nprivate:\n    int n, sz;\n    const\
+    \ Graph<T>& G;\n    std::vector<int> cmp;\n    void init() {\n        n = G.size();\n\
+    \        cmp.assign(n, -1);\n        std::vector<int> rem, st;\n        rem.resize(n);\n\
+    \        std::iota(all(rem), 0);\n        st.reserve(n);\n        std::vector<bool>\
+    \ flg(n, false);\n        sz = 0;\n        while (!rem.empty()) {\n          \
+    \  int v = rem.back();\n            rem.pop_back();\n            cmp[v] = sz++;\n\
+    \            st.push_back(v);\n            while (!st.empty()) {\n           \
+    \     int v = st.back();\n                st.pop_back();\n                for\
+    \ (const auto& e : G[v]) flg[e.to] = true;\n                std::vector<int> nxt;\n\
+    \                for (int u : rem) {\n                    if (flg[u]) {\n    \
+    \                    nxt.push_back(u);\n                    }\n              \
+    \      else {\n                        cmp[u] = cmp[v];\n                    \
+    \    st.push_back(u);\n                    }\n                }\n            \
+    \    rem = std::move(nxt);\n                for (const auto& e : G[v]) flg[e.to]\
+    \ = false;\n            }\n        }\n    }\n\npublic:\n    ComplementConnectedComponents(const\
+    \ Graph<T>& G) : G(G) { init(); }\n    int size() const { return sz; }\n    int\
+    \ operator[](int k) const { return cmp[k]; }\n    std::vector<std::vector<int>>\
+    \ groups() const {\n        std::vector<std::vector<int>> res(sz);\n        rep\
+    \ (i, n) res[cmp[i]].push_back(i);\n        return res;\n    }\n};\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
+    \n\ntemplate<class T> class ComplementConnectedComponents {\nprivate:\n    int\
+    \ n, sz;\n    const Graph<T>& G;\n    std::vector<int> cmp;\n    void init() {\n\
+    \        n = G.size();\n        cmp.assign(n, -1);\n        std::vector<int> rem,\
+    \ st;\n        rem.resize(n);\n        std::iota(all(rem), 0);\n        st.reserve(n);\n\
+    \        std::vector<bool> flg(n, false);\n        sz = 0;\n        while (!rem.empty())\
+    \ {\n            int v = rem.back();\n            rem.pop_back();\n          \
+    \  cmp[v] = sz++;\n            st.push_back(v);\n            while (!st.empty())\
+    \ {\n                int v = st.back();\n                st.pop_back();\n    \
+    \            for (const auto& e : G[v]) flg[e.to] = true;\n                std::vector<int>\
+    \ nxt;\n                for (int u : rem) {\n                    if (flg[u]) {\n\
+    \                        nxt.push_back(u);\n                    }\n          \
+    \          else {\n                        cmp[u] = cmp[v];\n                \
+    \        st.push_back(u);\n                    }\n                }\n        \
+    \        rem = std::move(nxt);\n                for (const auto& e : G[v]) flg[e.to]\
+    \ = false;\n            }\n        }\n    }\n\npublic:\n    ComplementConnectedComponents(const\
+    \ Graph<T>& G) : G(G) { init(); }\n    int size() const { return sz; }\n    int\
+    \ operator[](int k) const { return cmp[k]; }\n    std::vector<std::vector<int>>\
+    \ groups() const {\n        std::vector<std::vector<int>> res(sz);\n        rep\
+    \ (i, n) res[cmp[i]].push_back(i);\n        return res;\n    }\n};\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -509,25 +532,18 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  - string/SuffixArray.hpp
+  - graph/Graph.hpp
   isVerificationFile: false
-  path: string/LCPArray.hpp
+  path: graph/connected/ComplementConnectedComponents.hpp
   requiredBy: []
-  timestamp: '2024-05-12 17:35:55+09:00'
+  timestamp: '2024-06-05 12:01:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/string/number_of_substrings.test.cpp
-documentation_of: string/LCPArray.hpp
+  - test/yosupo/new/connected_components_of_complement_graph.test.cpp
+documentation_of: graph/connected/ComplementConnectedComponents.hpp
 layout: document
 redirect_from:
-- /library/string/LCPArray.hpp
-- /library/string/LCPArray.hpp.html
-title: LCPArray
+- /library/graph/connected/ComplementConnectedComponents.hpp
+- /library/graph/connected/ComplementConnectedComponents.hpp.html
+title: graph/connected/ComplementConnectedComponents.hpp
 ---
-## 概要
-
-SA 上で隣接する二つの suffix の Longest Common Prefix `lcp(s[sa[i]], s[sa[i + 1]])` をそれぞれ求める。
-
-例えば Range Minimum Query に載せることで任意の二つの suffix の lcp を求めることができる。
-
-- `vector<int> lcp_array(string s, vector<int> sa)` : `s` とその SA が与えられたときに lcp を求める。 $\Theta(\log n)$ 。

@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/other/CountEulerianTrail.hpp
     title: CountEulerianTrail(BEST Theorem)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/Combinatorics.hpp
     title: Combinatorics
   - icon: ':question:'
