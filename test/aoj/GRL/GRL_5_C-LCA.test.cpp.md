@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree/DoublingLowestCommonAncestor.hpp
     title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
       \u308BLCA)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -515,8 +515,8 @@ data:
     \    int next_vertex(int s, int t) const {\n        assert(s != t);\n        if\
     \ (dep[s] >= dep[t]) return parent(s);\n        int u = kth_ancestor(t, dep[t]\
     \ - dep[s] - 1);\n        return parent(u) == s ? u : parent(s);\n    }\n    int\
-    \ kth_next_vertext(int s, int t, int k) const {\n        int l = lca(s, t);\n\
-    \        int d = dep[s] + dep[t] - 2 * dep[l];\n        if (d < k) return -1;\n\
+    \ kth_next_vertex(int s, int t, int k) const {\n        int l = lca(s, t);\n \
+    \       int d = dep[s] + dep[t] - 2 * dep[l];\n        if (d < k) return -1;\n\
     \        if (dep[s] - dep[l] >= k) return kth_ancestor(s, k);\n        return\
     \ kth_ancestor(t, d - k);\n    }\n    Edges<T> path(int s, int t) const {\n  \
     \      Edges<T> pre, suf;\n        while (dep[s] > dep[t]) pre.push_back(par[s]),\
@@ -562,7 +562,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_5_C-LCA.test.cpp
   requiredBy: []
-  timestamp: '2024-05-12 17:35:55+09:00'
+  timestamp: '2024-06-13 00:08:28+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_5_C-LCA.test.cpp

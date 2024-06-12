@@ -242,7 +242,7 @@ data:
       title: geometry/template.hpp
   - name: graph
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/Graph.hpp
       title: Graph-template
   - name: graph/connected
@@ -363,7 +363,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/tree/ContourQuery.hpp
       title: graph/tree/ContourQuery.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/tree/DoublingLowestCommonAncestor.hpp
       title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
         \u308BLCA)"
@@ -581,7 +581,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/monoid2.hpp
       title: other/monoid2.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/template.hpp
       title: other/template.hpp
   - name: random
@@ -624,28 +624,28 @@ data:
       title: Z-Algorithm
   - name: template
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/alias.hpp
       title: template/alias.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/bitop.hpp
       title: template/bitop.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/func.hpp
       title: template/func.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/in.hpp
       title: template/in.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/macros.hpp
       title: template/macros.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/out.hpp
       title: template/out.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/type_traits.hpp
       title: template/type_traits.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/util.hpp
       title: template/util.hpp
   verificationCategories:
@@ -1418,7 +1418,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
       title: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/tree/jump_on_tree.test.cpp
       title: test/yosupo/tree/jump_on_tree.test.cpp
     - icon: ':heavy_check_mark:'
