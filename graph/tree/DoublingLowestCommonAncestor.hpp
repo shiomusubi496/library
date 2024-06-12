@@ -75,7 +75,7 @@ public:
         int u = kth_ancestor(t, dep[t] - dep[s] - 1);
         return parent(u) == s ? u : parent(s);
     }
-    int kth_next_vertext(int s, int t, int k) const {
+    int kth_next_vertex(int s, int t, int k) const {
         int l = lca(s, t);
         int d = dep[s] + dep[t] - 2 * dep[l];
         if (d < k) return -1;
