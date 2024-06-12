@@ -1,45 +1,45 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/DoublingLowestCommonAncestor.hpp
     title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
       \u308BLCA)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/jump_on_tree
@@ -537,14 +537,14 @@ data:
     \ {\n    int N, Q; scan >> N >> Q;\n    Graph<int> G(N);\n    rep (N - 1) {\n\
     \        int a, b; scan >> a >> b;\n        G.add_edge(a, b);\n    }\n    DoublingLCA<int>\
     \ dlca(G);\n    rep (Q) {\n        int s, t, k; scan >> s >> t >> k;\n       \
-    \ print << dlca.kth_next_vertext(s, t, k) << endl;\n    }\n}\n"
+    \ print << dlca.kth_next_vertex(s, t, k) << endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/jump_on_tree\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\n#include\
     \ \"../../../graph/tree/DoublingLowestCommonAncestor.hpp\"\nusing namespace std;\n\
     int main() {\n    int N, Q; scan >> N >> Q;\n    Graph<int> G(N);\n    rep (N\
     \ - 1) {\n        int a, b; scan >> a >> b;\n        G.add_edge(a, b);\n    }\n\
     \    DoublingLCA<int> dlca(G);\n    rep (Q) {\n        int s, t, k; scan >> s\
-    \ >> t >> k;\n        print << dlca.kth_next_vertext(s, t, k) << endl;\n    }\n\
+    \ >> t >> k;\n        print << dlca.kth_next_vertex(s, t, k) << endl;\n    }\n\
     }\n"
   dependsOn:
   - other/template.hpp
@@ -561,8 +561,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/tree/jump_on_tree.test.cpp
   requiredBy: []
-  timestamp: '2024-06-13 00:08:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-06-13 00:15:20+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/tree/jump_on_tree.test.cpp
 layout: document
