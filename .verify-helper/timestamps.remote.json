@@ -24,6 +24,7 @@
 "test/aoj/CGL/CGL_4_A-convex-hull.test.cpp": "2024-06-12 23:00:38 +0900",
 "test/aoj/CGL/CGL_4_B-diameter.test.cpp": "2024-06-12 23:00:38 +0900",
 "test/aoj/CGL/CGL_4_C-cut.test.cpp": "2024-06-12 23:00:38 +0900",
+"test/aoj/CGL/CGL_5_A-closest.test.cpp": "2024-06-12 23:55:19 +0900",
 "test/aoj/CGL/CGL_7_A-intersect.test.cpp": "2024-05-12 17:35:55 +0900",
 "test/aoj/CGL/CGL_7_B-incenter.test.cpp": "2024-05-12 17:35:55 +0900",
 "test/aoj/CGL/CGL_7_C-circumcenter.test.cpp": "2024-05-12 17:35:55 +0900",
