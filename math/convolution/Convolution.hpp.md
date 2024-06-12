@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
     title: ModInt
   - icon: ':question:'
@@ -32,7 +32,7 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/FrequencyTableofTreeDistance.hpp
     title: Frequency Table of Tree Distance
   - icon: ':heavy_check_mark:'
@@ -192,12 +192,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
     title: test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
     title: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/math/convolution/Convolution.md
     document_title: "Convolution(\u7573\u307F\u8FBC\u307F)"
@@ -950,7 +950,7 @@ data:
   - math/convolution/RelaxedConvolution.hpp
   - math/StirlingNumber.hpp
   timestamp: '2024-05-29 15:54:32+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DPL/DPL_5_G.test.cpp
   - test/yosupo/polynomial/exp_of_formal_power_series_sparse.test.cpp

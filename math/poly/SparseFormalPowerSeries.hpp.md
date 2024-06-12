@@ -4,16 +4,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/Combinatorics.hpp
     title: Combinatorics
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/MontgomeryModInt.hpp
     title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
   - icon: ':heavy_check_mark:'
     path: math/SqrtMod.hpp
     title: "SqrtMod(\u5E73\u65B9\u5270\u4F59)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/convolution/Convolution.hpp
     title: "Convolution(\u7573\u307F\u8FBC\u307F)"
   - icon: ':heavy_check_mark:'

@@ -32,7 +32,7 @@ data:
   - icon: ':warning:'
     path: data-struct/other/SkipList.hpp
     title: SkipList
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/TreeHash.hpp
     title: TreeHash
   - icon: ':heavy_check_mark:'
@@ -47,7 +47,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/TetrationMod.hpp
     title: TetrationMod
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/RollingHash.hpp
     title: "RollingHash(\u30ED\u30EA\u30CF)"
   - icon: ':heavy_check_mark:'
@@ -72,12 +72,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/wildcard_pattern_matching.test.cpp
     title: test/yosupo/new/wildcard_pattern_matching.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
     title: test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/random/Random.md
     document_title: Random
@@ -567,7 +567,7 @@ data:
   - math/PrimitiveRoot.hpp
   - data-struct/other/SkipList.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/NTL/NTL_1_D-Phi.test.cpp
   - test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp

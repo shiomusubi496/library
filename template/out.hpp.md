@@ -74,7 +74,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/other/PersistentArray.hpp
     title: "PersistentArray(\u5B8C\u5168\u6C38\u7D9A\u914D\u5217)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/other/RangeSet.hpp
     title: "RangeSet(\u533A\u9593\u3092std::set\u3067\u7BA1\u7406\u3059\u308B\u4F8B\
       \u306E\u3084\u3064)"
@@ -87,7 +87,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/other/SlopeTrick.hpp
     title: SlopeTrick
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/BinaryIndexedTree.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
   - icon: ':heavy_check_mark:'
@@ -103,7 +103,7 @@ data:
     path: data-struct/segment/DynamicLazySegmentTree.hpp
     title: "DynamicLazySegmentTree(\u52D5\u7684\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\
       \u30C8\u6728)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/DynamicSegmentTree.hpp
     title: "DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':heavy_check_mark:'
@@ -131,7 +131,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/RangeSortQuery.hpp
     title: RangeSortQuery
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':heavy_check_mark:'
@@ -200,25 +200,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: dp/MonotoneMinima.hpp
     title: MonotoneMinima
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: dp/OnlineOfflineDP.hpp
     title: Online Offline DP
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: dp/SMAWK.hpp
     title: SMAWK
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: geometry/All.hpp
     title: geometry/All.hpp
   - icon: ':heavy_check_mark:'
     path: geometry/Circle.hpp
     title: geometry/Circle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/Line.hpp
     title: geometry/Line.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/Point.hpp
     title: geometry/Point.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/Polygon.hpp
     title: geometry/Polygon.hpp
   - icon: ':heavy_check_mark:'
@@ -227,10 +227,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: geometry/Triangle.hpp
     title: geometry/Triangle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/template.hpp
     title: geometry/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':heavy_check_mark:'
@@ -255,13 +255,13 @@ data:
     path: graph/connected/TwoEdgeConnectedComponents.hpp
     title: "TwoEdgeConnectedComponents(\u4E8C\u8FBA\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/flow/KProjectSelectionProblem.hpp
     title: "KProjectSelectionProblem(K\u5024\u71C3\u3084\u3059\u57CB\u3081\u308B)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/flow/MaxFlow.hpp
     title: "MaxFlow(\u6700\u5927\u6D41)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/flow/ProjectSelectionProblem.hpp
     title: "ProjectSelectionProblem(\u71C3\u3084\u3059\u57CB\u3081\u308B)"
   - icon: ':heavy_check_mark:'
@@ -322,7 +322,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest-path/Dijkstra.hpp
     title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest-path/Restore.hpp
     title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
   - icon: ':heavy_check_mark:'
@@ -338,7 +338,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree/ContourQuery.hpp
     title: graph/tree/ContourQuery.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/DoublingLowestCommonAncestor.hpp
     title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
       \u308BLCA)"
@@ -349,25 +349,25 @@ data:
     path: graph/tree/EulerTourSubtree.hpp
     title: "EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\
       \u6728\u30AF\u30A8\u30EA)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/FrequencyTableofTreeDistance.hpp
     title: Frequency Table of Tree Distance
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/HeavyLightDecomposition.hpp
     title: "HeavyLightDecomposition(HL\u5206\u89E3)"
   - icon: ':heavy_check_mark:'
     path: graph/tree/PMORMQLCA.hpp
     title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/ReRooting.hpp
     title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/TreeCentroid.hpp
     title: "TreeCentroid(\u6728\u306E\u91CD\u5FC3)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/TreeDiameter.hpp
     title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/TreeHash.hpp
     title: TreeHash
   - icon: ':heavy_check_mark:'
@@ -376,7 +376,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/BarrettReduction.hpp
     title: math/BarrettReduction.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/ChineseRemainder.hpp
     title: "Chinese Remainder(\u4E2D\u56FD\u5270\u4F59\u5B9A\u7406)"
   - icon: ':heavy_check_mark:'
@@ -412,14 +412,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/LinearModMin.hpp
     title: LinearModMin
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/MillerRabin.hpp
     title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
       )"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/MontgomeryModInt.hpp
     title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
   - icon: ':heavy_check_mark:'
@@ -465,7 +465,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/convolution/BitwiseXorConvolution.hpp
     title: BitwiseXorConvolution
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/convolution/Convolution.hpp
     title: "Convolution(\u7573\u307F\u8FBC\u307F)"
   - icon: ':heavy_check_mark:'
@@ -540,7 +540,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/poly/TaylorShift.hpp
     title: TaylorShift
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -549,7 +549,7 @@ data:
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/Random.hpp
     title: Random
   - icon: ':heavy_check_mark:'
@@ -568,10 +568,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/Manacher.hpp
     title: "Manacher's Algortihm(\u6700\u9577\u56DE\u6587\u9577\u691C\u51FA)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/RollingHash.hpp
     title: "RollingHash(\u30ED\u30EA\u30CF)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/RunLength.hpp
     title: "RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
   - icon: ':heavy_check_mark:'
@@ -659,7 +659,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_4_C-cut.test.cpp
     title: test/aoj/CGL/CGL_4_C-cut.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/CGL/CGL_5_A-closest.test.cpp
     title: test/aoj/CGL/CGL_5_A-closest.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1191,6 +1191,9 @@ data:
     path: test/yosupo/matrix/system_of_linear_equations.test.cpp
     title: test/yosupo/matrix/system_of_linear_equations.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/closest_pair.test.cpp
+    title: test/yosupo/new/closest_pair.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/connected_components_of_complement_graph.test.cpp
     title: test/yosupo/new/connected_components_of_complement_graph.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1199,6 +1202,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/counting_spanning_tree_undirected.test.cpp
     title: test/yosupo/new/counting_spanning_tree_undirected.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/furthest_pair.test.cpp
+    title: test/yosupo/new/furthest_pair.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/matrix_det_mod_2.test.cpp
     title: test/yosupo/new/matrix_det_mod_2.test.cpp
@@ -1304,55 +1310,55 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/cartesian_tree.test.cpp
     title: test/yosupo/tree/cartesian_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
     title: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/jump_on_tree.test.cpp
     title: test/yosupo/tree/jump_on_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/lca-HLD.test.cpp
     title: test/yosupo/tree/lca-HLD.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
     title: test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/tree_diameter.test.cpp
     title: test/yosupo/tree/tree_diameter.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/tree_path_composite_sum.test.cpp
     title: test/yosupo/tree/tree_path_composite_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki/119-KPSP.test.cpp
     title: test/yuki/119-KPSP.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
     title: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki/1435_SegTree-BinarySearch.test.cpp
     title: test/yuki/1435_SegTree-BinarySearch.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki/1469-RunLength.test.cpp
     title: test/yuki/1469-RunLength.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki/1601-RangeSet.test.cpp
     title: test/yuki/1601-RangeSet.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki/2713-PSP.test.cpp
     title: test/yuki/2713-PSP.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki/3030-MRPrime.test.cpp
     title: test/yuki/3030-MRPrime.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki/447-CRT.test.cpp
     title: test/yuki/447-CRT.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki/448-Garner.test.cpp
     title: test/yuki/448-Garner.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki/705-Monge.test.cpp
     title: test/yuki/705-Monge.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki/855_DynamicSegTree.test.cpp
     title: test/yuki/855_DynamicSegTree.test.cpp
   _isVerificationFailed: true
@@ -2114,10 +2120,12 @@ data:
   - test/yosupo/matrix/pow_of_matrix.test.cpp
   - test/yosupo/matrix/matrix_det.test.cpp
   - test/yosupo/matrix/matrix_rank.test.cpp
+  - test/yosupo/new/furthest_pair.test.cpp
   - test/yosupo/new/static_convex_hull.test.cpp
   - test/yosupo/new/rational_approximation.test.cpp
   - test/yosupo/new/wildcard_pattern_matching.test.cpp
   - test/yosupo/new/matrix_product_mod_2.test.cpp
+  - test/yosupo/new/closest_pair.test.cpp
   - test/yosupo/new/counting_spanning_tree_undirected.test.cpp
   - test/yosupo/new/matrix_det_mod_2.test.cpp
   - test/yosupo/new/connected_components_of_complement_graph.test.cpp

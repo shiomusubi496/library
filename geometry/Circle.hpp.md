@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/Line.hpp
     title: geometry/Line.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/Point.hpp
     title: geometry/Point.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/template.hpp
     title: geometry/template.hpp
   - icon: ':question:'
@@ -38,7 +38,7 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: geometry/All.hpp
     title: geometry/All.hpp
   _extendedVerifiedWith:
@@ -57,9 +57,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
     title: test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/geometry/sort_points_by_argument.test.cpp
-    title: test/yosupo/geometry/sort_points_by_argument.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -710,7 +707,6 @@ data:
   - test/aoj/CGL/CGL_7_D-intersection.test.cpp
   - test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
   - test/aoj/CGL/CGL_7_E-intersection.test.cpp
-  - test/yosupo/geometry/sort_points_by_argument.test.cpp
 documentation_of: geometry/Circle.hpp
 layout: document
 redirect_from:

@@ -29,25 +29,25 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/flow/KProjectSelectionProblem.hpp
     title: "KProjectSelectionProblem(K\u5024\u71C3\u3084\u3059\u57CB\u3081\u308B)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/flow/ProjectSelectionProblem.hpp
     title: "ProjectSelectionProblem(\u71C3\u3084\u3059\u57CB\u3081\u308B)"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/bipartitematching.test.cpp
     title: test/yosupo/graph/bipartitematching.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki/119-KPSP.test.cpp
     title: test/yuki/119-KPSP.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki/2713-PSP.test.cpp
     title: test/yuki/2713-PSP.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/graph/flow/MaxFlow.md
     document_title: "MaxFlow(\u6700\u5927\u6D41)"
@@ -557,7 +557,7 @@ data:
   - graph/flow/KProjectSelectionProblem.hpp
   - graph/flow/ProjectSelectionProblem.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yuki/119-KPSP.test.cpp
   - test/yuki/2713-PSP.test.cpp

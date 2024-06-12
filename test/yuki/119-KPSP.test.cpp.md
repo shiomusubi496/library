@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/flow/KProjectSelectionProblem.hpp
     title: "KProjectSelectionProblem(K\u5024\u71C3\u3084\u3059\u57CB\u3081\u308B)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/flow/MaxFlow.hpp
     title: "MaxFlow(\u6700\u5927\u6D41)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/flow/ProjectSelectionProblem.hpp
     title: "ProjectSelectionProblem(\u71C3\u3084\u3059\u57CB\u3081\u308B)"
   - icon: ':question:'
@@ -39,9 +39,9 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/119
@@ -640,7 +640,7 @@ data:
   path: test/yuki/119-KPSP.test.cpp
   requiredBy: []
   timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yuki/119-KPSP.test.cpp
 layout: document

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/MontgomeryModInt.hpp
     title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
   - icon: ':question:'
@@ -60,12 +60,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/math/tetration_mod.test.cpp
     title: test/yosupo/math/tetration_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki/3030-MRPrime.test.cpp
     title: test/yuki/3030-MRPrime.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/math/MillerRabin.md
     document_title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\
@@ -595,7 +595,7 @@ data:
   - math/PollardRho.hpp
   - math/PrimitiveRoot.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yuki/3030-MRPrime.test.cpp
   - test/aoj/NTL/NTL_1_D-Phi.test.cpp

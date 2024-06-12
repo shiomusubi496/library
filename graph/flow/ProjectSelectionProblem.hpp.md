@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/flow/MaxFlow.hpp
     title: "MaxFlow(\u6700\u5927\u6D41)"
   - icon: ':question:'
@@ -32,19 +32,19 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/flow/KProjectSelectionProblem.hpp
     title: "KProjectSelectionProblem(K\u5024\u71C3\u3084\u3059\u57CB\u3081\u308B)"
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki/119-KPSP.test.cpp
     title: test/yuki/119-KPSP.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki/2713-PSP.test.cpp
     title: test/yuki/2713-PSP.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/graph/flow/ProjectSelectionProblem.md
     document_title: "ProjectSelectionProblem(\u71C3\u3084\u3059\u57CB\u3081\u308B)"
@@ -671,7 +671,7 @@ data:
   requiredBy:
   - graph/flow/KProjectSelectionProblem.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yuki/119-KPSP.test.cpp
   - test/yuki/2713-PSP.test.cpp

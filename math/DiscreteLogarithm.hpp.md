@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/KthRoot.hpp
     title: "KthRoot(k\u4E57\u6839)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
   - icon: ':heavy_check_mark:'

@@ -1,12 +1,18 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: math/ModInt.hpp
-    title: ModInt
-  - icon: ':heavy_check_mark:'
-    path: math/matrix/Matrix.hpp
-    title: "Matrix(\u884C\u5217)"
+  - icon: ':question:'
+    path: geometry/Line.hpp
+    title: geometry/Line.hpp
+  - icon: ':question:'
+    path: geometry/Point.hpp
+    title: geometry/Point.hpp
+  - icon: ':question:'
+    path: geometry/Polygon.hpp
+    title: geometry/Polygon.hpp
+  - icon: ':question:'
+    path: geometry/template.hpp
+    title: geometry/template.hpp
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
@@ -41,11 +47,11 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/matrix_rank
+    PROBLEM: https://judge.yosupo.jp/problem/furthest_pair
     links:
-    - https://judge.yosupo.jp/problem/matrix_rank
-  bundledCode: "#line 1 \"test/yosupo/matrix/matrix_rank.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/matrix_rank\"\n#line 2 \"other/template.hpp\"\
+    - https://judge.yosupo.jp/problem/furthest_pair
+  bundledCode: "#line 1 \"test/yosupo/new/furthest_pair.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/furthest_pair\"\n#line 2 \"other/template.hpp\"\
     \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
     \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define OVERLOAD5(a,\
     \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
@@ -444,225 +450,189 @@ data:
     \        return res;\n    }\n    void press(std::vector<T>& vec) const {\n   \
     \     assert(sorted);\n        for (auto&& i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
-    };\n#line 2 \"math/matrix/Matrix.hpp\"\n\n#line 2 \"math/ModInt.hpp\"\n\n#line\
-    \ 4 \"math/ModInt.hpp\"\n\ntemplate<class T, T mod> class StaticModInt {\n   \
-    \ static_assert(std::is_integral<T>::value, \"T must be integral\");\n    static_assert(std::is_unsigned<T>::value,\
-    \ \"T must be unsigned\");\n    static_assert(mod > 0, \"mod must be positive\"\
-    );\n    static_assert(mod <= std::numeric_limits<T>::max() / 2,\n            \
-    \      \"mod * 2 must be less than or equal to T::max()\");\n\nprivate:\n    using\
-    \ large_t = typename double_size_uint<T>::type;\n    using signed_t = typename\
-    \ std::make_signed<T>::type;\n    T val;\n    static constexpr unsigned int inv1000000007[]\
-    \ = {\n        0,         1,         500000004, 333333336, 250000002, 400000003,\n\
-    \        166666668, 142857144, 125000001, 111111112, 700000005};\n    static constexpr\
-    \ unsigned int inv998244353[] = {\n        0,         1,         499122177, 332748118,\
-    \ 748683265, 598946612,\n        166374059, 855638017, 873463809, 443664157, 299473306};\n\
-    \n    static constexpr ll mod_inv(ll a) {\n        ll b = mod;\n        ll x =\
-    \ 1, u = 0;\n        ll t = 0, tmp = 0;\n        while (b) {\n            t =\
-    \ a / b;\n            tmp = (a - t * b);\n            a = b;\n            b =\
-    \ tmp;\n            tmp = (x - t * u);\n            x = u;\n            u = tmp;\n\
-    \        }\n        if (x < 0) x += mod;\n        return x;\n    }\n\npublic:\n\
-    \    constexpr StaticModInt() : val(0) {}\n    template<class U,\n           \
-    \  typename std::enable_if<std::is_integral<U>::value &&\n                   \
-    \                  std::is_signed<U>::value>::type* = nullptr>\n    constexpr\
-    \ StaticModInt(U v) : val{} {\n        v %= static_cast<signed_t>(mod);\n    \
-    \    if (v < 0) v += static_cast<signed_t>(mod);\n        val = static_cast<T>(v);\n\
-    \    }\n    template<class U, typename std::enable_if<\n                     \
-    \     std::is_integral<U>::value &&\n                          std::is_unsigned<U>::value>::type*\
-    \ = nullptr>\n    constexpr StaticModInt(U v) : val(v % mod) {}\n    constexpr\
-    \ T get() const { return val; }\n    static constexpr T get_mod() { return mod;\
-    \ }\n    static constexpr StaticModInt raw(T v) {\n        StaticModInt res;\n\
-    \        res.val = v;\n        return res;\n    }\n    constexpr StaticModInt\
-    \ inv() const {\n        if IF_CONSTEXPR (mod == 1000000007) {\n            if\
-    \ (val <= 10) return inv1000000007[val];\n        }\n        else if IF_CONSTEXPR\
-    \ (mod == 998244353) {\n            if (val <= 10) return inv998244353[val];\n\
-    \        }\n        return mod_inv(val);\n    }\n    constexpr StaticModInt& operator++()\
-    \ {\n        ++val;\n        if (val == mod) val = 0;\n        return *this;\n\
-    \    }\n    constexpr StaticModInt operator++(int) {\n        StaticModInt res\
-    \ = *this;\n        ++*this;\n        return res;\n    }\n    constexpr StaticModInt&\
-    \ operator--() {\n        if (val == 0) val = mod;\n        --val;\n        return\
-    \ *this;\n    }\n    constexpr StaticModInt operator--(int) {\n        StaticModInt\
-    \ res = *this;\n        --*this;\n        return res;\n    }\n    constexpr StaticModInt&\
-    \ operator+=(const StaticModInt& other) {\n        val += other.val;\n       \
-    \ if (val >= mod) val -= mod;\n        return *this;\n    }\n    constexpr StaticModInt&\
-    \ operator-=(const StaticModInt& other) {\n        if (val < other.val) val +=\
-    \ mod;\n        val -= other.val;\n        return *this;\n    }\n    constexpr\
-    \ StaticModInt& operator*=(const StaticModInt& other) {\n        large_t a = val;\n\
-    \        a *= other.val;\n        a %= mod;\n        val = a;\n        return\
-    \ *this;\n    }\n    constexpr StaticModInt& operator/=(const StaticModInt& other)\
-    \ {\n        *this *= other.inv();\n        return *this;\n    }\n    friend constexpr\
-    \ StaticModInt operator+(const StaticModInt& lhs,\n                          \
-    \                  const StaticModInt& rhs) {\n        return StaticModInt(lhs)\
-    \ += rhs;\n    }\n    friend constexpr StaticModInt operator-(const StaticModInt&\
-    \ lhs,\n                                            const StaticModInt& rhs) {\n\
-    \        return StaticModInt(lhs) -= rhs;\n    }\n    friend constexpr StaticModInt\
-    \ operator*(const StaticModInt& lhs,\n                                       \
-    \     const StaticModInt& rhs) {\n        return StaticModInt(lhs) *= rhs;\n \
-    \   }\n    friend constexpr StaticModInt operator/(const StaticModInt& lhs,\n\
-    \                                            const StaticModInt& rhs) {\n    \
-    \    return StaticModInt(lhs) /= rhs;\n    }\n    constexpr StaticModInt operator+()\
-    \ const { return StaticModInt(*this); }\n    constexpr StaticModInt operator-()\
-    \ const { return StaticModInt() - *this; }\n    friend constexpr bool operator==(const\
-    \ StaticModInt& lhs,\n                                     const StaticModInt&\
-    \ rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend constexpr bool\
-    \ operator!=(const StaticModInt& lhs,\n                                     const\
-    \ StaticModInt& rhs) {\n        return lhs.val != rhs.val;\n    }\n    constexpr\
-    \ StaticModInt pow(ll a) const {\n        StaticModInt v = *this, res = 1;\n \
-    \       while (a) {\n            if (a & 1) res *= v;\n            a >>= 1;\n\
-    \            v *= v;\n        }\n        return res;\n    }\n    template<class\
-    \ Pr> void print(Pr& a) const { a.print(val); }\n    template<class Pr> void debug(Pr&\
-    \ a) const { a.print(val); }\n    template<class Sc> void scan(Sc& a) {\n    \
-    \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\n#if __cplusplus\
-    \ < 201703L\ntemplate<class T, T mod>\nconstexpr unsigned int StaticModInt<T,\
-    \ mod>::inv1000000007[];\ntemplate<class T, T mod>\nconstexpr unsigned int StaticModInt<T,\
-    \ mod>::inv998244353[];\n#endif\n\ntemplate<unsigned int p> using static_modint\
-    \ = StaticModInt<unsigned int, p>;\nusing modint1000000007 = static_modint<1000000007>;\n\
-    using modint998244353 = static_modint<998244353>;\n\ntemplate<class T, int id>\
-    \ class DynamicModInt {\n    static_assert(std::is_integral<T>::value, \"T must\
-    \ be integral\");\n    static_assert(std::is_unsigned<T>::value, \"T must be unsigned\"\
-    );\n\nprivate:\n    using large_t = typename double_size_uint<T>::type;\n    using\
-    \ signed_t = typename std::make_signed<T>::type;\n    T val;\n    static T mod;\n\
-    \npublic:\n    constexpr DynamicModInt() : val(0) {}\n    template<class U,\n\
-    \             typename std::enable_if<std::is_integral<U>::value &&\n        \
-    \                             std::is_signed<U>::value>::type* = nullptr>\n  \
-    \  constexpr DynamicModInt(U v) : val{} {\n        v %= static_cast<signed_t>(mod);\n\
-    \        if (v < 0) v += static_cast<signed_t>(mod);\n        val = static_cast<T>(v);\n\
-    \    }\n    template<class U, typename std::enable_if<\n                     \
-    \     std::is_integral<U>::value &&\n                          std::is_unsigned<U>::value>::type*\
-    \ = nullptr>\n    constexpr DynamicModInt(U v) : val(v % mod) {}\n    T get()\
-    \ const { return val; }\n    static T get_mod() { return mod; }\n    static void\
-    \ set_mod(T v) {\n        assert(v > 0);\n        assert(v <= std::numeric_limits<T>::max()\
-    \ / 2);\n        mod = v;\n    }\n    static DynamicModInt raw(T v) {\n      \
-    \  DynamicModInt res;\n        res.val = v;\n        return res;\n    }\n    DynamicModInt\
-    \ inv() const { return mod_inv(val, mod); }\n    DynamicModInt& operator++() {\n\
-    \        ++val;\n        if (val == mod) val = 0;\n        return *this;\n   \
-    \ }\n    DynamicModInt operator++(int) {\n        DynamicModInt res = *this;\n\
-    \        ++*this;\n        return res;\n    }\n    DynamicModInt& operator--()\
-    \ {\n        if (val == 0) val = mod;\n        --val;\n        return *this;\n\
-    \    }\n    DynamicModInt operator--(int) {\n        DynamicModInt res = *this;\n\
-    \        --*this;\n        return res;\n    }\n    DynamicModInt& operator+=(const\
-    \ DynamicModInt& other) {\n        val += other.val;\n        if (val >= mod)\
-    \ val -= mod;\n        return *this;\n    }\n    DynamicModInt& operator-=(const\
-    \ DynamicModInt& other) {\n        if (val < other.val) val += mod;\n        val\
-    \ -= other.val;\n        return *this;\n    }\n    DynamicModInt& operator*=(const\
-    \ DynamicModInt& other) {\n        large_t a = val;\n        a *= other.val;\n\
-    \        a %= mod;\n        val = a;\n        return *this;\n    }\n    DynamicModInt&\
-    \ operator/=(const DynamicModInt& other) {\n        *this *= other.inv();\n  \
-    \      return *this;\n    }\n    friend DynamicModInt operator+(const DynamicModInt&\
-    \ lhs,\n                                   const DynamicModInt& rhs) {\n     \
-    \   return DynamicModInt(lhs) += rhs;\n    }\n    friend DynamicModInt operator-(const\
-    \ DynamicModInt& lhs,\n                                   const DynamicModInt&\
-    \ rhs) {\n        return DynamicModInt(lhs) -= rhs;\n    }\n    friend DynamicModInt\
-    \ operator*(const DynamicModInt& lhs,\n                                   const\
-    \ DynamicModInt& rhs) {\n        return DynamicModInt(lhs) *= rhs;\n    }\n  \
-    \  friend DynamicModInt operator/(const DynamicModInt& lhs,\n                \
-    \                   const DynamicModInt& rhs) {\n        return DynamicModInt(lhs)\
-    \ /= rhs;\n    }\n    DynamicModInt operator+() const { return DynamicModInt(*this);\
-    \ }\n    DynamicModInt operator-() const { return DynamicModInt() - *this; }\n\
-    \    friend bool operator==(const DynamicModInt& lhs, const DynamicModInt& rhs)\
-    \ {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
-    \ DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return lhs.val != rhs.val;\n\
-    \    }\n    DynamicModInt pow(ll a) const {\n        DynamicModInt v = *this,\
-    \ res = 1;\n        while (a) {\n            if (a & 1) res *= v;\n          \
-    \  a >>= 1;\n            v *= v;\n        }\n        return res;\n    }\n    template<class\
-    \ Pr> void print(Pr& a) const { a.print(val); }\n    template<class Pr> void debug(Pr&\
-    \ a) const { a.print(val); }\n    template<class Sc> void scan(Sc& a) {\n    \
-    \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\ntemplate<class\
-    \ T, int id> T DynamicModInt<T, id>::mod = 998244353;\n\ntemplate<int id> using\
-    \ dynamic_modint = DynamicModInt<unsigned int, id>;\nusing modint = dynamic_modint<-1>;\n\
-    \n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n#line 5 \"math/matrix/Matrix.hpp\"\
-    \n\ntemplate<class> class Matrix;\n\nnamespace internal {\n\nusing Mat2 = Matrix<static_modint<2>>;\n\
-    \ntemplate<int> Mat2 prod_mod2_sub(const Mat2&, const Mat2&);\ntemplate<int> void\
-    \ gauss_mod2_sub(Mat2&);\n\n} // namespace internal\n\ntemplate<class T> class\
-    \ Matrix : public std::vector<std::vector<T>> {\nprivate:\n    using Base = std::vector<std::vector<T>>;\n\
-    \npublic:\n    Matrix() = default;\n    Matrix(int h, int w) : Base(h, std::vector<T>(w))\
-    \ {}\n    Matrix(int h, int w, const T& v) : Base(h, std::vector<T>(w, v)) {}\n\
-    \    Matrix(const Base& v) : Base(v) {}\n    Matrix(Base&& v) : Base(std::move(v))\
-    \ {}\n    static Matrix get_identity(int sz) {\n        Matrix res(sz, sz, T{0});\n\
-    \        rep (i, sz) res[i][i] = T{1};\n        return res;\n    }\n    int height()\
-    \ const { return this->size(); }\n    int width() const { return this->size()\
-    \ ? (*this)[0].size() : 0; }\n    bool is_square() const { return height() ==\
-    \ width(); }\n    Matrix& operator+=(const Matrix& other) {\n        assert(this->height()\
-    \ == other.height() &&\n               this->width() == other.width());\n    \
-    \    rep (i, this->height()) {\n            rep (j, this->width()) (*this)[i][j]\
-    \ += other[i][j];\n        }\n        return *this;\n    }\n    Matrix& operator-=(const\
-    \ Matrix& other) {\n        assert(this->height() == other.height() &&\n     \
-    \          this->width() == other.width());\n        rep (i, this->height()) {\n\
-    \            rep (j, this->width()) (*this)[i][j] -= other[i][j];\n        }\n\
-    \        return *this;\n    }\n    template<\n        bool AlwaysTrue = true,\n\
-    \        typename std::enable_if<!std::is_same<T, static_modint<2>>::value &&\n\
-    \                                AlwaysTrue>::type* = nullptr>\n    Matrix& operator*=(const\
-    \ Matrix& other) {\n        assert(this->width() == other.height());\n       \
-    \ Matrix res(this->height(), other.width());\n        rep (i, this->height())\
-    \ {\n            rep (k, other.height()) {\n                rep (j, other.width())\
-    \ res[i][j] += (*this)[i][k] * other[k][j];\n            }\n        }\n      \
-    \  return *this = std::move(res);\n    }\n    template<bool AlwaysTrue = true,\n\
-    \             typename std::enable_if<std::is_same<T, static_modint<2>>::value\
-    \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
-    \ Matrix& operator*=(const Matrix& other) {\n        assert(this->width() == other.height());\n\
-    \        return *this = internal::prod_mod2_sub<1>(*this, other);\n    }\n   \
-    \ Matrix& operator*=(T s) {\n        rep (i, height()) {\n            rep (j,\
-    \ width()) (*this)[i][j] *= s;\n        }\n        return *this;\n    }\n    friend\
-    \ Matrix operator+(const Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs)\
-    \ += rhs;\n    }\n    friend Matrix operator-(const Matrix& lhs, const Matrix&\
-    \ rhs) {\n        return Matrix(lhs) -= rhs;\n    }\n    friend Matrix operator*(const\
-    \ Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n\
-    \    friend Matrix operator*(const Matrix& lhs, T rhs) {\n        return Matrix(lhs)\
-    \ *= rhs;\n    }\n    friend Matrix operator*(int lhs, const Matrix& rhs) {\n\
-    \        return Matrix(rhs) *= lhs;\n    }\n    Matrix pow(ll b) const {\n   \
-    \     Matrix a = *this, res = get_identity(height());\n        while (b) {\n \
-    \           if (b & 1) res *= a;\n            a *= a;\n            b >>= 1;\n\
-    \        }\n        return res;\n    }\n    Matrix transpose() const {\n     \
-    \   Matrix res(width(), height());\n        rep (i, height()) {\n            rep\
-    \ (j, width()) res[j][i] = (*this)[i][j];\n        }\n        return res;\n  \
-    \  }\n    template<\n        bool AlwaysTrue = true,\n        typename std::enable_if<!std::is_same<T,\
-    \ static_modint<2>>::value &&\n                                AlwaysTrue>::type*\
-    \ = nullptr>\n    Matrix& gauss() {\n        int h = height(), w = width();\n\
-    \        int r = 0;\n        rep (i, w) {\n            int pivot = -1;\n     \
-    \       rep (j, r, h) {\n                if ((*this)[j][i] != 0) {\n         \
-    \           pivot = j;\n                    break;\n                }\n      \
-    \      }\n            if (pivot == -1) continue;\n            std::swap((*this)[pivot],\
-    \ (*this)[r]);\n            const T s = (*this)[r][i], iv = T{1} / s;\n      \
-    \      rep (j, i, w) (*this)[r][j] *= iv;\n            rep (j, h) {\n        \
-    \        if (j == r) continue;\n                const T s = (*this)[j][i];\n \
-    \               if (s == 0) continue;\n                rep (k, i, w) (*this)[j][k]\
-    \ -= (*this)[r][k] * s;\n            }\n            ++r;\n        }\n        return\
-    \ *this;\n    }\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<std::is_same<T,\
-    \ static_modint<2>>::value &&\n                                     AlwaysTrue>::type*\
-    \ = nullptr>\n    Matrix& gauss() {\n        internal::gauss_mod2_sub<1>(*this);\n\
-    \        return *this;\n    }\n    friend Matrix gauss(const Matrix& mat) { return\
-    \ Matrix(mat).gauss(); }\n    int rank(bool is_gaussed = false) const {\n    \
-    \    const int h = height(), w = width();\n        if (!is_gaussed)\n        \
-    \    return (h >= w ? Matrix(*this) : transpose()).gauss().rank(true);\n     \
-    \   int r = 0;\n        rep (i, h) {\n            while (r < w && (*this)[i][r]\
-    \ == 0) ++r;\n            if (r == w) return i;\n            ++r;\n        }\n\
-    \        return h;\n    }\n};\n\nnamespace internal {\n\ntemplate<int len> Mat2\
-    \ prod_mod2_sub(const Mat2& lhs, const Mat2& rhs) {\n    const int h = lhs.height(),\
-    \ w = rhs.width(), m = lhs.width();\n    if (len < m) return prod_mod2_sub<len\
-    \ << 1>(lhs, rhs);\n    std::vector<std::bitset<len>> a(h), b(w);\n    Mat2 res(h,\
-    \ w);\n    rep (i, h) {\n        rep (j, m) a[i][j] = lhs[i][j] != 0;\n    }\n\
-    \    rep (i, m) {\n        rep (j, w) b[j][i] = rhs[i][j] != 0;\n    }\n    rep\
-    \ (i, h) {\n        rep (j, w) {\n            res[i][j] = (a[i] & b[j]).count()\
-    \ & 1;\n        }\n    }\n    return res;\n}\ntemplate<> Mat2 prod_mod2_sub<1\
-    \ << 30>(const Mat2&, const Mat2&) { return {}; }\n\ntemplate<int len> void gauss_mod2_sub(Mat2&\
-    \ a) {\n    const int h = a.height(), w = a.width();\n    if (len < w) return\
-    \ gauss_mod2_sub<len << 1>(a);\n    std::vector<std::bitset<len>> b(h);\n    rep\
-    \ (i, h) {\n        rep (j, w) b[i][j] = a[i][j] != 0;\n    }\n    int r = 0;\n\
-    \    rep (i, w) {\n        int pivot = -1;\n        rep (j, r, h) {\n        \
-    \    if (b[j][i] != 0) {\n                pivot = j;\n                break;\n\
-    \            }\n        }\n        if (pivot == -1) continue;\n        std::swap(b[pivot],\
-    \ b[r]);\n        rep (j, h) {\n            if (j == r) continue;\n          \
-    \  if (b[j][i] != 0) b[j] ^= b[r];\n        }\n        ++r;\n    }\n    rep (i,\
-    \ h) {\n        rep (j, w) a[i][j] = (b[i][j] ? 1 : 0);\n    }\n}\ntemplate<>\
-    \ void gauss_mod2_sub<1 << 30>(Mat2&) {}\n\n} // namespace internal\n\n/**\n *\
-    \ @brief Matrix(\u884C\u5217)\n * @docs docs/math/matrix/Matrix.md\n */\n#line\
-    \ 5 \"test/yosupo/matrix/matrix_rank.test.cpp\"\nusing namespace std;\nusing mint\
-    \ = modint998244353;\nusing matx = Matrix<mint>;\nint main() {\n    int n, m;\
-    \ scan >> n >> m;\n    matx a(n, m); scan >> a;\n    prints(a.rank());\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_rank\"\n#include\
-    \ \"../../../other/template.hpp\"\n#include \"../../../math/matrix/Matrix.hpp\"\
-    \n#include \"../../../math/ModInt.hpp\"\nusing namespace std;\nusing mint = modint998244353;\n\
-    using matx = Matrix<mint>;\nint main() {\n    int n, m; scan >> n >> m;\n    matx\
-    \ a(n, m); scan >> a;\n    prints(a.rank());\n}\n"
+    };\n#line 3 \"test/yosupo/new/furthest_pair.test.cpp\"\n#define GEOMETRY_REAL_TYPE\
+    \ ll\n#line 2 \"geometry/Polygon.hpp\"\n\n#line 2 \"geometry/template.hpp\"\n\n\
+    #line 4 \"geometry/template.hpp\"\n\n#ifdef GEOMETRY_EPS\nconstexpr ld geom_eps\
+    \ = GEOMETRY_EPS;\n#else\nconstexpr ld geom_eps = EPS;\n#endif\n\n#ifdef GEOMETRY_REAL_TYPE\n\
+    using Real = GEOMETRY_REAL_TYPE;\n// a <=> b  :  cmp(a, b) <=> 0\ninline int cmp(Real\
+    \ a, Real b) {\n    if (a > b) return 1;\n    if (a < b) return -1;\n    return\
+    \ 0;\n}\n#else\nusing Real = ld;\n// a <=> b  :  cmp(a, b) <=> 0\ninline int cmp(ld\
+    \ a, ld b) {\n    if (a > b + geom_eps) return 1;\n    if (a < b - geom_eps) return\
+    \ -1;\n    return 0;\n}\n#endif\n\n#ifdef GEOMETRY_ANGLE_TYPE\nusing angle_t =\
+    \ GEOMETRY_ANGLE_TYPE;\n#else\nusing angle_t = ld;\n#endif\n#line 2 \"geometry/Point.hpp\"\
+    \n\n#line 4 \"geometry/Point.hpp\"\n\nclass Point {\npublic:\n    Real x, y;\n\
+    \    Point() : x(0), y(0) {}\n    Point(Real x, Real y) : x(x), y(y) {}\n    Point&\
+    \ operator+=(const Point& p) {\n        x += p.x;\n        y += p.y;\n       \
+    \ return *this;\n    }\n    Point& operator-=(const Point& p) {\n        x -=\
+    \ p.x;\n        y -= p.y;\n        return *this;\n    }\n    Point& operator*=(Real\
+    \ a) {\n        x *= a;\n        y *= a;\n        return *this;\n    }\n    Point&\
+    \ operator/=(Real a) {\n        x /= a;\n        y /= a;\n        return *this;\n\
+    \    }\n    Point operator+() const { return *this; }\n    Point operator-() const\
+    \ { return Point(-x, -y); }\n    friend Point operator+(const Point& p1, const\
+    \ Point& p2) {\n        return Point(p1) += p2;\n    }\n    friend Point operator-(const\
+    \ Point& p1, const Point& p2) {\n        return Point(p1) -= p2;\n    }\n    friend\
+    \ Point operator*(const Point& p, Real a) { return Point(p) *= a; }\n    friend\
+    \ Point operator*(Real a, const Point& p) { return Point(p) *= a; }\n    friend\
+    \ Point operator/(const Point& p, Real a) { return Point(p) /= a; }\n    friend\
+    \ bool operator==(const Point& p1, const Point& p2) {\n        return cmp(p1.x,\
+    \ p2.x) == 0 && cmp(p1.y, p2.y) == 0;\n    }\n    friend bool operator!=(const\
+    \ Point& p1, const Point& p2) {\n        return !(p1 == p2);\n    }\n    friend\
+    \ bool operator<(const Point& p1, const Point& p2) {\n        return cmp(p1.x,\
+    \ p2.x) < 0 ||\n               (cmp(p1.x, p2.x) == 0 && cmp(p1.y, p2.y) < 0);\n\
+    \    }\n    friend bool operator>(const Point& p1, const Point& p2) { return p2\
+    \ < p1; }\n    friend bool operator<=(const Point& p1, const Point& p2) {\n  \
+    \      return !(p2 < p1);\n    }\n    friend bool operator>=(const Point& p1,\
+    \ const Point& p2) {\n        return !(p1 < p2);\n    }\n    friend bool comp_arg(const\
+    \ Point& p1, const Point& p2) {\n        // -pi < theta <= pi\n        int a1\
+    \ = p1.y < 0 ? 0 : p1.y > 0 ? 2 : p1.x >= 0 ? 1 : 3;\n        int a2 = p2.y <\
+    \ 0 ? 0 : p2.y > 0 ? 2 : p2.x >= 0 ? 1 : 3;\n        if (a1 != a2) return a1 <\
+    \ a2;\n        return cross(p1, p2) > 0;\n    }\n    Real norm() const { return\
+    \ x * x + y * y; }\n    friend Real norm(const Point& p) { return p.norm(); }\n\
+    \    Real abs() const { return sqrt(norm()); }\n    friend Real abs(const Point&\
+    \ p) { return p.abs(); }\n    inline angle_t arg() const { return atan2((ld)y,\
+    \ (ld)x); }\n    friend angle_t arg(const Point& p) { return p.arg(); }\n    Point&\
+    \ rotate(angle_t theta) {\n        Real c = cos(theta), s = sin(theta);\n    \
+    \    Real nx = x * c - y * s, ny = x * s + y * c;\n        x = nx;\n        y\
+    \ = ny;\n        return *this;\n    }\n    friend Point rotate(const Point& p,\
+    \ angle_t theta) {\n        return Point(p).rotate(theta);\n    }\n    Point&\
+    \ rotate90() {\n        Real nx = -y, ny = x;\n        x = nx;\n        y = ny;\n\
+    \        return *this;\n    }\n    friend Point rotate90(const Point& p) { return\
+    \ Point(p).rotate90(); }\n    // inner product(\u5185\u7A4D), p1 * p2 = |p1| *\
+    \ |p2| * cos(theta)\n    friend Real dot(const Point& p1, const Point& p2) {\n\
+    \        return p1.x * p2.x + p1.y * p2.y;\n    }\n    // outer product(\u5916\
+    \u7A4D), p1 ^ p2 = |p1| * |p2| * sin(theta)\n    friend Real cross(const Point&\
+    \ p1, const Point& p2) {\n        return p1.x * p2.y - p1.y * p2.x;\n    }\n \
+    \   template<class Sc> void scan(Sc& scan) { scan >> x >> y; }\n    template<class\
+    \ Pr> void print(Pr& print) const { print << x << ' ' << y; }\n    template<class\
+    \ Pr> void debug(Pr& print) const {\n        print.print_char('(');\n        print\
+    \ << x;\n        print.print_char(',');\n        print << y;\n        print.print_char(')');\n\
+    \    }\n};\n\nReal distance(const Point& p1, const Point& p2) { return abs(p1\
+    \ - p2); }\n\nenum class CCW {\n    COUNTER_CLOCKWISE = 1,\n    CLOCKWISE = -1,\n\
+    \    ONLINE_BACK = 2,\n    ONLINE_FRONT = -2,\n    ON_SEGMENT = 0,\n};\n\nCCW\
+    \ ccw(const Point& p0, const Point& p1, const Point& p2) {\n    Point a = p1 -\
+    \ p0, b = p2 - p0;\n    if (cmp(cross(a, b), 0) > 0) return CCW::COUNTER_CLOCKWISE;\n\
+    \    if (cmp(cross(a, b), 0) < 0) return CCW::CLOCKWISE;\n    if (cmp(dot(a, b),\
+    \ 0) < 0) return CCW::ONLINE_BACK;\n    if (a.norm() < b.norm()) return CCW::ONLINE_FRONT;\n\
+    \    return CCW::ON_SEGMENT;\n}\n#line 2 \"geometry/Line.hpp\"\n\n#line 5 \"geometry/Line.hpp\"\
+    \n\nclass Line {\npublic:\n    Real a, b, c; // ax + by + c = 0\n    Line() :\
+    \ a(0), b(1), c(0) {}\n    Line(Real a, Real b, Real c) : a(a), b(b), c(c) {}\n\
+    \    Line(const Point& p1, const Point& p2) {\n        a = p2.y - p1.y;\n    \
+    \    b = p1.x - p2.x;\n        c = p2.x * p1.y - p1.x * p2.y;\n    }\n    friend\
+    \ bool operator==(const Line& l1, const Line& l2) {\n        return cmp(l1.a *\
+    \ l2.b, l2.a * l1.b) == 0 &&\n               cmp(l1.b * l2.c, l2.b * l1.c) ==\
+    \ 0;\n    }\n    friend bool operator!=(const Line& l1, const Line& l2) {\n  \
+    \      return !(l1 == l2);\n    }\n    friend bool operator<(const Line& l1, const\
+    \ Line& l2) {\n        return cmp(l1.a * l2.b, l2.a * l1.b) < 0 ||\n         \
+    \      (cmp(l1.a * l2.b, l2.a * l1.b) == 0 &&\n                cmp(l1.b * l2.c,\
+    \ l2.b * l1.c) < 0);\n    }\n    friend bool operator>(const Line& l1, const Line&\
+    \ l2) { return l2 < l1; }\n    friend bool operator<=(const Line& l1, const Line&\
+    \ l2) {\n        return !(l2 < l1);\n    }\n    friend bool operator>=(const Line&\
+    \ l1, const Line& l2) {\n        return !(l1 < l2);\n    }\n    bool is_on(const\
+    \ Point& p) const {\n        return cmp(a * p.x + b * p.y + c, 0) == 0;\n    }\n\
+    \    template<class Pr> void debug(Pr& print) const {\n        print << a;\n \
+    \       print.print_char('x');\n        print.print_char('+');\n        print\
+    \ << b;\n        print.print_char('y');\n        print.print_char('+');\n    \
+    \    print << c;\n        print.print_char('=');\n        print.print_char('0');\n\
+    \    }\n};\n\nReal distance(const Point& p, const Line& l) {\n    return std::abs(l.a\
+    \ * p.x + l.b * p.y + l.c) /\n           std::sqrt(l.a * l.a + l.b * l.b);\n}\n\
+    Real distance(const Line& l, const Point& p) { return distance(p, l); }\n\n//\
+    \ \u5782\u76F4\u4E8C\u7B49\u5206\u7DDA\nLine perpendicular_bisector(const Point&\
+    \ p1, const Point& p2) {\n    return Line((p1 + p2) / 2, (p1 + p2) / 2 + (p2 -\
+    \ p1).rotate90());\n}\n\n// \u5E73\u884C\u5224\u5B9A\nbool is_parallel(const Line&\
+    \ l1, const Line& l2) {\n    return cmp(l1.a * l2.b, l2.a * l1.b) == 0;\n}\n//\
+    \ \u76F4\u4EA4\u5224\u5B9A\nbool is_orthogonal(const Line& l1, const Line& l2)\
+    \ {\n    return cmp(l1.a * l2.a + l1.b * l2.b, 0) == 0;\n}\n// \u5E73\u884C\u7DDA\
+    \nLine parallel(const Line& l, const Point& p) {\n    return Line(l.a, l.b, -l.a\
+    \ * p.x - l.b * p.y);\n}\n// \u5782\u76F4\u7DDA\nLine perpendicular(const Line&\
+    \ l, const Point& p) {\n    return Line(l.b, -l.a, -l.b * p.x + l.a * p.y);\n\
+    }\n\n// \u4EA4\u53C9\u5224\u5B9A\nbool is_intersect(const Line& l1, const Line&\
+    \ l2) {\n    return l1 == l2 || !is_parallel(l1, l2);\n}\n// \u4EA4\u70B9\nPoint\
+    \ intersection(const Line& l1, const Line& l2) {\n    assert(!is_parallel(l1,\
+    \ l2));\n    Real d = l1.a * l2.b - l2.a * l1.b;\n    return Point((l1.b * l2.c\
+    \ - l2.b * l1.c) / d,\n                 (l1.c * l2.a - l2.c * l1.a) / d);\n}\n\
+    // \u5C04\u5F71\nPoint projection(const Line& l, const Point& p) {\n    return\
+    \ intersection(l, perpendicular(l, p));\n}\n// \u53CD\u5C04\nPoint reflection(const\
+    \ Line& l, const Point& p) {\n    return projection(l, p) * 2 - p;\n}\n#line 6\
+    \ \"geometry/Polygon.hpp\"\n\nclass Polygon : public std::vector<Point> {\npublic:\n\
+    \    using std::vector<Point>::vector;\n    explicit Polygon(const std::vector<Point>&\
+    \ v) : std::vector<Point>(v) {}\n    explicit Polygon(std::vector<Point>&& v)\n\
+    \        : std::vector<Point>(std::move(v)) {}\n};\n\nReal area(const Polygon&\
+    \ p) {\n    const int n = p.size();\n    Real res = 0;\n    rep (i, n) {\n   \
+    \     res += cross(p[i], p[(i + 1) % n]);\n    }\n    return res / 2;\n}\n\nbool\
+    \ is_convex(const Polygon& p, bool allow_straight = false) {\n    const int n\
+    \ = p.size();\n    rep (i, n) {\n        CCW c = ccw(p[(i + 1) % n], p[i], p[(i\
+    \ + 2) % n]);\n        if (c == CCW::COUNTER_CLOCKWISE ||\n            (!allow_straight\
+    \ && c == CCW::ONLINE_BACK)) {\n            return false;\n        }\n    }\n\
+    \    return true;\n}\n\nbool contains(const Polygon& p, const Point& q, bool true_when_on_edge\
+    \ = true) {\n    const int n = p.size();\n    rep (i, n) {\n        if (p[i] ==\
+    \ q) return true_when_on_edge;\n        Point a = p[i] - q;\n        Point b =\
+    \ p[(i + 1) % n] - q;\n        if (cmp(cross(a, b), 0) == 0 && cmp(dot(a, b),\
+    \ 0) <= 0) {\n            return true_when_on_edge;\n        }\n    }\n    bool\
+    \ res = false;\n    rep (i, n) {\n        Point a = p[i] - q;\n        Point b\
+    \ = p[(i + 1) % n] - q;\n        if (cmp(a.y, b.y) > 0) std::swap(a, b);\n   \
+    \     if (cmp(a.y, 0) <= 0 && cmp(b.y, 0) > 0 && cmp(cross(a, b), 0) < 0) {\n\
+    \            res = !res;\n        }\n    }\n    return res;\n}\n\nPolygon convex_hull(std::vector<Point>\
+    \ A, bool allow_straight = false) {\n    std::sort(all(A), [](const Point& a,\
+    \ const Point& b) {\n        return cmp(a.x, b.x) != 0 ? cmp(a.x, b.x) < 0 : cmp(a.y,\
+    \ b.y) < 0;\n    });\n    A.erase(std::unique(all(A)), A.end());\n    const int\
+    \ n = A.size();\n    if (n <= 2) return Polygon{A};\n    Polygon res;\n    rep\
+    \ (i, n) {\n        while ((int)res.size() >= 2) {\n            CCW c = ccw(res[res.size()\
+    \ - 2], res.back(), A[i]);\n            if (c == CCW::CLOCKWISE ||\n         \
+    \       (!allow_straight && c == CCW::ONLINE_FRONT)) {\n                res.pop_back();\n\
+    \            }\n            else break;\n        }\n        res.push_back(A[i]);\n\
+    \    }\n    int t = res.size();\n    rrep (i, n - 1) {\n        while ((int)res.size()\
+    \ >= t + 1) {\n            CCW c = ccw(res[res.size() - 2], res.back(), A[i]);\n\
+    \            if (c == CCW::CLOCKWISE ||\n                (!allow_straight && c\
+    \ == CCW::ONLINE_FRONT)) {\n                res.pop_back();\n            }\n \
+    \           else break;\n        }\n        res.push_back(A[i]);\n    }\n    res.pop_back();\n\
+    \    return res;\n}\n\nstd::pair<Point, Point> diameter(const Polygon& p) {\n\
+    \    const int n = p.size();\n    int i = 0, j = 0;\n    rep (k, n) {\n      \
+    \  if (cmp(p[k].x, p[i].x) > 0) i = k;\n        if (cmp(p[k].x, p[j].x) < 0) j\
+    \ = k;\n    }\n    Real res = norm(p[i] - p[j]);\n    int ri = i, rj = j;\n  \
+    \  int si = i, sj = j;\n    do {\n        if (cross(p[(i + 1) % n] - p[i], p[(j\
+    \ + 1) % n] - p[j]) < 0) {\n            i = (i + 1) % n;\n        }\n        else\
+    \ {\n            j = (j + 1) % n;\n        }\n        if (chmax(res, norm(p[i]\
+    \ - p[j]),\n                  [](const Real& a, const Real& b) { return cmp(a,\
+    \ b) < 0; })) {\n            ri = i;\n            rj = j;\n        }\n    } while\
+    \ (i != si || j != sj);\n    return {p[ri], p[rj]};\n}\n\nstd::pair<Point, Point>\
+    \ farthest_pair(const std::vector<Point>& p) {\n    auto poly = convex_hull(p);\n\
+    \    return diameter(poly);\n}\n\nstd::pair<Point, Point> closest_pair(std::vector<Point>\
+    \ p) {\n    assert(p.size() >= 2);\n    const int n = p.size();\n    std::sort(all(p));\n\
+    \    Real res = infinity<Real>::max;\n    Point a, b;\n    rec_lambda([&](auto&&\
+    \ self, int l, int r) -> void {\n        const int m = (l + r) / 2;\n        if\
+    \ (r - l <= 1) return;\n        const Real x = p[m].x;\n        self(l, m);\n\
+    \        self(m, r);\n        std::inplace_merge(\n            p.begin() + l,\
+    \ p.begin() + m, p.begin() + r,\n            [](const Point& a, const Point& b)\
+    \ { return cmp(a.y, b.y) < 0; });\n        std::vector<int> B;\n        rep (i,\
+    \ l, r) {\n            if (cmp((p[i].x - x) * (p[i].x - x), res) >= 0) continue;\n\
+    \            rrep (j, B.size()) {\n                if (cmp((p[i].y - p[B[j]].y)\
+    \ * (p[i].y - p[B[j]].y), res) >= 0)\n                    break;\n           \
+    \     if (chmin(res, norm(p[i] - p[B[j]]),\n                          [](const\
+    \ Real& a, const Real& b) {\n                              return cmp(a, b) <\
+    \ 0;\n                          })) {\n                    a = p[i];\n       \
+    \             b = p[B[j]];\n                }\n            }\n            B.push_back(i);\n\
+    \        }\n    })(0, n);\n    return {a, b};\n}\n\n// cut with line p0-p1 and\
+    \ return left side\nPolygon polygon_cut(const Polygon& p, const Point& p0, const\
+    \ Point& p1) {\n    const int n = p.size();\n    Polygon res;\n    rep (i, n)\
+    \ {\n        Point a = p[i], b = p[(i + 1) % n];\n        Real ca = cross(p0 -\
+    \ a, p1 - a);\n        Real cb = cross(p0 - b, p1 - b);\n        if (cmp(ca, 0)\
+    \ >= 0) res.push_back(a);\n        if (cmp(ca, 0) * cmp(cb, 0) < 0) {\n      \
+    \      res.push_back(intersection(Line(a, b), Line(p0, p1)));\n        }\n   \
+    \ }\n    return res;\n}\n#line 5 \"test/yosupo/new/furthest_pair.test.cpp\"\n\
+    using namespace std;\nint main() {\n    int t; scan >> t;\n    rep (t) {\n   \
+    \     int n; scan >> n;\n        vector<Point> ps(n); scan >> ps;\n        auto\
+    \ [a, b] = farthest_pair(ps);\n        int ans0 = -1, ans1 = -1;\n        rep\
+    \ (i, n) {\n            if (a == ps[i] && ans0 == -1) ans0 = i;\n            else\
+    \ if (b == ps[i] && ans1 == -1) ans1 = i;\n        }\n        prints(ans0, ans1);\n\
+    \    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/furthest_pair\"\n#include\
+    \ \"../../../other/template.hpp\"\n#define GEOMETRY_REAL_TYPE ll\n#include \"\
+    ../../../geometry/Polygon.hpp\"\nusing namespace std;\nint main() {\n    int t;\
+    \ scan >> t;\n    rep (t) {\n        int n; scan >> n;\n        vector<Point>\
+    \ ps(n); scan >> ps;\n        auto [a, b] = farthest_pair(ps);\n        int ans0\
+    \ = -1, ans1 = -1;\n        rep (i, n) {\n            if (a == ps[i] && ans0 ==\
+    \ -1) ans0 = i;\n            else if (b == ps[i] && ans1 == -1) ans1 = i;\n  \
+    \      }\n        prints(ans0, ans1);\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -673,18 +643,20 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  - math/matrix/Matrix.hpp
-  - math/ModInt.hpp
+  - geometry/Polygon.hpp
+  - geometry/template.hpp
+  - geometry/Point.hpp
+  - geometry/Line.hpp
   isVerificationFile: true
-  path: test/yosupo/matrix/matrix_rank.test.cpp
+  path: test/yosupo/new/furthest_pair.test.cpp
   requiredBy: []
-  timestamp: '2024-05-12 17:35:55+09:00'
+  timestamp: '2024-06-12 23:00:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yosupo/matrix/matrix_rank.test.cpp
+documentation_of: test/yosupo/new/furthest_pair.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/matrix/matrix_rank.test.cpp
-- /verify/test/yosupo/matrix/matrix_rank.test.cpp.html
-title: test/yosupo/matrix/matrix_rank.test.cpp
+- /verify/test/yosupo/new/furthest_pair.test.cpp
+- /verify/test/yosupo/new/furthest_pair.test.cpp.html
+title: test/yosupo/new/furthest_pair.test.cpp
 ---

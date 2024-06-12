@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/Line.hpp
     title: geometry/Line.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/Point.hpp
     title: geometry/Point.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/template.hpp
     title: geometry/template.hpp
   - icon: ':question:'
@@ -38,7 +38,7 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: geometry/All.hpp
     title: geometry/All.hpp
   _extendedVerifiedWith:
@@ -60,18 +60,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_4_C-cut.test.cpp
     title: test/aoj/CGL/CGL_4_C-cut.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/CGL/CGL_5_A-closest.test.cpp
     title: test/aoj/CGL/CGL_5_A-closest.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/geometry/sort_points_by_argument.test.cpp
-    title: test/yosupo/geometry/sort_points_by_argument.test.cpp
+    path: test/yosupo/new/closest_pair.test.cpp
+    title: test/yosupo/new/closest_pair.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/furthest_pair.test.cpp
+    title: test/yosupo/new/furthest_pair.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/static_convex_hull.test.cpp
     title: test/yosupo/new/static_convex_hull.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geometry/Polygon.hpp\"\n\n#line 2 \"geometry/template.hpp\"\
@@ -610,36 +613,37 @@ data:
     \    return res;\n}\n\nstd::pair<Point, Point> diameter(const Polygon& p) {\n\
     \    const int n = p.size();\n    int i = 0, j = 0;\n    rep (k, n) {\n      \
     \  if (cmp(p[k].x, p[i].x) > 0) i = k;\n        if (cmp(p[k].x, p[j].x) < 0) j\
-    \ = k;\n    }\n    Real res = abs(p[i] - p[j]);\n    int ri = i, rj = j;\n   \
-    \ int si = i, sj = j;\n    do {\n        if (cross(p[(i + 1) % n] - p[i], p[(j\
+    \ = k;\n    }\n    Real res = norm(p[i] - p[j]);\n    int ri = i, rj = j;\n  \
+    \  int si = i, sj = j;\n    do {\n        if (cross(p[(i + 1) % n] - p[i], p[(j\
     \ + 1) % n] - p[j]) < 0) {\n            i = (i + 1) % n;\n        }\n        else\
-    \ {\n            j = (j + 1) % n;\n        }\n        if (chmax(res, abs(p[i]\
+    \ {\n            j = (j + 1) % n;\n        }\n        if (chmax(res, norm(p[i]\
     \ - p[j]),\n                  [](const Real& a, const Real& b) { return cmp(a,\
     \ b) < 0; })) {\n            ri = i;\n            rj = j;\n        }\n    } while\
     \ (i != si || j != sj);\n    return {p[ri], p[rj]};\n}\n\nstd::pair<Point, Point>\
     \ farthest_pair(const std::vector<Point>& p) {\n    auto poly = convex_hull(p);\n\
     \    return diameter(poly);\n}\n\nstd::pair<Point, Point> closest_pair(std::vector<Point>\
     \ p) {\n    assert(p.size() >= 2);\n    const int n = p.size();\n    std::sort(all(p));\n\
-    \    Real res = infinity<Real>::value;\n    Point a, b;\n    rec_lambda([&](auto&&\
+    \    Real res = infinity<Real>::max;\n    Point a, b;\n    rec_lambda([&](auto&&\
     \ self, int l, int r) -> void {\n        const int m = (l + r) / 2;\n        if\
     \ (r - l <= 1) return;\n        const Real x = p[m].x;\n        self(l, m);\n\
     \        self(m, r);\n        std::inplace_merge(\n            p.begin() + l,\
     \ p.begin() + m, p.begin() + r,\n            [](const Point& a, const Point& b)\
     \ { return cmp(a.y, b.y) < 0; });\n        std::vector<int> B;\n        rep (i,\
-    \ l, r) {\n            if (cmp(std::abs(p[i].x - x), res) >= 0) continue;\n  \
-    \          rrep (j, B.size()) {\n                if (cmp(p[i].y - p[B[j]].y, res)\
-    \ >= 0) break;\n                if (chmin(res, distance(p[i], p[B[j]]),\n    \
-    \                      [](const Real& a, const Real& b) {\n                  \
-    \            return cmp(a, b) < 0;\n                          })) {\n        \
-    \            a = p[i];\n                    b = p[B[j]];\n                }\n\
-    \            }\n            B.push_back(i);\n        }\n    })(0, n);\n    return\
-    \ {a, b};\n}\n\n// cut with line p0-p1 and return left side\nPolygon polygon_cut(const\
-    \ Polygon& p, const Point& p0, const Point& p1) {\n    const int n = p.size();\n\
-    \    Polygon res;\n    rep (i, n) {\n        Point a = p[i], b = p[(i + 1) % n];\n\
-    \        Real ca = cross(p0 - a, p1 - a);\n        Real cb = cross(p0 - b, p1\
-    \ - b);\n        if (cmp(ca, 0) >= 0) res.push_back(a);\n        if (cmp(ca, 0)\
-    \ * cmp(cb, 0) < 0) {\n            res.push_back(intersection(Line(a, b), Line(p0,\
-    \ p1)));\n        }\n    }\n    return res;\n}\n"
+    \ l, r) {\n            if (cmp((p[i].x - x) * (p[i].x - x), res) >= 0) continue;\n\
+    \            rrep (j, B.size()) {\n                if (cmp((p[i].y - p[B[j]].y)\
+    \ * (p[i].y - p[B[j]].y), res) >= 0)\n                    break;\n           \
+    \     if (chmin(res, norm(p[i] - p[B[j]]),\n                          [](const\
+    \ Real& a, const Real& b) {\n                              return cmp(a, b) <\
+    \ 0;\n                          })) {\n                    a = p[i];\n       \
+    \             b = p[B[j]];\n                }\n            }\n            B.push_back(i);\n\
+    \        }\n    })(0, n);\n    return {a, b};\n}\n\n// cut with line p0-p1 and\
+    \ return left side\nPolygon polygon_cut(const Polygon& p, const Point& p0, const\
+    \ Point& p1) {\n    const int n = p.size();\n    Polygon res;\n    rep (i, n)\
+    \ {\n        Point a = p[i], b = p[(i + 1) % n];\n        Real ca = cross(p0 -\
+    \ a, p1 - a);\n        Real cb = cross(p0 - b, p1 - b);\n        if (cmp(ca, 0)\
+    \ >= 0) res.push_back(a);\n        if (cmp(ca, 0) * cmp(cb, 0) < 0) {\n      \
+    \      res.push_back(intersection(Line(a, b), Line(p0, p1)));\n        }\n   \
+    \ }\n    return res;\n}\n"
   code: "#pragma once\n\n#include \"template.hpp\"\n#include \"Point.hpp\"\n#include\
     \ \"Line.hpp\"\n\nclass Polygon : public std::vector<Point> {\npublic:\n    using\
     \ std::vector<Point>::vector;\n    explicit Polygon(const std::vector<Point>&\
@@ -676,36 +680,37 @@ data:
     \    return res;\n}\n\nstd::pair<Point, Point> diameter(const Polygon& p) {\n\
     \    const int n = p.size();\n    int i = 0, j = 0;\n    rep (k, n) {\n      \
     \  if (cmp(p[k].x, p[i].x) > 0) i = k;\n        if (cmp(p[k].x, p[j].x) < 0) j\
-    \ = k;\n    }\n    Real res = abs(p[i] - p[j]);\n    int ri = i, rj = j;\n   \
-    \ int si = i, sj = j;\n    do {\n        if (cross(p[(i + 1) % n] - p[i], p[(j\
+    \ = k;\n    }\n    Real res = norm(p[i] - p[j]);\n    int ri = i, rj = j;\n  \
+    \  int si = i, sj = j;\n    do {\n        if (cross(p[(i + 1) % n] - p[i], p[(j\
     \ + 1) % n] - p[j]) < 0) {\n            i = (i + 1) % n;\n        }\n        else\
-    \ {\n            j = (j + 1) % n;\n        }\n        if (chmax(res, abs(p[i]\
+    \ {\n            j = (j + 1) % n;\n        }\n        if (chmax(res, norm(p[i]\
     \ - p[j]),\n                  [](const Real& a, const Real& b) { return cmp(a,\
     \ b) < 0; })) {\n            ri = i;\n            rj = j;\n        }\n    } while\
     \ (i != si || j != sj);\n    return {p[ri], p[rj]};\n}\n\nstd::pair<Point, Point>\
     \ farthest_pair(const std::vector<Point>& p) {\n    auto poly = convex_hull(p);\n\
     \    return diameter(poly);\n}\n\nstd::pair<Point, Point> closest_pair(std::vector<Point>\
     \ p) {\n    assert(p.size() >= 2);\n    const int n = p.size();\n    std::sort(all(p));\n\
-    \    Real res = infinity<Real>::value;\n    Point a, b;\n    rec_lambda([&](auto&&\
+    \    Real res = infinity<Real>::max;\n    Point a, b;\n    rec_lambda([&](auto&&\
     \ self, int l, int r) -> void {\n        const int m = (l + r) / 2;\n        if\
     \ (r - l <= 1) return;\n        const Real x = p[m].x;\n        self(l, m);\n\
     \        self(m, r);\n        std::inplace_merge(\n            p.begin() + l,\
     \ p.begin() + m, p.begin() + r,\n            [](const Point& a, const Point& b)\
     \ { return cmp(a.y, b.y) < 0; });\n        std::vector<int> B;\n        rep (i,\
-    \ l, r) {\n            if (cmp(std::abs(p[i].x - x), res) >= 0) continue;\n  \
-    \          rrep (j, B.size()) {\n                if (cmp(p[i].y - p[B[j]].y, res)\
-    \ >= 0) break;\n                if (chmin(res, distance(p[i], p[B[j]]),\n    \
-    \                      [](const Real& a, const Real& b) {\n                  \
-    \            return cmp(a, b) < 0;\n                          })) {\n        \
-    \            a = p[i];\n                    b = p[B[j]];\n                }\n\
-    \            }\n            B.push_back(i);\n        }\n    })(0, n);\n    return\
-    \ {a, b};\n}\n\n// cut with line p0-p1 and return left side\nPolygon polygon_cut(const\
-    \ Polygon& p, const Point& p0, const Point& p1) {\n    const int n = p.size();\n\
-    \    Polygon res;\n    rep (i, n) {\n        Point a = p[i], b = p[(i + 1) % n];\n\
-    \        Real ca = cross(p0 - a, p1 - a);\n        Real cb = cross(p0 - b, p1\
-    \ - b);\n        if (cmp(ca, 0) >= 0) res.push_back(a);\n        if (cmp(ca, 0)\
-    \ * cmp(cb, 0) < 0) {\n            res.push_back(intersection(Line(a, b), Line(p0,\
-    \ p1)));\n        }\n    }\n    return res;\n}\n"
+    \ l, r) {\n            if (cmp((p[i].x - x) * (p[i].x - x), res) >= 0) continue;\n\
+    \            rrep (j, B.size()) {\n                if (cmp((p[i].y - p[B[j]].y)\
+    \ * (p[i].y - p[B[j]].y), res) >= 0)\n                    break;\n           \
+    \     if (chmin(res, norm(p[i] - p[B[j]]),\n                          [](const\
+    \ Real& a, const Real& b) {\n                              return cmp(a, b) <\
+    \ 0;\n                          })) {\n                    a = p[i];\n       \
+    \             b = p[B[j]];\n                }\n            }\n            B.push_back(i);\n\
+    \        }\n    })(0, n);\n    return {a, b};\n}\n\n// cut with line p0-p1 and\
+    \ return left side\nPolygon polygon_cut(const Polygon& p, const Point& p0, const\
+    \ Point& p1) {\n    const int n = p.size();\n    Polygon res;\n    rep (i, n)\
+    \ {\n        Point a = p[i], b = p[(i + 1) % n];\n        Real ca = cross(p0 -\
+    \ a, p1 - a);\n        Real cb = cross(p0 - b, p1 - b);\n        if (cmp(ca, 0)\
+    \ >= 0) res.push_back(a);\n        if (cmp(ca, 0) * cmp(cb, 0) < 0) {\n      \
+    \      res.push_back(intersection(Line(a, b), Line(p0, p1)));\n        }\n   \
+    \ }\n    return res;\n}\n"
   dependsOn:
   - geometry/template.hpp
   - other/template.hpp
@@ -723,8 +728,8 @@ data:
   path: geometry/Polygon.hpp
   requiredBy:
   - geometry/All.hpp
-  timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-06-12 23:00:38+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/CGL/CGL_5_A-closest.test.cpp
   - test/aoj/CGL/CGL_3_C-contain.test.cpp
@@ -733,8 +738,9 @@ data:
   - test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
   - test/aoj/CGL/CGL_4_B-diameter.test.cpp
   - test/aoj/CGL/CGL_3_B-isconvex.test.cpp
+  - test/yosupo/new/furthest_pair.test.cpp
   - test/yosupo/new/static_convex_hull.test.cpp
-  - test/yosupo/geometry/sort_points_by_argument.test.cpp
+  - test/yosupo/new/closest_pair.test.cpp
 documentation_of: geometry/Polygon.hpp
 layout: document
 redirect_from:

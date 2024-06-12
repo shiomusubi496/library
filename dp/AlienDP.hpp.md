@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: dp/FibonacciSearch.hpp
     title: FibonacciSearch
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: dp/OnlineOfflineDP.hpp
     title: Online Offline DP
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: dp/SMAWK.hpp
     title: SMAWK
   - icon: ':question:'

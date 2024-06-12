@@ -35,7 +35,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/other/CountEulerianTrail.hpp
     title: CountEulerianTrail(BEST Theorem)
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/FrequencyTableofTreeDistance.hpp
     title: Frequency Table of Tree Distance
   - icon: ':heavy_check_mark:'
@@ -63,7 +63,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/TetrationMod.hpp
     title: TetrationMod
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/convolution/Convolution.hpp
     title: "Convolution(\u7573\u307F\u8FBC\u307F)"
   - icon: ':heavy_check_mark:'
@@ -348,15 +348,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
     title: test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
     title: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/tree_path_composite_sum.test.cpp
     title: test/yosupo/tree/tree_path_composite_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/math/ModInt.md
     document_title: ModInt
@@ -1051,7 +1051,7 @@ data:
   - math/PrimitiveRoot.hpp
   - math/StirlingNumber.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DPL/DPL_5_B.test.cpp
   - test/aoj/DPL/DPL_5_F.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: dp/SMAWK.hpp
     title: SMAWK
   - icon: ':question:'
@@ -39,12 +39,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc218_h-AlienDP.test.cpp
     title: test/atcoder/abc218_h-AlienDP.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki/705-Monge.test.cpp
     title: test/yuki/705-Monge.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/dp/OnlineOfflineDP.md
     document_title: Online Offline DP
@@ -505,7 +505,7 @@ data:
   requiredBy:
   - dp/AlienDP.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yuki/705-Monge.test.cpp
   - test/atcoder/abc218_h-AlienDP.test.cpp

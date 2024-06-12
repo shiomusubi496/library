@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
   - icon: ':question:'
@@ -41,10 +41,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/StaticRangeCountDistinct.hpp
     title: data-struct/segment/StaticRangeCountDistinct.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/TreeHash.hpp
     title: TreeHash
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/RollingHash.hpp
     title: "RollingHash(\u30ED\u30EA\u30CF)"
   _extendedVerifiedWith:
@@ -90,12 +90,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/vertex_get_range_contour_add_on_tree.test.cpp
     title: test/yosupo/data_structure/vertex_get_range_contour_add_on_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
     title: test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/data-struct/segment/BinaryIndexedTree.md
     document_title: BinaryIndexedTree(FenwickTree, BIT)
@@ -654,7 +654,7 @@ data:
   - data-struct/segment/StaticRangeCountDistinct.hpp
   - data-struct/2D/StaticRectangleAddRectangleSum.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
   - test/aoj/DSL/DSL_2_B-BIT.test.cpp

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/TreeCentroid.hpp
     title: "TreeCentroid(\u6728\u306E\u91CD\u5FC3)"
   - icon: ':question:'

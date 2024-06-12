@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/2D/StaticRectangleAddRectangleSum.hpp
     title: data-struct/2D/StaticRectangleAddRectangleSum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/BinaryIndexedTree.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
   - icon: ':heavy_check_mark:'
@@ -13,10 +13,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/RAQBIT.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
   - icon: ':heavy_check_mark:'

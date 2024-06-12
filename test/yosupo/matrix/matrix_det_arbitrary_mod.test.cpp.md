@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/BarrettReduction.hpp
     title: math/BarrettReduction.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
     title: ModInt
   - icon: ':heavy_check_mark:'

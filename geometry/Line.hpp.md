@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/Point.hpp
     title: geometry/Point.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/template.hpp
     title: geometry/template.hpp
   - icon: ':question:'
@@ -35,13 +35,13 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: geometry/All.hpp
     title: geometry/All.hpp
   - icon: ':heavy_check_mark:'
     path: geometry/Circle.hpp
     title: geometry/Circle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/Polygon.hpp
     title: geometry/Polygon.hpp
   - icon: ':heavy_check_mark:'
@@ -87,7 +87,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_4_C-cut.test.cpp
     title: test/aoj/CGL/CGL_4_C-cut.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/CGL/CGL_5_A-closest.test.cpp
     title: test/aoj/CGL/CGL_5_A-closest.test.cpp
   - icon: ':heavy_check_mark:'
@@ -112,14 +112,17 @@ data:
     path: test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
     title: test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/geometry/sort_points_by_argument.test.cpp
-    title: test/yosupo/geometry/sort_points_by_argument.test.cpp
+    path: test/yosupo/new/closest_pair.test.cpp
+    title: test/yosupo/new/closest_pair.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/furthest_pair.test.cpp
+    title: test/yosupo/new/furthest_pair.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/static_convex_hull.test.cpp
     title: test/yosupo/new/static_convex_hull.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geometry/Line.hpp\"\n\n#line 2 \"geometry/template.hpp\"\
@@ -682,7 +685,7 @@ data:
   - geometry/All.hpp
   - geometry/Segment.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/CGL/CGL_2_B-intersect.test.cpp
   - test/aoj/CGL/CGL_5_A-closest.test.cpp
@@ -704,8 +707,9 @@ data:
   - test/aoj/CGL/CGL_3_B-isconvex.test.cpp
   - test/aoj/CGL/CGL_2_D-distance.test.cpp
   - test/aoj/CGL/CGL_7_E-intersection.test.cpp
+  - test/yosupo/new/furthest_pair.test.cpp
   - test/yosupo/new/static_convex_hull.test.cpp
-  - test/yosupo/geometry/sort_points_by_argument.test.cpp
+  - test/yosupo/new/closest_pair.test.cpp
 documentation_of: geometry/Line.hpp
 layout: document
 redirect_from:

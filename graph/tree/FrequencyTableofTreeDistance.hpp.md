@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/TreeCentroid.hpp
     title: "TreeCentroid(\u6728\u306E\u91CD\u5FC3)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/ChineseRemainder.hpp
     title: "Chinese Remainder(\u4E2D\u56FD\u5270\u4F59\u5B9A\u7406)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/convolution/Convolution.hpp
     title: "Convolution(\u7573\u307F\u8FBC\u307F)"
   - icon: ':question:'
@@ -45,12 +45,12 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
     title: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/graph/tree/FrequencyTableofTreeDistance.md
     document_title: Frequency Table of Tree Distance
@@ -873,7 +873,7 @@ data:
   path: graph/tree/FrequencyTableofTreeDistance.hpp
   requiredBy: []
   timestamp: '2024-05-29 15:54:32+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
 documentation_of: graph/tree/FrequencyTableofTreeDistance.hpp
