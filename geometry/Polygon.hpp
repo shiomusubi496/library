@@ -97,7 +97,7 @@ std::pair<Point, Point> diameter(const Polygon& p) {
         if (cmp(p[k].x, p[i].x) > 0) i = k;
         if (cmp(p[k].x, p[j].x) < 0) j = k;
     }
-    Real res = abs(p[i] - p[j]);
+    Real res = norm(p[i] - p[j]);
     int ri = i, rj = j;
     int si = i, sj = j;
     do {
@@ -107,7 +107,7 @@ std::pair<Point, Point> diameter(const Polygon& p) {
         else {
             j = (j + 1) % n;
         }
-        if (chmax(res, abs(p[i] - p[j]),
+        if (chmax(res, norm(p[i] - p[j]),
                   [](const Real& a, const Real& b) { return cmp(a, b) < 0; })) {
             ri = i;
             rj = j;
@@ -125,7 +125,7 @@ std::pair<Point, Point> closest_pair(std::vector<Point> p) {
     assert(p.size() >= 2);
     const int n = p.size();
     std::sort(all(p));
-    Real res = infinity<Real>::value;
+    Real res = infinity<Real>::max;
     Point a, b;
     rec_lambda([&](auto&& self, int l, int r) -> void {
         const int m = (l + r) / 2;
@@ -138,10 +138,11 @@ std::pair<Point, Point> closest_pair(std::vector<Point> p) {
             [](const Point& a, const Point& b) { return cmp(a.y, b.y) < 0; });
         std::vector<int> B;
         rep (i, l, r) {
-            if (cmp(std::abs(p[i].x - x), res) >= 0) continue;
+            if (cmp((p[i].x - x) * (p[i].x - x), res) >= 0) continue;
             rrep (j, B.size()) {
-                if (cmp(p[i].y - p[B[j]].y, res) >= 0) break;
-                if (chmin(res, distance(p[i], p[B[j]]),
+                if (cmp((p[i].y - p[B[j]].y) * (p[i].y - p[B[j]].y), res) >= 0)
+                    break;
+                if (chmin(res, norm(p[i] - p[B[j]]),
                           [](const Real& a, const Real& b) {
                               return cmp(a, b) < 0;
                           })) {
