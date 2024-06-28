@@ -241,6 +241,7 @@
 "test/yosupo/string/suffixarray.test.cpp": "2024-05-12 17:35:55 +0900",
 "test/yosupo/string/zalgorithm.test.cpp": "2024-05-12 17:35:55 +0900",
 "test/yosupo/tree/cartesian_tree.test.cpp": "2024-05-12 17:35:55 +0900",
+"test/yosupo/tree/common_interval_decomposition_tree.test.cpp": "2024-06-28 10:22:02 +0900",
 "test/yosupo/tree/frequency_table_of_tree_distance.test.cpp": "2024-05-29 15:54:32 +0900",
 "test/yosupo/tree/jump_on_tree.test.cpp": "2024-06-13 00:15:20 +0900",
 "test/yosupo/tree/lca-HLD.test.cpp": "2024-05-12 17:35:55 +0900",
