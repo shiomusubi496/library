@@ -1124,16 +1124,16 @@ data:
   isVerificationFile: false
   path: math/poly/MultipointEvaluation.hpp
   requiredBy:
-  - math/poly/PolynomialInterpolation.hpp
   - math/Factorial.hpp
+  - math/poly/PolynomialInterpolation.hpp
   timestamp: '2024-05-29 15:54:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/polynomial/multipoint_evaluation.test.cpp
-  - test/yosupo/polynomial/polynomial_interpolation.test.cpp
-  - test/yosupo/polynomial/polynomial_interpolation_on_geometric_sequence.test.cpp
-  - test/yosupo/polynomial/multipoint_evaluation_on_geometric_sequence.test.cpp
   - test/yosupo/math/factorial.test.cpp
+  - test/yosupo/polynomial/multipoint_evaluation.test.cpp
+  - test/yosupo/polynomial/polynomial_interpolation_on_geometric_sequence.test.cpp
+  - test/yosupo/polynomial/polynomial_interpolation.test.cpp
+  - test/yosupo/polynomial/multipoint_evaluation_on_geometric_sequence.test.cpp
 documentation_of: math/poly/MultipointEvaluation.hpp
 layout: document
 redirect_from:

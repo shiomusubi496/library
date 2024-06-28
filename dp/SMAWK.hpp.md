@@ -513,17 +513,17 @@ data:
   isVerificationFile: false
   path: dp/SMAWK.hpp
   requiredBy:
-  - math/convolution/MinPlusConvolution.hpp
-  - dp/AlienDP.hpp
   - dp/DivideAndConquerOptimization.hpp
+  - dp/AlienDP.hpp
   - dp/OnlineOfflineDP.hpp
+  - math/convolution/MinPlusConvolution.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yuki/705-Monge.test.cpp
-  - test/aoj/other/2603-SMAWK.test.cpp
   - test/atcoder/abc218_h-AlienDP.test.cpp
+  - test/aoj/other/2603-SMAWK.test.cpp
   - test/yosupo/convolution/min_plus_convolution_convex_arbitrary.test.cpp
+  - test/yuki/705-Monge.test.cpp
 documentation_of: dp/SMAWK.hpp
 layout: document
 redirect_from:

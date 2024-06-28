@@ -629,8 +629,8 @@ data:
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/CGL/CGL_7_C-circumcenter.test.cpp
   - test/aoj/CGL/CGL_7_B-incenter.test.cpp
+  - test/aoj/CGL/CGL_7_C-circumcenter.test.cpp
 documentation_of: geometry/Triangle.hpp
 layout: document
 redirect_from:

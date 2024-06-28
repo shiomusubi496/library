@@ -585,8 +585,8 @@ data:
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/math/binomial_coefficient.test.cpp
   - test/yosupo/math/binomial_coefficient_prime_mod.test.cpp
+  - test/yosupo/math/binomial_coefficient.test.cpp
   - test/yosupo/math/discrete_logarithm_mod.test.cpp
   - test/yosupo/matrix/matrix_det_arbitrary_mod.test.cpp
 documentation_of: math/BarrettReduction.hpp

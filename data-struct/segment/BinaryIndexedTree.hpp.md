@@ -649,27 +649,27 @@ data:
   path: data-struct/segment/BinaryIndexedTree.hpp
   requiredBy:
   - graph/tree/TreeHash.hpp
-  - string/RollingHash.hpp
-  - data-struct/segment/RAQBIT.hpp
-  - data-struct/segment/StaticRangeCountDistinct.hpp
   - data-struct/2D/StaticRectangleAddRectangleSum.hpp
+  - data-struct/segment/StaticRangeCountDistinct.hpp
+  - data-struct/segment/RAQBIT.hpp
+  - string/RollingHash.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
   - test/aoj/DSL/DSL_2_B-BIT.test.cpp
   - test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
-  - test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree.test.cpp
+  - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
   - test/yosupo/data_structure/point_add_range_sum.test.cpp
-  - test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
-  - test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
-  - test/yosupo/data_structure/vertex_get_range_contour_add_on_tree.test.cpp
-  - test/yosupo/data_structure/static_range_count_distinct.test.cpp
-  - test/yosupo/data_structure/static_range_inversions_query.test.cpp
-  - test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
   - test/yosupo/data_structure/vertex_add_path_sum.test.cpp
   - test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
   - test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
+  - test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
+  - test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree.test.cpp
+  - test/yosupo/data_structure/static_range_count_distinct.test.cpp
+  - test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
+  - test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
+  - test/yosupo/data_structure/static_range_inversions_query.test.cpp
+  - test/yosupo/data_structure/vertex_get_range_contour_add_on_tree.test.cpp
   - test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
 documentation_of: data-struct/segment/BinaryIndexedTree.hpp
 layout: document

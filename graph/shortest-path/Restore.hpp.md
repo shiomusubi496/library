@@ -547,8 +547,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL/GRL_5_A-Diameter.test.cpp
-  - test/yosupo/graph/shortest_path.test.cpp
   - test/yosupo/tree/tree_diameter.test.cpp
+  - test/yosupo/graph/shortest_path.test.cpp
 documentation_of: graph/shortest-path/Restore.hpp
 layout: document
 redirect_from:

@@ -593,8 +593,8 @@ data:
   isVerificationFile: false
   path: graph/tree/TreeCentroid.hpp
   requiredBy:
-  - graph/tree/FrequencyTableofTreeDistance.hpp
   - graph/tree/ContourQuery.hpp
+  - graph/tree/FrequencyTableofTreeDistance.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

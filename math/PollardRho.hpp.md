@@ -679,9 +679,9 @@ data:
   isVerificationFile: false
   path: math/PollardRho.hpp
   requiredBy:
-  - math/TetrationMod.hpp
   - math/EulerPhi.hpp
   - math/PrimitiveRoot.hpp
+  - math/TetrationMod.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

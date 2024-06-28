@@ -648,13 +648,13 @@ data:
   isVerificationFile: false
   path: data-struct/wavelet/WaveletMatrixStruct.hpp
   requiredBy:
-  - data-struct/wavelet/CumulativeSumWM.hpp
   - data-struct/wavelet/SegmentTreeWM.hpp
+  - data-struct/wavelet/CumulativeSumWM.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/data_structure/point_add_rectangle_sum-WM.test.cpp
   - test/yosupo/data_structure/rectangle_sum-WM.test.cpp
+  - test/yosupo/data_structure/point_add_rectangle_sum-WM.test.cpp
 documentation_of: data-struct/wavelet/WaveletMatrixStruct.hpp
 layout: document
 redirect_from:

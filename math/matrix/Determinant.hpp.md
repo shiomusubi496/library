@@ -760,9 +760,9 @@ data:
   - test/atcoder/abc336_g-BEST.test.cpp
   - test/yosupo/matrix/matrix_det_arbitrary_mod.test.cpp
   - test/yosupo/matrix/matrix_det.test.cpp
-  - test/yosupo/new/counting_spanning_tree_undirected.test.cpp
   - test/yosupo/new/matrix_det_mod_2.test.cpp
   - test/yosupo/new/counting_spanning_tree_directed.test.cpp
+  - test/yosupo/new/counting_spanning_tree_undirected.test.cpp
 documentation_of: math/matrix/Determinant.hpp
 layout: document
 redirect_from:

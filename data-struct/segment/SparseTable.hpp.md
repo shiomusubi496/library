@@ -611,9 +611,9 @@ data:
   path: data-struct/segment/SparseTable.hpp
   requiredBy:
   - graph/tree/PMORMQLCA.hpp
-  - data-struct/segment/PlusMinusOneRMQ.hpp
   - data-struct/segment/LinearRMQ.hpp
   - data-struct/segment/LCARMQ.hpp
+  - data-struct/segment/PlusMinusOneRMQ.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

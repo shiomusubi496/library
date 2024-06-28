@@ -516,9 +516,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp
-  - test/yosupo/math/enumerate_primes.test.cpp
-  - test/yosupo/math/sum_of_exponential_times_polynomial_limit.test.cpp
   - test/yosupo/math/sum_of_exponential_times_polynomial.test.cpp
+  - test/yosupo/math/sum_of_exponential_times_polynomial_limit.test.cpp
+  - test/yosupo/math/enumerate_primes.test.cpp
 documentation_of: math/PrimeFactor.hpp
 layout: document
 redirect_from:

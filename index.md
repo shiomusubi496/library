@@ -383,6 +383,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/tree/PMORMQLCA.hpp
       title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
+    - icon: ':warning:'
+      path: graph/tree/PermutationTree.hpp
+      title: graph/tree/PermutationTree.hpp
     - icon: ':heavy_check_mark:'
       path: graph/tree/ReRooting.hpp
       title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
@@ -1415,6 +1418,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/tree/cartesian_tree.test.cpp
       title: test/yosupo/tree/cartesian_tree.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/tree/common_interval_decomposition_tree.test.cpp
+      title: test/yosupo/tree/common_interval_decomposition_tree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
       title: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp

@@ -702,11 +702,11 @@ data:
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
   - test/aoj/CGL/CGL_7_F-tangent.test.cpp
   - test/aoj/CGL/CGL_7_A-intersect.test.cpp
-  - test/aoj/CGL/CGL_7_D-intersection.test.cpp
-  - test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
   - test/aoj/CGL/CGL_7_E-intersection.test.cpp
+  - test/aoj/CGL/CGL_7_D-intersection.test.cpp
 documentation_of: geometry/Circle.hpp
 layout: document
 redirect_from:

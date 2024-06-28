@@ -632,8 +632,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/other/1208-SternBrocotTree.test.cpp
-  - test/yosupo/math/stern_brocot_tree.test.cpp
   - test/yosupo/math/min_of_mod_of_linear.test.cpp
+  - test/yosupo/math/stern_brocot_tree.test.cpp
   - test/yosupo/new/rational_approximation.test.cpp
 documentation_of: math/SternBrocotTree.hpp
 layout: document

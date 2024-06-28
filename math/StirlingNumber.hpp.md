@@ -1239,10 +1239,10 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DPL/DPL_5_G.test.cpp
-  - test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
   - test/yosupo/math/partition_function.test.cpp
   - test/yosupo/math/stirling_number_of_the_second_kind_fixed_k.test.cpp
   - test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
+  - test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
   - test/yosupo/math/bernoulli_number.test.cpp
   - test/yosupo/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
 documentation_of: math/StirlingNumber.hpp
