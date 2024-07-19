@@ -57,7 +57,7 @@ public:
         ori = xs.size();
         n = 1 << bitop::ceil_log2(ori);
         xs.reserve(n);
-        rep (i, xs_.size(), n) xs.push_back(xs_[i] + 1);
+        rep (i, xs_.size(), n) xs.push_back(xs_.back() + 1);
         lns.assign(n << 1, Line{0, infinity<T>::max, -1});
     }
     int add_segment(int l, int r, T x, T y) {
