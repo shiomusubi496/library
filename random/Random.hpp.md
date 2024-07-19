@@ -1,31 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
@@ -35,16 +35,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree/TreeHash.hpp
     title: TreeHash
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/EulerPhi.hpp
     title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/PollardRho.hpp
     title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/PrimitiveRoot.hpp
     title: "PrimitiveRoot(\u539F\u59CB\u6839)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/TetrationMod.hpp
     title: TetrationMod
   - icon: ':heavy_check_mark:'
@@ -61,23 +61,23 @@ data:
     path: test/aoj/NTL/NTL_1_D-Phi.test.cpp
     title: test/aoj/NTL/NTL_1_D-Phi.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/math/factorize.test.cpp
-    title: test/yosupo/math/factorize.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/math/primitive_root.test.cpp
-    title: test/yosupo/math/primitive_root.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/math/tetration_mod.test.cpp
-    title: test/yosupo/math/tetration_mod.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/wildcard_pattern_matching.test.cpp
     title: test/yosupo/new/wildcard_pattern_matching.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/number_theory/factorize.test.cpp
+    title: test/yosupo/number_theory/factorize.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/number_theory/primitive_root.test.cpp
+    title: test/yosupo/number_theory/primitive_root.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/number_theory/tetration_mod.test.cpp
+    title: test/yosupo/number_theory/tetration_mod.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
     title: test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/random/Random.md
     document_title: Random
@@ -567,11 +567,11 @@ data:
   - string/WildcardPatternMatching.hpp
   - graph/tree/TreeHash.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yosupo/math/factorize.test.cpp
-  - test/yosupo/math/tetration_mod.test.cpp
-  - test/yosupo/math/primitive_root.test.cpp
+  - test/yosupo/number_theory/factorize.test.cpp
+  - test/yosupo/number_theory/tetration_mod.test.cpp
+  - test/yosupo/number_theory/primitive_root.test.cpp
   - test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
   - test/yosupo/new/wildcard_pattern_matching.test.cpp
   - test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp

@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/ContourQuery.hpp
     title: graph/tree/ContourQuery.hpp
   - icon: ':heavy_check_mark:'
@@ -40,20 +40,20 @@ data:
     title: Frequency Table of Tree Distance
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
-    title: test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree.test.cpp
-    title: test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_get_range_contour_add_on_tree.test.cpp
-    title: test/yosupo/data_structure/vertex_get_range_contour_add_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
     title: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yosupo/tree/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
+    title: test/yosupo/tree/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/tree/vertex_add_range_contour_sum_on_tree.test.cpp
+    title: test/yosupo/tree/vertex_add_range_contour_sum_on_tree.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/tree/vertex_get_range_contour_add_on_tree.test.cpp
+    title: test/yosupo/tree/vertex_get_range_contour_add_on_tree.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/graph/tree/TreeCentroid.md
     document_title: "TreeCentroid(\u6728\u306E\u91CD\u5FC3)"
@@ -596,11 +596,11 @@ data:
   - graph/tree/ContourQuery.hpp
   - graph/tree/FrequencyTableofTreeDistance.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yosupo/data_structure/vertex_get_range_contour_add_on_tree.test.cpp
-  - test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree.test.cpp
-  - test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
+  - test/yosupo/tree/vertex_get_range_contour_add_on_tree.test.cpp
+  - test/yosupo/tree/vertex_add_range_contour_sum_on_tree.test.cpp
+  - test/yosupo/tree/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
   - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
 documentation_of: graph/tree/TreeCentroid.hpp
 layout: document

@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/ExpPolySum.hpp
     title: ExpPolySum($\sum_{i=0}^{\infty}r^ii^d$)
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/PowEnumerate.hpp
     title: PowEnumerate
   _extendedVerifiedWith:
@@ -40,17 +40,17 @@ data:
     path: test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp
     title: test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/math/enumerate_primes.test.cpp
-    title: test/yosupo/math/enumerate_primes.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/math/sum_of_exponential_times_polynomial.test.cpp
-    title: test/yosupo/math/sum_of_exponential_times_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/math/sum_of_exponential_times_polynomial_limit.test.cpp
-    title: test/yosupo/math/sum_of_exponential_times_polynomial_limit.test.cpp
-  _isVerificationFailed: false
+    path: test/yosupo/number_theory/enumerate_primes.test.cpp
+    title: test/yosupo/number_theory/enumerate_primes.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp
+    title: test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
+    title: test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/math/PrimeFactor.md
     document_title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9\
@@ -513,11 +513,11 @@ data:
   - math/ExpPolySum.hpp
   - math/PowEnumerate.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yosupo/math/sum_of_exponential_times_polynomial_limit.test.cpp
-  - test/yosupo/math/sum_of_exponential_times_polynomial.test.cpp
-  - test/yosupo/math/enumerate_primes.test.cpp
+  - test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
+  - test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp
+  - test/yosupo/number_theory/enumerate_primes.test.cpp
   - test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp
 documentation_of: math/PrimeFactor.hpp
 layout: document

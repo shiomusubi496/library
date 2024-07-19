@@ -1,31 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
@@ -65,10 +65,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/other/SlidingWindowAggregation.hpp
     title: SlidingWindowAggregation(SWAG)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/BinaryIndexedTree.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/CumulativeSum.hpp
     title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
   - icon: ':heavy_check_mark:'
@@ -100,7 +100,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/PlusMinusOneRMQ.hpp
     title: PlusMinusOneRMQ($\pm1$RMQ)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/RAQBIT.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
   - icon: ':heavy_check_mark:'
@@ -109,7 +109,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/RangeSortQuery.hpp
     title: RangeSortQuery
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':heavy_check_mark:'
@@ -142,7 +142,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/mst/DirectedMST.hpp
     title: "DirectedMST(\u6700\u5C0F\u6709\u5411\u5168\u57DF\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
   - icon: ':heavy_check_mark:'
@@ -169,7 +169,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/convolution/BitwiseXorConvolution.hpp
     title: BitwiseXorConvolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
   - icon: ':heavy_check_mark:'
@@ -336,38 +336,11 @@ data:
     path: test/yosupo/data_structure/staticrmq-SparseTable.test.cpp
     title: test/yosupo/data_structure/staticrmq-SparseTable.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_add_path_sum.test.cpp
-    title: test/yosupo/data_structure/vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
-    title: test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree.test.cpp
-    title: test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
-    title: test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
-    title: test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
-    title: test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_get_range_contour_add_on_tree.test.cpp
-    title: test/yosupo/data_structure/vertex_get_range_contour_add_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-    title: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
-    title: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/directedmst.test.cpp
     title: test/yosupo/graph/directedmst.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/math/discrete_logarithm_mod.test.cpp
-    title: test/yosupo/math/discrete_logarithm_mod.test.cpp
+    path: test/yosupo/number_theory/discrete_logarithm_mod.test.cpp
+    title: test/yosupo/number_theory/discrete_logarithm_mod.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/common_interval_decomposition_tree.test.cpp
     title: test/yosupo/tree/common_interval_decomposition_tree.test.cpp
@@ -377,6 +350,33 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/tree_path_composite_sum.test.cpp
     title: test/yosupo/tree/tree_path_composite_sum.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/tree/vertex_add_path_sum.test.cpp
+    title: test/yosupo/tree/vertex_add_path_sum.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/tree/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
+    title: test/yosupo/tree/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/tree/vertex_add_range_contour_sum_on_tree.test.cpp
+    title: test/yosupo/tree/vertex_add_range_contour_sum_on_tree.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/tree/vertex_add_subtree_sum-2.test.cpp
+    title: test/yosupo/tree/vertex_add_subtree_sum-2.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/tree/vertex_add_subtree_sum-HLD.test.cpp
+    title: test/yosupo/tree/vertex_add_subtree_sum-HLD.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/tree/vertex_add_subtree_sum.test.cpp
+    title: test/yosupo/tree/vertex_add_subtree_sum.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/tree/vertex_get_range_contour_add_on_tree.test.cpp
+    title: test/yosupo/tree/vertex_get_range_contour_add_on_tree.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/tree/vertex_set_path_composite-HLD.test.cpp
+    title: test/yosupo/tree/vertex_set_path_composite-HLD.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/tree/vertex_set_path_composite.test.cpp
+    title: test/yosupo/tree/vertex_set_path_composite.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
     title: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
@@ -386,9 +386,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki/855_DynamicSegTree.test.cpp
     title: test/yuki/855_DynamicSegTree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"other/monoid.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
@@ -1032,11 +1032,12 @@ data:
   - graph/tree/TreeHash.hpp
   - graph/tree/ReRooting.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yuki/855_DynamicSegTree.test.cpp
   - test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
   - test/yuki/1435_SegTree-BinarySearch.test.cpp
+  - test/yosupo/number_theory/discrete_logarithm_mod.test.cpp
   - test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
   - test/yosupo/convolution/bitwise_and_convolution.test.cpp
   - test/yosupo/convolution/bitwise_xor_convolution.test.cpp
@@ -1048,30 +1049,22 @@ data:
   - test/yosupo/data_structure/static_range_count_distinct.test.cpp
   - test/yosupo/data_structure/rectangle_add_point_get.test.cpp
   - test/yosupo/data_structure/point_add_rectangle_sum-2DSegTree.test.cpp
-  - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
   - test/yosupo/data_structure/range_kth_smallest-seg.test.cpp
-  - test/yosupo/data_structure/vertex_get_range_contour_add_on_tree.test.cpp
   - test/yosupo/data_structure/range_chmin_chmax_add_range_sum.test.cpp
   - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
-  - test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
   - test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
   - test/yosupo/data_structure/range_reverse_range_sum.test.cpp
   - test/yosupo/data_structure/point_set_range_composite.test.cpp
   - test/yosupo/data_structure/range_affine_range_sum.test.cpp
-  - test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree.test.cpp
   - test/yosupo/data_structure/rectangle_sum-WM.test.cpp
   - test/yosupo/data_structure/queue_operate_all_composite.test.cpp
   - test/yosupo/data_structure/staticrmq-LinearRMQ.test.cpp
   - test/yosupo/data_structure/staticrmq-SparseTable.test.cpp
   - test/yosupo/data_structure/static_range_sum-DisjointSparseTable.test.cpp
   - test/yosupo/data_structure/range_set_range_composite.test.cpp
-  - test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
   - test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
   - test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp
-  - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
   - test/yosupo/data_structure/rectangle_sum-2DCum.test.cpp
-  - test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
-  - test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
   - test/yosupo/data_structure/deque_operate_all_composite.test.cpp
   - test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
   - test/yosupo/data_structure/static_range_inversions_query.test.cpp
@@ -1079,11 +1072,18 @@ data:
   - test/yosupo/data_structure/point_add_range_sum.test.cpp
   - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SplayTree.test.cpp
   - test/yosupo/data_structure/static_range_sum-CumulativeSum.test.cpp
-  - test/yosupo/data_structure/vertex_add_path_sum.test.cpp
-  - test/yosupo/math/discrete_logarithm_mod.test.cpp
   - test/yosupo/tree/tree_path_composite_sum.test.cpp
+  - test/yosupo/tree/vertex_set_path_composite.test.cpp
+  - test/yosupo/tree/vertex_get_range_contour_add_on_tree.test.cpp
   - test/yosupo/tree/common_interval_decomposition_tree.test.cpp
+  - test/yosupo/tree/vertex_add_subtree_sum-2.test.cpp
+  - test/yosupo/tree/vertex_add_range_contour_sum_on_tree.test.cpp
+  - test/yosupo/tree/vertex_add_subtree_sum-HLD.test.cpp
+  - test/yosupo/tree/vertex_set_path_composite-HLD.test.cpp
+  - test/yosupo/tree/vertex_add_subtree_sum.test.cpp
+  - test/yosupo/tree/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
   - test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
+  - test/yosupo/tree/vertex_add_path_sum.test.cpp
   - test/yosupo/graph/directedmst.test.cpp
   - test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
   - test/aoj/DSL/DSL_2_B-RSQ.test.cpp

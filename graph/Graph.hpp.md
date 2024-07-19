@@ -1,31 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
@@ -42,7 +42,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/connected/ConnectedComponents.hpp
     title: "ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/connected/StronglyConnectedComponents.hpp
     title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
@@ -100,7 +100,7 @@ data:
     path: graph/other/TopologicalSort.hpp
     title: "TopologicalSort(\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8\
       )"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/other/TwoSatisfiability.hpp
     title: TwoSatisfiability(2-SAT)
   - icon: ':heavy_check_mark:'
@@ -125,24 +125,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree/CartesianTree.hpp
     title: CartesianTree
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/ContourQuery.hpp
     title: graph/tree/ContourQuery.hpp
   - icon: ':heavy_check_mark:'
     path: graph/tree/DoublingLowestCommonAncestor.hpp
     title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
       \u308BLCA)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/EulerTourSubtree.hpp
     title: "EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\
       \u6728\u30AF\u30A8\u30EA)"
   - icon: ':heavy_check_mark:'
     path: graph/tree/FrequencyTableofTreeDistance.hpp
     title: Frequency Table of Tree Distance
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree/HeavyLightDecomposition.hpp
     title: "HeavyLightDecomposition(HL\u5206\u89E3)"
   - icon: ':heavy_check_mark:'
@@ -154,7 +154,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree/ReRooting.hpp
     title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree/TreeCentroid.hpp
     title: "TreeCentroid(\u6728\u306E\u91CD\u5FC3)"
   - icon: ':heavy_check_mark:'
@@ -252,33 +252,6 @@ data:
     path: test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
     title: test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_add_path_sum.test.cpp
-    title: test/yosupo/data_structure/vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
-    title: test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree.test.cpp
-    title: test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
-    title: test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
-    title: test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
-    title: test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_get_range_contour_add_on_tree.test.cpp
-    title: test/yosupo/data_structure/vertex_get_range_contour_add_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-    title: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
-    title: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/biconnected_components.test.cpp
     title: test/yosupo/graph/biconnected_components.test.cpp
   - icon: ':heavy_check_mark:'
@@ -321,9 +294,6 @@ data:
     path: test/yosupo/graph/two_edge_connected_components.test.cpp
     title: test/yosupo/graph/two_edge_connected_components.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/math/two_sat.test.cpp
-    title: test/yosupo/math/two_sat.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/connected_components_of_complement_graph.test.cpp
     title: test/yosupo/new/connected_components_of_complement_graph.test.cpp
   - icon: ':heavy_check_mark:'
@@ -332,6 +302,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/counting_spanning_tree_undirected.test.cpp
     title: test/yosupo/new/counting_spanning_tree_undirected.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/other/two_sat.test.cpp
+    title: test/yosupo/other/two_sat.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/cartesian_tree.test.cpp
     title: test/yosupo/tree/cartesian_tree.test.cpp
@@ -356,9 +329,36 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/tree_path_composite_sum.test.cpp
     title: test/yosupo/tree/tree_path_composite_sum.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yosupo/tree/vertex_add_path_sum.test.cpp
+    title: test/yosupo/tree/vertex_add_path_sum.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/tree/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
+    title: test/yosupo/tree/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/tree/vertex_add_range_contour_sum_on_tree.test.cpp
+    title: test/yosupo/tree/vertex_add_range_contour_sum_on_tree.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/tree/vertex_add_subtree_sum-2.test.cpp
+    title: test/yosupo/tree/vertex_add_subtree_sum-2.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/tree/vertex_add_subtree_sum-HLD.test.cpp
+    title: test/yosupo/tree/vertex_add_subtree_sum-HLD.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/tree/vertex_add_subtree_sum.test.cpp
+    title: test/yosupo/tree/vertex_add_subtree_sum.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/tree/vertex_get_range_contour_add_on_tree.test.cpp
+    title: test/yosupo/tree/vertex_get_range_contour_add_on_tree.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/tree/vertex_set_path_composite-HLD.test.cpp
+    title: test/yosupo/tree/vertex_set_path_composite-HLD.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/tree/vertex_set_path_composite.test.cpp
+    title: test/yosupo/tree/vertex_set_path_composite.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/graph/Graph.md
     document_title: Graph-template
@@ -902,28 +902,28 @@ data:
   - graph/connected/TwoEdgeConnectedComponents.hpp
   - graph/connected/ConnectedComponents.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
-  - test/yosupo/data_structure/vertex_get_range_contour_add_on_tree.test.cpp
+  - test/yosupo/other/two_sat.test.cpp
   - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
   - test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
-  - test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
-  - test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree.test.cpp
-  - test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
-  - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-  - test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
-  - test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
-  - test/yosupo/data_structure/vertex_add_path_sum.test.cpp
-  - test/yosupo/math/two_sat.test.cpp
   - test/yosupo/tree/tree_path_composite_sum.test.cpp
+  - test/yosupo/tree/vertex_set_path_composite.test.cpp
+  - test/yosupo/tree/vertex_get_range_contour_add_on_tree.test.cpp
   - test/yosupo/tree/common_interval_decomposition_tree.test.cpp
   - test/yosupo/tree/cartesian_tree.test.cpp
+  - test/yosupo/tree/vertex_add_subtree_sum-2.test.cpp
+  - test/yosupo/tree/vertex_add_range_contour_sum_on_tree.test.cpp
   - test/yosupo/tree/jump_on_tree.test.cpp
   - test/yosupo/tree/tree_diameter.test.cpp
+  - test/yosupo/tree/vertex_add_subtree_sum-HLD.test.cpp
+  - test/yosupo/tree/vertex_set_path_composite-HLD.test.cpp
   - test/yosupo/tree/lca-HLD.test.cpp
+  - test/yosupo/tree/vertex_add_subtree_sum.test.cpp
+  - test/yosupo/tree/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
   - test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
   - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
+  - test/yosupo/tree/vertex_add_path_sum.test.cpp
   - test/yosupo/new/counting_spanning_tree_undirected.test.cpp
   - test/yosupo/new/counting_spanning_tree_directed.test.cpp
   - test/yosupo/new/connected_components_of_complement_graph.test.cpp
