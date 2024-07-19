@@ -752,10 +752,10 @@ data:
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
-  - test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
   - test/yuki/855_DynamicSegTree.test.cpp
   - test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
+  - test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
+  - test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
 documentation_of: data-struct/segment/DynamicSegmentTree.hpp
 layout: document
 redirect_from:

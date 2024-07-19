@@ -653,13 +653,13 @@ data:
   isVerificationFile: false
   path: data-struct/segment/PlusMinusOneRMQ.hpp
   requiredBy:
-  - graph/tree/PMORMQLCA.hpp
   - data-struct/segment/LCARMQ.hpp
+  - graph/tree/PMORMQLCA.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
   - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
+  - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
 documentation_of: data-struct/segment/PlusMinusOneRMQ.hpp
 layout: document
 redirect_from:

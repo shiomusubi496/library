@@ -598,9 +598,9 @@ data:
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/data_structure/vertex_get_range_contour_add_on_tree.test.cpp
   - test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree.test.cpp
   - test/yosupo/data_structure/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
-  - test/yosupo/data_structure/vertex_get_range_contour_add_on_tree.test.cpp
   - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
 documentation_of: graph/tree/TreeCentroid.hpp
 layout: document

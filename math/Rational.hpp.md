@@ -578,11 +578,11 @@ data:
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/math/stern_brocot_tree.test.cpp
+  - test/yosupo/math/min_of_mod_of_linear.test.cpp
+  - test/yosupo/new/rational_approximation.test.cpp
   - test/aoj/other/1208-SternBrocotTree.test.cpp
   - test/aoj/ALDS1/ALDS1_15_B.test.cpp
-  - test/yosupo/math/min_of_mod_of_linear.test.cpp
-  - test/yosupo/math/stern_brocot_tree.test.cpp
-  - test/yosupo/new/rational_approximation.test.cpp
 documentation_of: math/Rational.hpp
 layout: document
 redirect_from:

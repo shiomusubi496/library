@@ -510,9 +510,9 @@ data:
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
-  - test/yuki/448-Garner.test.cpp
   - test/yuki/447-CRT.test.cpp
+  - test/yuki/448-Garner.test.cpp
+  - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
 documentation_of: math/ChineseRemainder.hpp
 layout: document
 redirect_from:

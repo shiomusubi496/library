@@ -693,15 +693,15 @@ data:
   isVerificationFile: false
   path: data-struct/2D/Struct2D.hpp
   requiredBy:
-  - data-struct/2D/CumulativeSum2D.hpp
-  - data-struct/2D/SegmentTree2D.hpp
   - data-struct/2D/DualSegmentTree2D.hpp
+  - data-struct/2D/SegmentTree2D.hpp
+  - data-struct/2D/CumulativeSum2D.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/data_structure/rectangle_sum-2DCum.test.cpp
-  - test/yosupo/data_structure/point_add_rectangle_sum-2DSegTree.test.cpp
   - test/yosupo/data_structure/rectangle_add_point_get.test.cpp
+  - test/yosupo/data_structure/point_add_rectangle_sum-2DSegTree.test.cpp
+  - test/yosupo/data_structure/rectangle_sum-2DCum.test.cpp
 documentation_of: data-struct/2D/Struct2D.hpp
 layout: document
 redirect_from:

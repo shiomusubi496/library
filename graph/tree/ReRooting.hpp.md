@@ -693,9 +693,9 @@ data:
   timestamp: '2024-05-17 13:49:08+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
   - test/yosupo/tree/tree_path_composite_sum.test.cpp
   - test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
+  - test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
 documentation_of: graph/tree/ReRooting.hpp
 layout: document
 redirect_from:

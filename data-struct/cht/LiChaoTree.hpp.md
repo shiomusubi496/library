@@ -463,7 +463,7 @@ data:
     \    LiChaoTree(const std::vector<T>& xs_) { init(xs_); }\n    void init(const\
     \ std::vector<T>& xs_) {\n        xs = xs_.empty() ? std::vector<T>{0} : xs_;\n\
     \        ori = xs.size();\n        n = 1 << bitop::ceil_log2(ori);\n        xs.reserve(n);\n\
-    \        rep (i, xs_.size(), n) xs.push_back(xs_[i] + 1);\n        lns.assign(n\
+    \        rep (i, xs_.size(), n) xs.push_back(xs_.back() + 1);\n        lns.assign(n\
     \ << 1, Line{0, infinity<T>::max, -1});\n    }\n    int add_segment(int l, int\
     \ r, T x, T y) {\n        assert(0 <= l && l <= r && r <= ori);\n        add_segment(1,\
     \ 0, n, l, r,\n                    Line{is_max ? -x : x, is_max ? -y : y, line_count});\n\
@@ -503,10 +503,10 @@ data:
     \ : LiChaoTree({0}) {}\n    LiChaoTree(const std::vector<T>& xs_) { init(xs_);\
     \ }\n    void init(const std::vector<T>& xs_) {\n        xs = xs_.empty() ? std::vector<T>{0}\
     \ : xs_;\n        ori = xs.size();\n        n = 1 << bitop::ceil_log2(ori);\n\
-    \        xs.reserve(n);\n        rep (i, xs_.size(), n) xs.push_back(xs_[i] +\
-    \ 1);\n        lns.assign(n << 1, Line{0, infinity<T>::max, -1});\n    }\n   \
-    \ int add_segment(int l, int r, T x, T y) {\n        assert(0 <= l && l <= r &&\
-    \ r <= ori);\n        add_segment(1, 0, n, l, r,\n                    Line{is_max\
+    \        xs.reserve(n);\n        rep (i, xs_.size(), n) xs.push_back(xs_.back()\
+    \ + 1);\n        lns.assign(n << 1, Line{0, infinity<T>::max, -1});\n    }\n \
+    \   int add_segment(int l, int r, T x, T y) {\n        assert(0 <= l && l <= r\
+    \ && r <= ori);\n        add_segment(1, 0, n, l, r,\n                    Line{is_max\
     \ ? -x : x, is_max ? -y : y, line_count});\n        return line_count++;\n   \
     \ }\n    int add_line(T x, T y) {\n        add_line(1, 0, n, Line{is_max ? -x\
     \ : x, is_max ? -y : y, line_count});\n        return line_count++;\n    }\n \
@@ -532,7 +532,7 @@ data:
   isVerificationFile: false
   path: data-struct/cht/LiChaoTree.hpp
   requiredBy: []
-  timestamp: '2024-05-12 17:35:55+09:00'
+  timestamp: '2024-07-19 16:42:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/data_structure/segment_add_get_min.test.cpp

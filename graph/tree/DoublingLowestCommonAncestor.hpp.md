@@ -599,8 +599,8 @@ data:
   timestamp: '2024-06-13 00:08:28+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/GRL/GRL_5_C-LCA.test.cpp
   - test/yosupo/tree/jump_on_tree.test.cpp
+  - test/aoj/GRL/GRL_5_C-LCA.test.cpp
 documentation_of: graph/tree/DoublingLowestCommonAncestor.hpp
 layout: document
 redirect_from:

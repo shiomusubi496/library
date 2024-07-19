@@ -752,17 +752,17 @@ data:
   isVerificationFile: false
   path: math/matrix/Determinant.hpp
   requiredBy:
-  - graph/mst/CountSpanningTree.hpp
   - graph/other/CountEulerianTrail.hpp
+  - graph/mst/CountSpanningTree.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/atcoder/abc336_g-BEST.test.cpp
   - test/yosupo/matrix/matrix_det_arbitrary_mod.test.cpp
   - test/yosupo/matrix/matrix_det.test.cpp
-  - test/yosupo/new/matrix_det_mod_2.test.cpp
-  - test/yosupo/new/counting_spanning_tree_directed.test.cpp
   - test/yosupo/new/counting_spanning_tree_undirected.test.cpp
+  - test/yosupo/new/counting_spanning_tree_directed.test.cpp
+  - test/yosupo/new/matrix_det_mod_2.test.cpp
+  - test/atcoder/abc336_g-BEST.test.cpp
 documentation_of: math/matrix/Determinant.hpp
 layout: document
 redirect_from:

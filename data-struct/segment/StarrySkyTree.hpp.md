@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: graph/Graph.hpp
-    title: Graph-template
+    path: other/monoid.hpp
+    title: other/monoid.hpp
   - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
@@ -31,22 +31,20 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: graph/tree/PermutationTree.hpp
+    title: graph/tree/PermutationTree.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
-    title: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/graph/cycle_detection.test.cpp
-    title: test/yosupo/graph/cycle_detection.test.cpp
+    path: test/yosupo/tree/common_interval_decomposition_tree.test.cpp
+    title: test/yosupo/tree/common_interval_decomposition_tree.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/graph/other/GraphCycle.md
-    document_title: "GraphCycle(\u9589\u8DEF\u691C\u51FA)"
     links: []
-  bundledCode: "#line 2 \"graph/other/GraphCycle.hpp\"\n\n#line 2 \"other/template.hpp\"\
+  bundledCode: "#line 2 \"data-struct/segment/StarrySkyTree.hpp\"\n\n#line 2 \"other/template.hpp\"\
     \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
     \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define OVERLOAD5(a,\
     \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
@@ -445,81 +443,138 @@ data:
     \        return res;\n    }\n    void press(std::vector<T>& vec) const {\n   \
     \     assert(sorted);\n        for (auto&& i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
-    };\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class\
-    \ T = int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
-    \ : from(-1), to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1)\n\
-    \        : from(f), to(t), cost(c), idx(i) {}\n    edge(int f, int t, T&& c, int\
-    \ i = -1)\n        : from(f), to(t), cost(std::move(c)), idx(i) {}\n    operator\
-    \ int() const { return to; }\n    friend bool operator<(const edge<T>& lhs, const\
-    \ edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n    }\n    friend bool\
-    \ operator>(const edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost\
-    \ > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using Edges = std::vector<edge<T>>;\n\
-    template<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class\
-    \ T = int> class Graph : public std::vector<std::vector<edge<T>>> {\nprivate:\n\
-    \    using Base = std::vector<std::vector<edge<T>>>;\n\npublic:\n    int edge_id\
-    \ = 0;\n    using Base::Base;\n    int edge_size() const { return edge_id; }\n\
-    \    int add_edge(int a, int b, const T& c, bool is_directed = false) {\n    \
-    \    assert(0 <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
-    \        (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed)\
-    \ (*this)[b].emplace_back(b, a, c, edge_id);\n        return edge_id++;\n    }\n\
-    \    int add_edge(int a, int b, bool is_directed = false) {\n        assert(0\
-    \ <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
-    \        (*this)[a].emplace_back(a, b, 1, edge_id);\n        if (!is_directed)\
-    \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
-    };\n\ntemplate<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {\n    const\
-    \ int N = G.size();\n    auto res = make_vec<T>(N, N, infinity<T>::value);\n \
-    \   rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n        for (const auto& e :\
-    \ G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\ntemplate<class T>\
-    \ Edges<T> UndirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n\
-    \    const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n   \
-    \     for (const auto& e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\n\
-    template<class T> Edges<T> DirectedListToEdges(const Graph<T>& G) {\n    const\
-    \ int V = G.size();\n    const int E = std::accumulate(\n        all(G), 0, [](int\
-    \ a, const std::vector<edge<T>>& v) -> int {\n            return a + v.size();\n\
-    \        });\n    Edges<T> Ed(G.edge_size());\n    Ed.reserve(E);\n    rep (i,\
-    \ V) {\n        for (const auto& e : G[i]) {\n            if (Ed[e.idx] == -1)\
-    \ Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n    return\
-    \ Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n   \
-    \ const int V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n        for\
-    \ (const auto& e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from, e.cost,\
-    \ e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n    return res;\n\
-    }\n\n\nstruct unweighted_edge {\n    template<class... Args> unweighted_edge(const\
-    \ Args&...) {}\n    operator int() { return 1; }\n};\n\nusing UnweightedGraph\
-    \ = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n * @docs docs/graph/Graph.md\n\
-    \ */\n#line 5 \"graph/other/GraphCycle.hpp\"\n\ntemplate<class T> class GraphCycle\
-    \ {\nprivate:\n    const Graph<T>& G;\n    std::vector<bool> visited, seen;\n\
-    \    Edges<T> cycle;\n    int dfs(int v, int k) {\n        if (seen[v]) return\
-    \ v;\n        if (visited[v]) return -1;\n        visited[v] = seen[v] = true;\n\
-    \        for (const auto& e : G[v]) {\n            if (e.idx == k) continue;\n\
-    \            int d = dfs(e.to, e.idx);\n            if (d != -1) {\n         \
-    \       if (d == -2) return -2;\n                cycle.push_back(e);\n       \
-    \         if (d == v) return -2;\n                return d;\n            }\n \
-    \       }\n        seen[v] = false;\n        return -1;\n    }\n    void init()\
-    \ {\n        const int N = G.size();\n        visited.assign(N, false);\n    \
-    \    seen.assign(N, false);\n        rep (i, N) {\n            if (dfs(i, -1)\
-    \ == -2) {\n                std::reverse(all(cycle));\n                break;\n\
-    \            }\n        }\n    }\n\npublic:\n    GraphCycle(const Graph<T>& G)\
-    \ : G(G) { init(); }\n    bool has_cycle() const { return !cycle.empty(); }\n\
-    \    const Edges<T>& get_cycle() const& { return cycle; }\n    Edges<T> get_cycle()\
-    \ && { return std::move(cycle); }\n};\n\n/**\n * @brief GraphCycle(\u9589\u8DEF\
-    \u691C\u51FA)\n * @docs docs/graph/other/GraphCycle.md\n */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
-    \n\ntemplate<class T> class GraphCycle {\nprivate:\n    const Graph<T>& G;\n \
-    \   std::vector<bool> visited, seen;\n    Edges<T> cycle;\n    int dfs(int v,\
-    \ int k) {\n        if (seen[v]) return v;\n        if (visited[v]) return -1;\n\
-    \        visited[v] = seen[v] = true;\n        for (const auto& e : G[v]) {\n\
-    \            if (e.idx == k) continue;\n            int d = dfs(e.to, e.idx);\n\
-    \            if (d != -1) {\n                if (d == -2) return -2;\n       \
-    \         cycle.push_back(e);\n                if (d == v) return -2;\n      \
-    \          return d;\n            }\n        }\n        seen[v] = false;\n   \
-    \     return -1;\n    }\n    void init() {\n        const int N = G.size();\n\
-    \        visited.assign(N, false);\n        seen.assign(N, false);\n        rep\
-    \ (i, N) {\n            if (dfs(i, -1) == -2) {\n                std::reverse(all(cycle));\n\
-    \                break;\n            }\n        }\n    }\n\npublic:\n    GraphCycle(const\
-    \ Graph<T>& G) : G(G) { init(); }\n    bool has_cycle() const { return !cycle.empty();\
-    \ }\n    const Edges<T>& get_cycle() const& { return cycle; }\n    Edges<T> get_cycle()\
-    \ && { return std::move(cycle); }\n};\n\n/**\n * @brief GraphCycle(\u9589\u8DEF\
-    \u691C\u51FA)\n * @docs docs/graph/other/GraphCycle.md\n */\n"
+    };\n#line 2 \"other/monoid.hpp\"\n\n#line 4 \"other/monoid.hpp\"\n\nnamespace\
+    \ Monoid {\n\ntemplate<class M, class = void>\nclass has_value_type : public std::false_type\
+    \ {};\ntemplate<class M>\nclass has_value_type<M, decltype((void)std::declval<typename\
+    \ M::value_type>())>\n    : public std::true_type {};\n\ntemplate<class M, class\
+    \ = void> class has_op : public std::false_type {};\ntemplate<class M>\nclass\
+    \ has_op<M, decltype((void)M::op)> : public std::true_type {};\n\ntemplate<class\
+    \ M, class = void> class has_id : public std::false_type {};\ntemplate<class M>\n\
+    class has_id<M, decltype((void)M::id)> : public std::true_type {};\n\ntemplate<class\
+    \ M, class = void> class has_inv : public std::false_type {};\ntemplate<class\
+    \ M>\nclass has_inv<M, decltype((void)M::inv)> : public std::true_type {};\n\n\
+    template<class M, class = void> class has_get_inv : public std::false_type {};\n\
+    template<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)> : public std::true_type\
+    \ {};\n\ntemplate<class M, class = void> class has_init : public std::false_type\
+    \ {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init(0, 0))> : public\
+    \ std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op : public\
+    \ std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
+    \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_semigroup\
+    \ : public std::false_type {};\ntemplate<class T>\nclass is_semigroup<T, decltype(std::declval<typename\
+    \ T::value_type>(),\n                               (void)T::op)> : public std::true_type\
+    \ {};\n\ntemplate<class T, class = void> class is_monoid : public std::false_type\
+    \ {};\n\ntemplate<class T>\nclass is_monoid<T, decltype(std::declval<typename\
+    \ T::value_type>(), (void)T::op,\n                            (void)T::id)> :\
+    \ public std::true_type {};\n\ntemplate<class T, class = void> class is_group\
+    \ : public std::false_type {};\n\ntemplate<class T>\nclass is_group<T, decltype(std::declval<typename\
+    \ T::value_type>(), (void)T::op,\n                           (void)T::id, (void)T::get_inv)>\n\
+    \    : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
+    \ : public std::false_type {};\ntemplate<class T>\nclass is_action<T, typename\
+    \ std::enable_if<is_monoid<typename T::M>::value &&\n                        \
+    \                   is_semigroup<typename T::E>::value &&\n                  \
+    \                         (has_op<T>::value ||\n                             \
+    \               has_mul_op<T>::value)>::type>\n    : public std::true_type {};\n\
+    \ntemplate<class T, class = void>\nclass is_distributable_action : public std::false_type\
+    \ {};\ntemplate<class T>\nclass is_distributable_action<\n    T,\n    typename\
+    \ std::enable_if<is_action<T>::value && !has_mul_op<T>::value>::type>\n    : public\
+    \ std::true_type {};\n\ntemplate<class T> struct Sum {\n    using value_type =\
+    \ T;\n    static constexpr T op(const T& a, const T& b) { return a + b; }\n  \
+    \  static constexpr T id() { return T{0}; }\n    static constexpr T inv(const\
+    \ T& a, const T& b) { return a - b; }\n    static constexpr T get_inv(const T&\
+    \ a) { return -a; }\n};\n\ntemplate<class T, int i = -1> struct Min {\n    using\
+    \ value_type = T;\n    static T max_value;\n    static T op(const T& a, const\
+    \ T& b) { return a < b ? a : b; }\n    static T id() { return max_value; }\n};\n\
+    template<class T> struct Min<T, -1> {\n    using value_type = T;\n    static constexpr\
+    \ T op(const T& a, const T& b) { return a < b ? a : b; }\n    static constexpr\
+    \ T id() { return infinity<T>::value; }\n};\ntemplate<class T> struct Min<T, -2>\
+    \ {\n    using value_type = T;\n    static constexpr T op(const T& a, const T&\
+    \ b) { return a < b ? a : b; }\n    static constexpr T id() { return infinity<T>::max;\
+    \ }\n};\ntemplate<class T, int id> T Min<T, id>::max_value;\n\ntemplate<class\
+    \ T, int i = -1> struct Max {\n    using value_type = T;\n    static T min_value;\n\
+    \    static T op(const T& a, const T& b) { return a > b ? a : b; }\n    static\
+    \ T id() { return min_value; }\n};\ntemplate<class T> struct Max<T, -1> {\n  \
+    \  using value_type = T;\n    static constexpr T op(const T& a, const T& b) {\
+    \ return a > b ? a : b; }\n    static constexpr T id() { return infinity<T>::mvalue;\
+    \ }\n};\ntemplate<class T> struct Max<T, -2> {\n    using value_type = T;\n  \
+    \  static constexpr T op(const T& a, const T& b) { return a > b ? a : b; }\n \
+    \   static constexpr T id() { return infinity<T>::min; }\n};\n\ntemplate<class\
+    \ T> struct Assign {\n    using value_type = T;\n    static constexpr T op(const\
+    \ T&, const T& b) { return b; }\n};\n\n\ntemplate<class T, int id = -1> struct\
+    \ AssignMin {\n    using M = Min<T, id>;\n    using E = Assign<T>;\n    static\
+    \ constexpr T op(const T& a, const T&) { return a; }\n};\n\ntemplate<class T,\
+    \ int id = -1> struct AssignMax {\n    using M = Max<T, id>;\n    using E = Assign<T>;\n\
+    \    static constexpr T op(const T& a, const T&) { return a; }\n};\n\ntemplate<class\
+    \ T> struct AssignSum {\n    using M = Sum<T>;\n    using E = Assign<T>;\n   \
+    \ static constexpr T mul_op(const T& a, int b, const T&) { return a * b; }\n};\n\
+    \ntemplate<class T, int id = -1> struct AddMin {\n    using M = Min<T, id>;\n\
+    \    using E = Sum<T>;\n    static constexpr T op(const T& a, const T& b) { return\
+    \ b + a; }\n};\n\ntemplate<class T, int id = -1> struct AddMax {\n    using M\
+    \ = Max<T, id>;\n    using E = Sum<T>;\n    static constexpr T op(const T& a,\
+    \ const T& b) { return b + a; }\n};\n\ntemplate<class T> struct AddSum {\n   \
+    \ using M = Sum<T>;\n    using E = Sum<T>;\n    static constexpr T mul_op(const\
+    \ T& a, int b, const T& c) {\n        return c + a * b;\n    }\n};\n\ntemplate<class\
+    \ T, int id = -1> struct ChminMin {\n    using M = Min<T, id>;\n    using E =\
+    \ Min<T>;\n    static constexpr T op(const T& a, const T& b) { return std::min(b,\
+    \ a); }\n};\n\ntemplate<class T, int id = -1> struct ChminMax {\n    using M =\
+    \ Max<T, id>;\n    using E = Min<T>;\n    static constexpr T op(const T& a, const\
+    \ T& b) { return std::min(b, a); }\n};\n\ntemplate<class T, int id = -1> struct\
+    \ ChmaxMin {\n    using M = Min<T, id>;\n    using E = Max<T>;\n    static constexpr\
+    \ T op(const T& a, const T& b) { return std::max(b, a); }\n};\n\ntemplate<class\
+    \ T, int id = -1> struct ChmaxMax {\n    using M = Max<T, id>;\n    using E =\
+    \ Max<T>;\n    static constexpr T op(const T& a, const T& b) { return std::max(b,\
+    \ a); }\n};\n\n\ntemplate<class M> struct ReverseMonoid {\n    using value_type\
+    \ = typename M::value_type;\n    static value_type op(const value_type& a, const\
+    \ value_type& b) {\n        return M::op(b, a);\n    }\n    static value_type\
+    \ id() {\n        static_assert(has_id<M>::value, \"id is not defined\");\n  \
+    \      return M::id();\n    }\n    static value_type inv(const value_type& a,\
+    \ const value_type& b) {\n        static_assert(has_inv<M>::value, \"inv is not\
+    \ defined\");\n        return M::inv(b, a);\n    }\n    static value_type get_inv(const\
+    \ value_type& a) {\n        static_assert(has_get_inv<M>::value, \"get_inv is\
+    \ not defined\");\n        return M::get_inv(a);\n    }\n};\n\ntemplate<class\
+    \ E_> struct MakeAction {\n    using M = E_;\n    using E = E_;\n    using T =\
+    \ typename E_::value_type;\n    static T op(const T& a, const T& b) { return E_::op(b,\
+    \ a); }\n};\n\n} // namespace Monoid\n#line 5 \"data-struct/segment/StarrySkyTree.hpp\"\
+    \n\ntemplate<class A> class StarrySkyTree {\nprivate:\n    using M = typename\
+    \ A::M;\n    using E = typename A::E;\n    using T = typename M::value_type;\n\
+    \    static_assert(std::is_same<T, typename E::value_type>::value,\n         \
+    \         \"monoid and effector must have same value_type\");\n    int n;\n  \
+    \  std::vector<T> dat;\n\n    void apply_(int k, int a, int b, int l, int r, T\
+    \ x) {\n        if (l <= a && b <= r) {\n            dat[k] = E::op(dat[k], x);\n\
+    \            return;\n        }\n        if (r <= a || b <= l) return;\n     \
+    \   int m = (a + b) / 2;\n        apply_(k * 2 + 0, a, m, l, r, x);\n        apply_(k\
+    \ * 2 + 1, m, b, l, r, x);\n        T mn = M::op(dat[k * 2 + 0], dat[k * 2 + 1]);\n\
+    \        dat[k * 2 + 0] = E::inv(dat[k * 2 + 0], mn);\n        dat[k * 2 + 1]\
+    \ = E::inv(dat[k * 2 + 1], mn);\n        dat[k] = E::op(dat[k], mn);\n    }\n\n\
+    \    T prod_(int k, int a, int b, int l, int r, T x) const {\n        if (l <=\
+    \ a && b <= r) return x;\n        if (r <= a || b <= l) return M::id();\n    \
+    \    int m = (a + b) / 2;\n        return M::op(prod_(k * 2 + 0, a, m, l, r, x\
+    \ + dat[k * 2 + 0]),\n                     prod_(k * 2 + 1, m, b, l, r, x + dat[k\
+    \ * 2 + 1]));\n    }\n\npublic:\n    StarrySkyTree() = default;\n    StarrySkyTree(int\
+    \ n_, T x = E::id()) {\n        n = 1;\n        while (n < n_) n *= 2;\n     \
+    \   dat.assign(2 * n, E::id());\n        dat[1] = x;\n    }\n    void apply(int\
+    \ l, int r, T x) { apply_(1, 0, n, l, r, x); }\n    T prod(int l, int r) const\
+    \ { return prod_(1, 0, n, l, r, dat[1]); }\n};\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\
+    \n\ntemplate<class A> class StarrySkyTree {\nprivate:\n    using M = typename\
+    \ A::M;\n    using E = typename A::E;\n    using T = typename M::value_type;\n\
+    \    static_assert(std::is_same<T, typename E::value_type>::value,\n         \
+    \         \"monoid and effector must have same value_type\");\n    int n;\n  \
+    \  std::vector<T> dat;\n\n    void apply_(int k, int a, int b, int l, int r, T\
+    \ x) {\n        if (l <= a && b <= r) {\n            dat[k] = E::op(dat[k], x);\n\
+    \            return;\n        }\n        if (r <= a || b <= l) return;\n     \
+    \   int m = (a + b) / 2;\n        apply_(k * 2 + 0, a, m, l, r, x);\n        apply_(k\
+    \ * 2 + 1, m, b, l, r, x);\n        T mn = M::op(dat[k * 2 + 0], dat[k * 2 + 1]);\n\
+    \        dat[k * 2 + 0] = E::inv(dat[k * 2 + 0], mn);\n        dat[k * 2 + 1]\
+    \ = E::inv(dat[k * 2 + 1], mn);\n        dat[k] = E::op(dat[k], mn);\n    }\n\n\
+    \    T prod_(int k, int a, int b, int l, int r, T x) const {\n        if (l <=\
+    \ a && b <= r) return x;\n        if (r <= a || b <= l) return M::id();\n    \
+    \    int m = (a + b) / 2;\n        return M::op(prod_(k * 2 + 0, a, m, l, r, x\
+    \ + dat[k * 2 + 0]),\n                     prod_(k * 2 + 1, m, b, l, r, x + dat[k\
+    \ * 2 + 1]));\n    }\n\npublic:\n    StarrySkyTree() = default;\n    StarrySkyTree(int\
+    \ n_, T x = E::id()) {\n        n = 1;\n        while (n < n_) n *= 2;\n     \
+    \   dat.assign(2 * n, E::id());\n        dat[1] = x;\n    }\n    void apply(int\
+    \ l, int r, T x) { apply_(1, 0, n, l, r, x); }\n    T prod(int l, int r) const\
+    \ { return prod_(1, 0, n, l, r, dat[1]); }\n};\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -530,26 +585,19 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  - graph/Graph.hpp
+  - other/monoid.hpp
   isVerificationFile: false
-  path: graph/other/GraphCycle.hpp
-  requiredBy: []
-  timestamp: '2024-05-12 17:35:55+09:00'
+  path: data-struct/segment/StarrySkyTree.hpp
+  requiredBy:
+  - graph/tree/PermutationTree.hpp
+  timestamp: '2024-06-28 10:22:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/graph/cycle_detection.test.cpp
-  - test/aoj/GRL/GRL_4_A-Cycle.test.cpp
-documentation_of: graph/other/GraphCycle.hpp
+  - test/yosupo/tree/common_interval_decomposition_tree.test.cpp
+documentation_of: data-struct/segment/StarrySkyTree.hpp
 layout: document
 redirect_from:
-- /library/graph/other/GraphCycle.hpp
-- /library/graph/other/GraphCycle.hpp.html
-title: "GraphCycle(\u9589\u8DEF\u691C\u51FA)"
+- /library/data-struct/segment/StarrySkyTree.hpp
+- /library/data-struct/segment/StarrySkyTree.hpp.html
+title: data-struct/segment/StarrySkyTree.hpp
 ---
-## 概要
-
-有向グラフに対して閉路を検出する。
-
-- `GraphCycle(Graph<T> G)` : グラフ `G` で初期化する。 $\Theta(V + E)$ 。
-- `bool has_cycle()` : 閉路を持つかを返す。 $\Theta(1)$ 。
-- `Edges<T> get_cycle()` : 閉路 $p$ を $1$ つ返す。存在しない場合は空のリストが返る。 $\Theta(\lvert p \rvert)$ 。

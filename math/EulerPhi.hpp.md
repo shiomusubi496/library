@@ -670,8 +670,8 @@ data:
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/NTL/NTL_1_D-Phi.test.cpp
   - test/yosupo/math/tetration_mod.test.cpp
+  - test/aoj/NTL/NTL_1_D-Phi.test.cpp
 documentation_of: math/EulerPhi.hpp
 layout: document
 redirect_from:

@@ -804,23 +804,23 @@ data:
   - math/matrix/Determinant.hpp
   - math/matrix/LinearEquations.hpp
   - math/matrix/Inverse.hpp
-  - graph/mst/CountSpanningTree.hpp
   - graph/other/CountEulerianTrail.hpp
+  - graph/mst/CountSpanningTree.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/atcoder/abc336_g-BEST.test.cpp
-  - test/yosupo/matrix/matrix_det_arbitrary_mod.test.cpp
+  - test/yosupo/matrix/pow_of_matrix.test.cpp
   - test/yosupo/matrix/inverse_matrix.test.cpp
+  - test/yosupo/matrix/matrix_det_arbitrary_mod.test.cpp
   - test/yosupo/matrix/matrix_product.test.cpp
-  - test/yosupo/matrix/matrix_det.test.cpp
   - test/yosupo/matrix/system_of_linear_equations.test.cpp
   - test/yosupo/matrix/matrix_rank.test.cpp
-  - test/yosupo/matrix/pow_of_matrix.test.cpp
-  - test/yosupo/new/matrix_product_mod_2.test.cpp
-  - test/yosupo/new/matrix_det_mod_2.test.cpp
-  - test/yosupo/new/counting_spanning_tree_directed.test.cpp
+  - test/yosupo/matrix/matrix_det.test.cpp
   - test/yosupo/new/counting_spanning_tree_undirected.test.cpp
+  - test/yosupo/new/matrix_product_mod_2.test.cpp
+  - test/yosupo/new/counting_spanning_tree_directed.test.cpp
+  - test/yosupo/new/matrix_det_mod_2.test.cpp
+  - test/atcoder/abc336_g-BEST.test.cpp
 documentation_of: math/matrix/Matrix.hpp
 layout: document
 redirect_from:

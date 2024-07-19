@@ -800,8 +800,8 @@ data:
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
   - test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
+  - test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
 documentation_of: string/RollingHash.hpp
 layout: document
 redirect_from:
