@@ -5,7 +5,7 @@
 #include "../../math/Combinatorics.hpp"
 
 template<class T, class U, class Comb = Combinatorics<T>>
-T count_eulerian_trail(const Graph<U>& G) {
+T count_eulerian_circuit(const Graph<U>& G) {
     int N = G.size();
     std::vector<int> degi(N), dego(N);
     rep (i, N) {
@@ -42,6 +42,6 @@ T count_eulerian_trail(const Graph<U>& G) {
 }
 
 /**
- * @brief CountEulerianTrail(BEST Theorem)
- * @docs docs/graph/other/CountEulerianTrail.md
+ * @brief CountEulerianCircuit(BEST Theorem)
+ * @docs docs/graph/other/CountEulerianCircuit.md
  */
