@@ -84,9 +84,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/matrix_product_mod_2.test.cpp
     title: test/yosupo/new/matrix_product_mod_2.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yosupo/new/unionfind_with_potential_non_commutative_group.test.cpp
+    title: test/yosupo/new/unionfind_with_potential_non_commutative_group.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/math/matrix/Matrix.md
     document_title: "Matrix(\u884C\u5217)"
@@ -807,7 +810,7 @@ data:
   - graph/other/CountEulerianTrail.hpp
   - graph/mst/CountSpanningTree.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/linear_algebra/pow_of_matrix.test.cpp
   - test/yosupo/linear_algebra/inverse_matrix.test.cpp
@@ -820,6 +823,7 @@ data:
   - test/yosupo/new/matrix_product_mod_2.test.cpp
   - test/yosupo/new/counting_spanning_tree_directed.test.cpp
   - test/yosupo/new/matrix_det_mod_2.test.cpp
+  - test/yosupo/new/unionfind_with_potential_non_commutative_group.test.cpp
   - test/atcoder/abc336_g-BEST.test.cpp
 documentation_of: math/matrix/Matrix.hpp
 layout: document

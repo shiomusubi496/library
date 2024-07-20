@@ -33,6 +33,9 @@ data:
     path: data-struct/unionfind/EnumerateUnionFind.hpp
     title: data-struct/unionfind/EnumerateUnionFind.hpp
   - icon: ':heavy_check_mark:'
+    path: data-struct/unionfind/RangeParallelUnionFind.hpp
+    title: RangeParallelUnionFind
+  - icon: ':heavy_check_mark:'
     path: graph/mst/DirectedMST.hpp
     title: "DirectedMST(\u6700\u5C0F\u6709\u5411\u5168\u57DF\u6728)"
   - icon: ':heavy_check_mark:'
@@ -60,6 +63,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_2_A-Prim.test.cpp
     title: test/aoj/GRL/GRL_2_A-Prim.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc349_g-RangeUF.test.cpp
+    title: test/atcoder/abc349_g-RangeUF.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/unionfind.test.cpp
     title: test/yosupo/data_structure/unionfind.test.cpp
@@ -521,6 +527,7 @@ data:
   path: data-struct/unionfind/UnionFind.hpp
   requiredBy:
   - data-struct/unionfind/EnumerateUnionFind.hpp
+  - data-struct/unionfind/RangeParallelUnionFind.hpp
   - graph/mst/Kruskal.hpp
   - graph/mst/DirectedMST.hpp
   - graph/mst/Prim.hpp
@@ -531,6 +538,7 @@ data:
   - test/yosupo/data_structure/unionfind.test.cpp
   - test/yosupo/graph/manhattanmst.test.cpp
   - test/yosupo/graph/directedmst.test.cpp
+  - test/atcoder/abc349_g-RangeUF.test.cpp
   - test/aoj/DSL/DSL_1_A-UF.test.cpp
   - test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
   - test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
