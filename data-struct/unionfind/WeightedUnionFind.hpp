@@ -8,7 +8,7 @@ private:
     using T = typename M::value_type;
     int n;
     std::vector<int> par;
-    std::vector<T> wei;
+    std::vector<T> wei; // a_r^-1 a_i
 
 public:
     WeightedUnionFind() : WeightedUnionFind(0) {}
@@ -17,16 +17,18 @@ public:
         assert(0 <= x && x < n);
         if (par[x] < 0) return x;
         int r = find(par[x]);
-        wei[x] = M::op(wei[x], wei[par[x]]);
+        wei[x] = M::op(wei[par[x]], wei[x]);
         return par[x] = r;
     }
     T weight(int x) { return find(x), wei[x]; }
+    // a_y^-1 a_x
     T diff(int x, int y) {
         assert(find(x) == find(y));
-        return M::inv(wei[y], wei[x]);
+        return M::op(M::get_inv(weight(y)), weight(x));
     }
+    // a_y^-1 a_x = w
     std::pair<int, int> merge(int x, int y, T w) {
-        w = M::inv(M::op(weight(x), w), weight(y));
+        w = M::op(weight(x), M::get_inv(M::op(weight(y), w)));
         x = find(x);
         y = find(y);
         if (x == y) {
