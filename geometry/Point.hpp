@@ -64,6 +64,7 @@ public:
     }
     Real norm() const { return x * x + y * y; }
     friend Real norm(const Point& p) { return p.norm(); }
+#ifndef GEOMETRY_REAL_TYPE
     Real abs() const { return sqrt(norm()); }
     friend Real abs(const Point& p) { return p.abs(); }
     inline angle_t arg() const { return atan2((ld)y, (ld)x); }
@@ -78,6 +79,7 @@ public:
     friend Point rotate(const Point& p, angle_t theta) {
         return Point(p).rotate(theta);
     }
+#endif
     Point& rotate90() {
         Real nx = -y, ny = x;
         x = nx;
@@ -104,7 +106,9 @@ public:
     }
 };
 
+#ifndef GEOMETRY_REAL_TYPE
 Real distance(const Point& p1, const Point& p2) { return abs(p1 - p2); }
+#endif
 
 enum class CCW {
     COUNTER_CLOCKWISE = 1,

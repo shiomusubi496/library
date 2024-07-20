@@ -59,6 +59,7 @@ circle_relation relation(const Circle& c1, const Circle& c2) {
     return circle_relation::IN;
 }
 
+#ifndef GEOMETRY_REAL_TYPE
 std::vector<Point> intersections(const Circle& c, const Line& l) {
     const Point h = projection(l, c.c);
     const Real d = norm(h - c.c);
@@ -69,6 +70,7 @@ std::vector<Point> intersections(const Circle& c, const Line& l) {
         std::sqrt(std::max<Real>((c.r * c.r - d) / (l.a * l.a + l.b * l.b), 0));
     return {h - v, h + v};
 }
+#endif
 
 Line radical_axis(const Circle& c1, const Circle& c2) {
     const Real a = c1.c.x, b = c1.c.y, r = c1.r;
@@ -78,10 +80,12 @@ Line radical_axis(const Circle& c1, const Circle& c2) {
     return Line(p, q, r2);
 }
 
+#ifndef GEOMETRY_REAL_TYPE
 std::vector<Point> intersections(const Circle& c1, const Circle& c2) {
     const Line l = radical_axis(c1, c2);
     return intersections(c1, l);
 }
+#endif
 
 Line tangent_at_point(const Circle& c, const Point& p) {
     assert(cmp(norm(c.c - p), c.r * c.r) == 0);
@@ -90,6 +94,7 @@ Line tangent_at_point(const Circle& c, const Point& p) {
     return Line(px - a, py - b, (a - px) * a + (b - py) * b - c.r * c.r);
 }
 
+#ifndef GEOMETRY_REAL_TYPE
 std::vector<Point> tangent_points(const Circle& c, const Point& p) {
     const Real d = norm(c.c - p);
     const Real r2 = c.r * c.r;
@@ -98,7 +103,9 @@ std::vector<Point> tangent_points(const Circle& c, const Point& p) {
     const Circle c2(p, std::sqrt(std::max<Real>(d - r2, 0)));
     return intersections(c, c2);
 }
+#endif
 
+#ifndef GEOMETRY_REAL_TYPE
 std::vector<Point> common_tangents(const Circle& c1, const Circle& c2) {
     assert(c1 != c2);
     const Real d = norm(c1.c - c2.c);
@@ -131,3 +138,4 @@ std::vector<Point> common_tangents(const Circle& c1, const Circle& c2) {
     }
     return res;
 }
+#endif

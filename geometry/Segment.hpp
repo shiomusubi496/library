@@ -67,6 +67,7 @@ bool is_intersect(const Line& l, const Segment& s1) {
     return is_intersect(s1, l);
 }
 
+#ifndef GEOMETRY_REAL_TYPE
 Real distance(const Point& p, const Segment& s) {
     if (s.p1 == s.p2) return distance(p, s.p1);
     if (dot(s.p2 - s.p1, p - s.p1) < 0) return distance(p, s.p1);
@@ -84,3 +85,4 @@ Real distance(const Segment& s, const Line& l) {
     return std::min(distance(s.p1, l), distance(s.p2, l));
 }
 Real distance(const Line& l, const Segment& s) { return distance(s, l); }
+#endif

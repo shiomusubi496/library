@@ -48,11 +48,13 @@ public:
     }
 };
 
+#ifndef GEOMETRY_REAL_TYPE
 Real distance(const Point& p, const Line& l) {
     return std::abs(l.a * p.x + l.b * p.y + l.c) /
            std::sqrt(l.a * l.a + l.b * l.b);
 }
 Real distance(const Line& l, const Point& p) { return distance(p, l); }
+#endif
 
 // 垂直二等分線
 Line perpendicular_bisector(const Point& p1, const Point& p2) {
