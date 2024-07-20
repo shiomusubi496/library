@@ -4,31 +4,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/unionfind/UnionFind.hpp
     title: UnionFind
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -36,6 +36,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc349_g-RangeUF.test.cpp
     title: test/atcoder/abc349_g-RangeUF.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/range_parallel_unionfind.test.cpp
+    title: test/yosupo/new/range_parallel_unionfind.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -535,6 +538,7 @@ data:
   timestamp: '2024-07-20 13:51:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/new/range_parallel_unionfind.test.cpp
   - test/atcoder/abc349_g-RangeUF.test.cpp
 documentation_of: data-struct/unionfind/RangeParallelUnionFind.hpp
 layout: document

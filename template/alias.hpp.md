@@ -78,10 +78,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/other/SlopeTrick.hpp
     title: SlopeTrick
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/BinaryIndexedTree.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/CumulativeSum.hpp
     title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
   - icon: ':heavy_check_mark:'
@@ -113,7 +113,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/PlusMinusOneRMQ.hpp
     title: PlusMinusOneRMQ($\pm1$RMQ)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/RAQBIT.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
   - icon: ':heavy_check_mark:'
@@ -122,7 +122,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/RangeSortQuery.hpp
     title: RangeSortQuery
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':heavy_check_mark:'
@@ -167,7 +167,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/unionfind/UnionFindUndo.hpp
     title: "UnionFindUndo(Undo\u53EF\u80FDUnionFind)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/unionfind/WeightedUnionFind.hpp
     title: "WeightedUnionFind(\u91CD\u307F\u4ED8\u304DUF)"
   - icon: ':heavy_check_mark:'
@@ -227,7 +227,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geometry/template.hpp
     title: geometry/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':heavy_check_mark:'
@@ -332,24 +332,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree/CartesianTree.hpp
     title: CartesianTree
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/ContourQuery.hpp
     title: graph/tree/ContourQuery.hpp
   - icon: ':heavy_check_mark:'
     path: graph/tree/DoublingLowestCommonAncestor.hpp
     title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
       \u308BLCA)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/EulerTourSubtree.hpp
     title: "EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\
       \u6728\u30AF\u30A8\u30EA)"
   - icon: ':heavy_check_mark:'
     path: graph/tree/FrequencyTableofTreeDistance.hpp
     title: Frequency Table of Tree Distance
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/HeavyLightDecomposition.hpp
     title: "HeavyLightDecomposition(HL\u5206\u89E3)"
   - icon: ':heavy_check_mark:'
@@ -361,7 +361,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree/ReRooting.hpp
     title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/TreeCentroid.hpp
     title: "TreeCentroid(\u6728\u306E\u91CD\u5FC3)"
   - icon: ':heavy_check_mark:'
@@ -416,7 +416,7 @@ data:
     path: math/MillerRabin.hpp
     title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
       )"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
     title: ModInt
   - icon: ':heavy_check_mark:'
@@ -515,7 +515,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/matrix/LinearEquations.hpp
     title: "LinearEquations(\u7DDA\u5F62\u65B9\u7A0B\u5F0F)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix/Matrix.hpp
     title: "Matrix(\u884C\u5217)"
   - icon: ':heavy_check_mark:'
@@ -540,13 +540,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/poly/TaylorShift.hpp
     title: TaylorShift
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   - icon: ':heavy_check_mark:'
@@ -583,19 +583,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/ZAlgorithm.hpp
     title: Z-Algorithm
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedVerifiedWith:
@@ -1146,12 +1146,15 @@ data:
     path: test/yosupo/new/matrix_product_mod_2.test.cpp
     title: test/yosupo/new/matrix_product_mod_2.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/range_parallel_unionfind.test.cpp
+    title: test/yosupo/new/range_parallel_unionfind.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/rational_approximation.test.cpp
     title: test/yosupo/new/rational_approximation.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/static_convex_hull.test.cpp
     title: test/yosupo/new/static_convex_hull.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/unionfind_with_potential_non_commutative_group.test.cpp
     title: test/yosupo/new/unionfind_with_potential_non_commutative_group.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1331,25 +1334,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
     title: test/yosupo/tree/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/vertex_add_range_contour_sum_on_tree.test.cpp
     title: test/yosupo/tree/vertex_add_range_contour_sum_on_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/vertex_add_subtree_sum-2.test.cpp
     title: test/yosupo/tree/vertex_add_subtree_sum-2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/vertex_add_subtree_sum-HLD.test.cpp
     title: test/yosupo/tree/vertex_add_subtree_sum-HLD.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/vertex_add_subtree_sum.test.cpp
     title: test/yosupo/tree/vertex_add_subtree_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/vertex_get_range_contour_add_on_tree.test.cpp
     title: test/yosupo/tree/vertex_get_range_contour_add_on_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/vertex_set_path_composite-HLD.test.cpp
     title: test/yosupo/tree/vertex_set_path_composite-HLD.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/vertex_set_path_composite.test.cpp
     title: test/yosupo/tree/vertex_set_path_composite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1385,9 +1388,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki/855_DynamicSegTree.test.cpp
     title: test/yuki/855_DynamicSegTree.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"template/alias.hpp\"\n\n#include <bits/stdc++.h>\n\nusing\
@@ -1615,7 +1618,7 @@ data:
   - graph/connected/TwoEdgeConnectedComponents.hpp
   - graph/connected/ConnectedComponents.hpp
   timestamp: '2023-12-29 01:31:31+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yuki/1601-RangeSet.test.cpp
   - test/yuki/855_DynamicSegTree.test.cpp
@@ -1769,6 +1772,7 @@ data:
   - test/yosupo/new/matrix_product_mod_2.test.cpp
   - test/yosupo/new/counting_spanning_tree_directed.test.cpp
   - test/yosupo/new/connected_components_of_complement_graph.test.cpp
+  - test/yosupo/new/range_parallel_unionfind.test.cpp
   - test/yosupo/new/matrix_det_mod_2.test.cpp
   - test/yosupo/new/closest_pair.test.cpp
   - test/yosupo/new/unionfind_with_potential_non_commutative_group.test.cpp

@@ -1,34 +1,34 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
@@ -44,7 +44,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/wavelet/SegmentTreeWM.hpp
     title: WaveletMatrixPointAddRectangleSum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
   - icon: ':heavy_check_mark:'
@@ -84,21 +84,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/vertex_add_path_sum.test.cpp
     title: test/yosupo/tree/vertex_add_path_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/vertex_add_subtree_sum.test.cpp
     title: test/yosupo/tree/vertex_add_subtree_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/vertex_set_path_composite-HLD.test.cpp
     title: test/yosupo/tree/vertex_set_path_composite-HLD.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/vertex_set_path_composite.test.cpp
     title: test/yosupo/tree/vertex_set_path_composite.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yuki/1435_SegTree-BinarySearch.test.cpp
     title: test/yuki/1435_SegTree-BinarySearch.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/data-struct/segment/SegmentTree.md
     document_title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
@@ -699,7 +699,7 @@ data:
   - graph/tree/PMORMQLCA.hpp
   - graph/tree/EulerTour.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yuki/1435_SegTree-BinarySearch.test.cpp
   - test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp

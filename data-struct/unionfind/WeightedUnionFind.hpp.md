@@ -1,34 +1,34 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -36,12 +36,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
     title: test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/unionfind_with_potential_non_commutative_group.test.cpp
     title: test/yosupo/new/unionfind_with_potential_non_commutative_group.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/data-struct/unionfind/WeightedUnionFind.md
     document_title: "WeightedUnionFind(\u91CD\u307F\u4ED8\u304DUF)"
@@ -539,55 +539,57 @@ data:
     \ a); }\n};\n\n} // namespace Monoid\n#line 5 \"data-struct/unionfind/WeightedUnionFind.hpp\"\
     \n\ntemplate<class M, bool = Monoid::is_monoid<M>::value> class WeightedUnionFind\
     \ {\nprivate:\n    using T = typename M::value_type;\n    int n;\n    std::vector<int>\
-    \ par;\n    std::vector<T> wei;\n\npublic:\n    WeightedUnionFind() : WeightedUnionFind(0)\
-    \ {}\n    WeightedUnionFind(int n) : n(n), par(n, -1), wei(n, M::id()) {}\n  \
-    \  int find(int x) {\n        assert(0 <= x && x < n);\n        if (par[x] < 0)\
-    \ return x;\n        int r = find(par[x]);\n        wei[x] = M::op(wei[x], wei[par[x]]);\n\
-    \        return par[x] = r;\n    }\n    T weight(int x) { return find(x), wei[x];\
-    \ }\n    T diff(int x, int y) {\n        assert(find(x) == find(y));\n       \
-    \ return M::inv(wei[y], wei[x]);\n    }\n    std::pair<int, int> merge(int x,\
-    \ int y, T w) {\n        w = M::inv(M::op(weight(x), w), weight(y));\n       \
-    \ x = find(x);\n        y = find(y);\n        if (x == y) {\n            if (w\
-    \ == M::id()) return {x, -1};\n            else return {x, -2};\n        }\n \
-    \       if (par[x] > par[y]) std::swap(x, y), w = M::get_inv(w);\n        par[x]\
-    \ += par[y];\n        par[y] = x;\n        wei[y] = w;\n        return {x, y};\n\
-    \    }\n    bool same(int x, int y) { return find(x) == find(y); }\n    int size(int\
-    \ x) { return -par[find(x)]; }\n    std::vector<std::vector<int>> groups() {\n\
-    \        std::vector<std::vector<int>> res(n);\n        rep (i, n) res[find(i)].push_back(i);\n\
-    \        res.erase(\n            remove_if(all(res),\n                      [](const\
-    \ std::vector<int>& v) { return v.empty(); }),\n            res.end());\n    \
-    \    return res;\n    }\n    bool is_root(int x) const {\n        assert(0 <=\
-    \ x && x < n);\n        return par[x] < 0;\n    }\n};\n\ntemplate<class T>\nclass\
-    \ WeightedUnionFind<T, false> : public WeightedUnionFind<Monoid::Sum<T>> {\nprivate:\n\
-    \    using Base = WeightedUnionFind<Monoid::Sum<T>>;\n\npublic:\n    using Base::Base;\n\
-    };\n\n/**\n * @brief WeightedUnionFind(\u91CD\u307F\u4ED8\u304DUF)\n * @docs docs/data-struct/unionfind/WeightedUnionFind.md\n\
-    \ */\n"
+    \ par;\n    std::vector<T> wei; // a_r^-1 a_i\n\npublic:\n    WeightedUnionFind()\
+    \ : WeightedUnionFind(0) {}\n    WeightedUnionFind(int n) : n(n), par(n, -1),\
+    \ wei(n, M::id()) {}\n    int find(int x) {\n        assert(0 <= x && x < n);\n\
+    \        if (par[x] < 0) return x;\n        int r = find(par[x]);\n        wei[x]\
+    \ = M::op(wei[par[x]], wei[x]);\n        return par[x] = r;\n    }\n    T weight(int\
+    \ x) { return find(x), wei[x]; }\n    // a_y^-1 a_x\n    T diff(int x, int y)\
+    \ {\n        assert(find(x) == find(y));\n        return M::op(M::get_inv(weight(y)),\
+    \ weight(x));\n    }\n    // a_y^-1 a_x = w\n    std::pair<int, int> merge(int\
+    \ x, int y, T w) {\n        w = M::op(weight(x), M::get_inv(M::op(weight(y), w)));\n\
+    \        x = find(x);\n        y = find(y);\n        if (x == y) {\n         \
+    \   if (w == M::id()) return {x, -1};\n            else return {x, -2};\n    \
+    \    }\n        if (par[x] > par[y]) std::swap(x, y), w = M::get_inv(w);\n   \
+    \     par[x] += par[y];\n        par[y] = x;\n        wei[y] = w;\n        return\
+    \ {x, y};\n    }\n    bool same(int x, int y) { return find(x) == find(y); }\n\
+    \    int size(int x) { return -par[find(x)]; }\n    std::vector<std::vector<int>>\
+    \ groups() {\n        std::vector<std::vector<int>> res(n);\n        rep (i, n)\
+    \ res[find(i)].push_back(i);\n        res.erase(\n            remove_if(all(res),\n\
+    \                      [](const std::vector<int>& v) { return v.empty(); }),\n\
+    \            res.end());\n        return res;\n    }\n    bool is_root(int x)\
+    \ const {\n        assert(0 <= x && x < n);\n        return par[x] < 0;\n    }\n\
+    };\n\ntemplate<class T>\nclass WeightedUnionFind<T, false> : public WeightedUnionFind<Monoid::Sum<T>>\
+    \ {\nprivate:\n    using Base = WeightedUnionFind<Monoid::Sum<T>>;\n\npublic:\n\
+    \    using Base::Base;\n};\n\n/**\n * @brief WeightedUnionFind(\u91CD\u307F\u4ED8\
+    \u304DUF)\n * @docs docs/data-struct/unionfind/WeightedUnionFind.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\
     \n\ntemplate<class M, bool = Monoid::is_monoid<M>::value> class WeightedUnionFind\
     \ {\nprivate:\n    using T = typename M::value_type;\n    int n;\n    std::vector<int>\
-    \ par;\n    std::vector<T> wei;\n\npublic:\n    WeightedUnionFind() : WeightedUnionFind(0)\
-    \ {}\n    WeightedUnionFind(int n) : n(n), par(n, -1), wei(n, M::id()) {}\n  \
-    \  int find(int x) {\n        assert(0 <= x && x < n);\n        if (par[x] < 0)\
-    \ return x;\n        int r = find(par[x]);\n        wei[x] = M::op(wei[x], wei[par[x]]);\n\
-    \        return par[x] = r;\n    }\n    T weight(int x) { return find(x), wei[x];\
-    \ }\n    T diff(int x, int y) {\n        assert(find(x) == find(y));\n       \
-    \ return M::inv(wei[y], wei[x]);\n    }\n    std::pair<int, int> merge(int x,\
-    \ int y, T w) {\n        w = M::inv(M::op(weight(x), w), weight(y));\n       \
-    \ x = find(x);\n        y = find(y);\n        if (x == y) {\n            if (w\
-    \ == M::id()) return {x, -1};\n            else return {x, -2};\n        }\n \
-    \       if (par[x] > par[y]) std::swap(x, y), w = M::get_inv(w);\n        par[x]\
-    \ += par[y];\n        par[y] = x;\n        wei[y] = w;\n        return {x, y};\n\
-    \    }\n    bool same(int x, int y) { return find(x) == find(y); }\n    int size(int\
-    \ x) { return -par[find(x)]; }\n    std::vector<std::vector<int>> groups() {\n\
-    \        std::vector<std::vector<int>> res(n);\n        rep (i, n) res[find(i)].push_back(i);\n\
-    \        res.erase(\n            remove_if(all(res),\n                      [](const\
-    \ std::vector<int>& v) { return v.empty(); }),\n            res.end());\n    \
-    \    return res;\n    }\n    bool is_root(int x) const {\n        assert(0 <=\
-    \ x && x < n);\n        return par[x] < 0;\n    }\n};\n\ntemplate<class T>\nclass\
-    \ WeightedUnionFind<T, false> : public WeightedUnionFind<Monoid::Sum<T>> {\nprivate:\n\
-    \    using Base = WeightedUnionFind<Monoid::Sum<T>>;\n\npublic:\n    using Base::Base;\n\
-    };\n\n/**\n * @brief WeightedUnionFind(\u91CD\u307F\u4ED8\u304DUF)\n * @docs docs/data-struct/unionfind/WeightedUnionFind.md\n\
-    \ */\n"
+    \ par;\n    std::vector<T> wei; // a_r^-1 a_i\n\npublic:\n    WeightedUnionFind()\
+    \ : WeightedUnionFind(0) {}\n    WeightedUnionFind(int n) : n(n), par(n, -1),\
+    \ wei(n, M::id()) {}\n    int find(int x) {\n        assert(0 <= x && x < n);\n\
+    \        if (par[x] < 0) return x;\n        int r = find(par[x]);\n        wei[x]\
+    \ = M::op(wei[par[x]], wei[x]);\n        return par[x] = r;\n    }\n    T weight(int\
+    \ x) { return find(x), wei[x]; }\n    // a_y^-1 a_x\n    T diff(int x, int y)\
+    \ {\n        assert(find(x) == find(y));\n        return M::op(M::get_inv(weight(y)),\
+    \ weight(x));\n    }\n    // a_y^-1 a_x = w\n    std::pair<int, int> merge(int\
+    \ x, int y, T w) {\n        w = M::op(weight(x), M::get_inv(M::op(weight(y), w)));\n\
+    \        x = find(x);\n        y = find(y);\n        if (x == y) {\n         \
+    \   if (w == M::id()) return {x, -1};\n            else return {x, -2};\n    \
+    \    }\n        if (par[x] > par[y]) std::swap(x, y), w = M::get_inv(w);\n   \
+    \     par[x] += par[y];\n        par[y] = x;\n        wei[y] = w;\n        return\
+    \ {x, y};\n    }\n    bool same(int x, int y) { return find(x) == find(y); }\n\
+    \    int size(int x) { return -par[find(x)]; }\n    std::vector<std::vector<int>>\
+    \ groups() {\n        std::vector<std::vector<int>> res(n);\n        rep (i, n)\
+    \ res[find(i)].push_back(i);\n        res.erase(\n            remove_if(all(res),\n\
+    \                      [](const std::vector<int>& v) { return v.empty(); }),\n\
+    \            res.end());\n        return res;\n    }\n    bool is_root(int x)\
+    \ const {\n        assert(0 <= x && x < n);\n        return par[x] < 0;\n    }\n\
+    };\n\ntemplate<class T>\nclass WeightedUnionFind<T, false> : public WeightedUnionFind<Monoid::Sum<T>>\
+    \ {\nprivate:\n    using Base = WeightedUnionFind<Monoid::Sum<T>>;\n\npublic:\n\
+    \    using Base::Base;\n};\n\n/**\n * @brief WeightedUnionFind(\u91CD\u307F\u4ED8\
+    \u304DUF)\n * @docs docs/data-struct/unionfind/WeightedUnionFind.md\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -602,8 +604,8 @@ data:
   isVerificationFile: false
   path: data-struct/unionfind/WeightedUnionFind.hpp
   requiredBy: []
-  timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2024-07-20 14:13:49+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/new/unionfind_with_potential_non_commutative_group.test.cpp
   - test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
@@ -616,14 +618,14 @@ title: "WeightedUnionFind(\u91CD\u307F\u4ED8\u304DUF)"
 ---
 ## 概要
 
-数直線上に頂点が並んでいると考えて、 2 頂点の位置関係がいくつか与えられたとき、他の 2 頂点の位置関係を特定する操作が行える。
+群 $G$ に対し、 $n$ 個の値 $a_i \in G$ があり、それらの間の関係が与えられたときにそれらから関係を導ける。特に指定しなければ $G$ は加算による群。非可換群も可能。
 
-- `WeightedUnionFind(int N)` : サイズ `N` の重み付き UnionFind を作成する。 $\Theta(N)$ 。
-- `pair<int, int> merge(int x, int y, T w)` : `(x の位置) + w = (y の位置)` とする。併合後の根とそうでない方の pair を返す。ただし、もともと同じ連結成分に属する場合、矛盾が無ければ根と -1 の pair 、矛盾があれば根と -2 の pair を返す。ならし $\Theta(\alpha(N))$ 。
-- `int find(int x)` : 要素 `x` の連結成分の根を返す。ならし $\Theta(\alpha(N))$ 。
-- `T weight(int x)` : 要素 `x` と根の位置関係を返す。ならし $\Theta(\alpha(N))$ 。
-- `T diff(int x, int y)` : 要素 `x` と要素 `y` の位置関係を返す。ならし $\Theta(\alpha(N))$ 。
-- `bool same(int x, int y)` : 要素 `x` と要素 `y` が同じ集合に属するかを判定する。ならし $\Theta(\alpha(N))$ 。
-- `int size(int x)` : 要素 `x` の属する集合の要素数を返す。ならし $\Theta(\alpha(N))$ 。
-- `bool is_root(int x)` : 要素 `x` が属する集合の代表元が `x` であるかを返す。 $\Theta(1)$ 。
-- `vector<vector<int>> groups()` : 「「集合に属する要素のリスト」のリスト」を返す。ならし $\Theta(N\alpha(N))$ 。
+- `WeightedUnionFind(int N)` : サイズ $N$ の重み付き UnionFind を作成する。 $\Theta(N)$ 。
+- `pair<int, int> merge(int x, int y, T w)` : $a_y^{-1}a_x = w$ の条件を与える。併合後の根とそうでない方の組を返す。ただし、もともと同じ連結成分に属する場合、矛盾が無ければ根と -1 の組、矛盾があれば根と -2 の組を返す。ならし $\Theta(\alpha(N))$ 。
+- `int find(int x)` : $x$ の連結成分の根を返す。ならし $\Theta(\alpha(N))$ 。
+- `T weight(int x)` : $x$ の根を $r$ として $a_r^{-1}a_x$ を返す。ならし $\Theta(\alpha(N))$ 。
+- `T diff(int x, int y)` : $a_y^{-1}a_x$ を返す。 `same(x, y)` でなければエラー。ならし $\Theta(\alpha(N))$ 。
+- `bool same(int x, int y)` : $x$ と $y$ が同じ集合に属するかを判定する。ならし $\Theta(\alpha(N))$ 。
+- `int size(int x)` : $x$ の属する集合の要素数を返す。ならし $\Theta(\alpha(N))$ 。
+- `bool is_root(int x)` : $x$ が属する集合の代表元が $x$ であるかを返す。 $\Theta(1)$ 。
+- `vector<vector<int>> groups()` : 「「集合に属する要素のリスト」のリスト」を返す。 $\Theta(N\alpha(N))$ 。

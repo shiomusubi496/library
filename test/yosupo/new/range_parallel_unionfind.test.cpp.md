@@ -2,17 +2,14 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: geometry/Circle.hpp
-    title: geometry/Circle.hpp
+    path: data-struct/unionfind/RangeParallelUnionFind.hpp
+    title: RangeParallelUnionFind
   - icon: ':heavy_check_mark:'
-    path: geometry/Line.hpp
-    title: geometry/Line.hpp
+    path: data-struct/unionfind/UnionFind.hpp
+    title: UnionFind
   - icon: ':heavy_check_mark:'
-    path: geometry/Point.hpp
-    title: geometry/Point.hpp
-  - icon: ':heavy_check_mark:'
-    path: geometry/template.hpp
-    title: geometry/template.hpp
+    path: math/ModInt.hpp
+    title: ModInt
   - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
@@ -47,13 +44,12 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    ERROR: '0.000001'
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/CGL_7_F
+    PROBLEM: https://judge.yosupo.jp/problem/range_parallel_unionfind
     links:
-    - https://onlinejudge.u-aizu.ac.jp/problems/CGL_7_F
-  bundledCode: "#line 1 \"test/aoj/CGL/CGL_7_F-tangent.test.cpp\"\n#define PROBLEM\
-    \ \"https://onlinejudge.u-aizu.ac.jp/problems/CGL_7_F\"\n#define ERROR 0.000001\n\
-    #line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
+    - https://judge.yosupo.jp/problem/range_parallel_unionfind
+  bundledCode: "#line 1 \"test/yosupo/new/range_parallel_unionfind.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/range_parallel_unionfind\"\n#line\
+    \ 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
     \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
     \ __LINE__\n#endif\n\n#define OVERLOAD5(a, b, c, d, e, ...) e\n#define REP1_0(b,\
     \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
@@ -452,175 +448,192 @@ data:
     \        return res;\n    }\n    void press(std::vector<T>& vec) const {\n   \
     \     assert(sorted);\n        for (auto&& i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
-    };\n#line 2 \"geometry/Circle.hpp\"\n\n#line 2 \"geometry/template.hpp\"\n\n#line\
-    \ 4 \"geometry/template.hpp\"\n\n#ifdef GEOMETRY_EPS\nconstexpr ld geom_eps =\
-    \ GEOMETRY_EPS;\n#else\nconstexpr ld geom_eps = EPS;\n#endif\n\n#ifdef GEOMETRY_REAL_TYPE\n\
-    using Real = GEOMETRY_REAL_TYPE;\n// a <=> b  :  cmp(a, b) <=> 0\ninline int cmp(Real\
-    \ a, Real b) {\n    if (a > b) return 1;\n    if (a < b) return -1;\n    return\
-    \ 0;\n}\n#else\nusing Real = ld;\n// a <=> b  :  cmp(a, b) <=> 0\ninline int cmp(ld\
-    \ a, ld b) {\n    if (a > b + geom_eps) return 1;\n    if (a < b - geom_eps) return\
-    \ -1;\n    return 0;\n}\n#endif\n\n#ifdef GEOMETRY_ANGLE_TYPE\nusing angle_t =\
-    \ GEOMETRY_ANGLE_TYPE;\n#else\nusing angle_t = ld;\n#endif\n#line 2 \"geometry/Point.hpp\"\
-    \n\n#line 4 \"geometry/Point.hpp\"\n\nclass Point {\npublic:\n    Real x, y;\n\
-    \    Point() : x(0), y(0) {}\n    Point(Real x, Real y) : x(x), y(y) {}\n    Point&\
-    \ operator+=(const Point& p) {\n        x += p.x;\n        y += p.y;\n       \
-    \ return *this;\n    }\n    Point& operator-=(const Point& p) {\n        x -=\
-    \ p.x;\n        y -= p.y;\n        return *this;\n    }\n    Point& operator*=(Real\
-    \ a) {\n        x *= a;\n        y *= a;\n        return *this;\n    }\n    Point&\
-    \ operator/=(Real a) {\n        x /= a;\n        y /= a;\n        return *this;\n\
-    \    }\n    Point operator+() const { return *this; }\n    Point operator-() const\
-    \ { return Point(-x, -y); }\n    friend Point operator+(const Point& p1, const\
-    \ Point& p2) {\n        return Point(p1) += p2;\n    }\n    friend Point operator-(const\
-    \ Point& p1, const Point& p2) {\n        return Point(p1) -= p2;\n    }\n    friend\
-    \ Point operator*(const Point& p, Real a) { return Point(p) *= a; }\n    friend\
-    \ Point operator*(Real a, const Point& p) { return Point(p) *= a; }\n    friend\
-    \ Point operator/(const Point& p, Real a) { return Point(p) /= a; }\n    friend\
-    \ bool operator==(const Point& p1, const Point& p2) {\n        return cmp(p1.x,\
-    \ p2.x) == 0 && cmp(p1.y, p2.y) == 0;\n    }\n    friend bool operator!=(const\
-    \ Point& p1, const Point& p2) {\n        return !(p1 == p2);\n    }\n    friend\
-    \ bool operator<(const Point& p1, const Point& p2) {\n        return cmp(p1.x,\
-    \ p2.x) < 0 ||\n               (cmp(p1.x, p2.x) == 0 && cmp(p1.y, p2.y) < 0);\n\
-    \    }\n    friend bool operator>(const Point& p1, const Point& p2) { return p2\
-    \ < p1; }\n    friend bool operator<=(const Point& p1, const Point& p2) {\n  \
-    \      return !(p2 < p1);\n    }\n    friend bool operator>=(const Point& p1,\
-    \ const Point& p2) {\n        return !(p1 < p2);\n    }\n    friend bool comp_arg(const\
-    \ Point& p1, const Point& p2) {\n        // -pi < theta <= pi\n        int a1\
-    \ = p1.y < 0 ? 0 : p1.y > 0 ? 2 : p1.x >= 0 ? 1 : 3;\n        int a2 = p2.y <\
-    \ 0 ? 0 : p2.y > 0 ? 2 : p2.x >= 0 ? 1 : 3;\n        if (a1 != a2) return a1 <\
-    \ a2;\n        return cross(p1, p2) > 0;\n    }\n    Real norm() const { return\
-    \ x * x + y * y; }\n    friend Real norm(const Point& p) { return p.norm(); }\n\
-    \    Real abs() const { return sqrt(norm()); }\n    friend Real abs(const Point&\
-    \ p) { return p.abs(); }\n    inline angle_t arg() const { return atan2((ld)y,\
-    \ (ld)x); }\n    friend angle_t arg(const Point& p) { return p.arg(); }\n    Point&\
-    \ rotate(angle_t theta) {\n        Real c = cos(theta), s = sin(theta);\n    \
-    \    Real nx = x * c - y * s, ny = x * s + y * c;\n        x = nx;\n        y\
-    \ = ny;\n        return *this;\n    }\n    friend Point rotate(const Point& p,\
-    \ angle_t theta) {\n        return Point(p).rotate(theta);\n    }\n    Point&\
-    \ rotate90() {\n        Real nx = -y, ny = x;\n        x = nx;\n        y = ny;\n\
-    \        return *this;\n    }\n    friend Point rotate90(const Point& p) { return\
-    \ Point(p).rotate90(); }\n    // inner product(\u5185\u7A4D), p1 * p2 = |p1| *\
-    \ |p2| * cos(theta)\n    friend Real dot(const Point& p1, const Point& p2) {\n\
-    \        return p1.x * p2.x + p1.y * p2.y;\n    }\n    // outer product(\u5916\
-    \u7A4D), p1 ^ p2 = |p1| * |p2| * sin(theta)\n    friend Real cross(const Point&\
-    \ p1, const Point& p2) {\n        return p1.x * p2.y - p1.y * p2.x;\n    }\n \
-    \   template<class Sc> void scan(Sc& scan) { scan >> x >> y; }\n    template<class\
-    \ Pr> void print(Pr& print) const { print << x << ' ' << y; }\n    template<class\
-    \ Pr> void debug(Pr& print) const {\n        print.print_char('(');\n        print\
-    \ << x;\n        print.print_char(',');\n        print << y;\n        print.print_char(')');\n\
-    \    }\n};\n\nReal distance(const Point& p1, const Point& p2) { return abs(p1\
-    \ - p2); }\n\nenum class CCW {\n    COUNTER_CLOCKWISE = 1,\n    CLOCKWISE = -1,\n\
-    \    ONLINE_BACK = 2,\n    ONLINE_FRONT = -2,\n    ON_SEGMENT = 0,\n};\n\nCCW\
-    \ ccw(const Point& p0, const Point& p1, const Point& p2) {\n    Point a = p1 -\
-    \ p0, b = p2 - p0;\n    if (cmp(cross(a, b), 0) > 0) return CCW::COUNTER_CLOCKWISE;\n\
-    \    if (cmp(cross(a, b), 0) < 0) return CCW::CLOCKWISE;\n    if (cmp(dot(a, b),\
-    \ 0) < 0) return CCW::ONLINE_BACK;\n    if (a.norm() < b.norm()) return CCW::ONLINE_FRONT;\n\
-    \    return CCW::ON_SEGMENT;\n}\n#line 2 \"geometry/Line.hpp\"\n\n#line 5 \"geometry/Line.hpp\"\
-    \n\nclass Line {\npublic:\n    Real a, b, c; // ax + by + c = 0\n    Line() :\
-    \ a(0), b(1), c(0) {}\n    Line(Real a, Real b, Real c) : a(a), b(b), c(c) {}\n\
-    \    Line(const Point& p1, const Point& p2) {\n        a = p2.y - p1.y;\n    \
-    \    b = p1.x - p2.x;\n        c = p2.x * p1.y - p1.x * p2.y;\n    }\n    friend\
-    \ bool operator==(const Line& l1, const Line& l2) {\n        return cmp(l1.a *\
-    \ l2.b, l2.a * l1.b) == 0 &&\n               cmp(l1.b * l2.c, l2.b * l1.c) ==\
-    \ 0;\n    }\n    friend bool operator!=(const Line& l1, const Line& l2) {\n  \
-    \      return !(l1 == l2);\n    }\n    friend bool operator<(const Line& l1, const\
-    \ Line& l2) {\n        return cmp(l1.a * l2.b, l2.a * l1.b) < 0 ||\n         \
-    \      (cmp(l1.a * l2.b, l2.a * l1.b) == 0 &&\n                cmp(l1.b * l2.c,\
-    \ l2.b * l1.c) < 0);\n    }\n    friend bool operator>(const Line& l1, const Line&\
-    \ l2) { return l2 < l1; }\n    friend bool operator<=(const Line& l1, const Line&\
-    \ l2) {\n        return !(l2 < l1);\n    }\n    friend bool operator>=(const Line&\
-    \ l1, const Line& l2) {\n        return !(l1 < l2);\n    }\n    bool is_on(const\
-    \ Point& p) const {\n        return cmp(a * p.x + b * p.y + c, 0) == 0;\n    }\n\
-    \    template<class Pr> void debug(Pr& print) const {\n        print << a;\n \
-    \       print.print_char('x');\n        print.print_char('+');\n        print\
-    \ << b;\n        print.print_char('y');\n        print.print_char('+');\n    \
-    \    print << c;\n        print.print_char('=');\n        print.print_char('0');\n\
-    \    }\n};\n\nReal distance(const Point& p, const Line& l) {\n    return std::abs(l.a\
-    \ * p.x + l.b * p.y + l.c) /\n           std::sqrt(l.a * l.a + l.b * l.b);\n}\n\
-    Real distance(const Line& l, const Point& p) { return distance(p, l); }\n\n//\
-    \ \u5782\u76F4\u4E8C\u7B49\u5206\u7DDA\nLine perpendicular_bisector(const Point&\
-    \ p1, const Point& p2) {\n    return Line((p1 + p2) / 2, (p1 + p2) / 2 + (p2 -\
-    \ p1).rotate90());\n}\n\n// \u5E73\u884C\u5224\u5B9A\nbool is_parallel(const Line&\
-    \ l1, const Line& l2) {\n    return cmp(l1.a * l2.b, l2.a * l1.b) == 0;\n}\n//\
-    \ \u76F4\u4EA4\u5224\u5B9A\nbool is_orthogonal(const Line& l1, const Line& l2)\
-    \ {\n    return cmp(l1.a * l2.a + l1.b * l2.b, 0) == 0;\n}\n// \u5E73\u884C\u7DDA\
-    \nLine parallel(const Line& l, const Point& p) {\n    return Line(l.a, l.b, -l.a\
-    \ * p.x - l.b * p.y);\n}\n// \u5782\u76F4\u7DDA\nLine perpendicular(const Line&\
-    \ l, const Point& p) {\n    return Line(l.b, -l.a, -l.b * p.x + l.a * p.y);\n\
-    }\n\n// \u4EA4\u53C9\u5224\u5B9A\nbool is_intersect(const Line& l1, const Line&\
-    \ l2) {\n    return l1 == l2 || !is_parallel(l1, l2);\n}\n// \u4EA4\u70B9\nPoint\
-    \ intersection(const Line& l1, const Line& l2) {\n    assert(!is_parallel(l1,\
-    \ l2));\n    Real d = l1.a * l2.b - l2.a * l1.b;\n    return Point((l1.b * l2.c\
-    \ - l2.b * l1.c) / d,\n                 (l1.c * l2.a - l2.c * l1.a) / d);\n}\n\
-    // \u5C04\u5F71\nPoint projection(const Line& l, const Point& p) {\n    return\
-    \ intersection(l, perpendicular(l, p));\n}\n// \u53CD\u5C04\nPoint reflection(const\
-    \ Line& l, const Point& p) {\n    return projection(l, p) * 2 - p;\n}\n#line 6\
-    \ \"geometry/Circle.hpp\"\n\nclass Circle {\npublic:\n    Point c;\n    Real r;\n\
-    \    Circle() : c(Point()), r(0) {}\n    Circle(Point c, Real r) : c(c), r(r)\
-    \ {}\n    friend bool operator==(const Circle& c1, const Circle& c2) {\n     \
-    \   return c1.c == c2.c && cmp(c1.r, c2.r) == 0;\n    }\n    friend bool operator!=(const\
-    \ Circle& c1, const Circle& c2) {\n        return !(c1 == c2);\n    }\n    friend\
-    \ bool operator<(const Circle& c1, const Circle& c2) {\n        return c1.c <\
-    \ c2.c || (c1.c == c2.c && cmp(c1.r, c2.r) < 0);\n    }\n    friend bool operator>(const\
-    \ Circle& c1, const Circle& c2) {\n        return c2 < c1;\n    }\n    friend\
-    \ bool operator<=(const Circle& c1, const Circle& c2) {\n        return !(c2 <\
-    \ c1);\n    }\n    friend bool operator>=(const Circle& c1, const Circle& c2)\
-    \ {\n        return !(c1 < c2);\n    }\n    template<class Sc> void scan(Sc& scan)\
-    \ { scan >> c >> r; }\n    template<class Pr> void print(Pr& print) { print <<\
-    \ c << ' ' << r; }\n    template<class Pr> void debug(Pr& print) {\n        print.print_char('{');\n\
-    \        print << c;\n        print.print_char(':');\n        print << r;\n  \
-    \      print.print_char('}');\n    }\n};\n\nenum class circle_relation {\n   \
-    \ IN = 0,           // \u5185\u5305\n    INSCRIBE = 1,     // \u5185\u63A5\n \
-    \   INTERSECT = 2,    // \u4EA4\u308F\u308B\n    CIRCUMSCRIBE = 3, // \u5916\u63A5\
-    \n    SEPARATE = 4,     // \u96E2\u308C\u3066\u3044\u308B\n    SAME = 5,     \
-    \    // \u7B49\u3057\u3044\n};\n\ncircle_relation relation(const Circle& c1, const\
-    \ Circle& c2) {\n    if (c1 == c2) return circle_relation::SAME;\n    const Real\
-    \ d = norm(c1.c - c2.c);\n    const Real r1 = c1.r + c2.r, r2 = c1.r - c2.r;\n\
-    \    if (cmp(d, r1 * r1) > 0) return circle_relation::SEPARATE;\n    if (cmp(d,\
-    \ r1 * r1) == 0) return circle_relation::CIRCUMSCRIBE;\n    if (cmp(d, r2 * r2)\
-    \ > 0) return circle_relation::INTERSECT;\n    if (cmp(d, r2 * r2) == 0) return\
-    \ circle_relation::INSCRIBE;\n    return circle_relation::IN;\n}\n\nstd::vector<Point>\
-    \ intersections(const Circle& c, const Line& l) {\n    const Point h = projection(l,\
-    \ c.c);\n    const Real d = norm(h - c.c);\n    if (cmp(d, c.r * c.r) > 0) return\
-    \ {};\n    if (cmp(d, c.r * c.r) == 0) return {h};\n    const Point v =\n    \
-    \    Point(l.b, -l.a) *\n        std::sqrt(std::max<Real>((c.r * c.r - d) / (l.a\
-    \ * l.a + l.b * l.b), 0));\n    return {h - v, h + v};\n}\n\nLine radical_axis(const\
-    \ Circle& c1, const Circle& c2) {\n    const Real a = c1.c.x, b = c1.c.y, r =\
-    \ c1.r;\n    const Real c = c2.c.x, d = c2.c.y, s = c2.r;\n    const Real p =\
-    \ -2 * a + 2 * c, q = -2 * b + 2 * d;\n    const Real r2 = a * a + b * b - c *\
-    \ c - d * d - r * r + s * s;\n    return Line(p, q, r2);\n}\n\nstd::vector<Point>\
-    \ intersections(const Circle& c1, const Circle& c2) {\n    const Line l = radical_axis(c1,\
-    \ c2);\n    return intersections(c1, l);\n}\n\nLine tangent_at_point(const Circle&\
-    \ c, const Point& p) {\n    assert(cmp(norm(c.c - p), c.r * c.r) == 0);\n    const\
-    \ Real a = c.c.x, b = c.c.y;\n    const Real px = p.x, py = p.y;\n    return Line(px\
-    \ - a, py - b, (a - px) * a + (b - py) * b - c.r * c.r);\n}\n\nstd::vector<Point>\
-    \ tangent_points(const Circle& c, const Point& p) {\n    const Real d = norm(c.c\
-    \ - p);\n    const Real r2 = c.r * c.r;\n    if (cmp(d, r2) < 0) return {};\n\
-    \    if (cmp(d, r2) == 0) return {p};\n    const Circle c2(p, std::sqrt(std::max<Real>(d\
-    \ - r2, 0)));\n    return intersections(c, c2);\n}\n\nstd::vector<Point> common_tangents(const\
-    \ Circle& c1, const Circle& c2) {\n    assert(c1 != c2);\n    const Real d = norm(c1.c\
-    \ - c2.c);\n    const Real r1 = c1.r, r2 = c2.r;\n    std::vector<Point> res;\n\
-    \    if (cmp(d, (r1 - r2) * (r1 - r2)) == 0) {\n        const Point v = (c2.c\
-    \ - c1.c) * (r1 / std::sqrt(d));\n        res.push_back(c1.c + (cmp(r1, r2) <\
-    \ 0 ? -v : v));\n    }\n    else if (cmp(d, (r1 - r2) * (r1 - r2)) > 0) {\n  \
-    \      if (cmp(r1, r2) == 0) {\n            const Point v = (c2.c - c1.c).rotate90()\
-    \ * (r1 / std::sqrt(d));\n            res.push_back(c1.c + v);\n            res.push_back(c1.c\
-    \ - v);\n        }\n        else {\n            const Point v = (c1.c * r2 - c2.c\
-    \ * r1) / (-r1 + r2);\n            auto ps = tangent_points(c1, v);\n        \
-    \    std::copy(all(ps), std::back_inserter(res));\n        }\n        if (cmp(d,\
-    \ (r1 + r2) * (r1 + r2)) == 0) {\n            const Point v = (c2.c - c1.c) *\
-    \ (r1 / std::sqrt(d));\n            res.push_back(c1.c + v);\n        }\n    \
-    \    else if (cmp(d, (r1 + r2) * (r1 + r2)) > 0) {\n            const Point v\
-    \ = (c1.c * r2 + c2.c * r1) / (r1 + r2);\n            auto ps = tangent_points(c1,\
-    \ v);\n            std::copy(all(ps), std::back_inserter(res));\n        }\n \
-    \   }\n    return res;\n}\n#line 5 \"test/aoj/CGL/CGL_7_F-tangent.test.cpp\"\n\
-    using namespace std;\nint main() {\n    Point p; scan >> p;\n    Circle c; scan\
-    \ >> c;\n    auto ps = tangent_points(c, p);\n    sort(all(ps));\n    print <<\
-    \ ps[0] << endl;\n    print << ps[1] << endl;\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/CGL_7_F\"\n#define\
-    \ ERROR 0.000001\n#include \"../../../other/template.hpp\"\n#include \"../../../geometry/Circle.hpp\"\
-    \nusing namespace std;\nint main() {\n    Point p; scan >> p;\n    Circle c; scan\
-    \ >> c;\n    auto ps = tangent_points(c, p);\n    sort(all(ps));\n    print <<\
-    \ ps[0] << endl;\n    print << ps[1] << endl;\n}\n"
+    };\n#line 2 \"math/ModInt.hpp\"\n\n#line 4 \"math/ModInt.hpp\"\n\ntemplate<class\
+    \ T, T mod> class StaticModInt {\n    static_assert(std::is_integral<T>::value,\
+    \ \"T must be integral\");\n    static_assert(std::is_unsigned<T>::value, \"T\
+    \ must be unsigned\");\n    static_assert(mod > 0, \"mod must be positive\");\n\
+    \    static_assert(mod <= std::numeric_limits<T>::max() / 2,\n               \
+    \   \"mod * 2 must be less than or equal to T::max()\");\n\nprivate:\n    using\
+    \ large_t = typename double_size_uint<T>::type;\n    using signed_t = typename\
+    \ std::make_signed<T>::type;\n    T val;\n    static constexpr unsigned int inv1000000007[]\
+    \ = {\n        0,         1,         500000004, 333333336, 250000002, 400000003,\n\
+    \        166666668, 142857144, 125000001, 111111112, 700000005};\n    static constexpr\
+    \ unsigned int inv998244353[] = {\n        0,         1,         499122177, 332748118,\
+    \ 748683265, 598946612,\n        166374059, 855638017, 873463809, 443664157, 299473306};\n\
+    \n    static constexpr ll mod_inv(ll a) {\n        ll b = mod;\n        ll x =\
+    \ 1, u = 0;\n        ll t = 0, tmp = 0;\n        while (b) {\n            t =\
+    \ a / b;\n            tmp = (a - t * b);\n            a = b;\n            b =\
+    \ tmp;\n            tmp = (x - t * u);\n            x = u;\n            u = tmp;\n\
+    \        }\n        if (x < 0) x += mod;\n        return x;\n    }\n\npublic:\n\
+    \    constexpr StaticModInt() : val(0) {}\n    template<class U,\n           \
+    \  typename std::enable_if<std::is_integral<U>::value &&\n                   \
+    \                  std::is_signed<U>::value>::type* = nullptr>\n    constexpr\
+    \ StaticModInt(U v) : val{} {\n        v %= static_cast<signed_t>(mod);\n    \
+    \    if (v < 0) v += static_cast<signed_t>(mod);\n        val = static_cast<T>(v);\n\
+    \    }\n    template<class U, typename std::enable_if<\n                     \
+    \     std::is_integral<U>::value &&\n                          std::is_unsigned<U>::value>::type*\
+    \ = nullptr>\n    constexpr StaticModInt(U v) : val(v % mod) {}\n    constexpr\
+    \ T get() const { return val; }\n    static constexpr T get_mod() { return mod;\
+    \ }\n    static constexpr StaticModInt raw(T v) {\n        StaticModInt res;\n\
+    \        res.val = v;\n        return res;\n    }\n    constexpr StaticModInt\
+    \ inv() const {\n        if IF_CONSTEXPR (mod == 1000000007) {\n            if\
+    \ (val <= 10) return inv1000000007[val];\n        }\n        else if IF_CONSTEXPR\
+    \ (mod == 998244353) {\n            if (val <= 10) return inv998244353[val];\n\
+    \        }\n        return mod_inv(val);\n    }\n    constexpr StaticModInt& operator++()\
+    \ {\n        ++val;\n        if (val == mod) val = 0;\n        return *this;\n\
+    \    }\n    constexpr StaticModInt operator++(int) {\n        StaticModInt res\
+    \ = *this;\n        ++*this;\n        return res;\n    }\n    constexpr StaticModInt&\
+    \ operator--() {\n        if (val == 0) val = mod;\n        --val;\n        return\
+    \ *this;\n    }\n    constexpr StaticModInt operator--(int) {\n        StaticModInt\
+    \ res = *this;\n        --*this;\n        return res;\n    }\n    constexpr StaticModInt&\
+    \ operator+=(const StaticModInt& other) {\n        val += other.val;\n       \
+    \ if (val >= mod) val -= mod;\n        return *this;\n    }\n    constexpr StaticModInt&\
+    \ operator-=(const StaticModInt& other) {\n        if (val < other.val) val +=\
+    \ mod;\n        val -= other.val;\n        return *this;\n    }\n    constexpr\
+    \ StaticModInt& operator*=(const StaticModInt& other) {\n        large_t a = val;\n\
+    \        a *= other.val;\n        a %= mod;\n        val = a;\n        return\
+    \ *this;\n    }\n    constexpr StaticModInt& operator/=(const StaticModInt& other)\
+    \ {\n        *this *= other.inv();\n        return *this;\n    }\n    friend constexpr\
+    \ StaticModInt operator+(const StaticModInt& lhs,\n                          \
+    \                  const StaticModInt& rhs) {\n        return StaticModInt(lhs)\
+    \ += rhs;\n    }\n    friend constexpr StaticModInt operator-(const StaticModInt&\
+    \ lhs,\n                                            const StaticModInt& rhs) {\n\
+    \        return StaticModInt(lhs) -= rhs;\n    }\n    friend constexpr StaticModInt\
+    \ operator*(const StaticModInt& lhs,\n                                       \
+    \     const StaticModInt& rhs) {\n        return StaticModInt(lhs) *= rhs;\n \
+    \   }\n    friend constexpr StaticModInt operator/(const StaticModInt& lhs,\n\
+    \                                            const StaticModInt& rhs) {\n    \
+    \    return StaticModInt(lhs) /= rhs;\n    }\n    constexpr StaticModInt operator+()\
+    \ const { return StaticModInt(*this); }\n    constexpr StaticModInt operator-()\
+    \ const { return StaticModInt() - *this; }\n    friend constexpr bool operator==(const\
+    \ StaticModInt& lhs,\n                                     const StaticModInt&\
+    \ rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend constexpr bool\
+    \ operator!=(const StaticModInt& lhs,\n                                     const\
+    \ StaticModInt& rhs) {\n        return lhs.val != rhs.val;\n    }\n    constexpr\
+    \ StaticModInt pow(ll a) const {\n        StaticModInt v = *this, res = 1;\n \
+    \       while (a) {\n            if (a & 1) res *= v;\n            a >>= 1;\n\
+    \            v *= v;\n        }\n        return res;\n    }\n    template<class\
+    \ Pr> void print(Pr& a) const { a.print(val); }\n    template<class Pr> void debug(Pr&\
+    \ a) const { a.print(val); }\n    template<class Sc> void scan(Sc& a) {\n    \
+    \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\n#if __cplusplus\
+    \ < 201703L\ntemplate<class T, T mod>\nconstexpr unsigned int StaticModInt<T,\
+    \ mod>::inv1000000007[];\ntemplate<class T, T mod>\nconstexpr unsigned int StaticModInt<T,\
+    \ mod>::inv998244353[];\n#endif\n\ntemplate<unsigned int p> using static_modint\
+    \ = StaticModInt<unsigned int, p>;\nusing modint1000000007 = static_modint<1000000007>;\n\
+    using modint998244353 = static_modint<998244353>;\n\ntemplate<class T, int id>\
+    \ class DynamicModInt {\n    static_assert(std::is_integral<T>::value, \"T must\
+    \ be integral\");\n    static_assert(std::is_unsigned<T>::value, \"T must be unsigned\"\
+    );\n\nprivate:\n    using large_t = typename double_size_uint<T>::type;\n    using\
+    \ signed_t = typename std::make_signed<T>::type;\n    T val;\n    static T mod;\n\
+    \npublic:\n    constexpr DynamicModInt() : val(0) {}\n    template<class U,\n\
+    \             typename std::enable_if<std::is_integral<U>::value &&\n        \
+    \                             std::is_signed<U>::value>::type* = nullptr>\n  \
+    \  constexpr DynamicModInt(U v) : val{} {\n        v %= static_cast<signed_t>(mod);\n\
+    \        if (v < 0) v += static_cast<signed_t>(mod);\n        val = static_cast<T>(v);\n\
+    \    }\n    template<class U, typename std::enable_if<\n                     \
+    \     std::is_integral<U>::value &&\n                          std::is_unsigned<U>::value>::type*\
+    \ = nullptr>\n    constexpr DynamicModInt(U v) : val(v % mod) {}\n    T get()\
+    \ const { return val; }\n    static T get_mod() { return mod; }\n    static void\
+    \ set_mod(T v) {\n        assert(v > 0);\n        assert(v <= std::numeric_limits<T>::max()\
+    \ / 2);\n        mod = v;\n    }\n    static DynamicModInt raw(T v) {\n      \
+    \  DynamicModInt res;\n        res.val = v;\n        return res;\n    }\n    DynamicModInt\
+    \ inv() const { return mod_inv(val, mod); }\n    DynamicModInt& operator++() {\n\
+    \        ++val;\n        if (val == mod) val = 0;\n        return *this;\n   \
+    \ }\n    DynamicModInt operator++(int) {\n        DynamicModInt res = *this;\n\
+    \        ++*this;\n        return res;\n    }\n    DynamicModInt& operator--()\
+    \ {\n        if (val == 0) val = mod;\n        --val;\n        return *this;\n\
+    \    }\n    DynamicModInt operator--(int) {\n        DynamicModInt res = *this;\n\
+    \        --*this;\n        return res;\n    }\n    DynamicModInt& operator+=(const\
+    \ DynamicModInt& other) {\n        val += other.val;\n        if (val >= mod)\
+    \ val -= mod;\n        return *this;\n    }\n    DynamicModInt& operator-=(const\
+    \ DynamicModInt& other) {\n        if (val < other.val) val += mod;\n        val\
+    \ -= other.val;\n        return *this;\n    }\n    DynamicModInt& operator*=(const\
+    \ DynamicModInt& other) {\n        large_t a = val;\n        a *= other.val;\n\
+    \        a %= mod;\n        val = a;\n        return *this;\n    }\n    DynamicModInt&\
+    \ operator/=(const DynamicModInt& other) {\n        *this *= other.inv();\n  \
+    \      return *this;\n    }\n    friend DynamicModInt operator+(const DynamicModInt&\
+    \ lhs,\n                                   const DynamicModInt& rhs) {\n     \
+    \   return DynamicModInt(lhs) += rhs;\n    }\n    friend DynamicModInt operator-(const\
+    \ DynamicModInt& lhs,\n                                   const DynamicModInt&\
+    \ rhs) {\n        return DynamicModInt(lhs) -= rhs;\n    }\n    friend DynamicModInt\
+    \ operator*(const DynamicModInt& lhs,\n                                   const\
+    \ DynamicModInt& rhs) {\n        return DynamicModInt(lhs) *= rhs;\n    }\n  \
+    \  friend DynamicModInt operator/(const DynamicModInt& lhs,\n                \
+    \                   const DynamicModInt& rhs) {\n        return DynamicModInt(lhs)\
+    \ /= rhs;\n    }\n    DynamicModInt operator+() const { return DynamicModInt(*this);\
+    \ }\n    DynamicModInt operator-() const { return DynamicModInt() - *this; }\n\
+    \    friend bool operator==(const DynamicModInt& lhs, const DynamicModInt& rhs)\
+    \ {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
+    \ DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return lhs.val != rhs.val;\n\
+    \    }\n    DynamicModInt pow(ll a) const {\n        DynamicModInt v = *this,\
+    \ res = 1;\n        while (a) {\n            if (a & 1) res *= v;\n          \
+    \  a >>= 1;\n            v *= v;\n        }\n        return res;\n    }\n    template<class\
+    \ Pr> void print(Pr& a) const { a.print(val); }\n    template<class Pr> void debug(Pr&\
+    \ a) const { a.print(val); }\n    template<class Sc> void scan(Sc& a) {\n    \
+    \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\ntemplate<class\
+    \ T, int id> T DynamicModInt<T, id>::mod = 998244353;\n\ntemplate<int id> using\
+    \ dynamic_modint = DynamicModInt<unsigned int, id>;\nusing modint = dynamic_modint<-1>;\n\
+    \n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n#line 2 \"data-struct/unionfind/RangeParallelUnionFind.hpp\"\
+    \n\n#line 2 \"data-struct/unionfind/UnionFind.hpp\"\n\n#line 4 \"data-struct/unionfind/UnionFind.hpp\"\
+    \n\nclass UnionFind {\nprivate:\n    int n;\n    std::vector<int> par;\n\npublic:\n\
+    \    UnionFind() : UnionFind(0) {}\n    UnionFind(int n) : n(n), par(n, -1) {}\n\
+    \    int find(int x) {\n        assert(0 <= x && x < n);\n        return par[x]\
+    \ < 0 ? x : par[x] = find(par[x]);\n    }\n    std::pair<int, int> merge(int x,\
+    \ int y) {\n        x = find(x);\n        y = find(y);\n        if (x == y) return\
+    \ {x, -1};\n        if (par[x] > par[y]) std::swap(x, y);\n        par[x] += par[y];\n\
+    \        par[y] = x;\n        return {x, y};\n    }\n    bool same(int x, int\
+    \ y) { return find(x) == find(y); }\n    int size(int x) { return -par[find(x)];\
+    \ }\n    std::vector<std::vector<int>> groups() {\n        std::vector<std::vector<int>>\
+    \ res(n);\n        rep (i, n) res[find(i)].push_back(i);\n        res.erase(\n\
+    \            remove_if(all(res),\n                      [](const std::vector<int>&\
+    \ v) { return v.empty(); }),\n            res.end());\n        return res;\n \
+    \   }\n    bool is_root(int x) const {\n        assert(0 <= x && x < n);\n   \
+    \     return par[x] < 0;\n    }\n};\n\n/**\n * @brief UnionFind\n * @docs docs/data-struct/unionfind/UnionFind.md\n\
+    \ */\n#line 5 \"data-struct/unionfind/RangeParallelUnionFind.hpp\"\n\nUnionFind\
+    \ static_range_parallel_union_find(int n,\n                                  \
+    \         std::vector<std::array<int, 3>> qs) {\n    UnionFind uf(n);\n    std::vector<std::vector<std::pair<int,\
+    \ int>>> es(n);\n    for (const auto& [l, r, w] : qs) {\n        assert(0 <= w);\n\
+    \        assert(0 <= l && l + w <= n);\n        assert(0 <= r && r + w <= n);\n\
+    \        if (l == r || w == 0) continue;\n        es[w - 1].emplace_back(l + w\
+    \ - 1, r + w - 1);\n    }\n    rrep (i, n) {\n        for (const auto& [l, r]\
+    \ : es[i]) {\n            if (uf.merge(l, r).second != -1 && i != 0) {\n     \
+    \           es[i - 1].emplace_back(l - 1, r - 1);\n            }\n        }\n\
+    \    }\n    return uf;\n}\n\nclass RangeParallelUnionFind {\nprivate:\n    int\
+    \ h, n;\n    std::vector<UnionFind> uf;\n    void internal_merge(int l, int r,\
+    \ int k,\n                        std::vector<std::pair<int, int>>& res) {\n \
+    \       auto p = uf[k].merge(l, r);\n        if (p.second != -1) {\n         \
+    \   if (k == 0) res.push_back(p);\n            else {\n                internal_merge(l,\
+    \ r, k - 1, res);\n                internal_merge(l + (1 << (k - 1)), r + (1 <<\
+    \ (k - 1)), k - 1,\n                               res);\n            }\n    \
+    \    }\n    }\n\npublic:\n    RangeParallelUnionFind() : RangeParallelUnionFind(0)\
+    \ {}\n    RangeParallelUnionFind(int n_) {\n        n = n_;\n        h = bitop::ceil_log2(n\
+    \ + 1);\n        uf.assign(h, UnionFind(n));\n    }\n    std::vector<std::pair<int,\
+    \ int>> merge(int l, int r, int w) {\n        assert(0 <= w);\n        assert(0\
+    \ <= l && l + w <= n);\n        assert(0 <= r && r + w <= n);\n        std::vector<std::pair<int,\
+    \ int>> res;\n        if (l == r || w == 0) return res;\n        int s = bitop::msb(w);\n\
+    \        internal_merge(l, r, s, res);\n        internal_merge(l + w - (1 << s),\
+    \ r + w - (1 << s), s, res);\n        return res;\n    }\n    int find(int x)\
+    \ { return uf[0].find(x); }\n    bool same(int x, int y) { return uf[0].same(x,\
+    \ y); }\n    int size(int x) { return uf[0].size(x); }\n    std::vector<std::vector<int>>\
+    \ groups() { return uf[0].groups(); }\n    bool is_root(int x) const { return\
+    \ uf[0].is_root(x); }\n    UnionFind get_uf() const { return uf[0]; }\n};\n\n\
+    /**\n * @brief RangeParallelUnionFind\n * @docs docs/data-struct/unionfind/RangeParallelUnionFind.md\n\
+    \ */\n#line 5 \"test/yosupo/new/range_parallel_unionfind.test.cpp\"\nusing namespace\
+    \ std;\nusing mint = modint998244353;\nint main() {\n    int N, Q; scan >> N >>\
+    \ Q;\n    vector<mint> X(N); scan >> X;\n    RangeParallelUnionFind uf(N);\n \
+    \   mint ans = 0;\n    rep (Q) {\n        int k, a, b; scan >> k >> a >> b;\n\
+    \        for (auto [x, y] : uf.merge(a, b, k)) {\n            ans += X[x] * X[y];\n\
+    \            X[x] += X[y];\n            X[y] = 0;\n        }\n        prints(ans);\n\
+    \    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_parallel_unionfind\"\
+    \n#include \"../../../other/template.hpp\"\n#include \"../../../math/ModInt.hpp\"\
+    \n#include \"../../../data-struct/unionfind/RangeParallelUnionFind.hpp\"\nusing\
+    \ namespace std;\nusing mint = modint998244353;\nint main() {\n    int N, Q; scan\
+    \ >> N >> Q;\n    vector<mint> X(N); scan >> X;\n    RangeParallelUnionFind uf(N);\n\
+    \    mint ans = 0;\n    rep (Q) {\n        int k, a, b; scan >> k >> a >> b;\n\
+    \        for (auto [x, y] : uf.merge(a, b, k)) {\n            ans += X[x] * X[y];\n\
+    \            X[x] += X[y];\n            X[y] = 0;\n        }\n        prints(ans);\n\
+    \    }\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -631,20 +644,19 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  - geometry/Circle.hpp
-  - geometry/template.hpp
-  - geometry/Point.hpp
-  - geometry/Line.hpp
+  - math/ModInt.hpp
+  - data-struct/unionfind/RangeParallelUnionFind.hpp
+  - data-struct/unionfind/UnionFind.hpp
   isVerificationFile: true
-  path: test/aoj/CGL/CGL_7_F-tangent.test.cpp
+  path: test/yosupo/new/range_parallel_unionfind.test.cpp
   requiredBy: []
-  timestamp: '2024-05-12 17:35:55+09:00'
+  timestamp: '2024-07-20 14:13:49+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/CGL/CGL_7_F-tangent.test.cpp
+documentation_of: test/yosupo/new/range_parallel_unionfind.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/CGL/CGL_7_F-tangent.test.cpp
-- /verify/test/aoj/CGL/CGL_7_F-tangent.test.cpp.html
-title: test/aoj/CGL/CGL_7_F-tangent.test.cpp
+- /verify/test/yosupo/new/range_parallel_unionfind.test.cpp
+- /verify/test/yosupo/new/range_parallel_unionfind.test.cpp.html
+title: test/yosupo/new/range_parallel_unionfind.test.cpp
 ---

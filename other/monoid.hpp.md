@@ -1,31 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
@@ -65,10 +65,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/other/SlidingWindowAggregation.hpp
     title: SlidingWindowAggregation(SWAG)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/BinaryIndexedTree.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/CumulativeSum.hpp
     title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
   - icon: ':heavy_check_mark:'
@@ -100,7 +100,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/PlusMinusOneRMQ.hpp
     title: PlusMinusOneRMQ($\pm1$RMQ)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/RAQBIT.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
   - icon: ':heavy_check_mark:'
@@ -109,7 +109,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/RangeSortQuery.hpp
     title: RangeSortQuery
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':heavy_check_mark:'
@@ -127,7 +127,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/StaticRangeCountDistinct.hpp
     title: data-struct/segment/StaticRangeCountDistinct.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/unionfind/WeightedUnionFind.hpp
     title: "WeightedUnionFind(\u91CD\u307F\u4ED8\u304DUF)"
   - icon: ':heavy_check_mark:'
@@ -142,7 +142,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/mst/DirectedMST.hpp
     title: "DirectedMST(\u6700\u5C0F\u6709\u5411\u5168\u57DF\u6728)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
   - icon: ':heavy_check_mark:'
@@ -169,7 +169,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/convolution/BitwiseXorConvolution.hpp
     title: BitwiseXorConvolution
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
   - icon: ':heavy_check_mark:'
@@ -338,7 +338,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/directedmst.test.cpp
     title: test/yosupo/graph/directedmst.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/unionfind_with_potential_non_commutative_group.test.cpp
     title: test/yosupo/new/unionfind_with_potential_non_commutative_group.test.cpp
   - icon: ':heavy_check_mark:'
@@ -359,25 +359,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
     title: test/yosupo/tree/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/vertex_add_range_contour_sum_on_tree.test.cpp
     title: test/yosupo/tree/vertex_add_range_contour_sum_on_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/vertex_add_subtree_sum-2.test.cpp
     title: test/yosupo/tree/vertex_add_subtree_sum-2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/vertex_add_subtree_sum-HLD.test.cpp
     title: test/yosupo/tree/vertex_add_subtree_sum-HLD.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/vertex_add_subtree_sum.test.cpp
     title: test/yosupo/tree/vertex_add_subtree_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/vertex_get_range_contour_add_on_tree.test.cpp
     title: test/yosupo/tree/vertex_get_range_contour_add_on_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/vertex_set_path_composite-HLD.test.cpp
     title: test/yosupo/tree/vertex_set_path_composite-HLD.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/vertex_set_path_composite.test.cpp
     title: test/yosupo/tree/vertex_set_path_composite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -389,9 +389,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki/855_DynamicSegTree.test.cpp
     title: test/yuki/855_DynamicSegTree.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"other/monoid.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
@@ -1035,7 +1035,7 @@ data:
   - graph/tree/TreeHash.hpp
   - graph/tree/ReRooting.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yuki/855_DynamicSegTree.test.cpp
   - test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
