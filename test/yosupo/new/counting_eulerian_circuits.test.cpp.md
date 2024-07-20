@@ -8,8 +8,8 @@ data:
     path: graph/mst/CountSpanningTree.hpp
     title: "CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)"
   - icon: ':heavy_check_mark:'
-    path: graph/other/CountEulerianTrail.hpp
-    title: CountEulerianTrail(BEST Theorem)
+    path: graph/other/CountEulerianCircuit.hpp
+    title: CountEulerianCircuit(BEST Theorem)
   - icon: ':heavy_check_mark:'
     path: math/Combinatorics.hpp
     title: Combinatorics
@@ -56,52 +56,53 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/abc336/tasks/abc336_g
+    PROBLEM: https://judge.yosupo.jp/problem/counting_eulerian_circuits
     links:
-    - https://atcoder.jp/contests/abc336/tasks/abc336_g
-  bundledCode: "#line 1 \"test/atcoder/abc336_g-BEST.test.cpp\"\n#define PROBLEM \"\
-    https://atcoder.jp/contests/abc336/tasks/abc336_g\"\n#line 2 \"other/template.hpp\"\
-    \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
-    \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define OVERLOAD5(a,\
-    \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
-    \                                                           \\\n    for (ll REP_COUNTER_##c\
-    \ = 0; REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b,\
-    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
-    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
-    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) OVERLOAD5(__VA_ARGS__,\
-    \ REP4, REP3, REP2, REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1;\
-    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n\
-    #define RREP4(i, a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n\
-    #define rrep(...) OVERLOAD5(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define\
-    \ REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b) for (ll\
-    \ i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll i = (ll)(a)\
-    \ + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) OVERLOAD5(__VA_ARGS__, REPS4,\
-    \ REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a); i > 0;\
-    \ --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n#define\
-    \ RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
-    \ rreps(...) OVERLOAD5(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define\
-    \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
-    \ __VA_ARGS__)\n\n#define all(v) std::begin(v), std::end(v)\n#define rall(v) std::rbegin(v),\
-    \ std::rend(v)\n\n#if __cpp_if_constexpr >= 201606L\n#define IF_CONSTEXPR constexpr\n\
-    #else\n#define IF_CONSTEXPR\n#endif\n\n#define IO_BUFFER_SIZE (1 << 17)\n#line\
-    \ 2 \"template/alias.hpp\"\n\n#line 4 \"template/alias.hpp\"\n\nusing ll = long\
-    \ long;\nusing uint = unsigned int;\nusing ull = unsigned long long;\nusing i128\
-    \ = __int128_t;\nusing u128 = __uint128_t;\nusing ld = long double;\nusing PLL\
-    \ = std::pair<ll, ll>;\ntemplate<class T>\nusing prique = std::priority_queue<T,\
-    \ std::vector<T>, std::greater<T>>;\n\ntemplate<class T> struct infinity {\n \
-    \   static constexpr T value = std::numeric_limits<T>::max() / 2;\n    static\
-    \ constexpr T mvalue = std::numeric_limits<T>::lowest() / 2;\n    static constexpr\
-    \ T max = std::numeric_limits<T>::max();\n    static constexpr T min = std::numeric_limits<T>::lowest();\n\
-    };\n\n#if __cplusplus <= 201402L\ntemplate<class T> constexpr T infinity<T>::value;\n\
-    template<class T> constexpr T infinity<T>::mvalue;\ntemplate<class T> constexpr\
-    \ T infinity<T>::max;\ntemplate<class T> constexpr T infinity<T>::min;\n#endif\n\
-    \n#if __cpp_variable_templates >= 201304L\ntemplate<class T> constexpr T INF =\
-    \ infinity<T>::value;\n#endif\n\nconstexpr ll inf = infinity<ll>::value;\nconstexpr\
-    \ ld EPS = 1e-8;\nconstexpr ld PI = 3.1415926535897932384626;\n#line 2 \"template/type_traits.hpp\"\
-    \n\n#line 5 \"template/type_traits.hpp\"\n\ntemplate<class T, class... Args> struct\
-    \ function_traits_impl {\n    using result_type = T;\n    template<std::size_t\
-    \ idx>\n    using argument_type =\n        typename std::tuple_element<idx, std::tuple<Args...>>::type;\n\
-    \    using argument_tuple = std::tuple<Args...>;\n    static constexpr std::size_t\
+    - https://judge.yosupo.jp/problem/counting_eulerian_circuits
+  bundledCode: "#line 1 \"test/yosupo/new/counting_eulerian_circuits.test.cpp\"\n\
+    #define PROBLEM \"https://judge.yosupo.jp/problem/counting_eulerian_circuits\"\
+    \n#line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
+    \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
+    \ __LINE__\n#endif\n\n#define OVERLOAD5(a, b, c, d, e, ...) e\n#define REP1_0(b,\
+    \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
+    \                     \\\n    for (ll REP_COUNTER_##c = 0; REP_COUNTER_##c < (ll)(b);\
+    \ ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define REP2(i,\
+    \ b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i = (ll)(a);\
+    \ i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b);\
+    \ i += (ll)(c))\n#define rep(...) OVERLOAD5(__VA_ARGS__, REP4, REP3, REP2, REP1)(__VA_ARGS__)\n\
+    #define RREP2(i, a) for (ll i = (ll)(a)-1; i >= 0; --i)\n#define RREP3(i, a, b)\
+    \ for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n#define RREP4(i, a, b, c) for (ll\
+    \ i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n#define rrep(...) OVERLOAD5(__VA_ARGS__,\
+    \ RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define REPS2(i, b) for (ll i = 1; i <= (ll)(b);\
+    \ ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define\
+    \ REPS4(i, a, b, c) for (ll i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define\
+    \ reps(...) OVERLOAD5(__VA_ARGS__, REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define\
+    \ RREPS2(i, a) for (ll i = (ll)(a); i > 0; --i)\n#define RREPS3(i, a, b) for (ll\
+    \ i = (ll)(a); i > (ll)(b); --i)\n#define RREPS4(i, a, b, c) for (ll i = (ll)(a);\
+    \ i > (ll)(b); i -= (ll)(c))\n#define rreps(...) OVERLOAD5(__VA_ARGS__, RREPS4,\
+    \ RREPS3, RREPS2)(__VA_ARGS__)\n\n#define each_for(...) for (auto&& __VA_ARGS__)\n\
+    #define each_const(...) for (const auto& __VA_ARGS__)\n\n#define all(v) std::begin(v),\
+    \ std::end(v)\n#define rall(v) std::rbegin(v), std::rend(v)\n\n#if __cpp_if_constexpr\
+    \ >= 201606L\n#define IF_CONSTEXPR constexpr\n#else\n#define IF_CONSTEXPR\n#endif\n\
+    \n#define IO_BUFFER_SIZE (1 << 17)\n#line 2 \"template/alias.hpp\"\n\n#line 4\
+    \ \"template/alias.hpp\"\n\nusing ll = long long;\nusing uint = unsigned int;\n\
+    using ull = unsigned long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\
+    using ld = long double;\nusing PLL = std::pair<ll, ll>;\ntemplate<class T>\nusing\
+    \ prique = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\ntemplate<class\
+    \ T> struct infinity {\n    static constexpr T value = std::numeric_limits<T>::max()\
+    \ / 2;\n    static constexpr T mvalue = std::numeric_limits<T>::lowest() / 2;\n\
+    \    static constexpr T max = std::numeric_limits<T>::max();\n    static constexpr\
+    \ T min = std::numeric_limits<T>::lowest();\n};\n\n#if __cplusplus <= 201402L\n\
+    template<class T> constexpr T infinity<T>::value;\ntemplate<class T> constexpr\
+    \ T infinity<T>::mvalue;\ntemplate<class T> constexpr T infinity<T>::max;\ntemplate<class\
+    \ T> constexpr T infinity<T>::min;\n#endif\n\n#if __cpp_variable_templates >=\
+    \ 201304L\ntemplate<class T> constexpr T INF = infinity<T>::value;\n#endif\n\n\
+    constexpr ll inf = infinity<ll>::value;\nconstexpr ld EPS = 1e-8;\nconstexpr ld\
+    \ PI = 3.1415926535897932384626;\n#line 2 \"template/type_traits.hpp\"\n\n#line\
+    \ 5 \"template/type_traits.hpp\"\n\ntemplate<class T, class... Args> struct function_traits_impl\
+    \ {\n    using result_type = T;\n    template<std::size_t idx>\n    using argument_type\
+    \ =\n        typename std::tuple_element<idx, std::tuple<Args...>>::type;\n  \
+    \  using argument_tuple = std::tuple<Args...>;\n    static constexpr std::size_t\
     \ arg_size() { return sizeof...(Args); }\n};\n\ntemplate<class> struct function_traits_helper;\n\
     \ntemplate<class Res, class Tp, class... Args>\nstruct function_traits_helper<Res\
     \ (Tp::*)(Args...)> {\n    using type = function_traits_impl<Res, Args...>;\n\
@@ -459,12 +460,12 @@ data:
     \        return res;\n    }\n    void press(std::vector<T>& vec) const {\n   \
     \     assert(sorted);\n        for (auto&& i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
-    };\n#line 2 \"math/Combinatorics.hpp\"\n\n#line 2 \"math/ModInt.hpp\"\n\n#line\
-    \ 4 \"math/ModInt.hpp\"\n\ntemplate<class T, T mod> class StaticModInt {\n   \
-    \ static_assert(std::is_integral<T>::value, \"T must be integral\");\n    static_assert(std::is_unsigned<T>::value,\
-    \ \"T must be unsigned\");\n    static_assert(mod > 0, \"mod must be positive\"\
-    );\n    static_assert(mod <= std::numeric_limits<T>::max() / 2,\n            \
-    \      \"mod * 2 must be less than or equal to T::max()\");\n\nprivate:\n    using\
+    };\n#line 2 \"math/ModInt.hpp\"\n\n#line 4 \"math/ModInt.hpp\"\n\ntemplate<class\
+    \ T, T mod> class StaticModInt {\n    static_assert(std::is_integral<T>::value,\
+    \ \"T must be integral\");\n    static_assert(std::is_unsigned<T>::value, \"T\
+    \ must be unsigned\");\n    static_assert(mod > 0, \"mod must be positive\");\n\
+    \    static_assert(mod <= std::numeric_limits<T>::max() / 2,\n               \
+    \   \"mod * 2 must be less than or equal to T::max()\");\n\nprivate:\n    using\
     \ large_t = typename double_size_uint<T>::type;\n    using signed_t = typename\
     \ std::make_signed<T>::type;\n    T val;\n    static constexpr unsigned int inv1000000007[]\
     \ = {\n        0,         1,         500000004, 333333336, 250000002, 400000003,\n\
@@ -584,43 +585,19 @@ data:
     \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\ntemplate<class\
     \ T, int id> T DynamicModInt<T, id>::mod = 998244353;\n\ntemplate<int id> using\
     \ dynamic_modint = DynamicModInt<unsigned int, id>;\nusing modint = dynamic_modint<-1>;\n\
-    \n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n#line 5 \"math/Combinatorics.hpp\"\
-    \n\ntemplate<class T> class Combinatorics {\nprivate:\n    static std::vector<T>\
-    \ factorial;\n    static std::vector<T> factinv;\n\npublic:\n    static void init(ll\
-    \ n) {\n        const int b = factorial.size();\n        if (n < b) return;\n\
-    \        factorial.resize(n + 1);\n        rep (i, b, n + 1) factorial[i] = factorial[i\
-    \ - 1] * i;\n        factinv.resize(n + 1);\n        factinv[n] = T(1) / factorial[n];\n\
-    \        rreps (i, n, b) factinv[i - 1] = factinv[i] * i;\n    }\n    static T\
-    \ fact(ll x) {\n        if (x < 0) return 0;\n        init(x);\n        return\
-    \ factorial[x];\n    }\n    static T finv(ll x) {\n        if (x < 0) return 0;\n\
-    \        init(x);\n        return factinv[x];\n    }\n    static T inv(ll x) {\n\
-    \        if (x <= 0) return 0;\n        init(x);\n        return factorial[x -\
-    \ 1] * factinv[x];\n    }\n    static T perm(ll n, ll r) {\n        if (r < 0\
-    \ || r > n) return 0;\n        init(n);\n        return factorial[n] * factinv[n\
-    \ - r];\n    }\n    static T comb(ll n, ll r) {\n        if (n < 0) return 0;\n\
-    \        if (r < 0 || r > n) return 0;\n        init(n);\n        return factorial[n]\
-    \ * factinv[n - r] * factinv[r];\n    }\n    static T homo(ll n, ll r) { return\
-    \ comb(n + r - 1, r); }\n    static T small_perm(ll n, ll r) {\n        if (r\
-    \ < 0 || r > n) return 0;\n        T res = 1;\n        reps (i, r) res *= n -\
-    \ r + i;\n        return res;\n    }\n    static T small_comb(ll n, ll r) {\n\
-    \        if (r < 0 || r > n) return 0;\n        chmin(r, n - r);\n        init(r);\n\
-    \        T res = factinv[r];\n        reps (i, r) res *= n - r + i;\n        return\
-    \ res;\n    }\n    static T small_homo(ll n, ll r) { return small_comb(n + r -\
-    \ 1, r); }\n};\n\ntemplate<class T>\nstd::vector<T> Combinatorics<T>::factorial\
-    \ = std::vector<T>(1, 1);\ntemplate<class T>\nstd::vector<T> Combinatorics<T>::factinv\
-    \ = std::vector<T>(1, 1);\n\n/**\n * @brief Combinatorics\n * @docs docs/math/Combinatorics.md\n\
-    \ */\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class\
-    \ T = int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
-    \ : from(-1), to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1)\n\
-    \        : from(f), to(t), cost(c), idx(i) {}\n    edge(int f, int t, T&& c, int\
-    \ i = -1)\n        : from(f), to(t), cost(std::move(c)), idx(i) {}\n    operator\
-    \ int() const { return to; }\n    friend bool operator<(const edge<T>& lhs, const\
-    \ edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n    }\n    friend bool\
-    \ operator>(const edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost\
-    \ > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using Edges = std::vector<edge<T>>;\n\
-    template<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class\
-    \ T = int> class Graph : public std::vector<std::vector<edge<T>>> {\nprivate:\n\
-    \    using Base = std::vector<std::vector<edge<T>>>;\n\npublic:\n    int edge_id\
+    \n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n#line 2 \"graph/Graph.hpp\"\
+    \n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int> struct edge {\n   \
+    \ int from, to;\n    T cost;\n    int idx;\n    edge() : from(-1), to(-1) {}\n\
+    \    edge(int f, int t, const T& c = 1, int i = -1)\n        : from(f), to(t),\
+    \ cost(c), idx(i) {}\n    edge(int f, int t, T&& c, int i = -1)\n        : from(f),\
+    \ to(t), cost(std::move(c)), idx(i) {}\n    operator int() const { return to;\
+    \ }\n    friend bool operator<(const edge<T>& lhs, const edge<T>& rhs) {\n   \
+    \     return lhs.cost < rhs.cost;\n    }\n    friend bool operator>(const edge<T>&\
+    \ lhs, const edge<T>& rhs) {\n        return lhs.cost > rhs.cost;\n    }\n};\n\
+    \ntemplate<class T = int> using Edges = std::vector<edge<T>>;\ntemplate<class\
+    \ T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class T =\
+    \ int> class Graph : public std::vector<std::vector<edge<T>>> {\nprivate:\n  \
+    \  using Base = std::vector<std::vector<edge<T>>>;\n\npublic:\n    int edge_id\
     \ = 0;\n    using Base::Base;\n    int edge_size() const { return edge_id; }\n\
     \    int add_edge(int a, int b, const T& c, bool is_directed = false) {\n    \
     \    assert(0 <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
@@ -650,7 +627,7 @@ data:
     }\n\n\nstruct unweighted_edge {\n    template<class... Args> unweighted_edge(const\
     \ Args&...) {}\n    operator int() { return 1; }\n};\n\nusing UnweightedGraph\
     \ = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n * @docs docs/graph/Graph.md\n\
-    \ */\n#line 2 \"graph/other/CountEulerianTrail.hpp\"\n\n#line 2 \"graph/mst/CountSpanningTree.hpp\"\
+    \ */\n#line 2 \"graph/other/CountEulerianCircuit.hpp\"\n\n#line 2 \"graph/mst/CountSpanningTree.hpp\"\
     \n\n#line 2 \"math/matrix/Matrix.hpp\"\n\n#line 5 \"math/matrix/Matrix.hpp\"\n\
     \ntemplate<class> class Matrix;\n\nnamespace internal {\n\nusing Mat2 = Matrix<static_modint<2>>;\n\
     \ntemplate<int> Mat2 prod_mod2_sub(const Mat2&, const Mat2&);\ntemplate<int> void\
@@ -776,36 +753,57 @@ data:
     \     if (e.to == v || e.to == i) continue;\n            A[i < v ? i : i - 1][e.to\
     \ < v ? e.to : e.to - 1] -= e.cost;\n        }\n    }\n    return determinant(A);\n\
     }\n\n/**\n * @brief CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)\n * @docs\
-    \ docs/graph/mst/CountSpanningTree.md\n */\n#line 6 \"graph/other/CountEulerianTrail.hpp\"\
-    \n\ntemplate<class T, class U, class Comb = Combinatorics<T>>\nT count_eulerian_trail(const\
-    \ Graph<U>& G) {\n    int N = G.size();\n    std::vector<int> degi(N), dego(N);\n\
-    \    rep (i, N) {\n        for (const auto& e : G[i]) {\n            degi[e.to]\
-    \ += e.cost;\n            dego[i] += e.cost;\n        }\n    }\n    rep (i, N)\
-    \ {\n        if (degi[i] != dego[i]) return 0;\n    }\n    std::vector<bool> used(N);\n\
-    \    rep (i, N) {\n        for (const auto& e : G[i]) {\n            if (e.cost)\
-    \ used[i] = used[e.to] = true;\n        }\n    }\n    std::vector<int> idx(N,\
-    \ -1);\n    int M = 0;\n    rep (i, N) {\n        if (used[i]) idx[i] = M++;\n\
-    \    }\n    Graph<U> H(M);\n    rep (i, N) {\n        for (auto& e : G[i]) {\n\
-    \            if (e.cost) H.add_edge(idx[i], idx[e.to], e.cost, true);\n      \
-    \  }\n    }\n    T res = count_spanning_tree<T>(H);\n    rep (i, N) {\n      \
-    \  if (dego[i] != 0) res *= Comb::fact(dego[i] - 1);\n    }\n    return res;\n\
-    }\n\n/**\n * @brief CountEulerianTrail(BEST Theorem)\n * @docs docs/graph/other/CountEulerianTrail.md\n\
-    \ */\n#line 6 \"test/atcoder/abc336_g-BEST.test.cpp\"\nusing namespace std;\n\
-    using mint = modint998244353;\nusing comb = Combinatorics<mint>;\nint main() {\n\
-    \    vector<int> A(16); scan >> A;\n    Graph<int> G(8);\n    rep (i, 16) {\n\
-    \        G.add_edge(i / 2, i % 8, A[i], true);\n    }\n    mint ans = 0;\n   \
-    \ rep (i, 8) rep (j, 8) {\n        Graph<int> H = G;\n        H.add_edge(i, j,\
-    \ true);\n        ans += count_eulerian_trail<mint>(H);\n    }\n    rep (i, 16)\
-    \ ans *= comb::finv(A[i]);\n    prints(ans);\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/abc336/tasks/abc336_g\"\n#include\
-    \ \"../../other/template.hpp\"\n#include \"../../math/Combinatorics.hpp\"\n#include\
-    \ \"../../graph/Graph.hpp\"\n#include \"../../graph/other/CountEulerianTrail.hpp\"\
-    \nusing namespace std;\nusing mint = modint998244353;\nusing comb = Combinatorics<mint>;\n\
-    int main() {\n    vector<int> A(16); scan >> A;\n    Graph<int> G(8);\n    rep\
-    \ (i, 16) {\n        G.add_edge(i / 2, i % 8, A[i], true);\n    }\n    mint ans\
-    \ = 0;\n    rep (i, 8) rep (j, 8) {\n        Graph<int> H = G;\n        H.add_edge(i,\
-    \ j, true);\n        ans += count_eulerian_trail<mint>(H);\n    }\n    rep (i,\
-    \ 16) ans *= comb::finv(A[i]);\n    prints(ans);\n}\n"
+    \ docs/graph/mst/CountSpanningTree.md\n */\n#line 2 \"math/Combinatorics.hpp\"\
+    \n\n#line 5 \"math/Combinatorics.hpp\"\n\ntemplate<class T> class Combinatorics\
+    \ {\nprivate:\n    static std::vector<T> factorial;\n    static std::vector<T>\
+    \ factinv;\n\npublic:\n    static void init(ll n) {\n        const int b = factorial.size();\n\
+    \        if (n < b) return;\n        factorial.resize(n + 1);\n        rep (i,\
+    \ b, n + 1) factorial[i] = factorial[i - 1] * i;\n        factinv.resize(n + 1);\n\
+    \        factinv[n] = T(1) / factorial[n];\n        rreps (i, n, b) factinv[i\
+    \ - 1] = factinv[i] * i;\n    }\n    static T fact(ll x) {\n        if (x < 0)\
+    \ return 0;\n        init(x);\n        return factorial[x];\n    }\n    static\
+    \ T finv(ll x) {\n        if (x < 0) return 0;\n        init(x);\n        return\
+    \ factinv[x];\n    }\n    static T inv(ll x) {\n        if (x <= 0) return 0;\n\
+    \        init(x);\n        return factorial[x - 1] * factinv[x];\n    }\n    static\
+    \ T perm(ll n, ll r) {\n        if (r < 0 || r > n) return 0;\n        init(n);\n\
+    \        return factorial[n] * factinv[n - r];\n    }\n    static T comb(ll n,\
+    \ ll r) {\n        if (n < 0) return 0;\n        if (r < 0 || r > n) return 0;\n\
+    \        init(n);\n        return factorial[n] * factinv[n - r] * factinv[r];\n\
+    \    }\n    static T homo(ll n, ll r) { return comb(n + r - 1, r); }\n    static\
+    \ T small_perm(ll n, ll r) {\n        if (r < 0 || r > n) return 0;\n        T\
+    \ res = 1;\n        reps (i, r) res *= n - r + i;\n        return res;\n    }\n\
+    \    static T small_comb(ll n, ll r) {\n        if (r < 0 || r > n) return 0;\n\
+    \        chmin(r, n - r);\n        init(r);\n        T res = factinv[r];\n   \
+    \     reps (i, r) res *= n - r + i;\n        return res;\n    }\n    static T\
+    \ small_homo(ll n, ll r) { return small_comb(n + r - 1, r); }\n};\n\ntemplate<class\
+    \ T>\nstd::vector<T> Combinatorics<T>::factorial = std::vector<T>(1, 1);\ntemplate<class\
+    \ T>\nstd::vector<T> Combinatorics<T>::factinv = std::vector<T>(1, 1);\n\n/**\n\
+    \ * @brief Combinatorics\n * @docs docs/math/Combinatorics.md\n */\n#line 6 \"\
+    graph/other/CountEulerianCircuit.hpp\"\n\ntemplate<class T, class U, class Comb\
+    \ = Combinatorics<T>>\nT count_eulerian_circuit(const Graph<U>& G) {\n    int\
+    \ N = G.size();\n    std::vector<int> degi(N), dego(N);\n    rep (i, N) {\n  \
+    \      for (const auto& e : G[i]) {\n            degi[e.to] += e.cost;\n     \
+    \       dego[i] += e.cost;\n        }\n    }\n    rep (i, N) {\n        if (degi[i]\
+    \ != dego[i]) return 0;\n    }\n    std::vector<bool> used(N);\n    rep (i, N)\
+    \ {\n        for (const auto& e : G[i]) {\n            if (e.cost) used[i] = used[e.to]\
+    \ = true;\n        }\n    }\n    std::vector<int> idx(N, -1);\n    int M = 0;\n\
+    \    rep (i, N) {\n        if (used[i]) idx[i] = M++;\n    }\n    Graph<U> H(M);\n\
+    \    rep (i, N) {\n        for (auto& e : G[i]) {\n            if (e.cost) H.add_edge(idx[i],\
+    \ idx[e.to], e.cost, true);\n        }\n    }\n    T res = count_spanning_tree<T>(H);\n\
+    \    rep (i, N) {\n        if (dego[i] != 0) res *= Comb::fact(dego[i] - 1);\n\
+    \    }\n    return res;\n}\n\n/**\n * @brief CountEulerianCircuit(BEST Theorem)\n\
+    \ * @docs docs/graph/other/CountEulerianCircuit.md\n */\n#line 6 \"test/yosupo/new/counting_eulerian_circuits.test.cpp\"\
+    \nusing namespace std;\nusing mint = modint998244353;\nint main() {\n    int N,\
+    \ M; scan >> N >> M;\n    Graph<int> G(N);\n    rep (M) {\n        int a, b; scan\
+    \ >> a >> b;\n        G.add_edge(b, a, 1, true);\n    }\n    prints(count_eulerian_circuit<mint>(G));\n\
+    }\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/counting_eulerian_circuits\"\
+    \n#include \"../../../other/template.hpp\"\n#include \"../../../math/ModInt.hpp\"\
+    \n#include \"../../../graph/Graph.hpp\"\n#include \"../../../graph/other/CountEulerianCircuit.hpp\"\
+    \nusing namespace std;\nusing mint = modint998244353;\nint main() {\n    int N,\
+    \ M; scan >> N >> M;\n    Graph<int> G(N);\n    rep (M) {\n        int a, b; scan\
+    \ >> a >> b;\n        G.add_edge(b, a, 1, true);\n    }\n    prints(count_eulerian_circuit<mint>(G));\n\
+    }\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -816,23 +814,23 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  - math/Combinatorics.hpp
   - math/ModInt.hpp
   - graph/Graph.hpp
-  - graph/other/CountEulerianTrail.hpp
+  - graph/other/CountEulerianCircuit.hpp
   - graph/mst/CountSpanningTree.hpp
   - math/matrix/Matrix.hpp
   - math/matrix/Determinant.hpp
+  - math/Combinatorics.hpp
   isVerificationFile: true
-  path: test/atcoder/abc336_g-BEST.test.cpp
+  path: test/yosupo/new/counting_eulerian_circuits.test.cpp
   requiredBy: []
-  timestamp: '2024-05-17 13:27:23+09:00'
+  timestamp: '2024-07-20 17:54:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/atcoder/abc336_g-BEST.test.cpp
+documentation_of: test/yosupo/new/counting_eulerian_circuits.test.cpp
 layout: document
 redirect_from:
-- /verify/test/atcoder/abc336_g-BEST.test.cpp
-- /verify/test/atcoder/abc336_g-BEST.test.cpp.html
-title: test/atcoder/abc336_g-BEST.test.cpp
+- /verify/test/yosupo/new/counting_eulerian_circuits.test.cpp
+- /verify/test/yosupo/new/counting_eulerian_circuits.test.cpp.html
+title: test/yosupo/new/counting_eulerian_circuits.test.cpp
 ---

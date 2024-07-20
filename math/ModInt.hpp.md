@@ -33,8 +33,8 @@ data:
     path: graph/mst/CountSpanningTree.hpp
     title: "CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)"
   - icon: ':heavy_check_mark:'
-    path: graph/other/CountEulerianTrail.hpp
-    title: CountEulerianTrail(BEST Theorem)
+    path: graph/other/CountEulerianCircuit.hpp
+    title: CountEulerianCircuit(BEST Theorem)
   - icon: ':heavy_check_mark:'
     path: graph/tree/FrequencyTableofTreeDistance.hpp
     title: Frequency Table of Tree Distance
@@ -132,9 +132,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_G.test.cpp
     title: test/aoj/DPL/DPL_5_G.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc336_g-BEST.test.cpp
-    title: test/atcoder/abc336_g-BEST.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
     title: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
@@ -246,6 +243,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
     title: test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/counting_eulerian_circuits.test.cpp
+    title: test/yosupo/new/counting_eulerian_circuits.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/counting_spanning_tree_directed.test.cpp
     title: test/yosupo/new/counting_spanning_tree_directed.test.cpp
@@ -1053,7 +1053,7 @@ data:
   - math/poly/SamplingPointsShift.hpp
   - math/poly/SparseFormalPowerSeries.hpp
   - string/WildcardPatternMatching.hpp
-  - graph/other/CountEulerianTrail.hpp
+  - graph/other/CountEulerianCircuit.hpp
   - graph/mst/CountSpanningTree.hpp
   - graph/tree/FrequencyTableofTreeDistance.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
@@ -1129,12 +1129,12 @@ data:
   - test/yosupo/new/counting_spanning_tree_undirected.test.cpp
   - test/yosupo/new/matrix_product_mod_2.test.cpp
   - test/yosupo/new/counting_spanning_tree_directed.test.cpp
+  - test/yosupo/new/counting_eulerian_circuits.test.cpp
   - test/yosupo/new/range_parallel_unionfind.test.cpp
   - test/yosupo/new/matrix_det_mod_2.test.cpp
   - test/yosupo/new/unionfind_with_potential_non_commutative_group.test.cpp
   - test/yosupo/graph/enumerate_cliques.test.cpp
   - test/yosupo/graph/enumerate_triangles.test.cpp
-  - test/atcoder/abc336_g-BEST.test.cpp
   - test/aoj/DPL/DPL_5_B.test.cpp
   - test/aoj/DPL/DPL_5_C.test.cpp
   - test/aoj/DPL/DPL_5_D.test.cpp

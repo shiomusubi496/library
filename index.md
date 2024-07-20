@@ -313,8 +313,8 @@ data:
       path: graph/other/ChromaticNumber.hpp
       title: "ChromaticNumber(\u5F69\u8272\u6570)"
     - icon: ':heavy_check_mark:'
-      path: graph/other/CountEulerianTrail.hpp
-      title: CountEulerianTrail(BEST Theorem)
+      path: graph/other/CountEulerianCircuit.hpp
+      title: CountEulerianCircuit(BEST Theorem)
     - icon: ':heavy_check_mark:'
       path: graph/other/EnumerateCliques.hpp
       title: EnumerateCliques
@@ -935,9 +935,6 @@ data:
       path: test/atcoder/abc265_c-Timer.test.cpp
       title: test/atcoder/abc265_c-Timer.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/atcoder/abc336_g-BEST.test.cpp
-      title: test/atcoder/abc336_g-BEST.test.cpp
-    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc349_g-RangeUF.test.cpp
       title: test/atcoder/abc349_g-RangeUF.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1221,6 +1218,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/new/connected_components_of_complement_graph.test.cpp
       title: test/yosupo/new/connected_components_of_complement_graph.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/new/counting_eulerian_circuits.test.cpp
+      title: test/yosupo/new/counting_eulerian_circuits.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/new/counting_spanning_tree_directed.test.cpp
       title: test/yosupo/new/counting_spanning_tree_directed.test.cpp

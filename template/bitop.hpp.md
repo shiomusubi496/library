@@ -289,8 +289,8 @@ data:
     path: graph/other/ChromaticNumber.hpp
     title: "ChromaticNumber(\u5F69\u8272\u6570)"
   - icon: ':heavy_check_mark:'
-    path: graph/other/CountEulerianTrail.hpp
-    title: CountEulerianTrail(BEST Theorem)
+    path: graph/other/CountEulerianCircuit.hpp
+    title: CountEulerianCircuit(BEST Theorem)
   - icon: ':heavy_check_mark:'
     path: graph/other/EnumerateCliques.hpp
     title: EnumerateCliques
@@ -849,9 +849,6 @@ data:
     path: test/atcoder/abc265_c-Timer.test.cpp
     title: test/atcoder/abc265_c-Timer.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc336_g-BEST.test.cpp
-    title: test/atcoder/abc336_g-BEST.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc349_g-RangeUF.test.cpp
     title: test/atcoder/abc349_g-RangeUF.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1121,6 +1118,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/connected_components_of_complement_graph.test.cpp
     title: test/yosupo/new/connected_components_of_complement_graph.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/counting_eulerian_circuits.test.cpp
+    title: test/yosupo/new/counting_eulerian_circuits.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/counting_spanning_tree_directed.test.cpp
     title: test/yosupo/new/counting_spanning_tree_directed.test.cpp
@@ -1631,9 +1631,9 @@ data:
   - graph/other/EulerianTrail.hpp
   - graph/other/ChromaticNumber.hpp
   - graph/other/TopologicalSort.hpp
+  - graph/other/CountEulerianCircuit.hpp
   - graph/other/EnumerateTriangles.hpp
   - graph/other/LowLink.hpp
-  - graph/other/CountEulerianTrail.hpp
   - graph/other/BipartiteGraph.hpp
   - graph/other/GraphCycle.hpp
   - graph/other/EnumerateCliques.hpp
@@ -1825,6 +1825,7 @@ data:
   - test/yosupo/new/matrix_product_mod_2.test.cpp
   - test/yosupo/new/counting_spanning_tree_directed.test.cpp
   - test/yosupo/new/connected_components_of_complement_graph.test.cpp
+  - test/yosupo/new/counting_eulerian_circuits.test.cpp
   - test/yosupo/new/range_parallel_unionfind.test.cpp
   - test/yosupo/new/matrix_det_mod_2.test.cpp
   - test/yosupo/new/closest_pair.test.cpp
@@ -1850,7 +1851,6 @@ data:
   - test/atcoder/abc349_g-RangeUF.test.cpp
   - test/atcoder/abc218_h-AlienDP.test.cpp
   - test/atcoder/arc099_c-Bipartite.test.cpp
-  - test/atcoder/abc336_g-BEST.test.cpp
   - test/atcoder/abc265_c-Timer.test.cpp
   - test/atcoder/abc176_f-DefaultMap.test.cpp
   - test/aoj/other/2725-CHT.test.cpp

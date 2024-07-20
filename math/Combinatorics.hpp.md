@@ -33,8 +33,8 @@ data:
     title: template/util.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: graph/other/CountEulerianTrail.hpp
-    title: CountEulerianTrail(BEST Theorem)
+    path: graph/other/CountEulerianCircuit.hpp
+    title: CountEulerianCircuit(BEST Theorem)
   - icon: ':heavy_check_mark:'
     path: math/ExpPolySum.hpp
     title: ExpPolySum($\sum_{i=0}^{\infty}r^ii^d$)
@@ -90,9 +90,6 @@ data:
     path: test/aoj/DPL/DPL_5_G.test.cpp
     title: test/aoj/DPL/DPL_5_G.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc336_g-BEST.test.cpp
-    title: test/atcoder/abc336_g-BEST.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yosupo/enumerative_combinatorics/binomial_coefficient_prime_mod.test.cpp
     title: test/yosupo/enumerative_combinatorics/binomial_coefficient_prime_mod.test.cpp
   - icon: ':heavy_check_mark:'
@@ -116,6 +113,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind_fixed_k.test.cpp
     title: test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind_fixed_k.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/counting_eulerian_circuits.test.cpp
+    title: test/yosupo/new/counting_eulerian_circuits.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/bernoulli_number.test.cpp
     title: test/yosupo/number_theory/bernoulli_number.test.cpp
@@ -799,7 +799,7 @@ data:
   - math/poly/BostanMori.hpp
   - math/poly/SamplingPointsShift.hpp
   - math/poly/SparseFormalPowerSeries.hpp
-  - graph/other/CountEulerianTrail.hpp
+  - graph/other/CountEulerianCircuit.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -836,7 +836,7 @@ data:
   - test/yosupo/enumerative_combinatorics/partition_function.test.cpp
   - test/yosupo/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
   - test/yosupo/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
-  - test/atcoder/abc336_g-BEST.test.cpp
+  - test/yosupo/new/counting_eulerian_circuits.test.cpp
   - test/aoj/DPL/DPL_5_B.test.cpp
   - test/aoj/DPL/DPL_5_C.test.cpp
   - test/aoj/DPL/DPL_5_D.test.cpp

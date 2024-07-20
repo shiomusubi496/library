@@ -49,16 +49,16 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc336_g-BEST.test.cpp
-    title: test/atcoder/abc336_g-BEST.test.cpp
+    path: test/yosupo/new/counting_eulerian_circuits.test.cpp
+    title: test/yosupo/new/counting_eulerian_circuits.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/graph/other/CountEulerianTrail.md
-    document_title: CountEulerianTrail(BEST Theorem)
+    _deprecated_at_docs: docs/graph/other/CountEulerianCircuit.md
+    document_title: CountEulerianCircuit(BEST Theorem)
     links: []
-  bundledCode: "#line 2 \"graph/other/CountEulerianTrail.hpp\"\n\n#line 2 \"graph/Graph.hpp\"\
+  bundledCode: "#line 2 \"graph/other/CountEulerianCircuit.hpp\"\n\n#line 2 \"graph/Graph.hpp\"\
     \n\n#line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
     \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
     \ __LINE__\n#endif\n\n#define OVERLOAD5(a, b, c, d, e, ...) e\n#define REP1_0(b,\
@@ -776,23 +776,8 @@ data:
     \ T>\nstd::vector<T> Combinatorics<T>::factorial = std::vector<T>(1, 1);\ntemplate<class\
     \ T>\nstd::vector<T> Combinatorics<T>::factinv = std::vector<T>(1, 1);\n\n/**\n\
     \ * @brief Combinatorics\n * @docs docs/math/Combinatorics.md\n */\n#line 6 \"\
-    graph/other/CountEulerianTrail.hpp\"\n\ntemplate<class T, class U, class Comb\
-    \ = Combinatorics<T>>\nT count_eulerian_trail(const Graph<U>& G) {\n    int N\
-    \ = G.size();\n    std::vector<int> degi(N), dego(N);\n    rep (i, N) {\n    \
-    \    for (const auto& e : G[i]) {\n            degi[e.to] += e.cost;\n       \
-    \     dego[i] += e.cost;\n        }\n    }\n    rep (i, N) {\n        if (degi[i]\
-    \ != dego[i]) return 0;\n    }\n    std::vector<bool> used(N);\n    rep (i, N)\
-    \ {\n        for (const auto& e : G[i]) {\n            if (e.cost) used[i] = used[e.to]\
-    \ = true;\n        }\n    }\n    std::vector<int> idx(N, -1);\n    int M = 0;\n\
-    \    rep (i, N) {\n        if (used[i]) idx[i] = M++;\n    }\n    Graph<U> H(M);\n\
-    \    rep (i, N) {\n        for (auto& e : G[i]) {\n            if (e.cost) H.add_edge(idx[i],\
-    \ idx[e.to], e.cost, true);\n        }\n    }\n    T res = count_spanning_tree<T>(H);\n\
-    \    rep (i, N) {\n        if (dego[i] != 0) res *= Comb::fact(dego[i] - 1);\n\
-    \    }\n    return res;\n}\n\n/**\n * @brief CountEulerianTrail(BEST Theorem)\n\
-    \ * @docs docs/graph/other/CountEulerianTrail.md\n */\n"
-  code: "#pragma once\n\n#include \"../Graph.hpp\"\n#include \"../mst/CountSpanningTree.hpp\"\
-    \n#include \"../../math/Combinatorics.hpp\"\n\ntemplate<class T, class U, class\
-    \ Comb = Combinatorics<T>>\nT count_eulerian_trail(const Graph<U>& G) {\n    int\
+    graph/other/CountEulerianCircuit.hpp\"\n\ntemplate<class T, class U, class Comb\
+    \ = Combinatorics<T>>\nT count_eulerian_circuit(const Graph<U>& G) {\n    int\
     \ N = G.size();\n    std::vector<int> degi(N), dego(N);\n    rep (i, N) {\n  \
     \      for (const auto& e : G[i]) {\n            degi[e.to] += e.cost;\n     \
     \       dego[i] += e.cost;\n        }\n    }\n    rep (i, N) {\n        if (degi[i]\
@@ -803,8 +788,23 @@ data:
     \    rep (i, N) {\n        for (auto& e : G[i]) {\n            if (e.cost) H.add_edge(idx[i],\
     \ idx[e.to], e.cost, true);\n        }\n    }\n    T res = count_spanning_tree<T>(H);\n\
     \    rep (i, N) {\n        if (dego[i] != 0) res *= Comb::fact(dego[i] - 1);\n\
-    \    }\n    return res;\n}\n\n/**\n * @brief CountEulerianTrail(BEST Theorem)\n\
-    \ * @docs docs/graph/other/CountEulerianTrail.md\n */\n"
+    \    }\n    return res;\n}\n\n/**\n * @brief CountEulerianCircuit(BEST Theorem)\n\
+    \ * @docs docs/graph/other/CountEulerianCircuit.md\n */\n"
+  code: "#pragma once\n\n#include \"../Graph.hpp\"\n#include \"../mst/CountSpanningTree.hpp\"\
+    \n#include \"../../math/Combinatorics.hpp\"\n\ntemplate<class T, class U, class\
+    \ Comb = Combinatorics<T>>\nT count_eulerian_circuit(const Graph<U>& G) {\n  \
+    \  int N = G.size();\n    std::vector<int> degi(N), dego(N);\n    rep (i, N) {\n\
+    \        for (const auto& e : G[i]) {\n            degi[e.to] += e.cost;\n   \
+    \         dego[i] += e.cost;\n        }\n    }\n    rep (i, N) {\n        if (degi[i]\
+    \ != dego[i]) return 0;\n    }\n    std::vector<bool> used(N);\n    rep (i, N)\
+    \ {\n        for (const auto& e : G[i]) {\n            if (e.cost) used[i] = used[e.to]\
+    \ = true;\n        }\n    }\n    std::vector<int> idx(N, -1);\n    int M = 0;\n\
+    \    rep (i, N) {\n        if (used[i]) idx[i] = M++;\n    }\n    Graph<U> H(M);\n\
+    \    rep (i, N) {\n        for (auto& e : G[i]) {\n            if (e.cost) H.add_edge(idx[i],\
+    \ idx[e.to], e.cost, true);\n        }\n    }\n    T res = count_spanning_tree<T>(H);\n\
+    \    rep (i, N) {\n        if (dego[i] != 0) res *= Comb::fact(dego[i] - 1);\n\
+    \    }\n    return res;\n}\n\n/**\n * @brief CountEulerianCircuit(BEST Theorem)\n\
+    \ * @docs docs/graph/other/CountEulerianCircuit.md\n */\n"
   dependsOn:
   - graph/Graph.hpp
   - other/template.hpp
@@ -822,18 +822,18 @@ data:
   - math/matrix/Determinant.hpp
   - math/Combinatorics.hpp
   isVerificationFile: false
-  path: graph/other/CountEulerianTrail.hpp
+  path: graph/other/CountEulerianCircuit.hpp
   requiredBy: []
-  timestamp: '2024-05-17 13:27:23+09:00'
+  timestamp: '2024-07-20 17:54:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/atcoder/abc336_g-BEST.test.cpp
-documentation_of: graph/other/CountEulerianTrail.hpp
+  - test/yosupo/new/counting_eulerian_circuits.test.cpp
+documentation_of: graph/other/CountEulerianCircuit.hpp
 layout: document
 redirect_from:
-- /library/graph/other/CountEulerianTrail.hpp
-- /library/graph/other/CountEulerianTrail.hpp.html
-title: CountEulerianTrail(BEST Theorem)
+- /library/graph/other/CountEulerianCircuit.hpp
+- /library/graph/other/CountEulerianCircuit.hpp.html
+title: CountEulerianCircuit(BEST Theorem)
 ---
 ## 概要
 

@@ -42,12 +42,12 @@ data:
     title: template/util.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: graph/other/CountEulerianTrail.hpp
-    title: CountEulerianTrail(BEST Theorem)
+    path: graph/other/CountEulerianCircuit.hpp
+    title: CountEulerianCircuit(BEST Theorem)
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc336_g-BEST.test.cpp
-    title: test/atcoder/abc336_g-BEST.test.cpp
+    path: test/yosupo/new/counting_eulerian_circuits.test.cpp
+    title: test/yosupo/new/counting_eulerian_circuits.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/counting_spanning_tree_directed.test.cpp
     title: test/yosupo/new/counting_spanning_tree_directed.test.cpp
@@ -781,13 +781,13 @@ data:
   isVerificationFile: false
   path: graph/mst/CountSpanningTree.hpp
   requiredBy:
-  - graph/other/CountEulerianTrail.hpp
+  - graph/other/CountEulerianCircuit.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/new/counting_spanning_tree_undirected.test.cpp
   - test/yosupo/new/counting_spanning_tree_directed.test.cpp
-  - test/atcoder/abc336_g-BEST.test.cpp
+  - test/yosupo/new/counting_eulerian_circuits.test.cpp
 documentation_of: graph/mst/CountSpanningTree.hpp
 layout: document
 redirect_from:

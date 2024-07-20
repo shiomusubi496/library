@@ -76,8 +76,8 @@ data:
     path: graph/other/ChromaticNumber.hpp
     title: "ChromaticNumber(\u5F69\u8272\u6570)"
   - icon: ':heavy_check_mark:'
-    path: graph/other/CountEulerianTrail.hpp
-    title: CountEulerianTrail(BEST Theorem)
+    path: graph/other/CountEulerianCircuit.hpp
+    title: CountEulerianCircuit(BEST Theorem)
   - icon: ':heavy_check_mark:'
     path: graph/other/EnumerateCliques.hpp
     title: EnumerateCliques
@@ -240,9 +240,6 @@ data:
     path: test/aoj/other/2945-01BFS.test.cpp
     title: test/aoj/other/2945-01BFS.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc336_g-BEST.test.cpp
-    title: test/atcoder/abc336_g-BEST.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/atcoder/arc099_c-Bipartite.test.cpp
     title: test/atcoder/arc099_c-Bipartite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -296,6 +293,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/connected_components_of_complement_graph.test.cpp
     title: test/yosupo/new/connected_components_of_complement_graph.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/counting_eulerian_circuits.test.cpp
+    title: test/yosupo/new/counting_eulerian_circuits.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/counting_spanning_tree_directed.test.cpp
     title: test/yosupo/new/counting_spanning_tree_directed.test.cpp
@@ -863,9 +863,9 @@ data:
   - graph/other/EulerianTrail.hpp
   - graph/other/ChromaticNumber.hpp
   - graph/other/TopologicalSort.hpp
+  - graph/other/CountEulerianCircuit.hpp
   - graph/other/EnumerateTriangles.hpp
   - graph/other/LowLink.hpp
-  - graph/other/CountEulerianTrail.hpp
   - graph/other/BipartiteGraph.hpp
   - graph/other/GraphCycle.hpp
   - graph/other/EnumerateCliques.hpp
@@ -927,6 +927,7 @@ data:
   - test/yosupo/new/counting_spanning_tree_undirected.test.cpp
   - test/yosupo/new/counting_spanning_tree_directed.test.cpp
   - test/yosupo/new/connected_components_of_complement_graph.test.cpp
+  - test/yosupo/new/counting_eulerian_circuits.test.cpp
   - test/yosupo/graph/enumerate_cliques.test.cpp
   - test/yosupo/graph/chromatic_number.test.cpp
   - test/yosupo/graph/shortest_path.test.cpp
@@ -942,7 +943,6 @@ data:
   - test/yosupo/graph/three_edge_connected_components.test.cpp
   - test/yosupo/graph/directedmst.test.cpp
   - test/atcoder/arc099_c-Bipartite.test.cpp
-  - test/atcoder/abc336_g-BEST.test.cpp
   - test/aoj/other/2945-01BFS.test.cpp
   - test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
   - test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp

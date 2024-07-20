@@ -36,8 +36,8 @@ data:
     path: graph/mst/CountSpanningTree.hpp
     title: "CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)"
   - icon: ':heavy_check_mark:'
-    path: graph/other/CountEulerianTrail.hpp
-    title: CountEulerianTrail(BEST Theorem)
+    path: graph/other/CountEulerianCircuit.hpp
+    title: CountEulerianCircuit(BEST Theorem)
   - icon: ':heavy_check_mark:'
     path: math/matrix/Determinant.hpp
     title: "Determinant(\u884C\u5217\u5F0F)"
@@ -48,9 +48,6 @@ data:
     path: math/matrix/LinearEquations.hpp
     title: "LinearEquations(\u7DDA\u5F62\u65B9\u7A0B\u5F0F)"
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc336_g-BEST.test.cpp
-    title: test/atcoder/abc336_g-BEST.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/inverse_matrix.test.cpp
     title: test/yosupo/linear_algebra/inverse_matrix.test.cpp
@@ -72,6 +69,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
     title: test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/counting_eulerian_circuits.test.cpp
+    title: test/yosupo/new/counting_eulerian_circuits.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/counting_spanning_tree_directed.test.cpp
     title: test/yosupo/new/counting_spanning_tree_directed.test.cpp
@@ -807,7 +807,7 @@ data:
   - math/matrix/Determinant.hpp
   - math/matrix/LinearEquations.hpp
   - math/matrix/Inverse.hpp
-  - graph/other/CountEulerianTrail.hpp
+  - graph/other/CountEulerianCircuit.hpp
   - graph/mst/CountSpanningTree.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -822,9 +822,9 @@ data:
   - test/yosupo/new/counting_spanning_tree_undirected.test.cpp
   - test/yosupo/new/matrix_product_mod_2.test.cpp
   - test/yosupo/new/counting_spanning_tree_directed.test.cpp
+  - test/yosupo/new/counting_eulerian_circuits.test.cpp
   - test/yosupo/new/matrix_det_mod_2.test.cpp
   - test/yosupo/new/unionfind_with_potential_non_commutative_group.test.cpp
-  - test/atcoder/abc336_g-BEST.test.cpp
 documentation_of: math/matrix/Matrix.hpp
 layout: document
 redirect_from:
