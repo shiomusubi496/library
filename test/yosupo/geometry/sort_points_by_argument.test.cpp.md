@@ -482,32 +482,33 @@ data:
     \ 0 ? 1 : 3;\n        int a2 = p2.y < 0 ? 0 : p2.y > 0 ? 2 : p2.x >= 0 ? 1 : 3;\n\
     \        if (a1 != a2) return a1 < a2;\n        return cross(p1, p2) > 0;\n  \
     \  }\n    Real norm() const { return x * x + y * y; }\n    friend Real norm(const\
-    \ Point& p) { return p.norm(); }\n    Real abs() const { return sqrt(norm());\
-    \ }\n    friend Real abs(const Point& p) { return p.abs(); }\n    inline angle_t\
-    \ arg() const { return atan2((ld)y, (ld)x); }\n    friend angle_t arg(const Point&\
-    \ p) { return p.arg(); }\n    Point& rotate(angle_t theta) {\n        Real c =\
-    \ cos(theta), s = sin(theta);\n        Real nx = x * c - y * s, ny = x * s + y\
-    \ * c;\n        x = nx;\n        y = ny;\n        return *this;\n    }\n    friend\
-    \ Point rotate(const Point& p, angle_t theta) {\n        return Point(p).rotate(theta);\n\
-    \    }\n    Point& rotate90() {\n        Real nx = -y, ny = x;\n        x = nx;\n\
-    \        y = ny;\n        return *this;\n    }\n    friend Point rotate90(const\
-    \ Point& p) { return Point(p).rotate90(); }\n    // inner product(\u5185\u7A4D\
-    ), p1 * p2 = |p1| * |p2| * cos(theta)\n    friend Real dot(const Point& p1, const\
-    \ Point& p2) {\n        return p1.x * p2.x + p1.y * p2.y;\n    }\n    // outer\
-    \ product(\u5916\u7A4D), p1 ^ p2 = |p1| * |p2| * sin(theta)\n    friend Real cross(const\
-    \ Point& p1, const Point& p2) {\n        return p1.x * p2.y - p1.y * p2.x;\n \
-    \   }\n    template<class Sc> void scan(Sc& scan) { scan >> x >> y; }\n    template<class\
-    \ Pr> void print(Pr& print) const { print << x << ' ' << y; }\n    template<class\
-    \ Pr> void debug(Pr& print) const {\n        print.print_char('(');\n        print\
-    \ << x;\n        print.print_char(',');\n        print << y;\n        print.print_char(')');\n\
-    \    }\n};\n\nReal distance(const Point& p1, const Point& p2) { return abs(p1\
-    \ - p2); }\n\nenum class CCW {\n    COUNTER_CLOCKWISE = 1,\n    CLOCKWISE = -1,\n\
-    \    ONLINE_BACK = 2,\n    ONLINE_FRONT = -2,\n    ON_SEGMENT = 0,\n};\n\nCCW\
-    \ ccw(const Point& p0, const Point& p1, const Point& p2) {\n    Point a = p1 -\
-    \ p0, b = p2 - p0;\n    if (cmp(cross(a, b), 0) > 0) return CCW::COUNTER_CLOCKWISE;\n\
-    \    if (cmp(cross(a, b), 0) < 0) return CCW::CLOCKWISE;\n    if (cmp(dot(a, b),\
-    \ 0) < 0) return CCW::ONLINE_BACK;\n    if (a.norm() < b.norm()) return CCW::ONLINE_FRONT;\n\
-    \    return CCW::ON_SEGMENT;\n}\n#line 5 \"test/yosupo/geometry/sort_points_by_argument.test.cpp\"\
+    \ Point& p) { return p.norm(); }\n#ifndef GEOMETRY_REAL_TYPE\n    Real abs() const\
+    \ { return sqrt(norm()); }\n    friend Real abs(const Point& p) { return p.abs();\
+    \ }\n    inline angle_t arg() const { return atan2((ld)y, (ld)x); }\n    friend\
+    \ angle_t arg(const Point& p) { return p.arg(); }\n    Point& rotate(angle_t theta)\
+    \ {\n        Real c = cos(theta), s = sin(theta);\n        Real nx = x * c - y\
+    \ * s, ny = x * s + y * c;\n        x = nx;\n        y = ny;\n        return *this;\n\
+    \    }\n    friend Point rotate(const Point& p, angle_t theta) {\n        return\
+    \ Point(p).rotate(theta);\n    }\n#endif\n    Point& rotate90() {\n        Real\
+    \ nx = -y, ny = x;\n        x = nx;\n        y = ny;\n        return *this;\n\
+    \    }\n    friend Point rotate90(const Point& p) { return Point(p).rotate90();\
+    \ }\n    // inner product(\u5185\u7A4D), p1 * p2 = |p1| * |p2| * cos(theta)\n\
+    \    friend Real dot(const Point& p1, const Point& p2) {\n        return p1.x\
+    \ * p2.x + p1.y * p2.y;\n    }\n    // outer product(\u5916\u7A4D), p1 ^ p2 =\
+    \ |p1| * |p2| * sin(theta)\n    friend Real cross(const Point& p1, const Point&\
+    \ p2) {\n        return p1.x * p2.y - p1.y * p2.x;\n    }\n    template<class\
+    \ Sc> void scan(Sc& scan) { scan >> x >> y; }\n    template<class Pr> void print(Pr&\
+    \ print) const { print << x << ' ' << y; }\n    template<class Pr> void debug(Pr&\
+    \ print) const {\n        print.print_char('(');\n        print << x;\n      \
+    \  print.print_char(',');\n        print << y;\n        print.print_char(')');\n\
+    \    }\n};\n\n#ifndef GEOMETRY_REAL_TYPE\nReal distance(const Point& p1, const\
+    \ Point& p2) { return abs(p1 - p2); }\n#endif\n\nenum class CCW {\n    COUNTER_CLOCKWISE\
+    \ = 1,\n    CLOCKWISE = -1,\n    ONLINE_BACK = 2,\n    ONLINE_FRONT = -2,\n  \
+    \  ON_SEGMENT = 0,\n};\n\nCCW ccw(const Point& p0, const Point& p1, const Point&\
+    \ p2) {\n    Point a = p1 - p0, b = p2 - p0;\n    if (cmp(cross(a, b), 0) > 0)\
+    \ return CCW::COUNTER_CLOCKWISE;\n    if (cmp(cross(a, b), 0) < 0) return CCW::CLOCKWISE;\n\
+    \    if (cmp(dot(a, b), 0) < 0) return CCW::ONLINE_BACK;\n    if (a.norm() < b.norm())\
+    \ return CCW::ONLINE_FRONT;\n    return CCW::ON_SEGMENT;\n}\n#line 5 \"test/yosupo/geometry/sort_points_by_argument.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int n; scan >> n;\n    vector<Point>\
     \ ps(n); scan >> ps;\n    sort(all(ps), [&](const Point& a, const Point& b) {\
     \ return comp_arg(a, b); });\n    for (const auto& p : ps) print << p << endl;\n\
@@ -533,7 +534,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/geometry/sort_points_by_argument.test.cpp
   requiredBy: []
-  timestamp: '2024-06-12 23:00:38+09:00'
+  timestamp: '2024-07-20 19:33:32+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/geometry/sort_points_by_argument.test.cpp

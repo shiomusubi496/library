@@ -489,98 +489,100 @@ data:
     \ 0 ? 0 : p2.y > 0 ? 2 : p2.x >= 0 ? 1 : 3;\n        if (a1 != a2) return a1 <\
     \ a2;\n        return cross(p1, p2) > 0;\n    }\n    Real norm() const { return\
     \ x * x + y * y; }\n    friend Real norm(const Point& p) { return p.norm(); }\n\
-    \    Real abs() const { return sqrt(norm()); }\n    friend Real abs(const Point&\
-    \ p) { return p.abs(); }\n    inline angle_t arg() const { return atan2((ld)y,\
-    \ (ld)x); }\n    friend angle_t arg(const Point& p) { return p.arg(); }\n    Point&\
-    \ rotate(angle_t theta) {\n        Real c = cos(theta), s = sin(theta);\n    \
-    \    Real nx = x * c - y * s, ny = x * s + y * c;\n        x = nx;\n        y\
-    \ = ny;\n        return *this;\n    }\n    friend Point rotate(const Point& p,\
-    \ angle_t theta) {\n        return Point(p).rotate(theta);\n    }\n    Point&\
-    \ rotate90() {\n        Real nx = -y, ny = x;\n        x = nx;\n        y = ny;\n\
-    \        return *this;\n    }\n    friend Point rotate90(const Point& p) { return\
-    \ Point(p).rotate90(); }\n    // inner product(\u5185\u7A4D), p1 * p2 = |p1| *\
-    \ |p2| * cos(theta)\n    friend Real dot(const Point& p1, const Point& p2) {\n\
-    \        return p1.x * p2.x + p1.y * p2.y;\n    }\n    // outer product(\u5916\
-    \u7A4D), p1 ^ p2 = |p1| * |p2| * sin(theta)\n    friend Real cross(const Point&\
-    \ p1, const Point& p2) {\n        return p1.x * p2.y - p1.y * p2.x;\n    }\n \
-    \   template<class Sc> void scan(Sc& scan) { scan >> x >> y; }\n    template<class\
+    #ifndef GEOMETRY_REAL_TYPE\n    Real abs() const { return sqrt(norm()); }\n  \
+    \  friend Real abs(const Point& p) { return p.abs(); }\n    inline angle_t arg()\
+    \ const { return atan2((ld)y, (ld)x); }\n    friend angle_t arg(const Point& p)\
+    \ { return p.arg(); }\n    Point& rotate(angle_t theta) {\n        Real c = cos(theta),\
+    \ s = sin(theta);\n        Real nx = x * c - y * s, ny = x * s + y * c;\n    \
+    \    x = nx;\n        y = ny;\n        return *this;\n    }\n    friend Point\
+    \ rotate(const Point& p, angle_t theta) {\n        return Point(p).rotate(theta);\n\
+    \    }\n#endif\n    Point& rotate90() {\n        Real nx = -y, ny = x;\n     \
+    \   x = nx;\n        y = ny;\n        return *this;\n    }\n    friend Point rotate90(const\
+    \ Point& p) { return Point(p).rotate90(); }\n    // inner product(\u5185\u7A4D\
+    ), p1 * p2 = |p1| * |p2| * cos(theta)\n    friend Real dot(const Point& p1, const\
+    \ Point& p2) {\n        return p1.x * p2.x + p1.y * p2.y;\n    }\n    // outer\
+    \ product(\u5916\u7A4D), p1 ^ p2 = |p1| * |p2| * sin(theta)\n    friend Real cross(const\
+    \ Point& p1, const Point& p2) {\n        return p1.x * p2.y - p1.y * p2.x;\n \
+    \   }\n    template<class Sc> void scan(Sc& scan) { scan >> x >> y; }\n    template<class\
     \ Pr> void print(Pr& print) const { print << x << ' ' << y; }\n    template<class\
     \ Pr> void debug(Pr& print) const {\n        print.print_char('(');\n        print\
     \ << x;\n        print.print_char(',');\n        print << y;\n        print.print_char(')');\n\
-    \    }\n};\n\nReal distance(const Point& p1, const Point& p2) { return abs(p1\
-    \ - p2); }\n\nenum class CCW {\n    COUNTER_CLOCKWISE = 1,\n    CLOCKWISE = -1,\n\
-    \    ONLINE_BACK = 2,\n    ONLINE_FRONT = -2,\n    ON_SEGMENT = 0,\n};\n\nCCW\
-    \ ccw(const Point& p0, const Point& p1, const Point& p2) {\n    Point a = p1 -\
-    \ p0, b = p2 - p0;\n    if (cmp(cross(a, b), 0) > 0) return CCW::COUNTER_CLOCKWISE;\n\
-    \    if (cmp(cross(a, b), 0) < 0) return CCW::CLOCKWISE;\n    if (cmp(dot(a, b),\
-    \ 0) < 0) return CCW::ONLINE_BACK;\n    if (a.norm() < b.norm()) return CCW::ONLINE_FRONT;\n\
-    \    return CCW::ON_SEGMENT;\n}\n#line 2 \"geometry/Line.hpp\"\n\n#line 5 \"geometry/Line.hpp\"\
-    \n\nclass Line {\npublic:\n    Real a, b, c; // ax + by + c = 0\n    Line() :\
-    \ a(0), b(1), c(0) {}\n    Line(Real a, Real b, Real c) : a(a), b(b), c(c) {}\n\
-    \    Line(const Point& p1, const Point& p2) {\n        a = p2.y - p1.y;\n    \
-    \    b = p1.x - p2.x;\n        c = p2.x * p1.y - p1.x * p2.y;\n    }\n    friend\
-    \ bool operator==(const Line& l1, const Line& l2) {\n        return cmp(l1.a *\
-    \ l2.b, l2.a * l1.b) == 0 &&\n               cmp(l1.b * l2.c, l2.b * l1.c) ==\
-    \ 0;\n    }\n    friend bool operator!=(const Line& l1, const Line& l2) {\n  \
-    \      return !(l1 == l2);\n    }\n    friend bool operator<(const Line& l1, const\
-    \ Line& l2) {\n        return cmp(l1.a * l2.b, l2.a * l1.b) < 0 ||\n         \
-    \      (cmp(l1.a * l2.b, l2.a * l1.b) == 0 &&\n                cmp(l1.b * l2.c,\
-    \ l2.b * l1.c) < 0);\n    }\n    friend bool operator>(const Line& l1, const Line&\
-    \ l2) { return l2 < l1; }\n    friend bool operator<=(const Line& l1, const Line&\
-    \ l2) {\n        return !(l2 < l1);\n    }\n    friend bool operator>=(const Line&\
-    \ l1, const Line& l2) {\n        return !(l1 < l2);\n    }\n    bool is_on(const\
-    \ Point& p) const {\n        return cmp(a * p.x + b * p.y + c, 0) == 0;\n    }\n\
-    \    template<class Pr> void debug(Pr& print) const {\n        print << a;\n \
-    \       print.print_char('x');\n        print.print_char('+');\n        print\
-    \ << b;\n        print.print_char('y');\n        print.print_char('+');\n    \
-    \    print << c;\n        print.print_char('=');\n        print.print_char('0');\n\
-    \    }\n};\n\nReal distance(const Point& p, const Line& l) {\n    return std::abs(l.a\
-    \ * p.x + l.b * p.y + l.c) /\n           std::sqrt(l.a * l.a + l.b * l.b);\n}\n\
-    Real distance(const Line& l, const Point& p) { return distance(p, l); }\n\n//\
-    \ \u5782\u76F4\u4E8C\u7B49\u5206\u7DDA\nLine perpendicular_bisector(const Point&\
-    \ p1, const Point& p2) {\n    return Line((p1 + p2) / 2, (p1 + p2) / 2 + (p2 -\
-    \ p1).rotate90());\n}\n\n// \u5E73\u884C\u5224\u5B9A\nbool is_parallel(const Line&\
-    \ l1, const Line& l2) {\n    return cmp(l1.a * l2.b, l2.a * l1.b) == 0;\n}\n//\
-    \ \u76F4\u4EA4\u5224\u5B9A\nbool is_orthogonal(const Line& l1, const Line& l2)\
-    \ {\n    return cmp(l1.a * l2.a + l1.b * l2.b, 0) == 0;\n}\n// \u5E73\u884C\u7DDA\
-    \nLine parallel(const Line& l, const Point& p) {\n    return Line(l.a, l.b, -l.a\
-    \ * p.x - l.b * p.y);\n}\n// \u5782\u76F4\u7DDA\nLine perpendicular(const Line&\
-    \ l, const Point& p) {\n    return Line(l.b, -l.a, -l.b * p.x + l.a * p.y);\n\
-    }\n\n// \u4EA4\u53C9\u5224\u5B9A\nbool is_intersect(const Line& l1, const Line&\
-    \ l2) {\n    return l1 == l2 || !is_parallel(l1, l2);\n}\n// \u4EA4\u70B9\nPoint\
-    \ intersection(const Line& l1, const Line& l2) {\n    assert(!is_parallel(l1,\
-    \ l2));\n    Real d = l1.a * l2.b - l2.a * l1.b;\n    return Point((l1.b * l2.c\
-    \ - l2.b * l1.c) / d,\n                 (l1.c * l2.a - l2.c * l1.a) / d);\n}\n\
-    // \u5C04\u5F71\nPoint projection(const Line& l, const Point& p) {\n    return\
-    \ intersection(l, perpendicular(l, p));\n}\n// \u53CD\u5C04\nPoint reflection(const\
-    \ Line& l, const Point& p) {\n    return projection(l, p) * 2 - p;\n}\n#line 6\
-    \ \"geometry/Triangle.hpp\"\n\nclass Triangle {\npublic:\n    Point p1, p2, p3;\n\
-    \    Triangle() = default;\n    Triangle(const Point& p1, const Point& p2, const\
-    \ Point& p3)\n        : p1(p1), p2(p2), p3(p3) {}\n\n    Real area() const { return\
-    \ std::abs(cross(p2 - p1, p3 - p1)) / 2; }\n    Point centroid() const { return\
-    \ (p1 + p2 + p3) / 3; }\n    Point circumcenter() const {\n        Line l1 = perpendicular_bisector(p1,\
+    \    }\n};\n\n#ifndef GEOMETRY_REAL_TYPE\nReal distance(const Point& p1, const\
+    \ Point& p2) { return abs(p1 - p2); }\n#endif\n\nenum class CCW {\n    COUNTER_CLOCKWISE\
+    \ = 1,\n    CLOCKWISE = -1,\n    ONLINE_BACK = 2,\n    ONLINE_FRONT = -2,\n  \
+    \  ON_SEGMENT = 0,\n};\n\nCCW ccw(const Point& p0, const Point& p1, const Point&\
+    \ p2) {\n    Point a = p1 - p0, b = p2 - p0;\n    if (cmp(cross(a, b), 0) > 0)\
+    \ return CCW::COUNTER_CLOCKWISE;\n    if (cmp(cross(a, b), 0) < 0) return CCW::CLOCKWISE;\n\
+    \    if (cmp(dot(a, b), 0) < 0) return CCW::ONLINE_BACK;\n    if (a.norm() < b.norm())\
+    \ return CCW::ONLINE_FRONT;\n    return CCW::ON_SEGMENT;\n}\n#line 2 \"geometry/Line.hpp\"\
+    \n\n#line 5 \"geometry/Line.hpp\"\n\nclass Line {\npublic:\n    Real a, b, c;\
+    \ // ax + by + c = 0\n    Line() : a(0), b(1), c(0) {}\n    Line(Real a, Real\
+    \ b, Real c) : a(a), b(b), c(c) {}\n    Line(const Point& p1, const Point& p2)\
+    \ {\n        a = p2.y - p1.y;\n        b = p1.x - p2.x;\n        c = p2.x * p1.y\
+    \ - p1.x * p2.y;\n    }\n    friend bool operator==(const Line& l1, const Line&\
+    \ l2) {\n        return cmp(l1.a * l2.b, l2.a * l1.b) == 0 &&\n              \
+    \ cmp(l1.b * l2.c, l2.b * l1.c) == 0;\n    }\n    friend bool operator!=(const\
+    \ Line& l1, const Line& l2) {\n        return !(l1 == l2);\n    }\n    friend\
+    \ bool operator<(const Line& l1, const Line& l2) {\n        return cmp(l1.a *\
+    \ l2.b, l2.a * l1.b) < 0 ||\n               (cmp(l1.a * l2.b, l2.a * l1.b) ==\
+    \ 0 &&\n                cmp(l1.b * l2.c, l2.b * l1.c) < 0);\n    }\n    friend\
+    \ bool operator>(const Line& l1, const Line& l2) { return l2 < l1; }\n    friend\
+    \ bool operator<=(const Line& l1, const Line& l2) {\n        return !(l2 < l1);\n\
+    \    }\n    friend bool operator>=(const Line& l1, const Line& l2) {\n       \
+    \ return !(l1 < l2);\n    }\n    bool is_on(const Point& p) const {\n        return\
+    \ cmp(a * p.x + b * p.y + c, 0) == 0;\n    }\n    template<class Pr> void debug(Pr&\
+    \ print) const {\n        print << a;\n        print.print_char('x');\n      \
+    \  print.print_char('+');\n        print << b;\n        print.print_char('y');\n\
+    \        print.print_char('+');\n        print << c;\n        print.print_char('=');\n\
+    \        print.print_char('0');\n    }\n};\n\n#ifndef GEOMETRY_REAL_TYPE\nReal\
+    \ distance(const Point& p, const Line& l) {\n    return std::abs(l.a * p.x + l.b\
+    \ * p.y + l.c) /\n           std::sqrt(l.a * l.a + l.b * l.b);\n}\nReal distance(const\
+    \ Line& l, const Point& p) { return distance(p, l); }\n#endif\n\n// \u5782\u76F4\
+    \u4E8C\u7B49\u5206\u7DDA\nLine perpendicular_bisector(const Point& p1, const Point&\
+    \ p2) {\n    return Line((p1 + p2) / 2, (p1 + p2) / 2 + (p2 - p1).rotate90());\n\
+    }\n\n// \u5E73\u884C\u5224\u5B9A\nbool is_parallel(const Line& l1, const Line&\
+    \ l2) {\n    return cmp(l1.a * l2.b, l2.a * l1.b) == 0;\n}\n// \u76F4\u4EA4\u5224\
+    \u5B9A\nbool is_orthogonal(const Line& l1, const Line& l2) {\n    return cmp(l1.a\
+    \ * l2.a + l1.b * l2.b, 0) == 0;\n}\n// \u5E73\u884C\u7DDA\nLine parallel(const\
+    \ Line& l, const Point& p) {\n    return Line(l.a, l.b, -l.a * p.x - l.b * p.y);\n\
+    }\n// \u5782\u76F4\u7DDA\nLine perpendicular(const Line& l, const Point& p) {\n\
+    \    return Line(l.b, -l.a, -l.b * p.x + l.a * p.y);\n}\n\n// \u4EA4\u53C9\u5224\
+    \u5B9A\nbool is_intersect(const Line& l1, const Line& l2) {\n    return l1 ==\
+    \ l2 || !is_parallel(l1, l2);\n}\n// \u4EA4\u70B9\nPoint intersection(const Line&\
+    \ l1, const Line& l2) {\n    assert(!is_parallel(l1, l2));\n    Real d = l1.a\
+    \ * l2.b - l2.a * l1.b;\n    return Point((l1.b * l2.c - l2.b * l1.c) / d,\n \
+    \                (l1.c * l2.a - l2.c * l1.a) / d);\n}\n// \u5C04\u5F71\nPoint\
+    \ projection(const Line& l, const Point& p) {\n    return intersection(l, perpendicular(l,\
+    \ p));\n}\n// \u53CD\u5C04\nPoint reflection(const Line& l, const Point& p) {\n\
+    \    return projection(l, p) * 2 - p;\n}\n#line 6 \"geometry/Triangle.hpp\"\n\n\
+    class Triangle {\npublic:\n    Point p1, p2, p3;\n    Triangle() = default;\n\
+    \    Triangle(const Point& p1, const Point& p2, const Point& p3)\n        : p1(p1),\
+    \ p2(p2), p3(p3) {}\n\n    Real area() const { return std::abs(cross(p2 - p1,\
+    \ p3 - p1)) / 2; }\n    Point centroid() const { return (p1 + p2 + p3) / 3; }\n\
+    \    Point circumcenter() const {\n        Line l1 = perpendicular_bisector(p1,\
     \ p2);\n        Line l2 = perpendicular_bisector(p2, p3);\n        return intersection(l1,\
-    \ l2);\n    }\n    Real circumradius() const { return distance(p1, circumcenter());\
-    \ }\n    Point incenter() const {\n        Real a = distance(p2, p3);\n      \
-    \  Real b = distance(p3, p1);\n        Real c = distance(p1, p2);\n        return\
-    \ (a * p1 + b * p2 + c * p3) / (a + b + c);\n    }\n    Real inradius() const\
-    \ {\n        return 2 * area() /\n               (distance(p1, p2) + distance(p2,\
-    \ p3) + distance(p3, p1));\n    }\n    Point orthocenter() const {\n        return\
-    \ intersection(perpendicular(Line(p1, p2), p3),\n                            perpendicular(Line(p2,\
-    \ p3), p1));\n    }\n    std::array<Point, 3> excenter() const {\n        Real\
+    \ l2);\n    }\n#ifndef GEOMETRY_REAL_TYPE\n    Real circumradius() const { return\
+    \ distance(p1, circumcenter()); }\n    Point incenter() const {\n        Real\
     \ a = distance(p2, p3);\n        Real b = distance(p3, p1);\n        Real c =\
-    \ distance(p1, p2);\n        return {(-a * p1 + b * p2 + c * p3) / (-a + b + c),\n\
-    \                (a * p1 - b * p2 + c * p3) / (a - b + c),\n                (a\
-    \ * p1 + b * p2 - c * p3) / (a + b - c)};\n    }\n    std::array<Real, 3> exradius()\
-    \ const {\n        auto a = excenter();\n        Line l(p1, p2);\n        return\
-    \ {distance(a[0], l), distance(a[1], l), distance(a[2], l)};\n    }\n    Point\
-    \ nine_point_center() const {\n        return (orthocenter() + circumcenter())\
-    \ / 2;\n    }\n    Real nine_point_radius() const { return circumradius() / 2;\
-    \ }\n\n    template<class Sc> void scan(Sc& scan) { scan >> p1 >> p2 >> p3; }\n\
-    \    template<class Pr> void debug(Pr& print) const {\n        print.print_char('{');\n\
-    \        print << p1;\n        print.print_char(' ');\n        print << p2;\n\
-    \        print.print_char(' ');\n        print << p3;\n        print.print_char('}');\n\
-    \    }\n};\n"
+    \ distance(p1, p2);\n        return (a * p1 + b * p2 + c * p3) / (a + b + c);\n\
+    \    }\n    Real inradius() const {\n        return 2 * area() /\n           \
+    \    (distance(p1, p2) + distance(p2, p3) + distance(p3, p1));\n    }\n#endif\n\
+    \    Point orthocenter() const {\n        return intersection(perpendicular(Line(p1,\
+    \ p2), p3),\n                            perpendicular(Line(p2, p3), p1));\n \
+    \   }\n#ifndef GEOMETRY_REAL_TYPE\n    std::array<Point, 3> excenter() const {\n\
+    \        Real a = distance(p2, p3);\n        Real b = distance(p3, p1);\n    \
+    \    Real c = distance(p1, p2);\n        return {(-a * p1 + b * p2 + c * p3) /\
+    \ (-a + b + c),\n                (a * p1 - b * p2 + c * p3) / (a - b + c),\n \
+    \               (a * p1 + b * p2 - c * p3) / (a + b - c)};\n    }\n    std::array<Real,\
+    \ 3> exradius() const {\n        auto a = excenter();\n        Line l(p1, p2);\n\
+    \        return {distance(a[0], l), distance(a[1], l), distance(a[2], l)};\n \
+    \   }\n#endif\n    Point nine_point_center() const {\n        return (orthocenter()\
+    \ + circumcenter()) / 2;\n    }\n#ifndef GEOMETRY_REAL_TYPE\n    Real nine_point_radius()\
+    \ const { return circumradius() / 2; }\n#endif\n\n    template<class Sc> void\
+    \ scan(Sc& scan) { scan >> p1 >> p2 >> p3; }\n    template<class Pr> void debug(Pr&\
+    \ print) const {\n        print.print_char('{');\n        print << p1;\n     \
+    \   print.print_char(' ');\n        print << p2;\n        print.print_char(' ');\n\
+    \        print << p3;\n        print.print_char('}');\n    }\n};\n"
   code: "#pragma once\n\n#include \"template.hpp\"\n#include \"Point.hpp\"\n#include\
     \ \"Line.hpp\"\n\nclass Triangle {\npublic:\n    Point p1, p2, p3;\n    Triangle()\
     \ = default;\n    Triangle(const Point& p1, const Point& p2, const Point& p3)\n\
@@ -588,27 +590,28 @@ data:
     \ - p1, p3 - p1)) / 2; }\n    Point centroid() const { return (p1 + p2 + p3) /\
     \ 3; }\n    Point circumcenter() const {\n        Line l1 = perpendicular_bisector(p1,\
     \ p2);\n        Line l2 = perpendicular_bisector(p2, p3);\n        return intersection(l1,\
-    \ l2);\n    }\n    Real circumradius() const { return distance(p1, circumcenter());\
-    \ }\n    Point incenter() const {\n        Real a = distance(p2, p3);\n      \
-    \  Real b = distance(p3, p1);\n        Real c = distance(p1, p2);\n        return\
-    \ (a * p1 + b * p2 + c * p3) / (a + b + c);\n    }\n    Real inradius() const\
-    \ {\n        return 2 * area() /\n               (distance(p1, p2) + distance(p2,\
-    \ p3) + distance(p3, p1));\n    }\n    Point orthocenter() const {\n        return\
-    \ intersection(perpendicular(Line(p1, p2), p3),\n                            perpendicular(Line(p2,\
-    \ p3), p1));\n    }\n    std::array<Point, 3> excenter() const {\n        Real\
+    \ l2);\n    }\n#ifndef GEOMETRY_REAL_TYPE\n    Real circumradius() const { return\
+    \ distance(p1, circumcenter()); }\n    Point incenter() const {\n        Real\
     \ a = distance(p2, p3);\n        Real b = distance(p3, p1);\n        Real c =\
-    \ distance(p1, p2);\n        return {(-a * p1 + b * p2 + c * p3) / (-a + b + c),\n\
-    \                (a * p1 - b * p2 + c * p3) / (a - b + c),\n                (a\
-    \ * p1 + b * p2 - c * p3) / (a + b - c)};\n    }\n    std::array<Real, 3> exradius()\
-    \ const {\n        auto a = excenter();\n        Line l(p1, p2);\n        return\
-    \ {distance(a[0], l), distance(a[1], l), distance(a[2], l)};\n    }\n    Point\
-    \ nine_point_center() const {\n        return (orthocenter() + circumcenter())\
-    \ / 2;\n    }\n    Real nine_point_radius() const { return circumradius() / 2;\
-    \ }\n\n    template<class Sc> void scan(Sc& scan) { scan >> p1 >> p2 >> p3; }\n\
-    \    template<class Pr> void debug(Pr& print) const {\n        print.print_char('{');\n\
-    \        print << p1;\n        print.print_char(' ');\n        print << p2;\n\
-    \        print.print_char(' ');\n        print << p3;\n        print.print_char('}');\n\
-    \    }\n};\n"
+    \ distance(p1, p2);\n        return (a * p1 + b * p2 + c * p3) / (a + b + c);\n\
+    \    }\n    Real inradius() const {\n        return 2 * area() /\n           \
+    \    (distance(p1, p2) + distance(p2, p3) + distance(p3, p1));\n    }\n#endif\n\
+    \    Point orthocenter() const {\n        return intersection(perpendicular(Line(p1,\
+    \ p2), p3),\n                            perpendicular(Line(p2, p3), p1));\n \
+    \   }\n#ifndef GEOMETRY_REAL_TYPE\n    std::array<Point, 3> excenter() const {\n\
+    \        Real a = distance(p2, p3);\n        Real b = distance(p3, p1);\n    \
+    \    Real c = distance(p1, p2);\n        return {(-a * p1 + b * p2 + c * p3) /\
+    \ (-a + b + c),\n                (a * p1 - b * p2 + c * p3) / (a - b + c),\n \
+    \               (a * p1 + b * p2 - c * p3) / (a + b - c)};\n    }\n    std::array<Real,\
+    \ 3> exradius() const {\n        auto a = excenter();\n        Line l(p1, p2);\n\
+    \        return {distance(a[0], l), distance(a[1], l), distance(a[2], l)};\n \
+    \   }\n#endif\n    Point nine_point_center() const {\n        return (orthocenter()\
+    \ + circumcenter()) / 2;\n    }\n#ifndef GEOMETRY_REAL_TYPE\n    Real nine_point_radius()\
+    \ const { return circumradius() / 2; }\n#endif\n\n    template<class Sc> void\
+    \ scan(Sc& scan) { scan >> p1 >> p2 >> p3; }\n    template<class Pr> void debug(Pr&\
+    \ print) const {\n        print.print_char('{');\n        print << p1;\n     \
+    \   print.print_char(' ');\n        print << p2;\n        print.print_char(' ');\n\
+    \        print << p3;\n        print.print_char('}');\n    }\n};\n"
   dependsOn:
   - geometry/template.hpp
   - other/template.hpp
@@ -626,7 +629,7 @@ data:
   path: geometry/Triangle.hpp
   requiredBy:
   - geometry/All.hpp
-  timestamp: '2024-05-12 17:35:55+09:00'
+  timestamp: '2024-07-20 19:33:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/CGL/CGL_7_C-circumcenter.test.cpp
