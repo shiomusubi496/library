@@ -1104,8 +1104,14 @@ data:
     path: test/yosupo/linear_algebra/matrix_det_arbitrary_mod.test.cpp
     title: test/yosupo/linear_algebra/matrix_det_arbitrary_mod.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/linear_algebra/matrix_det_mod_2.test.cpp
+    title: test/yosupo/linear_algebra/matrix_det_mod_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/matrix_product.test.cpp
     title: test/yosupo/linear_algebra/matrix_product.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/linear_algebra/matrix_product_mod_2.test.cpp
+    title: test/yosupo/linear_algebra/matrix_product_mod_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/matrix_rank.test.cpp
     title: test/yosupo/linear_algebra/matrix_rank.test.cpp
@@ -1134,11 +1140,8 @@ data:
     path: test/yosupo/new/furthest_pair.test.cpp
     title: test/yosupo/new/furthest_pair.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/matrix_det_mod_2.test.cpp
-    title: test/yosupo/new/matrix_det_mod_2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/matrix_product_mod_2.test.cpp
-    title: test/yosupo/new/matrix_product_mod_2.test.cpp
+    path: test/yosupo/new/inverse_matrix_mod_2.test.cpp
+    title: test/yosupo/new/inverse_matrix_mod_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/range_parallel_unionfind.test.cpp
     title: test/yosupo/new/range_parallel_unionfind.test.cpp
@@ -1937,8 +1940,10 @@ data:
   - test/yosupo/linear_algebra/inverse_matrix.test.cpp
   - test/yosupo/linear_algebra/matrix_det_arbitrary_mod.test.cpp
   - test/yosupo/linear_algebra/matrix_product.test.cpp
+  - test/yosupo/linear_algebra/matrix_product_mod_2.test.cpp
   - test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
   - test/yosupo/linear_algebra/matrix_rank.test.cpp
+  - test/yosupo/linear_algebra/matrix_det_mod_2.test.cpp
   - test/yosupo/linear_algebra/matrix_det.test.cpp
   - test/yosupo/number_theory/bernoulli_number.test.cpp
   - test/yosupo/number_theory/sqrt_mod.test.cpp
@@ -2062,14 +2067,13 @@ data:
   - test/yosupo/new/static_convex_hull.test.cpp
   - test/yosupo/new/wildcard_pattern_matching.test.cpp
   - test/yosupo/new/counting_spanning_tree_undirected.test.cpp
-  - test/yosupo/new/matrix_product_mod_2.test.cpp
   - test/yosupo/new/counting_spanning_tree_directed.test.cpp
   - test/yosupo/new/connected_components_of_complement_graph.test.cpp
   - test/yosupo/new/counting_eulerian_circuits.test.cpp
   - test/yosupo/new/range_parallel_unionfind.test.cpp
-  - test/yosupo/new/matrix_det_mod_2.test.cpp
   - test/yosupo/new/closest_pair.test.cpp
   - test/yosupo/new/unionfind_with_potential_non_commutative_group.test.cpp
+  - test/yosupo/new/inverse_matrix_mod_2.test.cpp
   - test/yosupo/new/rational_approximation.test.cpp
   - test/yosupo/graph/enumerate_cliques.test.cpp
   - test/yosupo/graph/chromatic_number.test.cpp

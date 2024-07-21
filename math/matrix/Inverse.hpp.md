@@ -39,6 +39,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/inverse_matrix.test.cpp
     title: test/yosupo/linear_algebra/inverse_matrix.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/inverse_matrix_mod_2.test.cpp
+    title: test/yosupo/new/inverse_matrix_mod_2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -661,16 +664,29 @@ data:
     \ (i, n) {\n        mat[i].resize(n * 2, T{0});\n        mat[i][n + i] = T{1};\n\
     \    }\n    mat.gauss();\n    rep (i, n) {\n        if (mat[i][i] == T{0}) return\
     \ Matrix<T>(0, 0);\n    }\n    Matrix<T> res(n, n);\n    rep (i, n) {\n      \
-    \  rep (j, n) res[i][j] = mat[i][n + j];\n    }\n    return res;\n}\n\n/**\n *\
-    \ @brief Inverse(\u9006\u884C\u5217)\n * @docs docs/math/matrix/Inverse.md\n */\n"
+    \  rep (j, n) res[i][j] = mat[i][n + j];\n    }\n    return res;\n}\n\ntemplate<>\
+    \ Matrix<static_modint<2>> inverse(Matrix<static_modint<2>> mat) {\n    assert(mat.is_square());\n\
+    \    using T = static_modint<2>;\n    const int n = mat.height();\n    T zero\
+    \ = T::raw(0), one = T::raw(1);\n    rep (i, n) {\n        mat[i].resize(n * 2,\
+    \ zero);\n        mat[i][n + i] = one;\n    }\n    mat.gauss();\n    rep (i, n)\
+    \ {\n        if (mat[i][i] == zero) return Matrix<T>(0, 0);\n    }\n    Matrix<T>\
+    \ res(n, n);\n    rep (i, n) {\n        rep (j, n) res[i][j] = mat[i][n + j];\n\
+    \    }\n    return res;\n}\n\n/**\n * @brief Inverse(\u9006\u884C\u5217)\n * @docs\
+    \ docs/math/matrix/Inverse.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"Matrix.hpp\"\
     \n\ntemplate<class T> Matrix<T> inverse(Matrix<T> mat) {\n    assert(mat.is_square());\n\
     \    const int n = mat.height();\n    rep (i, n) {\n        mat[i].resize(n *\
     \ 2, T{0});\n        mat[i][n + i] = T{1};\n    }\n    mat.gauss();\n    rep (i,\
     \ n) {\n        if (mat[i][i] == T{0}) return Matrix<T>(0, 0);\n    }\n    Matrix<T>\
     \ res(n, n);\n    rep (i, n) {\n        rep (j, n) res[i][j] = mat[i][n + j];\n\
-    \    }\n    return res;\n}\n\n/**\n * @brief Inverse(\u9006\u884C\u5217)\n * @docs\
-    \ docs/math/matrix/Inverse.md\n */\n"
+    \    }\n    return res;\n}\n\ntemplate<> Matrix<static_modint<2>> inverse(Matrix<static_modint<2>>\
+    \ mat) {\n    assert(mat.is_square());\n    using T = static_modint<2>;\n    const\
+    \ int n = mat.height();\n    T zero = T::raw(0), one = T::raw(1);\n    rep (i,\
+    \ n) {\n        mat[i].resize(n * 2, zero);\n        mat[i][n + i] = one;\n  \
+    \  }\n    mat.gauss();\n    rep (i, n) {\n        if (mat[i][i] == zero) return\
+    \ Matrix<T>(0, 0);\n    }\n    Matrix<T> res(n, n);\n    rep (i, n) {\n      \
+    \  rep (j, n) res[i][j] = mat[i][n + j];\n    }\n    return res;\n}\n\n/**\n *\
+    \ @brief Inverse(\u9006\u884C\u5217)\n * @docs docs/math/matrix/Inverse.md\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -686,10 +702,11 @@ data:
   isVerificationFile: false
   path: math/matrix/Inverse.hpp
   requiredBy: []
-  timestamp: '2024-05-12 17:35:55+09:00'
+  timestamp: '2024-07-21 18:36:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/linear_algebra/inverse_matrix.test.cpp
+  - test/yosupo/new/inverse_matrix_mod_2.test.cpp
 documentation_of: math/matrix/Inverse.hpp
 layout: document
 redirect_from:

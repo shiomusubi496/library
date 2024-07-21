@@ -44,9 +44,9 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/matrix_product_mod_2
     links:
     - https://judge.yosupo.jp/problem/matrix_product_mod_2
-  bundledCode: "#line 1 \"test/yosupo/new/matrix_product_mod_2.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/matrix_product_mod_2\"\n#line 2 \"\
-    other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
+  bundledCode: "#line 1 \"test/yosupo/linear_algebra/matrix_product_mod_2.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_product_mod_2\"\n#line\
+    \ 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
     \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
     \ __LINE__\n#endif\n\n#define OVERLOAD5(a, b, c, d, e, ...) e\n#define REP1_0(b,\
     \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
@@ -656,13 +656,14 @@ data:
     \   ++r;\n    }\n    rep (i, h) {\n        rep (j, w) a[i][j] = (b[i][j] ? 1 :\
     \ 0);\n    }\n}\ntemplate<> void gauss_mod2_sub<1 << 30>(Mat2&) {}\n\n} // namespace\
     \ internal\n\n/**\n * @brief Matrix(\u884C\u5217)\n * @docs docs/math/matrix/Matrix.md\n\
-    \ */\n#line 5 \"test/yosupo/new/matrix_product_mod_2.test.cpp\"\nusing namespace\
-    \ std;\nusing mint = static_modint<2>;\nusing matx = Matrix<mint>;\nint main()\
-    \ {\n    int N, M, K; scan >> N >> M >> K;\n    matx A(N, M), B(M, K);\n    rep\
-    \ (i, N) rep (j, M) {\n        char c; scan >> c;\n        A[i][j] = c - '0';\n\
-    \    }\n    rep (i, M) rep (j, K) {\n        char c; scan >> c;\n        B[i][j]\
-    \ = c - '0';\n    }\n    matx C = A * B;\n    rep (i, N) rep (j, K) {\n      \
-    \  print << C[i][j];\n        if (j == K - 1) print << '\\n';\n    }\n}\n"
+    \ */\n#line 5 \"test/yosupo/linear_algebra/matrix_product_mod_2.test.cpp\"\nusing\
+    \ namespace std;\nusing mint = static_modint<2>;\nusing matx = Matrix<mint>;\n\
+    int main() {\n    int N, M, K; scan >> N >> M >> K;\n    matx A(N, M), B(M, K);\n\
+    \    rep (i, N) rep (j, M) {\n        char c; scan >> c;\n        A[i][j] = c\
+    \ - '0';\n    }\n    rep (i, M) rep (j, K) {\n        char c; scan >> c;\n   \
+    \     B[i][j] = c - '0';\n    }\n    matx C = A * B;\n    rep (i, N) rep (j, K)\
+    \ {\n        print << C[i][j];\n        if (j == K - 1) print << '\\n';\n    }\n\
+    }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_product_mod_2\"\n\
     #include \"../../../other/template.hpp\"\n#include \"../../../math/ModInt.hpp\"\
     \n#include \"../../../math/matrix/Matrix.hpp\"\nusing namespace std;\nusing mint\
@@ -685,15 +686,15 @@ data:
   - math/ModInt.hpp
   - math/matrix/Matrix.hpp
   isVerificationFile: true
-  path: test/yosupo/new/matrix_product_mod_2.test.cpp
+  path: test/yosupo/linear_algebra/matrix_product_mod_2.test.cpp
   requiredBy: []
-  timestamp: '2024-05-12 17:35:55+09:00'
+  timestamp: '2024-07-21 18:36:35+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yosupo/new/matrix_product_mod_2.test.cpp
+documentation_of: test/yosupo/linear_algebra/matrix_product_mod_2.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/new/matrix_product_mod_2.test.cpp
-- /verify/test/yosupo/new/matrix_product_mod_2.test.cpp.html
-title: test/yosupo/new/matrix_product_mod_2.test.cpp
+- /verify/test/yosupo/linear_algebra/matrix_product_mod_2.test.cpp
+- /verify/test/yosupo/linear_algebra/matrix_product_mod_2.test.cpp.html
+title: test/yosupo/linear_algebra/matrix_product_mod_2.test.cpp
 ---

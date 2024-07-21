@@ -1199,8 +1199,14 @@ data:
       path: test/yosupo/linear_algebra/matrix_det_arbitrary_mod.test.cpp
       title: test/yosupo/linear_algebra/matrix_det_arbitrary_mod.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/linear_algebra/matrix_det_mod_2.test.cpp
+      title: test/yosupo/linear_algebra/matrix_det_mod_2.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/linear_algebra/matrix_product.test.cpp
       title: test/yosupo/linear_algebra/matrix_product.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/linear_algebra/matrix_product_mod_2.test.cpp
+      title: test/yosupo/linear_algebra/matrix_product_mod_2.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/linear_algebra/matrix_rank.test.cpp
       title: test/yosupo/linear_algebra/matrix_rank.test.cpp
@@ -1231,11 +1237,8 @@ data:
       path: test/yosupo/new/furthest_pair.test.cpp
       title: test/yosupo/new/furthest_pair.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/yosupo/new/matrix_det_mod_2.test.cpp
-      title: test/yosupo/new/matrix_det_mod_2.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/new/matrix_product_mod_2.test.cpp
-      title: test/yosupo/new/matrix_product_mod_2.test.cpp
+      path: test/yosupo/new/inverse_matrix_mod_2.test.cpp
+      title: test/yosupo/new/inverse_matrix_mod_2.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/new/range_parallel_unionfind.test.cpp
       title: test/yosupo/new/range_parallel_unionfind.test.cpp

@@ -664,11 +664,18 @@ data:
     \ 2, T{0});\n        mat[i][n + i] = T{1};\n    }\n    mat.gauss();\n    rep (i,\
     \ n) {\n        if (mat[i][i] == T{0}) return Matrix<T>(0, 0);\n    }\n    Matrix<T>\
     \ res(n, n);\n    rep (i, n) {\n        rep (j, n) res[i][j] = mat[i][n + j];\n\
-    \    }\n    return res;\n}\n\n/**\n * @brief Inverse(\u9006\u884C\u5217)\n * @docs\
-    \ docs/math/matrix/Inverse.md\n */\n#line 6 \"test/yosupo/linear_algebra/inverse_matrix.test.cpp\"\
-    \nusing mint = modint998244353;\nint main() {\n    int n; scan >> n;\n    Matrix<mint>\
-    \ mat(n, n); scan >> mat;\n    Matrix<mint> res = inverse(mat);\n    if (res.empty())\
-    \ prints(-1);\n    else {\n        rep (i, n) prints(res[i]);\n    }\n}\n"
+    \    }\n    return res;\n}\n\ntemplate<> Matrix<static_modint<2>> inverse(Matrix<static_modint<2>>\
+    \ mat) {\n    assert(mat.is_square());\n    using T = static_modint<2>;\n    const\
+    \ int n = mat.height();\n    T zero = T::raw(0), one = T::raw(1);\n    rep (i,\
+    \ n) {\n        mat[i].resize(n * 2, zero);\n        mat[i][n + i] = one;\n  \
+    \  }\n    mat.gauss();\n    rep (i, n) {\n        if (mat[i][i] == zero) return\
+    \ Matrix<T>(0, 0);\n    }\n    Matrix<T> res(n, n);\n    rep (i, n) {\n      \
+    \  rep (j, n) res[i][j] = mat[i][n + j];\n    }\n    return res;\n}\n\n/**\n *\
+    \ @brief Inverse(\u9006\u884C\u5217)\n * @docs docs/math/matrix/Inverse.md\n */\n\
+    #line 6 \"test/yosupo/linear_algebra/inverse_matrix.test.cpp\"\nusing mint = modint998244353;\n\
+    int main() {\n    int n; scan >> n;\n    Matrix<mint> mat(n, n); scan >> mat;\n\
+    \    Matrix<mint> res = inverse(mat);\n    if (res.empty()) prints(-1);\n    else\
+    \ {\n        rep (i, n) prints(res[i]);\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/inverse_matrix\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../math/ModInt.hpp\"\n#include\
     \ \"../../../math/matrix/Matrix.hpp\"\n#include \"../../../math/matrix/Inverse.hpp\"\
@@ -691,7 +698,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/linear_algebra/inverse_matrix.test.cpp
   requiredBy: []
-  timestamp: '2024-07-19 18:01:49+09:00'
+  timestamp: '2024-07-21 18:36:35+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/linear_algebra/inverse_matrix.test.cpp
