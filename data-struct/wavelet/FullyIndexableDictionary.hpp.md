@@ -501,16 +501,16 @@ data:
   isVerificationFile: false
   path: data-struct/wavelet/FullyIndexableDictionary.hpp
   requiredBy:
+  - data-struct/wavelet/WaveletMatrixStruct.hpp
   - data-struct/wavelet/WaveletMatrix.hpp
   - data-struct/wavelet/CumulativeSumWM.hpp
-  - data-struct/wavelet/WaveletMatrixStruct.hpp
   - data-struct/wavelet/SegmentTreeWM.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
   - test/yosupo/data_structure/rectangle_sum-WM.test.cpp
   - test/yosupo/data_structure/point_add_rectangle_sum-WM.test.cpp
-  - test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
 documentation_of: data-struct/wavelet/FullyIndexableDictionary.hpp
 layout: document
 redirect_from:

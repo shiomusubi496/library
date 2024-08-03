@@ -544,9 +544,9 @@ data:
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/graph/manhattanmst.test.cpp
-  - test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
   - test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
+  - test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
+  - test/yosupo/graph/manhattanmst.test.cpp
 documentation_of: graph/mst/Kruskal.hpp
 layout: document
 redirect_from:

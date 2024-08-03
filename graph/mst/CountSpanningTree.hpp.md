@@ -785,9 +785,9 @@ data:
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/new/counting_spanning_tree_undirected.test.cpp
-  - test/yosupo/new/counting_spanning_tree_directed.test.cpp
   - test/yosupo/new/counting_eulerian_circuits.test.cpp
+  - test/yosupo/new/counting_spanning_tree_directed.test.cpp
+  - test/yosupo/new/counting_spanning_tree_undirected.test.cpp
 documentation_of: graph/mst/CountSpanningTree.hpp
 layout: document
 redirect_from:

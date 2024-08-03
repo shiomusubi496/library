@@ -278,6 +278,9 @@ data:
   - name: graph/flow
     pages:
     - icon: ':heavy_check_mark:'
+      path: graph/flow/AssignmentProblem.hpp
+      title: graph/flow/AssignmentProblem.hpp
+    - icon: ':heavy_check_mark:'
       path: graph/flow/KProjectSelectionProblem.hpp
       title: "KProjectSelectionProblem(K\u5024\u71C3\u3084\u3059\u57CB\u3081\u308B\
         )"
@@ -1145,6 +1148,9 @@ data:
       title: test/yosupo/geometry/sort_points_by_argument.test.cpp
   - name: test/yosupo/graph
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/graph/assignment.test.cpp
+      title: test/yosupo/graph/assignment.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/graph/biconnected_components.test.cpp
       title: test/yosupo/graph/biconnected_components.test.cpp

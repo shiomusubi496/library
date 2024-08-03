@@ -567,8 +567,8 @@ data:
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/graph/eulerian_trail_undirected.test.cpp
   - test/yosupo/graph/eulerian_trail_directed.test.cpp
+  - test/yosupo/graph/eulerian_trail_undirected.test.cpp
 documentation_of: graph/other/EulerianTrail.hpp
 layout: document
 redirect_from:

@@ -752,17 +752,17 @@ data:
   isVerificationFile: false
   path: math/matrix/Determinant.hpp
   requiredBy:
-  - graph/other/CountEulerianCircuit.hpp
   - graph/mst/CountSpanningTree.hpp
+  - graph/other/CountEulerianCircuit.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/linear_algebra/matrix_det_arbitrary_mod.test.cpp
   - test/yosupo/linear_algebra/matrix_det_mod_2.test.cpp
   - test/yosupo/linear_algebra/matrix_det.test.cpp
-  - test/yosupo/new/counting_spanning_tree_undirected.test.cpp
-  - test/yosupo/new/counting_spanning_tree_directed.test.cpp
+  - test/yosupo/linear_algebra/matrix_det_arbitrary_mod.test.cpp
   - test/yosupo/new/counting_eulerian_circuits.test.cpp
+  - test/yosupo/new/counting_spanning_tree_directed.test.cpp
+  - test/yosupo/new/counting_spanning_tree_undirected.test.cpp
 documentation_of: math/matrix/Determinant.hpp
 layout: document
 redirect_from:
