@@ -9,6 +9,7 @@ private:
     bool is_bip;
     const Graph<T>& G;
     std::vector<bool> used, label;
+    int sz1, sz2;
     void dfs(int v) {
         used[v] = true;
         for (const auto& e : G[v]) {
@@ -32,8 +33,15 @@ public:
         rep (i, n) {
             if (!used[i]) dfs(i);
         }
+        sz1 = sz2 = 0;
+        rep (i, n) {
+            if (!label[i]) ++sz1;
+            else ++sz2;
+        }
     }
     bool is_bipartite() const { return is_bip; }
+    int size1() const { return sz1; }
+    int size2() const { return sz2; }
     bool get_label(int k) const { return label[k]; }
     const std::vector<bool>& labels() const& { return label; }
     std::vector<bool> labels() && { return std::move(label); }
