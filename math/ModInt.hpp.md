@@ -1,31 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
@@ -38,7 +38,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree/FrequencyTableofTreeDistance.hpp
     title: Frequency Table of Tree Distance
-  - icon: ':x:'
+  - icon: ':warning:'
     path: math/BigInteger.hpp
     title: math/BigInteger.hpp
   - icon: ':heavy_check_mark:'
@@ -66,7 +66,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/TetrationMod.hpp
     title: TetrationMod
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/convolution/Convolution.hpp
     title: "Convolution(\u7573\u307F\u8FBC\u307F)"
   - icon: ':heavy_check_mark:'
@@ -252,9 +252,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
     title: test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/new/addition_of_hex_big_integers.test.cpp
-    title: test/yosupo/new/addition_of_hex_big_integers.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/counting_eulerian_circuits.test.cpp
     title: test/yosupo/new/counting_eulerian_circuits.test.cpp
@@ -264,18 +261,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/counting_spanning_tree_undirected.test.cpp
     title: test/yosupo/new/counting_spanning_tree_undirected.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/new/division_of_hex_big_integers.test.cpp
-    title: test/yosupo/new/division_of_hex_big_integers.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/inverse_matrix_mod_2.test.cpp
     title: test/yosupo/new/inverse_matrix_mod_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/matrix_rank_mod_2.test.cpp
     title: test/yosupo/new/matrix_rank_mod_2.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/new/multiplication_of_hex_big_integers.test.cpp
-    title: test/yosupo/new/multiplication_of_hex_big_integers.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/range_parallel_unionfind.test.cpp
     title: test/yosupo/new/range_parallel_unionfind.test.cpp
@@ -381,9 +372,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/vertex_set_path_composite.test.cpp
     title: test/yosupo/tree/vertex_set_path_composite.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/math/ModInt.md
     document_title: ModInt
@@ -1079,7 +1070,7 @@ data:
   - math/matrix/LinearEquations.hpp
   - math/PrimitiveRoot.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DPL/DPL_5_D.test.cpp
   - test/aoj/DPL/DPL_5_F.test.cpp
@@ -1135,12 +1126,9 @@ data:
   - test/yosupo/enumerative_combinatorics/partition_function.test.cpp
   - test/yosupo/new/wildcard_pattern_matching.test.cpp
   - test/yosupo/new/counting_eulerian_circuits.test.cpp
-  - test/yosupo/new/addition_of_hex_big_integers.test.cpp
-  - test/yosupo/new/multiplication_of_hex_big_integers.test.cpp
   - test/yosupo/new/counting_spanning_tree_directed.test.cpp
   - test/yosupo/new/matrix_rank_mod_2.test.cpp
   - test/yosupo/new/unionfind_with_potential_non_commutative_group.test.cpp
-  - test/yosupo/new/division_of_hex_big_integers.test.cpp
   - test/yosupo/new/range_parallel_unionfind.test.cpp
   - test/yosupo/new/counting_spanning_tree_undirected.test.cpp
   - test/yosupo/new/unionfind_with_potential.test.cpp

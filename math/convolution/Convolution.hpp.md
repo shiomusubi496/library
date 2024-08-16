@@ -1,41 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: graph/tree/FrequencyTableofTreeDistance.hpp
     title: Frequency Table of Tree Distance
-  - icon: ':x:'
+  - icon: ':warning:'
     path: math/BigInteger.hpp
     title: math/BigInteger.hpp
   - icon: ':heavy_check_mark:'
@@ -117,15 +117,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind_fixed_k.test.cpp
     title: test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind_fixed_k.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/new/addition_of_hex_big_integers.test.cpp
-    title: test/yosupo/new/addition_of_hex_big_integers.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/new/division_of_hex_big_integers.test.cpp
-    title: test/yosupo/new/division_of_hex_big_integers.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/new/multiplication_of_hex_big_integers.test.cpp
-    title: test/yosupo/new/multiplication_of_hex_big_integers.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/wildcard_pattern_matching.test.cpp
     title: test/yosupo/new/wildcard_pattern_matching.test.cpp
@@ -207,9 +198,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
     title: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/math/convolution/Convolution.md
     document_title: "Convolution(\u7573\u307F\u8FBC\u307F)"
@@ -963,7 +954,7 @@ data:
   - math/SubsetSum.hpp
   - math/StirlingNumber.hpp
   timestamp: '2024-05-29 15:54:32+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DPL/DPL_5_G.test.cpp
   - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
@@ -999,9 +990,6 @@ data:
   - test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind_fixed_k.test.cpp
   - test/yosupo/enumerative_combinatorics/partition_function.test.cpp
   - test/yosupo/new/wildcard_pattern_matching.test.cpp
-  - test/yosupo/new/addition_of_hex_big_integers.test.cpp
-  - test/yosupo/new/multiplication_of_hex_big_integers.test.cpp
-  - test/yosupo/new/division_of_hex_big_integers.test.cpp
   - test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
   - test/yosupo/other/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp

@@ -1,53 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/convolution/Convolution.hpp
     title: "Convolution(\u7573\u307F\u8FBC\u307F)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/yosupo/new/addition_of_hex_big_integers.test.cpp
-    title: test/yosupo/new/addition_of_hex_big_integers.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/new/division_of_hex_big_integers.test.cpp
-    title: test/yosupo/new/division_of_hex_big_integers.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/new/multiplication_of_hex_big_integers.test.cpp
-    title: test/yosupo/new/multiplication_of_hex_big_integers.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/BigInteger.hpp\"\n\n#line 2 \"other/template.hpp\"\n\
@@ -1090,11 +1081,8 @@ data:
   path: math/BigInteger.hpp
   requiredBy: []
   timestamp: '2024-08-16 11:38:02+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/yosupo/new/addition_of_hex_big_integers.test.cpp
-  - test/yosupo/new/multiplication_of_hex_big_integers.test.cpp
-  - test/yosupo/new/division_of_hex_big_integers.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: math/BigInteger.hpp
 layout: document
 redirect_from:

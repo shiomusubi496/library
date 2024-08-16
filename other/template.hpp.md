@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
@@ -209,13 +209,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/wavelet/WaveletMatrixStruct.hpp
     title: data-struct/wavelet/WaveletMatrixStruct.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: dp/AlienDP.hpp
     title: AlienDP
   - icon: ':heavy_check_mark:'
     path: dp/DivideAndConquerOptimization.hpp
     title: Divide and Conquer Optimization
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: dp/FibonacciSearch.hpp
     title: FibonacciSearch
   - icon: ':heavy_check_mark:'
@@ -227,7 +227,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: dp/SMAWK.hpp
     title: SMAWK
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: dp/SimpleLARSCH.hpp
     title: dp/SimpleLARSCH.hpp
   - icon: ':warning:'
@@ -254,7 +254,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geometry/template.hpp
     title: geometry/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':heavy_check_mark:'
@@ -264,7 +264,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/connected/ComplementConnectedComponents.hpp
     title: graph/connected/ComplementConnectedComponents.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/connected/ConnectedComponents.hpp
     title: "ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)"
   - icon: ':heavy_check_mark:'
@@ -309,7 +309,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/other/BipartiteEdgeColoring.hpp
     title: graph/other/BipartiteEdgeColoring.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/other/BipartiteGraph.hpp
     title: "BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A)"
   - icon: ':heavy_check_mark:'
@@ -412,7 +412,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/BarrettReduction.hpp
     title: math/BarrettReduction.hpp
-  - icon: ':x:'
+  - icon: ':warning:'
     path: math/BigInteger.hpp
     title: math/BigInteger.hpp
   - icon: ':heavy_check_mark:'
@@ -455,7 +455,7 @@ data:
     path: math/MillerRabin.hpp
     title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
       )"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
     title: ModInt
   - icon: ':heavy_check_mark:'
@@ -510,7 +510,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/convolution/BitwiseXorConvolution.hpp
     title: BitwiseXorConvolution
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/convolution/Convolution.hpp
     title: "Convolution(\u7573\u307F\u8FBC\u307F)"
   - icon: ':heavy_check_mark:'
@@ -878,7 +878,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc176_f-DefaultMap.test.cpp
     title: test/atcoder/abc176_f-DefaultMap.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc218_h-AlienDP.test.cpp
     title: test/atcoder/abc218_h-AlienDP.test.cpp
   - icon: ':heavy_check_mark:'
@@ -896,7 +896,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/arc070_c-SlopeTrick.test.cpp
     title: test/atcoder/arc070_c-SlopeTrick.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/arc099_c-Bipartite.test.cpp
     title: test/atcoder/arc099_c-Bipartite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1160,9 +1160,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
     title: test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/new/addition_of_hex_big_integers.test.cpp
-    title: test/yosupo/new/addition_of_hex_big_integers.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/closest_pair.test.cpp
     title: test/yosupo/new/closest_pair.test.cpp
@@ -1178,9 +1175,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/counting_spanning_tree_undirected.test.cpp
     title: test/yosupo/new/counting_spanning_tree_undirected.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/new/division_of_hex_big_integers.test.cpp
-    title: test/yosupo/new/division_of_hex_big_integers.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/furthest_pair.test.cpp
     title: test/yosupo/new/furthest_pair.test.cpp
@@ -1190,9 +1184,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/matrix_rank_mod_2.test.cpp
     title: test/yosupo/new/matrix_rank_mod_2.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/new/multiplication_of_hex_big_integers.test.cpp
-    title: test/yosupo/new/multiplication_of_hex_big_integers.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/range_parallel_unionfind.test.cpp
     title: test/yosupo/new/range_parallel_unionfind.test.cpp
@@ -1442,9 +1433,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki/855_DynamicSegTree.test.cpp
     title: test/yuki/855_DynamicSegTree.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line\
@@ -2075,7 +2066,7 @@ data:
   - geometry/Line.hpp
   - geometry/Circle.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/atcoder/abc218_h-AlienDP.test.cpp
   - test/atcoder/arc070_c-SlopeTrick.test.cpp
@@ -2262,15 +2253,12 @@ data:
   - test/yosupo/new/counting_eulerian_circuits.test.cpp
   - test/yosupo/new/furthest_pair.test.cpp
   - test/yosupo/new/closest_pair.test.cpp
-  - test/yosupo/new/addition_of_hex_big_integers.test.cpp
   - test/yosupo/new/connected_components_of_complement_graph.test.cpp
   - test/yosupo/new/rational_approximation.test.cpp
-  - test/yosupo/new/multiplication_of_hex_big_integers.test.cpp
   - test/yosupo/new/counting_spanning_tree_directed.test.cpp
   - test/yosupo/new/matrix_rank_mod_2.test.cpp
   - test/yosupo/new/unionfind_with_potential_non_commutative_group.test.cpp
   - test/yosupo/new/static_convex_hull.test.cpp
-  - test/yosupo/new/division_of_hex_big_integers.test.cpp
   - test/yosupo/new/range_parallel_unionfind.test.cpp
   - test/yosupo/new/counting_spanning_tree_undirected.test.cpp
   - test/yosupo/new/unionfind_with_potential.test.cpp
