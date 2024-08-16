@@ -451,7 +451,7 @@ data:
     \    int now() const { return last_time - 1; }\n    int set(int k, const T& x)\
     \ {\n        assert(0 <= k && k < n);\n        tim[k].push_back(last_time);\n\
     \        val[k].push_back(x);\n        return last_time++;\n    }\n    T get(int\
-    \ k, int t) const {\n        assert(0 <= k && k < n);\n        assert(-1 <= t\
+    \ t, int k) const {\n        assert(0 <= k && k < n);\n        assert(-1 <= t\
     \ && t < last_time);\n        int id = std::upper_bound(all(tim[k]), t) - tim[k].begin()\
     \ - 1;\n        return val[k][id];\n    }\n    T get_last(int k) const {\n   \
     \     assert(0 <= k && k < n);\n        return val[k].back();\n    }\n};\n\n/**\n\
@@ -468,7 +468,7 @@ data:
     \    int now() const { return last_time - 1; }\n    int set(int k, const T& x)\
     \ {\n        assert(0 <= k && k < n);\n        tim[k].push_back(last_time);\n\
     \        val[k].push_back(x);\n        return last_time++;\n    }\n    T get(int\
-    \ k, int t) const {\n        assert(0 <= k && k < n);\n        assert(-1 <= t\
+    \ t, int k) const {\n        assert(0 <= k && k < n);\n        assert(-1 <= t\
     \ && t < last_time);\n        int id = std::upper_bound(all(tim[k]), t) - tim[k].begin()\
     \ - 1;\n        return val[k][id];\n    }\n    T get_last(int k) const {\n   \
     \     assert(0 <= k && k < n);\n        return val[k].back();\n    }\n};\n\n/**\n\
@@ -487,7 +487,7 @@ data:
   isVerificationFile: false
   path: data-struct/other/PartialPersistentArray.hpp
   requiredBy: []
-  timestamp: '2024-05-12 17:35:55+09:00'
+  timestamp: '2024-08-16 12:49:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/atcoder/agc002_d-PartialPersistentArray.test.cpp
@@ -504,4 +504,4 @@ title: "PartialPersistentArray(\u90E8\u5206\u6C38\u7D9A\u914D\u5217)"
 
 - `PartialPersistentArray(vector<T> a)` : $a_{-1} := a$ とする。 $\Theta(N)$ 。
 - `int set(int k, T x)` : これが $i$ 回目(0-indexed)の `set` 呼び出しのとき、 $a_{i-1}[k]$ を $x$ に更新した配列を $a_i$ とする。返り値は $i$ 。 $\Theta(1)$ 。
-- `T get(int k, int t)` : $a_{t}[k]$ を返す。 $\Theta(\log Q)$ 。
+- `T get(int t, int k)` : $a_{t}[k]$ を返す。 $\Theta(\log Q)$ 。

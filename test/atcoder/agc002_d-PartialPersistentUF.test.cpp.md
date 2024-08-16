@@ -448,29 +448,29 @@ data:
     \ : PartialPersistentUnionFind(0) {}\n    PartialPersistentUnionFind(int n)\n\
     \        : n(n), par(n, -1), tim(n, infinity<int>::value), sz_hist(n, {{-1, 1}}),\n\
     \          last_time(0) {}\n    int now() const { return last_time - 1; }\n  \
-    \  int find(int x, int t) const {\n        assert(-1 <= t && t < last_time);\n\
-    \        assert(0 <= x && x < n);\n        return tim[x] <= t ? find(par[x], t)\
-    \ : x;\n    }\n    int find_last(int x) const { return find(x, last_time - 1);\
+    \  int find(int t, int x) const {\n        assert(-1 <= t && t < last_time);\n\
+    \        assert(0 <= x && x < n);\n        return tim[x] <= t ? find(t, par[x])\
+    \ : x;\n    }\n    int find_last(int x) const { return find(last_time - 1, x);\
     \ }\n    std::pair<std::pair<int, int>, int> merge(int x, int y) {\n        x\
     \ = find_last(x);\n        y = find_last(y);\n        if (x == y) return {{x,\
     \ -1}, last_time++};\n        if (par[x] > par[y]) std::swap(x, y);\n        par[x]\
     \ += par[y];\n        par[y] = x;\n        tim[y] = last_time;\n        sz_hist[x].push_back({last_time,\
     \ -par[x]});\n        return {{x, y}, last_time++};\n    }\n    bool same(int\
-    \ x, int y, int t) const { return find(x, t) == find(y, t); }\n    bool same_last(int\
-    \ x, int y) const { return same(x, y, last_time - 1); }\n    int size(int x, int\
-    \ t) const {\n        const auto& h = sz_hist[find(x, t)];\n        return std::prev(\n\
+    \ t, int x, int y) const { return find(t, x) == find(t, y); }\n    bool same_last(int\
+    \ x, int y) const { return same(x, y, last_time - 1); }\n    int size(int t, int\
+    \ x) const {\n        const auto& h = sz_hist[find(t, x)];\n        return std::prev(\n\
     \                   std::lower_bound(all(h), std::pair<int, int>{t + 1, -1}))\n\
     \            ->second;\n    }\n    int size_last(int x) const {\n        const\
     \ auto& h = sz_hist[find_last(x)];\n        return h.back().second;\n    }\n \
     \   std::vector<std::vector<int>> groups(int t) const {\n        assert(-1 <=\
     \ t && t < last_time);\n        std::vector<std::vector<int>> res(n);\n      \
-    \  rep (i, n) res[find(i, t)].push_back(i);\n        res.erase(\n            remove_if(all(res),\n\
+    \  rep (i, n) res[find(t, i)].push_back(i);\n        res.erase(\n            remove_if(all(res),\n\
     \                      [](const std::vector<int>& v) { return v.empty(); }),\n\
     \            res.end());\n        return res;\n    }\n    std::vector<std::vector<int>>\
     \ groups_last() const {\n        return groups(last_time - 1);\n    }\n    bool\
-    \ is_root(int x, int t) const {\n        assert(-1 <= t && t < last_time);\n \
+    \ is_root(int t, int x) const {\n        assert(-1 <= t && t < last_time);\n \
     \       assert(0 <= x && x < n);\n        return tim[x] <= t;\n    }\n    bool\
-    \ is_root_last(int x) const { return is_root(x, last_time - 1); }\n};\n\n/**\n\
+    \ is_root_last(int x) const { return is_root(last_time - 1, x); }\n};\n\n/**\n\
     \ * @brief PartialPersistentUnionFind(\u90E8\u5206\u6C38\u7D9AUF)\n * @docs docs/data-struct/unionfind/PartialPersistentUnionFind.md\n\
     \ */\n#line 4 \"test/atcoder/agc002_d-PartialPersistentUF.test.cpp\"\nusing namespace\
     \ std;\nint main() {\n    int N, M; scan >> N >> M;\n    PartialPersistentUnionFind\
@@ -478,7 +478,7 @@ data:
     \ - 1, b - 1);\n    }\n    int Q; scan >> Q;\n    rep (Q) {\n        int a, b,\
     \ x; scan >> a >> b >> x;\n        --a; --b;\n        ll ok = M - 1, ng = -1;\n\
     \        while (ok - ng > 1) {\n            ll mid = (ok + ng) / 2;\n        \
-    \    if ((uf.size(a, mid) + (uf.same(a, b, mid) ? 0 : uf.size(b, mid)) >= x))\
+    \    if ((uf.size(mid, a) + (uf.same(mid, a, b) ? 0 : uf.size(mid, b)) >= x))\
     \ {\n                ok = mid;\n            } else {\n                ng = mid;\n\
     \            }\n        }\n        print << ok + 1 << endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/agc002/tasks/agc002_d\"\n#include\
@@ -488,7 +488,7 @@ data:
     \ - 1, b - 1);\n    }\n    int Q; scan >> Q;\n    rep (Q) {\n        int a, b,\
     \ x; scan >> a >> b >> x;\n        --a; --b;\n        ll ok = M - 1, ng = -1;\n\
     \        while (ok - ng > 1) {\n            ll mid = (ok + ng) / 2;\n        \
-    \    if ((uf.size(a, mid) + (uf.same(a, b, mid) ? 0 : uf.size(b, mid)) >= x))\
+    \    if ((uf.size(mid, a) + (uf.same(mid, a, b) ? 0 : uf.size(mid, b)) >= x))\
     \ {\n                ok = mid;\n            } else {\n                ng = mid;\n\
     \            }\n        }\n        print << ok + 1 << endl;\n    }\n}\n"
   dependsOn:
@@ -505,7 +505,7 @@ data:
   isVerificationFile: true
   path: test/atcoder/agc002_d-PartialPersistentUF.test.cpp
   requiredBy: []
-  timestamp: '2024-05-12 17:35:55+09:00'
+  timestamp: '2024-08-16 12:49:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/atcoder/agc002_d-PartialPersistentUF.test.cpp

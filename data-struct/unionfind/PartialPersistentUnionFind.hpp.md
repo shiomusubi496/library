@@ -446,60 +446,61 @@ data:
     \npublic:\n    PartialPersistentUnionFind() : PartialPersistentUnionFind(0) {}\n\
     \    PartialPersistentUnionFind(int n)\n        : n(n), par(n, -1), tim(n, infinity<int>::value),\
     \ sz_hist(n, {{-1, 1}}),\n          last_time(0) {}\n    int now() const { return\
-    \ last_time - 1; }\n    int find(int x, int t) const {\n        assert(-1 <= t\
+    \ last_time - 1; }\n    int find(int t, int x) const {\n        assert(-1 <= t\
     \ && t < last_time);\n        assert(0 <= x && x < n);\n        return tim[x]\
-    \ <= t ? find(par[x], t) : x;\n    }\n    int find_last(int x) const { return\
-    \ find(x, last_time - 1); }\n    std::pair<std::pair<int, int>, int> merge(int\
+    \ <= t ? find(t, par[x]) : x;\n    }\n    int find_last(int x) const { return\
+    \ find(last_time - 1, x); }\n    std::pair<std::pair<int, int>, int> merge(int\
     \ x, int y) {\n        x = find_last(x);\n        y = find_last(y);\n        if\
     \ (x == y) return {{x, -1}, last_time++};\n        if (par[x] > par[y]) std::swap(x,\
     \ y);\n        par[x] += par[y];\n        par[y] = x;\n        tim[y] = last_time;\n\
     \        sz_hist[x].push_back({last_time, -par[x]});\n        return {{x, y},\
-    \ last_time++};\n    }\n    bool same(int x, int y, int t) const { return find(x,\
-    \ t) == find(y, t); }\n    bool same_last(int x, int y) const { return same(x,\
-    \ y, last_time - 1); }\n    int size(int x, int t) const {\n        const auto&\
-    \ h = sz_hist[find(x, t)];\n        return std::prev(\n                   std::lower_bound(all(h),\
+    \ last_time++};\n    }\n    bool same(int t, int x, int y) const { return find(t,\
+    \ x) == find(t, y); }\n    bool same_last(int x, int y) const { return same(x,\
+    \ y, last_time - 1); }\n    int size(int t, int x) const {\n        const auto&\
+    \ h = sz_hist[find(t, x)];\n        return std::prev(\n                   std::lower_bound(all(h),\
     \ std::pair<int, int>{t + 1, -1}))\n            ->second;\n    }\n    int size_last(int\
     \ x) const {\n        const auto& h = sz_hist[find_last(x)];\n        return h.back().second;\n\
     \    }\n    std::vector<std::vector<int>> groups(int t) const {\n        assert(-1\
     \ <= t && t < last_time);\n        std::vector<std::vector<int>> res(n);\n   \
-    \     rep (i, n) res[find(i, t)].push_back(i);\n        res.erase(\n         \
+    \     rep (i, n) res[find(t, i)].push_back(i);\n        res.erase(\n         \
     \   remove_if(all(res),\n                      [](const std::vector<int>& v) {\
     \ return v.empty(); }),\n            res.end());\n        return res;\n    }\n\
     \    std::vector<std::vector<int>> groups_last() const {\n        return groups(last_time\
-    \ - 1);\n    }\n    bool is_root(int x, int t) const {\n        assert(-1 <= t\
+    \ - 1);\n    }\n    bool is_root(int t, int x) const {\n        assert(-1 <= t\
     \ && t < last_time);\n        assert(0 <= x && x < n);\n        return tim[x]\
-    \ <= t;\n    }\n    bool is_root_last(int x) const { return is_root(x, last_time\
-    \ - 1); }\n};\n\n/**\n * @brief PartialPersistentUnionFind(\u90E8\u5206\u6C38\u7D9A\
-    UF)\n * @docs docs/data-struct/unionfind/PartialPersistentUnionFind.md\n */\n"
+    \ <= t;\n    }\n    bool is_root_last(int x) const { return is_root(last_time\
+    \ - 1, x); }\n};\n\n/**\n * @brief PartialPersistentUnionFind(\u90E8\u5206\u6C38\
+    \u7D9AUF)\n * @docs docs/data-struct/unionfind/PartialPersistentUnionFind.md\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\nclass PartialPersistentUnionFind\
     \ {\nprivate:\n    int n;\n    std::vector<int> par, tim;\n    std::vector<std::vector<std::pair<int,\
     \ int>>> sz_hist;\n    int last_time;\n\npublic:\n    PartialPersistentUnionFind()\
     \ : PartialPersistentUnionFind(0) {}\n    PartialPersistentUnionFind(int n)\n\
     \        : n(n), par(n, -1), tim(n, infinity<int>::value), sz_hist(n, {{-1, 1}}),\n\
     \          last_time(0) {}\n    int now() const { return last_time - 1; }\n  \
-    \  int find(int x, int t) const {\n        assert(-1 <= t && t < last_time);\n\
-    \        assert(0 <= x && x < n);\n        return tim[x] <= t ? find(par[x], t)\
-    \ : x;\n    }\n    int find_last(int x) const { return find(x, last_time - 1);\
+    \  int find(int t, int x) const {\n        assert(-1 <= t && t < last_time);\n\
+    \        assert(0 <= x && x < n);\n        return tim[x] <= t ? find(t, par[x])\
+    \ : x;\n    }\n    int find_last(int x) const { return find(last_time - 1, x);\
     \ }\n    std::pair<std::pair<int, int>, int> merge(int x, int y) {\n        x\
     \ = find_last(x);\n        y = find_last(y);\n        if (x == y) return {{x,\
     \ -1}, last_time++};\n        if (par[x] > par[y]) std::swap(x, y);\n        par[x]\
     \ += par[y];\n        par[y] = x;\n        tim[y] = last_time;\n        sz_hist[x].push_back({last_time,\
     \ -par[x]});\n        return {{x, y}, last_time++};\n    }\n    bool same(int\
-    \ x, int y, int t) const { return find(x, t) == find(y, t); }\n    bool same_last(int\
-    \ x, int y) const { return same(x, y, last_time - 1); }\n    int size(int x, int\
-    \ t) const {\n        const auto& h = sz_hist[find(x, t)];\n        return std::prev(\n\
+    \ t, int x, int y) const { return find(t, x) == find(t, y); }\n    bool same_last(int\
+    \ x, int y) const { return same(x, y, last_time - 1); }\n    int size(int t, int\
+    \ x) const {\n        const auto& h = sz_hist[find(t, x)];\n        return std::prev(\n\
     \                   std::lower_bound(all(h), std::pair<int, int>{t + 1, -1}))\n\
     \            ->second;\n    }\n    int size_last(int x) const {\n        const\
     \ auto& h = sz_hist[find_last(x)];\n        return h.back().second;\n    }\n \
     \   std::vector<std::vector<int>> groups(int t) const {\n        assert(-1 <=\
     \ t && t < last_time);\n        std::vector<std::vector<int>> res(n);\n      \
-    \  rep (i, n) res[find(i, t)].push_back(i);\n        res.erase(\n            remove_if(all(res),\n\
+    \  rep (i, n) res[find(t, i)].push_back(i);\n        res.erase(\n            remove_if(all(res),\n\
     \                      [](const std::vector<int>& v) { return v.empty(); }),\n\
     \            res.end());\n        return res;\n    }\n    std::vector<std::vector<int>>\
     \ groups_last() const {\n        return groups(last_time - 1);\n    }\n    bool\
-    \ is_root(int x, int t) const {\n        assert(-1 <= t && t < last_time);\n \
+    \ is_root(int t, int x) const {\n        assert(-1 <= t && t < last_time);\n \
     \       assert(0 <= x && x < n);\n        return tim[x] <= t;\n    }\n    bool\
-    \ is_root_last(int x) const { return is_root(x, last_time - 1); }\n};\n\n/**\n\
+    \ is_root_last(int x) const { return is_root(last_time - 1, x); }\n};\n\n/**\n\
     \ * @brief PartialPersistentUnionFind(\u90E8\u5206\u6C38\u7D9AUF)\n * @docs docs/data-struct/unionfind/PartialPersistentUnionFind.md\n\
     \ */\n"
   dependsOn:
@@ -515,7 +516,7 @@ data:
   isVerificationFile: false
   path: data-struct/unionfind/PartialPersistentUnionFind.hpp
   requiredBy: []
-  timestamp: '2024-05-12 17:35:55+09:00'
+  timestamp: '2024-08-16 12:49:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/atcoder/agc002_d-PartialPersistentUF.test.cpp
@@ -532,10 +533,8 @@ title: "PartialPersistentUnionFind(\u90E8\u5206\u6C38\u7D9AUF)"
 
 - `PersistentUnionFind(int n)` : サイズ `n` の UF を作成し、 $a_{-1}$ とする。 $\Theta(n)$ 。
 - `pair<pair<int, int>, int> merge(int x, int y)` : これが $i$ 回目(0-indexed)の `merge` 操作のとき、 $a_{i-1}$ において $x$ と $y$ をつなげた UF を $a_{i}$ とする。返り値は通常の UF の返り値と $i$ のペア。 $\Theta(\log n)$
-- `int find(int x, int t)` : $t$ 回目の `merge` 操作の直後の $x$ の属する集合の代表元を返す。 $\Theta(\log n)$ 。
-- `bool same(int x, int y, int t)` : $t$ 回目の `merge` 操作の直後の要素 $x$ と要素 $y$ が同じ集合に属するかを判定する。 $\Theta(\log n)$ 。
-- `int size(int x, int t)` : $t$ 回目の `merge` 操作の直後の要素 $x$ の属する集合の要素数を返す。ならし $\Theta(\log n)$ 。
-- `bool is_root(int x)` : $t$ 回目の `merge` 操作の直後の要素 $x$ が属する集合の代表元が $x$ であるかを返す。 $\Theta(1)$ 。
-- `vector<vector<int>> groups()` : 「「集合に属する要素のリスト」のリスト」を返す。 $\Theta(n \log n)$ 。
-
-
+- `int find(int t, int x)` : $t$ 回目の `merge` 操作の直後の $x$ の属する集合の代表元を返す。 $\Theta(\log n)$ 。
+- `bool same(int t, int x, int y)` : $t$ 回目の `merge` 操作の直後の要素 $x$ と要素 $y$ が同じ集合に属するかを判定する。 $\Theta(\log n)$ 。
+- `int size(int t, int x)` : $t$ 回目の `merge` 操作の直後の要素 $x$ の属する集合の要素数を返す。ならし $\Theta(\log n)$ 。
+- `bool is_root(int t, int x)` : $t$ 回目の `merge` 操作の直後の要素 $x$ が属する集合の代表元が $x$ であるかを返す。 $\Theta(1)$ 。
+- `vector<vector<int>> groups(int t)` : 「「集合に属する要素のリスト」のリスト」を返す。 $\Theta(n \log n)$ 。

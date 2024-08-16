@@ -453,7 +453,7 @@ data:
     \    int now() const { return last_time - 1; }\n    int set(int k, const T& x)\
     \ {\n        assert(0 <= k && k < n);\n        tim[k].push_back(last_time);\n\
     \        val[k].push_back(x);\n        return last_time++;\n    }\n    T get(int\
-    \ k, int t) const {\n        assert(0 <= k && k < n);\n        assert(-1 <= t\
+    \ t, int k) const {\n        assert(0 <= k && k < n);\n        assert(-1 <= t\
     \ && t < last_time);\n        int id = std::upper_bound(all(tim[k]), t) - tim[k].begin()\
     \ - 1;\n        return val[k][id];\n    }\n    T get_last(int k) const {\n   \
     \     assert(0 <= k && k < n);\n        return val[k].back();\n    }\n};\n\n/**\n\
@@ -462,47 +462,47 @@ data:
     \nusing namespace std;\nclass PartialPersistentUnionFind {\npublic:\n    int n;\n\
     \    PartialPersistentArray<int> par;\n    std::vector<int> tm;\n\npublic:\n \
     \   PartialPersistentUnionFind(int n) : n(n), par(std::vector<int>(n, -1)), tm{-1}\
-    \ {}\n    int find(int x, int t) {\n        assert(0 <= x && x < n);\n       \
-    \ assert(-1 <= t && t <= par.now());\n        return par.get(x, t) < 0 ? x : find(par.get(x,\
-    \ t), t);\n    }\n    std::pair<int, int> merge(int x, int y) {\n        int t\
-    \ = par.now();\n        x = find(x, t);\n        y = find(y, t);\n        if (x\
-    \ == y) {\n            tm.push_back((int)tm.back());\n            return {x, -1};\n\
-    \        }\n        if (par.get(x, t) > par.get(y, t)) std::swap(x, y);\n    \
-    \    par.set(x, par.get(x, t) + par.get(y, t));\n        par.set(y, x);\n    \
-    \    tm.push_back(tm.back() + 2);\n        return {x, y};\n    }\n    bool same(int\
-    \ x, int y, int t) { return find(x, tm[t + 1]) == find(y, tm[t + 1]); }\n    int\
-    \ size(int x, int t) { return -par.get(find(x, tm[t + 1]), tm[t + 1]); }\n};\n\
-    int main() {\n    int N, M; scan >> N >> M;\n    PartialPersistentUnionFind uf(N);\n\
-    \    rep (M) {\n        int a, b; scan >> a >> b;\n        uf.merge(a - 1, b -\
-    \ 1);\n    }\n    int Q; scan >> Q;\n    rep (Q) {\n        int a, b, x; scan\
-    \ >> a >> b >> x;\n        --a; --b;\n        ll ok = M - 1, ng = -1;\n      \
-    \  while (ok - ng > 1) {\n            ll mid = (ok + ng) / 2;\n            if\
-    \ ((uf.size(a, mid) + (uf.same(a, b, mid) ? 0 : uf.size(b, mid)) >= x)) {\n  \
-    \              ok = mid;\n            } else {\n                ng = mid;\n  \
-    \          }\n        }\n        print << ok + 1 << endl;\n    }\n}\n"
+    \ {}\n    int find(int t, int x) {\n        assert(0 <= x && x < n);\n       \
+    \ assert(-1 <= t && t <= par.now());\n        return par.get(t, x) < 0 ? x : find(t,\
+    \ par.get(t, x));\n    }\n    std::pair<int, int> merge(int x, int y) {\n    \
+    \    int t = par.now();\n        x = find(t, x);\n        y = find(t, y);\n  \
+    \      if (x == y) {\n            tm.push_back((int)tm.back());\n            return\
+    \ {x, -1};\n        }\n        if (par.get(t, x) > par.get(t, y)) std::swap(x,\
+    \ y);\n        par.set(x, par.get(t, x) + par.get(t, y));\n        par.set(y,\
+    \ x);\n        tm.push_back(tm.back() + 2);\n        return {x, y};\n    }\n \
+    \   bool same(int t, int x, int y) { return find(tm[t + 1], x) == find(tm[t +\
+    \ 1], y); }\n    int size(int t, int x) { return -par.get(tm[t + 1], find(tm[t\
+    \ + 1], x)); }\n};\nint main() {\n    int N, M; scan >> N >> M;\n    PartialPersistentUnionFind\
+    \ uf(N);\n    rep (M) {\n        int a, b; scan >> a >> b;\n        uf.merge(a\
+    \ - 1, b - 1);\n    }\n    int Q; scan >> Q;\n    rep (Q) {\n        int a, b,\
+    \ x; scan >> a >> b >> x;\n        --a; --b;\n        ll ok = M - 1, ng = -1;\n\
+    \        while (ok - ng > 1) {\n            ll mid = (ok + ng) / 2;\n        \
+    \    if ((uf.size(mid, a) + (uf.same(mid, a, b) ? 0 : uf.size(mid, b)) >= x))\
+    \ {\n                ok = mid;\n            } else {\n                ng = mid;\n\
+    \            }\n        }\n        print << ok + 1 << endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/agc002/tasks/agc002_d\"\n#include\
     \ \"../../other/template.hpp\"\n#include \"../../data-struct/other/PartialPersistentArray.hpp\"\
     \nusing namespace std;\nclass PartialPersistentUnionFind {\npublic:\n    int n;\n\
     \    PartialPersistentArray<int> par;\n    std::vector<int> tm;\n\npublic:\n \
     \   PartialPersistentUnionFind(int n) : n(n), par(std::vector<int>(n, -1)), tm{-1}\
-    \ {}\n    int find(int x, int t) {\n        assert(0 <= x && x < n);\n       \
-    \ assert(-1 <= t && t <= par.now());\n        return par.get(x, t) < 0 ? x : find(par.get(x,\
-    \ t), t);\n    }\n    std::pair<int, int> merge(int x, int y) {\n        int t\
-    \ = par.now();\n        x = find(x, t);\n        y = find(y, t);\n        if (x\
-    \ == y) {\n            tm.push_back((int)tm.back());\n            return {x, -1};\n\
-    \        }\n        if (par.get(x, t) > par.get(y, t)) std::swap(x, y);\n    \
-    \    par.set(x, par.get(x, t) + par.get(y, t));\n        par.set(y, x);\n    \
-    \    tm.push_back(tm.back() + 2);\n        return {x, y};\n    }\n    bool same(int\
-    \ x, int y, int t) { return find(x, tm[t + 1]) == find(y, tm[t + 1]); }\n    int\
-    \ size(int x, int t) { return -par.get(find(x, tm[t + 1]), tm[t + 1]); }\n};\n\
-    int main() {\n    int N, M; scan >> N >> M;\n    PartialPersistentUnionFind uf(N);\n\
-    \    rep (M) {\n        int a, b; scan >> a >> b;\n        uf.merge(a - 1, b -\
-    \ 1);\n    }\n    int Q; scan >> Q;\n    rep (Q) {\n        int a, b, x; scan\
-    \ >> a >> b >> x;\n        --a; --b;\n        ll ok = M - 1, ng = -1;\n      \
-    \  while (ok - ng > 1) {\n            ll mid = (ok + ng) / 2;\n            if\
-    \ ((uf.size(a, mid) + (uf.same(a, b, mid) ? 0 : uf.size(b, mid)) >= x)) {\n  \
-    \              ok = mid;\n            } else {\n                ng = mid;\n  \
-    \          }\n        }\n        print << ok + 1 << endl;\n    }\n}\n"
+    \ {}\n    int find(int t, int x) {\n        assert(0 <= x && x < n);\n       \
+    \ assert(-1 <= t && t <= par.now());\n        return par.get(t, x) < 0 ? x : find(t,\
+    \ par.get(t, x));\n    }\n    std::pair<int, int> merge(int x, int y) {\n    \
+    \    int t = par.now();\n        x = find(t, x);\n        y = find(t, y);\n  \
+    \      if (x == y) {\n            tm.push_back((int)tm.back());\n            return\
+    \ {x, -1};\n        }\n        if (par.get(t, x) > par.get(t, y)) std::swap(x,\
+    \ y);\n        par.set(x, par.get(t, x) + par.get(t, y));\n        par.set(y,\
+    \ x);\n        tm.push_back(tm.back() + 2);\n        return {x, y};\n    }\n \
+    \   bool same(int t, int x, int y) { return find(tm[t + 1], x) == find(tm[t +\
+    \ 1], y); }\n    int size(int t, int x) { return -par.get(tm[t + 1], find(tm[t\
+    \ + 1], x)); }\n};\nint main() {\n    int N, M; scan >> N >> M;\n    PartialPersistentUnionFind\
+    \ uf(N);\n    rep (M) {\n        int a, b; scan >> a >> b;\n        uf.merge(a\
+    \ - 1, b - 1);\n    }\n    int Q; scan >> Q;\n    rep (Q) {\n        int a, b,\
+    \ x; scan >> a >> b >> x;\n        --a; --b;\n        ll ok = M - 1, ng = -1;\n\
+    \        while (ok - ng > 1) {\n            ll mid = (ok + ng) / 2;\n        \
+    \    if ((uf.size(mid, a) + (uf.same(mid, a, b) ? 0 : uf.size(mid, b)) >= x))\
+    \ {\n                ok = mid;\n            } else {\n                ng = mid;\n\
+    \            }\n        }\n        print << ok + 1 << endl;\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -517,7 +517,7 @@ data:
   isVerificationFile: true
   path: test/atcoder/agc002_d-PartialPersistentArray.test.cpp
   requiredBy: []
-  timestamp: '2024-05-12 17:35:55+09:00'
+  timestamp: '2024-08-16 12:49:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/atcoder/agc002_d-PartialPersistentArray.test.cpp

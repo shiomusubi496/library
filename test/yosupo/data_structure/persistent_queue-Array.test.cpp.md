@@ -467,12 +467,12 @@ data:
     \     root.assign(1, std::make_shared<node>());\n            len.assign(1, 0);\n\
     \        }\n        else {\n            root.resize(1);\n            build_dfs(root[0],\
     \ a, 0, 1);\n            len.assign(1, n);\n        }\n        last_time = 0;\n\
-    \    }\n    int now() const { return last_time - 1; }\n    int set(int k, const\
-    \ T& x, int t) {\n        assert(-1 <= t && t < last_time);\n        assert(0\
+    \    }\n    int now() const { return last_time - 1; }\n    int set(int t, int\
+    \ k, const T& x) {\n        assert(-1 <= t && t < last_time);\n        assert(0\
     \ <= k && k < len[t + 1]);\n        root.push_back(root[t + 1]);\n        set_dfs(root.back(),\
     \ k, x);\n        len.push_back(len[t + 1]);\n        return last_time++;\n  \
-    \  }\n    int set_last(int k, const T& x) { return set(k, x, last_time - 1); }\n\
-    \    int push_back(const T& x, int t) {\n        assert(-1 <= t && t < last_time);\n\
+    \  }\n    int set_last(int k, const T& x) { return set(last_time - 1, k, x); }\n\
+    \    int push_back(int t, const T& x) {\n        assert(-1 <= t && t < last_time);\n\
     \        root.push_back(std::make_shared<node>(*root[t + 1]));\n        push_back_dfs(root.back(),\
     \ len[t + 1], x);\n        len.push_back(len[t + 1] + 1);\n        return last_time++;\n\
     \    }\n    int push_back_last(const T& x) { return push_back(last_time - 1, x);\
@@ -480,27 +480,27 @@ data:
     \      assert(len[t + 1] > 0);\n        root.push_back(std::make_shared<node>(*root[t\
     \ + 1]));\n        len.push_back(len[t + 1] - 1);\n        return last_time++;\n\
     \    }\n    int pop_back_last() { return pop_back(last_time - 1); }\n    T get(int\
-    \ k, int t) const {\n        assert(-1 <= t && t < last_time);\n        assert(0\
+    \ t, int k) const {\n        assert(-1 <= t && t < last_time);\n        assert(0\
     \ <= k && k < len[t + 1]);\n        return get_dfs(root[t + 1], k);\n    }\n \
-    \   T get_last(int k) const { return get(k, last_time - 1); }\n    int size(int\
+    \   T get_last(int k) const { return get(last_time - 1, k); }\n    int size(int\
     \ t) const {\n        assert(-1 <= t && t < last_time);\n        return len[t\
     \ + 1];\n    }\n    int size_last() const { return size(last_time - 1); }\n};\n\
     \n/**\n * @brief PersistentArray(\u5B8C\u5168\u6C38\u7D9A\u914D\u5217)\n * @docs\
     \ docs/data-struct/other/PersistentArray.md\n */\n#line 4 \"test/yosupo/data_structure/persistent_queue-Array.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int q; scan >> q;\n    PersistentArray<int>\
     \ PA(1);\n    rep (q) {\n        int a; scan >> a;\n        if (a == 0) {\n  \
-    \          int t, x; scan >> t >> x;\n            PA.push_back(x, t);\n      \
-    \  }\n        else {\n            int t; scan >> t;\n            int frt = PA.get(0,\
-    \ t);\n            print << PA.get(frt + 1, t) << endl;\n            PA.set(0,\
-    \ frt + 1, t);\n        }\n    }\n}\n"
+    \          int t, x; scan >> t >> x;\n            PA.push_back(t, x);\n      \
+    \  }\n        else {\n            int t; scan >> t;\n            int frt = PA.get(t,\
+    \ 0);\n            print << PA.get(t, frt + 1) << endl;\n            PA.set(t,\
+    \ 0, frt + 1);\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/persistent_queue\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../data-struct/other/PersistentArray.hpp\"\
     \nusing namespace std;\nint main() {\n    int q; scan >> q;\n    PersistentArray<int>\
     \ PA(1);\n    rep (q) {\n        int a; scan >> a;\n        if (a == 0) {\n  \
-    \          int t, x; scan >> t >> x;\n            PA.push_back(x, t);\n      \
-    \  }\n        else {\n            int t; scan >> t;\n            int frt = PA.get(0,\
-    \ t);\n            print << PA.get(frt + 1, t) << endl;\n            PA.set(0,\
-    \ frt + 1, t);\n        }\n    }\n}\n"
+    \          int t, x; scan >> t >> x;\n            PA.push_back(t, x);\n      \
+    \  }\n        else {\n            int t; scan >> t;\n            int frt = PA.get(t,\
+    \ 0);\n            print << PA.get(t, frt + 1) << endl;\n            PA.set(t,\
+    \ 0, frt + 1);\n        }\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -515,7 +515,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/persistent_queue-Array.test.cpp
   requiredBy: []
-  timestamp: '2024-05-12 17:35:55+09:00'
+  timestamp: '2024-08-16 12:49:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/persistent_queue-Array.test.cpp

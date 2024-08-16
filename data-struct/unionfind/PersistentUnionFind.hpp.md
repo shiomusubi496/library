@@ -468,12 +468,12 @@ data:
     \     root.assign(1, std::make_shared<node>());\n            len.assign(1, 0);\n\
     \        }\n        else {\n            root.resize(1);\n            build_dfs(root[0],\
     \ a, 0, 1);\n            len.assign(1, n);\n        }\n        last_time = 0;\n\
-    \    }\n    int now() const { return last_time - 1; }\n    int set(int k, const\
-    \ T& x, int t) {\n        assert(-1 <= t && t < last_time);\n        assert(0\
+    \    }\n    int now() const { return last_time - 1; }\n    int set(int t, int\
+    \ k, const T& x) {\n        assert(-1 <= t && t < last_time);\n        assert(0\
     \ <= k && k < len[t + 1]);\n        root.push_back(root[t + 1]);\n        set_dfs(root.back(),\
     \ k, x);\n        len.push_back(len[t + 1]);\n        return last_time++;\n  \
-    \  }\n    int set_last(int k, const T& x) { return set(k, x, last_time - 1); }\n\
-    \    int push_back(const T& x, int t) {\n        assert(-1 <= t && t < last_time);\n\
+    \  }\n    int set_last(int k, const T& x) { return set(last_time - 1, k, x); }\n\
+    \    int push_back(int t, const T& x) {\n        assert(-1 <= t && t < last_time);\n\
     \        root.push_back(std::make_shared<node>(*root[t + 1]));\n        push_back_dfs(root.back(),\
     \ len[t + 1], x);\n        len.push_back(len[t + 1] + 1);\n        return last_time++;\n\
     \    }\n    int push_back_last(const T& x) { return push_back(last_time - 1, x);\
@@ -481,72 +481,72 @@ data:
     \      assert(len[t + 1] > 0);\n        root.push_back(std::make_shared<node>(*root[t\
     \ + 1]));\n        len.push_back(len[t + 1] - 1);\n        return last_time++;\n\
     \    }\n    int pop_back_last() { return pop_back(last_time - 1); }\n    T get(int\
-    \ k, int t) const {\n        assert(-1 <= t && t < last_time);\n        assert(0\
+    \ t, int k) const {\n        assert(-1 <= t && t < last_time);\n        assert(0\
     \ <= k && k < len[t + 1]);\n        return get_dfs(root[t + 1], k);\n    }\n \
-    \   T get_last(int k) const { return get(k, last_time - 1); }\n    int size(int\
+    \   T get_last(int k) const { return get(last_time - 1, k); }\n    int size(int\
     \ t) const {\n        assert(-1 <= t && t < last_time);\n        return len[t\
     \ + 1];\n    }\n    int size_last() const { return size(last_time - 1); }\n};\n\
     \n/**\n * @brief PersistentArray(\u5B8C\u5168\u6C38\u7D9A\u914D\u5217)\n * @docs\
     \ docs/data-struct/other/PersistentArray.md\n */\n#line 5 \"data-struct/unionfind/PersistentUnionFind.hpp\"\
     \n\nclass PersistentUnionFind {\nprivate:\n    int n;\n    PersistentArray<int,\
     \ 4> par;\n    std::vector<int> tim;\n    int last_time;\n    int internal_find(int\
-    \ x, int t) const {\n        int p = par.get(x, t);\n        return p < 0 ? x\
+    \ x, int t) const {\n        int p = par.get(t, x);\n        return p < 0 ? x\
     \ : internal_find(p, t);\n    }\n\npublic:\n    PersistentUnionFind() : PersistentUnionFind(0)\
     \ {}\n    PersistentUnionFind(int n)\n        : n(n), par(std::vector<int>(n,\
     \ -1)), tim(1, -1), last_time(0) {}\n    int now() const { return last_time -\
-    \ 1; }\n    int find(int x, int t) const {\n        assert(-1 <= t && t < last_time);\n\
+    \ 1; }\n    int find(int t, int x) const {\n        assert(-1 <= t && t < last_time);\n\
     \        assert(0 <= x && x < n);\n        return internal_find(x, tim[t + 1]);\n\
-    \    }\n    int find_last(int x) const { return find(x, last_time - 1); }\n  \
-    \  std::pair<std::pair<int, int>, int> merge(int x, int y, int t) {\n        x\
-    \ = find(x, t);\n        y = find(y, t);\n        if (x == y) {\n            tim.push_back((int)tim[t\
+    \    }\n    int find_last(int x) const { return find(last_time - 1, x); }\n  \
+    \  std::pair<std::pair<int, int>, int> merge(int t, int x, int y) {\n        x\
+    \ = find(t, x);\n        y = find(t, y);\n        if (x == y) {\n            tim.push_back((int)tim[t\
     \ + 1]);\n            return {{x, -1}, last_time++};\n        }\n        int px\
-    \ = par.get(x, tim[t + 1]), py = par.get(y, tim[t + 1]);\n        if (px > py)\
-    \ std::swap(x, y);\n        par.set(x, px + py, tim[t + 1]);\n        par.set_last(y,\
+    \ = par.get(tim[t + 1], x), py = par.get(tim[t + 1], y);\n        if (px > py)\
+    \ std::swap(x, y);\n        par.set(tim[t + 1], x, px + py);\n        par.set_last(y,\
     \ x);\n        tim.push_back(par.now());\n        return {{x, y}, last_time++};\n\
-    \    }\n    bool same(int x, int y, int t) const { return find(x, t) == find(y,\
-    \ t); }\n    bool same_last(int x, int y) const { return same(x, y, last_time\
-    \ - 1); }\n    int size(int x, int t) const { return -par.get(x, tim[t + 1]);\
-    \ }\n    int size_last(int x) const { return size(x, last_time - 1); }\n    std::vector<std::vector<int>>\
+    \    }\n    bool same(int t, int x, int y) const { return find(t, x) == find(t,\
+    \ y); }\n    bool same_last(int x, int y) const { return same(last_time - 1, x,\
+    \ y); }\n    int size(int t, int x) const { return -par.get(tim[t + 1], x); }\n\
+    \    int size_last(int x) const { return size(last_time - 1, x); }\n    std::vector<std::vector<int>>\
     \ groups(int t) const {\n        assert(-1 <= t && t < last_time);\n        std::vector<std::vector<int>>\
-    \ res(n);\n        rep (i, n) res[find(i, t)].push_back(i);\n        res.erase(\n\
+    \ res(n);\n        rep (i, n) res[find(t, i)].push_back(i);\n        res.erase(\n\
     \            remove_if(all(res),\n                      [](const std::vector<int>&\
     \ v) { return v.empty(); }),\n            res.end());\n        return res;\n \
     \   }\n    std::vector<std::vector<int>> groups_last() const {\n        return\
-    \ groups(last_time - 1);\n    }\n    bool is_root(int x, int t) const {\n    \
+    \ groups(last_time - 1);\n    }\n    bool is_root(int t, int x) const {\n    \
     \    assert(-1 <= t && t < last_time);\n        assert(0 <= x && x < n);\n   \
-    \     return par.get(x, tim[t + 1]) < 0;\n    }\n    bool is_root_last(int x)\
-    \ const { return is_root(x, last_time - 1); }\n};\n\n/**\n * @brief PersistentUnionFind(\u5B8C\
+    \     return par.get(tim[t + 1], x) < 0;\n    }\n    bool is_root_last(int x)\
+    \ const { return is_root(last_time - 1, x); }\n};\n\n/**\n * @brief PersistentUnionFind(\u5B8C\
     \u5168\u6C38\u7D9AUF)\n * @docs docs/data-struct/unionfind/PersistentUnionFind.md\n\
     \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../other/PersistentArray.hpp\"\
     \n\nclass PersistentUnionFind {\nprivate:\n    int n;\n    PersistentArray<int,\
     \ 4> par;\n    std::vector<int> tim;\n    int last_time;\n    int internal_find(int\
-    \ x, int t) const {\n        int p = par.get(x, t);\n        return p < 0 ? x\
+    \ x, int t) const {\n        int p = par.get(t, x);\n        return p < 0 ? x\
     \ : internal_find(p, t);\n    }\n\npublic:\n    PersistentUnionFind() : PersistentUnionFind(0)\
     \ {}\n    PersistentUnionFind(int n)\n        : n(n), par(std::vector<int>(n,\
     \ -1)), tim(1, -1), last_time(0) {}\n    int now() const { return last_time -\
-    \ 1; }\n    int find(int x, int t) const {\n        assert(-1 <= t && t < last_time);\n\
+    \ 1; }\n    int find(int t, int x) const {\n        assert(-1 <= t && t < last_time);\n\
     \        assert(0 <= x && x < n);\n        return internal_find(x, tim[t + 1]);\n\
-    \    }\n    int find_last(int x) const { return find(x, last_time - 1); }\n  \
-    \  std::pair<std::pair<int, int>, int> merge(int x, int y, int t) {\n        x\
-    \ = find(x, t);\n        y = find(y, t);\n        if (x == y) {\n            tim.push_back((int)tim[t\
+    \    }\n    int find_last(int x) const { return find(last_time - 1, x); }\n  \
+    \  std::pair<std::pair<int, int>, int> merge(int t, int x, int y) {\n        x\
+    \ = find(t, x);\n        y = find(t, y);\n        if (x == y) {\n            tim.push_back((int)tim[t\
     \ + 1]);\n            return {{x, -1}, last_time++};\n        }\n        int px\
-    \ = par.get(x, tim[t + 1]), py = par.get(y, tim[t + 1]);\n        if (px > py)\
-    \ std::swap(x, y);\n        par.set(x, px + py, tim[t + 1]);\n        par.set_last(y,\
+    \ = par.get(tim[t + 1], x), py = par.get(tim[t + 1], y);\n        if (px > py)\
+    \ std::swap(x, y);\n        par.set(tim[t + 1], x, px + py);\n        par.set_last(y,\
     \ x);\n        tim.push_back(par.now());\n        return {{x, y}, last_time++};\n\
-    \    }\n    bool same(int x, int y, int t) const { return find(x, t) == find(y,\
-    \ t); }\n    bool same_last(int x, int y) const { return same(x, y, last_time\
-    \ - 1); }\n    int size(int x, int t) const { return -par.get(x, tim[t + 1]);\
-    \ }\n    int size_last(int x) const { return size(x, last_time - 1); }\n    std::vector<std::vector<int>>\
+    \    }\n    bool same(int t, int x, int y) const { return find(t, x) == find(t,\
+    \ y); }\n    bool same_last(int x, int y) const { return same(last_time - 1, x,\
+    \ y); }\n    int size(int t, int x) const { return -par.get(tim[t + 1], x); }\n\
+    \    int size_last(int x) const { return size(last_time - 1, x); }\n    std::vector<std::vector<int>>\
     \ groups(int t) const {\n        assert(-1 <= t && t < last_time);\n        std::vector<std::vector<int>>\
-    \ res(n);\n        rep (i, n) res[find(i, t)].push_back(i);\n        res.erase(\n\
+    \ res(n);\n        rep (i, n) res[find(t, i)].push_back(i);\n        res.erase(\n\
     \            remove_if(all(res),\n                      [](const std::vector<int>&\
     \ v) { return v.empty(); }),\n            res.end());\n        return res;\n \
     \   }\n    std::vector<std::vector<int>> groups_last() const {\n        return\
-    \ groups(last_time - 1);\n    }\n    bool is_root(int x, int t) const {\n    \
+    \ groups(last_time - 1);\n    }\n    bool is_root(int t, int x) const {\n    \
     \    assert(-1 <= t && t < last_time);\n        assert(0 <= x && x < n);\n   \
-    \     return par.get(x, tim[t + 1]) < 0;\n    }\n    bool is_root_last(int x)\
-    \ const { return is_root(x, last_time - 1); }\n};\n\n/**\n * @brief PersistentUnionFind(\u5B8C\
+    \     return par.get(tim[t + 1], x) < 0;\n    }\n    bool is_root_last(int x)\
+    \ const { return is_root(last_time - 1, x); }\n};\n\n/**\n * @brief PersistentUnionFind(\u5B8C\
     \u5168\u6C38\u7D9AUF)\n * @docs docs/data-struct/unionfind/PersistentUnionFind.md\n\
     \ */\n"
   dependsOn:
@@ -563,7 +563,7 @@ data:
   isVerificationFile: false
   path: data-struct/unionfind/PersistentUnionFind.hpp
   requiredBy: []
-  timestamp: '2024-05-12 17:35:55+09:00'
+  timestamp: '2024-08-16 12:49:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/data_structure/persistent_unionfind.test.cpp
@@ -579,10 +579,10 @@ title: "PersistentUnionFind(\u5B8C\u5168\u6C38\u7D9AUF)"
 完全永続 UF。
 
 - `PersistentUnionFind(int n)` : サイズ `n` の UF を作成し、 $a_{-1}$ とする。 $\Theta(n)$ 。
-- `pair<pair<int, int>, int> merge(int x, int y, int t)` : これが $i$ 回目(0-indexed)の `merge` 操作のとき、 $a_{t}$ において $x$ と $y$ をつなげた UF を $a_{i}$ とする。返り値は通常の UF の返り値と $i$ のペア。 $\Theta(\frac{\log^2 n}{\log\log n})$ 。
-- `int find(int x, int t)` : $t$ 回目の `merge` 操作の直後の $x$ の属する集合の代表元を返す。 $\Theta(\frac{\log^2 n}{\log\log n})$ 。
-- `bool same(int x, int y, int t)` : $t$ 回目の `merge` 操作の直後の要素 $x$ と要素 $y$ が同じ集合に属するかを判定する。 $\Theta(\frac{\log^2 n}{\log\log n})$ 。
-- `int size(int x, int t)` : $t$ 回目の `merge` 操作の直後の要素 $x$ の属する集合の要素数を返す。ならし $\Theta(\frac{\log^2 n}{\log\log n})$ 。
-- `bool is_root(int x)` : $t$ 回目の `merge` 操作の直後の要素 $x$ が属する集合の代表元が $x$ であるかを返す。 $\Theta(\frac{\log n}{\log\log n})$ 。
-- `vector<vector<int>> groups()` : 「「集合に属する要素のリスト」のリスト」を返す。 $\Theta(n \frac{\log^2 n}{\log\log n})$ 。
+- `pair<pair<int, int>, int> merge(int t, int x, int y)` : これが $i$ 回目(0-indexed)の `merge` 操作のとき、 $a_{t}$ において $x$ と $y$ をつなげた UF を $a_{i}$ とする。返り値は通常の UF の返り値と $i$ のペア。 $\Theta(\frac{\log^2 n}{\log\log n})$ 。
+- `int find(int t, int x)` : $t$ 回目の `merge` 操作の直後の $x$ の属する集合の代表元を返す。 $\Theta(\frac{\log^2 n}{\log\log n})$ 。
+- `bool same(int t, int x, int y)` : $t$ 回目の `merge` 操作の直後の要素 $x$ と要素 $y$ が同じ集合に属するかを判定する。 $\Theta(\frac{\log^2 n}{\log\log n})$ 。
+- `int size(int t, int x)` : $t$ 回目の `merge` 操作の直後の要素 $x$ の属する集合の要素数を返す。ならし $\Theta(\frac{\log^2 n}{\log\log n})$ 。
+- `bool is_root(int t, int x)` : $t$ 回目の `merge` 操作の直後の要素 $x$ が属する集合の代表元が $x$ であるかを返す。 $\Theta(\frac{\log n}{\log\log n})$ 。
+- `vector<vector<int>> groups(int t)` : 「「集合に属する要素のリスト」のリスト」を返す。 $\Theta(n \frac{\log^2 n}{\log\log n})$ 。
 
