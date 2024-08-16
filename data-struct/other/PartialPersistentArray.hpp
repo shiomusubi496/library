@@ -29,7 +29,7 @@ public:
         val[k].push_back(x);
         return last_time++;
     }
-    T get(int k, int t) const {
+    T get(int t, int k) const {
         assert(0 <= k && k < n);
         assert(-1 <= t && t < last_time);
         int id = std::upper_bound(all(tim[k]), t) - tim[k].begin() - 1;

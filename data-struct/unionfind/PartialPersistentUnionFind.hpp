@@ -15,12 +15,12 @@ public:
         : n(n), par(n, -1), tim(n, infinity<int>::value), sz_hist(n, {{-1, 1}}),
           last_time(0) {}
     int now() const { return last_time - 1; }
-    int find(int x, int t) const {
+    int find(int t, int x) const {
         assert(-1 <= t && t < last_time);
         assert(0 <= x && x < n);
-        return tim[x] <= t ? find(par[x], t) : x;
+        return tim[x] <= t ? find(t, par[x]) : x;
     }
-    int find_last(int x) const { return find(x, last_time - 1); }
+    int find_last(int x) const { return find(last_time - 1, x); }
     std::pair<std::pair<int, int>, int> merge(int x, int y) {
         x = find_last(x);
         y = find_last(y);
@@ -32,10 +32,10 @@ public:
         sz_hist[x].push_back({last_time, -par[x]});
         return {{x, y}, last_time++};
     }
-    bool same(int x, int y, int t) const { return find(x, t) == find(y, t); }
+    bool same(int t, int x, int y) const { return find(t, x) == find(t, y); }
     bool same_last(int x, int y) const { return same(x, y, last_time - 1); }
-    int size(int x, int t) const {
-        const auto& h = sz_hist[find(x, t)];
+    int size(int t, int x) const {
+        const auto& h = sz_hist[find(t, x)];
         return std::prev(
                    std::lower_bound(all(h), std::pair<int, int>{t + 1, -1}))
             ->second;
@@ -47,7 +47,7 @@ public:
     std::vector<std::vector<int>> groups(int t) const {
         assert(-1 <= t && t < last_time);
         std::vector<std::vector<int>> res(n);
-        rep (i, n) res[find(i, t)].push_back(i);
+        rep (i, n) res[find(t, i)].push_back(i);
         res.erase(
             remove_if(all(res),
                       [](const std::vector<int>& v) { return v.empty(); }),
@@ -57,12 +57,12 @@ public:
     std::vector<std::vector<int>> groups_last() const {
         return groups(last_time - 1);
     }
-    bool is_root(int x, int t) const {
+    bool is_root(int t, int x) const {
         assert(-1 <= t && t < last_time);
         assert(0 <= x && x < n);
         return tim[x] <= t;
     }
-    bool is_root_last(int x) const { return is_root(x, last_time - 1); }
+    bool is_root_last(int x) const { return is_root(last_time - 1, x); }
 };
 
 /**

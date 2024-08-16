@@ -16,7 +16,7 @@ int main() {
         ll ok = M - 1, ng = -1;
         while (ok - ng > 1) {
             ll mid = (ok + ng) / 2;
-            if ((uf.size(a, mid) + (uf.same(a, b, mid) ? 0 : uf.size(b, mid)) >= x)) {
+            if ((uf.size(mid, a) + (uf.same(mid, a, b) ? 0 : uf.size(mid, b)) >= x)) {
                 ok = mid;
             } else {
                 ng = mid;

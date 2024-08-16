@@ -10,7 +10,7 @@ private:
     std::vector<int> tim;
     int last_time;
     int internal_find(int x, int t) const {
-        int p = par.get(x, t);
+        int p = par.get(t, x);
         return p < 0 ? x : internal_find(p, t);
     }
 
@@ -19,34 +19,34 @@ public:
     PersistentUnionFind(int n)
         : n(n), par(std::vector<int>(n, -1)), tim(1, -1), last_time(0) {}
     int now() const { return last_time - 1; }
-    int find(int x, int t) const {
+    int find(int t, int x) const {
         assert(-1 <= t && t < last_time);
         assert(0 <= x && x < n);
         return internal_find(x, tim[t + 1]);
     }
-    int find_last(int x) const { return find(x, last_time - 1); }
-    std::pair<std::pair<int, int>, int> merge(int x, int y, int t) {
-        x = find(x, t);
-        y = find(y, t);
+    int find_last(int x) const { return find(last_time - 1, x); }
+    std::pair<std::pair<int, int>, int> merge(int t, int x, int y) {
+        x = find(t, x);
+        y = find(t, y);
         if (x == y) {
             tim.push_back((int)tim[t + 1]);
             return {{x, -1}, last_time++};
         }
-        int px = par.get(x, tim[t + 1]), py = par.get(y, tim[t + 1]);
+        int px = par.get(tim[t + 1], x), py = par.get(tim[t + 1], y);
         if (px > py) std::swap(x, y);
-        par.set(x, px + py, tim[t + 1]);
+        par.set(tim[t + 1], x, px + py);
         par.set_last(y, x);
         tim.push_back(par.now());
         return {{x, y}, last_time++};
     }
-    bool same(int x, int y, int t) const { return find(x, t) == find(y, t); }
-    bool same_last(int x, int y) const { return same(x, y, last_time - 1); }
-    int size(int x, int t) const { return -par.get(x, tim[t + 1]); }
-    int size_last(int x) const { return size(x, last_time - 1); }
+    bool same(int t, int x, int y) const { return find(t, x) == find(t, y); }
+    bool same_last(int x, int y) const { return same(last_time - 1, x, y); }
+    int size(int t, int x) const { return -par.get(tim[t + 1], x); }
+    int size_last(int x) const { return size(last_time - 1, x); }
     std::vector<std::vector<int>> groups(int t) const {
         assert(-1 <= t && t < last_time);
         std::vector<std::vector<int>> res(n);
-        rep (i, n) res[find(i, t)].push_back(i);
+        rep (i, n) res[find(t, i)].push_back(i);
         res.erase(
             remove_if(all(res),
                       [](const std::vector<int>& v) { return v.empty(); }),
@@ -56,12 +56,12 @@ public:
     std::vector<std::vector<int>> groups_last() const {
         return groups(last_time - 1);
     }
-    bool is_root(int x, int t) const {
+    bool is_root(int t, int x) const {
         assert(-1 <= t && t < last_time);
         assert(0 <= x && x < n);
-        return par.get(x, tim[t + 1]) < 0;
+        return par.get(tim[t + 1], x) < 0;
     }
-    bool is_root_last(int x) const { return is_root(x, last_time - 1); }
+    bool is_root_last(int x) const { return is_root(last_time - 1, x); }
 };
 
 /**

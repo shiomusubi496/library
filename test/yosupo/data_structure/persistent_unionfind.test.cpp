@@ -11,10 +11,10 @@ int main() {
     rep (i, q) {
         int t, tm, a, b; scan >> t >> tm >> a >> b;
         if (t == 0) {
-            A[i + 1] = uf.merge(a, b, A[tm + 1]).second;
+            A[i + 1] = uf.merge(A[tm + 1], a, b).second;
         }
         else {
-            print << uf.same(a, b, A[tm + 1]) << endl;
+            print << uf.same(A[tm + 1], a, b) << endl;
         }
     }
 }

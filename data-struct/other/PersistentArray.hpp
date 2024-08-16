@@ -60,7 +60,7 @@ public:
         last_time = 0;
     }
     int now() const { return last_time - 1; }
-    int set(int k, const T& x, int t) {
+    int set(int t, int k, const T& x) {
         assert(-1 <= t && t < last_time);
         assert(0 <= k && k < len[t + 1]);
         root.push_back(root[t + 1]);
@@ -68,8 +68,8 @@ public:
         len.push_back(len[t + 1]);
         return last_time++;
     }
-    int set_last(int k, const T& x) { return set(k, x, last_time - 1); }
-    int push_back(const T& x, int t) {
+    int set_last(int k, const T& x) { return set(last_time - 1, k, x); }
+    int push_back(int t, const T& x) {
         assert(-1 <= t && t < last_time);
         root.push_back(std::make_shared<node>(*root[t + 1]));
         push_back_dfs(root.back(), len[t + 1], x);
@@ -85,12 +85,12 @@ public:
         return last_time++;
     }
     int pop_back_last() { return pop_back(last_time - 1); }
-    T get(int k, int t) const {
+    T get(int t, int k) const {
         assert(-1 <= t && t < last_time);
         assert(0 <= k && k < len[t + 1]);
         return get_dfs(root[t + 1], k);
     }
-    T get_last(int k) const { return get(k, last_time - 1); }
+    T get_last(int k) const { return get(last_time - 1, k); }
     int size(int t) const {
         assert(-1 <= t && t < last_time);
         return len[t + 1];

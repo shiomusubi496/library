@@ -9,13 +9,13 @@ int main() {
         int a; scan >> a;
         if (a == 0) {
             int t, x; scan >> t >> x;
-            PA.push_back(x, t);
+            PA.push_back(t, x);
         }
         else {
             int t; scan >> t;
-            int frt = PA.get(0, t);
-            print << PA.get(frt + 1, t) << endl;
-            PA.set(0, frt + 1, t);
+            int frt = PA.get(t, 0);
+            print << PA.get(t, frt + 1) << endl;
+            PA.set(t, 0, frt + 1);
         }
     }
 }
