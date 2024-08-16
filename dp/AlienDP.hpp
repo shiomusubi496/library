@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../other/template.hpp"
-#include "OnlineOfflineDP.hpp"
+#include "SimpleLARSCH.hpp"
 #include "FibonacciSearch.hpp"
 
 // 下に凸な関数 f に対し、 g(p)=min_x(f(x)-px)
@@ -30,7 +30,8 @@ template<class F>
 function_result_type<F>
 k_edge_shortest_path(int n, int k, function_result_type<F> mx, F&& f) {
     return alien_dp_convex(-3 * mx, 3 * mx, k, [&](ll p) {
-        return online_offline_dp(n, [&](int i, int j) { return f(i, j) - p; });
+        return simple_larsch(n, [&](int i, int j) { return f(i, j) - p; })
+            .back();
     });
 }
 
