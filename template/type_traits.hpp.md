@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
   _extendedRequiredBy:
@@ -188,13 +188,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/wavelet/WaveletMatrixStruct.hpp
     title: data-struct/wavelet/WaveletMatrixStruct.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: dp/AlienDP.hpp
     title: AlienDP
   - icon: ':heavy_check_mark:'
     path: dp/DivideAndConquerOptimization.hpp
     title: Divide and Conquer Optimization
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: dp/FibonacciSearch.hpp
     title: FibonacciSearch
   - icon: ':heavy_check_mark:'
@@ -206,6 +206,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: dp/SMAWK.hpp
     title: SMAWK
+  - icon: ':x:'
+    path: dp/SimpleLARSCH.hpp
+    title: dp/SimpleLARSCH.hpp
   - icon: ':warning:'
     path: geometry/All.hpp
     title: geometry/All.hpp
@@ -230,7 +233,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geometry/template.hpp
     title: geometry/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':heavy_check_mark:'
@@ -240,7 +243,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/connected/ComplementConnectedComponents.hpp
     title: graph/connected/ComplementConnectedComponents.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/connected/ConnectedComponents.hpp
     title: "ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)"
   - icon: ':heavy_check_mark:'
@@ -283,6 +286,9 @@ data:
     path: graph/mst/Prim.hpp
     title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
   - icon: ':heavy_check_mark:'
+    path: graph/other/BipartiteEdgeColoring.hpp
+    title: graph/other/BipartiteEdgeColoring.hpp
+  - icon: ':x:'
     path: graph/other/BipartiteGraph.hpp
     title: "BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A)"
   - icon: ':heavy_check_mark:'
@@ -367,6 +373,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree/ReRooting.hpp
     title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
+  - icon: ':warning:'
+    path: graph/tree/StaticTopTree.hpp
+    title: graph/tree/StaticTopTree.hpp
   - icon: ':heavy_check_mark:'
     path: graph/tree/TreeCentroid.hpp
     title: "TreeCentroid(\u6728\u306E\u91CD\u5FC3)"
@@ -382,6 +391,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/BarrettReduction.hpp
     title: math/BarrettReduction.hpp
+  - icon: ':x:'
+    path: math/BigInteger.hpp
+    title: math/BigInteger.hpp
   - icon: ':heavy_check_mark:'
     path: math/ChineseRemainder.hpp
     title: "Chinese Remainder(\u4E2D\u56FD\u5270\u4F59\u5B9A\u7406)"
@@ -422,7 +434,7 @@ data:
     path: math/MillerRabin.hpp
     title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
       )"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
   - icon: ':heavy_check_mark:'
@@ -431,6 +443,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/MontmortNumber.hpp
     title: "MontmortNumber(\u652A\u4E71\u9806\u5217)"
+  - icon: ':heavy_check_mark:'
+    path: math/NimProduct.hpp
+    title: math/NimProduct.hpp
   - icon: ':heavy_check_mark:'
     path: math/PollardRho.hpp
     title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
@@ -446,6 +461,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/Rational.hpp
     title: "Rational(\u6709\u7406\u6570\u578B)"
+  - icon: ':warning:'
+    path: math/SmallModStirlingNumber.hpp
+    title: SmallModStirlingNumber
   - icon: ':heavy_check_mark:'
     path: math/SqrtMod.hpp
     title: "SqrtMod(\u5E73\u65B9\u5270\u4F59)"
@@ -471,7 +489,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/convolution/BitwiseXorConvolution.hpp
     title: BitwiseXorConvolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/convolution/Convolution.hpp
     title: "Convolution(\u7573\u307F\u8FBC\u307F)"
   - icon: ':heavy_check_mark:'
@@ -552,7 +570,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   - icon: ':heavy_check_mark:'
@@ -589,10 +607,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/ZAlgorithm.hpp
     title: Z-Algorithm
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
   _extendedVerifiedWith:
@@ -848,7 +866,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc176_f-DefaultMap.test.cpp
     title: test/atcoder/abc176_f-DefaultMap.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/atcoder/abc218_h-AlienDP.test.cpp
     title: test/atcoder/abc218_h-AlienDP.test.cpp
   - icon: ':heavy_check_mark:'
@@ -866,7 +884,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/arc070_c-SlopeTrick.test.cpp
     title: test/atcoder/arc070_c-SlopeTrick.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/atcoder/arc099_c-Bipartite.test.cpp
     title: test/atcoder/arc099_c-Bipartite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1062,6 +1080,9 @@ data:
     path: test/yosupo/graph/biconnected_components.test.cpp
     title: test/yosupo/graph/biconnected_components.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/graph/bipartite_edge_coloring.test.cpp
+    title: test/yosupo/graph/bipartite_edge_coloring.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/bipartitematching.test.cpp
     title: test/yosupo/graph/bipartitematching.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1127,6 +1148,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
     title: test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/new/addition_of_hex_big_integers.test.cpp
+    title: test/yosupo/new/addition_of_hex_big_integers.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/closest_pair.test.cpp
     title: test/yosupo/new/closest_pair.test.cpp
@@ -1142,12 +1166,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/counting_spanning_tree_undirected.test.cpp
     title: test/yosupo/new/counting_spanning_tree_undirected.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/new/division_of_hex_big_integers.test.cpp
+    title: test/yosupo/new/division_of_hex_big_integers.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/furthest_pair.test.cpp
     title: test/yosupo/new/furthest_pair.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/inverse_matrix_mod_2.test.cpp
     title: test/yosupo/new/inverse_matrix_mod_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/matrix_rank_mod_2.test.cpp
+    title: test/yosupo/new/matrix_rank_mod_2.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/new/multiplication_of_hex_big_integers.test.cpp
+    title: test/yosupo/new/multiplication_of_hex_big_integers.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/range_parallel_unionfind.test.cpp
     title: test/yosupo/new/range_parallel_unionfind.test.cpp
@@ -1157,6 +1190,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/static_convex_hull.test.cpp
     title: test/yosupo/new/static_convex_hull.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/unionfind_with_potential.test.cpp
+    title: test/yosupo/new/unionfind_with_potential.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/unionfind_with_potential_non_commutative_group.test.cpp
     title: test/yosupo/new/unionfind_with_potential_non_commutative_group.test.cpp
@@ -1187,6 +1223,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/min_of_mod_of_linear.test.cpp
     title: test/yosupo/number_theory/min_of_mod_of_linear.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/number_theory/nim_product_64.test.cpp
+    title: test/yosupo/number_theory/nim_product_64.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/primality_test.test.cpp
     title: test/yosupo/number_theory/primality_test.test.cpp
@@ -1391,9 +1430,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki/855_DynamicSegTree.test.cpp
     title: test/yuki/855_DynamicSegTree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"template/type_traits.hpp\"\n\n#line 2 \"template/macros.hpp\"\
@@ -1558,464 +1597,477 @@ data:
   isVerificationFile: false
   path: template/type_traits.hpp
   requiredBy:
-  - geometry/Line.hpp
-  - geometry/template.hpp
-  - geometry/Polygon.hpp
-  - geometry/Segment.hpp
-  - geometry/Point.hpp
-  - geometry/All.hpp
-  - geometry/Triangle.hpp
-  - geometry/Circle.hpp
-  - dp/SMAWK.hpp
-  - dp/DivideAndConquerOptimization.hpp
-  - dp/OnlineOfflineDP.hpp
-  - dp/MonotoneMinima.hpp
-  - dp/AlienDP.hpp
-  - dp/FibonacciSearch.hpp
-  - math/convolution/MultidimensionalConvolution.hpp
-  - math/convolution/BitwiseAndConvolution.hpp
-  - math/convolution/BitwiseOrConvolution.hpp
-  - math/convolution/SubsetConvolution.hpp
-  - math/convolution/RelaxedConvolution.hpp
-  - math/convolution/MultipleZetaMoebiusTransform.hpp
-  - math/convolution/SupersetZetaMoebiusTransform.hpp
-  - math/convolution/Convolution.hpp
-  - math/convolution/SubsetZetaMoebiusTransform.hpp
-  - math/convolution/HadamardTransform.hpp
-  - math/convolution/LcmConvolution.hpp
-  - math/convolution/MinPlusConvolution.hpp
-  - math/convolution/BitwiseXorConvolution.hpp
-  - math/convolution/GcdConvolution.hpp
-  - math/convolution/DivisorZetaMoebiusTransform.hpp
-  - math/Rational.hpp
-  - math/StirlingNumber.hpp
-  - math/SubsetSum.hpp
-  - math/Combinatorics.hpp
-  - math/ArbitraryModCombinatorics.hpp
-  - math/SternBrocotTree.hpp
-  - math/TetrationMod.hpp
-  - math/BarrettReduction.hpp
-  - math/MontmortNumber.hpp
-  - math/EnumerateQuotients.hpp
-  - math/LinearModMin.hpp
-  - math/ChineseRemainder.hpp
-  - math/MillerRabin.hpp
-  - math/PrimitiveRoot.hpp
-  - math/PollardRho.hpp
-  - math/GaussianInteger.hpp
-  - math/Divisor.hpp
-  - math/matrix/Inverse.hpp
-  - math/matrix/Determinant.hpp
-  - math/matrix/Matrix.hpp
-  - math/matrix/LinearEquations.hpp
-  - math/KthRoot.hpp
-  - math/ExpPolySum.hpp
-  - math/PrimeFactor.hpp
-  - math/PowEnumerate.hpp
-  - math/ModInt.hpp
-  - math/poly/BostanMori.hpp
-  - math/poly/TaylorShift.hpp
-  - math/poly/SamplingPointsShift.hpp
-  - math/poly/FormalPowerSeries.hpp
-  - math/poly/SparseFormalPowerSeries.hpp
-  - math/poly/MultipointEvaluation.hpp
-  - math/poly/PolynomialInterpolation.hpp
-  - math/EulerPhi.hpp
-  - math/SqrtMod.hpp
-  - math/FloorSum.hpp
-  - math/DiscreteLogarithm.hpp
-  - math/MontgomeryModInt.hpp
-  - math/Factorial.hpp
+  - string/LongestIncreasingSubsequence.hpp
   - string/SuffixArray.hpp
-  - string/RollingHash.hpp
-  - string/LCPArray.hpp
+  - string/WildcardPatternMatching.hpp
   - string/ZAlgorithm.hpp
-  - string/RunLength.hpp
   - string/Manacher.hpp
   - string/LyndonFactorization.hpp
-  - string/LongestIncreasingSubsequence.hpp
-  - string/WildcardPatternMatching.hpp
-  - data-struct/unionfind/DynamicUnionFind.hpp
-  - data-struct/unionfind/UnionFindUndo.hpp
-  - data-struct/unionfind/PersistentUnionFind.hpp
-  - data-struct/unionfind/RangeParallelUnionFind.hpp
-  - data-struct/unionfind/UnionFind.hpp
-  - data-struct/unionfind/EnumerateUnionFind.hpp
-  - data-struct/unionfind/PartialPersistentUnionFind.hpp
-  - data-struct/unionfind/WeightedUnionFind.hpp
-  - data-struct/wavelet/WaveletMatrixStruct.hpp
-  - data-struct/wavelet/WaveletMatrix.hpp
-  - data-struct/wavelet/CumulativeSumWM.hpp
-  - data-struct/wavelet/SegmentTreeWM.hpp
-  - data-struct/wavelet/FullyIndexableDictionary.hpp
-  - data-struct/bst/SplayTree.hpp
-  - data-struct/heap/IntervalHeap.hpp
-  - data-struct/heap/LeftistHeap.hpp
-  - data-struct/heap/SkewHeap.hpp
-  - data-struct/heap/ErasableHeap.hpp
-  - data-struct/other/SkipList.hpp
-  - data-struct/other/PartialPersistentArray.hpp
-  - data-struct/other/SlidingWindowAggregation.hpp
-  - data-struct/other/BinaryTrie.hpp
-  - data-struct/other/DequeOperateAggregation.hpp
-  - data-struct/other/SlopeTrick.hpp
-  - data-struct/other/MaxRectangle.hpp
-  - data-struct/other/PersistentArray.hpp
-  - data-struct/other/DefaultMap.hpp
-  - data-struct/other/Mo.hpp
-  - data-struct/other/RangeSet.hpp
-  - data-struct/cht/LiChaoTree.hpp
-  - data-struct/cht/ConvexHullTrickAddMonotone.hpp
-  - data-struct/cht/ConvexHullTrick.hpp
-  - data-struct/segment/BinaryIndexedTree.hpp
-  - data-struct/segment/DynamicLazySegmentTree.hpp
-  - data-struct/segment/StaticRangeCountDistinct.hpp
-  - data-struct/segment/StarrySkyTree.hpp
-  - data-struct/segment/NonMergeSegmentTree.hpp
-  - data-struct/segment/LCARMQ.hpp
-  - data-struct/segment/PlusMinusOneRMQ.hpp
-  - data-struct/segment/RAQBIT.hpp
-  - data-struct/segment/SegmentTreeBeats.hpp
-  - data-struct/segment/LinearRMQ.hpp
-  - data-struct/segment/RangeAssignSegmentTree.hpp
-  - data-struct/segment/CumulativeSum.hpp
-  - data-struct/segment/LazySegmentTree.hpp
-  - data-struct/segment/DisjointSparseTable.hpp
-  - data-struct/segment/DynamicSegmentTree.hpp
-  - data-struct/segment/SparseTable.hpp
-  - data-struct/segment/RangeSortQuery.hpp
-  - data-struct/segment/SegmentTree.hpp
-  - data-struct/segment/DualSegmentTree.hpp
-  - data-struct/segment/SqrtDecomposition.hpp
-  - data-struct/segment/StaticRangeMode.hpp
-  - data-struct/segment/StaticRangeFrequency.hpp
-  - data-struct/2D/AreaofUnionofRectangles.hpp
-  - data-struct/2D/DualSegmentTree2D.hpp
-  - data-struct/2D/SegmentTree2D.hpp
-  - data-struct/2D/StaticRectangleAddRectangleSum.hpp
-  - data-struct/2D/CumulativeSum2D.hpp
-  - data-struct/2D/Struct2D.hpp
+  - string/RollingHash.hpp
+  - string/RunLength.hpp
+  - string/LCPArray.hpp
+  - template/out.hpp
+  - template/in.hpp
+  - random/Random.hpp
+  - random/Timer.hpp
+  - graph/tree/EulerTour.hpp
+  - graph/tree/HeavyLightDecomposition.hpp
+  - graph/tree/StaticTopTree.hpp
+  - graph/tree/CartesianTree.hpp
+  - graph/tree/DoublingLowestCommonAncestor.hpp
+  - graph/tree/FrequencyTableofTreeDistance.hpp
+  - graph/tree/PMORMQLCA.hpp
+  - graph/tree/TreeDiameter.hpp
+  - graph/tree/PermutationTree.hpp
+  - graph/tree/EulerTourSubtree.hpp
+  - graph/tree/ContourQuery.hpp
+  - graph/tree/TreeCentroid.hpp
+  - graph/tree/TreeHash.hpp
+  - graph/tree/ReRooting.hpp
+  - graph/mst/Kruskal.hpp
+  - graph/mst/DirectedMST.hpp
+  - graph/mst/Prim.hpp
+  - graph/mst/CountSpanningTree.hpp
+  - graph/mst/ManhattanMST.hpp
+  - graph/Graph.hpp
+  - graph/flow/MaxFlow.hpp
+  - graph/flow/KProjectSelectionProblem.hpp
+  - graph/flow/ProjectSelectionProblem.hpp
+  - graph/flow/AssignmentProblem.hpp
+  - graph/connected/ThreeEdgeConnectedComponents.hpp
+  - graph/connected/ComplementConnectedComponents.hpp
+  - graph/connected/BiConnectedComponents.hpp
+  - graph/connected/StronglyConnectedComponents.hpp
+  - graph/connected/TwoEdgeConnectedComponents.hpp
+  - graph/connected/ConnectedComponents.hpp
+  - graph/other/MaximumIndependentSet.hpp
+  - graph/other/GraphCycle.hpp
+  - graph/other/ChromaticNumber.hpp
+  - graph/other/EnumerateTriangles.hpp
+  - graph/other/CountEulerianCircuit.hpp
+  - graph/other/TopologicalSort.hpp
+  - graph/other/LowLink.hpp
+  - graph/other/EulerianTrail.hpp
+  - graph/other/BipartiteGraph.hpp
+  - graph/other/EnumerateCliques.hpp
+  - graph/other/BipartiteEdgeColoring.hpp
+  - graph/other/TwoSatisfiability.hpp
+  - graph/shortest-path/BellmanFord.hpp
+  - graph/shortest-path/Dijkstra.hpp
+  - graph/shortest-path/BreadthFirstSearch.hpp
+  - graph/shortest-path/Restore.hpp
+  - graph/shortest-path/WarshallFloyd.hpp
+  - graph/shortest-path/ZeroOneBFS.hpp
+  - dp/AlienDP.hpp
+  - dp/MonotoneMinima.hpp
+  - dp/FibonacciSearch.hpp
+  - dp/SimpleLARSCH.hpp
+  - dp/OnlineOfflineDP.hpp
+  - dp/DivideAndConquerOptimization.hpp
+  - dp/SMAWK.hpp
+  - math/MontmortNumber.hpp
+  - math/MontgomeryModInt.hpp
+  - math/convolution/SupersetZetaMoebiusTransform.hpp
+  - math/convolution/LcmConvolution.hpp
+  - math/convolution/Convolution.hpp
+  - math/convolution/DivisorZetaMoebiusTransform.hpp
+  - math/convolution/BitwiseXorConvolution.hpp
+  - math/convolution/GcdConvolution.hpp
+  - math/convolution/RelaxedConvolution.hpp
+  - math/convolution/BitwiseAndConvolution.hpp
+  - math/convolution/SubsetConvolution.hpp
+  - math/convolution/HadamardTransform.hpp
+  - math/convolution/BitwiseOrConvolution.hpp
+  - math/convolution/MinPlusConvolution.hpp
+  - math/convolution/SubsetZetaMoebiusTransform.hpp
+  - math/convolution/MultipleZetaMoebiusTransform.hpp
+  - math/convolution/MultidimensionalConvolution.hpp
+  - math/SmallModStirlingNumber.hpp
+  - math/FloorSum.hpp
+  - math/PollardRho.hpp
+  - math/Divisor.hpp
+  - math/SqrtMod.hpp
+  - math/ExpPolySum.hpp
+  - math/Factorial.hpp
+  - math/ArbitraryModCombinatorics.hpp
+  - math/EnumerateQuotients.hpp
+  - math/ModInt.hpp
+  - math/ChineseRemainder.hpp
+  - math/KthRoot.hpp
+  - math/SternBrocotTree.hpp
+  - math/Rational.hpp
+  - math/poly/SamplingPointsShift.hpp
+  - math/poly/PolynomialInterpolation.hpp
+  - math/poly/SparseFormalPowerSeries.hpp
+  - math/poly/BostanMori.hpp
+  - math/poly/TaylorShift.hpp
+  - math/poly/FormalPowerSeries.hpp
+  - math/poly/MultipointEvaluation.hpp
+  - math/PrimeFactor.hpp
+  - math/MillerRabin.hpp
+  - math/TetrationMod.hpp
+  - math/LinearModMin.hpp
+  - math/PowEnumerate.hpp
+  - math/GaussianInteger.hpp
+  - math/BigInteger.hpp
+  - math/SubsetSum.hpp
+  - math/BarrettReduction.hpp
+  - math/StirlingNumber.hpp
+  - math/DiscreteLogarithm.hpp
+  - math/Combinatorics.hpp
+  - math/EulerPhi.hpp
+  - math/matrix/Determinant.hpp
+  - math/matrix/Inverse.hpp
+  - math/matrix/Matrix.hpp
+  - math/matrix/LinearEquations.hpp
+  - math/NimProduct.hpp
+  - math/PrimitiveRoot.hpp
   - other/template.hpp
   - other/monoid2.hpp
   - other/monoid.hpp
-  - graph/shortest-path/Dijkstra.hpp
-  - graph/shortest-path/WarshallFloyd.hpp
-  - graph/shortest-path/BreadthFirstSearch.hpp
-  - graph/shortest-path/Restore.hpp
-  - graph/shortest-path/BellmanFord.hpp
-  - graph/shortest-path/ZeroOneBFS.hpp
-  - graph/Graph.hpp
-  - graph/mst/CountSpanningTree.hpp
-  - graph/mst/DirectedMST.hpp
-  - graph/mst/Kruskal.hpp
-  - graph/mst/Prim.hpp
-  - graph/mst/ManhattanMST.hpp
-  - graph/tree/EulerTour.hpp
-  - graph/tree/ContourQuery.hpp
-  - graph/tree/HeavyLightDecomposition.hpp
-  - graph/tree/FrequencyTableofTreeDistance.hpp
-  - graph/tree/EulerTourSubtree.hpp
-  - graph/tree/PMORMQLCA.hpp
-  - graph/tree/TreeCentroid.hpp
-  - graph/tree/PermutationTree.hpp
-  - graph/tree/ReRooting.hpp
-  - graph/tree/TreeHash.hpp
-  - graph/tree/TreeDiameter.hpp
-  - graph/tree/CartesianTree.hpp
-  - graph/tree/DoublingLowestCommonAncestor.hpp
-  - graph/other/EnumerateCliques.hpp
-  - graph/other/BipartiteGraph.hpp
-  - graph/other/MaximumIndependentSet.hpp
-  - graph/other/EulerianTrail.hpp
-  - graph/other/EnumerateTriangles.hpp
-  - graph/other/ChromaticNumber.hpp
-  - graph/other/TopologicalSort.hpp
-  - graph/other/TwoSatisfiability.hpp
-  - graph/other/LowLink.hpp
-  - graph/other/GraphCycle.hpp
-  - graph/other/CountEulerianCircuit.hpp
-  - graph/flow/ProjectSelectionProblem.hpp
-  - graph/flow/KProjectSelectionProblem.hpp
-  - graph/flow/AssignmentProblem.hpp
-  - graph/flow/MaxFlow.hpp
-  - graph/connected/StronglyConnectedComponents.hpp
-  - graph/connected/BiConnectedComponents.hpp
-  - graph/connected/TwoEdgeConnectedComponents.hpp
-  - graph/connected/ComplementConnectedComponents.hpp
-  - graph/connected/ThreeEdgeConnectedComponents.hpp
-  - graph/connected/ConnectedComponents.hpp
-  - random/Timer.hpp
-  - random/Random.hpp
-  - template/in.hpp
-  - template/out.hpp
+  - data-struct/bst/SplayTree.hpp
+  - data-struct/wavelet/WaveletMatrixStruct.hpp
+  - data-struct/wavelet/CumulativeSumWM.hpp
+  - data-struct/wavelet/FullyIndexableDictionary.hpp
+  - data-struct/wavelet/WaveletMatrix.hpp
+  - data-struct/wavelet/SegmentTreeWM.hpp
+  - data-struct/2D/StaticRectangleAddRectangleSum.hpp
+  - data-struct/2D/SegmentTree2D.hpp
+  - data-struct/2D/AreaofUnionofRectangles.hpp
+  - data-struct/2D/Struct2D.hpp
+  - data-struct/2D/CumulativeSum2D.hpp
+  - data-struct/2D/DualSegmentTree2D.hpp
+  - data-struct/heap/LeftistHeap.hpp
+  - data-struct/heap/IntervalHeap.hpp
+  - data-struct/heap/SkewHeap.hpp
+  - data-struct/heap/ErasableHeap.hpp
+  - data-struct/other/SlidingWindowAggregation.hpp
+  - data-struct/other/RangeSet.hpp
+  - data-struct/other/DequeOperateAggregation.hpp
+  - data-struct/other/Mo.hpp
+  - data-struct/other/SlopeTrick.hpp
+  - data-struct/other/PartialPersistentArray.hpp
+  - data-struct/other/DefaultMap.hpp
+  - data-struct/other/BinaryTrie.hpp
+  - data-struct/other/PersistentArray.hpp
+  - data-struct/other/SkipList.hpp
+  - data-struct/other/MaxRectangle.hpp
+  - data-struct/unionfind/PersistentUnionFind.hpp
+  - data-struct/unionfind/UnionFind.hpp
+  - data-struct/unionfind/PartialPersistentUnionFind.hpp
+  - data-struct/unionfind/WeightedUnionFind.hpp
+  - data-struct/unionfind/UnionFindUndo.hpp
+  - data-struct/unionfind/RangeParallelUnionFind.hpp
+  - data-struct/unionfind/DynamicUnionFind.hpp
+  - data-struct/unionfind/EnumerateUnionFind.hpp
+  - data-struct/cht/ConvexHullTrickAddMonotone.hpp
+  - data-struct/cht/ConvexHullTrick.hpp
+  - data-struct/cht/LiChaoTree.hpp
+  - data-struct/segment/BinaryIndexedTree.hpp
+  - data-struct/segment/SegmentTree.hpp
+  - data-struct/segment/DynamicSegmentTree.hpp
+  - data-struct/segment/NonMergeSegmentTree.hpp
+  - data-struct/segment/DualSegmentTree.hpp
+  - data-struct/segment/DynamicLazySegmentTree.hpp
+  - data-struct/segment/StarrySkyTree.hpp
+  - data-struct/segment/SegmentTreeBeats.hpp
+  - data-struct/segment/CumulativeSum.hpp
+  - data-struct/segment/DisjointSparseTable.hpp
+  - data-struct/segment/LazySegmentTree.hpp
+  - data-struct/segment/RAQBIT.hpp
+  - data-struct/segment/PlusMinusOneRMQ.hpp
+  - data-struct/segment/SqrtDecomposition.hpp
+  - data-struct/segment/SparseTable.hpp
+  - data-struct/segment/RangeAssignSegmentTree.hpp
+  - data-struct/segment/StaticRangeFrequency.hpp
+  - data-struct/segment/LCARMQ.hpp
+  - data-struct/segment/StaticRangeMode.hpp
+  - data-struct/segment/LinearRMQ.hpp
+  - data-struct/segment/StaticRangeCountDistinct.hpp
+  - data-struct/segment/RangeSortQuery.hpp
+  - geometry/template.hpp
+  - geometry/Point.hpp
+  - geometry/All.hpp
+  - geometry/Triangle.hpp
+  - geometry/Segment.hpp
+  - geometry/Polygon.hpp
+  - geometry/Line.hpp
+  - geometry/Circle.hpp
   timestamp: '2024-05-12 00:53:40+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/atcoder/abc218_h-AlienDP.test.cpp
+  - test/atcoder/arc070_c-SlopeTrick.test.cpp
+  - test/atcoder/abc265_c-Timer.test.cpp
+  - test/atcoder/arc099_c-Bipartite.test.cpp
+  - test/atcoder/agc002_d-PartialPersistentArray.test.cpp
+  - test/atcoder/abc176_f-DefaultMap.test.cpp
+  - test/atcoder/abc349_g-RangeUF.test.cpp
+  - test/atcoder/agc002_d-PartialPersistentUF.test.cpp
+  - test/yuki/855_DynamicSegTree.test.cpp
+  - test/yuki/447-CRT.test.cpp
   - test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
-  - test/yuki/1601-RangeSet.test.cpp
-  - test/yuki/119-KPSP.test.cpp
+  - test/yuki/448-Garner.test.cpp
   - test/yuki/705-Monge.test.cpp
   - test/yuki/1435_SegTree-BinarySearch.test.cpp
-  - test/yuki/447-CRT.test.cpp
-  - test/yuki/855_DynamicSegTree.test.cpp
   - test/yuki/3030-MRPrime.test.cpp
-  - test/yuki/448-Garner.test.cpp
+  - test/yuki/1601-RangeSet.test.cpp
   - test/yuki/2713-PSP.test.cpp
+  - test/yuki/119-KPSP.test.cpp
   - test/yuki/1469-RunLength.test.cpp
-  - test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
-  - test/aoj/GRL/GRL_3_B-LowLink.test.cpp
-  - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-  - test/aoj/GRL/GRL_3_A-LowLink.test.cpp
-  - test/aoj/GRL/GRL_2_A-Prim.test.cpp
-  - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
-  - test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
-  - test/aoj/GRL/GRL_4_A-Cycle.test.cpp
-  - test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
-  - test/aoj/GRL/GRL_3_C-SCC.test.cpp
-  - test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
-  - test/aoj/GRL/GRL_5_A-Diameter.test.cpp
-  - test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
-  - test/aoj/GRL/GRL_4_B-Toposo.test.cpp
-  - test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
-  - test/aoj/GRL/GRL_5_E-HLD.test.cpp
-  - test/aoj/GRL/GRL_5_C-LCA.test.cpp
-  - test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
-  - test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
-  - test/aoj/DSL/DSL_2_D-RUQ.test.cpp
-  - test/aoj/DSL/DSL_2_A-RMQ.test.cpp
-  - test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
-  - test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
-  - test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
-  - test/aoj/DSL/DSL_2_B-BIT.test.cpp
-  - test/aoj/DSL/DSL_2_B-RSQ.test.cpp
-  - test/aoj/DSL/DSL_2_E-RAQ.test.cpp
-  - test/aoj/DSL/DSL_1_A-UF.test.cpp
-  - test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
-  - test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
-  - test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
-  - test/aoj/ALDS1/ALDS1_1_C-PrimeSqrt.test.cpp
-  - test/aoj/ALDS1/ALDS1_1_B-GCD.test.cpp
-  - test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp
-  - test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
-  - test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
-  - test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
-  - test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
   - test/aoj/ALDS1/ALDS1_15_B.test.cpp
-  - test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
   - test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp
-  - test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
+  - test/aoj/ALDS1/ALDS1_1_B-GCD.test.cpp
+  - test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
+  - test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
+  - test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
+  - test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
   - test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp
-  - test/aoj/NTL/NTL_1_C-LCM.test.cpp
-  - test/aoj/NTL/NTL_1_E-ExtGCD.test.cpp
-  - test/aoj/NTL/NTL_1_B-Pow.test.cpp
-  - test/aoj/NTL/NTL_1_A-Prime.test.cpp
-  - test/aoj/NTL/NTL_1_D-Phi.test.cpp
-  - test/aoj/CGL/CGL_7_F-tangent.test.cpp
-  - test/aoj/CGL/CGL_7_D-intersection.test.cpp
-  - test/aoj/CGL/CGL_7_E-intersection.test.cpp
-  - test/aoj/CGL/CGL_7_A-intersect.test.cpp
-  - test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
-  - test/aoj/CGL/CGL_5_A-closest.test.cpp
-  - test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
-  - test/aoj/CGL/CGL_2_B-intersect.test.cpp
-  - test/aoj/CGL/CGL_4_C-cut.test.cpp
-  - test/aoj/CGL/CGL_7_B-incenter.test.cpp
-  - test/aoj/CGL/CGL_2_A-parallel-orthogonal.test.cpp
-  - test/aoj/CGL/CGL_3_C-contain.test.cpp
-  - test/aoj/CGL/CGL_3_B-isconvex.test.cpp
-  - test/aoj/CGL/CGL_4_B-diameter.test.cpp
-  - test/aoj/CGL/CGL_1_C-ccw.test.cpp
-  - test/aoj/CGL/CGL_3_A-area.test.cpp
-  - test/aoj/CGL/CGL_7_C-circumcenter.test.cpp
-  - test/aoj/CGL/CGL_2_D-distance.test.cpp
-  - test/aoj/CGL/CGL_1_A-projection.test.cpp
-  - test/aoj/CGL/CGL_1_B-reflection.test.cpp
-  - test/aoj/CGL/CGL_2_C-intersection.test.cpp
-  - test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp
-  - test/aoj/other/2603-SMAWK.test.cpp
-  - test/aoj/other/1208-SternBrocotTree.test.cpp
-  - test/aoj/other/2945-01BFS.test.cpp
-  - test/aoj/other/2725-CHT.test.cpp
+  - test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
+  - test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
+  - test/aoj/ALDS1/ALDS1_1_C-PrimeSqrt.test.cpp
+  - test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp
+  - test/aoj/GRL/GRL_4_B-Toposo.test.cpp
+  - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
+  - test/aoj/GRL/GRL_3_C-SCC.test.cpp
+  - test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
+  - test/aoj/GRL/GRL_4_A-Cycle.test.cpp
+  - test/aoj/GRL/GRL_5_C-LCA.test.cpp
+  - test/aoj/GRL/GRL_5_A-Diameter.test.cpp
+  - test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
+  - test/aoj/GRL/GRL_3_B-LowLink.test.cpp
+  - test/aoj/GRL/GRL_3_A-LowLink.test.cpp
+  - test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
+  - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
+  - test/aoj/GRL/GRL_5_E-HLD.test.cpp
+  - test/aoj/GRL/GRL_2_A-Prim.test.cpp
+  - test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
+  - test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
+  - test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
+  - test/aoj/DPL/DPL_5_D.test.cpp
+  - test/aoj/DPL/DPL_5_F.test.cpp
+  - test/aoj/DPL/DPL_5_B.test.cpp
+  - test/aoj/DPL/DPL_3_C.test.cpp
+  - test/aoj/DPL/DPL_3_B.test.cpp
+  - test/aoj/DPL/DPL_5_G.test.cpp
+  - test/aoj/DPL/DPL_5_A.test.cpp
   - test/aoj/DPL/DPL_5_C.test.cpp
   - test/aoj/DPL/DPL_5_E.test.cpp
-  - test/aoj/DPL/DPL_5_D.test.cpp
-  - test/aoj/DPL/DPL_5_G.test.cpp
-  - test/aoj/DPL/DPL_5_B.test.cpp
-  - test/aoj/DPL/DPL_5_F.test.cpp
-  - test/aoj/DPL/DPL_3_B.test.cpp
-  - test/aoj/DPL/DPL_5_A.test.cpp
-  - test/aoj/DPL/DPL_3_C.test.cpp
-  - test/yosupo/convolution/convolution_mod.test.cpp
-  - test/yosupo/convolution/multivariate_convolution.test.cpp
-  - test/yosupo/convolution/subset_convolution.test.cpp
-  - test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
-  - test/yosupo/convolution/convolution_mod_1000000007.test.cpp
-  - test/yosupo/convolution/bitwise_xor_convolution.test.cpp
-  - test/yosupo/convolution/lcm_convolution.test.cpp
-  - test/yosupo/convolution/bitwise_and_convolution.test.cpp
-  - test/yosupo/convolution/min_plus_convolution_convex_arbitrary.test.cpp
-  - test/yosupo/convolution/gcd_convolution.test.cpp
-  - test/yosupo/geometry/sort_points_by_argument.test.cpp
-  - test/yosupo/linear_algebra/pow_of_matrix.test.cpp
-  - test/yosupo/linear_algebra/matrix_det_mod_2.test.cpp
-  - test/yosupo/linear_algebra/inverse_matrix.test.cpp
-  - test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
-  - test/yosupo/linear_algebra/matrix_det.test.cpp
-  - test/yosupo/linear_algebra/matrix_product.test.cpp
-  - test/yosupo/linear_algebra/matrix_product_mod_2.test.cpp
-  - test/yosupo/linear_algebra/matrix_det_arbitrary_mod.test.cpp
-  - test/yosupo/linear_algebra/matrix_rank.test.cpp
-  - test/yosupo/new/wildcard_pattern_matching.test.cpp
-  - test/yosupo/new/connected_components_of_complement_graph.test.cpp
-  - test/yosupo/new/counting_eulerian_circuits.test.cpp
-  - test/yosupo/new/counting_spanning_tree_directed.test.cpp
-  - test/yosupo/new/furthest_pair.test.cpp
-  - test/yosupo/new/counting_spanning_tree_undirected.test.cpp
-  - test/yosupo/new/unionfind_with_potential_non_commutative_group.test.cpp
-  - test/yosupo/new/closest_pair.test.cpp
-  - test/yosupo/new/static_convex_hull.test.cpp
-  - test/yosupo/new/rational_approximation.test.cpp
-  - test/yosupo/new/range_parallel_unionfind.test.cpp
-  - test/yosupo/new/inverse_matrix_mod_2.test.cpp
-  - test/yosupo/polynomial/composition_of_formal_power_series.test.cpp
-  - test/yosupo/polynomial/exp_of_formal_power_series_sparse.test.cpp
-  - test/yosupo/polynomial/pow_of_formal_power_series_sparse.test.cpp
-  - test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
-  - test/yosupo/polynomial/compositional_inverse_of_formal_power_series.test.cpp
-  - test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
-  - test/yosupo/polynomial/multipoint_evaluation_on_geometric_sequence.test.cpp
-  - test/yosupo/polynomial/log_of_formal_power_series_sparse.test.cpp
-  - test/yosupo/polynomial/multipoint_evaluation.test.cpp
-  - test/yosupo/polynomial/inv_of_formal_power_series.test.cpp
-  - test/yosupo/polynomial/polynomial_interpolation_on_geometric_sequence.test.cpp
-  - test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-  - test/yosupo/polynomial/exp_of_formal_power_series-RelaxedConvolution.test.cpp
-  - test/yosupo/polynomial/exp_of_formal_power_series.test.cpp
-  - test/yosupo/polynomial/division_of_polynomials.test.cpp
-  - test/yosupo/polynomial/polynomial_interpolation.test.cpp
-  - test/yosupo/polynomial/inv_of_formal_power_series_sparse.test.cpp
-  - test/yosupo/polynomial/log_of_formal_power_series.test.cpp
-  - test/yosupo/polynomial/product_of_polynomial_sequence.test.cpp
-  - test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp
-  - test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
-  - test/yosupo/data_structure/unionfind-Dynamic.test.cpp
-  - test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
-  - test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
-  - test/yosupo/data_structure/point_set_range_composite.test.cpp
-  - test/yosupo/data_structure/static_range_inversions_query.test.cpp
-  - test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
-  - test/yosupo/data_structure/staticrmq-LinearRMQ.test.cpp
-  - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
-  - test/yosupo/data_structure/set_xor_min.test.cpp
-  - test/yosupo/data_structure/range_affine_point_get.test.cpp
-  - test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
-  - test/yosupo/data_structure/point_add_range_sum.test.cpp
-  - test/yosupo/data_structure/static_range_mode_query.test.cpp
-  - test/yosupo/data_structure/unionfind.test.cpp
-  - test/yosupo/data_structure/double_ended_priority_queue.test.cpp
-  - test/yosupo/data_structure/static_range_frequency.test.cpp
-  - test/yosupo/data_structure/range_kth_smallest-sqrt.test.cpp
-  - test/yosupo/data_structure/static_range_sum-CumulativeSum.test.cpp
-  - test/yosupo/data_structure/static_range_sum-DisjointSparseTable.test.cpp
-  - test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
-  - test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp
-  - test/yosupo/data_structure/persistent_unionfind.test.cpp
-  - test/yosupo/data_structure/range_affine_range_sum.test.cpp
-  - test/yosupo/data_structure/line_add_get_min.test.cpp
-  - test/yosupo/data_structure/static_range_count_distinct.test.cpp
-  - test/yosupo/data_structure/range_kth_smallest-seg.test.cpp
-  - test/yosupo/data_structure/persistent_queue-Array.test.cpp
-  - test/yosupo/data_structure/staticrmq-SparseTable.test.cpp
-  - test/yosupo/data_structure/rectangle_sum-2DCum.test.cpp
-  - test/yosupo/data_structure/deque_operate_all_composite.test.cpp
-  - test/yosupo/data_structure/point_add_rectangle_sum-2DSegTree.test.cpp
-  - test/yosupo/data_structure/queue_operate_all_composite.test.cpp
-  - test/yosupo/data_structure/range_chmin_chmax_add_range_sum.test.cpp
-  - test/yosupo/data_structure/rectangle_add_point_get.test.cpp
-  - test/yosupo/data_structure/range_reverse_range_sum.test.cpp
-  - test/yosupo/data_structure/rectangle_sum-WM.test.cpp
-  - test/yosupo/data_structure/point_add_rectangle_sum-WM.test.cpp
-  - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SplayTree.test.cpp
-  - test/yosupo/data_structure/range_set_range_composite.test.cpp
-  - test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
-  - test/yosupo/data_structure/segment_add_get_min.test.cpp
-  - test/yosupo/string/lyndon_factorization.test.cpp
-  - test/yosupo/string/suffixarray.test.cpp
-  - test/yosupo/string/number_of_substrings.test.cpp
-  - test/yosupo/string/enumerate_palindromes.test.cpp
-  - test/yosupo/string/zalgorithm.test.cpp
-  - test/yosupo/enumerative_combinatorics/factorial.test.cpp
-  - test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind_fixed_k.test.cpp
-  - test/yosupo/enumerative_combinatorics/binomial_coefficient.test.cpp
-  - test/yosupo/enumerative_combinatorics/binomial_coefficient_prime_mod.test.cpp
-  - test/yosupo/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
-  - test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
-  - test/yosupo/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
-  - test/yosupo/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
-  - test/yosupo/enumerative_combinatorics/montmort_number_mod.test.cpp
-  - test/yosupo/enumerative_combinatorics/partition_function.test.cpp
-  - test/yosupo/tree/vertex_add_subtree_sum.test.cpp
-  - test/yosupo/tree/vertex_get_range_contour_add_on_tree.test.cpp
-  - test/yosupo/tree/vertex_add_range_contour_sum_on_tree.test.cpp
-  - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
-  - test/yosupo/tree/vertex_set_path_composite.test.cpp
-  - test/yosupo/tree/jump_on_tree.test.cpp
-  - test/yosupo/tree/cartesian_tree.test.cpp
-  - test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
-  - test/yosupo/tree/vertex_set_path_composite-HLD.test.cpp
-  - test/yosupo/tree/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
+  - test/aoj/CGL/CGL_1_B-reflection.test.cpp
+  - test/aoj/CGL/CGL_3_B-isconvex.test.cpp
+  - test/aoj/CGL/CGL_1_A-projection.test.cpp
+  - test/aoj/CGL/CGL_2_B-intersect.test.cpp
+  - test/aoj/CGL/CGL_7_C-circumcenter.test.cpp
+  - test/aoj/CGL/CGL_7_B-incenter.test.cpp
+  - test/aoj/CGL/CGL_7_E-intersection.test.cpp
+  - test/aoj/CGL/CGL_2_C-intersection.test.cpp
+  - test/aoj/CGL/CGL_4_C-cut.test.cpp
+  - test/aoj/CGL/CGL_4_B-diameter.test.cpp
+  - test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
+  - test/aoj/CGL/CGL_1_C-ccw.test.cpp
+  - test/aoj/CGL/CGL_2_A-parallel-orthogonal.test.cpp
+  - test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
+  - test/aoj/CGL/CGL_5_A-closest.test.cpp
+  - test/aoj/CGL/CGL_2_D-distance.test.cpp
+  - test/aoj/CGL/CGL_7_A-intersect.test.cpp
+  - test/aoj/CGL/CGL_7_D-intersection.test.cpp
+  - test/aoj/CGL/CGL_3_C-contain.test.cpp
+  - test/aoj/CGL/CGL_7_F-tangent.test.cpp
+  - test/aoj/CGL/CGL_3_A-area.test.cpp
+  - test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp
+  - test/aoj/other/1208-SternBrocotTree.test.cpp
+  - test/aoj/other/2725-CHT.test.cpp
+  - test/aoj/other/2945-01BFS.test.cpp
+  - test/aoj/other/2603-SMAWK.test.cpp
+  - test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
+  - test/aoj/DSL/DSL_2_E-RAQ.test.cpp
+  - test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
+  - test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
+  - test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
+  - test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
+  - test/aoj/DSL/DSL_1_A-UF.test.cpp
+  - test/aoj/DSL/DSL_2_A-RMQ.test.cpp
+  - test/aoj/DSL/DSL_2_D-RUQ.test.cpp
+  - test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
+  - test/aoj/DSL/DSL_2_B-RSQ.test.cpp
+  - test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
+  - test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
+  - test/aoj/DSL/DSL_2_B-BIT.test.cpp
+  - test/aoj/NTL/NTL_1_D-Phi.test.cpp
+  - test/aoj/NTL/NTL_1_E-ExtGCD.test.cpp
+  - test/aoj/NTL/NTL_1_B-Pow.test.cpp
+  - test/aoj/NTL/NTL_1_C-LCM.test.cpp
+  - test/aoj/NTL/NTL_1_A-Prime.test.cpp
   - test/yosupo/tree/tree_path_composite_sum.test.cpp
+  - test/yosupo/tree/vertex_set_path_composite.test.cpp
+  - test/yosupo/tree/vertex_add_path_sum.test.cpp
+  - test/yosupo/tree/vertex_add_range_contour_sum_on_tree.test.cpp
+  - test/yosupo/tree/jump_on_tree.test.cpp
+  - test/yosupo/tree/vertex_add_subtree_sum-2.test.cpp
+  - test/yosupo/tree/vertex_get_range_contour_add_on_tree.test.cpp
+  - test/yosupo/tree/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
+  - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
+  - test/yosupo/tree/vertex_set_path_composite-HLD.test.cpp
   - test/yosupo/tree/tree_diameter.test.cpp
   - test/yosupo/tree/lca-HLD.test.cpp
+  - test/yosupo/tree/vertex_add_subtree_sum.test.cpp
+  - test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
   - test/yosupo/tree/vertex_add_subtree_sum-HLD.test.cpp
   - test/yosupo/tree/common_interval_decomposition_tree.test.cpp
-  - test/yosupo/tree/vertex_add_path_sum.test.cpp
-  - test/yosupo/tree/vertex_add_subtree_sum-2.test.cpp
+  - test/yosupo/tree/cartesian_tree.test.cpp
+  - test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
+  - test/yosupo/polynomial/exp_of_formal_power_series.test.cpp
+  - test/yosupo/polynomial/multipoint_evaluation_on_geometric_sequence.test.cpp
+  - test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
+  - test/yosupo/polynomial/product_of_polynomial_sequence.test.cpp
+  - test/yosupo/polynomial/composition_of_formal_power_series.test.cpp
+  - test/yosupo/polynomial/polynomial_interpolation.test.cpp
+  - test/yosupo/polynomial/compositional_inverse_of_formal_power_series.test.cpp
+  - test/yosupo/polynomial/exp_of_formal_power_series_sparse.test.cpp
+  - test/yosupo/polynomial/inv_of_formal_power_series.test.cpp
+  - test/yosupo/polynomial/polynomial_interpolation_on_geometric_sequence.test.cpp
+  - test/yosupo/polynomial/division_of_polynomials.test.cpp
+  - test/yosupo/polynomial/pow_of_formal_power_series_sparse.test.cpp
+  - test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
+  - test/yosupo/polynomial/inv_of_formal_power_series_sparse.test.cpp
+  - test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp
+  - test/yosupo/polynomial/log_of_formal_power_series.test.cpp
+  - test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
+  - test/yosupo/polynomial/multipoint_evaluation.test.cpp
+  - test/yosupo/polynomial/exp_of_formal_power_series-RelaxedConvolution.test.cpp
+  - test/yosupo/polynomial/log_of_formal_power_series_sparse.test.cpp
+  - test/yosupo/convolution/bitwise_and_convolution.test.cpp
+  - test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
+  - test/yosupo/convolution/min_plus_convolution_convex_arbitrary.test.cpp
+  - test/yosupo/convolution/multivariate_convolution.test.cpp
+  - test/yosupo/convolution/convolution_mod_1000000007.test.cpp
+  - test/yosupo/convolution/lcm_convolution.test.cpp
+  - test/yosupo/convolution/gcd_convolution.test.cpp
+  - test/yosupo/convolution/convolution_mod.test.cpp
+  - test/yosupo/convolution/subset_convolution.test.cpp
+  - test/yosupo/convolution/bitwise_xor_convolution.test.cpp
+  - test/yosupo/string/number_of_substrings.test.cpp
+  - test/yosupo/string/lyndon_factorization.test.cpp
+  - test/yosupo/string/suffixarray.test.cpp
+  - test/yosupo/string/enumerate_palindromes.test.cpp
+  - test/yosupo/string/zalgorithm.test.cpp
+  - test/yosupo/graph/enumerate_cliques.test.cpp
+  - test/yosupo/graph/biconnected_components.test.cpp
+  - test/yosupo/graph/bipartitematching.test.cpp
+  - test/yosupo/graph/chromatic_number.test.cpp
+  - test/yosupo/graph/shortest_path.test.cpp
+  - test/yosupo/graph/two_edge_connected_components.test.cpp
+  - test/yosupo/graph/manhattanmst.test.cpp
+  - test/yosupo/graph/eulerian_trail_undirected.test.cpp
+  - test/yosupo/graph/enumerate_triangles.test.cpp
+  - test/yosupo/graph/directedmst.test.cpp
+  - test/yosupo/graph/cycle_detection.test.cpp
+  - test/yosupo/graph/eulerian_trail_directed.test.cpp
+  - test/yosupo/graph/maximum_independent_set.test.cpp
+  - test/yosupo/graph/three_edge_connected_components.test.cpp
+  - test/yosupo/graph/bipartite_edge_coloring.test.cpp
+  - test/yosupo/graph/assignment.test.cpp
+  - test/yosupo/enumerative_combinatorics/montmort_number_mod.test.cpp
+  - test/yosupo/enumerative_combinatorics/binomial_coefficient_prime_mod.test.cpp
+  - test/yosupo/enumerative_combinatorics/factorial.test.cpp
+  - test/yosupo/enumerative_combinatorics/binomial_coefficient.test.cpp
+  - test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
+  - test/yosupo/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
+  - test/yosupo/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
+  - test/yosupo/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
+  - test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind_fixed_k.test.cpp
+  - test/yosupo/enumerative_combinatorics/partition_function.test.cpp
+  - test/yosupo/new/wildcard_pattern_matching.test.cpp
+  - test/yosupo/new/counting_eulerian_circuits.test.cpp
+  - test/yosupo/new/furthest_pair.test.cpp
+  - test/yosupo/new/closest_pair.test.cpp
+  - test/yosupo/new/addition_of_hex_big_integers.test.cpp
+  - test/yosupo/new/connected_components_of_complement_graph.test.cpp
+  - test/yosupo/new/rational_approximation.test.cpp
+  - test/yosupo/new/multiplication_of_hex_big_integers.test.cpp
+  - test/yosupo/new/counting_spanning_tree_directed.test.cpp
+  - test/yosupo/new/matrix_rank_mod_2.test.cpp
+  - test/yosupo/new/unionfind_with_potential_non_commutative_group.test.cpp
+  - test/yosupo/new/static_convex_hull.test.cpp
+  - test/yosupo/new/division_of_hex_big_integers.test.cpp
+  - test/yosupo/new/range_parallel_unionfind.test.cpp
+  - test/yosupo/new/counting_spanning_tree_undirected.test.cpp
+  - test/yosupo/new/unionfind_with_potential.test.cpp
+  - test/yosupo/new/inverse_matrix_mod_2.test.cpp
+  - test/yosupo/linear_algebra/matrix_rank.test.cpp
+  - test/yosupo/linear_algebra/matrix_det_arbitrary_mod.test.cpp
+  - test/yosupo/linear_algebra/matrix_product_mod_2.test.cpp
+  - test/yosupo/linear_algebra/pow_of_matrix.test.cpp
+  - test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
+  - test/yosupo/linear_algebra/matrix_det.test.cpp
+  - test/yosupo/linear_algebra/inverse_matrix.test.cpp
+  - test/yosupo/linear_algebra/matrix_product.test.cpp
+  - test/yosupo/linear_algebra/matrix_det_mod_2.test.cpp
+  - test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
   - test/yosupo/other/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/yosupo/other/longest_increasing_subsequence.test.cpp
-  - test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp
   - test/yosupo/other/two_sat.test.cpp
-  - test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
+  - test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp
+  - test/yosupo/number_theory/tetration_mod.test.cpp
+  - test/yosupo/number_theory/primality_test.test.cpp
+  - test/yosupo/number_theory/factorize.test.cpp
+  - test/yosupo/number_theory/discrete_logarithm_mod.test.cpp
+  - test/yosupo/number_theory/primitive_root.test.cpp
+  - test/yosupo/number_theory/enumerate_quotients.test.cpp
+  - test/yosupo/number_theory/nim_product_64.test.cpp
+  - test/yosupo/number_theory/sqrt_mod.test.cpp
+  - test/yosupo/number_theory/kth_root_integer.test.cpp
+  - test/yosupo/number_theory/enumerate_primes.test.cpp
+  - test/yosupo/number_theory/bernoulli_number.test.cpp
+  - test/yosupo/number_theory/stern_brocot_tree.test.cpp
+  - test/yosupo/number_theory/min_of_mod_of_linear.test.cpp
+  - test/yosupo/number_theory/gcd_of_gaussian_integers.test.cpp
+  - test/yosupo/number_theory/sum_of_floor_of_linear.test.cpp
+  - test/yosupo/data_structure/static_range_sum-CumulativeSum.test.cpp
+  - test/yosupo/data_structure/double_ended_priority_queue.test.cpp
+  - test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
+  - test/yosupo/data_structure/rectangle_sum-2DCum.test.cpp
+  - test/yosupo/data_structure/static_range_count_distinct.test.cpp
+  - test/yosupo/data_structure/range_chmin_chmax_add_range_sum.test.cpp
+  - test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
+  - test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
+  - test/yosupo/data_structure/persistent_queue-Array.test.cpp
+  - test/yosupo/data_structure/segment_add_get_min.test.cpp
+  - test/yosupo/data_structure/point_set_range_composite.test.cpp
+  - test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp
+  - test/yosupo/data_structure/point_add_range_sum.test.cpp
+  - test/yosupo/data_structure/staticrmq-SparseTable.test.cpp
+  - test/yosupo/data_structure/deque_operate_all_composite.test.cpp
+  - test/yosupo/data_structure/unionfind.test.cpp
+  - test/yosupo/data_structure/staticrmq-LinearRMQ.test.cpp
+  - test/yosupo/data_structure/line_add_get_min.test.cpp
+  - test/yosupo/data_structure/queue_operate_all_composite.test.cpp
+  - test/yosupo/data_structure/range_reverse_range_sum.test.cpp
+  - test/yosupo/data_structure/set_xor_min.test.cpp
+  - test/yosupo/data_structure/persistent_unionfind.test.cpp
+  - test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
+  - test/yosupo/data_structure/point_add_rectangle_sum-WM.test.cpp
+  - test/yosupo/data_structure/rectangle_sum-WM.test.cpp
+  - test/yosupo/data_structure/static_range_mode_query.test.cpp
+  - test/yosupo/data_structure/range_kth_smallest-seg.test.cpp
+  - test/yosupo/data_structure/static_range_sum-DisjointSparseTable.test.cpp
+  - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SplayTree.test.cpp
+  - test/yosupo/data_structure/range_affine_range_sum.test.cpp
+  - test/yosupo/data_structure/static_range_inversions_query.test.cpp
+  - test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
+  - test/yosupo/data_structure/rectangle_add_point_get.test.cpp
+  - test/yosupo/data_structure/static_range_frequency.test.cpp
+  - test/yosupo/data_structure/range_kth_smallest-sqrt.test.cpp
+  - test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
+  - test/yosupo/data_structure/range_affine_point_get.test.cpp
+  - test/yosupo/data_structure/range_set_range_composite.test.cpp
+  - test/yosupo/data_structure/point_add_rectangle_sum-2DSegTree.test.cpp
+  - test/yosupo/data_structure/unionfind-Dynamic.test.cpp
+  - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
   - test/yosupo/sample/aplusb.test.cpp
   - test/yosupo/sample/many_aplusb_128bit.test.cpp
   - test/yosupo/sample/many_aplusb.test.cpp
-  - test/yosupo/number_theory/discrete_logarithm_mod.test.cpp
-  - test/yosupo/number_theory/primality_test.test.cpp
-  - test/yosupo/number_theory/sqrt_mod.test.cpp
-  - test/yosupo/number_theory/primitive_root.test.cpp
-  - test/yosupo/number_theory/gcd_of_gaussian_integers.test.cpp
-  - test/yosupo/number_theory/sum_of_floor_of_linear.test.cpp
-  - test/yosupo/number_theory/bernoulli_number.test.cpp
-  - test/yosupo/number_theory/kth_root_integer.test.cpp
-  - test/yosupo/number_theory/factorize.test.cpp
-  - test/yosupo/number_theory/tetration_mod.test.cpp
-  - test/yosupo/number_theory/enumerate_quotients.test.cpp
-  - test/yosupo/number_theory/stern_brocot_tree.test.cpp
-  - test/yosupo/number_theory/min_of_mod_of_linear.test.cpp
-  - test/yosupo/number_theory/enumerate_primes.test.cpp
-  - test/yosupo/graph/assignment.test.cpp
-  - test/yosupo/graph/biconnected_components.test.cpp
-  - test/yosupo/graph/cycle_detection.test.cpp
-  - test/yosupo/graph/three_edge_connected_components.test.cpp
-  - test/yosupo/graph/eulerian_trail_directed.test.cpp
-  - test/yosupo/graph/maximum_independent_set.test.cpp
-  - test/yosupo/graph/eulerian_trail_undirected.test.cpp
-  - test/yosupo/graph/directedmst.test.cpp
-  - test/yosupo/graph/chromatic_number.test.cpp
-  - test/yosupo/graph/two_edge_connected_components.test.cpp
-  - test/yosupo/graph/enumerate_triangles.test.cpp
-  - test/yosupo/graph/manhattanmst.test.cpp
-  - test/yosupo/graph/shortest_path.test.cpp
-  - test/yosupo/graph/bipartitematching.test.cpp
-  - test/yosupo/graph/enumerate_cliques.test.cpp
-  - test/atcoder/agc002_d-PartialPersistentArray.test.cpp
-  - test/atcoder/arc070_c-SlopeTrick.test.cpp
-  - test/atcoder/agc002_d-PartialPersistentUF.test.cpp
-  - test/atcoder/abc265_c-Timer.test.cpp
-  - test/atcoder/abc218_h-AlienDP.test.cpp
-  - test/atcoder/abc349_g-RangeUF.test.cpp
-  - test/atcoder/arc099_c-Bipartite.test.cpp
-  - test/atcoder/abc176_f-DefaultMap.test.cpp
+  - test/yosupo/geometry/sort_points_by_argument.test.cpp
 documentation_of: template/type_traits.hpp
 layout: document
 redirect_from:

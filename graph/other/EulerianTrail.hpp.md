@@ -1,38 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: graph/other/BipartiteEdgeColoring.hpp
+    title: graph/other/BipartiteEdgeColoring.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/graph/bipartite_edge_coloring.test.cpp
+    title: test/yosupo/graph/bipartite_edge_coloring.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/eulerian_trail_directed.test.cpp
     title: test/yosupo/graph/eulerian_trail_directed.test.cpp
@@ -563,12 +569,14 @@ data:
   - graph/Graph.hpp
   isVerificationFile: false
   path: graph/other/EulerianTrail.hpp
-  requiredBy: []
+  requiredBy:
+  - graph/other/BipartiteEdgeColoring.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/graph/eulerian_trail_directed.test.cpp
   - test/yosupo/graph/eulerian_trail_undirected.test.cpp
+  - test/yosupo/graph/eulerian_trail_directed.test.cpp
+  - test/yosupo/graph/bipartite_edge_coloring.test.cpp
 documentation_of: graph/other/EulerianTrail.hpp
 layout: document
 redirect_from:

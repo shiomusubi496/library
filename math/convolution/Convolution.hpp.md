@@ -1,40 +1,43 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: graph/tree/FrequencyTableofTreeDistance.hpp
     title: Frequency Table of Tree Distance
+  - icon: ':x:'
+    path: math/BigInteger.hpp
+    title: math/BigInteger.hpp
   - icon: ':heavy_check_mark:'
     path: math/ExpPolySum.hpp
     title: ExpPolySum($\sum_{i=0}^{\infty}r^ii^d$)
@@ -114,6 +117,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind_fixed_k.test.cpp
     title: test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind_fixed_k.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/new/addition_of_hex_big_integers.test.cpp
+    title: test/yosupo/new/addition_of_hex_big_integers.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/new/division_of_hex_big_integers.test.cpp
+    title: test/yosupo/new/division_of_hex_big_integers.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/new/multiplication_of_hex_big_integers.test.cpp
+    title: test/yosupo/new/multiplication_of_hex_big_integers.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/wildcard_pattern_matching.test.cpp
     title: test/yosupo/new/wildcard_pattern_matching.test.cpp
@@ -195,9 +207,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
     title: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/math/convolution/Convolution.md
     document_title: "Convolution(\u7573\u307F\u8FBC\u307F)"
@@ -934,61 +946,65 @@ data:
   isVerificationFile: false
   path: math/convolution/Convolution.hpp
   requiredBy:
-  - math/convolution/MultidimensionalConvolution.hpp
-  - math/convolution/RelaxedConvolution.hpp
-  - math/StirlingNumber.hpp
-  - math/SubsetSum.hpp
-  - math/ExpPolySum.hpp
-  - math/poly/BostanMori.hpp
-  - math/poly/TaylorShift.hpp
-  - math/poly/SamplingPointsShift.hpp
-  - math/poly/FormalPowerSeries.hpp
-  - math/poly/SparseFormalPowerSeries.hpp
-  - math/poly/MultipointEvaluation.hpp
-  - math/poly/PolynomialInterpolation.hpp
-  - math/Factorial.hpp
   - string/WildcardPatternMatching.hpp
   - graph/tree/FrequencyTableofTreeDistance.hpp
+  - math/convolution/RelaxedConvolution.hpp
+  - math/convolution/MultidimensionalConvolution.hpp
+  - math/ExpPolySum.hpp
+  - math/Factorial.hpp
+  - math/poly/SamplingPointsShift.hpp
+  - math/poly/PolynomialInterpolation.hpp
+  - math/poly/SparseFormalPowerSeries.hpp
+  - math/poly/BostanMori.hpp
+  - math/poly/TaylorShift.hpp
+  - math/poly/FormalPowerSeries.hpp
+  - math/poly/MultipointEvaluation.hpp
+  - math/BigInteger.hpp
+  - math/SubsetSum.hpp
+  - math/StirlingNumber.hpp
   timestamp: '2024-05-29 15:54:32+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/DPL/DPL_5_G.test.cpp
-  - test/yosupo/convolution/convolution_mod.test.cpp
-  - test/yosupo/convolution/multivariate_convolution.test.cpp
-  - test/yosupo/convolution/convolution_mod_1000000007.test.cpp
-  - test/yosupo/new/wildcard_pattern_matching.test.cpp
-  - test/yosupo/polynomial/composition_of_formal_power_series.test.cpp
-  - test/yosupo/polynomial/exp_of_formal_power_series_sparse.test.cpp
-  - test/yosupo/polynomial/pow_of_formal_power_series_sparse.test.cpp
-  - test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
-  - test/yosupo/polynomial/compositional_inverse_of_formal_power_series.test.cpp
-  - test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
+  - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
+  - test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
+  - test/yosupo/polynomial/exp_of_formal_power_series.test.cpp
   - test/yosupo/polynomial/multipoint_evaluation_on_geometric_sequence.test.cpp
-  - test/yosupo/polynomial/log_of_formal_power_series_sparse.test.cpp
-  - test/yosupo/polynomial/multipoint_evaluation.test.cpp
+  - test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
+  - test/yosupo/polynomial/product_of_polynomial_sequence.test.cpp
+  - test/yosupo/polynomial/composition_of_formal_power_series.test.cpp
+  - test/yosupo/polynomial/polynomial_interpolation.test.cpp
+  - test/yosupo/polynomial/compositional_inverse_of_formal_power_series.test.cpp
+  - test/yosupo/polynomial/exp_of_formal_power_series_sparse.test.cpp
   - test/yosupo/polynomial/inv_of_formal_power_series.test.cpp
   - test/yosupo/polynomial/polynomial_interpolation_on_geometric_sequence.test.cpp
-  - test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-  - test/yosupo/polynomial/exp_of_formal_power_series-RelaxedConvolution.test.cpp
-  - test/yosupo/polynomial/exp_of_formal_power_series.test.cpp
   - test/yosupo/polynomial/division_of_polynomials.test.cpp
-  - test/yosupo/polynomial/polynomial_interpolation.test.cpp
+  - test/yosupo/polynomial/pow_of_formal_power_series_sparse.test.cpp
+  - test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - test/yosupo/polynomial/inv_of_formal_power_series_sparse.test.cpp
-  - test/yosupo/polynomial/log_of_formal_power_series.test.cpp
-  - test/yosupo/polynomial/product_of_polynomial_sequence.test.cpp
   - test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp
-  - test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
+  - test/yosupo/polynomial/log_of_formal_power_series.test.cpp
+  - test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
+  - test/yosupo/polynomial/multipoint_evaluation.test.cpp
+  - test/yosupo/polynomial/exp_of_formal_power_series-RelaxedConvolution.test.cpp
+  - test/yosupo/polynomial/log_of_formal_power_series_sparse.test.cpp
+  - test/yosupo/convolution/multivariate_convolution.test.cpp
+  - test/yosupo/convolution/convolution_mod_1000000007.test.cpp
+  - test/yosupo/convolution/convolution_mod.test.cpp
   - test/yosupo/enumerative_combinatorics/factorial.test.cpp
-  - test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind_fixed_k.test.cpp
-  - test/yosupo/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
   - test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
   - test/yosupo/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
+  - test/yosupo/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
   - test/yosupo/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
+  - test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind_fixed_k.test.cpp
   - test/yosupo/enumerative_combinatorics/partition_function.test.cpp
-  - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
+  - test/yosupo/new/wildcard_pattern_matching.test.cpp
+  - test/yosupo/new/addition_of_hex_big_integers.test.cpp
+  - test/yosupo/new/multiplication_of_hex_big_integers.test.cpp
+  - test/yosupo/new/division_of_hex_big_integers.test.cpp
+  - test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
   - test/yosupo/other/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp
-  - test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
   - test/yosupo/number_theory/bernoulli_number.test.cpp
 documentation_of: math/convolution/Convolution.hpp
 layout: document

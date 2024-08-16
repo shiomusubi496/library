@@ -1,31 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
@@ -47,6 +47,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/mst/Prim.hpp
     title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
+  - icon: ':heavy_check_mark:'
+    path: graph/other/BipartiteEdgeColoring.hpp
+    title: graph/other/BipartiteEdgeColoring.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
@@ -69,6 +72,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/unionfind.test.cpp
     title: test/yosupo/data_structure/unionfind.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/graph/bipartite_edge_coloring.test.cpp
+    title: test/yosupo/graph/bipartite_edge_coloring.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/directedmst.test.cpp
     title: test/yosupo/graph/directedmst.test.cpp
@@ -529,25 +535,27 @@ data:
   isVerificationFile: false
   path: data-struct/unionfind/UnionFind.hpp
   requiredBy:
-  - data-struct/unionfind/RangeParallelUnionFind.hpp
-  - data-struct/unionfind/EnumerateUnionFind.hpp
-  - graph/mst/DirectedMST.hpp
   - graph/mst/Kruskal.hpp
+  - graph/mst/DirectedMST.hpp
   - graph/mst/Prim.hpp
   - graph/mst/ManhattanMST.hpp
+  - graph/other/BipartiteEdgeColoring.hpp
+  - data-struct/unionfind/RangeParallelUnionFind.hpp
+  - data-struct/unionfind/EnumerateUnionFind.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/GRL/GRL_2_A-Prim.test.cpp
-  - test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
-  - test/aoj/DSL/DSL_1_A-UF.test.cpp
-  - test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
+  - test/atcoder/abc349_g-RangeUF.test.cpp
   - test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
+  - test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
+  - test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
+  - test/aoj/GRL/GRL_2_A-Prim.test.cpp
+  - test/aoj/DSL/DSL_1_A-UF.test.cpp
+  - test/yosupo/graph/manhattanmst.test.cpp
+  - test/yosupo/graph/directedmst.test.cpp
+  - test/yosupo/graph/bipartite_edge_coloring.test.cpp
   - test/yosupo/new/range_parallel_unionfind.test.cpp
   - test/yosupo/data_structure/unionfind.test.cpp
-  - test/yosupo/graph/directedmst.test.cpp
-  - test/yosupo/graph/manhattanmst.test.cpp
-  - test/atcoder/abc349_g-RangeUF.test.cpp
 documentation_of: data-struct/unionfind/UnionFind.hpp
 layout: document
 redirect_from:

@@ -1,47 +1,47 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/connected/ConnectedComponents.hpp
     title: "ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/other/BipartiteGraph.hpp
     title: "BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/arc099/tasks/arc099_e
@@ -506,32 +506,34 @@ data:
     \u89E3)\n * @docs docs/graph/connected/ConnectedComponents.md\n */\n#line 2 \"\
     graph/other/BipartiteGraph.hpp\"\n\n#line 5 \"graph/other/BipartiteGraph.hpp\"\
     \n\ntemplate<class T> class BipartiteGraph {\nprivate:\n    int n;\n    bool is_bip;\n\
-    \    const Graph<T>& G;\n    std::vector<bool> used, label;\n    void dfs(int\
-    \ v) {\n        used[v] = true;\n        for (const auto& e : G[v]) {\n      \
-    \      if (!used[e.to]) {\n                used[e.to] = true;\n              \
-    \  label[e.to] = !label[v];\n                dfs(e.to);\n            }\n     \
-    \       else if (label[e.to] == label[v]) {\n                is_bip = false;\n\
-    \            }\n        }\n    }\n\npublic:\n    BipartiteGraph(const Graph<T>&\
-    \ G) : G(G) {\n        n = G.size();\n        is_bip = true;\n        label.assign(n,\
-    \ false);\n        used.assign(n, false);\n        rep (i, n) {\n            if\
-    \ (!used[i]) dfs(i);\n        }\n    }\n    bool is_bipartite() const { return\
-    \ is_bip; }\n    bool get_label(int k) const { return label[k]; }\n    const std::vector<bool>&\
-    \ labels() const& { return label; }\n    std::vector<bool> labels() && { return\
-    \ std::move(label); }\n};\n\n/**\n * @brief BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\
-    \u30D5\u5224\u5B9A)\n * @docs docs/graph/other/BipartiteGraph.md\n */\n#line 7\
-    \ \"test/atcoder/arc099_c-Bipartite.test.cpp\"\nusing namespace std;\nint main()\
-    \ {\n    int N, M; scan >> N >> M;\n    vector<vector<bool>> A(N, vector<bool>(N,\
-    \ true));\n    rep (M) {\n        int a, b; scan >> a >> b;\n        A[a - 1][b\
-    \ - 1] = A[b - 1][a - 1] = false;\n    }\n    UnweightedGraph G(N);\n    rep (i,\
-    \ N) rep (j, i) {\n        if (A[i][j]) G.add_edge(i, j);\n    }\n    ConnectedComponents<unweighted_edge>\
-    \ CC(G);\n    auto g = CC.groups();\n    vector<int> B(N);\n    for (const auto&\
-    \ v : g) {\n        rep (i, v.size()) B[v[i]] = i;\n    }\n    vector<UnweightedGraph>\
-    \ C(CC.size());\n    rep (i, CC.size()) C[i] = UnweightedGraph(g[i].size());\n\
-    \    for (const auto& e : UndirectedListToEdges(G)) {\n        C[CC[e.from]].add_edge(B[e.from],\
-    \ B[e.to]);\n    }\n    bitset<701> bs(1);\n    for (const auto& g : C) {\n  \
-    \      int n = g.size();\n        BipartiteGraph<unweighted_edge> BG(g);\n   \
-    \     if (!BG.is_bipartite()) {\n            print << \"-1\" << endl;\n      \
-    \      return 0;\n        }\n        int a = 0;\n        rep (i, n) if (BG.get_label(i))\
+    \    const Graph<T>& G;\n    std::vector<bool> used, label;\n    int sz1, sz2;\n\
+    \    void dfs(int v) {\n        used[v] = true;\n        for (const auto& e :\
+    \ G[v]) {\n            if (!used[e.to]) {\n                used[e.to] = true;\n\
+    \                label[e.to] = !label[v];\n                dfs(e.to);\n      \
+    \      }\n            else if (label[e.to] == label[v]) {\n                is_bip\
+    \ = false;\n            }\n        }\n    }\n\npublic:\n    BipartiteGraph(const\
+    \ Graph<T>& G) : G(G) {\n        n = G.size();\n        is_bip = true;\n     \
+    \   label.assign(n, false);\n        used.assign(n, false);\n        rep (i, n)\
+    \ {\n            if (!used[i]) dfs(i);\n        }\n        sz1 = sz2 = 0;\n  \
+    \      rep (i, n) {\n            if (!label[i]) ++sz1;\n            else ++sz2;\n\
+    \        }\n    }\n    bool is_bipartite() const { return is_bip; }\n    int size1()\
+    \ const { return sz1; }\n    int size2() const { return sz2; }\n    bool get_label(int\
+    \ k) const { return label[k]; }\n    const std::vector<bool>& labels() const&\
+    \ { return label; }\n    std::vector<bool> labels() && { return std::move(label);\
+    \ }\n};\n\n/**\n * @brief BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A\
+    )\n * @docs docs/graph/other/BipartiteGraph.md\n */\n#line 7 \"test/atcoder/arc099_c-Bipartite.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int N, M; scan >> N >> M;\n    vector<vector<bool>>\
+    \ A(N, vector<bool>(N, true));\n    rep (M) {\n        int a, b; scan >> a >>\
+    \ b;\n        A[a - 1][b - 1] = A[b - 1][a - 1] = false;\n    }\n    UnweightedGraph\
+    \ G(N);\n    rep (i, N) rep (j, i) {\n        if (A[i][j]) G.add_edge(i, j);\n\
+    \    }\n    ConnectedComponents<unweighted_edge> CC(G);\n    auto g = CC.groups();\n\
+    \    vector<int> B(N);\n    for (const auto& v : g) {\n        rep (i, v.size())\
+    \ B[v[i]] = i;\n    }\n    vector<UnweightedGraph> C(CC.size());\n    rep (i,\
+    \ CC.size()) C[i] = UnweightedGraph(g[i].size());\n    for (const auto& e : UndirectedListToEdges(G))\
+    \ {\n        C[CC[e.from]].add_edge(B[e.from], B[e.to]);\n    }\n    bitset<701>\
+    \ bs(1);\n    for (const auto& g : C) {\n        int n = g.size();\n        BipartiteGraph<unweighted_edge>\
+    \ BG(g);\n        if (!BG.is_bipartite()) {\n            print << \"-1\" << endl;\n\
+    \            return 0;\n        }\n        int a = 0;\n        rep (i, n) if (BG.get_label(i))\
     \ ++a;\n        bs = (bs << a) | (bs << (n - a));\n    }\n    int ans = 0;\n \
     \   rep (i, N + 1) {\n        if (bs[i]) chmax(ans, i * (N - i));\n    }\n   \
     \ print << N * (N - 1) / 2 - ans << endl;\n}\n"
@@ -570,8 +572,8 @@ data:
   isVerificationFile: true
   path: test/atcoder/arc099_c-Bipartite.test.cpp
   requiredBy: []
-  timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-08-16 11:37:14+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/atcoder/arc099_c-Bipartite.test.cpp
 layout: document

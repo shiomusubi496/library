@@ -1,44 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/atcoder/arc099_c-Bipartite.test.cpp
     title: test/atcoder/arc099_c-Bipartite.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/graph/other/BipartiteGraph.md
     document_title: "BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A)"
@@ -485,34 +485,39 @@ data:
     \ = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n * @docs docs/graph/Graph.md\n\
     \ */\n#line 5 \"graph/other/BipartiteGraph.hpp\"\n\ntemplate<class T> class BipartiteGraph\
     \ {\nprivate:\n    int n;\n    bool is_bip;\n    const Graph<T>& G;\n    std::vector<bool>\
-    \ used, label;\n    void dfs(int v) {\n        used[v] = true;\n        for (const\
-    \ auto& e : G[v]) {\n            if (!used[e.to]) {\n                used[e.to]\
-    \ = true;\n                label[e.to] = !label[v];\n                dfs(e.to);\n\
-    \            }\n            else if (label[e.to] == label[v]) {\n            \
-    \    is_bip = false;\n            }\n        }\n    }\n\npublic:\n    BipartiteGraph(const\
-    \ Graph<T>& G) : G(G) {\n        n = G.size();\n        is_bip = true;\n     \
-    \   label.assign(n, false);\n        used.assign(n, false);\n        rep (i, n)\
-    \ {\n            if (!used[i]) dfs(i);\n        }\n    }\n    bool is_bipartite()\
-    \ const { return is_bip; }\n    bool get_label(int k) const { return label[k];\
-    \ }\n    const std::vector<bool>& labels() const& { return label; }\n    std::vector<bool>\
-    \ labels() && { return std::move(label); }\n};\n\n/**\n * @brief BipartiteGraph(\u4E8C\
-    \u90E8\u30B0\u30E9\u30D5\u5224\u5B9A)\n * @docs docs/graph/other/BipartiteGraph.md\n\
-    \ */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
-    \n\ntemplate<class T> class BipartiteGraph {\nprivate:\n    int n;\n    bool is_bip;\n\
-    \    const Graph<T>& G;\n    std::vector<bool> used, label;\n    void dfs(int\
-    \ v) {\n        used[v] = true;\n        for (const auto& e : G[v]) {\n      \
-    \      if (!used[e.to]) {\n                used[e.to] = true;\n              \
-    \  label[e.to] = !label[v];\n                dfs(e.to);\n            }\n     \
-    \       else if (label[e.to] == label[v]) {\n                is_bip = false;\n\
-    \            }\n        }\n    }\n\npublic:\n    BipartiteGraph(const Graph<T>&\
-    \ G) : G(G) {\n        n = G.size();\n        is_bip = true;\n        label.assign(n,\
-    \ false);\n        used.assign(n, false);\n        rep (i, n) {\n            if\
-    \ (!used[i]) dfs(i);\n        }\n    }\n    bool is_bipartite() const { return\
-    \ is_bip; }\n    bool get_label(int k) const { return label[k]; }\n    const std::vector<bool>&\
+    \ used, label;\n    int sz1, sz2;\n    void dfs(int v) {\n        used[v] = true;\n\
+    \        for (const auto& e : G[v]) {\n            if (!used[e.to]) {\n      \
+    \          used[e.to] = true;\n                label[e.to] = !label[v];\n    \
+    \            dfs(e.to);\n            }\n            else if (label[e.to] == label[v])\
+    \ {\n                is_bip = false;\n            }\n        }\n    }\n\npublic:\n\
+    \    BipartiteGraph(const Graph<T>& G) : G(G) {\n        n = G.size();\n     \
+    \   is_bip = true;\n        label.assign(n, false);\n        used.assign(n, false);\n\
+    \        rep (i, n) {\n            if (!used[i]) dfs(i);\n        }\n        sz1\
+    \ = sz2 = 0;\n        rep (i, n) {\n            if (!label[i]) ++sz1;\n      \
+    \      else ++sz2;\n        }\n    }\n    bool is_bipartite() const { return is_bip;\
+    \ }\n    int size1() const { return sz1; }\n    int size2() const { return sz2;\
+    \ }\n    bool get_label(int k) const { return label[k]; }\n    const std::vector<bool>&\
     \ labels() const& { return label; }\n    std::vector<bool> labels() && { return\
     \ std::move(label); }\n};\n\n/**\n * @brief BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\
     \u30D5\u5224\u5B9A)\n * @docs docs/graph/other/BipartiteGraph.md\n */\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
+    \n\ntemplate<class T> class BipartiteGraph {\nprivate:\n    int n;\n    bool is_bip;\n\
+    \    const Graph<T>& G;\n    std::vector<bool> used, label;\n    int sz1, sz2;\n\
+    \    void dfs(int v) {\n        used[v] = true;\n        for (const auto& e :\
+    \ G[v]) {\n            if (!used[e.to]) {\n                used[e.to] = true;\n\
+    \                label[e.to] = !label[v];\n                dfs(e.to);\n      \
+    \      }\n            else if (label[e.to] == label[v]) {\n                is_bip\
+    \ = false;\n            }\n        }\n    }\n\npublic:\n    BipartiteGraph(const\
+    \ Graph<T>& G) : G(G) {\n        n = G.size();\n        is_bip = true;\n     \
+    \   label.assign(n, false);\n        used.assign(n, false);\n        rep (i, n)\
+    \ {\n            if (!used[i]) dfs(i);\n        }\n        sz1 = sz2 = 0;\n  \
+    \      rep (i, n) {\n            if (!label[i]) ++sz1;\n            else ++sz2;\n\
+    \        }\n    }\n    bool is_bipartite() const { return is_bip; }\n    int size1()\
+    \ const { return sz1; }\n    int size2() const { return sz2; }\n    bool get_label(int\
+    \ k) const { return label[k]; }\n    const std::vector<bool>& labels() const&\
+    \ { return label; }\n    std::vector<bool> labels() && { return std::move(label);\
+    \ }\n};\n\n/**\n * @brief BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A\
+    )\n * @docs docs/graph/other/BipartiteGraph.md\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -527,8 +532,8 @@ data:
   isVerificationFile: false
   path: graph/other/BipartiteGraph.hpp
   requiredBy: []
-  timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-08-16 11:37:14+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/atcoder/arc099_c-Bipartite.test.cpp
 documentation_of: graph/other/BipartiteGraph.hpp

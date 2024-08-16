@@ -1,34 +1,34 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
@@ -87,6 +87,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/inverse_matrix_mod_2.test.cpp
     title: test/yosupo/new/inverse_matrix_mod_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/matrix_rank_mod_2.test.cpp
+    title: test/yosupo/new/matrix_rank_mod_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/unionfind_with_potential_non_commutative_group.test.cpp
     title: test/yosupo/new/unionfind_with_potential_non_commutative_group.test.cpp
@@ -807,28 +810,29 @@ data:
   isVerificationFile: false
   path: math/matrix/Matrix.hpp
   requiredBy:
-  - math/matrix/Inverse.hpp
-  - math/matrix/Determinant.hpp
-  - math/matrix/LinearEquations.hpp
   - graph/mst/CountSpanningTree.hpp
   - graph/other/CountEulerianCircuit.hpp
+  - math/matrix/Determinant.hpp
+  - math/matrix/Inverse.hpp
+  - math/matrix/LinearEquations.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/linear_algebra/pow_of_matrix.test.cpp
-  - test/yosupo/linear_algebra/matrix_det_mod_2.test.cpp
-  - test/yosupo/linear_algebra/inverse_matrix.test.cpp
-  - test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
-  - test/yosupo/linear_algebra/matrix_det.test.cpp
-  - test/yosupo/linear_algebra/matrix_product.test.cpp
-  - test/yosupo/linear_algebra/matrix_product_mod_2.test.cpp
-  - test/yosupo/linear_algebra/matrix_det_arbitrary_mod.test.cpp
-  - test/yosupo/linear_algebra/matrix_rank.test.cpp
   - test/yosupo/new/counting_eulerian_circuits.test.cpp
   - test/yosupo/new/counting_spanning_tree_directed.test.cpp
-  - test/yosupo/new/counting_spanning_tree_undirected.test.cpp
+  - test/yosupo/new/matrix_rank_mod_2.test.cpp
   - test/yosupo/new/unionfind_with_potential_non_commutative_group.test.cpp
+  - test/yosupo/new/counting_spanning_tree_undirected.test.cpp
   - test/yosupo/new/inverse_matrix_mod_2.test.cpp
+  - test/yosupo/linear_algebra/matrix_rank.test.cpp
+  - test/yosupo/linear_algebra/matrix_det_arbitrary_mod.test.cpp
+  - test/yosupo/linear_algebra/matrix_product_mod_2.test.cpp
+  - test/yosupo/linear_algebra/pow_of_matrix.test.cpp
+  - test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
+  - test/yosupo/linear_algebra/matrix_det.test.cpp
+  - test/yosupo/linear_algebra/inverse_matrix.test.cpp
+  - test/yosupo/linear_algebra/matrix_product.test.cpp
+  - test/yosupo/linear_algebra/matrix_det_mod_2.test.cpp
 documentation_of: math/matrix/Matrix.hpp
 layout: document
 redirect_from:
