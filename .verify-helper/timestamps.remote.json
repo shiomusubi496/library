@@ -106,6 +106,7 @@
 "test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SplayTree.test.cpp": "2024-05-12 17:35:55 +0900",
 "test/yosupo/data_structure/line_add_get_min.test.cpp": "2024-05-12 17:35:55 +0900",
 "test/yosupo/data_structure/persistent_queue-Array.test.cpp": "2024-08-16 12:49:04 +0900",
+"test/yosupo/data_structure/persistent_queue.test.cpp": "2024-08-22 14:52:33 +0900",
 "test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp": "2024-05-12 17:35:55 +0900",
 "test/yosupo/data_structure/persistent_unionfind.test.cpp": "2024-08-16 12:49:04 +0900",
 "test/yosupo/data_structure/point_add_range_sum.test.cpp": "2024-05-12 17:35:55 +0900",
