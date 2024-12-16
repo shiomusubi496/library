@@ -125,8 +125,8 @@ std::pair<Point, Point> closest_pair(std::vector<Point> p) {
     assert(p.size() >= 2);
     const int n = p.size();
     std::sort(all(p));
-    Real res = infinity<Real>::max;
-    Point a, b;
+    Real res = (p[0] - p[1]).norm();
+    Point a = p[0], b = p[1];
     rec_lambda([&](auto&& self, int l, int r) -> void {
         const int m = (l + r) / 2;
         if (r - l <= 1) return;
