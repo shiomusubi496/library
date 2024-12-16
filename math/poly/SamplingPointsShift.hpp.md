@@ -1093,9 +1093,9 @@ data:
   timestamp: '2024-05-29 15:54:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-  - test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
   - test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp
+  - test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
+  - test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
 documentation_of: math/poly/SamplingPointsShift.hpp
 layout: document
 redirect_from:

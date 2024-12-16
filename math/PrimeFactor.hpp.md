@@ -510,15 +510,15 @@ data:
   isVerificationFile: false
   path: math/PrimeFactor.hpp
   requiredBy:
-  - math/ExpPolySum.hpp
   - math/PowEnumerate.hpp
+  - math/ExpPolySum.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp
-  - test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
   - test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp
+  - test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
   - test/yosupo/number_theory/enumerate_primes.test.cpp
+  - test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp
 documentation_of: math/PrimeFactor.hpp
 layout: document
 redirect_from:

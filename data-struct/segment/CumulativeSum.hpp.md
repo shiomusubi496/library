@@ -600,10 +600,10 @@ data:
   isVerificationFile: false
   path: data-struct/segment/CumulativeSum.hpp
   requiredBy:
-  - data-struct/wavelet/CumulativeSumWM.hpp
+  - data-struct/segment/RAQBIT.hpp
   - data-struct/2D/StaticRectangleAddRectangleSum.hpp
   - data-struct/2D/CumulativeSum2D.hpp
-  - data-struct/segment/RAQBIT.hpp
+  - data-struct/wavelet/CumulativeSumWM.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

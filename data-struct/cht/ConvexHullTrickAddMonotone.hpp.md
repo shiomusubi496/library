@@ -443,7 +443,7 @@ data:
     };\n#line 4 \"data-struct/cht/ConvexHullTrickAddMonotone.hpp\"\n\ntemplate<class\
     \ T = ll, bool is_max = false,\n         class largeT = typename double_size_int<T>::type>\n\
     class ConvexHullTrickAddMonotone {\nprivate:\n    struct Line {\n        T a,\
-    \ b;\n        int idx;\n        bool is_query;\n        mutable ll nxt_a, nxt_b;\n\
+    \ b;\n        int idx;\n        bool is_query;\n        mutable T nxt_a, nxt_b;\n\
     \        mutable bool has_nxt;\n        T get(T x) const { return a * x + b; }\n\
     \        T get_nxt(T x) const { return nxt_a * x + nxt_b; }\n        Line() =\
     \ default;\n        Line(T a, T b, int id, bool i = false)\n            : a(a),\
@@ -500,7 +500,7 @@ data:
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T\
     \ = ll, bool is_max = false,\n         class largeT = typename double_size_int<T>::type>\n\
     class ConvexHullTrickAddMonotone {\nprivate:\n    struct Line {\n        T a,\
-    \ b;\n        int idx;\n        bool is_query;\n        mutable ll nxt_a, nxt_b;\n\
+    \ b;\n        int idx;\n        bool is_query;\n        mutable T nxt_a, nxt_b;\n\
     \        mutable bool has_nxt;\n        T get(T x) const { return a * x + b; }\n\
     \        T get_nxt(T x) const { return nxt_a * x + nxt_b; }\n        Line() =\
     \ default;\n        Line(T a, T b, int id, bool i = false)\n            : a(a),\
@@ -567,7 +567,7 @@ data:
   isVerificationFile: false
   path: data-struct/cht/ConvexHullTrickAddMonotone.hpp
   requiredBy: []
-  timestamp: '2024-05-12 17:35:55+09:00'
+  timestamp: '2024-12-16 09:33:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/other/2725-CHT.test.cpp

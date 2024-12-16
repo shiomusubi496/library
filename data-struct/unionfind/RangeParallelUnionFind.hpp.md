@@ -538,8 +538,8 @@ data:
   timestamp: '2024-07-20 13:51:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/atcoder/abc349_g-RangeUF.test.cpp
   - test/yosupo/new/range_parallel_unionfind.test.cpp
+  - test/atcoder/abc349_g-RangeUF.test.cpp
 documentation_of: data-struct/unionfind/RangeParallelUnionFind.hpp
 layout: document
 redirect_from:

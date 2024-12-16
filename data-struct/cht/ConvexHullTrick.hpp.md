@@ -442,9 +442,9 @@ data:
     };\n#line 4 \"data-struct/cht/ConvexHullTrick.hpp\"\n\ntemplate<class T = ll,\
     \ bool is_max = false,\n         class largeT = typename double_size_int<T>::type>\n\
     class ConvexHullTrick {\nprivate:\n    struct Line {\n        T a, b;\n      \
-    \  int idx;\n        bool is_query;\n        mutable ll nxt_a, nxt_b;\n      \
-    \  mutable bool has_nxt;\n        T get(T x) const { return a * x + b; }\n   \
-    \     T get_nxt(T x) const { return nxt_a * x + nxt_b; }\n        Line() = default;\n\
+    \  int idx;\n        bool is_query;\n        mutable T nxt_a, nxt_b;\n       \
+    \ mutable bool has_nxt;\n        T get(T x) const { return a * x + b; }\n    \
+    \    T get_nxt(T x) const { return nxt_a * x + nxt_b; }\n        Line() = default;\n\
     \        Line(T a, T b, int id, bool i = false)\n            : a(a), b(b), idx(id),\
     \ is_query(i), has_nxt(false) {}\n        friend bool operator<(const Line& lhs,\
     \ const Line& rhs) {\n            assert(!lhs.is_query || !rhs.is_query);\n  \
@@ -477,14 +477,15 @@ data:
     \ true});\n        Line res{*itr};\n        return line{is_max ? -res.a : res.a,\
     \ is_max ? -res.b : res.b, res.idx};\n    }\n    T get_min(T x) const {\n    \
     \    const auto& l = get_min_line(x);\n        return l.a * x + l.b;\n    }\n\
-    \    bool empty() const { return st.empty(); }\n};\n\n/**\n * @brief ConvexHullTrick\n\
-    \ * @docs docs/data-struct/cht/ConvexHullTrick.md\n */\n"
+    \    bool empty() const { return st.empty(); }\n    auto get_set() const { return\
+    \ st; }\n};\n\n/**\n * @brief ConvexHullTrick\n * @docs docs/data-struct/cht/ConvexHullTrick.md\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T\
     \ = ll, bool is_max = false,\n         class largeT = typename double_size_int<T>::type>\n\
     class ConvexHullTrick {\nprivate:\n    struct Line {\n        T a, b;\n      \
-    \  int idx;\n        bool is_query;\n        mutable ll nxt_a, nxt_b;\n      \
-    \  mutable bool has_nxt;\n        T get(T x) const { return a * x + b; }\n   \
-    \     T get_nxt(T x) const { return nxt_a * x + nxt_b; }\n        Line() = default;\n\
+    \  int idx;\n        bool is_query;\n        mutable T nxt_a, nxt_b;\n       \
+    \ mutable bool has_nxt;\n        T get(T x) const { return a * x + b; }\n    \
+    \    T get_nxt(T x) const { return nxt_a * x + nxt_b; }\n        Line() = default;\n\
     \        Line(T a, T b, int id, bool i = false)\n            : a(a), b(b), idx(id),\
     \ is_query(i), has_nxt(false) {}\n        friend bool operator<(const Line& lhs,\
     \ const Line& rhs) {\n            assert(!lhs.is_query || !rhs.is_query);\n  \
@@ -517,8 +518,9 @@ data:
     \ true});\n        Line res{*itr};\n        return line{is_max ? -res.a : res.a,\
     \ is_max ? -res.b : res.b, res.idx};\n    }\n    T get_min(T x) const {\n    \
     \    const auto& l = get_min_line(x);\n        return l.a * x + l.b;\n    }\n\
-    \    bool empty() const { return st.empty(); }\n};\n\n/**\n * @brief ConvexHullTrick\n\
-    \ * @docs docs/data-struct/cht/ConvexHullTrick.md\n */\n"
+    \    bool empty() const { return st.empty(); }\n    auto get_set() const { return\
+    \ st; }\n};\n\n/**\n * @brief ConvexHullTrick\n * @docs docs/data-struct/cht/ConvexHullTrick.md\n\
+    \ */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -532,7 +534,7 @@ data:
   isVerificationFile: false
   path: data-struct/cht/ConvexHullTrick.hpp
   requiredBy: []
-  timestamp: '2024-05-12 17:35:55+09:00'
+  timestamp: '2024-12-16 09:33:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/data_structure/line_add_get_min.test.cpp

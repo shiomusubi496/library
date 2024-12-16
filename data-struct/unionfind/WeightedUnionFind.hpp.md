@@ -610,9 +610,9 @@ data:
   timestamp: '2024-07-20 14:13:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
   - test/yosupo/new/unionfind_with_potential_non_commutative_group.test.cpp
   - test/yosupo/new/unionfind_with_potential.test.cpp
+  - test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
 documentation_of: data-struct/unionfind/WeightedUnionFind.hpp
 layout: document
 redirect_from:

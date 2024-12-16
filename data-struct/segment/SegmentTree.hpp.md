@@ -692,30 +692,30 @@ data:
   isVerificationFile: false
   path: data-struct/segment/SegmentTree.hpp
   requiredBy:
-  - graph/tree/EulerTour.hpp
-  - graph/tree/PMORMQLCA.hpp
-  - data-struct/wavelet/SegmentTreeWM.hpp
-  - data-struct/2D/SegmentTree2D.hpp
   - data-struct/segment/LCARMQ.hpp
   - data-struct/segment/RangeSortQuery.hpp
+  - data-struct/2D/SegmentTree2D.hpp
+  - data-struct/wavelet/SegmentTreeWM.hpp
+  - graph/tree/PMORMQLCA.hpp
+  - graph/tree/EulerTour.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yuki/1435_SegTree-BinarySearch.test.cpp
-  - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-  - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
-  - test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
-  - test/aoj/DSL/DSL_2_A-RMQ.test.cpp
-  - test/aoj/DSL/DSL_2_B-RSQ.test.cpp
+  - test/yosupo/tree/vertex_add_subtree_sum.test.cpp
   - test/yosupo/tree/vertex_set_path_composite.test.cpp
   - test/yosupo/tree/vertex_add_path_sum.test.cpp
   - test/yosupo/tree/vertex_set_path_composite-HLD.test.cpp
-  - test/yosupo/tree/vertex_add_subtree_sum.test.cpp
-  - test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
   - test/yosupo/data_structure/point_set_range_composite.test.cpp
-  - test/yosupo/data_structure/point_add_rectangle_sum-WM.test.cpp
   - test/yosupo/data_structure/point_add_rectangle_sum-2DSegTree.test.cpp
+  - test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
   - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
+  - test/yosupo/data_structure/point_add_rectangle_sum-WM.test.cpp
+  - test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
+  - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
+  - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
+  - test/aoj/DSL/DSL_2_A-RMQ.test.cpp
+  - test/aoj/DSL/DSL_2_B-RSQ.test.cpp
+  - test/yuki/1435_SegTree-BinarySearch.test.cpp
 documentation_of: data-struct/segment/SegmentTree.hpp
 layout: document
 redirect_from:

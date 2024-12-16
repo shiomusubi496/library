@@ -1088,23 +1088,23 @@ data:
   isVerificationFile: false
   path: math/poly/TaylorShift.hpp
   requiredBy:
-  - math/ExpPolySum.hpp
   - math/poly/SamplingPointsShift.hpp
+  - math/ExpPolySum.hpp
   - math/StirlingNumber.hpp
   timestamp: '2024-05-29 15:54:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/DPL/DPL_5_G.test.cpp
-  - test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
-  - test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-  - test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
+  - test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp
+  - test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
   - test/yosupo/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
-  - test/yosupo/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
+  - test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
   - test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind_fixed_k.test.cpp
   - test/yosupo/enumerative_combinatorics/partition_function.test.cpp
-  - test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
-  - test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp
+  - test/yosupo/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
   - test/yosupo/number_theory/bernoulli_number.test.cpp
+  - test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
+  - test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
+  - test/aoj/DPL/DPL_5_G.test.cpp
 documentation_of: math/poly/TaylorShift.hpp
 layout: document
 redirect_from:

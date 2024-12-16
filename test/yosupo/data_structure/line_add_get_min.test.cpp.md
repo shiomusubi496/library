@@ -446,10 +446,10 @@ data:
     \n\ntemplate<class T = ll, bool is_max = false,\n         class largeT = typename\
     \ double_size_int<T>::type>\nclass ConvexHullTrick {\nprivate:\n    struct Line\
     \ {\n        T a, b;\n        int idx;\n        bool is_query;\n        mutable\
-    \ ll nxt_a, nxt_b;\n        mutable bool has_nxt;\n        T get(T x) const {\
-    \ return a * x + b; }\n        T get_nxt(T x) const { return nxt_a * x + nxt_b;\
-    \ }\n        Line() = default;\n        Line(T a, T b, int id, bool i = false)\n\
-    \            : a(a), b(b), idx(id), is_query(i), has_nxt(false) {}\n        friend\
+    \ T nxt_a, nxt_b;\n        mutable bool has_nxt;\n        T get(T x) const { return\
+    \ a * x + b; }\n        T get_nxt(T x) const { return nxt_a * x + nxt_b; }\n \
+    \       Line() = default;\n        Line(T a, T b, int id, bool i = false)\n  \
+    \          : a(a), b(b), idx(id), is_query(i), has_nxt(false) {}\n        friend\
     \ bool operator<(const Line& lhs, const Line& rhs) {\n            assert(!lhs.is_query\
     \ || !rhs.is_query);\n            if (lhs.is_query) {\n                if (!rhs.has_nxt)\
     \ return true;\n                return rhs.get(lhs.a) < rhs.get_nxt(lhs.a);\n\
@@ -480,9 +480,10 @@ data:
     \ true});\n        Line res{*itr};\n        return line{is_max ? -res.a : res.a,\
     \ is_max ? -res.b : res.b, res.idx};\n    }\n    T get_min(T x) const {\n    \
     \    const auto& l = get_min_line(x);\n        return l.a * x + l.b;\n    }\n\
-    \    bool empty() const { return st.empty(); }\n};\n\n/**\n * @brief ConvexHullTrick\n\
-    \ * @docs docs/data-struct/cht/ConvexHullTrick.md\n */\n#line 4 \"test/yosupo/data_structure/line_add_get_min.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int N, Q; scan >> N >> Q;\n    ConvexHullTrick<ll,\
+    \    bool empty() const { return st.empty(); }\n    auto get_set() const { return\
+    \ st; }\n};\n\n/**\n * @brief ConvexHullTrick\n * @docs docs/data-struct/cht/ConvexHullTrick.md\n\
+    \ */\n#line 4 \"test/yosupo/data_structure/line_add_get_min.test.cpp\"\nusing\
+    \ namespace std;\nint main() {\n    int N, Q; scan >> N >> Q;\n    ConvexHullTrick<ll,\
     \ false> CHT;\n    rep (N) {\n        ll a, b; scan >> a >> b;\n        CHT.add_line(a,\
     \ b);\n    }\n    rep (Q) {\n        int t; scan >> t;\n        if (t == 0) {\n\
     \            ll a, b; scan >> a >> b;\n            CHT.add_line(a, b);\n     \
@@ -510,7 +511,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/line_add_get_min.test.cpp
   requiredBy: []
-  timestamp: '2024-05-12 17:35:55+09:00'
+  timestamp: '2024-12-16 09:33:20+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/line_add_get_min.test.cpp
