@@ -640,7 +640,7 @@ data:
     \ farthest_pair(const std::vector<Point>& p) {\n    auto poly = convex_hull(p);\n\
     \    return diameter(poly);\n}\n\nstd::pair<Point, Point> closest_pair(std::vector<Point>\
     \ p) {\n    assert(p.size() >= 2);\n    const int n = p.size();\n    std::sort(all(p));\n\
-    \    Real res = infinity<Real>::max;\n    Point a, b;\n    rec_lambda([&](auto&&\
+    \    Real res = (p[0] - p[1]).norm();\n    Point a = p[0], b = p[1];\n    rec_lambda([&](auto&&\
     \ self, int l, int r) -> void {\n        const int m = (l + r) / 2;\n        if\
     \ (r - l <= 1) return;\n        const Real x = p[m].x;\n        self(l, m);\n\
     \        self(m, r);\n        std::inplace_merge(\n            p.begin() + l,\
@@ -788,7 +788,7 @@ data:
   isVerificationFile: false
   path: geometry/All.hpp
   requiredBy: []
-  timestamp: '2024-07-20 19:33:32+09:00'
+  timestamp: '2024-12-16 20:35:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geometry/All.hpp

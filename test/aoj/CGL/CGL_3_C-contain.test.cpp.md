@@ -597,27 +597,27 @@ data:
     \ {p[ri], p[rj]};\n}\n\nstd::pair<Point, Point> farthest_pair(const std::vector<Point>&\
     \ p) {\n    auto poly = convex_hull(p);\n    return diameter(poly);\n}\n\nstd::pair<Point,\
     \ Point> closest_pair(std::vector<Point> p) {\n    assert(p.size() >= 2);\n  \
-    \  const int n = p.size();\n    std::sort(all(p));\n    Real res = infinity<Real>::max;\n\
-    \    Point a, b;\n    rec_lambda([&](auto&& self, int l, int r) -> void {\n  \
-    \      const int m = (l + r) / 2;\n        if (r - l <= 1) return;\n        const\
-    \ Real x = p[m].x;\n        self(l, m);\n        self(m, r);\n        std::inplace_merge(\n\
-    \            p.begin() + l, p.begin() + m, p.begin() + r,\n            [](const\
-    \ Point& a, const Point& b) { return cmp(a.y, b.y) < 0; });\n        std::vector<int>\
-    \ B;\n        rep (i, l, r) {\n            if (cmp((p[i].x - x) * (p[i].x - x),\
-    \ res) >= 0) continue;\n            rrep (j, B.size()) {\n                if (cmp((p[i].y\
-    \ - p[B[j]].y) * (p[i].y - p[B[j]].y), res) >= 0)\n                    break;\n\
-    \                if (chmin(res, norm(p[i] - p[B[j]]),\n                      \
-    \    [](const Real& a, const Real& b) {\n                              return\
-    \ cmp(a, b) < 0;\n                          })) {\n                    a = p[i];\n\
-    \                    b = p[B[j]];\n                }\n            }\n        \
-    \    B.push_back(i);\n        }\n    })(0, n);\n    return {a, b};\n}\n\n// cut\
-    \ with line p0-p1 and return left side\nPolygon polygon_cut(const Polygon& p,\
-    \ const Point& p0, const Point& p1) {\n    const int n = p.size();\n    Polygon\
-    \ res;\n    rep (i, n) {\n        Point a = p[i], b = p[(i + 1) % n];\n      \
-    \  Real ca = cross(p0 - a, p1 - a);\n        Real cb = cross(p0 - b, p1 - b);\n\
-    \        if (cmp(ca, 0) >= 0) res.push_back(a);\n        if (cmp(ca, 0) * cmp(cb,\
-    \ 0) < 0) {\n            res.push_back(intersection(Line(a, b), Line(p0, p1)));\n\
-    \        }\n    }\n    return res;\n}\n#line 4 \"test/aoj/CGL/CGL_3_C-contain.test.cpp\"\
+    \  const int n = p.size();\n    std::sort(all(p));\n    Real res = (p[0] - p[1]).norm();\n\
+    \    Point a = p[0], b = p[1];\n    rec_lambda([&](auto&& self, int l, int r)\
+    \ -> void {\n        const int m = (l + r) / 2;\n        if (r - l <= 1) return;\n\
+    \        const Real x = p[m].x;\n        self(l, m);\n        self(m, r);\n  \
+    \      std::inplace_merge(\n            p.begin() + l, p.begin() + m, p.begin()\
+    \ + r,\n            [](const Point& a, const Point& b) { return cmp(a.y, b.y)\
+    \ < 0; });\n        std::vector<int> B;\n        rep (i, l, r) {\n           \
+    \ if (cmp((p[i].x - x) * (p[i].x - x), res) >= 0) continue;\n            rrep\
+    \ (j, B.size()) {\n                if (cmp((p[i].y - p[B[j]].y) * (p[i].y - p[B[j]].y),\
+    \ res) >= 0)\n                    break;\n                if (chmin(res, norm(p[i]\
+    \ - p[B[j]]),\n                          [](const Real& a, const Real& b) {\n\
+    \                              return cmp(a, b) < 0;\n                       \
+    \   })) {\n                    a = p[i];\n                    b = p[B[j]];\n \
+    \               }\n            }\n            B.push_back(i);\n        }\n   \
+    \ })(0, n);\n    return {a, b};\n}\n\n// cut with line p0-p1 and return left side\n\
+    Polygon polygon_cut(const Polygon& p, const Point& p0, const Point& p1) {\n  \
+    \  const int n = p.size();\n    Polygon res;\n    rep (i, n) {\n        Point\
+    \ a = p[i], b = p[(i + 1) % n];\n        Real ca = cross(p0 - a, p1 - a);\n  \
+    \      Real cb = cross(p0 - b, p1 - b);\n        if (cmp(ca, 0) >= 0) res.push_back(a);\n\
+    \        if (cmp(ca, 0) * cmp(cb, 0) < 0) {\n            res.push_back(intersection(Line(a,\
+    \ b), Line(p0, p1)));\n        }\n    }\n    return res;\n}\n#line 4 \"test/aoj/CGL/CGL_3_C-contain.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int n; scan >> n;\n    Polygon p(n);\
     \ scan >> p;\n    int q; scan >> q;\n    rep (q) {\n        Point a; scan >> a;\n\
     \        print << (contains(p, a) ? 1 : 0) + (contains(p, a, false) ? 1 : 0) <<\
@@ -645,7 +645,7 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL/CGL_3_C-contain.test.cpp
   requiredBy: []
-  timestamp: '2024-07-20 19:33:32+09:00'
+  timestamp: '2024-12-16 20:35:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL/CGL_3_C-contain.test.cpp

@@ -556,7 +556,7 @@ data:
       path: math/convolution/MultipleZetaMoebiusTransform.hpp
       title: "MultipleZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
         \u30A6\u30B9\u5909\u63DB)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/convolution/RelaxedConvolution.hpp
       title: "Relaxed Convolution(\u30AA\u30F3\u30E9\u30A4\u30F3\u7573\u307F\u8FBC\
         \u307F)"
@@ -593,10 +593,10 @@ data:
     - icon: ':question:'
       path: math/poly/FormalPowerSeries.hpp
       title: "FormalPowerSeries(\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/poly/MultipointEvaluation.hpp
       title: "MultipointEvaluation(\u591A\u70B9\u8A55\u4FA1)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/poly/PolynomialInterpolation.hpp
       title: "PolynomialInterpolation(\u591A\u9805\u5F0F\u88DC\u9593)"
     - icon: ':question:'
@@ -1368,43 +1368,43 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/polynomial/composition_of_formal_power_series.test.cpp
       title: test/yosupo/polynomial/composition_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/polynomial/compositional_inverse_of_formal_power_series.test.cpp
       title: test/yosupo/polynomial/compositional_inverse_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/polynomial/division_of_polynomials.test.cpp
       title: test/yosupo/polynomial/division_of_polynomials.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/polynomial/exp_of_formal_power_series-RelaxedConvolution.test.cpp
       title: test/yosupo/polynomial/exp_of_formal_power_series-RelaxedConvolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/polynomial/exp_of_formal_power_series.test.cpp
       title: test/yosupo/polynomial/exp_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/polynomial/exp_of_formal_power_series_sparse.test.cpp
       title: test/yosupo/polynomial/exp_of_formal_power_series_sparse.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/polynomial/inv_of_formal_power_series.test.cpp
       title: test/yosupo/polynomial/inv_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/polynomial/inv_of_formal_power_series_sparse.test.cpp
       title: test/yosupo/polynomial/inv_of_formal_power_series_sparse.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/polynomial/log_of_formal_power_series.test.cpp
       title: test/yosupo/polynomial/log_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/polynomial/log_of_formal_power_series_sparse.test.cpp
       title: test/yosupo/polynomial/log_of_formal_power_series_sparse.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/polynomial/multipoint_evaluation.test.cpp
       title: test/yosupo/polynomial/multipoint_evaluation.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/polynomial/multipoint_evaluation_on_geometric_sequence.test.cpp
       title: test/yosupo/polynomial/multipoint_evaluation_on_geometric_sequence.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/polynomial/polynomial_interpolation.test.cpp
       title: test/yosupo/polynomial/polynomial_interpolation.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/polynomial/polynomial_interpolation_on_geometric_sequence.test.cpp
       title: test/yosupo/polynomial/polynomial_interpolation_on_geometric_sequence.test.cpp
     - icon: ':x:'
