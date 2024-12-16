@@ -1,15 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
-    path: graph/Graph.hpp
-    title: Graph-template
   - icon: ':heavy_check_mark:'
-    path: graph/other/LowLink.hpp
-    title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
+    path: math/GaussianInteger.hpp
+    title: GaussianInteger
+  - icon: ':heavy_check_mark:'
+    path: math/MillerRabin.hpp
+    title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
+      )"
+  - icon: ':question:'
+    path: math/MontgomeryModInt.hpp
+    title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
+  - icon: ':heavy_check_mark:'
+    path: math/PollardRho.hpp
+    title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
+  - icon: ':heavy_check_mark:'
+    path: random/Random.hpp
+    title: Random
+  - icon: ':heavy_check_mark:'
+    path: string/RunLength.hpp
+    title: "RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
   - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
@@ -35,17 +48,16 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/two_square_sum.test.cpp
+    title: test/yosupo/new/two_square_sum.test.cpp
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/GRL_3_B
-    links:
-    - https://onlinejudge.u-aizu.ac.jp/problems/GRL_3_B
-  bundledCode: "#line 1 \"test/aoj/GRL/GRL_3_B-LowLink.test.cpp\"\n#define PROBLEM\
-    \ \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_3_B\"\n#line 2 \"other/template.hpp\"\
+    links: []
+  bundledCode: "#line 2 \"math/TwoSquareSum.hpp\"\n\n#line 2 \"other/template.hpp\"\
     \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
     \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define OVERLOAD5(a,\
     \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
@@ -444,85 +456,262 @@ data:
     \        return res;\n    }\n    void press(std::vector<T>& vec) const {\n   \
     \     assert(sorted);\n        for (auto&& i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
-    };\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class\
-    \ T = int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
-    \ : from(-1), to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1)\n\
-    \        : from(f), to(t), cost(c), idx(i) {}\n    edge(int f, int t, T&& c, int\
-    \ i = -1)\n        : from(f), to(t), cost(std::move(c)), idx(i) {}\n    operator\
-    \ int() const { return to; }\n    friend bool operator<(const edge<T>& lhs, const\
-    \ edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n    }\n    friend bool\
-    \ operator>(const edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost\
-    \ > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using Edges = std::vector<edge<T>>;\n\
-    template<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class\
-    \ T = int> class Graph : public std::vector<std::vector<edge<T>>> {\nprivate:\n\
-    \    using Base = std::vector<std::vector<edge<T>>>;\n\npublic:\n    int edge_id\
-    \ = 0;\n    using Base::Base;\n    int edge_size() const { return edge_id; }\n\
-    \    int add_edge(int a, int b, const T& c, bool is_directed = false) {\n    \
-    \    assert(0 <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
-    \        (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed)\
-    \ (*this)[b].emplace_back(b, a, c, edge_id);\n        return edge_id++;\n    }\n\
-    \    int add_edge(int a, int b, bool is_directed = false) {\n        assert(0\
-    \ <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
-    \        (*this)[a].emplace_back(a, b, 1, edge_id);\n        if (!is_directed)\
-    \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
-    };\n\ntemplate<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {\n    const\
-    \ int N = G.size();\n    auto res = make_vec<T>(N, N, infinity<T>::value);\n \
-    \   rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n        for (const auto& e :\
-    \ G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\ntemplate<class T>\
-    \ Edges<T> UndirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n\
-    \    const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n   \
-    \     for (const auto& e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\n\
-    template<class T> Edges<T> DirectedListToEdges(const Graph<T>& G) {\n    const\
-    \ int V = G.size();\n    const int E = std::accumulate(\n        all(G), 0, [](int\
-    \ a, const std::vector<edge<T>>& v) -> int {\n            return a + v.size();\n\
-    \        });\n    Edges<T> Ed(G.edge_size());\n    Ed.reserve(E);\n    rep (i,\
-    \ V) {\n        for (const auto& e : G[i]) {\n            if (Ed[e.idx] == -1)\
-    \ Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n    return\
-    \ Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n   \
-    \ const int V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n        for\
-    \ (const auto& e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from, e.cost,\
-    \ e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n    return res;\n\
-    }\n\n\nstruct unweighted_edge {\n    template<class... Args> unweighted_edge(const\
-    \ Args&...) {}\n    operator int() { return 1; }\n};\n\nusing UnweightedGraph\
-    \ = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n * @docs docs/graph/Graph.md\n\
-    \ */\n#line 2 \"graph/other/LowLink.hpp\"\n\n#line 4 \"graph/other/LowLink.hpp\"\
-    \n\ntemplate<class T> class LowLink {\nprotected:\n    int n, cnt;\n    const\
-    \ Graph<T>& G;\n    std::vector<int> ord, low;\n    std::vector<int> aps;\n  \
-    \  Edges<T> brd;\n    void dfs(int v, int p) {\n        low[v] = ord[v] = cnt++;\n\
-    \        int deg = 0;\n        bool is_ap = false, mul = false;\n        for (const\
-    \ auto& e : G[v]) {\n            if (e.to == p && !mul) {\n                mul\
-    \ = true;\n                continue;\n            }\n            if (ord[e.to]\
-    \ != -1) chmin(low[v], ord[e.to]);\n            else {\n                dfs(e.to,\
-    \ v);\n                chmin(low[v], low[e.to]);\n                if (p != -1\
-    \ && ord[v] <= low[e.to]) is_ap = true;\n                if (ord[v] < low[e.to])\
-    \ brd.push_back(e);\n                ++deg;\n            }\n        }\n      \
-    \  if (p == -1 && deg > 1) is_ap = true;\n        if (is_ap) aps.push_back(v);\n\
-    \    }\n    void init() {\n        n = G.size();\n        ord.assign(n, -1);\n\
-    \        low.assign(n, n + 1);\n        cnt = 0;\n        rep (i, n) {\n     \
-    \       if (ord[i] == -1) dfs(i, -1);\n        }\n    }\n\npublic:\n    LowLink(const\
-    \ Graph<T>& G) : G(G) { init(); }\n    const std::vector<int>& articulation_points()\
-    \ const& { return aps; }\n    std::vector<int> articulation_points() && { return\
-    \ std::move(aps); }\n    const Edges<T>& bridges() const& { return brd; }\n  \
-    \  Edges<T> bridges() && { return std::move(brd); }\n};\n\n/**\n * @brief Lowlink(\u95A2\
-    \u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)\n * @docs docs/graph/other/LowLink.md\n\
-    \ */\n#line 5 \"test/aoj/GRL/GRL_3_B-LowLink.test.cpp\"\nusing namespace std;\n\
-    int main() {\n    int V, E; scan >> V >> E;\n    Graph<int> G(V);\n    rep (E)\
-    \ {\n        int s, t; scan >> s >> t;\n        G.add_edge(s, t);\n    }\n   \
-    \ LowLink<int> LL(G);\n    auto v = LL.bridges();\n    for (auto&& e : v) {\n\
-    \        if (e.from > e.to) swap(e.from, e.to);\n    }\n    sort(v.begin(), v.end(),\
-    \ [](const edge<int>& a, const edge<int>& b) -> bool {\n        if (a.from !=\
-    \ b.from) return a.from < b.from;\n        return a.to < b.to;\n    });\n    for\
-    \ (const auto& e : v) print << e.from << ' ' << e.to << endl;\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_3_B\"\n#include\
-    \ \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\n#include\
-    \ \"../../../graph/other/LowLink.hpp\"\nusing namespace std;\nint main() {\n \
-    \   int V, E; scan >> V >> E;\n    Graph<int> G(V);\n    rep (E) {\n        int\
-    \ s, t; scan >> s >> t;\n        G.add_edge(s, t);\n    }\n    LowLink<int> LL(G);\n\
-    \    auto v = LL.bridges();\n    for (auto&& e : v) {\n        if (e.from > e.to)\
-    \ swap(e.from, e.to);\n    }\n    sort(v.begin(), v.end(), [](const edge<int>&\
-    \ a, const edge<int>& b) -> bool {\n        if (a.from != b.from) return a.from\
-    \ < b.from;\n        return a.to < b.to;\n    });\n    for (const auto& e : v)\
-    \ print << e.from << ' ' << e.to << endl;\n}\n"
+    };\n#line 2 \"math/PollardRho.hpp\"\n\n#line 2 \"random/Random.hpp\"\n\n#line\
+    \ 4 \"random/Random.hpp\"\n\ntemplate<class Engine> class Random {\nprivate:\n\
+    \    Engine rnd;\n\npublic:\n    using result_type = typename Engine::result_type;\n\
+    \    Random() : Random(std::random_device{}()) {}\n    Random(result_type seed)\
+    \ : rnd(seed) {}\n    result_type operator()() { return rnd(); }\n    result_type\
+    \ min() const { return rnd.min(); }\n    result_type max() const { return rnd.max();\
+    \ }\n    template<class IntType = ll> IntType uniform(IntType l, IntType r) {\n\
+    \        static_assert(std::is_integral<IntType>::value,\n                   \
+    \   \"template argument must be an integral type\");\n        assert(l <= r);\n\
+    \        return std::uniform_int_distribution<IntType>{l, r}(rnd);\n    }\n  \
+    \  template<class RealType = double>\n    RealType uniform_real(RealType l, RealType\
+    \ r) {\n        static_assert(std::is_floating_point<RealType>::value,\n     \
+    \                 \"template argument must be an floating point type\");\n   \
+    \     assert(l <= r);\n        return std::uniform_real_distribution<RealType>{l,\
+    \ r}(rnd);\n    }\n    bool uniform_bool() { return uniform<int>(0, 1) == 1; }\n\
+    \    template<class T = ll> std::pair<T, T> uniform_pair(T l, T r) {\n       \
+    \ assert(l < r);\n        T a, b;\n        do {\n            a = uniform<T>(l,\
+    \ r);\n            b = uniform<T>(l, r);\n        } while (a == b);\n        if\
+    \ (a > b) swap(a, b);\n        return {a, b};\n    }\n    template<class T = ll>\
+    \ std::vector<T> choice(int n, T l, T r) {\n        assert(l <= r);\n        assert(T(n)\
+    \ <= (r - l + 1));\n        std::set<T> res;\n        while ((int)res.size() <\
+    \ n) res.insert(uniform<T>(l, r));\n        return {res.begin(), res.end()};\n\
+    \    }\n    template<class Iter> void shuffle(const Iter& first, const Iter& last)\
+    \ {\n        std::shuffle(first, last, rnd);\n    }\n    template<class T> std::vector<T>\
+    \ permutation(T n) {\n        std::vector<T> res(n);\n        rep (i, n) res[i]\
+    \ = i;\n        shuffle(all(res));\n        return res;\n    }\n    template<class\
+    \ T = ll>\n    std::vector<T> choice_shuffle(int n, T l, T r, bool sorted = true)\
+    \ {\n        assert(l <= r);\n        assert(T(n) <= (r - l + 1));\n        std::vector<T>\
+    \ res(r - l + 1);\n        rep (i, l, r + 1) res[i - l] = i;\n        shuffle(all(res));\n\
+    \        res.erase(res.begin() + n, res.end());\n        if (sorted) sort(all(res));\n\
+    \        return res;\n    }\n};\n\nusing Random32 = Random<std::mt19937>;\nRandom32\
+    \ rand32;\nusing Random64 = Random<std::mt19937_64>;\nRandom64 rand64;\n\n/**\n\
+    \ * @brief Random\n * @docs docs/random/Random.md\n */\n#line 2 \"math/MontgomeryModInt.hpp\"\
+    \n\n#line 4 \"math/MontgomeryModInt.hpp\"\n\ntemplate<class T> class MontgomeryReduction\
+    \ {\n    static_assert(std::is_integral<T>::value, \"T must be integral\");\n\
+    \    static_assert(std::is_unsigned<T>::value, \"T must be unsigned\");\n\nprivate:\n\
+    \    using large_t = typename double_size_uint<T>::type;\n    static constexpr\
+    \ int lg = std::numeric_limits<T>::digits;\n    T mod;\n    T r;\n    T r2; //\
+    \ r^2 mod m\n    T calc_minv() {\n        T t = 0, res = 0;\n        rep (i, lg)\
+    \ {\n            if (~t & 1) {\n                t += mod;\n                res\
+    \ += static_cast<T>(1) << i;\n            }\n            t >>= 1;\n        }\n\
+    \        return res;\n    }\n    T minv;\n\npublic:\n    MontgomeryReduction(T\
+    \ v) { set_mod(v); }\n    static constexpr int get_lg() { return lg; }\n    void\
+    \ set_mod(T v) {\n        assert(v > 0);\n        assert(v & 1);\n        assert(v\
+    \ <= std::numeric_limits<T>::max() / 2);\n        mod = v;\n        r = (-static_cast<T>(mod))\
+    \ % mod;\n        r2 = (-static_cast<large_t>(mod)) % mod;\n        minv = calc_minv();\n\
+    \    }\n    inline T get_mod() const { return mod; }\n    inline T get_r() const\
+    \ { return r; }\n    T reduce(large_t x) const {\n        large_t tmp =\n    \
+    \        (x + static_cast<large_t>(static_cast<T>(x) * minv) * mod) >> lg;\n \
+    \       return tmp >= mod ? tmp - mod : tmp;\n    }\n    T transform(large_t x)\
+    \ const { return reduce(x * r2); }\n};\n\ntemplate<class T, int id> class MontgomeryModInt\
+    \ {\nprivate:\n    using large_t = typename double_size_uint<T>::type;\n    using\
+    \ signed_t = typename std::make_signed<T>::type;\n    T val;\n\n    static MontgomeryReduction<T>\
+    \ mont;\n\npublic:\n    MontgomeryModInt() : val(0) {}\n    template<class U,\
+    \ typename std::enable_if<\n                          std::is_integral<U>::value\
+    \ &&\n                          std::is_unsigned<U>::value>::type* = nullptr>\n\
+    \    MontgomeryModInt(U x)\n        : val(mont.transform(\n              x < (static_cast<large_t>(mont.get_mod())\
+    \ << mont.get_lg())\n                  ? x\n                  : x % mont.get_mod()))\
+    \ {}\n    template<class U,\n             typename std::enable_if<std::is_integral<U>::value\
+    \ &&\n                                     std::is_signed<U>::value>::type* =\
+    \ nullptr>\n    MontgomeryModInt(U x)\n        : MontgomeryModInt(static_cast<typename\
+    \ std::make_unsigned<U>::type>(\n              x < 0 ? -x : x)) {\n        if\
+    \ (x < 0 && val) val = mont.get_mod() - val;\n    }\n\n    T get() const { return\
+    \ mont.reduce(val); }\n    static T get_mod() { return mont.get_mod(); }\n\n \
+    \   static void set_mod(T v) { mont.set_mod(v); }\n\n    MontgomeryModInt operator+()\
+    \ const { return *this; }\n    MontgomeryModInt operator-() const {\n        MontgomeryModInt\
+    \ res;\n        if (val) res.val = mont.get_mod() - val;\n        return res;\n\
+    \    }\n    MontgomeryModInt& operator++() {\n        val += mont.get_r();\n \
+    \       if (val >= mont.get_mod()) val -= mont.get_mod();\n        return *this;\n\
+    \    }\n    MontgomeryModInt& operator--() {\n        if (val < mont.get_r())\
+    \ val += mont.get_mod();\n        val -= mont.get_r();\n        return *this;\n\
+    \    }\n    MontgomeryModInt operator++(int) {\n        MontgomeryModInt res =\
+    \ *this;\n        ++*this;\n        return res;\n    }\n    MontgomeryModInt operator--(int)\
+    \ {\n        MontgomeryModInt res = *this;\n        --*this;\n        return res;\n\
+    \    }\n\n    MontgomeryModInt& operator+=(const MontgomeryModInt& rhs) {\n  \
+    \      val += rhs.val;\n        if (val >= mont.get_mod()) val -= mont.get_mod();\n\
+    \        return *this;\n    }\n    MontgomeryModInt& operator-=(const MontgomeryModInt&\
+    \ rhs) {\n        if (val < rhs.val) val += mont.get_mod();\n        val -= rhs.val;\n\
+    \        return *this;\n    }\n    MontgomeryModInt& operator*=(const MontgomeryModInt&\
+    \ rhs) {\n        val = mont.reduce(static_cast<large_t>(val) * rhs.val);\n  \
+    \      return *this;\n    }\n\n    MontgomeryModInt pow(ull n) const {\n     \
+    \   MontgomeryModInt res = 1, x = *this;\n        while (n) {\n            if\
+    \ (n & 1) res *= x;\n            x *= x;\n            n >>= 1;\n        }\n  \
+    \      return res;\n    }\n    MontgomeryModInt inv() const { return pow(mont.get_mod()\
+    \ - 2); }\n\n    MontgomeryModInt& operator/=(const MontgomeryModInt& rhs) {\n\
+    \        return *this *= rhs.inv();\n    }\n\n    friend MontgomeryModInt operator+(const\
+    \ MontgomeryModInt& lhs,\n                                      const MontgomeryModInt&\
+    \ rhs) {\n        return MontgomeryModInt(lhs) += rhs;\n    }\n    friend MontgomeryModInt\
+    \ operator-(const MontgomeryModInt& lhs,\n                                   \
+    \   const MontgomeryModInt& rhs) {\n        return MontgomeryModInt(lhs) -= rhs;\n\
+    \    }\n    friend MontgomeryModInt operator*(const MontgomeryModInt& lhs,\n \
+    \                                     const MontgomeryModInt& rhs) {\n       \
+    \ return MontgomeryModInt(lhs) *= rhs;\n    }\n    friend MontgomeryModInt operator/(const\
+    \ MontgomeryModInt& lhs,\n                                      const MontgomeryModInt&\
+    \ rhs) {\n        return MontgomeryModInt(lhs) /= rhs;\n    }\n\n    friend bool\
+    \ operator==(const MontgomeryModInt& lhs,\n                           const MontgomeryModInt&\
+    \ rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
+    \ MontgomeryModInt& lhs,\n                           const MontgomeryModInt& rhs)\
+    \ {\n        return lhs.val != rhs.val;\n    }\n\n    template<class Pr> void\
+    \ print(Pr& a) const { a.print(mont.reduce(val)); }\n    template<class Pr> void\
+    \ debug(Pr& a) const { a.print(mont.reduce(val)); }\n    template<class Sc> void\
+    \ scan(Sc& a) {\n        ll v;\n        a.scan(v);\n        *this = v;\n    }\n\
+    };\n\ntemplate<class T, int id>\nMontgomeryReduction<T>\n    MontgomeryModInt<T,\
+    \ id>::mont = MontgomeryReduction<T>(998244353);\n\nusing mmodint = MontgomeryModInt<unsigned\
+    \ int, -1>;\n\n/**\n * @brief MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\
+    \u7B97)\n * @docs docs/math/MontgomeryModInt.md\n */\n#line 2 \"math/MillerRabin.hpp\"\
+    \n\n#line 5 \"math/MillerRabin.hpp\"\n\nconstexpr ull base_miller_rabin_int[3]\
+    \ = {2, 7, 61};\nconstexpr ull base_miller_rabin_ll[7] = {2,      325,     9375,\
+    \      28178,\n                                         450775, 9780504, 1795265022};\n\
+    \ntemplate<class T> constexpr bool miller_rabin(ull n, const ull base[], int s)\
+    \ {\n    if (T::get_mod() != n) T::set_mod(n);\n    ull d = n - 1;\n    while\
+    \ (~d & 1) d >>= 1;\n    T e{1}, re{n - 1};\n    rep (i, s) {\n        ull a =\
+    \ base[i];\n        if (a >= n) return true;\n        ull t = d;\n        T y\
+    \ = T(a).pow(t);\n        while (t != n - 1 && y != e && y != re) {\n        \
+    \    y *= y;\n            t <<= 1;\n        }\n        if (y != re && !(t & 1))\
+    \ return false;\n    }\n    return true;\n}\n\nconstexpr bool is_prime_mr(ll n)\
+    \ {\n    if (n == 2) return true;\n    if (n < 2 || n % 2 == 0) return false;\n\
+    \    if (n < (1u << 31))\n        return miller_rabin<MontgomeryModInt<unsigned\
+    \ int, -2>>(\n            n, base_miller_rabin_int, 3);\n    return miller_rabin<MontgomeryModInt<ull,\
+    \ -2>>(n, base_miller_rabin_ll, 7);\n}\n\n#if __cpp_variable_templates >= 201304L\
+    \ && __cpp_constexpr >= 201304L\ntemplate<ull n> constexpr bool is_prime_v = is_prime_mr(n);\n\
+    #endif\n\n/**\n * @brief MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\
+    \u6570\u5224\u5B9A)\n * @docs docs/math/MillerRabin.md\n */\n#line 2 \"string/RunLength.hpp\"\
+    \n\n#line 4 \"string/RunLength.hpp\"\n\ntemplate<class Cont, class Comp>\nstd::vector<std::pair<typename\
+    \ Cont::value_type, int>>\nRunLength(const Cont& str, const Comp& cmp) {\n   \
+    \ std::vector<std::pair<typename Cont::value_type, int>> res;\n    if (str.size()\
+    \ == 0) return res;\n    res.emplace_back(str[0], 1);\n    rep (i, 1, str.size())\
+    \ {\n        if (cmp(res.back().first, str[i])) ++res.back().second;\n       \
+    \ else res.emplace_back(str[i], 1);\n    }\n    return res;\n}\n\ntemplate<class\
+    \ Cont>\nstd::vector<std::pair<typename Cont::value_type, int>>\nRunLength(const\
+    \ Cont& str) {\n    return RunLength(str, std::equal_to<typename Cont::value_type>());\n\
+    }\n\n/**\n * @brief RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E\
+    )\n * @docs docs/string/RunLength.md\n */\n#line 8 \"math/PollardRho.hpp\"\n\n\
+    template<class T, class Rnd> ull pollard_rho(ull n, Rnd& rnd) {\n    if (~n &\
+    \ 1) return 2;\n    if (T::get_mod() != n) T::set_mod(n);\n    T c, one = 1;\n\
+    \    auto f = [&](T x) -> T { return x * x + c; };\n    constexpr int M = 128;\n\
+    \    while (1) {\n        c = rnd.uniform(1ull, n - 1);\n        T x = rnd.uniform(2ull,\
+    \ n - 1), y = x;\n        ull g = 1;\n        while (g == 1) {\n            T\
+    \ p = one, tx = x, ty = y;\n            rep (M) {\n                x = f(x);\n\
+    \                y = f(f(y));\n                p *= x - y;\n            }\n  \
+    \          g = gcd(p.get(), n);\n            if (g == 1) continue;\n         \
+    \   rep (M) {\n                tx = f(tx);\n                ty = f(f(ty));\n \
+    \               g = gcd((tx - ty).get(), n);\n                if (g != 1) {\n\
+    \                    if (g != n) return g;\n                    break;\n     \
+    \           }\n            }\n        }\n    }\n    return -1;\n}\n\ntemplate<class\
+    \ T = MontgomeryModInt<ull, -3>, class Rnd = Random64>\nstd::vector<ull> factorize(ull\
+    \ n, Rnd& rnd = rand64) {\n    if (n == 1) return {};\n    std::vector<ull> res;\n\
+    \    std::vector<ull> st = {n};\n    while (!st.empty()) {\n        ull t = st.back();\n\
+    \        st.pop_back();\n        if (t == 1) continue;\n        if (is_prime_mr(t))\
+    \ {\n            res.push_back(t);\n            continue;\n        }\n       \
+    \ ull f = pollard_rho<T>(t, rnd);\n        st.push_back(f);\n        st.push_back(t\
+    \ / f);\n    }\n    std::sort(all(res));\n    return res;\n}\n\ntemplate<class\
+    \ T = MontgomeryModInt<ull, -3>, class Rnd = Random64>\nstd::vector<std::pair<ull,\
+    \ int>> expfactorize(ull n, Rnd& rnd = rand64) {\n    auto f = factorize<T, Rnd>(n,\
+    \ rnd);\n    return RunLength(f);\n}\n\nstd::vector<ll> divisors_pr(ll n) {\n\
+    \    std::vector<ll> res;\n    auto r = expfactorize(n);\n    int m = r.size();\n\
+    \    rec_lambda([&](auto&& self, int k, ll d) -> void {\n        if (k == m) {\n\
+    \            res.push_back(d);\n            return;\n        }\n        ll t =\
+    \ d;\n        rep (r[k].second) {\n            self(k + 1, d);\n            d\
+    \ *= r[k].first;\n        }\n        self(k + 1, d);\n        d = t;\n    })(0,\
+    \ 1);\n    std::sort(all(res));\n    return res;\n}\n\n/**\n * @brief PollardRho(\u7D20\
+    \u56E0\u6570\u5206\u89E3)\n * @docs docs/math/PollardRho.md\n */\n#line 2 \"math/GaussianInteger.hpp\"\
+    \n\n#line 4 \"math/GaussianInteger.hpp\"\n\ntemplate<class T> class GaussianInteger\
+    \ {\npublic:\n    T real, imag;\n\n    GaussianInteger() : real(0), imag(0) {}\n\
+    \    GaussianInteger(T real) : real(real), imag(0) {}\n    GaussianInteger(T real,\
+    \ T imag) : real(real), imag(imag) {}\n\n    GaussianInteger conj() const { return\
+    \ GaussianInteger(real, -imag); }\n    T norm() const { return real * real + imag\
+    \ * imag; }\n    GaussianInteger operator+() { return *this; }\n    GaussianInteger\
+    \ operator-() const { return GaussianInteger(-real, -imag); }\n    GaussianInteger\
+    \ operator+=(const GaussianInteger& rhs) {\n        real += rhs.real;\n      \
+    \  imag += rhs.imag;\n        return *this;\n    }\n    GaussianInteger operator-=(const\
+    \ GaussianInteger& rhs) {\n        real -= rhs.real;\n        imag -= rhs.imag;\n\
+    \        return *this;\n    }\n    GaussianInteger operator*=(const GaussianInteger&\
+    \ rhs) {\n        T tmp = real * rhs.real - imag * rhs.imag;\n        imag = real\
+    \ * rhs.imag + imag * rhs.real;\n        real = tmp;\n        return *this;\n\
+    \    }\n    friend GaussianInteger operator+(const GaussianInteger& lhs,\n   \
+    \                                  const GaussianInteger& rhs) {\n        return\
+    \ GaussianInteger(lhs) += rhs;\n    }\n    friend GaussianInteger operator-(const\
+    \ GaussianInteger& lhs,\n                                     const GaussianInteger&\
+    \ rhs) {\n        return GaussianInteger(lhs) -= rhs;\n    }\n    friend GaussianInteger\
+    \ operator*(const GaussianInteger& lhs,\n                                    \
+    \ const GaussianInteger& rhs) {\n        return GaussianInteger(lhs) *= rhs;\n\
+    \    }\n    friend bool operator==(const GaussianInteger& lhs,\n             \
+    \              const GaussianInteger& rhs) {\n        return lhs.real == rhs.real\
+    \ && lhs.imag == rhs.imag;\n    }\n    friend bool operator!=(const GaussianInteger&\
+    \ lhs,\n                           const GaussianInteger& rhs) {\n        return\
+    \ !(lhs == rhs);\n    }\n    template<class Pr> void print(Pr& pr) const {\n \
+    \       pr.print(real);\n        pr.print(' ');\n        pr.print(imag);\n   \
+    \ }\n    template<class Pr> void debug(Pr& pr) const {\n        pr.print(real);\n\
+    \        pr.print_char('+');\n        pr.print(imag);\n        pr.print_char('i');\n\
+    \    }\n    template<class Sc> void scan(Sc& sc) {\n        sc.scan(real);\n \
+    \       sc.scan(imag);\n    }\n};\n\ntemplate<class T>\nGaussianInteger<T> gcd(GaussianInteger<T>\
+    \ a, GaussianInteger<T> b) {\n    while (b != GaussianInteger<T>()) {\n      \
+    \  GaussianInteger<T> q = a * b.conj();\n        T n = b.norm();\n        {\n\
+    \            T tmp = q.real;\n            q.real /= n;\n            tmp = tmp\
+    \ - q.real * n;\n            if (tmp * 2 > n) ++q.real;\n            if (tmp *\
+    \ 2 < -n) --q.real;\n        }\n        {\n            T tmp = q.imag;\n     \
+    \       q.imag /= n;\n            tmp = tmp - q.imag * n;\n            if (tmp\
+    \ * 2 > n) ++q.imag;\n            if (tmp * 2 < -n) --q.imag;\n        }\n   \
+    \     a -= b * q;\n        std::swap(a, b);\n    }\n    return a;\n}\n\n/**\n\
+    \ * @brief GaussianInteger\n * @see https://maspypy.com/library-checker-gcd-of-gaussian-integers\n\
+    \ */\n#line 6 \"math/TwoSquareSum.hpp\"\n\nstd::pair<ll, ll> two_square_sum_prime(ll\
+    \ p) {\n    assert(p == 2 || p % 4 == 1);\n    if (p == 2) return {1, 1};\n  \
+    \  auto mod_pow_ll = [&](i128 x, ll e) -> i128 {\n        i128 res = 1;\n    \
+    \    while (e) {\n            if (e & 1) (res *= x) %= p;\n            (x *= x)\
+    \ %= p;\n            e /= 2;\n        }\n        return res;\n    };\n    ll x\
+    \ = 1;\n    while (1) {\n        ++x;\n        ll t = mod_pow_ll(x, (p - 1) /\
+    \ 4);\n        if (i128{t} * t % p == p - 1) {\n            x = t;\n         \
+    \   break;\n        }\n    }\n    GaussianInteger<i128> a(p, 0), b(x, 1);\n  \
+    \  a = gcd(a, b);\n    assert(a.norm() == p);\n    return {a.real, a.imag};\n\
+    }\n\ntemplate<class T> std::vector<std::pair<T, T>> two_square_sum(T a) {\n  \
+    \  if (a < 0) return {};\n    if (a == 0) return {{0, 0}};\n    using G = GaussianInteger<T>;\n\
+    \    const auto& pfs = expfactorize(a);\n    for (const auto& [p, e] : pfs) {\n\
+    \        if (p % 4 == 3 && e % 2 == 1) return {};\n    }\n    std::vector<G> res{{1,\
+    \ 0}};\n    for (const auto& [p, e] : pfs) {\n        if (p % 4 == 3) {\n    \
+    \        const T x = my_pow(p, e / 2);\n            for (auto& g : res) {\n  \
+    \              g.real *= x;\n                g.imag *= x;\n            }\n   \
+    \         continue;\n        }\n        auto [px, py] = two_square_sum_prime(p);\n\
+    \        G pg(px, py);\n        std::vector<G> gpows(e + 1);\n        gpows[0]\
+    \ = 1;\n        rep (i, e) gpows[i + 1] = gpows[i] * pg;\n        if (p == 2)\
+    \ {\n            for (auto&& g : res) g *= gpows[e];\n            continue;\n\
+    \        }\n        std::vector<G> gs(e + 1);\n        rep (i, e + 1) gs[i] =\
+    \ gpows[i] * gpows[e - i].conj();\n        std::vector<G> nres;\n        for (auto\
+    \ g : gs) for (auto i : res) nres.push_back(g * i);\n        res = std::move(nres);\n\
+    \    }\n    for (auto&& g : res) {\n        while (g.real <= 0 || g.imag < 0)\
+    \ g = {-g.imag, g.real};\n    }\n    std::vector<std::pair<T, T>> ans(res.size());\n\
+    \    rep (i, res.size()) ans[i] = {res[i].real, res[i].imag};\n    return ans;\n\
+    }\n"
+  code: "#pragma once\n\n#include \"../other/template.hpp\"\n#include \"PollardRho.hpp\"\
+    \n#include \"GaussianInteger.hpp\"\n\nstd::pair<ll, ll> two_square_sum_prime(ll\
+    \ p) {\n    assert(p == 2 || p % 4 == 1);\n    if (p == 2) return {1, 1};\n  \
+    \  auto mod_pow_ll = [&](i128 x, ll e) -> i128 {\n        i128 res = 1;\n    \
+    \    while (e) {\n            if (e & 1) (res *= x) %= p;\n            (x *= x)\
+    \ %= p;\n            e /= 2;\n        }\n        return res;\n    };\n    ll x\
+    \ = 1;\n    while (1) {\n        ++x;\n        ll t = mod_pow_ll(x, (p - 1) /\
+    \ 4);\n        if (i128{t} * t % p == p - 1) {\n            x = t;\n         \
+    \   break;\n        }\n    }\n    GaussianInteger<i128> a(p, 0), b(x, 1);\n  \
+    \  a = gcd(a, b);\n    assert(a.norm() == p);\n    return {a.real, a.imag};\n\
+    }\n\ntemplate<class T> std::vector<std::pair<T, T>> two_square_sum(T a) {\n  \
+    \  if (a < 0) return {};\n    if (a == 0) return {{0, 0}};\n    using G = GaussianInteger<T>;\n\
+    \    const auto& pfs = expfactorize(a);\n    for (const auto& [p, e] : pfs) {\n\
+    \        if (p % 4 == 3 && e % 2 == 1) return {};\n    }\n    std::vector<G> res{{1,\
+    \ 0}};\n    for (const auto& [p, e] : pfs) {\n        if (p % 4 == 3) {\n    \
+    \        const T x = my_pow(p, e / 2);\n            for (auto& g : res) {\n  \
+    \              g.real *= x;\n                g.imag *= x;\n            }\n   \
+    \         continue;\n        }\n        auto [px, py] = two_square_sum_prime(p);\n\
+    \        G pg(px, py);\n        std::vector<G> gpows(e + 1);\n        gpows[0]\
+    \ = 1;\n        rep (i, e) gpows[i + 1] = gpows[i] * pg;\n        if (p == 2)\
+    \ {\n            for (auto&& g : res) g *= gpows[e];\n            continue;\n\
+    \        }\n        std::vector<G> gs(e + 1);\n        rep (i, e + 1) gs[i] =\
+    \ gpows[i] * gpows[e - i].conj();\n        std::vector<G> nres;\n        for (auto\
+    \ g : gs) for (auto i : res) nres.push_back(g * i);\n        res = std::move(nres);\n\
+    \    }\n    for (auto&& g : res) {\n        while (g.real <= 0 || g.imag < 0)\
+    \ g = {-g.imag, g.real};\n    }\n    std::vector<std::pair<T, T>> ans(res.size());\n\
+    \    rep (i, res.size()) ans[i] = {res[i].real, res[i].imag};\n    return ans;\n\
+    }\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -533,18 +722,23 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  - graph/Graph.hpp
-  - graph/other/LowLink.hpp
-  isVerificationFile: true
-  path: test/aoj/GRL/GRL_3_B-LowLink.test.cpp
+  - math/PollardRho.hpp
+  - random/Random.hpp
+  - math/MontgomeryModInt.hpp
+  - math/MillerRabin.hpp
+  - string/RunLength.hpp
+  - math/GaussianInteger.hpp
+  isVerificationFile: false
+  path: math/TwoSquareSum.hpp
   requiredBy: []
-  timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: test/aoj/GRL/GRL_3_B-LowLink.test.cpp
+  timestamp: '2024-12-16 12:14:47+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yosupo/new/two_square_sum.test.cpp
+documentation_of: math/TwoSquareSum.hpp
 layout: document
 redirect_from:
-- /verify/test/aoj/GRL/GRL_3_B-LowLink.test.cpp
-- /verify/test/aoj/GRL/GRL_3_B-LowLink.test.cpp.html
-title: test/aoj/GRL/GRL_3_B-LowLink.test.cpp
+- /library/math/TwoSquareSum.hpp
+- /library/math/TwoSquareSum.hpp.html
+title: math/TwoSquareSum.hpp
 ---

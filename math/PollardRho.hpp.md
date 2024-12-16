@@ -5,10 +5,10 @@ data:
     path: math/MillerRabin.hpp
     title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
       )"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/MontgomeryModInt.hpp
     title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   - icon: ':heavy_check_mark:'
@@ -17,28 +17,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/RunLength.hpp
     title: "RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
@@ -51,10 +51,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/TetrationMod.hpp
     title: TetrationMod
+  - icon: ':heavy_check_mark:'
+    path: math/TwoSquareSum.hpp
+    title: math/TwoSquareSum.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/NTL/NTL_1_D-Phi.test.cpp
     title: test/aoj/NTL/NTL_1_D-Phi.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/two_square_sum.test.cpp
+    title: test/yosupo/new/two_square_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/factorize.test.cpp
     title: test/yosupo/number_theory/factorize.test.cpp
@@ -681,6 +687,7 @@ data:
   requiredBy:
   - math/PrimitiveRoot.hpp
   - math/EulerPhi.hpp
+  - math/TwoSquareSum.hpp
   - math/TetrationMod.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -688,6 +695,7 @@ data:
   - test/yosupo/number_theory/tetration_mod.test.cpp
   - test/yosupo/number_theory/primitive_root.test.cpp
   - test/yosupo/number_theory/factorize.test.cpp
+  - test/yosupo/new/two_square_sum.test.cpp
   - test/aoj/NTL/NTL_1_D-Phi.test.cpp
 documentation_of: math/PollardRho.hpp
 layout: document

@@ -1,56 +1,56 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/FrequencyTableofTreeDistance.hpp
     title: Frequency Table of Tree Distance
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree/TreeCentroid.hpp
     title: "TreeCentroid(\u6728\u306E\u91CD\u5FC3)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ChineseRemainder.hpp
     title: "Chinese Remainder(\u4E2D\u56FD\u5270\u4F59\u5B9A\u7406)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/convolution/Convolution.hpp
     title: "Convolution(\u7573\u307F\u8FBC\u307F)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/frequency_table_of_tree_distance
@@ -734,43 +734,48 @@ data:
     \        ll t3 =\n            ((c3[i] - t1 + MOD3) * INV1_3 % MOD3 - t2 + MOD3)\
     \ * INV2_3 % MOD3;\n        if (t3 < 0) t3 += MOD3;\n        res[i] = static_modint<p>(t1\
     \ + (t2 + t3 * MOD2) % p * MOD1);\n    }\n    return res;\n}\n\ntemplate<class\
-    \ T> void ntt_doubling_(std::vector<T>& a) {\n    static constexpr internal::NthRoot<T>\
-    \ nth_root;\n    int n = a.size();\n    auto b = a;\n    inverse_number_theoretic_transform(b);\n\
-    \    const T z = nth_root.get(bitop::msb(n) + 1);\n    T r = 1;\n    rep (i, n)\
-    \ {\n        b[i] *= r;\n        r *= z;\n    }\n    number_theoretic_transform(b);\n\
-    \    std::copy(all(b), std::back_inserter(a));\n}\n\ntemplate<unsigned int p>\
-    \ struct is_ntt_friendly : std::false_type {};\n\ntemplate<> struct is_ntt_friendly<998244353>\
-    \ : std::true_type {};\n\n/**\n * @brief Convolution(\u7573\u307F\u8FBC\u307F\
-    )\n * @docs docs/math/convolution/Convolution.md\n */\n#line 2 \"graph/tree/TreeCentroid.hpp\"\
-    \n\n#line 5 \"graph/tree/TreeCentroid.hpp\"\n\ntemplate<class T> class TreeCentroids\
-    \ {\nprivate:\n    int n;\n    const Graph<T>& G;\n    std::vector<int> sz;\n\
-    \    std::vector<int> cent;\n    int dfs(int v, int p) {\n        for (const auto&\
-    \ e : G[v]) {\n            if (e.to == p) continue;\n            sz[v] += dfs(e.to,\
-    \ v);\n        }\n        return sz[v];\n    }\n    void init() {\n        n =\
-    \ G.size();\n        sz.assign(n, 1);\n        int s = dfs(0, -1);\n        int\
-    \ v = 0, p = -1;\n        while (true) {\n            bool ok = true;\n      \
-    \      for (const auto& e : G[v]) {\n                if (e.to == p) continue;\n\
-    \                if (sz[e.to] * 2 > s) {\n                    p = v;\n       \
-    \             v = e.to;\n                    ok = false;\n                   \
-    \ break;\n                }\n                if (sz[e.to] * 2 == s) {\n      \
-    \              cent = {v, e.to};\n                    return;\n              \
-    \  }\n            }\n            if (ok) {\n                cent = {v};\n    \
-    \            return;\n            }\n        }\n    }\n\npublic:\n    TreeCentroids(const\
-    \ Graph<T>& G) : G(G) { init(); }\n    bool has_one_centroid() const { return\
-    \ cent.size() == 1; }\n    std::vector<int> get() { return cent; }\n};\n\ntemplate<class\
-    \ T> class CentroidDecomposition {\nprivate:\n    int n;\n    const Graph<T>&\
-    \ G;\n    std::vector<bool> seen;\n    std::vector<int> sz;\n    int root;\n \
-    \   UnweightedGraph C;\n    int dfs(int v, int p) {\n        sz[v] = 1;\n    \
-    \    for (const auto& e : G[v]) {\n            if (e.to == p) continue;\n    \
-    \        if (seen[e.to]) continue;\n            sz[v] += dfs(e.to, v);\n     \
-    \   }\n        return sz[v];\n    }\n    void init() {\n        n = G.size();\n\
-    \        seen.assign(n, false);\n        sz.assign(n, 1);\n        std::vector<std::pair<int,\
-    \ int>> st = {{0, -1}};\n        st.reserve(n);\n        C = UnweightedGraph(n);\n\
-    \        while (!st.empty()) {\n            int v = st.back().first, vp = st.back().second;\n\
-    \            st.pop_back();\n            int s = dfs(v, -1);\n            int\
-    \ p = -1;\n            while (true) {\n                bool ok = true;\n     \
-    \           for (const auto& e : G[v]) {\n                    if (e.to == p) continue;\n\
-    \                    if (seen[e.to]) continue;\n                    if (sz[e.to]\
+    \ T> void ntt_doubling_(std::vector<T>& a, std::vector<T> b) {\n    static constexpr\
+    \ internal::NthRoot<T> nth_root;\n    int n = a.size();\n    const T z = nth_root.get(bitop::msb(n)\
+    \ + 1);\n    T r = 1;\n    rep (i, n) {\n        b[i] *= r;\n        r *= z;\n\
+    \    }\n    number_theoretic_transform(b);\n    a.reserve(2 * n);\n    a.insert(a.end(),\
+    \ all(b));\n}\n\ntemplate<class T> void ntt_doubling_(std::vector<T>& a) {\n \
+    \   static constexpr internal::NthRoot<T> nth_root;\n    int n = a.size();\n \
+    \   auto b = a;\n    inverse_number_theoretic_transform(b);\n    const T z = nth_root.get(bitop::msb(n)\
+    \ + 1);\n    T r = 1;\n    rep (i, n) {\n        b[i] *= r;\n        r *= z;\n\
+    \    }\n    number_theoretic_transform(b);\n    a.reserve(2 * n);\n    a.insert(a.end(),\
+    \ all(b));\n}\n\ntemplate<unsigned int p> struct is_ntt_friendly : std::false_type\
+    \ {};\n\ntemplate<> struct is_ntt_friendly<998244353> : std::true_type {};\n\n\
+    /**\n * @brief Convolution(\u7573\u307F\u8FBC\u307F)\n * @docs docs/math/convolution/Convolution.md\n\
+    \ */\n#line 2 \"graph/tree/TreeCentroid.hpp\"\n\n#line 5 \"graph/tree/TreeCentroid.hpp\"\
+    \n\ntemplate<class T> class TreeCentroids {\nprivate:\n    int n;\n    const Graph<T>&\
+    \ G;\n    std::vector<int> sz;\n    std::vector<int> cent;\n    int dfs(int v,\
+    \ int p) {\n        for (const auto& e : G[v]) {\n            if (e.to == p) continue;\n\
+    \            sz[v] += dfs(e.to, v);\n        }\n        return sz[v];\n    }\n\
+    \    void init() {\n        n = G.size();\n        sz.assign(n, 1);\n        int\
+    \ s = dfs(0, -1);\n        int v = 0, p = -1;\n        while (true) {\n      \
+    \      bool ok = true;\n            for (const auto& e : G[v]) {\n           \
+    \     if (e.to == p) continue;\n                if (sz[e.to] * 2 > s) {\n    \
+    \                p = v;\n                    v = e.to;\n                    ok\
+    \ = false;\n                    break;\n                }\n                if\
+    \ (sz[e.to] * 2 == s) {\n                    cent = {v, e.to};\n             \
+    \       return;\n                }\n            }\n            if (ok) {\n   \
+    \             cent = {v};\n                return;\n            }\n        }\n\
+    \    }\n\npublic:\n    TreeCentroids(const Graph<T>& G) : G(G) { init(); }\n \
+    \   bool has_one_centroid() const { return cent.size() == 1; }\n    std::vector<int>\
+    \ get() { return cent; }\n};\n\ntemplate<class T> class CentroidDecomposition\
+    \ {\nprivate:\n    int n;\n    const Graph<T>& G;\n    std::vector<bool> seen;\n\
+    \    std::vector<int> sz;\n    int root;\n    UnweightedGraph C;\n    int dfs(int\
+    \ v, int p) {\n        sz[v] = 1;\n        for (const auto& e : G[v]) {\n    \
+    \        if (e.to == p) continue;\n            if (seen[e.to]) continue;\n   \
+    \         sz[v] += dfs(e.to, v);\n        }\n        return sz[v];\n    }\n  \
+    \  void init() {\n        n = G.size();\n        seen.assign(n, false);\n    \
+    \    sz.assign(n, 1);\n        std::vector<std::pair<int, int>> st = {{0, -1}};\n\
+    \        st.reserve(n);\n        C = UnweightedGraph(n);\n        while (!st.empty())\
+    \ {\n            int v = st.back().first, vp = st.back().second;\n           \
+    \ st.pop_back();\n            int s = dfs(v, -1);\n            int p = -1;\n \
+    \           while (true) {\n                bool ok = true;\n                for\
+    \ (const auto& e : G[v]) {\n                    if (e.to == p) continue;\n   \
+    \                 if (seen[e.to]) continue;\n                    if (sz[e.to]\
     \ * 2 > s) {\n                        p = v;\n                        v = e.to;\n\
     \                        ok = false;\n                        break;\n       \
     \             }\n                }\n                if (ok) break;\n         \
@@ -848,8 +853,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
   requiredBy: []
-  timestamp: '2024-05-29 15:54:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-12-16 12:15:38+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
 layout: document

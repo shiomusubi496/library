@@ -1,47 +1,47 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/convolution/Convolution.hpp
     title: "Convolution(\u7573\u307F\u8FBC\u307F)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/polynomial/exp_of_formal_power_series-RelaxedConvolution.test.cpp
     title: test/yosupo/polynomial/exp_of_formal_power_series-RelaxedConvolution.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/math/convolution/RelaxedConvolution.md
     document_title: "Relaxed Convolution(\u30AA\u30F3\u30E9\u30A4\u30F3\u7573\u307F\
@@ -662,47 +662,52 @@ data:
     \        ll t3 =\n            ((c3[i] - t1 + MOD3) * INV1_3 % MOD3 - t2 + MOD3)\
     \ * INV2_3 % MOD3;\n        if (t3 < 0) t3 += MOD3;\n        res[i] = static_modint<p>(t1\
     \ + (t2 + t3 * MOD2) % p * MOD1);\n    }\n    return res;\n}\n\ntemplate<class\
-    \ T> void ntt_doubling_(std::vector<T>& a) {\n    static constexpr internal::NthRoot<T>\
-    \ nth_root;\n    int n = a.size();\n    auto b = a;\n    inverse_number_theoretic_transform(b);\n\
-    \    const T z = nth_root.get(bitop::msb(n) + 1);\n    T r = 1;\n    rep (i, n)\
-    \ {\n        b[i] *= r;\n        r *= z;\n    }\n    number_theoretic_transform(b);\n\
-    \    std::copy(all(b), std::back_inserter(a));\n}\n\ntemplate<unsigned int p>\
-    \ struct is_ntt_friendly : std::false_type {};\n\ntemplate<> struct is_ntt_friendly<998244353>\
-    \ : std::true_type {};\n\n/**\n * @brief Convolution(\u7573\u307F\u8FBC\u307F\
-    )\n * @docs docs/math/convolution/Convolution.md\n */\n#line 5 \"math/convolution/RelaxedConvolution.hpp\"\
-    \n\ntemplate<class T> class RelaxedConvolution {\nprivate:\n    std::vector<T>\
-    \ a, b;\n    std::vector<std::vector<T>> a2, b2;\n    std::vector<T> c;\n\npublic:\n\
-    \    RelaxedConvolution() = default;\n    RelaxedConvolution(int n) {\n      \
-    \  a.reserve(n);\n        b.reserve(n);\n        c.reserve(2 * n);\n    }\n\n\
-    \    T next(T x, T y) {\n        const int n = a.size();\n        a.push_back(x);\n\
-    \        b.push_back(y);\n        int m = n + 1;\n        int t = m & -m;\n  \
-    \      if (t < 32) {\n            if (m < 32) {\n                c.push_back(0);\n\
-    \                rep (i, n + 1) c[n] += a[i] * b[n - i];\n            }\n    \
-    \        else {\n                rep (i, m & 31) c[n] += a[i] * b[n - i];\n  \
-    \              rep (i, m & 31) c[n] += a[n - i] * b[i];\n            }\n     \
-    \   }\n        else if (t == m) {\n            std::vector<T> x(t), y(t);\n  \
-    \          rep (i, t) {\n                x[i] = a[i];\n                y[i] =\
-    \ b[i];\n            }\n            c = convolution(x, y);\n        }\n      \
-    \  else {\n            int k = popcnt(t - 1);\n            std::vector<T> z(t\
-    \ * 2);\n            {\n                std::vector<T> x(t * 2), y(t * 2);\n \
-    \               if ((int)a2.size() <= k) {\n                    rep (i, t * 2\
-    \ - 1) x[i] = a[i];\n                    number_theoretic_transform(x);\n    \
-    \                a2.resize(k + 1);\n                    a2[k] = x;\n         \
-    \       }\n                else {\n                    x = a2[k];\n          \
-    \      }\n                rep (i, t) y[i] = b[n + 1 - t + i];\n              \
-    \  number_theoretic_transform(y);\n                rep (i, t * 2) z[i] += x[i]\
-    \ * y[i];\n            }\n            {\n                std::vector<T> x(t *\
-    \ 2), y(t * 2);\n                rep (i, t) x[i] = a[n + 1 - t + i];\n       \
-    \         number_theoretic_transform(x);\n                if ((int)b2.size() <=\
-    \ k) {\n                    rep (i, t * 2 - 1) y[i] = b[i];\n                \
-    \    number_theoretic_transform(y);\n                    b2.resize(k + 1);\n \
-    \                   b2[k] = y;\n                }\n                else {\n  \
-    \                  y = b2[k];\n                }\n                rep (i, t *\
-    \ 2) z[i] += x[i] * y[i];\n            }\n            inverse_number_theoretic_transform(z);\n\
-    \            rep (i, t) c[n + i] += z[t - 1 + i];\n        }\n        return c[n];\n\
-    \    }\n};\n\n/**\n * @brief Relaxed Convolution(\u30AA\u30F3\u30E9\u30A4\u30F3\
-    \u7573\u307F\u8FBC\u307F)\n * @docs docs/math/convolution/RelaxedConvolution.md\n\
-    \ * @see https://qiita.com/Kiri8128/items/1738d5403764a0e26b4c\n */\n"
+    \ T> void ntt_doubling_(std::vector<T>& a, std::vector<T> b) {\n    static constexpr\
+    \ internal::NthRoot<T> nth_root;\n    int n = a.size();\n    const T z = nth_root.get(bitop::msb(n)\
+    \ + 1);\n    T r = 1;\n    rep (i, n) {\n        b[i] *= r;\n        r *= z;\n\
+    \    }\n    number_theoretic_transform(b);\n    a.reserve(2 * n);\n    a.insert(a.end(),\
+    \ all(b));\n}\n\ntemplate<class T> void ntt_doubling_(std::vector<T>& a) {\n \
+    \   static constexpr internal::NthRoot<T> nth_root;\n    int n = a.size();\n \
+    \   auto b = a;\n    inverse_number_theoretic_transform(b);\n    const T z = nth_root.get(bitop::msb(n)\
+    \ + 1);\n    T r = 1;\n    rep (i, n) {\n        b[i] *= r;\n        r *= z;\n\
+    \    }\n    number_theoretic_transform(b);\n    a.reserve(2 * n);\n    a.insert(a.end(),\
+    \ all(b));\n}\n\ntemplate<unsigned int p> struct is_ntt_friendly : std::false_type\
+    \ {};\n\ntemplate<> struct is_ntt_friendly<998244353> : std::true_type {};\n\n\
+    /**\n * @brief Convolution(\u7573\u307F\u8FBC\u307F)\n * @docs docs/math/convolution/Convolution.md\n\
+    \ */\n#line 5 \"math/convolution/RelaxedConvolution.hpp\"\n\ntemplate<class T>\
+    \ class RelaxedConvolution {\nprivate:\n    std::vector<T> a, b;\n    std::vector<std::vector<T>>\
+    \ a2, b2;\n    std::vector<T> c;\n\npublic:\n    RelaxedConvolution() = default;\n\
+    \    RelaxedConvolution(int n) {\n        a.reserve(n);\n        b.reserve(n);\n\
+    \        c.reserve(2 * n);\n    }\n\n    T next(T x, T y) {\n        const int\
+    \ n = a.size();\n        a.push_back(x);\n        b.push_back(y);\n        int\
+    \ m = n + 1;\n        int t = m & -m;\n        if (t < 32) {\n            if (m\
+    \ < 32) {\n                c.push_back(0);\n                rep (i, n + 1) c[n]\
+    \ += a[i] * b[n - i];\n            }\n            else {\n                rep\
+    \ (i, m & 31) c[n] += a[i] * b[n - i];\n                rep (i, m & 31) c[n] +=\
+    \ a[n - i] * b[i];\n            }\n        }\n        else if (t == m) {\n   \
+    \         std::vector<T> x(t), y(t);\n            rep (i, t) {\n             \
+    \   x[i] = a[i];\n                y[i] = b[i];\n            }\n            c =\
+    \ convolution(x, y);\n        }\n        else {\n            int k = popcnt(t\
+    \ - 1);\n            std::vector<T> z(t * 2);\n            {\n               \
+    \ std::vector<T> x(t * 2), y(t * 2);\n                if ((int)a2.size() <= k)\
+    \ {\n                    rep (i, t * 2 - 1) x[i] = a[i];\n                   \
+    \ number_theoretic_transform(x);\n                    a2.resize(k + 1);\n    \
+    \                a2[k] = x;\n                }\n                else {\n     \
+    \               x = a2[k];\n                }\n                rep (i, t) y[i]\
+    \ = b[n + 1 - t + i];\n                number_theoretic_transform(y);\n      \
+    \          rep (i, t * 2) z[i] += x[i] * y[i];\n            }\n            {\n\
+    \                std::vector<T> x(t * 2), y(t * 2);\n                rep (i, t)\
+    \ x[i] = a[n + 1 - t + i];\n                number_theoretic_transform(x);\n \
+    \               if ((int)b2.size() <= k) {\n                    rep (i, t * 2\
+    \ - 1) y[i] = b[i];\n                    number_theoretic_transform(y);\n    \
+    \                b2.resize(k + 1);\n                    b2[k] = y;\n         \
+    \       }\n                else {\n                    y = b2[k];\n          \
+    \      }\n                rep (i, t * 2) z[i] += x[i] * y[i];\n            }\n\
+    \            inverse_number_theoretic_transform(z);\n            rep (i, t) c[n\
+    \ + i] += z[t - 1 + i];\n        }\n        return c[n];\n    }\n};\n\n/**\n *\
+    \ @brief Relaxed Convolution(\u30AA\u30F3\u30E9\u30A4\u30F3\u7573\u307F\u8FBC\u307F\
+    )\n * @docs docs/math/convolution/RelaxedConvolution.md\n * @see https://qiita.com/Kiri8128/items/1738d5403764a0e26b4c\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"Convolution.hpp\"\
     \n\ntemplate<class T> class RelaxedConvolution {\nprivate:\n    std::vector<T>\
     \ a, b;\n    std::vector<std::vector<T>> a2, b2;\n    std::vector<T> c;\n\npublic:\n\
@@ -752,8 +757,8 @@ data:
   isVerificationFile: false
   path: math/convolution/RelaxedConvolution.hpp
   requiredBy: []
-  timestamp: '2024-05-29 15:54:32+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-12-16 12:15:38+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/polynomial/exp_of_formal_power_series-RelaxedConvolution.test.cpp
 documentation_of: math/convolution/RelaxedConvolution.hpp
