@@ -2,18 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: graph/Graph.hpp
-    title: Graph-template
-  - icon: ':heavy_check_mark:'
-    path: graph/connected/BiConnectedComponents.hpp
-    title: "BiConnectedComponents(\u4E8C\u91CD\u9802\u70B9\u9023\u7D50\u6210\u5206\
-      \u5206\u89E3)"
-  - icon: ':heavy_check_mark:'
-    path: graph/other/LowLink.hpp
-    title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
-  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
+  - icon: ':heavy_check_mark:'
+    path: string/Parser.hpp
+    title: string/Parser.hpp
   - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
@@ -45,53 +38,52 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/biconnected_components
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/0109
     links:
-    - https://judge.yosupo.jp/problem/biconnected_components
-  bundledCode: "#line 1 \"test/yosupo/graph/biconnected_components.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/biconnected_components\"\n#line 2\
-    \ \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
-    \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
-    \ __LINE__\n#endif\n\n#define OVERLOAD5(a, b, c, d, e, ...) e\n#define REP1_0(b,\
-    \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
-    \                     \\\n    for (ll REP_COUNTER_##c = 0; REP_COUNTER_##c < (ll)(b);\
-    \ ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define REP2(i,\
-    \ b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i = (ll)(a);\
-    \ i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b);\
-    \ i += (ll)(c))\n#define rep(...) OVERLOAD5(__VA_ARGS__, REP4, REP3, REP2, REP1)(__VA_ARGS__)\n\
-    #define RREP2(i, a) for (ll i = (ll)(a)-1; i >= 0; --i)\n#define RREP3(i, a, b)\
-    \ for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n#define RREP4(i, a, b, c) for (ll\
-    \ i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n#define rrep(...) OVERLOAD5(__VA_ARGS__,\
-    \ RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define REPS2(i, b) for (ll i = 1; i <= (ll)(b);\
-    \ ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define\
-    \ REPS4(i, a, b, c) for (ll i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define\
-    \ reps(...) OVERLOAD5(__VA_ARGS__, REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define\
-    \ RREPS2(i, a) for (ll i = (ll)(a); i > 0; --i)\n#define RREPS3(i, a, b) for (ll\
-    \ i = (ll)(a); i > (ll)(b); --i)\n#define RREPS4(i, a, b, c) for (ll i = (ll)(a);\
-    \ i > (ll)(b); i -= (ll)(c))\n#define rreps(...) OVERLOAD5(__VA_ARGS__, RREPS4,\
-    \ RREPS3, RREPS2)(__VA_ARGS__)\n\n#define each_for(...) for (auto&& __VA_ARGS__)\n\
-    #define each_const(...) for (const auto& __VA_ARGS__)\n\n#define all(v) std::begin(v),\
-    \ std::end(v)\n#define rall(v) std::rbegin(v), std::rend(v)\n\n#if __cpp_if_constexpr\
-    \ >= 201606L\n#define IF_CONSTEXPR constexpr\n#else\n#define IF_CONSTEXPR\n#endif\n\
-    \n#define IO_BUFFER_SIZE (1 << 17)\n#line 2 \"template/alias.hpp\"\n\n#line 4\
-    \ \"template/alias.hpp\"\n\nusing ll = long long;\nusing uint = unsigned int;\n\
-    using ull = unsigned long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\
-    using ld = long double;\nusing PLL = std::pair<ll, ll>;\ntemplate<class T>\nusing\
-    \ prique = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\ntemplate<class\
-    \ T> struct infinity {\n    static constexpr T value = std::numeric_limits<T>::max()\
-    \ / 2;\n    static constexpr T mvalue = std::numeric_limits<T>::lowest() / 2;\n\
-    \    static constexpr T max = std::numeric_limits<T>::max();\n    static constexpr\
-    \ T min = std::numeric_limits<T>::lowest();\n};\n\n#if __cplusplus <= 201402L\n\
-    template<class T> constexpr T infinity<T>::value;\ntemplate<class T> constexpr\
-    \ T infinity<T>::mvalue;\ntemplate<class T> constexpr T infinity<T>::max;\ntemplate<class\
-    \ T> constexpr T infinity<T>::min;\n#endif\n\n#if __cpp_variable_templates >=\
-    \ 201304L\ntemplate<class T> constexpr T INF = infinity<T>::value;\n#endif\n\n\
-    constexpr ll inf = infinity<ll>::value;\nconstexpr ld EPS = 1e-8;\nconstexpr ld\
-    \ PI = 3.1415926535897932384626;\n#line 2 \"template/type_traits.hpp\"\n\n#line\
-    \ 5 \"template/type_traits.hpp\"\n\ntemplate<class T, class... Args> struct function_traits_impl\
-    \ {\n    using result_type = T;\n    template<std::size_t idx>\n    using argument_type\
-    \ =\n        typename std::tuple_element<idx, std::tuple<Args...>>::type;\n  \
-    \  using argument_tuple = std::tuple<Args...>;\n    static constexpr std::size_t\
+    - https://onlinejudge.u-aizu.ac.jp/problems/0109
+  bundledCode: "#line 1 \"test/aoj/other/0109-Parser.test.cpp\"\n#define PROBLEM \"\
+    https://onlinejudge.u-aizu.ac.jp/problems/0109\"\n#line 2 \"other/template.hpp\"\
+    \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
+    \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define OVERLOAD5(a,\
+    \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
+    \                                                           \\\n    for (ll REP_COUNTER_##c\
+    \ = 0; REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b,\
+    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
+    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
+    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) OVERLOAD5(__VA_ARGS__,\
+    \ REP4, REP3, REP2, REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1;\
+    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n\
+    #define RREP4(i, a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n\
+    #define rrep(...) OVERLOAD5(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define\
+    \ REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b) for (ll\
+    \ i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll i = (ll)(a)\
+    \ + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) OVERLOAD5(__VA_ARGS__, REPS4,\
+    \ REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a); i > 0;\
+    \ --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n#define\
+    \ RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
+    \ rreps(...) OVERLOAD5(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define\
+    \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
+    \ __VA_ARGS__)\n\n#define all(v) std::begin(v), std::end(v)\n#define rall(v) std::rbegin(v),\
+    \ std::rend(v)\n\n#if __cpp_if_constexpr >= 201606L\n#define IF_CONSTEXPR constexpr\n\
+    #else\n#define IF_CONSTEXPR\n#endif\n\n#define IO_BUFFER_SIZE (1 << 17)\n#line\
+    \ 2 \"template/alias.hpp\"\n\n#line 4 \"template/alias.hpp\"\n\nusing ll = long\
+    \ long;\nusing uint = unsigned int;\nusing ull = unsigned long long;\nusing i128\
+    \ = __int128_t;\nusing u128 = __uint128_t;\nusing ld = long double;\nusing PLL\
+    \ = std::pair<ll, ll>;\ntemplate<class T>\nusing prique = std::priority_queue<T,\
+    \ std::vector<T>, std::greater<T>>;\n\ntemplate<class T> struct infinity {\n \
+    \   static constexpr T value = std::numeric_limits<T>::max() / 2;\n    static\
+    \ constexpr T mvalue = std::numeric_limits<T>::lowest() / 2;\n    static constexpr\
+    \ T max = std::numeric_limits<T>::max();\n    static constexpr T min = std::numeric_limits<T>::lowest();\n\
+    };\n\n#if __cplusplus <= 201402L\ntemplate<class T> constexpr T infinity<T>::value;\n\
+    template<class T> constexpr T infinity<T>::mvalue;\ntemplate<class T> constexpr\
+    \ T infinity<T>::max;\ntemplate<class T> constexpr T infinity<T>::min;\n#endif\n\
+    \n#if __cpp_variable_templates >= 201304L\ntemplate<class T> constexpr T INF =\
+    \ infinity<T>::value;\n#endif\n\nconstexpr ll inf = infinity<ll>::value;\nconstexpr\
+    \ ld EPS = 1e-8;\nconstexpr ld PI = 3.1415926535897932384626;\n#line 2 \"template/type_traits.hpp\"\
+    \n\n#line 5 \"template/type_traits.hpp\"\n\ntemplate<class T, class... Args> struct\
+    \ function_traits_impl {\n    using result_type = T;\n    template<std::size_t\
+    \ idx>\n    using argument_type =\n        typename std::tuple_element<idx, std::tuple<Args...>>::type;\n\
+    \    using argument_tuple = std::tuple<Args...>;\n    static constexpr std::size_t\
     \ arg_size() { return sizeof...(Args); }\n};\n\ntemplate<class> struct function_traits_helper;\n\
     \ntemplate<class Res, class Tp, class... Args>\nstruct function_traits_helper<Res\
     \ (Tp::*)(Args...)> {\n    using type = function_traits_impl<Res, Args...>;\n\
@@ -449,109 +441,97 @@ data:
     \        return res;\n    }\n    void press(std::vector<T>& vec) const {\n   \
     \     assert(sorted);\n        for (auto&& i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
-    };\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class\
-    \ T = int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
-    \ : from(-1), to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1)\n\
-    \        : from(f), to(t), cost(c), idx(i) {}\n    edge(int f, int t, T&& c, int\
-    \ i = -1)\n        : from(f), to(t), cost(std::move(c)), idx(i) {}\n    operator\
-    \ int() const { return to; }\n    friend bool operator<(const edge<T>& lhs, const\
-    \ edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n    }\n    friend bool\
-    \ operator>(const edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost\
-    \ > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using Edges = std::vector<edge<T>>;\n\
-    template<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class\
-    \ T = int> class Graph : public std::vector<std::vector<edge<T>>> {\nprivate:\n\
-    \    using Base = std::vector<std::vector<edge<T>>>;\n\npublic:\n    int edge_id\
-    \ = 0;\n    using Base::Base;\n    int edge_size() const { return edge_id; }\n\
-    \    int add_edge(int a, int b, const T& c, bool is_directed = false) {\n    \
-    \    assert(0 <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
-    \        (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed)\
-    \ (*this)[b].emplace_back(b, a, c, edge_id);\n        return edge_id++;\n    }\n\
-    \    int add_edge(int a, int b, bool is_directed = false) {\n        assert(0\
-    \ <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
-    \        (*this)[a].emplace_back(a, b, 1, edge_id);\n        if (!is_directed)\
-    \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
-    };\n\ntemplate<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {\n    const\
-    \ int N = G.size();\n    auto res = make_vec<T>(N, N, infinity<T>::value);\n \
-    \   rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n        for (const auto& e :\
-    \ G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\ntemplate<class T>\
-    \ Edges<T> UndirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n\
-    \    const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n   \
-    \     for (const auto& e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\n\
-    template<class T> Edges<T> DirectedListToEdges(const Graph<T>& G) {\n    const\
-    \ int V = G.size();\n    const int E = std::accumulate(\n        all(G), 0, [](int\
-    \ a, const std::vector<edge<T>>& v) -> int {\n            return a + v.size();\n\
-    \        });\n    Edges<T> Ed(G.edge_size());\n    Ed.reserve(E);\n    rep (i,\
-    \ V) {\n        for (const auto& e : G[i]) {\n            if (Ed[e.idx] == -1)\
-    \ Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n    return\
-    \ Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n   \
-    \ const int V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n        for\
-    \ (const auto& e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from, e.cost,\
-    \ e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n    return res;\n\
-    }\n\n\nstruct unweighted_edge {\n    template<class... Args> unweighted_edge(const\
-    \ Args&...) {}\n    operator int() { return 1; }\n};\n\nusing UnweightedGraph\
-    \ = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n * @docs docs/graph/Graph.md\n\
-    \ */\n#line 2 \"graph/connected/BiConnectedComponents.hpp\"\n\n#line 2 \"graph/other/LowLink.hpp\"\
-    \n\n#line 4 \"graph/other/LowLink.hpp\"\n\ntemplate<class T> class LowLink {\n\
-    protected:\n    int n, cnt;\n    const Graph<T>& G;\n    std::vector<int> ord,\
-    \ low;\n    std::vector<int> aps;\n    Edges<T> brd;\n    void dfs(int v, int\
-    \ p) {\n        low[v] = ord[v] = cnt++;\n        int deg = 0;\n        bool is_ap\
-    \ = false, mul = false;\n        for (const auto& e : G[v]) {\n            if\
-    \ (e.to == p && !mul) {\n                mul = true;\n                continue;\n\
-    \            }\n            if (ord[e.to] != -1) chmin(low[v], ord[e.to]);\n \
-    \           else {\n                dfs(e.to, v);\n                chmin(low[v],\
-    \ low[e.to]);\n                if (p != -1 && ord[v] <= low[e.to]) is_ap = true;\n\
-    \                if (ord[v] < low[e.to]) brd.push_back(e);\n                ++deg;\n\
-    \            }\n        }\n        if (p == -1 && deg > 1) is_ap = true;\n   \
-    \     if (is_ap) aps.push_back(v);\n    }\n    void init() {\n        n = G.size();\n\
-    \        ord.assign(n, -1);\n        low.assign(n, n + 1);\n        cnt = 0;\n\
-    \        rep (i, n) {\n            if (ord[i] == -1) dfs(i, -1);\n        }\n\
-    \    }\n\npublic:\n    LowLink(const Graph<T>& G) : G(G) { init(); }\n    const\
-    \ std::vector<int>& articulation_points() const& { return aps; }\n    std::vector<int>\
-    \ articulation_points() && { return std::move(aps); }\n    const Edges<T>& bridges()\
-    \ const& { return brd; }\n    Edges<T> bridges() && { return std::move(brd); }\n\
-    };\n\n/**\n * @brief Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)\n * @docs\
-    \ docs/graph/other/LowLink.md\n */\n#line 6 \"graph/connected/BiConnectedComponents.hpp\"\
-    \n\ntemplate<class T> class BiConnectedComponents : public LowLink<T> {\nprivate:\n\
-    \    int sz;\n    std::vector<int> cmp;\n    std::vector<std::vector<int>> grp;\n\
-    \    std::vector<int> tmp, tmp2;\n    std::vector<bool> seen;\n    void dfs(int\
-    \ v, int id) {\n        seen[v] = true;\n        tmp2.push_back(v);\n        for\
-    \ (const auto& e : this->G[v]) {\n            if (e.idx == id) continue;\n   \
-    \         if (this->ord[e.to] < this->ord[v]) tmp.push_back(e.idx);\n        \
-    \    if (!seen[e.to]) {\n                tmp.push_back(e.idx);\n             \
-    \   dfs(e.to, e.idx);\n                if (this->low[e.to] >= this->ord[v]) {\n\
-    \                    while (true) {\n                        int i = tmp.back();\n\
-    \                        tmp.pop_back();\n                        cmp[i] = sz;\n\
-    \                        if (i == e.idx) break;\n                    }\n     \
-    \               grp.emplace_back(1, v);\n                    while (true) {\n\
-    \                        int i = tmp2.back();\n                        grp.back().push_back(i);\n\
-    \                        tmp2.pop_back();\n                        if (i == e.to)\
-    \ break;\n                    }\n                    ++sz;\n                }\n\
-    \            }\n        }\n    }\n\npublic:\n    BiConnectedComponents(const Graph<T>&\
-    \ G, bool allow_isolated = false)\n        : LowLink<T>(G) {\n        sz = 0;\n\
-    \        cmp.assign(this->G.edge_size(), -1);\n        seen.assign(this->n, false);\n\
-    \        tmp.reserve(this->G.edge_size());\n        tmp2.reserve(this->n);\n \
-    \       rep (i, this->n) {\n            if (!seen[i]) {\n                dfs(i,\
-    \ -1);\n                if (allow_isolated && G[i].empty()) {\n              \
-    \      grp.emplace_back(1, i);\n                    ++sz;\n                }\n\
-    \            }\n        }\n    }\n    int size() const { return sz; }\n    int\
-    \ operator[](int k) const { return cmp[k]; }\n    std::vector<std::vector<int>>\
-    \ groups() const { return grp; }\n    UnweightedGraph bct() const {\n        UnweightedGraph\
-    \ res(this->n + sz);\n        rep (i, sz) {\n            for (auto v : grp[i])\
-    \ res.add_edge(this->n + i, v);\n        }\n        return res;\n    }\n};\n\n\
-    /**\n * @brief BiConnectedComponents(\u4E8C\u91CD\u9802\u70B9\u9023\u7D50\u6210\
-    \u5206\u5206\u89E3)\n * @docs docs/graph/connected/BiConnectedComponents.md\n\
-    \ */\n#line 5 \"test/yosupo/graph/biconnected_components.test.cpp\"\nusing namespace\
-    \ std;\nint main() {\n    int n, m; scan >> n >> m;\n    Graph<int> g(n);\n  \
-    \  rep (m) {\n        int a, b; scan >> a >> b;\n        g.add_edge(a, b);\n \
-    \   }\n    BiConnectedComponents<int> bcc(g, true);\n    auto v = bcc.groups();\n\
-    \    prints(v.size());\n    for (auto t : v) prints(t.size(), t);\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/biconnected_components\"\
-    \n#include \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\
-    \n#include \"../../../graph/connected/BiConnectedComponents.hpp\"\nusing namespace\
-    \ std;\nint main() {\n    int n, m; scan >> n >> m;\n    Graph<int> g(n);\n  \
-    \  rep (m) {\n        int a, b; scan >> a >> b;\n        g.add_edge(a, b);\n \
-    \   }\n    BiConnectedComponents<int> bcc(g, true);\n    auto v = bcc.groups();\n\
-    \    prints(v.size());\n    for (auto t : v) prints(t.size(), t);\n}\n"
+    };\n#line 2 \"string/Parser.hpp\"\n\n#line 4 \"string/Parser.hpp\"\n\ntemplate<class\
+    \ Res>\nclass Parser {\npublic:\n    class ParseError : public std::exception\
+    \ {\n    private:\n        std::string message;\n\n    public:\n        ParseError(const\
+    \ std::string& message) : message(message) {}\n        const char* what() const\
+    \ noexcept override {\n            return message.c_str();\n        }\n    };\n\
+    \    class State;\n\nprivate:\n    using Iter = typename std::string::const_iterator;\n\
+    \    using ParserFunc = std::function<Res(State&)>;\n    using ParserFuncs = std::vector<ParserFunc>;\n\
+    \    using ParserName = std::string;\n    using ParserNames = std::vector<ParserName>;\n\
+    \n    ParserFuncs parsers;\n    ParserNames names;\n\npublic:\n    class State\
+    \ {\n    private:\n        ParserFuncs& parsers;\n        ParserNames& names;\n\
+    \        Iter& iter;\n\n    public:\n        State(ParserFuncs& parsers, ParserNames&\
+    \ names, Iter& iter) : parsers(parsers), names(names), iter(iter) {}\n       \
+    \ char operator*() const {\n            return *iter;\n        }\n        void\
+    \ operator++() {\n            ++iter;\n        }\n        void operator--() {\n\
+    \            --iter;\n        }\n        void consume(char expected) {\n     \
+    \       if (*iter == '\\0') throw ParseError(\"expected '\" + std::string(1, expected)\
+    \ + \"', but got EOF\");\n            if (*iter != expected) throw ParseError(\"\
+    expected '\" + std::string(1, expected) + \"', but got '\" + std::string(1, *iter)\
+    \ + \"'\");\n            iter++;\n        }\n        void consume(const std::string&\
+    \ expected) {\n            for (char c : expected) consume(c);\n        }\n  \
+    \      Res call(const ParserName& name) {\n            rep (i, names.size()) {\n\
+    \                if (names[i] == name) return parsers[i](*this);\n           \
+    \ }\n            throw ParseError(\"unknown parser name: \" + name);\n       \
+    \ }\n        void error(const std::string& message) {\n            throw ParseError(message);\n\
+    \        }\n    };\n\n    Parser() {}\n    void add_parser(const ParserName& name,\
+    \ const ParserFunc& parser) {\n        names.push_back(name);\n        parsers.push_back(parser);\n\
+    \    }\n    std::function<int()> f;\n    Res parse(const std::string& s, int expr\
+    \ = 0) {\n        Iter iter = s.begin();\n        State state(parsers, names,\
+    \ iter);\n        Res res = parsers[expr](state);\n        if (iter != s.end())\
+    \ throw ParseError(\"unexpected character: '\" + std::string(1, *iter) + \"'\"\
+    );\n        return res;\n    }\n};\n\ntemplate<class Res>\nclass OperatorParser\
+    \ {\nprivate:\n    using P = Parser<Res>;\n\npublic:\n    using State = typename\
+    \ P::State;\n\nprivate:\n    using OperatorFunc = std::function<Res(Res, Res)>;\n\
+    \    using FunctionFunc = std::function<Res(Res)>;\n    using TermFunc = std::function<Res(typename\
+    \ P::State&)>;\n\n    std::vector<std::vector<OperatorFunc>> ops;\n    std::vector<std::vector<std::string>>\
+    \ op_names;\n    std::vector<FunctionFunc> funcs;\n    std::vector<std::string>\
+    \ func_names;\n    TermFunc term;\n\n    static Res int_term(typename P::State&\
+    \ state) {\n        bool neg = false;\n        if (*state == '-') {\n        \
+    \    neg = true;\n            ++state;\n        }\n        int res = 0;\n    \
+    \    while ('0' <= *state && *state <= '9') {\n            res = res * 10 + (*state\
+    \ - '0');\n            ++state;\n        }\n        if (neg) res = -res;\n   \
+    \     return res;\n    }\n\npublic:\n    OperatorParser() {}\n    OperatorParser(int\
+    \ n) : ops(n), op_names(n), term(int_term) {}\n    OperatorParser(int n, const\
+    \ TermFunc& term) : ops(n), op_names(n), term(term) {}\n    void add_operator(int\
+    \ i, const std::string& name, const OperatorFunc& parser) {\n        ops[i].push_back(parser);\n\
+    \        op_names[i].push_back(name);\n    }\n    void add_function(const std::string&\
+    \ name, const FunctionFunc& parser) {\n        funcs.push_back(parser);\n    \
+    \    func_names.push_back(name);\n    }\n    Res parse(const std::string& s) {\n\
+    \        P parser;\n        rrep (i, ops.size()) {\n            parser.add_parser(\"\
+    op\" + std::to_string(i + 1), [this, i](typename P::State& state) -> Res {\n \
+    \               Res res = state.call(\"op\" + std::to_string(i));\n          \
+    \      while (true) {\n                    bool found = false;\n             \
+    \       rep (j, ops[i].size()) {\n                        found = true;\n    \
+    \                    rep (k, op_names[i][j].size()) {\n                      \
+    \      if (*state == op_names[i][j][k]) ++state;\n                           \
+    \ else {\n                                found = false;\n                   \
+    \             rep (k) --state;\n                                break;\n     \
+    \                       }\n                        }\n                       \
+    \ if (found) {\n                            res = ops[i][j](res, state.call(\"\
+    op\" + std::to_string(i)));\n                            break;\n            \
+    \            }\n                    }\n                    if (!found) break;\n\
+    \                }\n                return res;\n            });\n        }\n\
+    \        parser.add_parser(\"op0\", [this](typename P::State& state) -> Res {\n\
+    \            if (*state == '(') {\n                ++state;\n                Res\
+    \ res = state.call(\"op\" + std::to_string(ops.size()));\n                state.consume(')');\n\
+    \                return res;\n            }\n            rep (i, funcs.size())\
+    \ {\n                bool found = true;\n                rep (j, func_names[i].size())\
+    \ {\n                    if (*state == func_names[i][j]) ++state;\n          \
+    \          else {\n                        found = false;\n                  \
+    \      rep (j) --state;\n                        break;\n                    }\n\
+    \                }\n                if (found) {\n                    state.consume('(');\n\
+    \                    Res res = funcs[i](state.call(\"op\" + std::to_string(ops.size())));\n\
+    \                    state.consume(')');\n                    return res;\n  \
+    \              }\n            }\n            return term(state);\n        });\n\
+    \        return parser.parse(s, 0);\n    }\n};\n#line 4 \"test/aoj/other/0109-Parser.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    using parser = OperatorParser<int>;\n\
+    \    parser p(2);\n    p.add_operator(0, \"*\", [](int a, int b) { return a *\
+    \ b; });\n    p.add_operator(0, \"/\", [](int a, int b) { return a / b; });\n\
+    \    p.add_operator(1, \"+\", [](int a, int b) { return a + b; });\n    p.add_operator(1,\
+    \ \"-\", [](int a, int b) { return a - b; });\n    int q; scan >> q;\n    rep\
+    \ (q) {\n        string s; scan >> s;\n        s.pop_back();\n        prints(p.parse(s));\n\
+    \    }\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/0109\"\n#include\
+    \ \"../../../other/template.hpp\"\n#include \"../../../string/Parser.hpp\"\nusing\
+    \ namespace std;\nint main() {\n    using parser = OperatorParser<int>;\n    parser\
+    \ p(2);\n    p.add_operator(0, \"*\", [](int a, int b) { return a * b; });\n \
+    \   p.add_operator(0, \"/\", [](int a, int b) { return a / b; });\n    p.add_operator(1,\
+    \ \"+\", [](int a, int b) { return a + b; });\n    p.add_operator(1, \"-\", [](int\
+    \ a, int b) { return a - b; });\n    int q; scan >> q;\n    rep (q) {\n      \
+    \  string s; scan >> s;\n        s.pop_back();\n        prints(p.parse(s));\n\
+    \    }\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -562,19 +542,17 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  - graph/Graph.hpp
-  - graph/connected/BiConnectedComponents.hpp
-  - graph/other/LowLink.hpp
+  - string/Parser.hpp
   isVerificationFile: true
-  path: test/yosupo/graph/biconnected_components.test.cpp
+  path: test/aoj/other/0109-Parser.test.cpp
   requiredBy: []
-  timestamp: '2024-05-12 17:35:55+09:00'
+  timestamp: '2024-12-16 20:52:52+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yosupo/graph/biconnected_components.test.cpp
+documentation_of: test/aoj/other/0109-Parser.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/graph/biconnected_components.test.cpp
-- /verify/test/yosupo/graph/biconnected_components.test.cpp.html
-title: test/yosupo/graph/biconnected_components.test.cpp
+- /verify/test/aoj/other/0109-Parser.test.cpp
+- /verify/test/aoj/other/0109-Parser.test.cpp.html
+title: test/aoj/other/0109-Parser.test.cpp
 ---
