@@ -219,6 +219,20 @@ convolution_for_any_mod(const std::vector<static_modint<p>>& a,
     return res;
 }
 
+template<class T> void ntt_doubling_(std::vector<T>& a, std::vector<T> b) {
+    static constexpr internal::NthRoot<T> nth_root;
+    int n = a.size();
+    const T z = nth_root.get(bitop::msb(n) + 1);
+    T r = 1;
+    rep (i, n) {
+        b[i] *= r;
+        r *= z;
+    }
+    number_theoretic_transform(b);
+    a.reserve(2 * n);
+    a.insert(a.end(), all(b));
+}
+
 template<class T> void ntt_doubling_(std::vector<T>& a) {
     static constexpr internal::NthRoot<T> nth_root;
     int n = a.size();
@@ -231,7 +245,8 @@ template<class T> void ntt_doubling_(std::vector<T>& a) {
         r *= z;
     }
     number_theoretic_transform(b);
-    std::copy(all(b), std::back_inserter(a));
+    a.reserve(2 * n);
+    a.insert(a.end(), all(b));
 }
 
 template<unsigned int p> struct is_ntt_friendly : std::false_type {};

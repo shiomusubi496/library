@@ -195,24 +195,22 @@ public:
     FormalPowerSeries inv(int deg = -1) const {
         assert(this->size() > 0 && (*this)[0] != 0);
         if (deg == -1) deg = this->size();
-        FormalPowerSeries res(1, (*this)[0].inv());
+        FormalPowerSeries f(1, (*this)[0].inv());
         for (int m = 1; m < deg; m <<= 1) {
-            FormalPowerSeries f(2 * m);
-            for (int i = 0; i < std::min(2 * m, (int)this->size()); i++)
-                f[i] = (*this)[i];
-            res.resize(2 * m);
-            FormalPowerSeries dft = res;
-            number_theoretic_transform(f);
-            number_theoretic_transform(dft);
-            rep (i, 2 * m) f[i] *= dft[i];
-            inverse_number_theoretic_transform(f);
-            std::fill(f.begin(), f.begin() + m, T{0});
-            number_theoretic_transform(f);
-            rep (i, 2 * m) dft[i] *= f[i];
-            inverse_number_theoretic_transform(dft);
-            rep (i, m, 2 * m) res[i] = -dft[i];
+            FormalPowerSeries t = this->prefix(2 * m);
+            f.resize(2 * m);
+            FormalPowerSeries dft_f = f;
+            number_theoretic_transform(t);
+            number_theoretic_transform(dft_f);
+            rep (i, 2 * m) t[i] *= dft_f[i];
+            inverse_number_theoretic_transform(t);
+            std::fill(t.begin(), t.begin() + m, T{0});
+            number_theoretic_transform(t);
+            rep (i, 2 * m) dft_f[i] *= t[i];
+            inverse_number_theoretic_transform(dft_f);
+            rep (i, m, 2 * m) f[i] = -dft_f[i];
         }
-        return res.prefix(deg);
+        return f.prefix(deg);
     }
     template<bool AlwaysTrue = true,
              typename std::enable_if<
@@ -223,15 +221,14 @@ public:
         if (deg == -1) deg = this->size();
         FormalPowerSeries res(1, (*this)[0].inv());
         for (int m = 1; m < deg; m <<= 1) {
-            res = (res * 2 - (res * res * this->prefix(2 * m)).prefix(2 * m))
-                      .prefix(2 * m);
+            res = res * 2 - (res * res * this->prefix(2 * m)).prefix(2 * m);
         }
         return res.prefix(deg);
     }
     FormalPowerSeries log(int deg = -1) const {
         assert(this->size() > 0 && (*this)[0] == 1);
         if (deg == -1) deg = this->size();
-        return (diff() * inv(deg)).prefix(deg - 1).integral();
+        return (diff().prefix(deg - 1) * inv(deg - 1)).prefix(deg - 1).integral();
     }
     template<bool AlwaysTrue = true,
              typename std::enable_if<
@@ -240,51 +237,42 @@ public:
     FormalPowerSeries exp(int deg = -1) const {
         assert(this->size() > 0 && (*this)[0] == 0);
         if (deg == -1) deg = this->size();
+        FormalPowerSeries df = this->diff();
         FormalPowerSeries f(1, 1);
         FormalPowerSeries g(1, 1);
-        FormalPowerSeries dft_f(1, 1);
+        FormalPowerSeries dft_f = f;
+        number_theoretic_transform(dft_f);
         for (int m = 1; m < deg; m <<= 1) {
-            FormalPowerSeries q = prefix(m).diff();
-            q.resize(m);
-            number_theoretic_transform(q);
-            rep (i, m) q[i] *= dft_f[i];
-            inverse_number_theoretic_transform(q);
-            FormalPowerSeries s = f.diff();
-            s.resize(m);
-            rep (i, m) s[i] -= q[i];
-            s.insert(s.begin(), (T)s.back());
-            s.pop_back();
+            dft_f.ntt_doubling(f);
+            f.resize(2 * m);
+            g.resize(2 * m);
             FormalPowerSeries dft_g = g;
-            s.resize(2 * m);
-            dft_g.resize(2 * m);
-            number_theoretic_transform(s);
             number_theoretic_transform(dft_g);
-            rep (i, 2 * m) s[i] *= dft_g[i];
-            inverse_number_theoretic_transform(s);
-            FormalPowerSeries u =
-                (prefix(2 * m) - (s.prefix(m) << (m - 1)).integral()) >> m;
-            u.resize(2 * m);
-            FormalPowerSeries dft_f_2 = f;
-            dft_f_2.resize(2 * m);
-            number_theoretic_transform(u);
-            number_theoretic_transform(dft_f_2);
-            rep (i, 2 * m) u[i] *= dft_f_2[i];
-            inverse_number_theoretic_transform(u);
-            f = f + (u.prefix(m) << m);
+            FormalPowerSeries t = df.prefix(2 * m);
+            number_theoretic_transform(t);
+            rep (i, 2 * m) t[i] *= dft_f[i];
+            inverse_number_theoretic_transform(t);
+            std::fill(t.begin(), t.begin() + m - 1, T{0});
+            number_theoretic_transform(t);
+            rep (i, 2 * m) t[i] *= dft_g[i];
+            inverse_number_theoretic_transform(t);
+            std::fill(t.begin(), t.begin() + m - 1, T{0});
+            t = t.prefix(2 * m - 1).integral();
+            number_theoretic_transform(t);
+            rep (i, 2 * m) t[i] *= dft_f[i];
+            inverse_number_theoretic_transform(t);
+            rep (i, m, 2 * m) f[i] = t[i];
             if (2 * m < deg) {
-                g.resize(2 * m);
-                FormalPowerSeries dft_g_2 = g;
-                FormalPowerSeries dft_f_2 = f;
-                number_theoretic_transform(dft_g_2);
-                number_theoretic_transform(dft_f_2);
-                dft_f = dft_f_2;
-                rep (i, 2 * m) dft_f_2[i] *= dft_g_2[i];
-                inverse_number_theoretic_transform(dft_f_2);
-                std::fill(dft_f_2.begin(), dft_f_2.begin() + m, T{0});
-                number_theoretic_transform(dft_f_2);
-                rep (i, 2 * m) dft_f_2[i] *= dft_g_2[i];
-                inverse_number_theoretic_transform(dft_f_2);
-                rep (i, m, 2 * m) g[i] = -dft_f_2[i];
+                dft_f = f;
+                number_theoretic_transform(dft_f);
+                FormalPowerSeries t = dft_f;
+                rep (i, 2 * m) t[i] *= dft_g[i];
+                inverse_number_theoretic_transform(t);
+                std::fill(t.begin(), t.begin() + m, T{0});
+                number_theoretic_transform(t);
+                rep (i, 2 * m) t[i] *= dft_g[i];
+                inverse_number_theoretic_transform(t);
+                rep (i, m, 2 * m) g[i] = -t[i];
             }
         }
         return f.prefix(deg);
@@ -325,7 +313,7 @@ public:
             FormalPowerSeries res(deg);
             return res;
         }
-        if ((i128)(d)*k >= deg) {
+        if ((i128)d * k >= deg) {
             FormalPowerSeries res(deg);
             return res;
         }
@@ -335,6 +323,10 @@ public:
         res <<= d * k;
         return res;
     }
+    template<bool AlwaysTrue = true,
+             typename std::enable_if<
+                 AlwaysTrue && is_ntt_friendly<T::get_mod()>::value>::type* =
+                 nullptr>
     FormalPowerSeries sqrt(int deg = -1) const {
         if (deg == -1) deg = this->size();
         T a;
@@ -356,15 +348,72 @@ public:
             FormalPowerSeries res(deg);
             return res;
         }
-        FormalPowerSeries f = (*this >> d);
+        FormalPowerSeries t = (*this >> d);
         T sq = sqrt_mod<T>(a.get());
         if (sq == -1) return {};
-        FormalPowerSeries g(1, sq);
+        FormalPowerSeries f(1, sq), g(1, 1 / sq), dft_f = f;
+        number_theoretic_transform(dft_f);
         for (int m = 1; m < deg; m <<= 1) {
-            g = (g + (f.prefix(2 * m) * g.inv(2 * m)).prefix(2 * m)) / 2;
+            dft_f.ntt_doubling(f);
+            f.resize(2 * m);
+            g.resize(2 * m);
+            FormalPowerSeries dft_g = g;
+            number_theoretic_transform(dft_g);
+            FormalPowerSeries u = dft_f;
+            rep (i, 2 * m) u[i] *= dft_f[i];
+            FormalPowerSeries tx = t.prefix(2 * m);
+            number_theoretic_transform(tx);
+            rep (i, 2 * m) u[i] = (tx[i] - u[i]) * dft_g[i];
+            inverse_number_theoretic_transform(u);
+            rep (i, m, 2 * m) f[i] = u[i] / 2;
+            if (2 * m < deg) {
+                dft_f = f;
+                number_theoretic_transform(dft_f);
+                FormalPowerSeries u = dft_g;
+                rep (i, 2 * m) u[i] *= dft_f[i];
+                inverse_number_theoretic_transform(u);
+                std::fill(u.begin(), u.begin() + m, T{0});
+                number_theoretic_transform(u);
+                rep (i, 2 * m) u[i] *= dft_g[i];
+                inverse_number_theoretic_transform(u);
+                rep (i, m, 2 * m) g[i] = -u[i];
+            }
         }
-        g.resize(deg);
-        return g << (d >> 1);
+        return f.prefix(deg) << (d >> 1);
+    }
+    template<bool AlwaysTrue = true,
+             typename std::enable_if<
+                 AlwaysTrue && !is_ntt_friendly<T::get_mod()>::value>::type* =
+                 nullptr>
+    FormalPowerSeries sqrt(int deg = -1) const {
+        if (deg == -1) deg = this->size();
+        T a;
+        int d = -1;
+        rep (i, this->size()) {
+            if ((*this)[i] != 0) {
+                a = (*this)[i];
+                d = i;
+                break;
+            }
+        }
+        if (d == -1) {
+            FormalPowerSeries res(deg);
+            return res;
+        }
+        if (d & 1) return {};
+        deg -= (d >> 1);
+        if (deg <= 0) {
+            FormalPowerSeries res(deg);
+            return res;
+        }
+        FormalPowerSeries t = (*this >> d);
+        T sq = sqrt_mod<T>(a.get());
+        if (sq == -1) return {};
+        FormalPowerSeries f(1, sq);
+        for (int m = 1; m < deg; m <<= 1) {
+            f = (f + t * f.inv(2 * m)).prefix(2 * m) / 2;
+        }
+        return f.prefix(deg) << (d >> 1);
     }
     FormalPowerSeries compose(FormalPowerSeries g, int deg = -1) const {
         if (this->empty()) return {};
@@ -477,6 +526,14 @@ public:
                  nullptr>
     FormalPowerSeries& ntt_doubling() {
         ntt_doubling_(*this);
+        return *this;
+    }
+    template<bool AlwaysTrue = true,
+             typename std::enable_if<
+                 AlwaysTrue && is_ntt_friendly<T::get_mod()>::value>::type* =
+                 nullptr>
+    FormalPowerSeries& ntt_doubling(const std::vector<T>& b) {
+        ntt_doubling_(*this, b);
         return *this;
     }
 };
