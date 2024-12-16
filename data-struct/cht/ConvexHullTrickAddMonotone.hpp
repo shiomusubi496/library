@@ -10,7 +10,7 @@ private:
         T a, b;
         int idx;
         bool is_query;
-        mutable ll nxt_a, nxt_b;
+        mutable T nxt_a, nxt_b;
         mutable bool has_nxt;
         T get(T x) const { return a * x + b; }
         T get_nxt(T x) const { return nxt_a * x + nxt_b; }
