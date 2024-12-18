@@ -2,14 +2,17 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: data-struct/unionfind/RangeParallelUnionFind.hpp
-    title: RangeParallelUnionFind
-  - icon: ':heavy_check_mark:'
-    path: data-struct/unionfind/UnionFind.hpp
-    title: UnionFind
+    path: data-struct/unionfind/WeightedUnionFind.hpp
+    title: "WeightedUnionFind(\u91CD\u307F\u4ED8\u304DUF)"
   - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
     title: ModInt
+  - icon: ':heavy_check_mark:'
+    path: math/matrix/Matrix.hpp
+    title: "Matrix(\u884C\u5217)"
+  - icon: ':heavy_check_mark:'
+    path: other/monoid.hpp
+    title: other/monoid.hpp
   - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
@@ -44,12 +47,12 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/range_parallel_unionfind
+    PROBLEM: https://judge.yosupo.jp/problem/unionfind_with_potential_non_commutative_group
     links:
-    - https://judge.yosupo.jp/problem/range_parallel_unionfind
-  bundledCode: "#line 1 \"test/yosupo/new/range_parallel_unionfind.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/range_parallel_unionfind\"\n#line\
-    \ 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
+    - https://judge.yosupo.jp/problem/unionfind_with_potential_non_commutative_group
+  bundledCode: "#line 1 \"test/yosupo/data_structure/unionfind_with_potential_non_commutative_group.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind_with_potential_non_commutative_group\"\
+    \n#line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
     \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
     \ __LINE__\n#endif\n\n#define OVERLOAD5(a, b, c, d, e, ...) e\n#define REP1_0(b,\
     \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
@@ -573,67 +576,237 @@ data:
     \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\ntemplate<class\
     \ T, int id> T DynamicModInt<T, id>::mod = 998244353;\n\ntemplate<int id> using\
     \ dynamic_modint = DynamicModInt<unsigned int, id>;\nusing modint = dynamic_modint<-1>;\n\
-    \n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n#line 2 \"data-struct/unionfind/RangeParallelUnionFind.hpp\"\
-    \n\n#line 2 \"data-struct/unionfind/UnionFind.hpp\"\n\n#line 4 \"data-struct/unionfind/UnionFind.hpp\"\
-    \n\nclass UnionFind {\nprivate:\n    int n;\n    std::vector<int> par;\n\npublic:\n\
-    \    UnionFind() : UnionFind(0) {}\n    UnionFind(int n) : n(n), par(n, -1) {}\n\
-    \    int find(int x) {\n        assert(0 <= x && x < n);\n        return par[x]\
-    \ < 0 ? x : par[x] = find(par[x]);\n    }\n    std::pair<int, int> merge(int x,\
-    \ int y) {\n        x = find(x);\n        y = find(y);\n        if (x == y) return\
-    \ {x, -1};\n        if (par[x] > par[y]) std::swap(x, y);\n        par[x] += par[y];\n\
-    \        par[y] = x;\n        return {x, y};\n    }\n    bool same(int x, int\
-    \ y) { return find(x) == find(y); }\n    int size(int x) { return -par[find(x)];\
-    \ }\n    std::vector<std::vector<int>> groups() {\n        std::vector<std::vector<int>>\
-    \ res(n);\n        rep (i, n) res[find(i)].push_back(i);\n        res.erase(\n\
-    \            remove_if(all(res),\n                      [](const std::vector<int>&\
-    \ v) { return v.empty(); }),\n            res.end());\n        return res;\n \
-    \   }\n    bool is_root(int x) const {\n        assert(0 <= x && x < n);\n   \
-    \     return par[x] < 0;\n    }\n};\n\n/**\n * @brief UnionFind\n * @docs docs/data-struct/unionfind/UnionFind.md\n\
-    \ */\n#line 5 \"data-struct/unionfind/RangeParallelUnionFind.hpp\"\n\nUnionFind\
-    \ static_range_parallel_union_find(int n,\n                                  \
-    \         std::vector<std::array<int, 3>> qs) {\n    UnionFind uf(n);\n    std::vector<std::vector<std::pair<int,\
-    \ int>>> es(n);\n    for (const auto& [l, r, w] : qs) {\n        assert(0 <= w);\n\
-    \        assert(0 <= l && l + w <= n);\n        assert(0 <= r && r + w <= n);\n\
-    \        if (l == r || w == 0) continue;\n        es[w - 1].emplace_back(l + w\
-    \ - 1, r + w - 1);\n    }\n    rrep (i, n) {\n        for (const auto& [l, r]\
-    \ : es[i]) {\n            if (uf.merge(l, r).second != -1 && i != 0) {\n     \
-    \           es[i - 1].emplace_back(l - 1, r - 1);\n            }\n        }\n\
-    \    }\n    return uf;\n}\n\nclass RangeParallelUnionFind {\nprivate:\n    int\
-    \ h, n;\n    std::vector<UnionFind> uf;\n    void internal_merge(int l, int r,\
-    \ int k,\n                        std::vector<std::pair<int, int>>& res) {\n \
-    \       auto p = uf[k].merge(l, r);\n        if (p.second != -1) {\n         \
-    \   if (k == 0) res.push_back(p);\n            else {\n                internal_merge(l,\
-    \ r, k - 1, res);\n                internal_merge(l + (1 << (k - 1)), r + (1 <<\
-    \ (k - 1)), k - 1,\n                               res);\n            }\n    \
-    \    }\n    }\n\npublic:\n    RangeParallelUnionFind() : RangeParallelUnionFind(0)\
-    \ {}\n    RangeParallelUnionFind(int n_) {\n        n = n_;\n        h = bitop::ceil_log2(n\
-    \ + 1);\n        uf.assign(h, UnionFind(n));\n    }\n    std::vector<std::pair<int,\
-    \ int>> merge(int l, int r, int w) {\n        assert(0 <= w);\n        assert(0\
-    \ <= l && l + w <= n);\n        assert(0 <= r && r + w <= n);\n        std::vector<std::pair<int,\
-    \ int>> res;\n        if (l == r || w == 0) return res;\n        int s = bitop::msb(w);\n\
-    \        internal_merge(l, r, s, res);\n        internal_merge(l + w - (1 << s),\
-    \ r + w - (1 << s), s, res);\n        return res;\n    }\n    int find(int x)\
-    \ { return uf[0].find(x); }\n    bool same(int x, int y) { return uf[0].same(x,\
-    \ y); }\n    int size(int x) { return uf[0].size(x); }\n    std::vector<std::vector<int>>\
-    \ groups() { return uf[0].groups(); }\n    bool is_root(int x) const { return\
-    \ uf[0].is_root(x); }\n    UnionFind get_uf() const { return uf[0]; }\n};\n\n\
-    /**\n * @brief RangeParallelUnionFind\n * @docs docs/data-struct/unionfind/RangeParallelUnionFind.md\n\
-    \ */\n#line 5 \"test/yosupo/new/range_parallel_unionfind.test.cpp\"\nusing namespace\
-    \ std;\nusing mint = modint998244353;\nint main() {\n    int N, Q; scan >> N >>\
-    \ Q;\n    vector<mint> X(N); scan >> X;\n    RangeParallelUnionFind uf(N);\n \
-    \   mint ans = 0;\n    rep (Q) {\n        int k, a, b; scan >> k >> a >> b;\n\
-    \        for (auto [x, y] : uf.merge(a, b, k)) {\n            ans += X[x] * X[y];\n\
-    \            X[x] += X[y];\n            X[y] = 0;\n        }\n        prints(ans);\n\
-    \    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_parallel_unionfind\"\
+    \n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n#line 2 \"math/matrix/Matrix.hpp\"\
+    \n\n#line 5 \"math/matrix/Matrix.hpp\"\n\ntemplate<class> class Matrix;\n\nnamespace\
+    \ internal {\n\nusing Mat2 = Matrix<static_modint<2>>;\n\ntemplate<int> Mat2 prod_mod2_sub(const\
+    \ Mat2&, const Mat2&);\ntemplate<int> void gauss_mod2_sub(Mat2&);\n\n} // namespace\
+    \ internal\n\ntemplate<class T> class Matrix : public std::vector<std::vector<T>>\
+    \ {\nprivate:\n    using Base = std::vector<std::vector<T>>;\n\npublic:\n    Matrix()\
+    \ = default;\n    Matrix(int h, int w) : Base(h, std::vector<T>(w)) {}\n    Matrix(int\
+    \ h, int w, const T& v) : Base(h, std::vector<T>(w, v)) {}\n    Matrix(const Base&\
+    \ v) : Base(v) {}\n    Matrix(Base&& v) : Base(std::move(v)) {}\n    static Matrix\
+    \ get_identity(int sz) {\n        Matrix res(sz, sz, T{0});\n        rep (i, sz)\
+    \ res[i][i] = T{1};\n        return res;\n    }\n    int height() const { return\
+    \ this->size(); }\n    int width() const { return this->size() ? (*this)[0].size()\
+    \ : 0; }\n    bool is_square() const { return height() == width(); }\n    Matrix&\
+    \ operator+=(const Matrix& other) {\n        assert(this->height() == other.height()\
+    \ &&\n               this->width() == other.width());\n        rep (i, this->height())\
+    \ {\n            rep (j, this->width()) (*this)[i][j] += other[i][j];\n      \
+    \  }\n        return *this;\n    }\n    Matrix& operator-=(const Matrix& other)\
+    \ {\n        assert(this->height() == other.height() &&\n               this->width()\
+    \ == other.width());\n        rep (i, this->height()) {\n            rep (j, this->width())\
+    \ (*this)[i][j] -= other[i][j];\n        }\n        return *this;\n    }\n   \
+    \ template<\n        bool AlwaysTrue = true,\n        typename std::enable_if<!std::is_same<T,\
+    \ static_modint<2>>::value &&\n                                AlwaysTrue>::type*\
+    \ = nullptr>\n    Matrix& operator*=(const Matrix& other) {\n        assert(this->width()\
+    \ == other.height());\n        Matrix res(this->height(), other.width());\n  \
+    \      rep (i, this->height()) {\n            rep (k, other.height()) {\n    \
+    \            rep (j, other.width()) res[i][j] += (*this)[i][k] * other[k][j];\n\
+    \            }\n        }\n        return *this = std::move(res);\n    }\n   \
+    \ template<bool AlwaysTrue = true,\n             typename std::enable_if<std::is_same<T,\
+    \ static_modint<2>>::value &&\n                                     AlwaysTrue>::type*\
+    \ = nullptr>\n    Matrix& operator*=(const Matrix& other) {\n        assert(this->width()\
+    \ == other.height());\n        return *this = internal::prod_mod2_sub<1>(*this,\
+    \ other);\n    }\n    Matrix& operator*=(T s) {\n        rep (i, height()) {\n\
+    \            rep (j, width()) (*this)[i][j] *= s;\n        }\n        return *this;\n\
+    \    }\n    friend Matrix operator+(const Matrix& lhs, const Matrix& rhs) {\n\
+    \        return Matrix(lhs) += rhs;\n    }\n    friend Matrix operator-(const\
+    \ Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs) -= rhs;\n    }\n\
+    \    friend Matrix operator*(const Matrix& lhs, const Matrix& rhs) {\n       \
+    \ return Matrix(lhs) *= rhs;\n    }\n    friend Matrix operator*(const Matrix&\
+    \ lhs, T rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n    friend Matrix\
+    \ operator*(int lhs, const Matrix& rhs) {\n        return Matrix(rhs) *= lhs;\n\
+    \    }\n    Matrix pow(ll b) const {\n        Matrix a = *this, res = get_identity(height());\n\
+    \        while (b) {\n            if (b & 1) res *= a;\n            a *= a;\n\
+    \            b >>= 1;\n        }\n        return res;\n    }\n    Matrix transpose()\
+    \ const {\n        Matrix res(width(), height());\n        rep (i, height()) {\n\
+    \            rep (j, width()) res[j][i] = (*this)[i][j];\n        }\n        return\
+    \ res;\n    }\n    template<\n        bool AlwaysTrue = true,\n        typename\
+    \ std::enable_if<!std::is_same<T, static_modint<2>>::value &&\n              \
+    \                  AlwaysTrue>::type* = nullptr>\n    Matrix& gauss() {\n    \
+    \    int h = height(), w = width();\n        int r = 0;\n        rep (i, w) {\n\
+    \            int pivot = -1;\n            rep (j, r, h) {\n                if\
+    \ ((*this)[j][i] != 0) {\n                    pivot = j;\n                   \
+    \ break;\n                }\n            }\n            if (pivot == -1) continue;\n\
+    \            std::swap((*this)[pivot], (*this)[r]);\n            const T s = (*this)[r][i],\
+    \ iv = T{1} / s;\n            rep (j, i, w) (*this)[r][j] *= iv;\n           \
+    \ rep (j, h) {\n                if (j == r) continue;\n                const T\
+    \ s = (*this)[j][i];\n                if (s == 0) continue;\n                rep\
+    \ (k, i, w) (*this)[j][k] -= (*this)[r][k] * s;\n            }\n            ++r;\n\
+    \        }\n        return *this;\n    }\n    template<bool AlwaysTrue = true,\n\
+    \             typename std::enable_if<std::is_same<T, static_modint<2>>::value\
+    \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
+    \ Matrix& gauss() {\n        internal::gauss_mod2_sub<1>(*this);\n        return\
+    \ *this;\n    }\n    friend Matrix gauss(const Matrix& mat) { return Matrix(mat).gauss();\
+    \ }\n    int rank(bool is_gaussed = false) const {\n        const int h = height(),\
+    \ w = width();\n        if (!is_gaussed)\n            return (h >= w ? Matrix(*this)\
+    \ : transpose()).gauss().rank(true);\n        int r = 0;\n        rep (i, h) {\n\
+    \            while (r < w && (*this)[i][r] == 0) ++r;\n            if (r == w)\
+    \ return i;\n            ++r;\n        }\n        return h;\n    }\n};\n\nnamespace\
+    \ internal {\n\ntemplate<int len> Mat2 prod_mod2_sub(const Mat2& lhs, const Mat2&\
+    \ rhs) {\n    const int h = lhs.height(), w = rhs.width(), m = lhs.width();\n\
+    \    if (len < m) return prod_mod2_sub<len << 1>(lhs, rhs);\n    std::vector<std::bitset<len>>\
+    \ a(h), b(w);\n    Mat2 res(h, w);\n    rep (i, h) {\n        rep (j, m) a[i][j]\
+    \ = lhs[i][j] != 0;\n    }\n    rep (i, m) {\n        rep (j, w) b[j][i] = rhs[i][j]\
+    \ != 0;\n    }\n    rep (i, h) {\n        rep (j, w) {\n            res[i][j]\
+    \ = (a[i] & b[j]).count() & 1;\n        }\n    }\n    return res;\n}\ntemplate<>\
+    \ Mat2 prod_mod2_sub<1 << 30>(const Mat2&, const Mat2&) { return {}; }\n\ntemplate<int\
+    \ len> void gauss_mod2_sub(Mat2& a) {\n    const int h = a.height(), w = a.width();\n\
+    \    if (len < w) return gauss_mod2_sub<len << 1>(a);\n    std::vector<std::bitset<len>>\
+    \ b(h);\n    rep (i, h) {\n        rep (j, w) b[i][j] = a[i][j] != 0;\n    }\n\
+    \    int r = 0;\n    rep (i, w) {\n        int pivot = -1;\n        rep (j, r,\
+    \ h) {\n            if (b[j][i] != 0) {\n                pivot = j;\n        \
+    \        break;\n            }\n        }\n        if (pivot == -1) continue;\n\
+    \        std::swap(b[pivot], b[r]);\n        rep (j, h) {\n            if (j ==\
+    \ r) continue;\n            if (b[j][i] != 0) b[j] ^= b[r];\n        }\n     \
+    \   ++r;\n    }\n    rep (i, h) {\n        rep (j, w) a[i][j] = (b[i][j] ? 1 :\
+    \ 0);\n    }\n}\ntemplate<> void gauss_mod2_sub<1 << 30>(Mat2&) {}\n\n} // namespace\
+    \ internal\n\n/**\n * @brief Matrix(\u884C\u5217)\n * @docs docs/math/matrix/Matrix.md\n\
+    \ */\n#line 2 \"data-struct/unionfind/WeightedUnionFind.hpp\"\n\n#line 2 \"other/monoid.hpp\"\
+    \n\n#line 4 \"other/monoid.hpp\"\n\nnamespace Monoid {\n\ntemplate<class M, class\
+    \ = void>\nclass has_value_type : public std::false_type {};\ntemplate<class M>\n\
+    class has_value_type<M, decltype((void)std::declval<typename M::value_type>())>\n\
+    \    : public std::true_type {};\n\ntemplate<class M, class = void> class has_op\
+    \ : public std::false_type {};\ntemplate<class M>\nclass has_op<M, decltype((void)M::op)>\
+    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_id\
+    \ : public std::false_type {};\ntemplate<class M>\nclass has_id<M, decltype((void)M::id)>\
+    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_inv\
+    \ : public std::false_type {};\ntemplate<class M>\nclass has_inv<M, decltype((void)M::inv)>\
+    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_get_inv\
+    \ : public std::false_type {};\ntemplate<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)>\
+    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_init\
+    \ : public std::false_type {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init(0,\
+    \ 0))> : public std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op\
+    \ : public std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
+    \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_semigroup\
+    \ : public std::false_type {};\ntemplate<class T>\nclass is_semigroup<T, decltype(std::declval<typename\
+    \ T::value_type>(),\n                               (void)T::op)> : public std::true_type\
+    \ {};\n\ntemplate<class T, class = void> class is_monoid : public std::false_type\
+    \ {};\n\ntemplate<class T>\nclass is_monoid<T, decltype(std::declval<typename\
+    \ T::value_type>(), (void)T::op,\n                            (void)T::id)> :\
+    \ public std::true_type {};\n\ntemplate<class T, class = void> class is_group\
+    \ : public std::false_type {};\n\ntemplate<class T>\nclass is_group<T, decltype(std::declval<typename\
+    \ T::value_type>(), (void)T::op,\n                           (void)T::id, (void)T::get_inv)>\n\
+    \    : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
+    \ : public std::false_type {};\ntemplate<class T>\nclass is_action<T, typename\
+    \ std::enable_if<is_monoid<typename T::M>::value &&\n                        \
+    \                   is_semigroup<typename T::E>::value &&\n                  \
+    \                         (has_op<T>::value ||\n                             \
+    \               has_mul_op<T>::value)>::type>\n    : public std::true_type {};\n\
+    \ntemplate<class T, class = void>\nclass is_distributable_action : public std::false_type\
+    \ {};\ntemplate<class T>\nclass is_distributable_action<\n    T,\n    typename\
+    \ std::enable_if<is_action<T>::value && !has_mul_op<T>::value>::type>\n    : public\
+    \ std::true_type {};\n\ntemplate<class T> struct Sum {\n    using value_type =\
+    \ T;\n    static constexpr T op(const T& a, const T& b) { return a + b; }\n  \
+    \  static constexpr T id() { return T{0}; }\n    static constexpr T inv(const\
+    \ T& a, const T& b) { return a - b; }\n    static constexpr T get_inv(const T&\
+    \ a) { return -a; }\n};\n\ntemplate<class T, int i = -1> struct Min {\n    using\
+    \ value_type = T;\n    static T max_value;\n    static T op(const T& a, const\
+    \ T& b) { return a < b ? a : b; }\n    static T id() { return max_value; }\n};\n\
+    template<class T> struct Min<T, -1> {\n    using value_type = T;\n    static constexpr\
+    \ T op(const T& a, const T& b) { return a < b ? a : b; }\n    static constexpr\
+    \ T id() { return infinity<T>::value; }\n};\ntemplate<class T> struct Min<T, -2>\
+    \ {\n    using value_type = T;\n    static constexpr T op(const T& a, const T&\
+    \ b) { return a < b ? a : b; }\n    static constexpr T id() { return infinity<T>::max;\
+    \ }\n};\ntemplate<class T, int id> T Min<T, id>::max_value;\n\ntemplate<class\
+    \ T, int i = -1> struct Max {\n    using value_type = T;\n    static T min_value;\n\
+    \    static T op(const T& a, const T& b) { return a > b ? a : b; }\n    static\
+    \ T id() { return min_value; }\n};\ntemplate<class T> struct Max<T, -1> {\n  \
+    \  using value_type = T;\n    static constexpr T op(const T& a, const T& b) {\
+    \ return a > b ? a : b; }\n    static constexpr T id() { return infinity<T>::mvalue;\
+    \ }\n};\ntemplate<class T> struct Max<T, -2> {\n    using value_type = T;\n  \
+    \  static constexpr T op(const T& a, const T& b) { return a > b ? a : b; }\n \
+    \   static constexpr T id() { return infinity<T>::min; }\n};\n\ntemplate<class\
+    \ T> struct Assign {\n    using value_type = T;\n    static constexpr T op(const\
+    \ T&, const T& b) { return b; }\n};\n\n\ntemplate<class T, int id = -1> struct\
+    \ AssignMin {\n    using M = Min<T, id>;\n    using E = Assign<T>;\n    static\
+    \ constexpr T op(const T& a, const T&) { return a; }\n};\n\ntemplate<class T,\
+    \ int id = -1> struct AssignMax {\n    using M = Max<T, id>;\n    using E = Assign<T>;\n\
+    \    static constexpr T op(const T& a, const T&) { return a; }\n};\n\ntemplate<class\
+    \ T> struct AssignSum {\n    using M = Sum<T>;\n    using E = Assign<T>;\n   \
+    \ static constexpr T mul_op(const T& a, int b, const T&) { return a * b; }\n};\n\
+    \ntemplate<class T, int id = -1> struct AddMin {\n    using M = Min<T, id>;\n\
+    \    using E = Sum<T>;\n    static constexpr T op(const T& a, const T& b) { return\
+    \ b + a; }\n};\n\ntemplate<class T, int id = -1> struct AddMax {\n    using M\
+    \ = Max<T, id>;\n    using E = Sum<T>;\n    static constexpr T op(const T& a,\
+    \ const T& b) { return b + a; }\n};\n\ntemplate<class T> struct AddSum {\n   \
+    \ using M = Sum<T>;\n    using E = Sum<T>;\n    static constexpr T mul_op(const\
+    \ T& a, int b, const T& c) {\n        return c + a * b;\n    }\n};\n\ntemplate<class\
+    \ T, int id = -1> struct ChminMin {\n    using M = Min<T, id>;\n    using E =\
+    \ Min<T>;\n    static constexpr T op(const T& a, const T& b) { return std::min(b,\
+    \ a); }\n};\n\ntemplate<class T, int id = -1> struct ChminMax {\n    using M =\
+    \ Max<T, id>;\n    using E = Min<T>;\n    static constexpr T op(const T& a, const\
+    \ T& b) { return std::min(b, a); }\n};\n\ntemplate<class T, int id = -1> struct\
+    \ ChmaxMin {\n    using M = Min<T, id>;\n    using E = Max<T>;\n    static constexpr\
+    \ T op(const T& a, const T& b) { return std::max(b, a); }\n};\n\ntemplate<class\
+    \ T, int id = -1> struct ChmaxMax {\n    using M = Max<T, id>;\n    using E =\
+    \ Max<T>;\n    static constexpr T op(const T& a, const T& b) { return std::max(b,\
+    \ a); }\n};\n\n\ntemplate<class M> struct ReverseMonoid {\n    using value_type\
+    \ = typename M::value_type;\n    static value_type op(const value_type& a, const\
+    \ value_type& b) {\n        return M::op(b, a);\n    }\n    static value_type\
+    \ id() {\n        static_assert(has_id<M>::value, \"id is not defined\");\n  \
+    \      return M::id();\n    }\n    static value_type inv(const value_type& a,\
+    \ const value_type& b) {\n        static_assert(has_inv<M>::value, \"inv is not\
+    \ defined\");\n        return M::inv(b, a);\n    }\n    static value_type get_inv(const\
+    \ value_type& a) {\n        static_assert(has_get_inv<M>::value, \"get_inv is\
+    \ not defined\");\n        return M::get_inv(a);\n    }\n};\n\ntemplate<class\
+    \ E_> struct MakeAction {\n    using M = E_;\n    using E = E_;\n    using T =\
+    \ typename E_::value_type;\n    static T op(const T& a, const T& b) { return E_::op(b,\
+    \ a); }\n};\n\n} // namespace Monoid\n#line 5 \"data-struct/unionfind/WeightedUnionFind.hpp\"\
+    \n\ntemplate<class M, bool = Monoid::is_monoid<M>::value> class WeightedUnionFind\
+    \ {\nprivate:\n    using T = typename M::value_type;\n    int n;\n    std::vector<int>\
+    \ par;\n    std::vector<T> wei; // a_r^-1 a_i\n\npublic:\n    WeightedUnionFind()\
+    \ : WeightedUnionFind(0) {}\n    WeightedUnionFind(int n) : n(n), par(n, -1),\
+    \ wei(n, M::id()) {}\n    int find(int x) {\n        assert(0 <= x && x < n);\n\
+    \        if (par[x] < 0) return x;\n        int r = find(par[x]);\n        wei[x]\
+    \ = M::op(wei[par[x]], wei[x]);\n        return par[x] = r;\n    }\n    T weight(int\
+    \ x) { return find(x), wei[x]; }\n    // a_y^-1 a_x\n    T diff(int x, int y)\
+    \ {\n        assert(find(x) == find(y));\n        return M::op(M::get_inv(weight(y)),\
+    \ weight(x));\n    }\n    // a_y^-1 a_x = w\n    std::pair<int, int> merge(int\
+    \ x, int y, T w) {\n        w = M::op(weight(x), M::get_inv(M::op(weight(y), w)));\n\
+    \        x = find(x);\n        y = find(y);\n        if (x == y) {\n         \
+    \   if (w == M::id()) return {x, -1};\n            else return {x, -2};\n    \
+    \    }\n        if (par[x] > par[y]) std::swap(x, y), w = M::get_inv(w);\n   \
+    \     par[x] += par[y];\n        par[y] = x;\n        wei[y] = w;\n        return\
+    \ {x, y};\n    }\n    bool same(int x, int y) { return find(x) == find(y); }\n\
+    \    int size(int x) { return -par[find(x)]; }\n    std::vector<std::vector<int>>\
+    \ groups() {\n        std::vector<std::vector<int>> res(n);\n        rep (i, n)\
+    \ res[find(i)].push_back(i);\n        res.erase(\n            remove_if(all(res),\n\
+    \                      [](const std::vector<int>& v) { return v.empty(); }),\n\
+    \            res.end());\n        return res;\n    }\n    bool is_root(int x)\
+    \ const {\n        assert(0 <= x && x < n);\n        return par[x] < 0;\n    }\n\
+    };\n\ntemplate<class T>\nclass WeightedUnionFind<T, false> : public WeightedUnionFind<Monoid::Sum<T>>\
+    \ {\nprivate:\n    using Base = WeightedUnionFind<Monoid::Sum<T>>;\n\npublic:\n\
+    \    using Base::Base;\n};\n\n/**\n * @brief WeightedUnionFind(\u91CD\u307F\u4ED8\
+    \u304DUF)\n * @docs docs/data-struct/unionfind/WeightedUnionFind.md\n */\n#line\
+    \ 6 \"test/yosupo/data_structure/unionfind_with_potential_non_commutative_group.test.cpp\"\
+    \nusing namespace std;\nusing mint = modint998244353;\nusing matx = Matrix<mint>;\n\
+    struct MatProd {\n    using value_type = matx;\n    static matx id() { return\
+    \ matx::get_identity(2); }\n    static matx op(const matx& a, const matx& b) {\
+    \ return a * b; }\n    static matx get_inv(const matx& a) { return matx{{{a[1][1],\
+    \ -a[0][1]}, {-a[1][0], a[0][0]}}}; }\n};\nint main() {\n    int n, q; scan >>\
+    \ n >> q;\n    WeightedUnionFind<MatProd> uf(n);\n    rep (q) {\n        int t,\
+    \ x, y; scan >> t >> x >> y;\n        if (t == 0) {\n            matx a(2, 2);\
+    \ scan >> a;\n            auto [p, q] = uf.merge(x, y, a);\n            if (q\
+    \ == -2) prints(0);\n            else prints(1);\n        }\n        else {\n\
+    \            if (!uf.same(x, y)) prints(-1);\n            else {\n           \
+    \     auto a = uf.diff(x, y);\n                prints(a);\n            }\n   \
+    \     }\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind_with_potential_non_commutative_group\"\
     \n#include \"../../../other/template.hpp\"\n#include \"../../../math/ModInt.hpp\"\
-    \n#include \"../../../data-struct/unionfind/RangeParallelUnionFind.hpp\"\nusing\
-    \ namespace std;\nusing mint = modint998244353;\nint main() {\n    int N, Q; scan\
-    \ >> N >> Q;\n    vector<mint> X(N); scan >> X;\n    RangeParallelUnionFind uf(N);\n\
-    \    mint ans = 0;\n    rep (Q) {\n        int k, a, b; scan >> k >> a >> b;\n\
-    \        for (auto [x, y] : uf.merge(a, b, k)) {\n            ans += X[x] * X[y];\n\
-    \            X[x] += X[y];\n            X[y] = 0;\n        }\n        prints(ans);\n\
-    \    }\n}\n"
+    \n#include \"../../../math/matrix/Matrix.hpp\"\n#include \"../../../data-struct/unionfind/WeightedUnionFind.hpp\"\
+    \nusing namespace std;\nusing mint = modint998244353;\nusing matx = Matrix<mint>;\n\
+    struct MatProd {\n    using value_type = matx;\n    static matx id() { return\
+    \ matx::get_identity(2); }\n    static matx op(const matx& a, const matx& b) {\
+    \ return a * b; }\n    static matx get_inv(const matx& a) { return matx{{{a[1][1],\
+    \ -a[0][1]}, {-a[1][0], a[0][0]}}}; }\n};\nint main() {\n    int n, q; scan >>\
+    \ n >> q;\n    WeightedUnionFind<MatProd> uf(n);\n    rep (q) {\n        int t,\
+    \ x, y; scan >> t >> x >> y;\n        if (t == 0) {\n            matx a(2, 2);\
+    \ scan >> a;\n            auto [p, q] = uf.merge(x, y, a);\n            if (q\
+    \ == -2) prints(0);\n            else prints(1);\n        }\n        else {\n\
+    \            if (!uf.same(x, y)) prints(-1);\n            else {\n           \
+    \     auto a = uf.diff(x, y);\n                prints(a);\n            }\n   \
+    \     }\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -645,18 +818,19 @@ data:
   - template/func.hpp
   - template/util.hpp
   - math/ModInt.hpp
-  - data-struct/unionfind/RangeParallelUnionFind.hpp
-  - data-struct/unionfind/UnionFind.hpp
+  - math/matrix/Matrix.hpp
+  - data-struct/unionfind/WeightedUnionFind.hpp
+  - other/monoid.hpp
   isVerificationFile: true
-  path: test/yosupo/new/range_parallel_unionfind.test.cpp
+  path: test/yosupo/data_structure/unionfind_with_potential_non_commutative_group.test.cpp
   requiredBy: []
-  timestamp: '2024-07-20 14:13:49+09:00'
+  timestamp: '2024-12-18 20:29:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yosupo/new/range_parallel_unionfind.test.cpp
+documentation_of: test/yosupo/data_structure/unionfind_with_potential_non_commutative_group.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/new/range_parallel_unionfind.test.cpp
-- /verify/test/yosupo/new/range_parallel_unionfind.test.cpp.html
-title: test/yosupo/new/range_parallel_unionfind.test.cpp
+- /verify/test/yosupo/data_structure/unionfind_with_potential_non_commutative_group.test.cpp
+- /verify/test/yosupo/data_structure/unionfind_with_potential_non_commutative_group.test.cpp.html
+title: test/yosupo/data_structure/unionfind_with_potential_non_commutative_group.test.cpp
 ---

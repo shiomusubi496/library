@@ -267,6 +267,18 @@ data:
     path: test/yosupo/graph/chromatic_number.test.cpp
     title: test/yosupo/graph/chromatic_number.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/graph/connected_components_of_complement_graph.test.cpp
+    title: test/yosupo/graph/connected_components_of_complement_graph.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/graph/counting_eulerian_circuits.test.cpp
+    title: test/yosupo/graph/counting_eulerian_circuits.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/graph/counting_spanning_tree_directed.test.cpp
+    title: test/yosupo/graph/counting_spanning_tree_directed.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/graph/counting_spanning_tree_undirected.test.cpp
+    title: test/yosupo/graph/counting_spanning_tree_undirected.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/cycle_detection.test.cpp
     title: test/yosupo/graph/cycle_detection.test.cpp
   - icon: ':heavy_check_mark:'
@@ -299,18 +311,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/two_edge_connected_components.test.cpp
     title: test/yosupo/graph/two_edge_connected_components.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/connected_components_of_complement_graph.test.cpp
-    title: test/yosupo/new/connected_components_of_complement_graph.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/counting_eulerian_circuits.test.cpp
-    title: test/yosupo/new/counting_eulerian_circuits.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/counting_spanning_tree_directed.test.cpp
-    title: test/yosupo/new/counting_spanning_tree_directed.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/counting_spanning_tree_undirected.test.cpp
-    title: test/yosupo/new/counting_spanning_tree_undirected.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/other/two_sat.test.cpp
     title: test/yosupo/other/two_sat.test.cpp
@@ -916,10 +916,6 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/other/two_sat.test.cpp
-  - test/yosupo/new/connected_components_of_complement_graph.test.cpp
-  - test/yosupo/new/counting_eulerian_circuits.test.cpp
-  - test/yosupo/new/counting_spanning_tree_directed.test.cpp
-  - test/yosupo/new/counting_spanning_tree_undirected.test.cpp
   - test/yosupo/tree/vertex_add_subtree_sum.test.cpp
   - test/yosupo/tree/vertex_add_subtree_sum-2.test.cpp
   - test/yosupo/tree/vertex_add_subtree_sum-HLD.test.cpp
@@ -945,14 +941,18 @@ data:
   - test/yosupo/graph/eulerian_trail_undirected.test.cpp
   - test/yosupo/graph/chromatic_number.test.cpp
   - test/yosupo/graph/eulerian_trail_directed.test.cpp
+  - test/yosupo/graph/connected_components_of_complement_graph.test.cpp
   - test/yosupo/graph/enumerate_cliques.test.cpp
   - test/yosupo/graph/biconnected_components.test.cpp
   - test/yosupo/graph/bipartitematching.test.cpp
   - test/yosupo/graph/shortest_path.test.cpp
   - test/yosupo/graph/directedmst.test.cpp
   - test/yosupo/graph/three_edge_connected_components.test.cpp
+  - test/yosupo/graph/counting_eulerian_circuits.test.cpp
   - test/yosupo/graph/manhattanmst.test.cpp
   - test/yosupo/graph/two_edge_connected_components.test.cpp
+  - test/yosupo/graph/counting_spanning_tree_directed.test.cpp
+  - test/yosupo/graph/counting_spanning_tree_undirected.test.cpp
   - test/yosupo/graph/cycle_detection.test.cpp
   - test/atcoder/arc099_c-Bipartite.test.cpp
   - test/aoj/other/2945-01BFS.test.cpp

@@ -2,26 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: graph/Graph.hpp
-    title: Graph-template
+    path: math/Rational.hpp
+    title: "Rational(\u6709\u7406\u6570\u578B)"
   - icon: ':heavy_check_mark:'
-    path: graph/mst/CountSpanningTree.hpp
-    title: "CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)"
-  - icon: ':heavy_check_mark:'
-    path: graph/other/CountEulerianCircuit.hpp
-    title: CountEulerianCircuit(BEST Theorem)
-  - icon: ':heavy_check_mark:'
-    path: math/Combinatorics.hpp
-    title: Combinatorics
-  - icon: ':heavy_check_mark:'
-    path: math/ModInt.hpp
-    title: ModInt
-  - icon: ':heavy_check_mark:'
-    path: math/matrix/Determinant.hpp
-    title: "Determinant(\u884C\u5217\u5F0F)"
-  - icon: ':heavy_check_mark:'
-    path: math/matrix/Matrix.hpp
-    title: "Matrix(\u884C\u5217)"
+    path: math/SternBrocotTree.hpp
+    title: Stern-Brocot Tree
   - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
@@ -56,12 +41,12 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/counting_eulerian_circuits
+    PROBLEM: https://judge.yosupo.jp/problem/rational_approximation
     links:
-    - https://judge.yosupo.jp/problem/counting_eulerian_circuits
-  bundledCode: "#line 1 \"test/yosupo/new/counting_eulerian_circuits.test.cpp\"\n\
-    #define PROBLEM \"https://judge.yosupo.jp/problem/counting_eulerian_circuits\"\
-    \n#line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
+    - https://judge.yosupo.jp/problem/rational_approximation
+  bundledCode: "#line 1 \"test/yosupo/number_theory/rational_approximation.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/rational_approximation\"\n\
+    #line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
     \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
     \ __LINE__\n#endif\n\n#define OVERLOAD5(a, b, c, d, e, ...) e\n#define REP1_0(b,\
     \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
@@ -460,350 +445,123 @@ data:
     \        return res;\n    }\n    void press(std::vector<T>& vec) const {\n   \
     \     assert(sorted);\n        for (auto&& i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
-    };\n#line 2 \"math/ModInt.hpp\"\n\n#line 4 \"math/ModInt.hpp\"\n\ntemplate<class\
-    \ T, T mod> class StaticModInt {\n    static_assert(std::is_integral<T>::value,\
-    \ \"T must be integral\");\n    static_assert(std::is_unsigned<T>::value, \"T\
-    \ must be unsigned\");\n    static_assert(mod > 0, \"mod must be positive\");\n\
-    \    static_assert(mod <= std::numeric_limits<T>::max() / 2,\n               \
-    \   \"mod * 2 must be less than or equal to T::max()\");\n\nprivate:\n    using\
-    \ large_t = typename double_size_uint<T>::type;\n    using signed_t = typename\
-    \ std::make_signed<T>::type;\n    T val;\n    static constexpr unsigned int inv1000000007[]\
-    \ = {\n        0,         1,         500000004, 333333336, 250000002, 400000003,\n\
-    \        166666668, 142857144, 125000001, 111111112, 700000005};\n    static constexpr\
-    \ unsigned int inv998244353[] = {\n        0,         1,         499122177, 332748118,\
-    \ 748683265, 598946612,\n        166374059, 855638017, 873463809, 443664157, 299473306};\n\
-    \n    static constexpr ll mod_inv(ll a) {\n        ll b = mod;\n        ll x =\
-    \ 1, u = 0;\n        ll t = 0, tmp = 0;\n        while (b) {\n            t =\
-    \ a / b;\n            tmp = (a - t * b);\n            a = b;\n            b =\
-    \ tmp;\n            tmp = (x - t * u);\n            x = u;\n            u = tmp;\n\
-    \        }\n        if (x < 0) x += mod;\n        return x;\n    }\n\npublic:\n\
-    \    constexpr StaticModInt() : val(0) {}\n    template<class U,\n           \
-    \  typename std::enable_if<std::is_integral<U>::value &&\n                   \
-    \                  std::is_signed<U>::value>::type* = nullptr>\n    constexpr\
-    \ StaticModInt(U v) : val{} {\n        v %= static_cast<signed_t>(mod);\n    \
-    \    if (v < 0) v += static_cast<signed_t>(mod);\n        val = static_cast<T>(v);\n\
-    \    }\n    template<class U, typename std::enable_if<\n                     \
-    \     std::is_integral<U>::value &&\n                          std::is_unsigned<U>::value>::type*\
-    \ = nullptr>\n    constexpr StaticModInt(U v) : val(v % mod) {}\n    constexpr\
-    \ T get() const { return val; }\n    static constexpr T get_mod() { return mod;\
-    \ }\n    static constexpr StaticModInt raw(T v) {\n        StaticModInt res;\n\
-    \        res.val = v;\n        return res;\n    }\n    constexpr StaticModInt\
-    \ inv() const {\n        if IF_CONSTEXPR (mod == 1000000007) {\n            if\
-    \ (val <= 10) return inv1000000007[val];\n        }\n        else if IF_CONSTEXPR\
-    \ (mod == 998244353) {\n            if (val <= 10) return inv998244353[val];\n\
-    \        }\n        return mod_inv(val);\n    }\n    constexpr StaticModInt& operator++()\
-    \ {\n        ++val;\n        if (val == mod) val = 0;\n        return *this;\n\
-    \    }\n    constexpr StaticModInt operator++(int) {\n        StaticModInt res\
-    \ = *this;\n        ++*this;\n        return res;\n    }\n    constexpr StaticModInt&\
-    \ operator--() {\n        if (val == 0) val = mod;\n        --val;\n        return\
-    \ *this;\n    }\n    constexpr StaticModInt operator--(int) {\n        StaticModInt\
-    \ res = *this;\n        --*this;\n        return res;\n    }\n    constexpr StaticModInt&\
-    \ operator+=(const StaticModInt& other) {\n        val += other.val;\n       \
-    \ if (val >= mod) val -= mod;\n        return *this;\n    }\n    constexpr StaticModInt&\
-    \ operator-=(const StaticModInt& other) {\n        if (val < other.val) val +=\
-    \ mod;\n        val -= other.val;\n        return *this;\n    }\n    constexpr\
-    \ StaticModInt& operator*=(const StaticModInt& other) {\n        large_t a = val;\n\
-    \        a *= other.val;\n        a %= mod;\n        val = a;\n        return\
-    \ *this;\n    }\n    constexpr StaticModInt& operator/=(const StaticModInt& other)\
-    \ {\n        *this *= other.inv();\n        return *this;\n    }\n    friend constexpr\
-    \ StaticModInt operator+(const StaticModInt& lhs,\n                          \
-    \                  const StaticModInt& rhs) {\n        return StaticModInt(lhs)\
-    \ += rhs;\n    }\n    friend constexpr StaticModInt operator-(const StaticModInt&\
-    \ lhs,\n                                            const StaticModInt& rhs) {\n\
-    \        return StaticModInt(lhs) -= rhs;\n    }\n    friend constexpr StaticModInt\
-    \ operator*(const StaticModInt& lhs,\n                                       \
-    \     const StaticModInt& rhs) {\n        return StaticModInt(lhs) *= rhs;\n \
-    \   }\n    friend constexpr StaticModInt operator/(const StaticModInt& lhs,\n\
-    \                                            const StaticModInt& rhs) {\n    \
-    \    return StaticModInt(lhs) /= rhs;\n    }\n    constexpr StaticModInt operator+()\
-    \ const { return StaticModInt(*this); }\n    constexpr StaticModInt operator-()\
-    \ const { return StaticModInt() - *this; }\n    friend constexpr bool operator==(const\
-    \ StaticModInt& lhs,\n                                     const StaticModInt&\
-    \ rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend constexpr bool\
-    \ operator!=(const StaticModInt& lhs,\n                                     const\
-    \ StaticModInt& rhs) {\n        return lhs.val != rhs.val;\n    }\n    constexpr\
-    \ StaticModInt pow(ll a) const {\n        StaticModInt v = *this, res = 1;\n \
-    \       while (a) {\n            if (a & 1) res *= v;\n            a >>= 1;\n\
-    \            v *= v;\n        }\n        return res;\n    }\n    template<class\
-    \ Pr> void print(Pr& a) const { a.print(val); }\n    template<class Pr> void debug(Pr&\
-    \ a) const { a.print(val); }\n    template<class Sc> void scan(Sc& a) {\n    \
-    \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\n#if __cplusplus\
-    \ < 201703L\ntemplate<class T, T mod>\nconstexpr unsigned int StaticModInt<T,\
-    \ mod>::inv1000000007[];\ntemplate<class T, T mod>\nconstexpr unsigned int StaticModInt<T,\
-    \ mod>::inv998244353[];\n#endif\n\ntemplate<unsigned int p> using static_modint\
-    \ = StaticModInt<unsigned int, p>;\nusing modint1000000007 = static_modint<1000000007>;\n\
-    using modint998244353 = static_modint<998244353>;\n\ntemplate<class T, int id>\
-    \ class DynamicModInt {\n    static_assert(std::is_integral<T>::value, \"T must\
-    \ be integral\");\n    static_assert(std::is_unsigned<T>::value, \"T must be unsigned\"\
-    );\n\nprivate:\n    using large_t = typename double_size_uint<T>::type;\n    using\
-    \ signed_t = typename std::make_signed<T>::type;\n    T val;\n    static T mod;\n\
-    \npublic:\n    constexpr DynamicModInt() : val(0) {}\n    template<class U,\n\
-    \             typename std::enable_if<std::is_integral<U>::value &&\n        \
-    \                             std::is_signed<U>::value>::type* = nullptr>\n  \
-    \  constexpr DynamicModInt(U v) : val{} {\n        v %= static_cast<signed_t>(mod);\n\
-    \        if (v < 0) v += static_cast<signed_t>(mod);\n        val = static_cast<T>(v);\n\
-    \    }\n    template<class U, typename std::enable_if<\n                     \
-    \     std::is_integral<U>::value &&\n                          std::is_unsigned<U>::value>::type*\
-    \ = nullptr>\n    constexpr DynamicModInt(U v) : val(v % mod) {}\n    T get()\
-    \ const { return val; }\n    static T get_mod() { return mod; }\n    static void\
-    \ set_mod(T v) {\n        assert(v > 0);\n        assert(v <= std::numeric_limits<T>::max()\
-    \ / 2);\n        mod = v;\n    }\n    static DynamicModInt raw(T v) {\n      \
-    \  DynamicModInt res;\n        res.val = v;\n        return res;\n    }\n    DynamicModInt\
-    \ inv() const { return mod_inv(val, mod); }\n    DynamicModInt& operator++() {\n\
-    \        ++val;\n        if (val == mod) val = 0;\n        return *this;\n   \
-    \ }\n    DynamicModInt operator++(int) {\n        DynamicModInt res = *this;\n\
-    \        ++*this;\n        return res;\n    }\n    DynamicModInt& operator--()\
-    \ {\n        if (val == 0) val = mod;\n        --val;\n        return *this;\n\
-    \    }\n    DynamicModInt operator--(int) {\n        DynamicModInt res = *this;\n\
-    \        --*this;\n        return res;\n    }\n    DynamicModInt& operator+=(const\
-    \ DynamicModInt& other) {\n        val += other.val;\n        if (val >= mod)\
-    \ val -= mod;\n        return *this;\n    }\n    DynamicModInt& operator-=(const\
-    \ DynamicModInt& other) {\n        if (val < other.val) val += mod;\n        val\
-    \ -= other.val;\n        return *this;\n    }\n    DynamicModInt& operator*=(const\
-    \ DynamicModInt& other) {\n        large_t a = val;\n        a *= other.val;\n\
-    \        a %= mod;\n        val = a;\n        return *this;\n    }\n    DynamicModInt&\
-    \ operator/=(const DynamicModInt& other) {\n        *this *= other.inv();\n  \
-    \      return *this;\n    }\n    friend DynamicModInt operator+(const DynamicModInt&\
-    \ lhs,\n                                   const DynamicModInt& rhs) {\n     \
-    \   return DynamicModInt(lhs) += rhs;\n    }\n    friend DynamicModInt operator-(const\
-    \ DynamicModInt& lhs,\n                                   const DynamicModInt&\
-    \ rhs) {\n        return DynamicModInt(lhs) -= rhs;\n    }\n    friend DynamicModInt\
-    \ operator*(const DynamicModInt& lhs,\n                                   const\
-    \ DynamicModInt& rhs) {\n        return DynamicModInt(lhs) *= rhs;\n    }\n  \
-    \  friend DynamicModInt operator/(const DynamicModInt& lhs,\n                \
-    \                   const DynamicModInt& rhs) {\n        return DynamicModInt(lhs)\
-    \ /= rhs;\n    }\n    DynamicModInt operator+() const { return DynamicModInt(*this);\
-    \ }\n    DynamicModInt operator-() const { return DynamicModInt() - *this; }\n\
-    \    friend bool operator==(const DynamicModInt& lhs, const DynamicModInt& rhs)\
-    \ {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
-    \ DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return lhs.val != rhs.val;\n\
-    \    }\n    DynamicModInt pow(ll a) const {\n        DynamicModInt v = *this,\
-    \ res = 1;\n        while (a) {\n            if (a & 1) res *= v;\n          \
-    \  a >>= 1;\n            v *= v;\n        }\n        return res;\n    }\n    template<class\
-    \ Pr> void print(Pr& a) const { a.print(val); }\n    template<class Pr> void debug(Pr&\
-    \ a) const { a.print(val); }\n    template<class Sc> void scan(Sc& a) {\n    \
-    \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\ntemplate<class\
-    \ T, int id> T DynamicModInt<T, id>::mod = 998244353;\n\ntemplate<int id> using\
-    \ dynamic_modint = DynamicModInt<unsigned int, id>;\nusing modint = dynamic_modint<-1>;\n\
-    \n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n#line 2 \"graph/Graph.hpp\"\
-    \n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int> struct edge {\n   \
-    \ int from, to;\n    T cost;\n    int idx;\n    edge() : from(-1), to(-1) {}\n\
-    \    edge(int f, int t, const T& c = 1, int i = -1)\n        : from(f), to(t),\
-    \ cost(c), idx(i) {}\n    edge(int f, int t, T&& c, int i = -1)\n        : from(f),\
-    \ to(t), cost(std::move(c)), idx(i) {}\n    operator int() const { return to;\
-    \ }\n    friend bool operator<(const edge<T>& lhs, const edge<T>& rhs) {\n   \
-    \     return lhs.cost < rhs.cost;\n    }\n    friend bool operator>(const edge<T>&\
-    \ lhs, const edge<T>& rhs) {\n        return lhs.cost > rhs.cost;\n    }\n};\n\
-    \ntemplate<class T = int> using Edges = std::vector<edge<T>>;\ntemplate<class\
-    \ T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class T =\
-    \ int> class Graph : public std::vector<std::vector<edge<T>>> {\nprivate:\n  \
-    \  using Base = std::vector<std::vector<edge<T>>>;\n\npublic:\n    int edge_id\
-    \ = 0;\n    using Base::Base;\n    int edge_size() const { return edge_id; }\n\
-    \    int add_edge(int a, int b, const T& c, bool is_directed = false) {\n    \
-    \    assert(0 <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
-    \        (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed)\
-    \ (*this)[b].emplace_back(b, a, c, edge_id);\n        return edge_id++;\n    }\n\
-    \    int add_edge(int a, int b, bool is_directed = false) {\n        assert(0\
-    \ <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
-    \        (*this)[a].emplace_back(a, b, 1, edge_id);\n        if (!is_directed)\
-    \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
-    };\n\ntemplate<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {\n    const\
-    \ int N = G.size();\n    auto res = make_vec<T>(N, N, infinity<T>::value);\n \
-    \   rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n        for (const auto& e :\
-    \ G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\ntemplate<class T>\
-    \ Edges<T> UndirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n\
-    \    const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n   \
-    \     for (const auto& e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\n\
-    template<class T> Edges<T> DirectedListToEdges(const Graph<T>& G) {\n    const\
-    \ int V = G.size();\n    const int E = std::accumulate(\n        all(G), 0, [](int\
-    \ a, const std::vector<edge<T>>& v) -> int {\n            return a + v.size();\n\
-    \        });\n    Edges<T> Ed(G.edge_size());\n    Ed.reserve(E);\n    rep (i,\
-    \ V) {\n        for (const auto& e : G[i]) {\n            if (Ed[e.idx] == -1)\
-    \ Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n    return\
-    \ Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n   \
-    \ const int V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n        for\
-    \ (const auto& e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from, e.cost,\
-    \ e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n    return res;\n\
-    }\n\n\nstruct unweighted_edge {\n    template<class... Args> unweighted_edge(const\
-    \ Args&...) {}\n    operator int() { return 1; }\n};\n\nusing UnweightedGraph\
-    \ = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n * @docs docs/graph/Graph.md\n\
-    \ */\n#line 2 \"graph/other/CountEulerianCircuit.hpp\"\n\n#line 2 \"graph/mst/CountSpanningTree.hpp\"\
-    \n\n#line 2 \"math/matrix/Matrix.hpp\"\n\n#line 5 \"math/matrix/Matrix.hpp\"\n\
-    \ntemplate<class> class Matrix;\n\nnamespace internal {\n\nusing Mat2 = Matrix<static_modint<2>>;\n\
-    \ntemplate<int> Mat2 prod_mod2_sub(const Mat2&, const Mat2&);\ntemplate<int> void\
-    \ gauss_mod2_sub(Mat2&);\n\n} // namespace internal\n\ntemplate<class T> class\
-    \ Matrix : public std::vector<std::vector<T>> {\nprivate:\n    using Base = std::vector<std::vector<T>>;\n\
-    \npublic:\n    Matrix() = default;\n    Matrix(int h, int w) : Base(h, std::vector<T>(w))\
-    \ {}\n    Matrix(int h, int w, const T& v) : Base(h, std::vector<T>(w, v)) {}\n\
-    \    Matrix(const Base& v) : Base(v) {}\n    Matrix(Base&& v) : Base(std::move(v))\
-    \ {}\n    static Matrix get_identity(int sz) {\n        Matrix res(sz, sz, T{0});\n\
-    \        rep (i, sz) res[i][i] = T{1};\n        return res;\n    }\n    int height()\
-    \ const { return this->size(); }\n    int width() const { return this->size()\
-    \ ? (*this)[0].size() : 0; }\n    bool is_square() const { return height() ==\
-    \ width(); }\n    Matrix& operator+=(const Matrix& other) {\n        assert(this->height()\
-    \ == other.height() &&\n               this->width() == other.width());\n    \
-    \    rep (i, this->height()) {\n            rep (j, this->width()) (*this)[i][j]\
-    \ += other[i][j];\n        }\n        return *this;\n    }\n    Matrix& operator-=(const\
-    \ Matrix& other) {\n        assert(this->height() == other.height() &&\n     \
-    \          this->width() == other.width());\n        rep (i, this->height()) {\n\
-    \            rep (j, this->width()) (*this)[i][j] -= other[i][j];\n        }\n\
-    \        return *this;\n    }\n    template<\n        bool AlwaysTrue = true,\n\
-    \        typename std::enable_if<!std::is_same<T, static_modint<2>>::value &&\n\
-    \                                AlwaysTrue>::type* = nullptr>\n    Matrix& operator*=(const\
-    \ Matrix& other) {\n        assert(this->width() == other.height());\n       \
-    \ Matrix res(this->height(), other.width());\n        rep (i, this->height())\
-    \ {\n            rep (k, other.height()) {\n                rep (j, other.width())\
-    \ res[i][j] += (*this)[i][k] * other[k][j];\n            }\n        }\n      \
-    \  return *this = std::move(res);\n    }\n    template<bool AlwaysTrue = true,\n\
-    \             typename std::enable_if<std::is_same<T, static_modint<2>>::value\
-    \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
-    \ Matrix& operator*=(const Matrix& other) {\n        assert(this->width() == other.height());\n\
-    \        return *this = internal::prod_mod2_sub<1>(*this, other);\n    }\n   \
-    \ Matrix& operator*=(T s) {\n        rep (i, height()) {\n            rep (j,\
-    \ width()) (*this)[i][j] *= s;\n        }\n        return *this;\n    }\n    friend\
-    \ Matrix operator+(const Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs)\
-    \ += rhs;\n    }\n    friend Matrix operator-(const Matrix& lhs, const Matrix&\
-    \ rhs) {\n        return Matrix(lhs) -= rhs;\n    }\n    friend Matrix operator*(const\
-    \ Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n\
-    \    friend Matrix operator*(const Matrix& lhs, T rhs) {\n        return Matrix(lhs)\
-    \ *= rhs;\n    }\n    friend Matrix operator*(int lhs, const Matrix& rhs) {\n\
-    \        return Matrix(rhs) *= lhs;\n    }\n    Matrix pow(ll b) const {\n   \
-    \     Matrix a = *this, res = get_identity(height());\n        while (b) {\n \
-    \           if (b & 1) res *= a;\n            a *= a;\n            b >>= 1;\n\
-    \        }\n        return res;\n    }\n    Matrix transpose() const {\n     \
-    \   Matrix res(width(), height());\n        rep (i, height()) {\n            rep\
-    \ (j, width()) res[j][i] = (*this)[i][j];\n        }\n        return res;\n  \
-    \  }\n    template<\n        bool AlwaysTrue = true,\n        typename std::enable_if<!std::is_same<T,\
-    \ static_modint<2>>::value &&\n                                AlwaysTrue>::type*\
-    \ = nullptr>\n    Matrix& gauss() {\n        int h = height(), w = width();\n\
-    \        int r = 0;\n        rep (i, w) {\n            int pivot = -1;\n     \
-    \       rep (j, r, h) {\n                if ((*this)[j][i] != 0) {\n         \
-    \           pivot = j;\n                    break;\n                }\n      \
-    \      }\n            if (pivot == -1) continue;\n            std::swap((*this)[pivot],\
-    \ (*this)[r]);\n            const T s = (*this)[r][i], iv = T{1} / s;\n      \
-    \      rep (j, i, w) (*this)[r][j] *= iv;\n            rep (j, h) {\n        \
-    \        if (j == r) continue;\n                const T s = (*this)[j][i];\n \
-    \               if (s == 0) continue;\n                rep (k, i, w) (*this)[j][k]\
-    \ -= (*this)[r][k] * s;\n            }\n            ++r;\n        }\n        return\
-    \ *this;\n    }\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<std::is_same<T,\
-    \ static_modint<2>>::value &&\n                                     AlwaysTrue>::type*\
-    \ = nullptr>\n    Matrix& gauss() {\n        internal::gauss_mod2_sub<1>(*this);\n\
-    \        return *this;\n    }\n    friend Matrix gauss(const Matrix& mat) { return\
-    \ Matrix(mat).gauss(); }\n    int rank(bool is_gaussed = false) const {\n    \
-    \    const int h = height(), w = width();\n        if (!is_gaussed)\n        \
-    \    return (h >= w ? Matrix(*this) : transpose()).gauss().rank(true);\n     \
-    \   int r = 0;\n        rep (i, h) {\n            while (r < w && (*this)[i][r]\
-    \ == 0) ++r;\n            if (r == w) return i;\n            ++r;\n        }\n\
-    \        return h;\n    }\n};\n\nnamespace internal {\n\ntemplate<int len> Mat2\
-    \ prod_mod2_sub(const Mat2& lhs, const Mat2& rhs) {\n    const int h = lhs.height(),\
-    \ w = rhs.width(), m = lhs.width();\n    if (len < m) return prod_mod2_sub<len\
-    \ << 1>(lhs, rhs);\n    std::vector<std::bitset<len>> a(h), b(w);\n    Mat2 res(h,\
-    \ w);\n    rep (i, h) {\n        rep (j, m) a[i][j] = lhs[i][j] != 0;\n    }\n\
-    \    rep (i, m) {\n        rep (j, w) b[j][i] = rhs[i][j] != 0;\n    }\n    rep\
-    \ (i, h) {\n        rep (j, w) {\n            res[i][j] = (a[i] & b[j]).count()\
-    \ & 1;\n        }\n    }\n    return res;\n}\ntemplate<> Mat2 prod_mod2_sub<1\
-    \ << 30>(const Mat2&, const Mat2&) { return {}; }\n\ntemplate<int len> void gauss_mod2_sub(Mat2&\
-    \ a) {\n    const int h = a.height(), w = a.width();\n    if (len < w) return\
-    \ gauss_mod2_sub<len << 1>(a);\n    std::vector<std::bitset<len>> b(h);\n    rep\
-    \ (i, h) {\n        rep (j, w) b[i][j] = a[i][j] != 0;\n    }\n    int r = 0;\n\
-    \    rep (i, w) {\n        int pivot = -1;\n        rep (j, r, h) {\n        \
-    \    if (b[j][i] != 0) {\n                pivot = j;\n                break;\n\
-    \            }\n        }\n        if (pivot == -1) continue;\n        std::swap(b[pivot],\
-    \ b[r]);\n        rep (j, h) {\n            if (j == r) continue;\n          \
-    \  if (b[j][i] != 0) b[j] ^= b[r];\n        }\n        ++r;\n    }\n    rep (i,\
-    \ h) {\n        rep (j, w) a[i][j] = (b[i][j] ? 1 : 0);\n    }\n}\ntemplate<>\
-    \ void gauss_mod2_sub<1 << 30>(Mat2&) {}\n\n} // namespace internal\n\n/**\n *\
-    \ @brief Matrix(\u884C\u5217)\n * @docs docs/math/matrix/Matrix.md\n */\n#line\
-    \ 2 \"math/matrix/Determinant.hpp\"\n\n#line 5 \"math/matrix/Determinant.hpp\"\
-    \n\ntemplate<class T> T determinant(Matrix<T> mat) {\n    assert(mat.is_square());\n\
-    \    const int n = mat.height();\n    if (n == 0) return 1;\n    T res = 1;\n\
-    \    rep (i, n) {\n        if (mat[i][i] == 0) {\n            rep (j, i + 1, n)\
-    \ {\n                if (mat[j][i] != 0) {\n                    std::swap(mat[i],\
-    \ mat[j]);\n                    res = -res;\n                    break;\n    \
-    \            }\n            }\n        }\n        if (mat[i][i] == 0) {\n    \
-    \        return T{0};\n        }\n        {\n            const T s = mat[i][i];\n\
-    \            res *= s;\n            rep (j, n) mat[i][j] /= s;\n        }\n  \
-    \      rep (j, i + 1, n) {\n            const T s = mat[j][i];\n            rep\
-    \ (k, n) mat[j][k] -= mat[i][k] * s;\n        }\n    }\n    rep (i, n) res *=\
-    \ mat[i][i];\n    return res;\n}\n\ntemplate<> static_modint<2> determinant(Matrix<static_modint<2>>\
-    \ mat) {\n    assert(mat.is_square());\n    return mat.rank() == mat.height()\
-    \ ? 1 : 0;\n}\n\ntemplate<class T> T determinant_arbitrary_mod(Matrix<T> mat)\
-    \ {\n    assert(mat.is_square());\n    const int n = mat.height();\n    if (n\
-    \ == 0) return 1;\n    T res = 1;\n    rep (i, n) {\n        if (mat[i][i] ==\
-    \ 0) {\n            rep (j, i + 1, n) {\n                if (mat[j][i] != 0) {\n\
-    \                    std::swap(mat[i], mat[j]);\n                    res = -res;\n\
-    \                    break;\n                }\n            }\n        }\n   \
-    \     if (mat[i][i] == 0) {\n            return T{0};\n        }\n        rep\
-    \ (j, i + 1, n) {\n            T a = 1, b = 0, c = 0, d = 1;\n            ll x\
-    \ = mat[i][i].get(), y = mat[j][i].get();\n            while (y != 0) {\n    \
-    \            ll q = x / y;\n                std::swap(x -= q * y, y);\n      \
-    \          std::swap(a -= q * c, c);\n                std::swap(b -= q * d, d);\n\
-    \                res = -res;\n            }\n            rep (k, i, n) {\n   \
-    \             T ni = a * mat[i][k] + b * mat[j][k];\n                T nj = c\
-    \ * mat[i][k] + d * mat[j][k];\n                mat[i][k] = ni;\n            \
-    \    mat[j][k] = nj;\n            }\n        }\n    }\n    rep (i, n) res *= mat[i][i];\n\
-    \    return res;\n}\n\n/**\n * @brief Determinant(\u884C\u5217\u5F0F)\n * @docs\
-    \ docs/math/matrix/Determinant.md\n */\n#line 6 \"graph/mst/CountSpanningTree.hpp\"\
-    \n\ntemplate<class T, class U> T count_spanning_tree(const Graph<U>& G, int v\
-    \ = 0) {\n    const int N = G.size();\n    Matrix<T> A(N - 1, N - 1);\n    rep\
-    \ (i, N) {\n        if (i == v) continue;\n        T cnt = 0;\n        for (const\
-    \ auto& e : G[i]) {\n            if (e.to != i) cnt += e.cost;\n        }\n  \
-    \      A[i < v ? i : i - 1][i < v ? i : i - 1] = cnt;\n    }\n    rep (i, N) {\n\
-    \        if (i == v) continue;\n        for (const auto& e : G[i]) {\n       \
-    \     if (e.to == v || e.to == i) continue;\n            A[i < v ? i : i - 1][e.to\
-    \ < v ? e.to : e.to - 1] -= e.cost;\n        }\n    }\n    return determinant(A);\n\
-    }\n\n/**\n * @brief CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)\n * @docs\
-    \ docs/graph/mst/CountSpanningTree.md\n */\n#line 2 \"math/Combinatorics.hpp\"\
-    \n\n#line 5 \"math/Combinatorics.hpp\"\n\ntemplate<class T> class Combinatorics\
-    \ {\nprivate:\n    static std::vector<T> factorial;\n    static std::vector<T>\
-    \ factinv;\n\npublic:\n    static void init(ll n) {\n        const int b = factorial.size();\n\
-    \        if (n < b) return;\n        factorial.resize(n + 1);\n        rep (i,\
-    \ b, n + 1) factorial[i] = factorial[i - 1] * i;\n        factinv.resize(n + 1);\n\
-    \        factinv[n] = T(1) / factorial[n];\n        rreps (i, n, b) factinv[i\
-    \ - 1] = factinv[i] * i;\n    }\n    static T fact(ll x) {\n        if (x < 0)\
-    \ return 0;\n        init(x);\n        return factorial[x];\n    }\n    static\
-    \ T finv(ll x) {\n        if (x < 0) return 0;\n        init(x);\n        return\
-    \ factinv[x];\n    }\n    static T inv(ll x) {\n        if (x <= 0) return 0;\n\
-    \        init(x);\n        return factorial[x - 1] * factinv[x];\n    }\n    static\
-    \ T perm(ll n, ll r) {\n        if (r < 0 || r > n) return 0;\n        init(n);\n\
-    \        return factorial[n] * factinv[n - r];\n    }\n    static T comb(ll n,\
-    \ ll r) {\n        if (n < 0) return 0;\n        if (r < 0 || r > n) return 0;\n\
-    \        init(n);\n        return factorial[n] * factinv[n - r] * factinv[r];\n\
-    \    }\n    static T homo(ll n, ll r) { return comb(n + r - 1, r); }\n    static\
-    \ T small_perm(ll n, ll r) {\n        if (r < 0 || r > n) return 0;\n        T\
-    \ res = 1;\n        reps (i, r) res *= n - r + i;\n        return res;\n    }\n\
-    \    static T small_comb(ll n, ll r) {\n        if (r < 0 || r > n) return 0;\n\
-    \        chmin(r, n - r);\n        init(r);\n        T res = factinv[r];\n   \
-    \     reps (i, r) res *= n - r + i;\n        return res;\n    }\n    static T\
-    \ small_homo(ll n, ll r) { return small_comb(n + r - 1, r); }\n};\n\ntemplate<class\
-    \ T>\nstd::vector<T> Combinatorics<T>::factorial = std::vector<T>(1, 1);\ntemplate<class\
-    \ T>\nstd::vector<T> Combinatorics<T>::factinv = std::vector<T>(1, 1);\n\n/**\n\
-    \ * @brief Combinatorics\n * @docs docs/math/Combinatorics.md\n */\n#line 6 \"\
-    graph/other/CountEulerianCircuit.hpp\"\n\ntemplate<class T, class U, class Comb\
-    \ = Combinatorics<T>>\nT count_eulerian_circuit(const Graph<U>& G) {\n    int\
-    \ N = G.size();\n    std::vector<int> degi(N), dego(N);\n    rep (i, N) {\n  \
-    \      for (const auto& e : G[i]) {\n            degi[e.to] += e.cost;\n     \
-    \       dego[i] += e.cost;\n        }\n    }\n    rep (i, N) {\n        if (degi[i]\
-    \ != dego[i]) return 0;\n    }\n    std::vector<bool> used(N);\n    rep (i, N)\
-    \ {\n        for (const auto& e : G[i]) {\n            if (e.cost) used[i] = used[e.to]\
-    \ = true;\n        }\n    }\n    std::vector<int> idx(N, -1);\n    int M = 0;\n\
-    \    rep (i, N) {\n        if (used[i]) idx[i] = M++;\n    }\n    Graph<U> H(M);\n\
-    \    rep (i, N) {\n        for (auto& e : G[i]) {\n            if (e.cost) H.add_edge(idx[i],\
-    \ idx[e.to], e.cost, true);\n        }\n    }\n    T res = count_spanning_tree<T>(H);\n\
-    \    rep (i, N) {\n        if (dego[i] != 0) res *= Comb::fact(dego[i] - 1);\n\
-    \    }\n    return res;\n}\n\n/**\n * @brief CountEulerianCircuit(BEST Theorem)\n\
-    \ * @docs docs/graph/other/CountEulerianCircuit.md\n */\n#line 6 \"test/yosupo/new/counting_eulerian_circuits.test.cpp\"\
-    \nusing namespace std;\nusing mint = modint998244353;\nint main() {\n    int N,\
-    \ M; scan >> N >> M;\n    Graph<int> G(N);\n    rep (M) {\n        int a, b; scan\
-    \ >> a >> b;\n        G.add_edge(b, a, 1, true);\n    }\n    prints(count_eulerian_circuit<mint>(G));\n\
-    }\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/counting_eulerian_circuits\"\
-    \n#include \"../../../other/template.hpp\"\n#include \"../../../math/ModInt.hpp\"\
-    \n#include \"../../../graph/Graph.hpp\"\n#include \"../../../graph/other/CountEulerianCircuit.hpp\"\
-    \nusing namespace std;\nusing mint = modint998244353;\nint main() {\n    int N,\
-    \ M; scan >> N >> M;\n    Graph<int> G(N);\n    rep (M) {\n        int a, b; scan\
-    \ >> a >> b;\n        G.add_edge(b, a, 1, true);\n    }\n    prints(count_eulerian_circuit<mint>(G));\n\
-    }\n"
+    };\n#line 2 \"math/SternBrocotTree.hpp\"\n\n#line 2 \"math/Rational.hpp\"\n\n\
+    #line 4 \"math/Rational.hpp\"\n\ntemplate<class T, bool allow_div_zero = false>\
+    \ class Rational {\nprivate:\n    using LargeT =\n        typename std::conditional<std::is_integral<T>::value,\n\
+    \                                  typename double_size<T>::type, ld>::type;\n\
+    \    T num, den;\n\npublic:\n    static void norm(T& a, T& b) {\n        if IF_CONSTEXPR\
+    \ (!allow_div_zero) {\n            assert(b != 0);\n        }\n        T g = gcd(abs(a),\
+    \ abs(b));\n        a /= g;\n        b /= g;\n        if (b < 0) {\n         \
+    \   a = -a;\n            b = -b;\n        }\n    }\n    void normalize() { norm(num,\
+    \ den); }\n    Rational() : num(0), den(1) {}\n    Rational(T a) : num(a), den(1)\
+    \ {}\n    Rational(T a, T b) : num(a), den(b) { normalize(); }\n    T get_num()\
+    \ const { return num; }\n    T get_den() const { return den; }\n    ld get_ld()\
+    \ const { return (ld)num / den; }\n    std::pair<T, T> get_pair() const { return\
+    \ {num, den}; }\n    Rational& operator++() {\n        num += den;\n        return\
+    \ *this;\n    }\n    Rational operator++(int) {\n        Rational res = *this;\n\
+    \        ++*this;\n        return res;\n    }\n    Rational& operator--() {\n\
+    \        num -= den;\n        return *this;\n    }\n    Rational operator--(int)\
+    \ {\n        Rational res = *this;\n        --*this;\n        return res;\n  \
+    \  }\n    Rational& operator+=(const Rational& other) {\n        T g = gcd(den,\
+    \ other.den);\n        num = num * (other.den / g) + other.num * (den / g);\n\
+    \        den = den / g * other.den;\n        normalize();\n        return *this;\n\
+    \    }\n    Rational& operator-=(const Rational& other) {\n        T g = gcd(den,\
+    \ other.den);\n        num = num * (other.den / g) - other.num * (den / g);\n\
+    \        den = den / g * other.den;\n        normalize();\n        return *this;\n\
+    \    }\n    Rational& operator*=(const Rational& other) {\n        T g1 = gcd(num,\
+    \ other.den);\n        T g2 = gcd(den, other.num);\n        num = (num / g1) *\
+    \ (other.num / g2);\n        den = (den / g2) * (other.den / g1);\n        return\
+    \ *this;\n    }\n    Rational& operator/=(const Rational& other) {\n        return\
+    \ (*this) *= Rational(other.den, other.num);\n    }\n    friend Rational operator+(const\
+    \ Rational& lhs, const Rational& rhs) {\n        return Rational(lhs) += rhs;\n\
+    \    }\n    friend Rational operator-(const Rational& lhs, const Rational& rhs)\
+    \ {\n        return Rational(lhs) -= rhs;\n    }\n    friend Rational operator*(const\
+    \ Rational& lhs, const Rational& rhs) {\n        return Rational(lhs) *= rhs;\n\
+    \    }\n    friend Rational operator/(const Rational& lhs, const Rational& rhs)\
+    \ {\n        return Rational(lhs) /= rhs;\n    }\n    Rational operator+() const\
+    \ { return Rational(*this); }\n    Rational operator-() const { return Rational(-num,\
+    \ den); }\n    friend bool operator==(const Rational& lhs, const Rational& rhs)\
+    \ {\n        return lhs.num == rhs.num && lhs.den == rhs.den;\n    }\n    friend\
+    \ bool operator!=(const Rational& lhs, const Rational& rhs) {\n        return\
+    \ lhs.num != rhs.num || lhs.den != rhs.den;\n    }\n    friend bool operator<(const\
+    \ Rational& lhs, const Rational& rhs) {\n        return (LargeT)lhs.num * rhs.den\
+    \ < (LargeT)rhs.num * lhs.den;\n    }\n    friend bool operator>(const Rational&\
+    \ lhs, const Rational& rhs) {\n        return rhs < lhs;\n    }\n    friend bool\
+    \ operator<=(const Rational& lhs, const Rational& rhs) {\n        return !(rhs\
+    \ < lhs);\n    }\n    friend bool operator>=(const Rational& lhs, const Rational&\
+    \ rhs) {\n        return !(lhs < rhs);\n    }\n    template<class Pr> void print(Pr&\
+    \ a) const { a.print(get_ld()); }\n    template<class Pr> void debug(Pr& a) const\
+    \ {\n        a.print(num);\n        a.print_char('/');\n        a.print(den);\n\
+    \    }\n    template<class Sc> void scan(Sc& a) {\n        a.scan(num);\n    \
+    \    a.scan(den);\n    }\n};\n\nnamespace std {\n\ntemplate<class T> Rational<T>\
+    \ abs(const Rational<T>& x) {\n    return Rational<T>(abs(x.get_num()), x.get_den());\n\
+    }\n\n} // namespace std\n\nusing Fraction = Rational<ll>;\n\n/**\n * @brief Rational(\u6709\
+    \u7406\u6570\u578B)\n * @docs docs/math/Rational.md\n */\n#line 5 \"math/SternBrocotTree.hpp\"\
+    \n\ntemplate<class T> class SternBrocotTree {\npublic:\n    using Rat = Rational<T,\
+    \ true>;\n\n    static std::vector<std::pair<char, int>> encode_path(Rat x) {\n\
+    \        std::vector<std::pair<char, int>> res;\n        T a = x.get_num(), b\
+    \ = x.get_den();\n        while (a != 1 || b != 1) {\n            if (a > b) {\n\
+    \                T tmp = (a - 1) / b;\n                res.emplace_back('R', tmp);\n\
+    \                a -= tmp * b;\n            }\n            else {\n          \
+    \      T tmp = (b - 1) / a;\n                res.emplace_back('L', tmp);\n   \
+    \             b -= tmp * a;\n            }\n        }\n        return res;\n \
+    \   }\n    static Rat decode_path(std::vector<std::pair<char, int>> path, Rat\
+    \ s = 1) {\n        std::reverse(all(path));\n        T a = s.get_num(), b = s.get_den();\n\
+    \        for (const auto& p : path) {\n            if (p.first == 'R') a += b\
+    \ * p.second;\n            else b += a * p.second;\n        }\n        return\
+    \ Rat(a, b);\n    }\n    static Rat lca(Rat x, Rat y) {\n        auto px = encode_path(x),\
+    \ py = encode_path(y);\n        std::vector<std::pair<char, int>> res;\n     \
+    \   rep (i, std::min(px.size(), py.size())) {\n            const auto &a = px[i],\
+    \ b = py[i];\n            if (a.first != b.first) break;\n            res.emplace_back(a.first,\
+    \ std::min(a.second, b.second));\n            if (a.second != b.second) break;\n\
+    \        }\n        return decode_path(res);\n    }\n    static Rat ancestor(Rat\
+    \ x, T k) {\n        if (k == 0) return 1;\n        auto px = encode_path(x);\n\
+    \        rep (i, px.size()) {\n            const auto& a = px[i];\n          \
+    \  if (a.second >= k) {\n                px[i].second = k;\n                px.erase(px.begin()\
+    \ + i + 1, px.end());\n                return decode_path(px);\n            }\n\
+    \            k -= a.second;\n        }\n        return -1;\n    }\n    static\
+    \ std::pair<Rat, Rat> range(Rat x) {\n        auto px = encode_path(x);\n    \
+    \    return {decode_path(px, {0, 1}), decode_path(px, {1, 0})};\n    }\n    template<class\
+    \ Cond> static std::pair<Rat, Rat> max_right(Cond cond, T n) {\n        assert(n\
+    \ >= 1);\n        auto f = [&](Rat a, Rat b, T x) {\n            return Rat{a.get_num()\
+    \ + x * b.get_num(),\n                       a.get_den() + x * b.get_den()};\n\
+    \        };\n        Rat l = {0, 1}, r = {1, 0}, m = {1, 1};\n        if (!cond(l))\
+    \ return {-1, l};\n        bool flag = cond(m);\n        while (true) {\n    \
+    \        if (flag) {\n                T ok = 0, ng = 1;\n                while\
+    \ (true) {\n                    auto tmp = f(m, r, ng);\n                    if\
+    \ (std::max(tmp.get_num(), tmp.get_den()) > n ||\n                        !cond(tmp))\n\
+    \                        break;\n                    ok = ng;\n              \
+    \      ng <<= 1;\n                }\n                while (ng - ok > 1) {\n \
+    \                   T mid = (ok + ng) >> 1;\n                    auto tmp = f(m,\
+    \ r, mid);\n                    if (std::max(tmp.get_num(), tmp.get_den()) > n\
+    \ ||\n                        !cond(tmp))\n                        ng = mid;\n\
+    \                    else ok = mid;\n                }\n                l = f(m,\
+    \ r, ok);\n                m = f(m, r, ng);\n                if (std::max(m.get_num(),\
+    \ m.get_den()) > n) return {l, r};\n            }\n            else {\n      \
+    \          T ok = 0, ng = 1;\n                while (true) {\n               \
+    \     auto tmp = f(m, l, ng);\n                    if (std::max(tmp.get_num(),\
+    \ tmp.get_den()) > n || cond(tmp))\n                        break;\n         \
+    \           ok = ng;\n                    ng <<= 1;\n                }\n     \
+    \           while (ng - ok > 1) {\n                    T mid = (ok + ng) >> 1;\n\
+    \                    auto tmp = f(m, l, mid);\n                    if (std::max(tmp.get_num(),\
+    \ tmp.get_den()) > n || cond(tmp))\n                        ng = mid;\n      \
+    \              else ok = mid;\n                }\n                r = f(m, l,\
+    \ ok);\n                m = f(m, l, ng);\n                if (std::max(m.get_num(),\
+    \ m.get_den()) > n) return {l, r};\n            }\n            flag = !flag;\n\
+    \        }\n        return {-1, -1};\n    }\n};\n\n/**\n * @brief Stern-Brocot\
+    \ Tree\n * @docs docs/math/SternBrocotTree.md\n */\n#line 4 \"test/yosupo/number_theory/rational_approximation.test.cpp\"\
+    \nusing namespace std;\nusing SBT = SternBrocotTree<int>;\nusing Rat = typename\
+    \ SBT::Rat;\nint main() {\n    int T; scan >> T;\n    rep (T) {\n        int N,\
+    \ X, Y; scan >> N >> X >> Y;\n        Rat r(X, Y);\n        auto [a, b] = SBT::max_right([&](auto\
+    \ x) { return x <= r; }, N);\n        if (a == r) b = r;\n        prints(a.get_pair(),\
+    \ b.get_pair());\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/rational_approximation\"\
+    \n#include \"../../../other/template.hpp\"\n#include \"../../../math/SternBrocotTree.hpp\"\
+    \nusing namespace std;\nusing SBT = SternBrocotTree<int>;\nusing Rat = typename\
+    \ SBT::Rat;\nint main() {\n    int T; scan >> T;\n    rep (T) {\n        int N,\
+    \ X, Y; scan >> N >> X >> Y;\n        Rat r(X, Y);\n        auto [a, b] = SBT::max_right([&](auto\
+    \ x) { return x <= r; }, N);\n        if (a == r) b = r;\n        prints(a.get_pair(),\
+    \ b.get_pair());\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -814,23 +572,18 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  - math/ModInt.hpp
-  - graph/Graph.hpp
-  - graph/other/CountEulerianCircuit.hpp
-  - graph/mst/CountSpanningTree.hpp
-  - math/matrix/Matrix.hpp
-  - math/matrix/Determinant.hpp
-  - math/Combinatorics.hpp
+  - math/SternBrocotTree.hpp
+  - math/Rational.hpp
   isVerificationFile: true
-  path: test/yosupo/new/counting_eulerian_circuits.test.cpp
+  path: test/yosupo/number_theory/rational_approximation.test.cpp
   requiredBy: []
-  timestamp: '2024-07-20 17:54:00+09:00'
+  timestamp: '2024-12-18 20:29:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yosupo/new/counting_eulerian_circuits.test.cpp
+documentation_of: test/yosupo/number_theory/rational_approximation.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/new/counting_eulerian_circuits.test.cpp
-- /verify/test/yosupo/new/counting_eulerian_circuits.test.cpp.html
-title: test/yosupo/new/counting_eulerian_circuits.test.cpp
+- /verify/test/yosupo/number_theory/rational_approximation.test.cpp
+- /verify/test/yosupo/number_theory/rational_approximation.test.cpp.html
+title: test/yosupo/number_theory/rational_approximation.test.cpp
 ---

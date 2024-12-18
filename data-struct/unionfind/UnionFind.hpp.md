@@ -70,6 +70,9 @@ data:
     path: test/atcoder/abc349_g-RangeUF.test.cpp
     title: test/atcoder/abc349_g-RangeUF.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/range_parallel_unionfind.test.cpp
+    title: test/yosupo/data_structure/range_parallel_unionfind.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/unionfind.test.cpp
     title: test/yosupo/data_structure/unionfind.test.cpp
   - icon: ':heavy_check_mark:'
@@ -81,9 +84,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/manhattanmst.test.cpp
     title: test/yosupo/graph/manhattanmst.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/range_parallel_unionfind.test.cpp
-    title: test/yosupo/new/range_parallel_unionfind.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -545,8 +545,8 @@ data:
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/new/range_parallel_unionfind.test.cpp
   - test/yosupo/data_structure/unionfind.test.cpp
+  - test/yosupo/data_structure/range_parallel_unionfind.test.cpp
   - test/yosupo/graph/bipartite_edge_coloring.test.cpp
   - test/yosupo/graph/directedmst.test.cpp
   - test/yosupo/graph/manhattanmst.test.cpp

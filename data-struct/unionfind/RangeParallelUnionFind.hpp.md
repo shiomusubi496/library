@@ -37,8 +37,8 @@ data:
     path: test/atcoder/abc349_g-RangeUF.test.cpp
     title: test/atcoder/abc349_g-RangeUF.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/range_parallel_unionfind.test.cpp
-    title: test/yosupo/new/range_parallel_unionfind.test.cpp
+    path: test/yosupo/data_structure/range_parallel_unionfind.test.cpp
+    title: test/yosupo/data_structure/range_parallel_unionfind.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -538,7 +538,7 @@ data:
   timestamp: '2024-07-20 13:51:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/new/range_parallel_unionfind.test.cpp
+  - test/yosupo/data_structure/range_parallel_unionfind.test.cpp
   - test/atcoder/abc349_g-RangeUF.test.cpp
 documentation_of: data-struct/unionfind/RangeParallelUnionFind.hpp
 layout: document

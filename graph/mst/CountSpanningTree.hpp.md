@@ -46,14 +46,14 @@ data:
     title: CountEulerianCircuit(BEST Theorem)
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/counting_eulerian_circuits.test.cpp
-    title: test/yosupo/new/counting_eulerian_circuits.test.cpp
+    path: test/yosupo/graph/counting_eulerian_circuits.test.cpp
+    title: test/yosupo/graph/counting_eulerian_circuits.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/counting_spanning_tree_directed.test.cpp
-    title: test/yosupo/new/counting_spanning_tree_directed.test.cpp
+    path: test/yosupo/graph/counting_spanning_tree_directed.test.cpp
+    title: test/yosupo/graph/counting_spanning_tree_directed.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/counting_spanning_tree_undirected.test.cpp
-    title: test/yosupo/new/counting_spanning_tree_undirected.test.cpp
+    path: test/yosupo/graph/counting_spanning_tree_undirected.test.cpp
+    title: test/yosupo/graph/counting_spanning_tree_undirected.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -785,9 +785,9 @@ data:
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/new/counting_eulerian_circuits.test.cpp
-  - test/yosupo/new/counting_spanning_tree_directed.test.cpp
-  - test/yosupo/new/counting_spanning_tree_undirected.test.cpp
+  - test/yosupo/graph/counting_eulerian_circuits.test.cpp
+  - test/yosupo/graph/counting_spanning_tree_directed.test.cpp
+  - test/yosupo/graph/counting_spanning_tree_undirected.test.cpp
 documentation_of: graph/mst/CountSpanningTree.hpp
 layout: document
 redirect_from:

@@ -34,8 +34,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/connected_components_of_complement_graph.test.cpp
-    title: test/yosupo/new/connected_components_of_complement_graph.test.cpp
+    path: test/yosupo/graph/connected_components_of_complement_graph.test.cpp
+    title: test/yosupo/graph/connected_components_of_complement_graph.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -539,7 +539,7 @@ data:
   timestamp: '2024-06-05 12:01:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/new/connected_components_of_complement_graph.test.cpp
+  - test/yosupo/graph/connected_components_of_complement_graph.test.cpp
 documentation_of: graph/connected/ComplementConnectedComponents.hpp
 layout: document
 redirect_from:

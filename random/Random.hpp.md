@@ -67,9 +67,6 @@ data:
     path: test/yosupo/new/two_square_sum.test.cpp
     title: test/yosupo/new/two_square_sum.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/wildcard_pattern_matching.test.cpp
-    title: test/yosupo/new/wildcard_pattern_matching.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/factorize.test.cpp
     title: test/yosupo/number_theory/factorize.test.cpp
   - icon: ':heavy_check_mark:'
@@ -78,6 +75,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/tetration_mod.test.cpp
     title: test/yosupo/number_theory/tetration_mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/string/wildcard_pattern_matching.test.cpp
+    title: test/yosupo/string/wildcard_pattern_matching.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
     title: test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
@@ -576,10 +576,10 @@ data:
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/string/wildcard_pattern_matching.test.cpp
   - test/yosupo/number_theory/tetration_mod.test.cpp
   - test/yosupo/number_theory/primitive_root.test.cpp
   - test/yosupo/number_theory/factorize.test.cpp
-  - test/yosupo/new/wildcard_pattern_matching.test.cpp
   - test/yosupo/new/two_square_sum.test.cpp
   - test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
   - test/aoj/NTL/NTL_1_D-Phi.test.cpp

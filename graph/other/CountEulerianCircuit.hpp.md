@@ -49,8 +49,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/counting_eulerian_circuits.test.cpp
-    title: test/yosupo/new/counting_eulerian_circuits.test.cpp
+    path: test/yosupo/graph/counting_eulerian_circuits.test.cpp
+    title: test/yosupo/graph/counting_eulerian_circuits.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -827,7 +827,7 @@ data:
   timestamp: '2024-07-20 17:54:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/new/counting_eulerian_circuits.test.cpp
+  - test/yosupo/graph/counting_eulerian_circuits.test.cpp
 documentation_of: graph/other/CountEulerianCircuit.hpp
 layout: document
 redirect_from:

@@ -40,8 +40,8 @@ data:
     path: test/yosupo/linear_algebra/inverse_matrix.test.cpp
     title: test/yosupo/linear_algebra/inverse_matrix.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/inverse_matrix_mod_2.test.cpp
-    title: test/yosupo/new/inverse_matrix_mod_2.test.cpp
+    path: test/yosupo/linear_algebra/inverse_matrix_mod_2.test.cpp
+    title: test/yosupo/linear_algebra/inverse_matrix_mod_2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -705,8 +705,8 @@ data:
   timestamp: '2024-07-21 18:36:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/new/inverse_matrix_mod_2.test.cpp
   - test/yosupo/linear_algebra/inverse_matrix.test.cpp
+  - test/yosupo/linear_algebra/inverse_matrix_mod_2.test.cpp
 documentation_of: math/matrix/Inverse.hpp
 layout: document
 redirect_from:

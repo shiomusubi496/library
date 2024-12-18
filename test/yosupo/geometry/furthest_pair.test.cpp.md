@@ -2,11 +2,17 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: math/Rational.hpp
-    title: "Rational(\u6709\u7406\u6570\u578B)"
+    path: geometry/Line.hpp
+    title: geometry/Line.hpp
   - icon: ':heavy_check_mark:'
-    path: math/SternBrocotTree.hpp
-    title: Stern-Brocot Tree
+    path: geometry/Point.hpp
+    title: geometry/Point.hpp
+  - icon: ':heavy_check_mark:'
+    path: geometry/Polygon.hpp
+    title: geometry/Polygon.hpp
+  - icon: ':heavy_check_mark:'
+    path: geometry/template.hpp
+    title: geometry/template.hpp
   - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
@@ -41,53 +47,52 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/rational_approximation
+    PROBLEM: https://judge.yosupo.jp/problem/furthest_pair
     links:
-    - https://judge.yosupo.jp/problem/rational_approximation
-  bundledCode: "#line 1 \"test/yosupo/new/rational_approximation.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/rational_approximation\"\n#line 2\
-    \ \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
-    \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
-    \ __LINE__\n#endif\n\n#define OVERLOAD5(a, b, c, d, e, ...) e\n#define REP1_0(b,\
-    \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
-    \                     \\\n    for (ll REP_COUNTER_##c = 0; REP_COUNTER_##c < (ll)(b);\
-    \ ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define REP2(i,\
-    \ b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i = (ll)(a);\
-    \ i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b);\
-    \ i += (ll)(c))\n#define rep(...) OVERLOAD5(__VA_ARGS__, REP4, REP3, REP2, REP1)(__VA_ARGS__)\n\
-    #define RREP2(i, a) for (ll i = (ll)(a)-1; i >= 0; --i)\n#define RREP3(i, a, b)\
-    \ for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n#define RREP4(i, a, b, c) for (ll\
-    \ i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n#define rrep(...) OVERLOAD5(__VA_ARGS__,\
-    \ RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define REPS2(i, b) for (ll i = 1; i <= (ll)(b);\
-    \ ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define\
-    \ REPS4(i, a, b, c) for (ll i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define\
-    \ reps(...) OVERLOAD5(__VA_ARGS__, REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define\
-    \ RREPS2(i, a) for (ll i = (ll)(a); i > 0; --i)\n#define RREPS3(i, a, b) for (ll\
-    \ i = (ll)(a); i > (ll)(b); --i)\n#define RREPS4(i, a, b, c) for (ll i = (ll)(a);\
-    \ i > (ll)(b); i -= (ll)(c))\n#define rreps(...) OVERLOAD5(__VA_ARGS__, RREPS4,\
-    \ RREPS3, RREPS2)(__VA_ARGS__)\n\n#define each_for(...) for (auto&& __VA_ARGS__)\n\
-    #define each_const(...) for (const auto& __VA_ARGS__)\n\n#define all(v) std::begin(v),\
-    \ std::end(v)\n#define rall(v) std::rbegin(v), std::rend(v)\n\n#if __cpp_if_constexpr\
-    \ >= 201606L\n#define IF_CONSTEXPR constexpr\n#else\n#define IF_CONSTEXPR\n#endif\n\
-    \n#define IO_BUFFER_SIZE (1 << 17)\n#line 2 \"template/alias.hpp\"\n\n#line 4\
-    \ \"template/alias.hpp\"\n\nusing ll = long long;\nusing uint = unsigned int;\n\
-    using ull = unsigned long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\
-    using ld = long double;\nusing PLL = std::pair<ll, ll>;\ntemplate<class T>\nusing\
-    \ prique = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\ntemplate<class\
-    \ T> struct infinity {\n    static constexpr T value = std::numeric_limits<T>::max()\
-    \ / 2;\n    static constexpr T mvalue = std::numeric_limits<T>::lowest() / 2;\n\
-    \    static constexpr T max = std::numeric_limits<T>::max();\n    static constexpr\
-    \ T min = std::numeric_limits<T>::lowest();\n};\n\n#if __cplusplus <= 201402L\n\
-    template<class T> constexpr T infinity<T>::value;\ntemplate<class T> constexpr\
-    \ T infinity<T>::mvalue;\ntemplate<class T> constexpr T infinity<T>::max;\ntemplate<class\
-    \ T> constexpr T infinity<T>::min;\n#endif\n\n#if __cpp_variable_templates >=\
-    \ 201304L\ntemplate<class T> constexpr T INF = infinity<T>::value;\n#endif\n\n\
-    constexpr ll inf = infinity<ll>::value;\nconstexpr ld EPS = 1e-8;\nconstexpr ld\
-    \ PI = 3.1415926535897932384626;\n#line 2 \"template/type_traits.hpp\"\n\n#line\
-    \ 5 \"template/type_traits.hpp\"\n\ntemplate<class T, class... Args> struct function_traits_impl\
-    \ {\n    using result_type = T;\n    template<std::size_t idx>\n    using argument_type\
-    \ =\n        typename std::tuple_element<idx, std::tuple<Args...>>::type;\n  \
-    \  using argument_tuple = std::tuple<Args...>;\n    static constexpr std::size_t\
+    - https://judge.yosupo.jp/problem/furthest_pair
+  bundledCode: "#line 1 \"test/yosupo/geometry/furthest_pair.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/furthest_pair\"\n#line 2 \"other/template.hpp\"\
+    \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
+    \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define OVERLOAD5(a,\
+    \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
+    \                                                           \\\n    for (ll REP_COUNTER_##c\
+    \ = 0; REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b,\
+    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
+    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
+    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) OVERLOAD5(__VA_ARGS__,\
+    \ REP4, REP3, REP2, REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1;\
+    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n\
+    #define RREP4(i, a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n\
+    #define rrep(...) OVERLOAD5(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define\
+    \ REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b) for (ll\
+    \ i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll i = (ll)(a)\
+    \ + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) OVERLOAD5(__VA_ARGS__, REPS4,\
+    \ REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a); i > 0;\
+    \ --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n#define\
+    \ RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
+    \ rreps(...) OVERLOAD5(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define\
+    \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
+    \ __VA_ARGS__)\n\n#define all(v) std::begin(v), std::end(v)\n#define rall(v) std::rbegin(v),\
+    \ std::rend(v)\n\n#if __cpp_if_constexpr >= 201606L\n#define IF_CONSTEXPR constexpr\n\
+    #else\n#define IF_CONSTEXPR\n#endif\n\n#define IO_BUFFER_SIZE (1 << 17)\n#line\
+    \ 2 \"template/alias.hpp\"\n\n#line 4 \"template/alias.hpp\"\n\nusing ll = long\
+    \ long;\nusing uint = unsigned int;\nusing ull = unsigned long long;\nusing i128\
+    \ = __int128_t;\nusing u128 = __uint128_t;\nusing ld = long double;\nusing PLL\
+    \ = std::pair<ll, ll>;\ntemplate<class T>\nusing prique = std::priority_queue<T,\
+    \ std::vector<T>, std::greater<T>>;\n\ntemplate<class T> struct infinity {\n \
+    \   static constexpr T value = std::numeric_limits<T>::max() / 2;\n    static\
+    \ constexpr T mvalue = std::numeric_limits<T>::lowest() / 2;\n    static constexpr\
+    \ T max = std::numeric_limits<T>::max();\n    static constexpr T min = std::numeric_limits<T>::lowest();\n\
+    };\n\n#if __cplusplus <= 201402L\ntemplate<class T> constexpr T infinity<T>::value;\n\
+    template<class T> constexpr T infinity<T>::mvalue;\ntemplate<class T> constexpr\
+    \ T infinity<T>::max;\ntemplate<class T> constexpr T infinity<T>::min;\n#endif\n\
+    \n#if __cpp_variable_templates >= 201304L\ntemplate<class T> constexpr T INF =\
+    \ infinity<T>::value;\n#endif\n\nconstexpr ll inf = infinity<ll>::value;\nconstexpr\
+    \ ld EPS = 1e-8;\nconstexpr ld PI = 3.1415926535897932384626;\n#line 2 \"template/type_traits.hpp\"\
+    \n\n#line 5 \"template/type_traits.hpp\"\n\ntemplate<class T, class... Args> struct\
+    \ function_traits_impl {\n    using result_type = T;\n    template<std::size_t\
+    \ idx>\n    using argument_type =\n        typename std::tuple_element<idx, std::tuple<Args...>>::type;\n\
+    \    using argument_tuple = std::tuple<Args...>;\n    static constexpr std::size_t\
     \ arg_size() { return sizeof...(Args); }\n};\n\ntemplate<class> struct function_traits_helper;\n\
     \ntemplate<class Res, class Tp, class... Args>\nstruct function_traits_helper<Res\
     \ (Tp::*)(Args...)> {\n    using type = function_traits_impl<Res, Args...>;\n\
@@ -445,123 +450,189 @@ data:
     \        return res;\n    }\n    void press(std::vector<T>& vec) const {\n   \
     \     assert(sorted);\n        for (auto&& i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
-    };\n#line 2 \"math/SternBrocotTree.hpp\"\n\n#line 2 \"math/Rational.hpp\"\n\n\
-    #line 4 \"math/Rational.hpp\"\n\ntemplate<class T, bool allow_div_zero = false>\
-    \ class Rational {\nprivate:\n    using LargeT =\n        typename std::conditional<std::is_integral<T>::value,\n\
-    \                                  typename double_size<T>::type, ld>::type;\n\
-    \    T num, den;\n\npublic:\n    static void norm(T& a, T& b) {\n        if IF_CONSTEXPR\
-    \ (!allow_div_zero) {\n            assert(b != 0);\n        }\n        T g = gcd(abs(a),\
-    \ abs(b));\n        a /= g;\n        b /= g;\n        if (b < 0) {\n         \
-    \   a = -a;\n            b = -b;\n        }\n    }\n    void normalize() { norm(num,\
-    \ den); }\n    Rational() : num(0), den(1) {}\n    Rational(T a) : num(a), den(1)\
-    \ {}\n    Rational(T a, T b) : num(a), den(b) { normalize(); }\n    T get_num()\
-    \ const { return num; }\n    T get_den() const { return den; }\n    ld get_ld()\
-    \ const { return (ld)num / den; }\n    std::pair<T, T> get_pair() const { return\
-    \ {num, den}; }\n    Rational& operator++() {\n        num += den;\n        return\
-    \ *this;\n    }\n    Rational operator++(int) {\n        Rational res = *this;\n\
-    \        ++*this;\n        return res;\n    }\n    Rational& operator--() {\n\
-    \        num -= den;\n        return *this;\n    }\n    Rational operator--(int)\
-    \ {\n        Rational res = *this;\n        --*this;\n        return res;\n  \
-    \  }\n    Rational& operator+=(const Rational& other) {\n        T g = gcd(den,\
-    \ other.den);\n        num = num * (other.den / g) + other.num * (den / g);\n\
-    \        den = den / g * other.den;\n        normalize();\n        return *this;\n\
-    \    }\n    Rational& operator-=(const Rational& other) {\n        T g = gcd(den,\
-    \ other.den);\n        num = num * (other.den / g) - other.num * (den / g);\n\
-    \        den = den / g * other.den;\n        normalize();\n        return *this;\n\
-    \    }\n    Rational& operator*=(const Rational& other) {\n        T g1 = gcd(num,\
-    \ other.den);\n        T g2 = gcd(den, other.num);\n        num = (num / g1) *\
-    \ (other.num / g2);\n        den = (den / g2) * (other.den / g1);\n        return\
-    \ *this;\n    }\n    Rational& operator/=(const Rational& other) {\n        return\
-    \ (*this) *= Rational(other.den, other.num);\n    }\n    friend Rational operator+(const\
-    \ Rational& lhs, const Rational& rhs) {\n        return Rational(lhs) += rhs;\n\
-    \    }\n    friend Rational operator-(const Rational& lhs, const Rational& rhs)\
-    \ {\n        return Rational(lhs) -= rhs;\n    }\n    friend Rational operator*(const\
-    \ Rational& lhs, const Rational& rhs) {\n        return Rational(lhs) *= rhs;\n\
-    \    }\n    friend Rational operator/(const Rational& lhs, const Rational& rhs)\
-    \ {\n        return Rational(lhs) /= rhs;\n    }\n    Rational operator+() const\
-    \ { return Rational(*this); }\n    Rational operator-() const { return Rational(-num,\
-    \ den); }\n    friend bool operator==(const Rational& lhs, const Rational& rhs)\
-    \ {\n        return lhs.num == rhs.num && lhs.den == rhs.den;\n    }\n    friend\
-    \ bool operator!=(const Rational& lhs, const Rational& rhs) {\n        return\
-    \ lhs.num != rhs.num || lhs.den != rhs.den;\n    }\n    friend bool operator<(const\
-    \ Rational& lhs, const Rational& rhs) {\n        return (LargeT)lhs.num * rhs.den\
-    \ < (LargeT)rhs.num * lhs.den;\n    }\n    friend bool operator>(const Rational&\
-    \ lhs, const Rational& rhs) {\n        return rhs < lhs;\n    }\n    friend bool\
-    \ operator<=(const Rational& lhs, const Rational& rhs) {\n        return !(rhs\
-    \ < lhs);\n    }\n    friend bool operator>=(const Rational& lhs, const Rational&\
-    \ rhs) {\n        return !(lhs < rhs);\n    }\n    template<class Pr> void print(Pr&\
-    \ a) const { a.print(get_ld()); }\n    template<class Pr> void debug(Pr& a) const\
-    \ {\n        a.print(num);\n        a.print_char('/');\n        a.print(den);\n\
-    \    }\n    template<class Sc> void scan(Sc& a) {\n        a.scan(num);\n    \
-    \    a.scan(den);\n    }\n};\n\nnamespace std {\n\ntemplate<class T> Rational<T>\
-    \ abs(const Rational<T>& x) {\n    return Rational<T>(abs(x.get_num()), x.get_den());\n\
-    }\n\n} // namespace std\n\nusing Fraction = Rational<ll>;\n\n/**\n * @brief Rational(\u6709\
-    \u7406\u6570\u578B)\n * @docs docs/math/Rational.md\n */\n#line 5 \"math/SternBrocotTree.hpp\"\
-    \n\ntemplate<class T> class SternBrocotTree {\npublic:\n    using Rat = Rational<T,\
-    \ true>;\n\n    static std::vector<std::pair<char, int>> encode_path(Rat x) {\n\
-    \        std::vector<std::pair<char, int>> res;\n        T a = x.get_num(), b\
-    \ = x.get_den();\n        while (a != 1 || b != 1) {\n            if (a > b) {\n\
-    \                T tmp = (a - 1) / b;\n                res.emplace_back('R', tmp);\n\
-    \                a -= tmp * b;\n            }\n            else {\n          \
-    \      T tmp = (b - 1) / a;\n                res.emplace_back('L', tmp);\n   \
-    \             b -= tmp * a;\n            }\n        }\n        return res;\n \
-    \   }\n    static Rat decode_path(std::vector<std::pair<char, int>> path, Rat\
-    \ s = 1) {\n        std::reverse(all(path));\n        T a = s.get_num(), b = s.get_den();\n\
-    \        for (const auto& p : path) {\n            if (p.first == 'R') a += b\
-    \ * p.second;\n            else b += a * p.second;\n        }\n        return\
-    \ Rat(a, b);\n    }\n    static Rat lca(Rat x, Rat y) {\n        auto px = encode_path(x),\
-    \ py = encode_path(y);\n        std::vector<std::pair<char, int>> res;\n     \
-    \   rep (i, std::min(px.size(), py.size())) {\n            const auto &a = px[i],\
-    \ b = py[i];\n            if (a.first != b.first) break;\n            res.emplace_back(a.first,\
-    \ std::min(a.second, b.second));\n            if (a.second != b.second) break;\n\
-    \        }\n        return decode_path(res);\n    }\n    static Rat ancestor(Rat\
-    \ x, T k) {\n        if (k == 0) return 1;\n        auto px = encode_path(x);\n\
-    \        rep (i, px.size()) {\n            const auto& a = px[i];\n          \
-    \  if (a.second >= k) {\n                px[i].second = k;\n                px.erase(px.begin()\
-    \ + i + 1, px.end());\n                return decode_path(px);\n            }\n\
-    \            k -= a.second;\n        }\n        return -1;\n    }\n    static\
-    \ std::pair<Rat, Rat> range(Rat x) {\n        auto px = encode_path(x);\n    \
-    \    return {decode_path(px, {0, 1}), decode_path(px, {1, 0})};\n    }\n    template<class\
-    \ Cond> static std::pair<Rat, Rat> max_right(Cond cond, T n) {\n        assert(n\
-    \ >= 1);\n        auto f = [&](Rat a, Rat b, T x) {\n            return Rat{a.get_num()\
-    \ + x * b.get_num(),\n                       a.get_den() + x * b.get_den()};\n\
-    \        };\n        Rat l = {0, 1}, r = {1, 0}, m = {1, 1};\n        if (!cond(l))\
-    \ return {-1, l};\n        bool flag = cond(m);\n        while (true) {\n    \
-    \        if (flag) {\n                T ok = 0, ng = 1;\n                while\
-    \ (true) {\n                    auto tmp = f(m, r, ng);\n                    if\
-    \ (std::max(tmp.get_num(), tmp.get_den()) > n ||\n                        !cond(tmp))\n\
-    \                        break;\n                    ok = ng;\n              \
-    \      ng <<= 1;\n                }\n                while (ng - ok > 1) {\n \
-    \                   T mid = (ok + ng) >> 1;\n                    auto tmp = f(m,\
-    \ r, mid);\n                    if (std::max(tmp.get_num(), tmp.get_den()) > n\
-    \ ||\n                        !cond(tmp))\n                        ng = mid;\n\
-    \                    else ok = mid;\n                }\n                l = f(m,\
-    \ r, ok);\n                m = f(m, r, ng);\n                if (std::max(m.get_num(),\
-    \ m.get_den()) > n) return {l, r};\n            }\n            else {\n      \
-    \          T ok = 0, ng = 1;\n                while (true) {\n               \
-    \     auto tmp = f(m, l, ng);\n                    if (std::max(tmp.get_num(),\
-    \ tmp.get_den()) > n || cond(tmp))\n                        break;\n         \
-    \           ok = ng;\n                    ng <<= 1;\n                }\n     \
-    \           while (ng - ok > 1) {\n                    T mid = (ok + ng) >> 1;\n\
-    \                    auto tmp = f(m, l, mid);\n                    if (std::max(tmp.get_num(),\
-    \ tmp.get_den()) > n || cond(tmp))\n                        ng = mid;\n      \
-    \              else ok = mid;\n                }\n                r = f(m, l,\
-    \ ok);\n                m = f(m, l, ng);\n                if (std::max(m.get_num(),\
-    \ m.get_den()) > n) return {l, r};\n            }\n            flag = !flag;\n\
-    \        }\n        return {-1, -1};\n    }\n};\n\n/**\n * @brief Stern-Brocot\
-    \ Tree\n * @docs docs/math/SternBrocotTree.md\n */\n#line 4 \"test/yosupo/new/rational_approximation.test.cpp\"\
-    \nusing namespace std;\nusing SBT = SternBrocotTree<int>;\nusing Rat = typename\
-    \ SBT::Rat;\nint main() {\n    int T; scan >> T;\n    rep (T) {\n        int N,\
-    \ X, Y; scan >> N >> X >> Y;\n        Rat r(X, Y);\n        auto [a, b] = SBT::max_right([&](auto\
-    \ x) { return x <= r; }, N);\n        if (a == r) b = r;\n        prints(a.get_pair(),\
-    \ b.get_pair());\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/rational_approximation\"\
-    \n#include \"../../../other/template.hpp\"\n#include \"../../../math/SternBrocotTree.hpp\"\
-    \nusing namespace std;\nusing SBT = SternBrocotTree<int>;\nusing Rat = typename\
-    \ SBT::Rat;\nint main() {\n    int T; scan >> T;\n    rep (T) {\n        int N,\
-    \ X, Y; scan >> N >> X >> Y;\n        Rat r(X, Y);\n        auto [a, b] = SBT::max_right([&](auto\
-    \ x) { return x <= r; }, N);\n        if (a == r) b = r;\n        prints(a.get_pair(),\
-    \ b.get_pair());\n    }\n}\n"
+    };\n#line 3 \"test/yosupo/geometry/furthest_pair.test.cpp\"\n#define GEOMETRY_REAL_TYPE\
+    \ ll\n#line 2 \"geometry/Polygon.hpp\"\n\n#line 2 \"geometry/template.hpp\"\n\n\
+    #line 4 \"geometry/template.hpp\"\n\n#ifdef GEOMETRY_EPS\nconstexpr ld geom_eps\
+    \ = GEOMETRY_EPS;\n#else\nconstexpr ld geom_eps = EPS;\n#endif\n\n#ifdef GEOMETRY_REAL_TYPE\n\
+    using Real = GEOMETRY_REAL_TYPE;\n// a <=> b  :  cmp(a, b) <=> 0\ninline int cmp(Real\
+    \ a, Real b) {\n    if (a > b) return 1;\n    if (a < b) return -1;\n    return\
+    \ 0;\n}\n#else\nusing Real = ld;\n// a <=> b  :  cmp(a, b) <=> 0\ninline int cmp(ld\
+    \ a, ld b) {\n    if (a > b + geom_eps) return 1;\n    if (a < b - geom_eps) return\
+    \ -1;\n    return 0;\n}\n#endif\n\n#ifdef GEOMETRY_ANGLE_TYPE\nusing angle_t =\
+    \ GEOMETRY_ANGLE_TYPE;\n#else\nusing angle_t = ld;\n#endif\n#line 2 \"geometry/Point.hpp\"\
+    \n\n#line 4 \"geometry/Point.hpp\"\n\nclass Point {\npublic:\n    Real x, y;\n\
+    \    Point() : x(0), y(0) {}\n    Point(Real x, Real y) : x(x), y(y) {}\n    Point&\
+    \ operator+=(const Point& p) {\n        x += p.x;\n        y += p.y;\n       \
+    \ return *this;\n    }\n    Point& operator-=(const Point& p) {\n        x -=\
+    \ p.x;\n        y -= p.y;\n        return *this;\n    }\n    Point& operator*=(Real\
+    \ a) {\n        x *= a;\n        y *= a;\n        return *this;\n    }\n    Point&\
+    \ operator/=(Real a) {\n        x /= a;\n        y /= a;\n        return *this;\n\
+    \    }\n    Point operator+() const { return *this; }\n    Point operator-() const\
+    \ { return Point(-x, -y); }\n    friend Point operator+(const Point& p1, const\
+    \ Point& p2) {\n        return Point(p1) += p2;\n    }\n    friend Point operator-(const\
+    \ Point& p1, const Point& p2) {\n        return Point(p1) -= p2;\n    }\n    friend\
+    \ Point operator*(const Point& p, Real a) { return Point(p) *= a; }\n    friend\
+    \ Point operator*(Real a, const Point& p) { return Point(p) *= a; }\n    friend\
+    \ Point operator/(const Point& p, Real a) { return Point(p) /= a; }\n    friend\
+    \ bool operator==(const Point& p1, const Point& p2) {\n        return cmp(p1.x,\
+    \ p2.x) == 0 && cmp(p1.y, p2.y) == 0;\n    }\n    friend bool operator!=(const\
+    \ Point& p1, const Point& p2) {\n        return !(p1 == p2);\n    }\n    friend\
+    \ bool operator<(const Point& p1, const Point& p2) {\n        return cmp(p1.x,\
+    \ p2.x) < 0 ||\n               (cmp(p1.x, p2.x) == 0 && cmp(p1.y, p2.y) < 0);\n\
+    \    }\n    friend bool operator>(const Point& p1, const Point& p2) { return p2\
+    \ < p1; }\n    friend bool operator<=(const Point& p1, const Point& p2) {\n  \
+    \      return !(p2 < p1);\n    }\n    friend bool operator>=(const Point& p1,\
+    \ const Point& p2) {\n        return !(p1 < p2);\n    }\n    friend bool comp_arg(const\
+    \ Point& p1, const Point& p2) {\n        // -pi < theta <= pi\n        int a1\
+    \ = p1.y < 0 ? 0 : p1.y > 0 ? 2 : p1.x >= 0 ? 1 : 3;\n        int a2 = p2.y <\
+    \ 0 ? 0 : p2.y > 0 ? 2 : p2.x >= 0 ? 1 : 3;\n        if (a1 != a2) return a1 <\
+    \ a2;\n        return cross(p1, p2) > 0;\n    }\n    Real norm() const { return\
+    \ x * x + y * y; }\n    friend Real norm(const Point& p) { return p.norm(); }\n\
+    #ifndef GEOMETRY_REAL_TYPE\n    Real abs() const { return sqrt(norm()); }\n  \
+    \  friend Real abs(const Point& p) { return p.abs(); }\n    inline angle_t arg()\
+    \ const { return atan2((ld)y, (ld)x); }\n    friend angle_t arg(const Point& p)\
+    \ { return p.arg(); }\n    Point& rotate(angle_t theta) {\n        Real c = cos(theta),\
+    \ s = sin(theta);\n        Real nx = x * c - y * s, ny = x * s + y * c;\n    \
+    \    x = nx;\n        y = ny;\n        return *this;\n    }\n    friend Point\
+    \ rotate(const Point& p, angle_t theta) {\n        return Point(p).rotate(theta);\n\
+    \    }\n#endif\n    Point& rotate90() {\n        Real nx = -y, ny = x;\n     \
+    \   x = nx;\n        y = ny;\n        return *this;\n    }\n    friend Point rotate90(const\
+    \ Point& p) { return Point(p).rotate90(); }\n    // inner product(\u5185\u7A4D\
+    ), p1 * p2 = |p1| * |p2| * cos(theta)\n    friend Real dot(const Point& p1, const\
+    \ Point& p2) {\n        return p1.x * p2.x + p1.y * p2.y;\n    }\n    // outer\
+    \ product(\u5916\u7A4D), p1 ^ p2 = |p1| * |p2| * sin(theta)\n    friend Real cross(const\
+    \ Point& p1, const Point& p2) {\n        return p1.x * p2.y - p1.y * p2.x;\n \
+    \   }\n    template<class Sc> void scan(Sc& scan) { scan >> x >> y; }\n    template<class\
+    \ Pr> void print(Pr& print) const { print << x << ' ' << y; }\n    template<class\
+    \ Pr> void debug(Pr& print) const {\n        print.print_char('(');\n        print\
+    \ << x;\n        print.print_char(',');\n        print << y;\n        print.print_char(')');\n\
+    \    }\n};\n\n#ifndef GEOMETRY_REAL_TYPE\nReal distance(const Point& p1, const\
+    \ Point& p2) { return abs(p1 - p2); }\n#endif\n\nenum class CCW {\n    COUNTER_CLOCKWISE\
+    \ = 1,\n    CLOCKWISE = -1,\n    ONLINE_BACK = 2,\n    ONLINE_FRONT = -2,\n  \
+    \  ON_SEGMENT = 0,\n};\n\nCCW ccw(const Point& p0, const Point& p1, const Point&\
+    \ p2) {\n    Point a = p1 - p0, b = p2 - p0;\n    if (cmp(cross(a, b), 0) > 0)\
+    \ return CCW::COUNTER_CLOCKWISE;\n    if (cmp(cross(a, b), 0) < 0) return CCW::CLOCKWISE;\n\
+    \    if (cmp(dot(a, b), 0) < 0) return CCW::ONLINE_BACK;\n    if (a.norm() < b.norm())\
+    \ return CCW::ONLINE_FRONT;\n    return CCW::ON_SEGMENT;\n}\n#line 2 \"geometry/Line.hpp\"\
+    \n\n#line 5 \"geometry/Line.hpp\"\n\nclass Line {\npublic:\n    Real a, b, c;\
+    \ // ax + by + c = 0\n    Line() : a(0), b(1), c(0) {}\n    Line(Real a, Real\
+    \ b, Real c) : a(a), b(b), c(c) {}\n    Line(const Point& p1, const Point& p2)\
+    \ {\n        a = p2.y - p1.y;\n        b = p1.x - p2.x;\n        c = p2.x * p1.y\
+    \ - p1.x * p2.y;\n    }\n    friend bool operator==(const Line& l1, const Line&\
+    \ l2) {\n        return cmp(l1.a * l2.b, l2.a * l1.b) == 0 &&\n              \
+    \ cmp(l1.b * l2.c, l2.b * l1.c) == 0;\n    }\n    friend bool operator!=(const\
+    \ Line& l1, const Line& l2) {\n        return !(l1 == l2);\n    }\n    friend\
+    \ bool operator<(const Line& l1, const Line& l2) {\n        return cmp(l1.a *\
+    \ l2.b, l2.a * l1.b) < 0 ||\n               (cmp(l1.a * l2.b, l2.a * l1.b) ==\
+    \ 0 &&\n                cmp(l1.b * l2.c, l2.b * l1.c) < 0);\n    }\n    friend\
+    \ bool operator>(const Line& l1, const Line& l2) { return l2 < l1; }\n    friend\
+    \ bool operator<=(const Line& l1, const Line& l2) {\n        return !(l2 < l1);\n\
+    \    }\n    friend bool operator>=(const Line& l1, const Line& l2) {\n       \
+    \ return !(l1 < l2);\n    }\n    bool is_on(const Point& p) const {\n        return\
+    \ cmp(a * p.x + b * p.y + c, 0) == 0;\n    }\n    template<class Pr> void debug(Pr&\
+    \ print) const {\n        print << a;\n        print.print_char('x');\n      \
+    \  print.print_char('+');\n        print << b;\n        print.print_char('y');\n\
+    \        print.print_char('+');\n        print << c;\n        print.print_char('=');\n\
+    \        print.print_char('0');\n    }\n};\n\n#ifndef GEOMETRY_REAL_TYPE\nReal\
+    \ distance(const Point& p, const Line& l) {\n    return std::abs(l.a * p.x + l.b\
+    \ * p.y + l.c) /\n           std::sqrt(l.a * l.a + l.b * l.b);\n}\nReal distance(const\
+    \ Line& l, const Point& p) { return distance(p, l); }\n#endif\n\n// \u5782\u76F4\
+    \u4E8C\u7B49\u5206\u7DDA\nLine perpendicular_bisector(const Point& p1, const Point&\
+    \ p2) {\n    return Line((p1 + p2) / 2, (p1 + p2) / 2 + (p2 - p1).rotate90());\n\
+    }\n\n// \u5E73\u884C\u5224\u5B9A\nbool is_parallel(const Line& l1, const Line&\
+    \ l2) {\n    return cmp(l1.a * l2.b, l2.a * l1.b) == 0;\n}\n// \u76F4\u4EA4\u5224\
+    \u5B9A\nbool is_orthogonal(const Line& l1, const Line& l2) {\n    return cmp(l1.a\
+    \ * l2.a + l1.b * l2.b, 0) == 0;\n}\n// \u5E73\u884C\u7DDA\nLine parallel(const\
+    \ Line& l, const Point& p) {\n    return Line(l.a, l.b, -l.a * p.x - l.b * p.y);\n\
+    }\n// \u5782\u76F4\u7DDA\nLine perpendicular(const Line& l, const Point& p) {\n\
+    \    return Line(l.b, -l.a, -l.b * p.x + l.a * p.y);\n}\n\n// \u4EA4\u53C9\u5224\
+    \u5B9A\nbool is_intersect(const Line& l1, const Line& l2) {\n    return l1 ==\
+    \ l2 || !is_parallel(l1, l2);\n}\n// \u4EA4\u70B9\nPoint intersection(const Line&\
+    \ l1, const Line& l2) {\n    assert(!is_parallel(l1, l2));\n    Real d = l1.a\
+    \ * l2.b - l2.a * l1.b;\n    return Point((l1.b * l2.c - l2.b * l1.c) / d,\n \
+    \                (l1.c * l2.a - l2.c * l1.a) / d);\n}\n// \u5C04\u5F71\nPoint\
+    \ projection(const Line& l, const Point& p) {\n    return intersection(l, perpendicular(l,\
+    \ p));\n}\n// \u53CD\u5C04\nPoint reflection(const Line& l, const Point& p) {\n\
+    \    return projection(l, p) * 2 - p;\n}\n#line 6 \"geometry/Polygon.hpp\"\n\n\
+    class Polygon : public std::vector<Point> {\npublic:\n    using std::vector<Point>::vector;\n\
+    \    explicit Polygon(const std::vector<Point>& v) : std::vector<Point>(v) {}\n\
+    \    explicit Polygon(std::vector<Point>&& v)\n        : std::vector<Point>(std::move(v))\
+    \ {}\n};\n\nReal area(const Polygon& p) {\n    const int n = p.size();\n    Real\
+    \ res = 0;\n    rep (i, n) {\n        res += cross(p[i], p[(i + 1) % n]);\n  \
+    \  }\n    return res / 2;\n}\n\nbool is_convex(const Polygon& p, bool allow_straight\
+    \ = false) {\n    const int n = p.size();\n    rep (i, n) {\n        CCW c = ccw(p[(i\
+    \ + 1) % n], p[i], p[(i + 2) % n]);\n        if (c == CCW::COUNTER_CLOCKWISE ||\n\
+    \            (!allow_straight && c == CCW::ONLINE_BACK)) {\n            return\
+    \ false;\n        }\n    }\n    return true;\n}\n\nbool contains(const Polygon&\
+    \ p, const Point& q, bool true_when_on_edge = true) {\n    const int n = p.size();\n\
+    \    rep (i, n) {\n        if (p[i] == q) return true_when_on_edge;\n        Point\
+    \ a = p[i] - q;\n        Point b = p[(i + 1) % n] - q;\n        if (cmp(cross(a,\
+    \ b), 0) == 0 && cmp(dot(a, b), 0) <= 0) {\n            return true_when_on_edge;\n\
+    \        }\n    }\n    bool res = false;\n    rep (i, n) {\n        Point a =\
+    \ p[i] - q;\n        Point b = p[(i + 1) % n] - q;\n        if (cmp(a.y, b.y)\
+    \ > 0) std::swap(a, b);\n        if (cmp(a.y, 0) <= 0 && cmp(b.y, 0) > 0 && cmp(cross(a,\
+    \ b), 0) < 0) {\n            res = !res;\n        }\n    }\n    return res;\n\
+    }\n\nPolygon convex_hull(std::vector<Point> A, bool allow_straight = false) {\n\
+    \    std::sort(all(A), [](const Point& a, const Point& b) {\n        return cmp(a.x,\
+    \ b.x) != 0 ? cmp(a.x, b.x) < 0 : cmp(a.y, b.y) < 0;\n    });\n    A.erase(std::unique(all(A)),\
+    \ A.end());\n    const int n = A.size();\n    if (n <= 2) return Polygon{A};\n\
+    \    Polygon res;\n    rep (i, n) {\n        while ((int)res.size() >= 2) {\n\
+    \            CCW c = ccw(res[res.size() - 2], res.back(), A[i]);\n           \
+    \ if (c == CCW::CLOCKWISE ||\n                (!allow_straight && c == CCW::ONLINE_FRONT))\
+    \ {\n                res.pop_back();\n            }\n            else break;\n\
+    \        }\n        res.push_back(A[i]);\n    }\n    int t = res.size();\n   \
+    \ rrep (i, n - 1) {\n        while ((int)res.size() >= t + 1) {\n            CCW\
+    \ c = ccw(res[res.size() - 2], res.back(), A[i]);\n            if (c == CCW::CLOCKWISE\
+    \ ||\n                (!allow_straight && c == CCW::ONLINE_FRONT)) {\n       \
+    \         res.pop_back();\n            }\n            else break;\n        }\n\
+    \        res.push_back(A[i]);\n    }\n    res.pop_back();\n    return res;\n}\n\
+    \nstd::pair<Point, Point> diameter(const Polygon& p) {\n    const int n = p.size();\n\
+    \    int i = 0, j = 0;\n    rep (k, n) {\n        if (cmp(p[k].x, p[i].x) > 0)\
+    \ i = k;\n        if (cmp(p[k].x, p[j].x) < 0) j = k;\n    }\n    Real res = norm(p[i]\
+    \ - p[j]);\n    int ri = i, rj = j;\n    int si = i, sj = j;\n    do {\n     \
+    \   if (cross(p[(i + 1) % n] - p[i], p[(j + 1) % n] - p[j]) < 0) {\n         \
+    \   i = (i + 1) % n;\n        }\n        else {\n            j = (j + 1) % n;\n\
+    \        }\n        if (chmax(res, norm(p[i] - p[j]),\n                  [](const\
+    \ Real& a, const Real& b) { return cmp(a, b) < 0; })) {\n            ri = i;\n\
+    \            rj = j;\n        }\n    } while (i != si || j != sj);\n    return\
+    \ {p[ri], p[rj]};\n}\n\nstd::pair<Point, Point> farthest_pair(const std::vector<Point>&\
+    \ p) {\n    auto poly = convex_hull(p);\n    return diameter(poly);\n}\n\nstd::pair<Point,\
+    \ Point> closest_pair(std::vector<Point> p) {\n    assert(p.size() >= 2);\n  \
+    \  const int n = p.size();\n    std::sort(all(p));\n    Real res = (p[0] - p[1]).norm();\n\
+    \    Point a = p[0], b = p[1];\n    rec_lambda([&](auto&& self, int l, int r)\
+    \ -> void {\n        const int m = (l + r) / 2;\n        if (r - l <= 1) return;\n\
+    \        const Real x = p[m].x;\n        self(l, m);\n        self(m, r);\n  \
+    \      std::inplace_merge(\n            p.begin() + l, p.begin() + m, p.begin()\
+    \ + r,\n            [](const Point& a, const Point& b) { return cmp(a.y, b.y)\
+    \ < 0; });\n        std::vector<int> B;\n        rep (i, l, r) {\n           \
+    \ if (cmp((p[i].x - x) * (p[i].x - x), res) >= 0) continue;\n            rrep\
+    \ (j, B.size()) {\n                if (cmp((p[i].y - p[B[j]].y) * (p[i].y - p[B[j]].y),\
+    \ res) >= 0)\n                    break;\n                if (chmin(res, norm(p[i]\
+    \ - p[B[j]]),\n                          [](const Real& a, const Real& b) {\n\
+    \                              return cmp(a, b) < 0;\n                       \
+    \   })) {\n                    a = p[i];\n                    b = p[B[j]];\n \
+    \               }\n            }\n            B.push_back(i);\n        }\n   \
+    \ })(0, n);\n    return {a, b};\n}\n\n// cut with line p0-p1 and return left side\n\
+    Polygon polygon_cut(const Polygon& p, const Point& p0, const Point& p1) {\n  \
+    \  const int n = p.size();\n    Polygon res;\n    rep (i, n) {\n        Point\
+    \ a = p[i], b = p[(i + 1) % n];\n        Real ca = cross(p0 - a, p1 - a);\n  \
+    \      Real cb = cross(p0 - b, p1 - b);\n        if (cmp(ca, 0) >= 0) res.push_back(a);\n\
+    \        if (cmp(ca, 0) * cmp(cb, 0) < 0) {\n            res.push_back(intersection(Line(a,\
+    \ b), Line(p0, p1)));\n        }\n    }\n    return res;\n}\n#line 5 \"test/yosupo/geometry/furthest_pair.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int t; scan >> t;\n    rep (t) {\n \
+    \       int n; scan >> n;\n        vector<Point> ps(n); scan >> ps;\n        auto\
+    \ [a, b] = farthest_pair(ps);\n        int ans0 = -1, ans1 = -1;\n        rep\
+    \ (i, n) {\n            if (a == ps[i] && ans0 == -1) ans0 = i;\n            else\
+    \ if (b == ps[i] && ans1 == -1) ans1 = i;\n        }\n        prints(ans0, ans1);\n\
+    \    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/furthest_pair\"\n#include\
+    \ \"../../../other/template.hpp\"\n#define GEOMETRY_REAL_TYPE ll\n#include \"\
+    ../../../geometry/Polygon.hpp\"\nusing namespace std;\nint main() {\n    int t;\
+    \ scan >> t;\n    rep (t) {\n        int n; scan >> n;\n        vector<Point>\
+    \ ps(n); scan >> ps;\n        auto [a, b] = farthest_pair(ps);\n        int ans0\
+    \ = -1, ans1 = -1;\n        rep (i, n) {\n            if (a == ps[i] && ans0 ==\
+    \ -1) ans0 = i;\n            else if (b == ps[i] && ans1 == -1) ans1 = i;\n  \
+    \      }\n        prints(ans0, ans1);\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -572,18 +643,20 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  - math/SternBrocotTree.hpp
-  - math/Rational.hpp
+  - geometry/Polygon.hpp
+  - geometry/template.hpp
+  - geometry/Point.hpp
+  - geometry/Line.hpp
   isVerificationFile: true
-  path: test/yosupo/new/rational_approximation.test.cpp
+  path: test/yosupo/geometry/furthest_pair.test.cpp
   requiredBy: []
-  timestamp: '2024-05-12 17:35:55+09:00'
+  timestamp: '2024-12-18 20:29:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yosupo/new/rational_approximation.test.cpp
+documentation_of: test/yosupo/geometry/furthest_pair.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/new/rational_approximation.test.cpp
-- /verify/test/yosupo/new/rational_approximation.test.cpp.html
-title: test/yosupo/new/rational_approximation.test.cpp
+- /verify/test/yosupo/geometry/furthest_pair.test.cpp
+- /verify/test/yosupo/geometry/furthest_pair.test.cpp.html
+title: test/yosupo/geometry/furthest_pair.test.cpp
 ---

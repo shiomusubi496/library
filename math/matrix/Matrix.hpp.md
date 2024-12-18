@@ -49,8 +49,23 @@ data:
     title: "LinearEquations(\u7DDA\u5F62\u65B9\u7A0B\u5F0F)"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/unionfind_with_potential_non_commutative_group.test.cpp
+    title: test/yosupo/data_structure/unionfind_with_potential_non_commutative_group.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/graph/counting_eulerian_circuits.test.cpp
+    title: test/yosupo/graph/counting_eulerian_circuits.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/graph/counting_spanning_tree_directed.test.cpp
+    title: test/yosupo/graph/counting_spanning_tree_directed.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/graph/counting_spanning_tree_undirected.test.cpp
+    title: test/yosupo/graph/counting_spanning_tree_undirected.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/inverse_matrix.test.cpp
     title: test/yosupo/linear_algebra/inverse_matrix.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/linear_algebra/inverse_matrix_mod_2.test.cpp
+    title: test/yosupo/linear_algebra/inverse_matrix_mod_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/matrix_det.test.cpp
     title: test/yosupo/linear_algebra/matrix_det.test.cpp
@@ -70,29 +85,14 @@ data:
     path: test/yosupo/linear_algebra/matrix_rank.test.cpp
     title: test/yosupo/linear_algebra/matrix_rank.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/linear_algebra/matrix_rank_mod_2.test.cpp
+    title: test/yosupo/linear_algebra/matrix_rank_mod_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/pow_of_matrix.test.cpp
     title: test/yosupo/linear_algebra/pow_of_matrix.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
     title: test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/counting_eulerian_circuits.test.cpp
-    title: test/yosupo/new/counting_eulerian_circuits.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/counting_spanning_tree_directed.test.cpp
-    title: test/yosupo/new/counting_spanning_tree_directed.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/counting_spanning_tree_undirected.test.cpp
-    title: test/yosupo/new/counting_spanning_tree_undirected.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/inverse_matrix_mod_2.test.cpp
-    title: test/yosupo/new/inverse_matrix_mod_2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/matrix_rank_mod_2.test.cpp
-    title: test/yosupo/new/matrix_rank_mod_2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/unionfind_with_potential_non_commutative_group.test.cpp
-    title: test/yosupo/new/unionfind_with_potential_non_commutative_group.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -818,12 +818,6 @@ data:
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/new/unionfind_with_potential_non_commutative_group.test.cpp
-  - test/yosupo/new/inverse_matrix_mod_2.test.cpp
-  - test/yosupo/new/matrix_rank_mod_2.test.cpp
-  - test/yosupo/new/counting_eulerian_circuits.test.cpp
-  - test/yosupo/new/counting_spanning_tree_directed.test.cpp
-  - test/yosupo/new/counting_spanning_tree_undirected.test.cpp
   - test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
   - test/yosupo/linear_algebra/matrix_rank.test.cpp
   - test/yosupo/linear_algebra/inverse_matrix.test.cpp
@@ -831,8 +825,14 @@ data:
   - test/yosupo/linear_algebra/pow_of_matrix.test.cpp
   - test/yosupo/linear_algebra/matrix_product_mod_2.test.cpp
   - test/yosupo/linear_algebra/matrix_det_mod_2.test.cpp
+  - test/yosupo/linear_algebra/inverse_matrix_mod_2.test.cpp
   - test/yosupo/linear_algebra/matrix_det.test.cpp
+  - test/yosupo/linear_algebra/matrix_rank_mod_2.test.cpp
   - test/yosupo/linear_algebra/matrix_det_arbitrary_mod.test.cpp
+  - test/yosupo/data_structure/unionfind_with_potential_non_commutative_group.test.cpp
+  - test/yosupo/graph/counting_eulerian_circuits.test.cpp
+  - test/yosupo/graph/counting_spanning_tree_directed.test.cpp
+  - test/yosupo/graph/counting_spanning_tree_undirected.test.cpp
 documentation_of: math/matrix/Matrix.hpp
 layout: document
 redirect_from:

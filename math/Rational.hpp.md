@@ -43,11 +43,11 @@ data:
     path: test/aoj/other/1208-SternBrocotTree.test.cpp
     title: test/aoj/other/1208-SternBrocotTree.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/rational_approximation.test.cpp
-    title: test/yosupo/new/rational_approximation.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/min_of_mod_of_linear.test.cpp
     title: test/yosupo/number_theory/min_of_mod_of_linear.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/number_theory/rational_approximation.test.cpp
+    title: test/yosupo/number_theory/rational_approximation.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/stern_brocot_tree.test.cpp
     title: test/yosupo/number_theory/stern_brocot_tree.test.cpp
@@ -580,7 +580,7 @@ data:
   verifiedWith:
   - test/yosupo/number_theory/min_of_mod_of_linear.test.cpp
   - test/yosupo/number_theory/stern_brocot_tree.test.cpp
-  - test/yosupo/new/rational_approximation.test.cpp
+  - test/yosupo/number_theory/rational_approximation.test.cpp
   - test/aoj/other/1208-SternBrocotTree.test.cpp
   - test/aoj/ALDS1/ALDS1_15_B.test.cpp
 documentation_of: math/Rational.hpp

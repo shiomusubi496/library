@@ -1002,6 +1002,9 @@ data:
     path: test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
     title: test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/range_parallel_unionfind.test.cpp
+    title: test/yosupo/data_structure/range_parallel_unionfind.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/range_reverse_range_sum.test.cpp
     title: test/yosupo/data_structure/range_reverse_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1062,6 +1065,12 @@ data:
     path: test/yosupo/data_structure/unionfind.test.cpp
     title: test/yosupo/data_structure/unionfind.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/unionfind_with_potential.test.cpp
+    title: test/yosupo/data_structure/unionfind_with_potential.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/unionfind_with_potential_non_commutative_group.test.cpp
+    title: test/yosupo/data_structure/unionfind_with_potential_non_commutative_group.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/enumerative_combinatorics/binomial_coefficient.test.cpp
     title: test/yosupo/enumerative_combinatorics/binomial_coefficient.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1092,8 +1101,17 @@ data:
     path: test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind_fixed_k.test.cpp
     title: test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind_fixed_k.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/geometry/closest_pair.test.cpp
+    title: test/yosupo/geometry/closest_pair.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/geometry/furthest_pair.test.cpp
+    title: test/yosupo/geometry/furthest_pair.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/geometry/sort_points_by_argument.test.cpp
     title: test/yosupo/geometry/sort_points_by_argument.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/geometry/static_convex_hull.test.cpp
+    title: test/yosupo/geometry/static_convex_hull.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/assignment.test.cpp
     title: test/yosupo/graph/assignment.test.cpp
@@ -1109,6 +1127,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/chromatic_number.test.cpp
     title: test/yosupo/graph/chromatic_number.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/graph/connected_components_of_complement_graph.test.cpp
+    title: test/yosupo/graph/connected_components_of_complement_graph.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/graph/counting_eulerian_circuits.test.cpp
+    title: test/yosupo/graph/counting_eulerian_circuits.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/graph/counting_spanning_tree_directed.test.cpp
+    title: test/yosupo/graph/counting_spanning_tree_directed.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/graph/counting_spanning_tree_undirected.test.cpp
+    title: test/yosupo/graph/counting_spanning_tree_undirected.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/cycle_detection.test.cpp
     title: test/yosupo/graph/cycle_detection.test.cpp
@@ -1146,6 +1176,9 @@ data:
     path: test/yosupo/linear_algebra/inverse_matrix.test.cpp
     title: test/yosupo/linear_algebra/inverse_matrix.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/linear_algebra/inverse_matrix_mod_2.test.cpp
+    title: test/yosupo/linear_algebra/inverse_matrix_mod_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/matrix_det.test.cpp
     title: test/yosupo/linear_algebra/matrix_det.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1164,56 +1197,17 @@ data:
     path: test/yosupo/linear_algebra/matrix_rank.test.cpp
     title: test/yosupo/linear_algebra/matrix_rank.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/linear_algebra/matrix_rank_mod_2.test.cpp
+    title: test/yosupo/linear_algebra/matrix_rank_mod_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/pow_of_matrix.test.cpp
     title: test/yosupo/linear_algebra/pow_of_matrix.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
     title: test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/closest_pair.test.cpp
-    title: test/yosupo/new/closest_pair.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/connected_components_of_complement_graph.test.cpp
-    title: test/yosupo/new/connected_components_of_complement_graph.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/counting_eulerian_circuits.test.cpp
-    title: test/yosupo/new/counting_eulerian_circuits.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/counting_spanning_tree_directed.test.cpp
-    title: test/yosupo/new/counting_spanning_tree_directed.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/counting_spanning_tree_undirected.test.cpp
-    title: test/yosupo/new/counting_spanning_tree_undirected.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/furthest_pair.test.cpp
-    title: test/yosupo/new/furthest_pair.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/inverse_matrix_mod_2.test.cpp
-    title: test/yosupo/new/inverse_matrix_mod_2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/matrix_rank_mod_2.test.cpp
-    title: test/yosupo/new/matrix_rank_mod_2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/range_parallel_unionfind.test.cpp
-    title: test/yosupo/new/range_parallel_unionfind.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/rational_approximation.test.cpp
-    title: test/yosupo/new/rational_approximation.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/static_convex_hull.test.cpp
-    title: test/yosupo/new/static_convex_hull.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/two_square_sum.test.cpp
     title: test/yosupo/new/two_square_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/unionfind_with_potential.test.cpp
-    title: test/yosupo/new/unionfind_with_potential.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/unionfind_with_potential_non_commutative_group.test.cpp
-    title: test/yosupo/new/unionfind_with_potential_non_commutative_group.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/wildcard_pattern_matching.test.cpp
-    title: test/yosupo/new/wildcard_pattern_matching.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/bernoulli_number.test.cpp
     title: test/yosupo/number_theory/bernoulli_number.test.cpp
@@ -1247,6 +1241,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/primitive_root.test.cpp
     title: test/yosupo/number_theory/primitive_root.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/number_theory/rational_approximation.test.cpp
+    title: test/yosupo/number_theory/rational_approximation.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/sqrt_mod.test.cpp
     title: test/yosupo/number_theory/sqrt_mod.test.cpp
@@ -1358,6 +1355,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/string/suffixarray.test.cpp
     title: test/yosupo/string/suffixarray.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/string/wildcard_pattern_matching.test.cpp
+    title: test/yosupo/string/wildcard_pattern_matching.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/string/zalgorithm.test.cpp
     title: test/yosupo/string/zalgorithm.test.cpp
@@ -1703,6 +1703,7 @@ data:
   - test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
   - test/yosupo/other/longest_increasing_subsequence.test.cpp
   - test/yosupo/string/zalgorithm.test.cpp
+  - test/yosupo/string/wildcard_pattern_matching.test.cpp
   - test/yosupo/string/enumerate_palindromes.test.cpp
   - test/yosupo/string/suffixarray.test.cpp
   - test/yosupo/string/lyndon_factorization.test.cpp
@@ -1730,23 +1731,10 @@ data:
   - test/yosupo/number_theory/nim_product_64.test.cpp
   - test/yosupo/number_theory/stern_brocot_tree.test.cpp
   - test/yosupo/number_theory/primality_test.test.cpp
+  - test/yosupo/number_theory/rational_approximation.test.cpp
   - test/yosupo/number_theory/discrete_logarithm_mod.test.cpp
   - test/yosupo/number_theory/gcd_of_gaussian_integers.test.cpp
-  - test/yosupo/new/unionfind_with_potential_non_commutative_group.test.cpp
-  - test/yosupo/new/wildcard_pattern_matching.test.cpp
-  - test/yosupo/new/unionfind_with_potential.test.cpp
-  - test/yosupo/new/furthest_pair.test.cpp
-  - test/yosupo/new/connected_components_of_complement_graph.test.cpp
-  - test/yosupo/new/range_parallel_unionfind.test.cpp
-  - test/yosupo/new/static_convex_hull.test.cpp
-  - test/yosupo/new/inverse_matrix_mod_2.test.cpp
-  - test/yosupo/new/rational_approximation.test.cpp
-  - test/yosupo/new/matrix_rank_mod_2.test.cpp
-  - test/yosupo/new/counting_eulerian_circuits.test.cpp
-  - test/yosupo/new/closest_pair.test.cpp
   - test/yosupo/new/two_square_sum.test.cpp
-  - test/yosupo/new/counting_spanning_tree_directed.test.cpp
-  - test/yosupo/new/counting_spanning_tree_undirected.test.cpp
   - test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
   - test/yosupo/linear_algebra/matrix_rank.test.cpp
   - test/yosupo/linear_algebra/inverse_matrix.test.cpp
@@ -1754,7 +1742,9 @@ data:
   - test/yosupo/linear_algebra/pow_of_matrix.test.cpp
   - test/yosupo/linear_algebra/matrix_product_mod_2.test.cpp
   - test/yosupo/linear_algebra/matrix_det_mod_2.test.cpp
+  - test/yosupo/linear_algebra/inverse_matrix_mod_2.test.cpp
   - test/yosupo/linear_algebra/matrix_det.test.cpp
+  - test/yosupo/linear_algebra/matrix_rank_mod_2.test.cpp
   - test/yosupo/linear_algebra/matrix_det_arbitrary_mod.test.cpp
   - test/yosupo/sample/many_aplusb_128bit.test.cpp
   - test/yosupo/sample/aplusb.test.cpp
@@ -1798,6 +1788,7 @@ data:
   - test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
   - test/yosupo/tree/vertex_set_path_composite-HLD.test.cpp
   - test/yosupo/data_structure/range_set_range_composite.test.cpp
+  - test/yosupo/data_structure/unionfind_with_potential_non_commutative_group.test.cpp
   - test/yosupo/data_structure/double_ended_priority_queue.test.cpp
   - test/yosupo/data_structure/rectangle_add_point_get.test.cpp
   - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SplayTree.test.cpp
@@ -1809,6 +1800,7 @@ data:
   - test/yosupo/data_structure/static_range_sum-CumulativeSum.test.cpp
   - test/yosupo/data_structure/staticrmq-LinearRMQ.test.cpp
   - test/yosupo/data_structure/static_range_sum-DisjointSparseTable.test.cpp
+  - test/yosupo/data_structure/unionfind_with_potential.test.cpp
   - test/yosupo/data_structure/static_range_frequency.test.cpp
   - test/yosupo/data_structure/range_chmin_chmax_add_range_sum.test.cpp
   - test/yosupo/data_structure/line_add_get_min.test.cpp
@@ -1823,6 +1815,7 @@ data:
   - test/yosupo/data_structure/range_affine_range_sum.test.cpp
   - test/yosupo/data_structure/point_set_range_composite.test.cpp
   - test/yosupo/data_structure/point_add_rectangle_sum-2DSegTree.test.cpp
+  - test/yosupo/data_structure/range_parallel_unionfind.test.cpp
   - test/yosupo/data_structure/point_add_range_sum.test.cpp
   - test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
   - test/yosupo/data_structure/unionfind-Dynamic.test.cpp
@@ -1845,17 +1838,24 @@ data:
   - test/yosupo/graph/eulerian_trail_undirected.test.cpp
   - test/yosupo/graph/chromatic_number.test.cpp
   - test/yosupo/graph/eulerian_trail_directed.test.cpp
+  - test/yosupo/graph/connected_components_of_complement_graph.test.cpp
   - test/yosupo/graph/enumerate_cliques.test.cpp
   - test/yosupo/graph/biconnected_components.test.cpp
   - test/yosupo/graph/bipartitematching.test.cpp
   - test/yosupo/graph/shortest_path.test.cpp
   - test/yosupo/graph/directedmst.test.cpp
   - test/yosupo/graph/three_edge_connected_components.test.cpp
+  - test/yosupo/graph/counting_eulerian_circuits.test.cpp
   - test/yosupo/graph/manhattanmst.test.cpp
   - test/yosupo/graph/assignment.test.cpp
   - test/yosupo/graph/two_edge_connected_components.test.cpp
+  - test/yosupo/graph/counting_spanning_tree_directed.test.cpp
+  - test/yosupo/graph/counting_spanning_tree_undirected.test.cpp
   - test/yosupo/graph/cycle_detection.test.cpp
+  - test/yosupo/geometry/furthest_pair.test.cpp
   - test/yosupo/geometry/sort_points_by_argument.test.cpp
+  - test/yosupo/geometry/static_convex_hull.test.cpp
+  - test/yosupo/geometry/closest_pair.test.cpp
   - test/atcoder/abc265_c-Timer.test.cpp
   - test/atcoder/agc002_d-PartialPersistentUF.test.cpp
   - test/atcoder/abc176_f-DefaultMap.test.cpp

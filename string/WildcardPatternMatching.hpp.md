@@ -40,8 +40,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/wildcard_pattern_matching.test.cpp
-    title: test/yosupo/new/wildcard_pattern_matching.test.cpp
+    path: test/yosupo/string/wildcard_pattern_matching.test.cpp
+    title: test/yosupo/string/wildcard_pattern_matching.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -868,7 +868,7 @@ data:
   timestamp: '2024-12-16 12:15:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/new/wildcard_pattern_matching.test.cpp
+  - test/yosupo/string/wildcard_pattern_matching.test.cpp
 documentation_of: string/WildcardPatternMatching.hpp
 layout: document
 redirect_from:

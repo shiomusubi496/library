@@ -50,7 +50,7 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/closest_pair
     links:
     - https://judge.yosupo.jp/problem/closest_pair
-  bundledCode: "#line 1 \"test/yosupo/new/closest_pair.test.cpp\"\n#define PROBLEM\
+  bundledCode: "#line 1 \"test/yosupo/geometry/closest_pair.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/closest_pair\"\n#line 2 \"other/template.hpp\"\
     \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
     \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define OVERLOAD5(a,\
@@ -450,7 +450,7 @@ data:
     \        return res;\n    }\n    void press(std::vector<T>& vec) const {\n   \
     \     assert(sorted);\n        for (auto&& i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
-    };\n#line 3 \"test/yosupo/new/closest_pair.test.cpp\"\n#define GEOMETRY_REAL_TYPE\
+    };\n#line 3 \"test/yosupo/geometry/closest_pair.test.cpp\"\n#define GEOMETRY_REAL_TYPE\
     \ ll\n#line 2 \"geometry/Polygon.hpp\"\n\n#line 2 \"geometry/template.hpp\"\n\n\
     #line 4 \"geometry/template.hpp\"\n\n#ifdef GEOMETRY_EPS\nconstexpr ld geom_eps\
     \ = GEOMETRY_EPS;\n#else\nconstexpr ld geom_eps = EPS;\n#endif\n\n#ifdef GEOMETRY_REAL_TYPE\n\
@@ -618,7 +618,7 @@ data:
     \ a = p[i], b = p[(i + 1) % n];\n        Real ca = cross(p0 - a, p1 - a);\n  \
     \      Real cb = cross(p0 - b, p1 - b);\n        if (cmp(ca, 0) >= 0) res.push_back(a);\n\
     \        if (cmp(ca, 0) * cmp(cb, 0) < 0) {\n            res.push_back(intersection(Line(a,\
-    \ b), Line(p0, p1)));\n        }\n    }\n    return res;\n}\n#line 5 \"test/yosupo/new/closest_pair.test.cpp\"\
+    \ b), Line(p0, p1)));\n        }\n    }\n    return res;\n}\n#line 5 \"test/yosupo/geometry/closest_pair.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int t; scan >> t;\n    rep (t) {\n \
     \       int n; scan >> n;\n        vector<Point> ps(n); scan >> ps;\n        auto\
     \ [a, b] = closest_pair(ps);\n        int ans0 = -1, ans1 = -1;\n        rep (i,\
@@ -648,15 +648,15 @@ data:
   - geometry/Point.hpp
   - geometry/Line.hpp
   isVerificationFile: true
-  path: test/yosupo/new/closest_pair.test.cpp
+  path: test/yosupo/geometry/closest_pair.test.cpp
   requiredBy: []
-  timestamp: '2024-12-16 20:35:11+09:00'
+  timestamp: '2024-12-18 20:29:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yosupo/new/closest_pair.test.cpp
+documentation_of: test/yosupo/geometry/closest_pair.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/new/closest_pair.test.cpp
-- /verify/test/yosupo/new/closest_pair.test.cpp.html
-title: test/yosupo/new/closest_pair.test.cpp
+- /verify/test/yosupo/geometry/closest_pair.test.cpp
+- /verify/test/yosupo/geometry/closest_pair.test.cpp.html
+title: test/yosupo/geometry/closest_pair.test.cpp
 ---

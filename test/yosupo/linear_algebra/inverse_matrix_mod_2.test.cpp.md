@@ -5,6 +5,9 @@ data:
     path: math/ModInt.hpp
     title: ModInt
   - icon: ':heavy_check_mark:'
+    path: math/matrix/Inverse.hpp
+    title: "Inverse(\u9006\u884C\u5217)"
+  - icon: ':heavy_check_mark:'
     path: math/matrix/Matrix.hpp
     title: "Matrix(\u884C\u5217)"
   - icon: ':heavy_check_mark:'
@@ -41,52 +44,53 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/matrix_rank_mod_2
+    PROBLEM: https://judge.yosupo.jp/problem/inverse_matrix_mod_2
     links:
-    - https://judge.yosupo.jp/problem/matrix_rank_mod_2
-  bundledCode: "#line 1 \"test/yosupo/new/matrix_rank_mod_2.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/matrix_rank_mod_2\"\n#line 2 \"other/template.hpp\"\
-    \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
-    \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define OVERLOAD5(a,\
-    \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
-    \                                                           \\\n    for (ll REP_COUNTER_##c\
-    \ = 0; REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b,\
-    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
-    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
-    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) OVERLOAD5(__VA_ARGS__,\
-    \ REP4, REP3, REP2, REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1;\
-    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n\
-    #define RREP4(i, a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n\
-    #define rrep(...) OVERLOAD5(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define\
-    \ REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b) for (ll\
-    \ i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll i = (ll)(a)\
-    \ + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) OVERLOAD5(__VA_ARGS__, REPS4,\
-    \ REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a); i > 0;\
-    \ --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n#define\
-    \ RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
-    \ rreps(...) OVERLOAD5(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define\
-    \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
-    \ __VA_ARGS__)\n\n#define all(v) std::begin(v), std::end(v)\n#define rall(v) std::rbegin(v),\
-    \ std::rend(v)\n\n#if __cpp_if_constexpr >= 201606L\n#define IF_CONSTEXPR constexpr\n\
-    #else\n#define IF_CONSTEXPR\n#endif\n\n#define IO_BUFFER_SIZE (1 << 17)\n#line\
-    \ 2 \"template/alias.hpp\"\n\n#line 4 \"template/alias.hpp\"\n\nusing ll = long\
-    \ long;\nusing uint = unsigned int;\nusing ull = unsigned long long;\nusing i128\
-    \ = __int128_t;\nusing u128 = __uint128_t;\nusing ld = long double;\nusing PLL\
-    \ = std::pair<ll, ll>;\ntemplate<class T>\nusing prique = std::priority_queue<T,\
-    \ std::vector<T>, std::greater<T>>;\n\ntemplate<class T> struct infinity {\n \
-    \   static constexpr T value = std::numeric_limits<T>::max() / 2;\n    static\
-    \ constexpr T mvalue = std::numeric_limits<T>::lowest() / 2;\n    static constexpr\
-    \ T max = std::numeric_limits<T>::max();\n    static constexpr T min = std::numeric_limits<T>::lowest();\n\
-    };\n\n#if __cplusplus <= 201402L\ntemplate<class T> constexpr T infinity<T>::value;\n\
-    template<class T> constexpr T infinity<T>::mvalue;\ntemplate<class T> constexpr\
-    \ T infinity<T>::max;\ntemplate<class T> constexpr T infinity<T>::min;\n#endif\n\
-    \n#if __cpp_variable_templates >= 201304L\ntemplate<class T> constexpr T INF =\
-    \ infinity<T>::value;\n#endif\n\nconstexpr ll inf = infinity<ll>::value;\nconstexpr\
-    \ ld EPS = 1e-8;\nconstexpr ld PI = 3.1415926535897932384626;\n#line 2 \"template/type_traits.hpp\"\
-    \n\n#line 5 \"template/type_traits.hpp\"\n\ntemplate<class T, class... Args> struct\
-    \ function_traits_impl {\n    using result_type = T;\n    template<std::size_t\
-    \ idx>\n    using argument_type =\n        typename std::tuple_element<idx, std::tuple<Args...>>::type;\n\
-    \    using argument_tuple = std::tuple<Args...>;\n    static constexpr std::size_t\
+    - https://judge.yosupo.jp/problem/inverse_matrix_mod_2
+  bundledCode: "#line 1 \"test/yosupo/linear_algebra/inverse_matrix_mod_2.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/inverse_matrix_mod_2\"\n#line\
+    \ 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
+    \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
+    \ __LINE__\n#endif\n\n#define OVERLOAD5(a, b, c, d, e, ...) e\n#define REP1_0(b,\
+    \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
+    \                     \\\n    for (ll REP_COUNTER_##c = 0; REP_COUNTER_##c < (ll)(b);\
+    \ ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define REP2(i,\
+    \ b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i = (ll)(a);\
+    \ i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b);\
+    \ i += (ll)(c))\n#define rep(...) OVERLOAD5(__VA_ARGS__, REP4, REP3, REP2, REP1)(__VA_ARGS__)\n\
+    #define RREP2(i, a) for (ll i = (ll)(a)-1; i >= 0; --i)\n#define RREP3(i, a, b)\
+    \ for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n#define RREP4(i, a, b, c) for (ll\
+    \ i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n#define rrep(...) OVERLOAD5(__VA_ARGS__,\
+    \ RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define REPS2(i, b) for (ll i = 1; i <= (ll)(b);\
+    \ ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define\
+    \ REPS4(i, a, b, c) for (ll i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define\
+    \ reps(...) OVERLOAD5(__VA_ARGS__, REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define\
+    \ RREPS2(i, a) for (ll i = (ll)(a); i > 0; --i)\n#define RREPS3(i, a, b) for (ll\
+    \ i = (ll)(a); i > (ll)(b); --i)\n#define RREPS4(i, a, b, c) for (ll i = (ll)(a);\
+    \ i > (ll)(b); i -= (ll)(c))\n#define rreps(...) OVERLOAD5(__VA_ARGS__, RREPS4,\
+    \ RREPS3, RREPS2)(__VA_ARGS__)\n\n#define each_for(...) for (auto&& __VA_ARGS__)\n\
+    #define each_const(...) for (const auto& __VA_ARGS__)\n\n#define all(v) std::begin(v),\
+    \ std::end(v)\n#define rall(v) std::rbegin(v), std::rend(v)\n\n#if __cpp_if_constexpr\
+    \ >= 201606L\n#define IF_CONSTEXPR constexpr\n#else\n#define IF_CONSTEXPR\n#endif\n\
+    \n#define IO_BUFFER_SIZE (1 << 17)\n#line 2 \"template/alias.hpp\"\n\n#line 4\
+    \ \"template/alias.hpp\"\n\nusing ll = long long;\nusing uint = unsigned int;\n\
+    using ull = unsigned long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\
+    using ld = long double;\nusing PLL = std::pair<ll, ll>;\ntemplate<class T>\nusing\
+    \ prique = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\ntemplate<class\
+    \ T> struct infinity {\n    static constexpr T value = std::numeric_limits<T>::max()\
+    \ / 2;\n    static constexpr T mvalue = std::numeric_limits<T>::lowest() / 2;\n\
+    \    static constexpr T max = std::numeric_limits<T>::max();\n    static constexpr\
+    \ T min = std::numeric_limits<T>::lowest();\n};\n\n#if __cplusplus <= 201402L\n\
+    template<class T> constexpr T infinity<T>::value;\ntemplate<class T> constexpr\
+    \ T infinity<T>::mvalue;\ntemplate<class T> constexpr T infinity<T>::max;\ntemplate<class\
+    \ T> constexpr T infinity<T>::min;\n#endif\n\n#if __cpp_variable_templates >=\
+    \ 201304L\ntemplate<class T> constexpr T INF = infinity<T>::value;\n#endif\n\n\
+    constexpr ll inf = infinity<ll>::value;\nconstexpr ld EPS = 1e-8;\nconstexpr ld\
+    \ PI = 3.1415926535897932384626;\n#line 2 \"template/type_traits.hpp\"\n\n#line\
+    \ 5 \"template/type_traits.hpp\"\n\ntemplate<class T, class... Args> struct function_traits_impl\
+    \ {\n    using result_type = T;\n    template<std::size_t idx>\n    using argument_type\
+    \ =\n        typename std::tuple_element<idx, std::tuple<Args...>>::type;\n  \
+    \  using argument_tuple = std::tuple<Args...>;\n    static constexpr std::size_t\
     \ arg_size() { return sizeof...(Args); }\n};\n\ntemplate<class> struct function_traits_helper;\n\
     \ntemplate<class Res, class Tp, class... Args>\nstruct function_traits_helper<Res\
     \ (Tp::*)(Args...)> {\n    using type = function_traits_impl<Res, Args...>;\n\
@@ -655,17 +659,36 @@ data:
     \   ++r;\n    }\n    rep (i, h) {\n        rep (j, w) a[i][j] = (b[i][j] ? 1 :\
     \ 0);\n    }\n}\ntemplate<> void gauss_mod2_sub<1 << 30>(Mat2&) {}\n\n} // namespace\
     \ internal\n\n/**\n * @brief Matrix(\u884C\u5217)\n * @docs docs/math/matrix/Matrix.md\n\
-    \ */\n#line 5 \"test/yosupo/new/matrix_rank_mod_2.test.cpp\"\nusing namespace\
+    \ */\n#line 2 \"math/matrix/Inverse.hpp\"\n\n#line 5 \"math/matrix/Inverse.hpp\"\
+    \n\ntemplate<class T> Matrix<T> inverse(Matrix<T> mat) {\n    assert(mat.is_square());\n\
+    \    const int n = mat.height();\n    rep (i, n) {\n        mat[i].resize(n *\
+    \ 2, T{0});\n        mat[i][n + i] = T{1};\n    }\n    mat.gauss();\n    rep (i,\
+    \ n) {\n        if (mat[i][i] == T{0}) return Matrix<T>(0, 0);\n    }\n    Matrix<T>\
+    \ res(n, n);\n    rep (i, n) {\n        rep (j, n) res[i][j] = mat[i][n + j];\n\
+    \    }\n    return res;\n}\n\ntemplate<> Matrix<static_modint<2>> inverse(Matrix<static_modint<2>>\
+    \ mat) {\n    assert(mat.is_square());\n    using T = static_modint<2>;\n    const\
+    \ int n = mat.height();\n    T zero = T::raw(0), one = T::raw(1);\n    rep (i,\
+    \ n) {\n        mat[i].resize(n * 2, zero);\n        mat[i][n + i] = one;\n  \
+    \  }\n    mat.gauss();\n    rep (i, n) {\n        if (mat[i][i] == zero) return\
+    \ Matrix<T>(0, 0);\n    }\n    Matrix<T> res(n, n);\n    rep (i, n) {\n      \
+    \  rep (j, n) res[i][j] = mat[i][n + j];\n    }\n    return res;\n}\n\n/**\n *\
+    \ @brief Inverse(\u9006\u884C\u5217)\n * @docs docs/math/matrix/Inverse.md\n */\n\
+    #line 6 \"test/yosupo/linear_algebra/inverse_matrix_mod_2.test.cpp\"\nusing namespace\
     \ std;\nusing mint = static_modint<2>;\nusing matx = Matrix<mint>;\nint main()\
-    \ {\n    int N, M; scan >> N >> M;\n    matx A(N, M);\n    rep (i, N) rep (j,\
-    \ M) {\n        char c; scan >> c;\n        A[i][j] = c - '0';\n    }\n    prints(A.rank());\n\
-    }\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_rank_mod_2\"\n#include\
-    \ \"../../../other/template.hpp\"\n#include \"../../../math/ModInt.hpp\"\n#include\
-    \ \"../../../math/matrix/Matrix.hpp\"\nusing namespace std;\nusing mint = static_modint<2>;\n\
-    using matx = Matrix<mint>;\nint main() {\n    int N, M; scan >> N >> M;\n    matx\
-    \ A(N, M);\n    rep (i, N) rep (j, M) {\n        char c; scan >> c;\n        A[i][j]\
-    \ = c - '0';\n    }\n    prints(A.rank());\n}\n"
+    \ {\n    int N; scan >> N;\n    matx A(N, N);\n    rep (i, N) rep (j, N) {\n \
+    \       char c; scan >> c;\n        A[i][j] = c - '0';\n    }\n    auto res =\
+    \ inverse(A);\n    if (res.empty()) prints(-1);\n    else {\n        rep (i, N)\
+    \ {\n            rep (j, N) print << res[i][j];\n            print << '\\n';\n\
+    \        }\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/inverse_matrix_mod_2\"\n\
+    #include \"../../../other/template.hpp\"\n#include \"../../../math/ModInt.hpp\"\
+    \n#include \"../../../math/matrix/Matrix.hpp\"\n#include \"../../../math/matrix/Inverse.hpp\"\
+    \nusing namespace std;\nusing mint = static_modint<2>;\nusing matx = Matrix<mint>;\n\
+    int main() {\n    int N; scan >> N;\n    matx A(N, N);\n    rep (i, N) rep (j,\
+    \ N) {\n        char c; scan >> c;\n        A[i][j] = c - '0';\n    }\n    auto\
+    \ res = inverse(A);\n    if (res.empty()) prints(-1);\n    else {\n        rep\
+    \ (i, N) {\n            rep (j, N) print << res[i][j];\n            print << '\\\
+    n';\n        }\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -678,16 +701,17 @@ data:
   - template/util.hpp
   - math/ModInt.hpp
   - math/matrix/Matrix.hpp
+  - math/matrix/Inverse.hpp
   isVerificationFile: true
-  path: test/yosupo/new/matrix_rank_mod_2.test.cpp
+  path: test/yosupo/linear_algebra/inverse_matrix_mod_2.test.cpp
   requiredBy: []
-  timestamp: '2024-08-16 11:38:02+09:00'
+  timestamp: '2024-12-18 20:29:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yosupo/new/matrix_rank_mod_2.test.cpp
+documentation_of: test/yosupo/linear_algebra/inverse_matrix_mod_2.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/new/matrix_rank_mod_2.test.cpp
-- /verify/test/yosupo/new/matrix_rank_mod_2.test.cpp.html
-title: test/yosupo/new/matrix_rank_mod_2.test.cpp
+- /verify/test/yosupo/linear_algebra/inverse_matrix_mod_2.test.cpp
+- /verify/test/yosupo/linear_algebra/inverse_matrix_mod_2.test.cpp.html
+title: test/yosupo/linear_algebra/inverse_matrix_mod_2.test.cpp
 ---

@@ -1083,6 +1083,9 @@ data:
       path: test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
       title: test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/data_structure/range_parallel_unionfind.test.cpp
+      title: test/yosupo/data_structure/range_parallel_unionfind.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/range_reverse_range_sum.test.cpp
       title: test/yosupo/data_structure/range_reverse_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1142,6 +1145,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/unionfind.test.cpp
       title: test/yosupo/data_structure/unionfind.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/data_structure/unionfind_with_potential.test.cpp
+      title: test/yosupo/data_structure/unionfind_with_potential.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/data_structure/unionfind_with_potential_non_commutative_group.test.cpp
+      title: test/yosupo/data_structure/unionfind_with_potential_non_commutative_group.test.cpp
   - name: test/yosupo/enumerative_combinatorics
     pages:
     - icon: ':heavy_check_mark:'
@@ -1177,8 +1186,17 @@ data:
   - name: test/yosupo/geometry
     pages:
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/geometry/closest_pair.test.cpp
+      title: test/yosupo/geometry/closest_pair.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/geometry/furthest_pair.test.cpp
+      title: test/yosupo/geometry/furthest_pair.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/geometry/sort_points_by_argument.test.cpp
       title: test/yosupo/geometry/sort_points_by_argument.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/geometry/static_convex_hull.test.cpp
+      title: test/yosupo/geometry/static_convex_hull.test.cpp
   - name: test/yosupo/graph
     pages:
     - icon: ':heavy_check_mark:'
@@ -1196,6 +1214,18 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/graph/chromatic_number.test.cpp
       title: test/yosupo/graph/chromatic_number.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/graph/connected_components_of_complement_graph.test.cpp
+      title: test/yosupo/graph/connected_components_of_complement_graph.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/graph/counting_eulerian_circuits.test.cpp
+      title: test/yosupo/graph/counting_eulerian_circuits.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/graph/counting_spanning_tree_directed.test.cpp
+      title: test/yosupo/graph/counting_spanning_tree_directed.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/graph/counting_spanning_tree_undirected.test.cpp
+      title: test/yosupo/graph/counting_spanning_tree_undirected.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/graph/cycle_detection.test.cpp
       title: test/yosupo/graph/cycle_detection.test.cpp
@@ -1235,6 +1265,9 @@ data:
       path: test/yosupo/linear_algebra/inverse_matrix.test.cpp
       title: test/yosupo/linear_algebra/inverse_matrix.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/linear_algebra/inverse_matrix_mod_2.test.cpp
+      title: test/yosupo/linear_algebra/inverse_matrix_mod_2.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/linear_algebra/matrix_det.test.cpp
       title: test/yosupo/linear_algebra/matrix_det.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1253,6 +1286,9 @@ data:
       path: test/yosupo/linear_algebra/matrix_rank.test.cpp
       title: test/yosupo/linear_algebra/matrix_rank.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/linear_algebra/matrix_rank_mod_2.test.cpp
+      title: test/yosupo/linear_algebra/matrix_rank_mod_2.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/linear_algebra/pow_of_matrix.test.cpp
       title: test/yosupo/linear_algebra/pow_of_matrix.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1261,50 +1297,8 @@ data:
   - name: test/yosupo/new
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/yosupo/new/closest_pair.test.cpp
-      title: test/yosupo/new/closest_pair.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/new/connected_components_of_complement_graph.test.cpp
-      title: test/yosupo/new/connected_components_of_complement_graph.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/new/counting_eulerian_circuits.test.cpp
-      title: test/yosupo/new/counting_eulerian_circuits.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/new/counting_spanning_tree_directed.test.cpp
-      title: test/yosupo/new/counting_spanning_tree_directed.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/new/counting_spanning_tree_undirected.test.cpp
-      title: test/yosupo/new/counting_spanning_tree_undirected.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/new/furthest_pair.test.cpp
-      title: test/yosupo/new/furthest_pair.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/new/inverse_matrix_mod_2.test.cpp
-      title: test/yosupo/new/inverse_matrix_mod_2.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/new/matrix_rank_mod_2.test.cpp
-      title: test/yosupo/new/matrix_rank_mod_2.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/new/range_parallel_unionfind.test.cpp
-      title: test/yosupo/new/range_parallel_unionfind.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/new/rational_approximation.test.cpp
-      title: test/yosupo/new/rational_approximation.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/new/static_convex_hull.test.cpp
-      title: test/yosupo/new/static_convex_hull.test.cpp
-    - icon: ':heavy_check_mark:'
       path: test/yosupo/new/two_square_sum.test.cpp
       title: test/yosupo/new/two_square_sum.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/new/unionfind_with_potential.test.cpp
-      title: test/yosupo/new/unionfind_with_potential.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/new/unionfind_with_potential_non_commutative_group.test.cpp
-      title: test/yosupo/new/unionfind_with_potential_non_commutative_group.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/new/wildcard_pattern_matching.test.cpp
-      title: test/yosupo/new/wildcard_pattern_matching.test.cpp
   - name: test/yosupo/number_theory
     pages:
     - icon: ':heavy_check_mark:'
@@ -1340,6 +1334,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/number_theory/primitive_root.test.cpp
       title: test/yosupo/number_theory/primitive_root.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/number_theory/rational_approximation.test.cpp
+      title: test/yosupo/number_theory/rational_approximation.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/number_theory/sqrt_mod.test.cpp
       title: test/yosupo/number_theory/sqrt_mod.test.cpp
@@ -1459,6 +1456,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/string/suffixarray.test.cpp
       title: test/yosupo/string/suffixarray.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/string/wildcard_pattern_matching.test.cpp
+      title: test/yosupo/string/wildcard_pattern_matching.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/string/zalgorithm.test.cpp
       title: test/yosupo/string/zalgorithm.test.cpp

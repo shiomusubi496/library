@@ -64,14 +64,14 @@ data:
     path: test/aoj/CGL/CGL_5_A-closest.test.cpp
     title: test/aoj/CGL/CGL_5_A-closest.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/closest_pair.test.cpp
-    title: test/yosupo/new/closest_pair.test.cpp
+    path: test/yosupo/geometry/closest_pair.test.cpp
+    title: test/yosupo/geometry/closest_pair.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/furthest_pair.test.cpp
-    title: test/yosupo/new/furthest_pair.test.cpp
+    path: test/yosupo/geometry/furthest_pair.test.cpp
+    title: test/yosupo/geometry/furthest_pair.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/static_convex_hull.test.cpp
-    title: test/yosupo/new/static_convex_hull.test.cpp
+    path: test/yosupo/geometry/static_convex_hull.test.cpp
+    title: test/yosupo/geometry/static_convex_hull.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -731,9 +731,9 @@ data:
   timestamp: '2024-12-16 20:35:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/new/furthest_pair.test.cpp
-  - test/yosupo/new/static_convex_hull.test.cpp
-  - test/yosupo/new/closest_pair.test.cpp
+  - test/yosupo/geometry/furthest_pair.test.cpp
+  - test/yosupo/geometry/static_convex_hull.test.cpp
+  - test/yosupo/geometry/closest_pair.test.cpp
   - test/aoj/CGL/CGL_3_A-area.test.cpp
   - test/aoj/CGL/CGL_4_C-cut.test.cpp
   - test/aoj/CGL/CGL_3_C-contain.test.cpp

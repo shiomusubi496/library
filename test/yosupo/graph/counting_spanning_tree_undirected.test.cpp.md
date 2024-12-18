@@ -53,7 +53,7 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/counting_spanning_tree_undirected
     links:
     - https://judge.yosupo.jp/problem/counting_spanning_tree_undirected
-  bundledCode: "#line 1 \"test/yosupo/new/counting_spanning_tree_undirected.test.cpp\"\
+  bundledCode: "#line 1 \"test/yosupo/graph/counting_spanning_tree_undirected.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/counting_spanning_tree_undirected\"\
     \n#line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
     \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
@@ -746,7 +746,7 @@ data:
     \     if (e.to == v || e.to == i) continue;\n            A[i < v ? i : i - 1][e.to\
     \ < v ? e.to : e.to - 1] -= e.cost;\n        }\n    }\n    return determinant(A);\n\
     }\n\n/**\n * @brief CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)\n * @docs\
-    \ docs/graph/mst/CountSpanningTree.md\n */\n#line 6 \"test/yosupo/new/counting_spanning_tree_undirected.test.cpp\"\
+    \ docs/graph/mst/CountSpanningTree.md\n */\n#line 6 \"test/yosupo/graph/counting_spanning_tree_undirected.test.cpp\"\
     \nusing namespace std;\nusing mint = modint998244353;\nint main() {\n    int N,\
     \ M; scan >> N >> M;\n    Graph<mint> G(N);\n    rep (M) {\n        int a, b;\
     \ scan >> a >> b;\n        G.add_edge(a, b, mint{1});\n    }\n    prints(count_spanning_tree<mint>(G));\n\
@@ -774,15 +774,15 @@ data:
   - math/matrix/Matrix.hpp
   - math/matrix/Determinant.hpp
   isVerificationFile: true
-  path: test/yosupo/new/counting_spanning_tree_undirected.test.cpp
+  path: test/yosupo/graph/counting_spanning_tree_undirected.test.cpp
   requiredBy: []
-  timestamp: '2024-06-04 15:20:20+09:00'
+  timestamp: '2024-12-18 20:29:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yosupo/new/counting_spanning_tree_undirected.test.cpp
+documentation_of: test/yosupo/graph/counting_spanning_tree_undirected.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/new/counting_spanning_tree_undirected.test.cpp
-- /verify/test/yosupo/new/counting_spanning_tree_undirected.test.cpp.html
-title: test/yosupo/new/counting_spanning_tree_undirected.test.cpp
+- /verify/test/yosupo/graph/counting_spanning_tree_undirected.test.cpp
+- /verify/test/yosupo/graph/counting_spanning_tree_undirected.test.cpp.html
+title: test/yosupo/graph/counting_spanning_tree_undirected.test.cpp
 ---

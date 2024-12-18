@@ -37,11 +37,11 @@ data:
     path: test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
     title: test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/unionfind_with_potential.test.cpp
-    title: test/yosupo/new/unionfind_with_potential.test.cpp
+    path: test/yosupo/data_structure/unionfind_with_potential.test.cpp
+    title: test/yosupo/data_structure/unionfind_with_potential.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/unionfind_with_potential_non_commutative_group.test.cpp
-    title: test/yosupo/new/unionfind_with_potential_non_commutative_group.test.cpp
+    path: test/yosupo/data_structure/unionfind_with_potential_non_commutative_group.test.cpp
+    title: test/yosupo/data_structure/unionfind_with_potential_non_commutative_group.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -610,8 +610,8 @@ data:
   timestamp: '2024-07-20 14:13:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/new/unionfind_with_potential_non_commutative_group.test.cpp
-  - test/yosupo/new/unionfind_with_potential.test.cpp
+  - test/yosupo/data_structure/unionfind_with_potential_non_commutative_group.test.cpp
+  - test/yosupo/data_structure/unionfind_with_potential.test.cpp
   - test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
 documentation_of: data-struct/unionfind/WeightedUnionFind.hpp
 layout: document

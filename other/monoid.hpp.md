@@ -336,14 +336,14 @@ data:
     path: test/yosupo/data_structure/staticrmq-SparseTable.test.cpp
     title: test/yosupo/data_structure/staticrmq-SparseTable.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/unionfind_with_potential.test.cpp
+    title: test/yosupo/data_structure/unionfind_with_potential.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/unionfind_with_potential_non_commutative_group.test.cpp
+    title: test/yosupo/data_structure/unionfind_with_potential_non_commutative_group.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/directedmst.test.cpp
     title: test/yosupo/graph/directedmst.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/unionfind_with_potential.test.cpp
-    title: test/yosupo/new/unionfind_with_potential.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/unionfind_with_potential_non_commutative_group.test.cpp
-    title: test/yosupo/new/unionfind_with_potential_non_commutative_group.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/discrete_logarithm_mod.test.cpp
     title: test/yosupo/number_theory/discrete_logarithm_mod.test.cpp
@@ -1046,8 +1046,6 @@ data:
   - test/yosupo/convolution/gcd_convolution.test.cpp
   - test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
   - test/yosupo/number_theory/discrete_logarithm_mod.test.cpp
-  - test/yosupo/new/unionfind_with_potential_non_commutative_group.test.cpp
-  - test/yosupo/new/unionfind_with_potential.test.cpp
   - test/yosupo/tree/vertex_add_subtree_sum.test.cpp
   - test/yosupo/tree/vertex_add_subtree_sum-2.test.cpp
   - test/yosupo/tree/vertex_add_subtree_sum-HLD.test.cpp
@@ -1061,6 +1059,7 @@ data:
   - test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
   - test/yosupo/tree/vertex_set_path_composite-HLD.test.cpp
   - test/yosupo/data_structure/range_set_range_composite.test.cpp
+  - test/yosupo/data_structure/unionfind_with_potential_non_commutative_group.test.cpp
   - test/yosupo/data_structure/rectangle_add_point_get.test.cpp
   - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SplayTree.test.cpp
   - test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
@@ -1069,6 +1068,7 @@ data:
   - test/yosupo/data_structure/static_range_sum-CumulativeSum.test.cpp
   - test/yosupo/data_structure/staticrmq-LinearRMQ.test.cpp
   - test/yosupo/data_structure/static_range_sum-DisjointSparseTable.test.cpp
+  - test/yosupo/data_structure/unionfind_with_potential.test.cpp
   - test/yosupo/data_structure/range_chmin_chmax_add_range_sum.test.cpp
   - test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp
   - test/yosupo/data_structure/range_affine_point_get.test.cpp
