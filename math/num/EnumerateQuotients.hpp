@@ -10,5 +10,5 @@ std::vector<ll> enumerate_quotients(ll n) {
 
 /**
  * @brief Enumerate Quotients(商列挙)
- * @docs docs/math/EnumerateQuotients.md
+ * @docs docs/math/num/EnumerateQuotients.md
  */

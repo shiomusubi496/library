@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/primality_test"
 #include "../../../other/template.hpp"
-#include "../../../math/MillerRabin.hpp"
+#include "../../../math/num/MillerRabin.hpp"
 using namespace std;
 int main() {
     int T; scan >> T;

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../other/template.hpp"
-#include "PollardRho.hpp"
+#include "num/PollardRho.hpp"
 #include "GaussianInteger.hpp"
 
 std::pair<ll, ll> two_square_sum_prime(ll p) {

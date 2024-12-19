@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/enumerate_quotients"
 #include "../../../other/template.hpp"
-#include "../../../math/EnumerateQuotients.hpp"
+#include "../../../math/num/EnumerateQuotients.hpp"
 using namespace std;
 int main() {
     ll N; scan >> N;

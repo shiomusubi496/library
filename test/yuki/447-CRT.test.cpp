@@ -1,6 +1,6 @@
 #define PROBLEM "https://yukicoder.me/problems/447"
 #include "../../other/template.hpp"
-#include "../../math/ChineseRemainder.hpp"
+#include "../../math/num/ChineseRemainder.hpp"
 using namespace std;
 int main() {
     vector<ll> A(3), B(3);

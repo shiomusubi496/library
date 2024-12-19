@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/enumerate_primes"
 #include "../../../other/template.hpp"
-#include "../../../math/PrimeFactor.hpp"
+#include "../../../math/num/PrimeFactor.hpp"
 using namespace std;
 int main() {
     int N, A, B; scan >> N >> A >> B;

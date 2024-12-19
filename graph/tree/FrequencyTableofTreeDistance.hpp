@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../../other/template.hpp"
-#include "../../math/ChineseRemainder.hpp"
+#include "../../math/num/ChineseRemainder.hpp"
 #include "../../math/ModInt.hpp"
 #include "../../math/convolution/Convolution.hpp"
 #include "../Graph.hpp"

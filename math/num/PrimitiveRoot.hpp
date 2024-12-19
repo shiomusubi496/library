@@ -4,8 +4,8 @@
 #include "../random/Random.hpp"
 #include "ModInt.hpp"
 #include "MontgomeryModInt.hpp"
-#include "MillerRabin.hpp"
-#include "PollardRho.hpp"
+#include "num/MillerRabin.hpp"
+#include "num/PollardRho.hpp"
 
 template<class T = MontgomeryModInt<ull, -4>> ull primitive_root(ull p) {
     assert(is_prime_mr(p));
@@ -30,5 +30,5 @@ template<class T = MontgomeryModInt<ull, -4>> ull primitive_root(ull p) {
 
 /**
  * @brief PrimitiveRoot(原始根)
- * @docs docs/math/PrimitiveRoot.md
+ * @docs docs/math/num/PrimitiveRoot.md
  */

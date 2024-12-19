@@ -1,6 +1,6 @@
 #define PROBLEM "https://yukicoder.me/problems/448"
 #include "../../other/template.hpp"
-#include "../../math/ChineseRemainder.hpp"
+#include "../../math/num/ChineseRemainder.hpp"
 using namespace std;
 int main() {
     int n; scan >> n;

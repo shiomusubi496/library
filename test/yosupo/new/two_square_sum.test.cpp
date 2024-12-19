@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/two_square_sum"
 #include "../../../other/template.hpp"
-#include "../../../math/TwoSquareSum.hpp"
+#include "../../../math/num/TwoSquareSum.hpp"
 using namespace std;
 int main() {
     int T; scan >> T;

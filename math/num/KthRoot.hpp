@@ -20,5 +20,5 @@ ull kth_root(ull n, ull k) {
 
 /**
  * @brief KthRoot(k乗根)
- * @docs docs/math/KthRoot.md
+ * @docs docs/math/num/KthRoot.md
  */

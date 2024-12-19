@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/primitive_root"
 #include "../../../other/template.hpp"
-#include "../../../math/PrimitiveRoot.hpp"
+#include "../../../math/num/PrimitiveRoot.hpp"
 using namespace std;
 int main() {
     int q; scan >> q;

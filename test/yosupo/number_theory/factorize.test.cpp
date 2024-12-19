@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/factorize"
 #include "../../../other/template.hpp"
-#include "../../../math/PollardRho.hpp"
+#include "../../../math/num/PollardRho.hpp"
 using namespace std;
 int main() {
     int q; scan >> q;

@@ -2,7 +2,7 @@
 
 #include "../other/template.hpp"
 #include "../other/monoid2.hpp"
-#include "KthRoot.hpp"
+#include "num/KthRoot.hpp"
 #include "BarrettReduction.hpp"
 
 template<class A,

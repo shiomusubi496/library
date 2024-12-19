@@ -3,7 +3,7 @@
 #include "../other/template.hpp"
 #include "../random/Random.hpp"
 #include "MontgomeryModInt.hpp"
-#include "MillerRabin.hpp"
+#include "num/MillerRabin.hpp"
 #include "../string/RunLength.hpp"
 
 template<class T, class Rnd> ull pollard_rho(ull n, Rnd& rnd) {
@@ -89,5 +89,5 @@ std::vector<ll> divisors_pr(ll n) {
 
 /**
  * @brief PollardRho(素因数分解)
- * @docs docs/math/PollardRho.md
+ * @docs docs/math/num/PollardRho.md
  */

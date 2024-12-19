@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../other/template.hpp"
-#include "PollardRho.hpp"
+#include "num/PollardRho.hpp"
 
 ll euler_phi(ll n) {
     ll res = n;
@@ -40,5 +40,5 @@ public:
 
 /**
  * @brief Euler's-Phi(オイラーのφ関数)
- * @docs docs/math/EulerPhi.md
+ * @docs docs/math/num/EulerPhi.md
  */

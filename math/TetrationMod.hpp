@@ -2,7 +2,7 @@
 
 #include "../other/template.hpp"
 #include "ModInt.hpp"
-#include "EulerPhi.hpp"
+#include "num/EulerPhi.hpp"
 
 ll tetration(ll a, ll b, ll m) {
     assert(m >= 1);

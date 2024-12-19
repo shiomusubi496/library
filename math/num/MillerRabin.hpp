@@ -41,5 +41,5 @@ template<ull n> constexpr bool is_prime_v = is_prime_mr(n);
 
 /**
  * @brief MillerRabin(ミラーラビン素数判定)
- * @docs docs/math/MillerRabin.md
+ * @docs docs/math/num/MillerRabin.md
  */

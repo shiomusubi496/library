@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../other/template.hpp"
-#include "PrimeFactor.hpp"
+#include "num/PrimeFactor.hpp"
 
 // 1/a[i]   O(n + log p)
 template<class T> std::vector<T> inv_enumerate(std::vector<T> a) {
