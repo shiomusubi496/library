@@ -36,6 +36,21 @@ data:
     path: graph/tree/TreeHash.hpp
     title: TreeHash
   - icon: ':heavy_check_mark:'
+    path: math/TetrationMod.hpp
+    title: TetrationMod
+  - icon: ':heavy_check_mark:'
+    path: math/num/EulerPhi.hpp
+    title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
+  - icon: ':heavy_check_mark:'
+    path: math/num/PollardRho.hpp
+    title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
+  - icon: ':heavy_check_mark:'
+    path: math/num/PrimitiveRoot.hpp
+    title: "PrimitiveRoot(\u539F\u59CB\u6839)"
+  - icon: ':heavy_check_mark:'
+    path: math/num/TwoSquareSum.hpp
+    title: math/num/TwoSquareSum.hpp
+  - icon: ':heavy_check_mark:'
     path: string/RollingHash.hpp
     title: "RollingHash(\u30ED\u30EA\u30CF)"
   - icon: ':heavy_check_mark:'
@@ -45,6 +60,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
     title: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/NTL/NTL_1_D-Phi.test.cpp
+    title: test/aoj/NTL/NTL_1_D-Phi.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/two_square_sum.test.cpp
+    title: test/yosupo/new/two_square_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/number_theory/factorize.test.cpp
+    title: test/yosupo/number_theory/factorize.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/number_theory/primitive_root.test.cpp
+    title: test/yosupo/number_theory/primitive_root.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/number_theory/tetration_mod.test.cpp
+    title: test/yosupo/number_theory/tetration_mod.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/string/wildcard_pattern_matching.test.cpp
     title: test/yosupo/string/wildcard_pattern_matching.test.cpp
@@ -536,13 +566,23 @@ data:
   requiredBy:
   - string/WildcardPatternMatching.hpp
   - string/RollingHash.hpp
+  - math/num/PollardRho.hpp
+  - math/num/PrimitiveRoot.hpp
+  - math/num/EulerPhi.hpp
+  - math/num/TwoSquareSum.hpp
+  - math/TetrationMod.hpp
   - data-struct/other/SkipList.hpp
   - graph/tree/TreeHash.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/string/wildcard_pattern_matching.test.cpp
+  - test/yosupo/number_theory/tetration_mod.test.cpp
+  - test/yosupo/number_theory/primitive_root.test.cpp
+  - test/yosupo/number_theory/factorize.test.cpp
+  - test/yosupo/new/two_square_sum.test.cpp
   - test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
+  - test/aoj/NTL/NTL_1_D-Phi.test.cpp
   - test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
 documentation_of: random/Random.hpp
 layout: document

@@ -30,6 +30,9 @@ data:
     title: template/util.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: math/ExpPolySum.hpp
+    title: ExpPolySum($\sum_{i=0}^{\infty}r^ii^d$)
+  - icon: ':heavy_check_mark:'
     path: math/Factorial.hpp
     title: "Factorial(\u968E\u4E57)"
   - icon: ':heavy_check_mark:'
@@ -42,6 +45,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/SubsetSum.hpp
     title: SubsetSum
+  - icon: ':heavy_check_mark:'
+    path: math/TetrationMod.hpp
+    title: TetrationMod
+  - icon: ':heavy_check_mark:'
+    path: math/num/EulerPhi.hpp
+    title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
+  - icon: ':heavy_check_mark:'
+    path: math/num/MillerRabin.hpp
+    title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
+      )"
+  - icon: ':heavy_check_mark:'
+    path: math/num/PollardRho.hpp
+    title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
+  - icon: ':heavy_check_mark:'
+    path: math/num/PrimitiveRoot.hpp
+    title: "PrimitiveRoot(\u539F\u59CB\u6839)"
+  - icon: ':heavy_check_mark:'
+    path: math/num/TwoSquareSum.hpp
+    title: math/num/TwoSquareSum.hpp
   - icon: ':heavy_check_mark:'
     path: math/poly/BostanMori.hpp
     title: "Bostan-Mori(\u7DDA\u5F62\u6F38\u5316\u5F0F\u306En\u9805\u76EE)"
@@ -69,6 +91,9 @@ data:
     path: test/aoj/DPL/DPL_5_G.test.cpp
     title: test/aoj/DPL/DPL_5_G.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/NTL/NTL_1_D-Phi.test.cpp
+    title: test/aoj/NTL/NTL_1_D-Phi.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/enumerative_combinatorics/factorial.test.cpp
     title: test/yosupo/enumerative_combinatorics/factorial.test.cpp
   - icon: ':heavy_check_mark:'
@@ -90,14 +115,35 @@ data:
     path: test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind_fixed_k.test.cpp
     title: test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind_fixed_k.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/two_square_sum.test.cpp
+    title: test/yosupo/new/two_square_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/bernoulli_number.test.cpp
     title: test/yosupo/number_theory/bernoulli_number.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/number_theory/factorize.test.cpp
+    title: test/yosupo/number_theory/factorize.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/number_theory/primality_test.test.cpp
+    title: test/yosupo/number_theory/primality_test.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/number_theory/primitive_root.test.cpp
+    title: test/yosupo/number_theory/primitive_root.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/sqrt_mod.test.cpp
     title: test/yosupo/number_theory/sqrt_mod.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/number_theory/tetration_mod.test.cpp
+    title: test/yosupo/number_theory/tetration_mod.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/other/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/yosupo/other/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp
+    title: test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
+    title: test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/composition_of_formal_power_series.test.cpp
     title: test/yosupo/polynomial/composition_of_formal_power_series.test.cpp
@@ -161,6 +207,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
     title: test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yuki/3030-MRPrime.test.cpp
+    title: test/yuki/3030-MRPrime.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -736,11 +785,20 @@ data:
   - math/poly/SparseFormalPowerSeries.hpp
   - math/poly/FormalPowerSeries.hpp
   - math/SqrtMod.hpp
+  - math/ExpPolySum.hpp
   - math/StirlingNumber.hpp
+  - math/num/PollardRho.hpp
+  - math/num/MillerRabin.hpp
+  - math/num/PrimitiveRoot.hpp
+  - math/num/EulerPhi.hpp
+  - math/num/TwoSquareSum.hpp
+  - math/TetrationMod.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/other/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp
+  - test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
   - test/yosupo/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
   - test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
   - test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind_fixed_k.test.cpp
@@ -748,8 +806,13 @@ data:
   - test/yosupo/enumerative_combinatorics/factorial.test.cpp
   - test/yosupo/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
   - test/yosupo/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
+  - test/yosupo/number_theory/tetration_mod.test.cpp
   - test/yosupo/number_theory/sqrt_mod.test.cpp
   - test/yosupo/number_theory/bernoulli_number.test.cpp
+  - test/yosupo/number_theory/primitive_root.test.cpp
+  - test/yosupo/number_theory/factorize.test.cpp
+  - test/yosupo/number_theory/primality_test.test.cpp
+  - test/yosupo/new/two_square_sum.test.cpp
   - test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
   - test/yosupo/polynomial/log_of_formal_power_series.test.cpp
   - test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
@@ -771,7 +834,9 @@ data:
   - test/yosupo/polynomial/exp_of_formal_power_series.test.cpp
   - test/yosupo/polynomial/inv_of_formal_power_series_sparse.test.cpp
   - test/yosupo/polynomial/division_of_polynomials.test.cpp
+  - test/aoj/NTL/NTL_1_D-Phi.test.cpp
   - test/aoj/DPL/DPL_5_G.test.cpp
+  - test/yuki/3030-MRPrime.test.cpp
 documentation_of: math/MontgomeryModInt.hpp
 layout: document
 redirect_from:

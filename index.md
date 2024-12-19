@@ -392,7 +392,7 @@ data:
       path: graph/tree/EulerTourSubtree.hpp
       title: "EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\
         \u6728\u30AF\u30A8\u30EA)"
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree/FrequencyTableofTreeDistance.hpp
       title: Frequency Table of Tree Distance
     - icon: ':heavy_check_mark:'
@@ -433,10 +433,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/Combinatorics.hpp
       title: Combinatorics
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/DiscreteLogarithm.hpp
       title: "Discrete Logarithm(\u96E2\u6563\u5BFE\u6570)"
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/ExpPolySum.hpp
       title: ExpPolySum($\sum_{i=0}^{\infty}r^ii^d$)
     - icon: ':heavy_check_mark:'
@@ -463,7 +463,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/NimProduct.hpp
       title: math/NimProduct.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/PowEnumerate.hpp
       title: PowEnumerate
     - icon: ':heavy_check_mark:'
@@ -485,7 +485,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/SubsetSum.hpp
       title: SubsetSum
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/TetrationMod.hpp
       title: TetrationMod
   - name: math/convolution
@@ -556,35 +556,35 @@ data:
       title: "Matrix(\u884C\u5217)"
   - name: math/num
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/num/ChineseRemainder.hpp
       title: "Chinese Remainder(\u4E2D\u56FD\u5270\u4F59\u5B9A\u7406)"
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/num/Divisors.hpp
       title: "Divisors(\u7D04\u6570\u5217\u6319)"
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/num/EnumerateQuotients.hpp
       title: "Enumerate Quotients(\u5546\u5217\u6319)"
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/num/EulerPhi.hpp
       title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/num/KthRoot.hpp
       title: "KthRoot(k\u4E57\u6839)"
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/num/MillerRabin.hpp
       title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
         )"
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/num/PollardRho.hpp
       title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/num/PrimeFactor.hpp
       title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/num/PrimitiveRoot.hpp
       title: "PrimitiveRoot(\u539F\u59CB\u6839)"
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/num/TwoSquareSum.hpp
       title: math/num/TwoSquareSum.hpp
   - name: math/poly
@@ -722,7 +722,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1/ALDS1_1_B-GCD.test.cpp
       title: test/aoj/ALDS1/ALDS1_1_B-GCD.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp
       title: test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp
     - icon: ':heavy_check_mark:'
@@ -921,7 +921,7 @@ data:
       title: test/aoj/GRL/GRL_5_E-HLD.test.cpp
   - name: test/aoj/ITP1
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp
       title: test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp
   - name: test/aoj/NTL
@@ -935,7 +935,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/NTL/NTL_1_C-LCM.test.cpp
       title: test/aoj/NTL/NTL_1_C-LCM.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/NTL/NTL_1_D-Phi.test.cpp
       title: test/aoj/NTL/NTL_1_D-Phi.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1298,7 +1298,7 @@ data:
       title: test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
   - name: test/yosupo/new
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/new/two_square_sum.test.cpp
       title: test/yosupo/new/two_square_sum.test.cpp
   - name: test/yosupo/number_theory
@@ -1306,22 +1306,22 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/number_theory/bernoulli_number.test.cpp
       title: test/yosupo/number_theory/bernoulli_number.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/number_theory/discrete_logarithm_mod.test.cpp
       title: test/yosupo/number_theory/discrete_logarithm_mod.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/number_theory/enumerate_primes.test.cpp
       title: test/yosupo/number_theory/enumerate_primes.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/number_theory/enumerate_quotients.test.cpp
       title: test/yosupo/number_theory/enumerate_quotients.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/number_theory/factorize.test.cpp
       title: test/yosupo/number_theory/factorize.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/number_theory/gcd_of_gaussian_integers.test.cpp
       title: test/yosupo/number_theory/gcd_of_gaussian_integers.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/number_theory/kth_root_integer.test.cpp
       title: test/yosupo/number_theory/kth_root_integer.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1330,10 +1330,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/number_theory/nim_product_64.test.cpp
       title: test/yosupo/number_theory/nim_product_64.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/number_theory/primality_test.test.cpp
       title: test/yosupo/number_theory/primality_test.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/number_theory/primitive_root.test.cpp
       title: test/yosupo/number_theory/primitive_root.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1348,7 +1348,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/number_theory/sum_of_floor_of_linear.test.cpp
       title: test/yosupo/number_theory/sum_of_floor_of_linear.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/number_theory/tetration_mod.test.cpp
       title: test/yosupo/number_theory/tetration_mod.test.cpp
   - name: test/yosupo/other
@@ -1359,10 +1359,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/other/longest_increasing_subsequence.test.cpp
       title: test/yosupo/other/longest_increasing_subsequence.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp
       title: test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
       title: test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1472,7 +1472,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/tree/common_interval_decomposition_tree.test.cpp
       title: test/yosupo/tree/common_interval_decomposition_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
       title: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1537,13 +1537,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yuki/2713-PSP.test.cpp
       title: test/yuki/2713-PSP.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yuki/3030-MRPrime.test.cpp
       title: test/yuki/3030-MRPrime.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yuki/447-CRT.test.cpp
       title: test/yuki/447-CRT.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yuki/448-Garner.test.cpp
       title: test/yuki/448-Garner.test.cpp
     - icon: ':heavy_check_mark:'

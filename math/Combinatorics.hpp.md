@@ -36,6 +36,9 @@ data:
     path: graph/other/CountEulerianCircuit.hpp
     title: CountEulerianCircuit(BEST Theorem)
   - icon: ':heavy_check_mark:'
+    path: math/ExpPolySum.hpp
+    title: ExpPolySum($\sum_{i=0}^{\infty}r^ii^d$)
+  - icon: ':heavy_check_mark:'
     path: math/Factorial.hpp
     title: "Factorial(\u968E\u4E57)"
   - icon: ':heavy_check_mark:'
@@ -119,6 +122,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/other/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/yosupo/other/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp
+    title: test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
+    title: test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/composition_of_formal_power_series.test.cpp
     title: test/yosupo/polynomial/composition_of_formal_power_series.test.cpp
@@ -788,12 +797,15 @@ data:
   - math/poly/PolynomialInterpolation.hpp
   - math/poly/SparseFormalPowerSeries.hpp
   - math/poly/FormalPowerSeries.hpp
+  - math/ExpPolySum.hpp
   - math/StirlingNumber.hpp
   - graph/other/CountEulerianCircuit.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/other/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp
+  - test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
   - test/yosupo/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
   - test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
   - test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind_fixed_k.test.cpp

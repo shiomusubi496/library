@@ -28,8 +28,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: math/num/TwoSquareSum.hpp
+    title: math/num/TwoSquareSum.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/two_square_sum.test.cpp
+    title: test/yosupo/new/two_square_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/gcd_of_gaussian_integers.test.cpp
     title: test/yosupo/number_theory/gcd_of_gaussian_integers.test.cpp
@@ -531,11 +537,13 @@ data:
   - template/util.hpp
   isVerificationFile: false
   path: math/GaussianInteger.hpp
-  requiredBy: []
+  requiredBy:
+  - math/num/TwoSquareSum.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/number_theory/gcd_of_gaussian_integers.test.cpp
+  - test/yosupo/new/two_square_sum.test.cpp
 documentation_of: math/GaussianInteger.hpp
 layout: document
 redirect_from:

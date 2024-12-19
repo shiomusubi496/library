@@ -32,6 +32,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/ArbitraryModCombinatorics.hpp
     title: "ArbitraryModCombinatorics(\u4EFB\u610FmodCombination)"
+  - icon: ':heavy_check_mark:'
+    path: math/DiscreteLogarithm.hpp
+    title: "Discrete Logarithm(\u96E2\u6563\u5BFE\u6570)"
   - icon: ':warning:'
     path: math/SmallModStirlingNumber.hpp
     title: SmallModStirlingNumber
@@ -45,6 +48,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/matrix_det_arbitrary_mod.test.cpp
     title: test/yosupo/linear_algebra/matrix_det_arbitrary_mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/number_theory/discrete_logarithm_mod.test.cpp
+    title: test/yosupo/number_theory/discrete_logarithm_mod.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -579,11 +585,13 @@ data:
   requiredBy:
   - math/ArbitraryModCombinatorics.hpp
   - math/SmallModStirlingNumber.hpp
+  - math/DiscreteLogarithm.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/enumerative_combinatorics/binomial_coefficient_prime_mod.test.cpp
   - test/yosupo/enumerative_combinatorics/binomial_coefficient.test.cpp
+  - test/yosupo/number_theory/discrete_logarithm_mod.test.cpp
   - test/yosupo/linear_algebra/matrix_det_arbitrary_mod.test.cpp
 documentation_of: math/BarrettReduction.hpp
 layout: document

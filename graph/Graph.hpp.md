@@ -143,6 +143,9 @@ data:
     title: "EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\
       \u6728\u30AF\u30A8\u30EA)"
   - icon: ':heavy_check_mark:'
+    path: graph/tree/FrequencyTableofTreeDistance.hpp
+    title: Frequency Table of Tree Distance
+  - icon: ':heavy_check_mark:'
     path: graph/tree/HeavyLightDecomposition.hpp
     title: "HeavyLightDecomposition(HL\u5206\u89E3)"
   - icon: ':heavy_check_mark:'
@@ -317,6 +320,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/common_interval_decomposition_tree.test.cpp
     title: test/yosupo/tree/common_interval_decomposition_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
+    title: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/jump_on_tree.test.cpp
     title: test/yosupo/tree/jump_on_tree.test.cpp
@@ -884,6 +890,7 @@ data:
   - graph/tree/HeavyLightDecomposition.hpp
   - graph/tree/TreeDiameter.hpp
   - graph/tree/TreeCentroid.hpp
+  - graph/tree/FrequencyTableofTreeDistance.hpp
   - graph/tree/DoublingLowestCommonAncestor.hpp
   - graph/tree/EulerTour.hpp
   - graph/tree/ReRooting.hpp
@@ -914,6 +921,7 @@ data:
   - test/yosupo/tree/vertex_add_subtree_sum-HLD.test.cpp
   - test/yosupo/tree/jump_on_tree.test.cpp
   - test/yosupo/tree/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
+  - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
   - test/yosupo/tree/vertex_get_range_contour_add_on_tree.test.cpp
   - test/yosupo/tree/vertex_set_path_composite.test.cpp
   - test/yosupo/tree/cartesian_tree.test.cpp

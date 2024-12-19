@@ -35,12 +35,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/other/CountEulerianCircuit.hpp
     title: CountEulerianCircuit(BEST Theorem)
+  - icon: ':heavy_check_mark:'
+    path: graph/tree/FrequencyTableofTreeDistance.hpp
+    title: Frequency Table of Tree Distance
   - icon: ':warning:'
     path: math/BigInteger.hpp
     title: math/BigInteger.hpp
   - icon: ':heavy_check_mark:'
     path: math/Combinatorics.hpp
     title: Combinatorics
+  - icon: ':heavy_check_mark:'
+    path: math/ExpPolySum.hpp
+    title: ExpPolySum($\sum_{i=0}^{\infty}r^ii^d$)
   - icon: ':heavy_check_mark:'
     path: math/Factorial.hpp
     title: "Factorial(\u968E\u4E57)"
@@ -54,6 +60,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/SubsetSum.hpp
     title: SubsetSum
+  - icon: ':heavy_check_mark:'
+    path: math/TetrationMod.hpp
+    title: TetrationMod
   - icon: ':heavy_check_mark:'
     path: math/convolution/Convolution.hpp
     title: "Convolution(\u7573\u307F\u8FBC\u307F)"
@@ -76,6 +85,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/matrix/Matrix.hpp
     title: "Matrix(\u884C\u5217)"
+  - icon: ':heavy_check_mark:'
+    path: math/num/PrimitiveRoot.hpp
+    title: "PrimitiveRoot(\u539F\u59CB\u6839)"
   - icon: ':heavy_check_mark:'
     path: math/poly/BostanMori.hpp
     title: "Bostan-Mori(\u7DDA\u5F62\u6F38\u5316\u5F0F\u306En\u9805\u76EE)"
@@ -268,8 +280,20 @@ data:
     path: test/yosupo/number_theory/bernoulli_number.test.cpp
     title: test/yosupo/number_theory/bernoulli_number.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/number_theory/primitive_root.test.cpp
+    title: test/yosupo/number_theory/primitive_root.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/number_theory/tetration_mod.test.cpp
+    title: test/yosupo/number_theory/tetration_mod.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/other/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/yosupo/other/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp
+    title: test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
+    title: test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/composition_of_formal_power_series.test.cpp
     title: test/yosupo/polynomial/composition_of_formal_power_series.test.cpp
@@ -336,6 +360,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/string/wildcard_pattern_matching.test.cpp
     title: test/yosupo/string/wildcard_pattern_matching.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
+    title: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/tree_path_composite_sum.test.cpp
     title: test/yosupo/tree/tree_path_composite_sum.test.cpp
@@ -1029,14 +1056,18 @@ data:
   - math/poly/SparseFormalPowerSeries.hpp
   - math/poly/FormalPowerSeries.hpp
   - math/MontmortNumber.hpp
+  - math/ExpPolySum.hpp
   - math/StirlingNumber.hpp
   - math/BigInteger.hpp
   - math/matrix/Inverse.hpp
   - math/matrix/LinearEquations.hpp
   - math/matrix/Matrix.hpp
   - math/matrix/Determinant.hpp
+  - math/num/PrimitiveRoot.hpp
+  - math/TetrationMod.hpp
   - math/Combinatorics.hpp
   - graph/other/CountEulerianCircuit.hpp
+  - graph/tree/FrequencyTableofTreeDistance.hpp
   - graph/mst/CountSpanningTree.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -1051,6 +1082,8 @@ data:
   - test/yosupo/convolution/subset_convolution.test.cpp
   - test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
   - test/yosupo/other/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp
+  - test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
   - test/yosupo/string/wildcard_pattern_matching.test.cpp
   - test/yosupo/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
   - test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
@@ -1061,7 +1094,9 @@ data:
   - test/yosupo/enumerative_combinatorics/factorial.test.cpp
   - test/yosupo/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
   - test/yosupo/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
+  - test/yosupo/number_theory/tetration_mod.test.cpp
   - test/yosupo/number_theory/bernoulli_number.test.cpp
+  - test/yosupo/number_theory/primitive_root.test.cpp
   - test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
   - test/yosupo/linear_algebra/matrix_rank.test.cpp
   - test/yosupo/linear_algebra/inverse_matrix.test.cpp
@@ -1094,6 +1129,7 @@ data:
   - test/yosupo/polynomial/exp_of_formal_power_series.test.cpp
   - test/yosupo/polynomial/inv_of_formal_power_series_sparse.test.cpp
   - test/yosupo/polynomial/division_of_polynomials.test.cpp
+  - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
   - test/yosupo/tree/vertex_set_path_composite.test.cpp
   - test/yosupo/tree/tree_path_composite_sum.test.cpp
   - test/yosupo/tree/vertex_set_path_composite-HLD.test.cpp
