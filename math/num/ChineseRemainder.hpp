@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../other/template.hpp"
+#include "../../other/template.hpp"
 
 PLL ChineseRemainder(ll b1, ll m1, ll b2, ll m2) {
     const PLL p = extGCD(m1, m2);

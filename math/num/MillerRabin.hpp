@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../other/template.hpp"
-#include "MontgomeryModInt.hpp"
+#include "../../other/template.hpp"
+#include "../MontgomeryModInt.hpp"
 
 constexpr ull base_miller_rabin_int[3] = {2, 7, 61};
 constexpr ull base_miller_rabin_ll[7] = {2,      325,     9375,      28178,

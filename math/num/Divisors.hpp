@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../other/template.hpp"
+#include "../../other/template.hpp"
 
 std::vector<ll> divisors(ll n) {
     std::vector<ll> res1, res2;

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../other/template.hpp"
-#include "num/PollardRho.hpp"
-#include "GaussianInteger.hpp"
+#include "../../other/template.hpp"
+#include "PollardRho.hpp"
+#include "../GaussianInteger.hpp"
 
 std::pair<ll, ll> two_square_sum_prime(ll p) {
     assert(p == 2 || p % 4 == 1);

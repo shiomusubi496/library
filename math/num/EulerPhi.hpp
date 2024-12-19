@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../other/template.hpp"
-#include "num/PollardRho.hpp"
+#include "../../other/template.hpp"
+#include "PollardRho.hpp"
 
 ll euler_phi(ll n) {
     ll res = n;

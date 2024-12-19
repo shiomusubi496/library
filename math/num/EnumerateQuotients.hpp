@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../other/template.hpp"
+#include "../../other/template.hpp"
 
 std::vector<ll> enumerate_quotients(ll n) {
     std::vector<ll> res{1};

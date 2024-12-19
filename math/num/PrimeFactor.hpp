@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../other/template.hpp"
+#include "../../other/template.hpp"
 
 class PrimeFactor {
 private:

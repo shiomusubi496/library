@@ -1,11 +1,11 @@
 #pragma once
 
-#include "../other/template.hpp"
-#include "../random/Random.hpp"
-#include "ModInt.hpp"
-#include "MontgomeryModInt.hpp"
-#include "num/MillerRabin.hpp"
-#include "num/PollardRho.hpp"
+#include "../../other/template.hpp"
+#include "../../random/Random.hpp"
+#include "../ModInt.hpp"
+#include "../MontgomeryModInt.hpp"
+#include "MillerRabin.hpp"
+#include "PollardRho.hpp"
 
 template<class T = MontgomeryModInt<ull, -4>> ull primitive_root(ull p) {
     assert(is_prime_mr(p));

@@ -1,10 +1,10 @@
 #pragma once
 
-#include "../other/template.hpp"
-#include "../random/Random.hpp"
-#include "MontgomeryModInt.hpp"
-#include "num/MillerRabin.hpp"
-#include "../string/RunLength.hpp"
+#include "../../other/template.hpp"
+#include "../../random/Random.hpp"
+#include "../MontgomeryModInt.hpp"
+#include "MillerRabin.hpp"
+#include "../../string/RunLength.hpp"
 
 template<class T, class Rnd> ull pollard_rho(ull n, Rnd& rnd) {
     if (~n & 1) return 2;

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../other/template.hpp"
+#include "../../other/template.hpp"
 
 ull kth_root(ull n, ull k) {
     if (n <= 1 || k == 1) return n;
