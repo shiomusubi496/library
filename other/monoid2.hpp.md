@@ -39,9 +39,6 @@ data:
     path: data-struct/2D/StaticRectangleAddRectangleSum.hpp
     title: data-struct/2D/StaticRectangleAddRectangleSum.hpp
   - icon: ':heavy_check_mark:'
-    path: math/DiscreteLogarithm.hpp
-    title: "Discrete Logarithm(\u96E2\u6563\u5BFE\u6570)"
-  - icon: ':heavy_check_mark:'
     path: math/convolution/BitwiseAndConvolution.hpp
     title: BitwiseAndConvolution
   - icon: ':heavy_check_mark:'
@@ -99,9 +96,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
     title: test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/number_theory/discrete_logarithm_mod.test.cpp
-    title: test/yosupo/number_theory/discrete_logarithm_mod.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/vertex_set_path_composite-HLD.test.cpp
     title: test/yosupo/tree/vertex_set_path_composite-HLD.test.cpp
@@ -687,7 +681,6 @@ data:
   - math/convolution/BitwiseXorConvolution.hpp
   - math/convolution/BitwiseOrConvolution.hpp
   - math/convolution/BitwiseAndConvolution.hpp
-  - math/DiscreteLogarithm.hpp
   - data-struct/2D/StaticRectangleAddRectangleSum.hpp
   - data-struct/2D/AreaofUnionofRectangles.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
@@ -698,7 +691,6 @@ data:
   - test/yosupo/convolution/bitwise_and_convolution.test.cpp
   - test/yosupo/convolution/gcd_convolution.test.cpp
   - test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
-  - test/yosupo/number_theory/discrete_logarithm_mod.test.cpp
   - test/yosupo/tree/vertex_set_path_composite.test.cpp
   - test/yosupo/tree/vertex_set_path_composite-HLD.test.cpp
   - test/yosupo/data_structure/range_set_range_composite.test.cpp

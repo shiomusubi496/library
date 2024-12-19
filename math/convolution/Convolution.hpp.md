@@ -32,15 +32,9 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: graph/tree/FrequencyTableofTreeDistance.hpp
-    title: Frequency Table of Tree Distance
   - icon: ':warning:'
     path: math/BigInteger.hpp
     title: math/BigInteger.hpp
-  - icon: ':heavy_check_mark:'
-    path: math/ExpPolySum.hpp
-    title: ExpPolySum($\sum_{i=0}^{\infty}r^ii^d$)
   - icon: ':heavy_check_mark:'
     path: math/Factorial.hpp
     title: "Factorial(\u968E\u4E57)"
@@ -124,12 +118,6 @@ data:
     path: test/yosupo/other/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/yosupo/other/kth_term_of_linearly_recurrent_sequence.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp
-    title: test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
-    title: test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/composition_of_formal_power_series.test.cpp
     title: test/yosupo/polynomial/composition_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
@@ -195,9 +183,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/string/wildcard_pattern_matching.test.cpp
     title: test/yosupo/string/wildcard_pattern_matching.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
-    title: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -959,10 +944,8 @@ data:
   - math/poly/PolynomialInterpolation.hpp
   - math/poly/SparseFormalPowerSeries.hpp
   - math/poly/FormalPowerSeries.hpp
-  - math/ExpPolySum.hpp
   - math/StirlingNumber.hpp
   - math/BigInteger.hpp
-  - graph/tree/FrequencyTableofTreeDistance.hpp
   timestamp: '2024-12-16 12:15:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -970,8 +953,6 @@ data:
   - test/yosupo/convolution/multivariate_convolution.test.cpp
   - test/yosupo/convolution/convolution_mod_1000000007.test.cpp
   - test/yosupo/other/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp
-  - test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
   - test/yosupo/string/wildcard_pattern_matching.test.cpp
   - test/yosupo/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
   - test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
@@ -1002,7 +983,6 @@ data:
   - test/yosupo/polynomial/exp_of_formal_power_series.test.cpp
   - test/yosupo/polynomial/inv_of_formal_power_series_sparse.test.cpp
   - test/yosupo/polynomial/division_of_polynomials.test.cpp
-  - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
   - test/aoj/DPL/DPL_5_G.test.cpp
 documentation_of: math/convolution/Convolution.hpp
 layout: document

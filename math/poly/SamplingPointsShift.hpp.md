@@ -49,17 +49,8 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: math/ExpPolySum.hpp
-    title: ExpPolySum($\sum_{i=0}^{\infty}r^ii^d$)
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp
-    title: test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
-    title: test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
     title: test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
@@ -1117,13 +1108,10 @@ data:
   - math/poly/TaylorShift.hpp
   isVerificationFile: false
   path: math/poly/SamplingPointsShift.hpp
-  requiredBy:
-  - math/ExpPolySum.hpp
+  requiredBy: []
   timestamp: '2024-12-16 12:15:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp
-  - test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
   - test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
 documentation_of: math/poly/SamplingPointsShift.hpp
 layout: document

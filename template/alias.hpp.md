@@ -359,9 +359,6 @@ data:
     title: "EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\
       \u6728\u30AF\u30A8\u30EA)"
   - icon: ':heavy_check_mark:'
-    path: graph/tree/FrequencyTableofTreeDistance.hpp
-    title: Frequency Table of Tree Distance
-  - icon: ':heavy_check_mark:'
     path: graph/tree/HeavyLightDecomposition.hpp
     title: "HeavyLightDecomposition(HL\u5206\u89E3)"
   - icon: ':heavy_check_mark:'
@@ -395,26 +392,8 @@ data:
     path: math/BigInteger.hpp
     title: math/BigInteger.hpp
   - icon: ':heavy_check_mark:'
-    path: math/ChineseRemainder.hpp
-    title: "Chinese Remainder(\u4E2D\u56FD\u5270\u4F59\u5B9A\u7406)"
-  - icon: ':heavy_check_mark:'
     path: math/Combinatorics.hpp
     title: Combinatorics
-  - icon: ':heavy_check_mark:'
-    path: math/DiscreteLogarithm.hpp
-    title: "Discrete Logarithm(\u96E2\u6563\u5BFE\u6570)"
-  - icon: ':heavy_check_mark:'
-    path: math/Divisor.hpp
-    title: "Divisors(\u7D04\u6570\u5217\u6319)"
-  - icon: ':heavy_check_mark:'
-    path: math/EnumerateQuotients.hpp
-    title: "Enumerate Quotients(\u5546\u5217\u6319)"
-  - icon: ':heavy_check_mark:'
-    path: math/EulerPhi.hpp
-    title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
-  - icon: ':heavy_check_mark:'
-    path: math/ExpPolySum.hpp
-    title: ExpPolySum($\sum_{i=0}^{\infty}r^ii^d$)
   - icon: ':heavy_check_mark:'
     path: math/Factorial.hpp
     title: "Factorial(\u968E\u4E57)"
@@ -425,15 +404,8 @@ data:
     path: math/GaussianInteger.hpp
     title: GaussianInteger
   - icon: ':heavy_check_mark:'
-    path: math/KthRoot.hpp
-    title: "KthRoot(k\u4E57\u6839)"
-  - icon: ':heavy_check_mark:'
     path: math/LinearModMin.hpp
     title: LinearModMin
-  - icon: ':heavy_check_mark:'
-    path: math/MillerRabin.hpp
-    title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
-      )"
   - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
     title: ModInt
@@ -446,18 +418,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/NimProduct.hpp
     title: math/NimProduct.hpp
-  - icon: ':heavy_check_mark:'
-    path: math/PollardRho.hpp
-    title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
-  - icon: ':heavy_check_mark:'
-    path: math/PowEnumerate.hpp
-    title: PowEnumerate
-  - icon: ':heavy_check_mark:'
-    path: math/PrimeFactor.hpp
-    title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
-  - icon: ':heavy_check_mark:'
-    path: math/PrimitiveRoot.hpp
-    title: "PrimitiveRoot(\u539F\u59CB\u6839)"
   - icon: ':heavy_check_mark:'
     path: math/Rational.hpp
     title: "Rational(\u6709\u7406\u6570\u578B)"
@@ -477,12 +437,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/SubsetSum.hpp
     title: SubsetSum
-  - icon: ':heavy_check_mark:'
-    path: math/TetrationMod.hpp
-    title: TetrationMod
-  - icon: ':heavy_check_mark:'
-    path: math/TwoSquareSum.hpp
-    title: math/TwoSquareSum.hpp
   - icon: ':heavy_check_mark:'
     path: math/convolution/BitwiseAndConvolution.hpp
     title: BitwiseAndConvolution
@@ -659,9 +613,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_1_B-GCD.test.cpp
     title: test/aoj/ALDS1/ALDS1_1_B-GCD.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp
-    title: test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_1_C-PrimeSqrt.test.cpp
     title: test/aoj/ALDS1/ALDS1_1_C-PrimeSqrt.test.cpp
@@ -849,9 +800,6 @@ data:
     path: test/aoj/GRL/GRL_5_E-HLD.test.cpp
     title: test/aoj/GRL/GRL_5_E-HLD.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp
-    title: test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/aoj/NTL/NTL_1_A-Prime.test.cpp
     title: test/aoj/NTL/NTL_1_A-Prime.test.cpp
   - icon: ':heavy_check_mark:'
@@ -860,9 +808,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/NTL/NTL_1_C-LCM.test.cpp
     title: test/aoj/NTL/NTL_1_C-LCM.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/NTL/NTL_1_D-Phi.test.cpp
-    title: test/aoj/NTL/NTL_1_D-Phi.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/NTL/NTL_1_E-ExtGCD.test.cpp
     title: test/aoj/NTL/NTL_1_E-ExtGCD.test.cpp
@@ -1206,41 +1151,17 @@ data:
     path: test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
     title: test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/two_square_sum.test.cpp
-    title: test/yosupo/new/two_square_sum.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/bernoulli_number.test.cpp
     title: test/yosupo/number_theory/bernoulli_number.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/number_theory/discrete_logarithm_mod.test.cpp
-    title: test/yosupo/number_theory/discrete_logarithm_mod.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/number_theory/enumerate_primes.test.cpp
-    title: test/yosupo/number_theory/enumerate_primes.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/number_theory/enumerate_quotients.test.cpp
-    title: test/yosupo/number_theory/enumerate_quotients.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/number_theory/factorize.test.cpp
-    title: test/yosupo/number_theory/factorize.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/gcd_of_gaussian_integers.test.cpp
     title: test/yosupo/number_theory/gcd_of_gaussian_integers.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/number_theory/kth_root_integer.test.cpp
-    title: test/yosupo/number_theory/kth_root_integer.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/min_of_mod_of_linear.test.cpp
     title: test/yosupo/number_theory/min_of_mod_of_linear.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/nim_product_64.test.cpp
     title: test/yosupo/number_theory/nim_product_64.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/number_theory/primality_test.test.cpp
-    title: test/yosupo/number_theory/primality_test.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/number_theory/primitive_root.test.cpp
-    title: test/yosupo/number_theory/primitive_root.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/rational_approximation.test.cpp
     title: test/yosupo/number_theory/rational_approximation.test.cpp
@@ -1254,20 +1175,11 @@ data:
     path: test/yosupo/number_theory/sum_of_floor_of_linear.test.cpp
     title: test/yosupo/number_theory/sum_of_floor_of_linear.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/number_theory/tetration_mod.test.cpp
-    title: test/yosupo/number_theory/tetration_mod.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yosupo/other/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/yosupo/other/kth_term_of_linearly_recurrent_sequence.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/other/longest_increasing_subsequence.test.cpp
     title: test/yosupo/other/longest_increasing_subsequence.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp
-    title: test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
-    title: test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/other/two_sat.test.cpp
     title: test/yosupo/other/two_sat.test.cpp
@@ -1368,9 +1280,6 @@ data:
     path: test/yosupo/tree/common_interval_decomposition_tree.test.cpp
     title: test/yosupo/tree/common_interval_decomposition_tree.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
-    title: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/jump_on_tree.test.cpp
     title: test/yosupo/tree/jump_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1430,15 +1339,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki/2713-PSP.test.cpp
     title: test/yuki/2713-PSP.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yuki/3030-MRPrime.test.cpp
-    title: test/yuki/3030-MRPrime.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yuki/447-CRT.test.cpp
-    title: test/yuki/447-CRT.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yuki/448-Garner.test.cpp
-    title: test/yuki/448-Garner.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yuki/705-Monge.test.cpp
     title: test/yuki/705-Monge.test.cpp
@@ -1514,11 +1414,7 @@ data:
   - math/convolution/MinPlusConvolution.hpp
   - math/NimProduct.hpp
   - math/Rational.hpp
-  - math/Divisor.hpp
   - math/Factorial.hpp
-  - math/KthRoot.hpp
-  - math/PollardRho.hpp
-  - math/MillerRabin.hpp
   - math/SubsetSum.hpp
   - math/poly/SamplingPointsShift.hpp
   - math/poly/MultipointEvaluation.hpp
@@ -1532,28 +1428,18 @@ data:
   - math/LinearModMin.hpp
   - math/SqrtMod.hpp
   - math/ArbitraryModCombinatorics.hpp
-  - math/PowEnumerate.hpp
-  - math/ExpPolySum.hpp
-  - math/EnumerateQuotients.hpp
   - math/GaussianInteger.hpp
-  - math/PrimitiveRoot.hpp
   - math/StirlingNumber.hpp
-  - math/EulerPhi.hpp
-  - math/PrimeFactor.hpp
-  - math/TwoSquareSum.hpp
   - math/BigInteger.hpp
   - math/matrix/Inverse.hpp
   - math/matrix/LinearEquations.hpp
   - math/matrix/Matrix.hpp
   - math/matrix/Determinant.hpp
   - math/SternBrocotTree.hpp
-  - math/ChineseRemainder.hpp
   - math/SmallModStirlingNumber.hpp
   - math/BarrettReduction.hpp
-  - math/TetrationMod.hpp
   - math/FloorSum.hpp
   - math/ModInt.hpp
-  - math/DiscreteLogarithm.hpp
   - math/Combinatorics.hpp
   - dp/AlienDP.hpp
   - dp/MonotoneMinima.hpp
@@ -1650,7 +1536,6 @@ data:
   - graph/tree/HeavyLightDecomposition.hpp
   - graph/tree/TreeDiameter.hpp
   - graph/tree/TreeCentroid.hpp
-  - graph/tree/FrequencyTableofTreeDistance.hpp
   - graph/tree/DoublingLowestCommonAncestor.hpp
   - graph/tree/EulerTour.hpp
   - graph/tree/ReRooting.hpp
@@ -1699,8 +1584,6 @@ data:
   - test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
   - test/yosupo/other/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/yosupo/other/two_sat.test.cpp
-  - test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp
-  - test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
   - test/yosupo/other/longest_increasing_subsequence.test.cpp
   - test/yosupo/string/zalgorithm.test.cpp
   - test/yosupo/string/wildcard_pattern_matching.test.cpp
@@ -1718,23 +1601,14 @@ data:
   - test/yosupo/enumerative_combinatorics/factorial.test.cpp
   - test/yosupo/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
   - test/yosupo/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
-  - test/yosupo/number_theory/tetration_mod.test.cpp
-  - test/yosupo/number_theory/enumerate_primes.test.cpp
   - test/yosupo/number_theory/sqrt_mod.test.cpp
   - test/yosupo/number_theory/bernoulli_number.test.cpp
   - test/yosupo/number_theory/min_of_mod_of_linear.test.cpp
-  - test/yosupo/number_theory/primitive_root.test.cpp
   - test/yosupo/number_theory/sum_of_floor_of_linear.test.cpp
-  - test/yosupo/number_theory/kth_root_integer.test.cpp
-  - test/yosupo/number_theory/factorize.test.cpp
-  - test/yosupo/number_theory/enumerate_quotients.test.cpp
   - test/yosupo/number_theory/nim_product_64.test.cpp
   - test/yosupo/number_theory/stern_brocot_tree.test.cpp
-  - test/yosupo/number_theory/primality_test.test.cpp
   - test/yosupo/number_theory/rational_approximation.test.cpp
-  - test/yosupo/number_theory/discrete_logarithm_mod.test.cpp
   - test/yosupo/number_theory/gcd_of_gaussian_integers.test.cpp
-  - test/yosupo/new/two_square_sum.test.cpp
   - test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
   - test/yosupo/linear_algebra/matrix_rank.test.cpp
   - test/yosupo/linear_algebra/inverse_matrix.test.cpp
@@ -1775,7 +1649,6 @@ data:
   - test/yosupo/tree/vertex_add_subtree_sum-HLD.test.cpp
   - test/yosupo/tree/jump_on_tree.test.cpp
   - test/yosupo/tree/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
-  - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
   - test/yosupo/tree/vertex_get_range_contour_add_on_tree.test.cpp
   - test/yosupo/tree/vertex_set_path_composite.test.cpp
   - test/yosupo/tree/cartesian_tree.test.cpp
@@ -1890,7 +1763,6 @@ data:
   - test/aoj/CGL/CGL_2_B-intersect.test.cpp
   - test/aoj/CGL/CGL_4_B-diameter.test.cpp
   - test/aoj/CGL/CGL_7_D-intersection.test.cpp
-  - test/aoj/NTL/NTL_1_D-Phi.test.cpp
   - test/aoj/NTL/NTL_1_E-ExtGCD.test.cpp
   - test/aoj/NTL/NTL_1_B-Pow.test.cpp
   - test/aoj/NTL/NTL_1_C-LCM.test.cpp
@@ -1901,7 +1773,6 @@ data:
   - test/aoj/ALDS1/ALDS1_1_C-PrimeSqrt.test.cpp
   - test/aoj/ALDS1/ALDS1_1_B-GCD.test.cpp
   - test/aoj/ALDS1/ALDS1_15_B.test.cpp
-  - test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp
   - test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
   - test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
   - test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
@@ -1933,7 +1804,6 @@ data:
   - test/aoj/DPL/DPL_5_F.test.cpp
   - test/aoj/DPL/DPL_5_E.test.cpp
   - test/aoj/DPL/DPL_5_B.test.cpp
-  - test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp
   - test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
   - test/aoj/DSL/DSL_1_A-UF.test.cpp
   - test/aoj/DSL/DSL_2_A-RMQ.test.cpp
@@ -1948,14 +1818,11 @@ data:
   - test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
   - test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
   - test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
-  - test/yuki/3030-MRPrime.test.cpp
   - test/yuki/2713-PSP.test.cpp
-  - test/yuki/447-CRT.test.cpp
   - test/yuki/855_DynamicSegTree.test.cpp
   - test/yuki/119-KPSP.test.cpp
   - test/yuki/705-Monge.test.cpp
   - test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
-  - test/yuki/448-Garner.test.cpp
   - test/yuki/1601-RangeSet.test.cpp
   - test/yuki/1469-RunLength.test.cpp
   - test/yuki/1435_SegTree-BinarySearch.test.cpp

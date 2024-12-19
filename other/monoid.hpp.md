@@ -158,9 +158,6 @@ data:
     path: graph/tree/TreeHash.hpp
     title: TreeHash
   - icon: ':heavy_check_mark:'
-    path: math/DiscreteLogarithm.hpp
-    title: "Discrete Logarithm(\u96E2\u6563\u5BFE\u6570)"
-  - icon: ':heavy_check_mark:'
     path: math/convolution/BitwiseAndConvolution.hpp
     title: BitwiseAndConvolution
   - icon: ':heavy_check_mark:'
@@ -344,9 +341,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/directedmst.test.cpp
     title: test/yosupo/graph/directedmst.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/number_theory/discrete_logarithm_mod.test.cpp
-    title: test/yosupo/number_theory/discrete_logarithm_mod.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/common_interval_decomposition_tree.test.cpp
     title: test/yosupo/tree/common_interval_decomposition_tree.test.cpp
@@ -994,7 +988,6 @@ data:
   - math/convolution/BitwiseXorConvolution.hpp
   - math/convolution/BitwiseOrConvolution.hpp
   - math/convolution/BitwiseAndConvolution.hpp
-  - math/DiscreteLogarithm.hpp
   - data-struct/other/SlidingWindowAggregation.hpp
   - data-struct/other/SkipList.hpp
   - data-struct/other/DequeOperateAggregation.hpp
@@ -1045,7 +1038,6 @@ data:
   - test/yosupo/convolution/bitwise_and_convolution.test.cpp
   - test/yosupo/convolution/gcd_convolution.test.cpp
   - test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
-  - test/yosupo/number_theory/discrete_logarithm_mod.test.cpp
   - test/yosupo/tree/vertex_add_subtree_sum.test.cpp
   - test/yosupo/tree/vertex_add_subtree_sum-2.test.cpp
   - test/yosupo/tree/vertex_add_subtree_sum-HLD.test.cpp

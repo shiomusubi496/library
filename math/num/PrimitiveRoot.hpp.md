@@ -7,8 +7,8 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    _deprecated_at_docs: docs/math/TetrationMod.md
-    document_title: TetrationMod
+    _deprecated_at_docs: docs/math/num/PrimitiveRoot.md
+    document_title: "PrimitiveRoot(\u539F\u59CB\u6839)"
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
@@ -17,38 +17,39 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
     , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \  File \"/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n \
     \ File \"/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
     )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ../other/template.hpp:\
     \ line -1: no such header\n"
-  code: "#pragma once\n\n#include \"../other/template.hpp\"\n#include \"ModInt.hpp\"\
-    \n#include \"num/EulerPhi.hpp\"\n\nll tetration(ll a, ll b, ll m) {\n    assert(m\
-    \ >= 1);\n    if (m == 1) return 0;\n    if (a == 0) return (b & 1) ^ 1;\n   \
-    \ if (b == 0) return 1;\n    if (b == 1) return a % m;\n    if (b == 2) return\
-    \ mod_pow(a, a, m);\n    ll phi = euler_phi(m);\n    ll x = tetration(a, b - 1,\
-    \ phi);\n    if (x == 0) x += phi;\n    return mod_pow(a, x, m);\n}\n\n/**\n *\
-    \ @brief TetrationMod\n * @docs docs/math/TetrationMod.md\n */\n"
+  code: "#pragma once\n\n#include \"../other/template.hpp\"\n#include \"../random/Random.hpp\"\
+    \n#include \"ModInt.hpp\"\n#include \"MontgomeryModInt.hpp\"\n#include \"num/MillerRabin.hpp\"\
+    \n#include \"num/PollardRho.hpp\"\n\ntemplate<class T = MontgomeryModInt<ull,\
+    \ -4>> ull primitive_root(ull p) {\n    assert(is_prime_mr(p));\n    if (p ==\
+    \ 2) return 1;\n    if (T::get_mod() != p) T::set_mod(p);\n    auto pf = factorize(p\
+    \ - 1);\n    pf.erase(std::unique(all(pf)), pf.end());\n    for (auto&& x : pf)\
+    \ x = (p - 1) / x;\n    T one = 1;\n    while (1) {\n        ull g = rand64.uniform(2ull,\
+    \ p - 1);\n        bool ok = true;\n        for (const auto& x : pf) {\n     \
+    \       if (T(g).pow(x) == one) {\n                ok = false;\n             \
+    \   break;\n            }\n        }\n        if (ok) return g;\n    }\n}\n\n\
+    /**\n * @brief PrimitiveRoot(\u539F\u59CB\u6839)\n * @docs docs/math/num/PrimitiveRoot.md\n\
+    \ */\n"
   dependsOn: []
   isVerificationFile: false
-  path: math/TetrationMod.hpp
+  path: math/num/PrimitiveRoot.hpp
   requiredBy: []
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: math/TetrationMod.hpp
+documentation_of: math/num/PrimitiveRoot.hpp
 layout: document
 redirect_from:
-- /library/math/TetrationMod.hpp
-- /library/math/TetrationMod.hpp.html
-title: TetrationMod
+- /library/math/num/PrimitiveRoot.hpp
+- /library/math/num/PrimitiveRoot.hpp.html
+title: "PrimitiveRoot(\u539F\u59CB\u6839)"
 ---
 ## 概要
 
-$a \uparrow \uparrow b = a^{a^{a^{\cdots}}}$ $(b\ \text{個})$ を $\mod m$ で求める。ただし $0^0=1$ としている。
+素数 $p$ に対し、 $\mod p$ における原始根、つまり $p-1$ 乗して始めて $1$ になる数を求める確率的アルゴリズム。
 
-内部で Euler の phi 関数を用いており、前計算なしだと $\Theta(\sqrt m)$ 時間かかる。
-
-- `ll tetration_mod(ll a, ll b, ll m)` : $\Theta(\sqrt m)$ 。
+- `ull primitive_root(ull n)` : `n` の原始根を求める。 $O(\sqrt[4]{n})$ 。
