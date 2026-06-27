@@ -11,7 +11,9 @@ private:
 
 public:
     EnumerateUnionFind() : EnumerateUnionFind(0) {}
-    EnumerateUnionFind(int n) : n(n), link(n, -1), uf(n) {}
+    EnumerateUnionFind(int n) : n(n), link(n, -1), uf(n) {
+        rep (i, n) link[i] = i;
+    }
     int find(int x) { return uf.find(x); }
     std::pair<int, int> merge(int x, int y) {
         auto res = uf.merge(x, y);

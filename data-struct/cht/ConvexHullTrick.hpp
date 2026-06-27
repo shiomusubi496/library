@@ -84,7 +84,7 @@ public:
         return l.a * x + l.b;
     }
     bool empty() const { return st.empty(); }
-    auto get_set() const { return st; }
+    const std::set<Line>& get_set() const& { return st; }
 };
 
 /**

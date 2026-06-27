@@ -10,6 +10,7 @@ class TreeHash {
 private:
     static constexpr ull MASK31 = (1ull << 31) - 1;
     using mint = modint61;
+    // Random32 rand32;
     std::vector<mint> base;
     void init(int n) {
         int m = base.size();
@@ -51,6 +52,7 @@ private:
     }
 
 public:
+    TreeHash() /* : rand32(314159) */ {}
     template<class T>
     std::vector<mint> get_hash(const Graph<T>& G, int root = 0) {
         int n = G.size();

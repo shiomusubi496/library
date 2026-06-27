@@ -61,7 +61,8 @@ template<class T> std::vector<std::pair<T, T>> two_square_sum(T a) {
         std::vector<G> gs(e + 1);
         rep (i, e + 1) gs[i] = gpows[i] * gpows[e - i].conj();
         std::vector<G> nres;
-        for (auto g : gs) for (auto i : res) nres.push_back(g * i);
+        for (auto g : gs)
+            for (auto i : res) nres.push_back(g * i);
         res = std::move(nres);
     }
     for (auto&& g : res) {

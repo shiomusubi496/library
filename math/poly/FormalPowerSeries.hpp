@@ -228,7 +228,9 @@ public:
     FormalPowerSeries log(int deg = -1) const {
         assert(this->size() > 0 && (*this)[0] == 1);
         if (deg == -1) deg = this->size();
-        return (diff().prefix(deg - 1) * inv(deg - 1)).prefix(deg - 1).integral();
+        return (diff().prefix(deg - 1) * inv(deg - 1))
+            .prefix(deg - 1)
+            .integral();
     }
     template<bool AlwaysTrue = true,
              typename std::enable_if<

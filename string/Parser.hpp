@@ -2,8 +2,7 @@
 
 #include "../other/template.hpp"
 
-template<class Res>
-class Parser {
+template<class Res> class Parser {
 public:
     class ParseError : public std::exception {
     private:
@@ -11,9 +10,7 @@ public:
 
     public:
         ParseError(const std::string& message) : message(message) {}
-        const char* what() const noexcept override {
-            return message.c_str();
-        }
+        const char* what() const noexcept override { return message.c_str(); }
     };
     class State;
 
@@ -35,19 +32,18 @@ public:
         Iter& iter;
 
     public:
-        State(ParserFuncs& parsers, ParserNames& names, Iter& iter) : parsers(parsers), names(names), iter(iter) {}
-        char operator*() const {
-            return *iter;
-        }
-        void operator++() {
-            ++iter;
-        }
-        void operator--() {
-            --iter;
-        }
+        State(ParserFuncs& parsers, ParserNames& names, Iter& iter)
+            : parsers(parsers), names(names), iter(iter) {}
+        char operator*() const { return *iter; }
+        void operator++() { ++iter; }
+        void operator--() { --iter; }
         void consume(char expected) {
-            if (*iter == '\0') throw ParseError("expected '" + std::string(1, expected) + "', but got EOF");
-            if (*iter != expected) throw ParseError("expected '" + std::string(1, expected) + "', but got '" + std::string(1, *iter) + "'");
+            if (*iter == '\0')
+                throw ParseError("expected '" + std::string(1, expected) +
+                                 "', but got EOF");
+            if (*iter != expected)
+                throw ParseError("expected '" + std::string(1, expected) +
+                                 "', but got '" + std::string(1, *iter) + "'");
             iter++;
         }
         void consume(const std::string& expected) {
@@ -59,9 +55,7 @@ public:
             }
             throw ParseError("unknown parser name: " + name);
         }
-        void error(const std::string& message) {
-            throw ParseError(message);
-        }
+        void error(const std::string& message) { throw ParseError(message); }
     };
 
     Parser() {}
@@ -74,13 +68,14 @@ public:
         Iter iter = s.begin();
         State state(parsers, names, iter);
         Res res = parsers[expr](state);
-        if (iter != s.end()) throw ParseError("unexpected character: '" + std::string(1, *iter) + "'");
+        if (iter != s.end())
+            throw ParseError("unexpected character: '" + std::string(1, *iter) +
+                             "'");
         return res;
     }
 };
 
-template<class Res>
-class OperatorParser {
+template<class Res> class OperatorParser {
 private:
     using P = Parser<Res>;
 
@@ -116,8 +111,10 @@ private:
 public:
     OperatorParser() {}
     OperatorParser(int n) : ops(n), op_names(n), term(int_term) {}
-    OperatorParser(int n, const TermFunc& term) : ops(n), op_names(n), term(term) {}
-    void add_operator(int i, const std::string& name, const OperatorFunc& parser) {
+    OperatorParser(int n, const TermFunc& term)
+        : ops(n), op_names(n), term(term) {}
+    void add_operator(int i, const std::string& name,
+                      const OperatorFunc& parser) {
         ops[i].push_back(parser);
         op_names[i].push_back(name);
     }
@@ -128,29 +125,32 @@ public:
     Res parse(const std::string& s) {
         P parser;
         rrep (i, ops.size()) {
-            parser.add_parser("op" + std::to_string(i + 1), [this, i](typename P::State& state) -> Res {
-                Res res = state.call("op" + std::to_string(i));
-                while (true) {
-                    bool found = false;
-                    rep (j, ops[i].size()) {
-                        found = true;
-                        rep (k, op_names[i][j].size()) {
-                            if (*state == op_names[i][j][k]) ++state;
-                            else {
-                                found = false;
-                                rep (k) --state;
+            parser.add_parser(
+                "op" + std::to_string(i + 1),
+                [this, i](typename P::State& state) -> Res {
+                    Res res = state.call("op" + std::to_string(i));
+                    while (true) {
+                        bool found = false;
+                        rep (j, ops[i].size()) {
+                            found = true;
+                            rep (k, op_names[i][j].size()) {
+                                if (*state == op_names[i][j][k]) ++state;
+                                else {
+                                    found = false;
+                                    rep (k) --state;
+                                    break;
+                                }
+                            }
+                            if (found) {
+                                res = ops[i][j](
+                                    res, state.call("op" + std::to_string(i)));
                                 break;
                             }
                         }
-                        if (found) {
-                            res = ops[i][j](res, state.call("op" + std::to_string(i)));
-                            break;
-                        }
+                        if (!found) break;
                     }
-                    if (!found) break;
-                }
-                return res;
-            });
+                    return res;
+                });
         }
         parser.add_parser("op0", [this](typename P::State& state) -> Res {
             if (*state == '(') {
@@ -171,7 +171,8 @@ public:
                 }
                 if (found) {
                     state.consume('(');
-                    Res res = funcs[i](state.call("op" + std::to_string(ops.size())));
+                    Res res =
+                        funcs[i](state.call("op" + std::to_string(ops.size())));
                     state.consume(')');
                     return res;
                 }

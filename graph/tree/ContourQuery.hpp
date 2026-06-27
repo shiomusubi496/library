@@ -70,6 +70,7 @@ public:
         par.assign(n, -1);
         dep.assign(n, -1);
         build_dfs(root, -1, 0);
+        print << "Yay!" << endl;
         int h = *std::max_element(all(dep)) + 1;
         vt.assign(n, {});
         ct.assign(n, {});

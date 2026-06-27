@@ -219,6 +219,38 @@ convolution_for_any_mod(const std::vector<static_modint<p>>& a,
     return res;
 }
 
+template<int id>
+std::vector<dynamic_modint<id>>
+convolution(const std::vector<dynamic_modint<id>>& a,
+            const std::vector<dynamic_modint<id>>& b) {
+    int n = a.size(), m = b.size();
+    assert(n + m - 1 <= (1 << 26));
+    std::vector<ll> a2(n), b2(m);
+    rep (i, n) a2[i] = a[i].get();
+    rep (i, m) b2[i] = b[i].get();
+    static constexpr ll MOD1 = 469762049;
+    static constexpr ll MOD2 = 1811939329;
+    static constexpr ll MOD3 = 2013265921;
+    static constexpr ll INV1_2 = mod_pow(MOD1, MOD2 - 2, MOD2);
+    static constexpr ll INV1_3 = mod_pow(MOD1, MOD3 - 2, MOD3);
+    static constexpr ll INV2_3 = mod_pow(MOD2, MOD3 - 2, MOD3);
+    auto c1 = convolution<MOD1>(a2, b2);
+    auto c2 = convolution<MOD2>(a2, b2);
+    auto c3 = convolution<MOD3>(a2, b2);
+    std::vector<dynamic_modint<id>> res(n + m - 1);
+    ull p = dynamic_modint<id>::gmod();
+    rep (i, n + m - 1) {
+        ll t1 = c1[i];
+        ll t2 = (c2[i] - t1 + MOD2) * INV1_2 % MOD2;
+        if (t2 < 0) t2 += MOD2;
+        ll t3 =
+            ((c3[i] - t1 + MOD3) * INV1_3 % MOD3 - t2 + MOD3) * INV2_3 % MOD3;
+        if (t3 < 0) t3 += MOD3;
+        res[i] = dynamic_modint<id>(t1 + (t2 + t3 * MOD2) % p * MOD1);
+    }
+    return res;
+}
+
 template<class T> void ntt_doubling_(std::vector<T>& a, std::vector<T> b) {
     static constexpr internal::NthRoot<T> nth_root;
     int n = a.size();
@@ -252,6 +284,8 @@ template<class T> void ntt_doubling_(std::vector<T>& a) {
 template<unsigned int p> struct is_ntt_friendly : std::false_type {};
 
 template<> struct is_ntt_friendly<998244353> : std::true_type {};
+
+template<> struct is_ntt_friendly<1811939329> : std::true_type {};
 
 /**
  * @brief Convolution(畳み込み)

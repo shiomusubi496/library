@@ -2,8 +2,7 @@
 
 #include "../../other/template.hpp"
 
-template<class T>
-class AssignmentProblem {
+template<class T> class AssignmentProblem {
 private:
     T c;
     std::vector<T> X, Y;
@@ -16,10 +15,12 @@ public:
         assert(n >= m);
         C.insert(C.begin(), std::vector<T>(m + 1, 0));
         reps (i, n) C[i].insert(C[i].begin(), 0);
-        ++n; ++m;
+        ++n;
+        ++m;
         std::vector<int> way(m);
         P.resize(m);
-        X.resize(n); Y.resize(m);
+        X.resize(n);
+        Y.resize(m);
         rep (i, 1, n) {
             P[0] = i;
             int j0 = 0;

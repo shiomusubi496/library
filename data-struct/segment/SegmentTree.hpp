@@ -10,6 +10,7 @@ private:
     std::vector<T> data;
 
 public:
+    int size() const { return n; }
     SegmentTree() : SegmentTree(0) {}
     SegmentTree(int n) : SegmentTree(std::vector<T>(n, M::id())) {}
     SegmentTree(int n, const T& v) : SegmentTree(std::vector<T>(n, v)) {}

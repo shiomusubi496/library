@@ -62,6 +62,8 @@ public:
     const std::pair<int, int>& get_idx(int k) const& { return idx[k]; }
     std::pair<int, int> get_idx(int k) && { return std::move(idx[k]); }
     int get_par(int a, int b) const { return dep[a] < dep[b] ? a : b; }
+    int get_dep(int v) const { return dep[v]; }
+    int dist(int u, int v) const { return dep[u] + dep[v] - dep[lca(u, v)] * 2; }
     int lca(int u, int v) const {
         return RMQ
             .prod(std::min(idx[u].first, idx[v].first),

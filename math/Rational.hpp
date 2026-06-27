@@ -2,11 +2,12 @@
 
 #include "../other/template.hpp"
 
-template<class T, bool allow_div_zero = false> class Rational {
+template<class T, bool allow_div_zero = false,
+         class LargeT =
+             typename std::conditional<std::is_integral<T>::value,
+                                       typename double_size<T>::type, ld>::type>
+class Rational {
 private:
-    using LargeT =
-        typename std::conditional<std::is_integral<T>::value,
-                                  typename double_size<T>::type, ld>::type;
     T num, den;
 
 public:
