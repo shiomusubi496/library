@@ -257,24 +257,54 @@ struct SetPrec {
 };
 SetPrec setprec(int n) { return SetPrec{n}; };
 
-Printer<> print(1), eprint(2);
+#if SHIO_LOCAL
 
-void prints() { print.print_char('\n'); }
+Printer<> printer(1), eprinter(2);
 
-template<class T> auto prints(const T& v) -> decltype(print << v, (void)0) {
-    print << v;
-    print.print_char('\n');
+#else
+
+class NullPrinter {
+public:
+    template<class T> NullPrinter& operator<<(const T&) { return *this; }
+    NullPrinter& operator<<(NullPrinter& (*)(NullPrinter&)) { return *this; }
+    void print_char(char) {}
+    template<class T> void print(const T&) {}
+    template<class... Args> void operator()(const Args&...) {}
+    template<class T> void set_decimal_precision(T) {}
+};
+
+NullPrinter& endl(NullPrinter& pr) { return pr; }
+NullPrinter& flush(NullPrinter& pr) { return pr; }
+
+Printer<> printer(1);
+NullPrinter eprinter;
+
+#endif
+
+void prints() { printer.print_char('\n'); }
+
+template<class T> auto prints(const T& v) -> decltype(printer << v, (void)0) {
+    printer << v;
+    printer.print_char('\n');
 }
 
 template<class Head, class... Tail>
 auto prints(const Head& head, const Tail&... tail)
-    -> decltype(print << head, (void)0) {
-    print << head;
-    print.print_char(' ');
+    -> decltype(printer << head, (void)0) {
+    printer << head;
+    printer.print_char(' ');
     prints(tail...);
 }
 
+#ifdef SHIO_LOCAL
+
 Printer<IO_BUFFER_SIZE, true> debug(1), edebug(2);
+
+#else
+
+NullPrinter debug, edebug;
+
+#endif
 
 void debugs() { debug.print_char('\n'); }
 

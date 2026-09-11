@@ -18,7 +18,7 @@ private:
     int fd;
     int idx, sz;
     bool state;
-    std::array<char, IO_BUFFER_SIZE + 1> buffer;
+    std::array<char, buf_size + 1> buffer;
     inline char cur() {
         if (idx == sz) load();
         if (idx == sz) {
@@ -35,6 +35,7 @@ private:
 
 public:
     inline void load() {
+        assert(0 <= idx && idx <= sz && sz <= (int)buf_size);
         int len = sz - idx;
         if (idx < len) return;
         std::memcpy(buffer.begin(), buffer.begin() + idx, len);

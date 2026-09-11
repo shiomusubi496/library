@@ -100,7 +100,9 @@ struct range_rank<T, true>
                              range_rank<typename T::value_type>::value + 1> {};
 
 template<std::size_t size> struct int_least {
+#ifndef IGNORE_TYPE_SIZE_ASSERT
     static_assert(size <= 128, "size must be less than or equal to 128");
+#endif
 
     using type = typename std::conditional<
         size <= 8, std::int_least8_t,
@@ -115,7 +117,9 @@ template<std::size_t size> struct int_least {
 template<std::size_t size> using int_least_t = typename int_least<size>::type;
 
 template<std::size_t size> struct uint_least {
+#ifndef IGNORE_TYPE_SIZE_ASSERT
     static_assert(size <= 128, "size must be less than or equal to 128");
+#endif
 
     using type = typename std::conditional<
         size <= 8, std::uint_least8_t,
