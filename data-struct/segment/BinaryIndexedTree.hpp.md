@@ -1,50 +1,50 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: data-struct/2D/StaticRectangleAddRectangleSum.hpp
     title: data-struct/2D/StaticRectangleAddRectangleSum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/RAQBIT.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/StaticRangeCountDistinct.hpp
     title: data-struct/segment/StaticRangeCountDistinct.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/TreeHash.hpp
     title: TreeHash
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/RollingHash.hpp
     title: "RollingHash(\u30ED\u30EA\u30CF)"
   _extendedVerifiedWith:
@@ -69,16 +69,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
     title: test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
     title: test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/tree/vertex_add_path_sum.test.cpp
     title: test/yosupo/tree/vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/tree/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
     title: test/yosupo/tree/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/tree/vertex_add_range_contour_sum_on_tree.test.cpp
     title: test/yosupo/tree/vertex_add_range_contour_sum_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -87,15 +87,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/vertex_add_subtree_sum-HLD.test.cpp
     title: test/yosupo/tree/vertex_add_subtree_sum-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/tree/vertex_add_subtree_sum.test.cpp
     title: test/yosupo/tree/vertex_add_subtree_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/tree/vertex_get_range_contour_add_on_tree.test.cpp
     title: test/yosupo/tree/vertex_get_range_contour_add_on_tree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/data-struct/segment/BinaryIndexedTree.md
     document_title: BinaryIndexedTree(FenwickTree, BIT)
@@ -648,28 +648,28 @@ data:
   isVerificationFile: false
   path: data-struct/segment/BinaryIndexedTree.hpp
   requiredBy:
-  - string/RollingHash.hpp
-  - data-struct/segment/StaticRangeCountDistinct.hpp
   - data-struct/segment/RAQBIT.hpp
+  - data-struct/segment/StaticRangeCountDistinct.hpp
   - data-struct/2D/StaticRectangleAddRectangleSum.hpp
+  - string/RollingHash.hpp
   - graph/tree/TreeHash.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yosupo/tree/vertex_add_subtree_sum.test.cpp
-  - test/yosupo/tree/vertex_add_subtree_sum-2.test.cpp
-  - test/yosupo/tree/vertex_add_subtree_sum-HLD.test.cpp
-  - test/yosupo/tree/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
-  - test/yosupo/tree/vertex_get_range_contour_add_on_tree.test.cpp
-  - test/yosupo/tree/vertex_add_path_sum.test.cpp
-  - test/yosupo/tree/vertex_add_range_contour_sum_on_tree.test.cpp
-  - test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
-  - test/yosupo/data_structure/static_range_inversions_query.test.cpp
-  - test/yosupo/data_structure/point_add_range_sum.test.cpp
   - test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
+  - test/yosupo/data_structure/static_range_inversions_query.test.cpp
   - test/yosupo/data_structure/static_range_count_distinct.test.cpp
-  - test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
+  - test/yosupo/data_structure/point_add_range_sum.test.cpp
+  - test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
+  - test/yosupo/tree/vertex_add_subtree_sum-2.test.cpp
+  - test/yosupo/tree/vertex_add_path_sum.test.cpp
+  - test/yosupo/tree/vertex_get_range_contour_add_on_tree.test.cpp
+  - test/yosupo/tree/vertex_add_subtree_sum-HLD.test.cpp
+  - test/yosupo/tree/vertex_add_range_contour_sum_on_tree.test.cpp
+  - test/yosupo/tree/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
+  - test/yosupo/tree/vertex_add_subtree_sum.test.cpp
   - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
+  - test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
   - test/aoj/DSL/DSL_2_B-BIT.test.cpp
 documentation_of: data-struct/segment/BinaryIndexedTree.hpp
 layout: document

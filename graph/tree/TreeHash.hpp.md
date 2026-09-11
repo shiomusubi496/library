@@ -1,59 +1,59 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/BinaryIndexedTree.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree/ReRooting.hpp
     title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/Random.hpp
     title: Random
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/RollingHash.hpp
     title: "RollingHash(\u30ED\u30EA\u30CF)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
     title: test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/graph/tree/TreeHash.md
     document_title: TreeHash
@@ -777,41 +777,7 @@ data:
     \ T, F>(G, f);\n}\n\n/**\n * @brief ReRooting(\u5168\u65B9\u4F4D\u6728DP)\n *\
     \ @docs docs/graph/tree/ReRooting.md\n */\n#line 8 \"graph/tree/TreeHash.hpp\"\
     \n\nclass TreeHash {\nprivate:\n    static constexpr ull MASK31 = (1ull << 31)\
-    \ - 1;\n    using mint = modint61;\n    std::vector<mint> base;\n    void init(int\
-    \ n) {\n        int m = base.size();\n        if (m >= n) return;\n        base.resize(n);\n\
-    \        rep (i, m, n) base[i] = mint::raw((1ull << 31) + (rand32() & MASK31));\n\
-    \    }\n\n    template<class T>\n    int dfs(const Graph<T>& G, std::vector<mint>&\
-    \ ans, int v, int p) {\n        mint res = 1;\n        int dep = 0;\n        for\
-    \ (const auto& e : G[v]) {\n            if (e.to == p) continue;\n           \
-    \ int d = dfs(G, ans, e.to, v);\n            chmax(dep, d + 1);\n            if\
-    \ ((int)base.size() == d) {\n                base.push_back(mint::raw((1ull <<\
-    \ 31) + (rand32() & MASK31)));\n            }\n            res *= ans[e.to] +\
-    \ base[d];\n        }\n        ans[v] = res;\n        return dep;\n    }\n\n \
-    \   struct M {\n        using value_type = std::pair<mint, int>;\n        static\
-    \ value_type id() { return {1, 0}; }\n        static value_type op(const value_type&\
-    \ a, const value_type& b) {\n            return {a.first * b.first, std::max(a.second,\
-    \ b.second)};\n        }\n    };\n    template<class T>\n    std::pair<mint, int>\
-    \ f(const std::pair<mint, int>& a, const edge<T>& b) {\n        if ((int)base.size()\
-    \ == a.second) {\n            base.push_back(mint::raw((1ull << 31) + (rand32()\
-    \ & MASK31)));\n        }\n        return {a.first + base[a.second], a.second\
-    \ + 1};\n    }\n\npublic:\n    template<class T>\n    std::vector<mint> get_hash(const\
-    \ Graph<T>& G, int root = 0) {\n        int n = G.size();\n        std::vector<mint>\
-    \ ans(n);\n        dfs(G, ans, root, -1);\n        return ans;\n    }\n    template<class\
-    \ T>\n    std::pair<std::vector<std::vector<mint>>, std::vector<mint>>\n    get_hash_rerooting(const\
-    \ Graph<T>& G) {\n        auto f = [&](const std::pair<mint, int>& a,\n      \
-    \               const edge<T>&) -> std::pair<mint, int> {\n            if ((int)base.size()\
-    \ == a.second) {\n                base.push_back(mint::raw((1ull << 31) + (rand32()\
-    \ & MASK31)));\n            }\n            return {a.first + base[a.second], a.second\
-    \ + 1};\n        };\n        auto rr = ReRooting<M, T, decltype(f)>(G, f);\n \
-    \       std::vector<std::vector<mint>> dp(G.size());\n        std::vector<mint>\
-    \ res(G.size());\n        rep (i, G.size()) {\n            dp[i].resize(G[i].size());\n\
-    \            rep (j, G[i].size()) dp[i][j] = rr.get_dp(i, j).first;\n        \
-    \    res[i] = rr[i].first;\n        }\n        return {dp, res};\n    }\n};\n\n\
-    /**\n * @brief TreeHash\n * @docs docs/graph/tree/TreeHash.md\n */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../random/Random.hpp\"\
-    \n#include \"../../string/RollingHash.hpp\"\n#include \"../tree/ReRooting.hpp\"\
-    \n#include \"../Graph.hpp\"\n\nclass TreeHash {\nprivate:\n    static constexpr\
-    \ ull MASK31 = (1ull << 31) - 1;\n    using mint = modint61;\n    std::vector<mint>\
+    \ - 1;\n    using mint = modint61;\n    // Random32 rand32;\n    std::vector<mint>\
     \ base;\n    void init(int n) {\n        int m = base.size();\n        if (m >=\
     \ n) return;\n        base.resize(n);\n        rep (i, m, n) base[i] = mint::raw((1ull\
     \ << 31) + (rand32() & MASK31));\n    }\n\n    template<class T>\n    int dfs(const\
@@ -828,20 +794,57 @@ data:
     \ f(const std::pair<mint, int>& a, const edge<T>& b) {\n        if ((int)base.size()\
     \ == a.second) {\n            base.push_back(mint::raw((1ull << 31) + (rand32()\
     \ & MASK31)));\n        }\n        return {a.first + base[a.second], a.second\
-    \ + 1};\n    }\n\npublic:\n    template<class T>\n    std::vector<mint> get_hash(const\
-    \ Graph<T>& G, int root = 0) {\n        int n = G.size();\n        std::vector<mint>\
-    \ ans(n);\n        dfs(G, ans, root, -1);\n        return ans;\n    }\n    template<class\
-    \ T>\n    std::pair<std::vector<std::vector<mint>>, std::vector<mint>>\n    get_hash_rerooting(const\
-    \ Graph<T>& G) {\n        auto f = [&](const std::pair<mint, int>& a,\n      \
-    \               const edge<T>&) -> std::pair<mint, int> {\n            if ((int)base.size()\
-    \ == a.second) {\n                base.push_back(mint::raw((1ull << 31) + (rand32()\
-    \ & MASK31)));\n            }\n            return {a.first + base[a.second], a.second\
-    \ + 1};\n        };\n        auto rr = ReRooting<M, T, decltype(f)>(G, f);\n \
-    \       std::vector<std::vector<mint>> dp(G.size());\n        std::vector<mint>\
-    \ res(G.size());\n        rep (i, G.size()) {\n            dp[i].resize(G[i].size());\n\
-    \            rep (j, G[i].size()) dp[i][j] = rr.get_dp(i, j).first;\n        \
-    \    res[i] = rr[i].first;\n        }\n        return {dp, res};\n    }\n};\n\n\
-    /**\n * @brief TreeHash\n * @docs docs/graph/tree/TreeHash.md\n */\n"
+    \ + 1};\n    }\n\npublic:\n    TreeHash() /* : rand32(314159) */ {}\n    template<class\
+    \ T>\n    std::vector<mint> get_hash(const Graph<T>& G, int root = 0) {\n    \
+    \    int n = G.size();\n        std::vector<mint> ans(n);\n        dfs(G, ans,\
+    \ root, -1);\n        return ans;\n    }\n    template<class T>\n    std::pair<std::vector<std::vector<mint>>,\
+    \ std::vector<mint>>\n    get_hash_rerooting(const Graph<T>& G) {\n        auto\
+    \ f = [&](const std::pair<mint, int>& a,\n                     const edge<T>&)\
+    \ -> std::pair<mint, int> {\n            if ((int)base.size() == a.second) {\n\
+    \                base.push_back(mint::raw((1ull << 31) + (rand32() & MASK31)));\n\
+    \            }\n            return {a.first + base[a.second], a.second + 1};\n\
+    \        };\n        auto rr = ReRooting<M, T, decltype(f)>(G, f);\n        std::vector<std::vector<mint>>\
+    \ dp(G.size());\n        std::vector<mint> res(G.size());\n        rep (i, G.size())\
+    \ {\n            dp[i].resize(G[i].size());\n            rep (j, G[i].size())\
+    \ dp[i][j] = rr.get_dp(i, j).first;\n            res[i] = rr[i].first;\n     \
+    \   }\n        return {dp, res};\n    }\n};\n\n/**\n * @brief TreeHash\n * @docs\
+    \ docs/graph/tree/TreeHash.md\n */\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../random/Random.hpp\"\
+    \n#include \"../../string/RollingHash.hpp\"\n#include \"../tree/ReRooting.hpp\"\
+    \n#include \"../Graph.hpp\"\n\nclass TreeHash {\nprivate:\n    static constexpr\
+    \ ull MASK31 = (1ull << 31) - 1;\n    using mint = modint61;\n    // Random32\
+    \ rand32;\n    std::vector<mint> base;\n    void init(int n) {\n        int m\
+    \ = base.size();\n        if (m >= n) return;\n        base.resize(n);\n     \
+    \   rep (i, m, n) base[i] = mint::raw((1ull << 31) + (rand32() & MASK31));\n \
+    \   }\n\n    template<class T>\n    int dfs(const Graph<T>& G, std::vector<mint>&\
+    \ ans, int v, int p) {\n        mint res = 1;\n        int dep = 0;\n        for\
+    \ (const auto& e : G[v]) {\n            if (e.to == p) continue;\n           \
+    \ int d = dfs(G, ans, e.to, v);\n            chmax(dep, d + 1);\n            if\
+    \ ((int)base.size() == d) {\n                base.push_back(mint::raw((1ull <<\
+    \ 31) + (rand32() & MASK31)));\n            }\n            res *= ans[e.to] +\
+    \ base[d];\n        }\n        ans[v] = res;\n        return dep;\n    }\n\n \
+    \   struct M {\n        using value_type = std::pair<mint, int>;\n        static\
+    \ value_type id() { return {1, 0}; }\n        static value_type op(const value_type&\
+    \ a, const value_type& b) {\n            return {a.first * b.first, std::max(a.second,\
+    \ b.second)};\n        }\n    };\n    template<class T>\n    std::pair<mint, int>\
+    \ f(const std::pair<mint, int>& a, const edge<T>& b) {\n        if ((int)base.size()\
+    \ == a.second) {\n            base.push_back(mint::raw((1ull << 31) + (rand32()\
+    \ & MASK31)));\n        }\n        return {a.first + base[a.second], a.second\
+    \ + 1};\n    }\n\npublic:\n    TreeHash() /* : rand32(314159) */ {}\n    template<class\
+    \ T>\n    std::vector<mint> get_hash(const Graph<T>& G, int root = 0) {\n    \
+    \    int n = G.size();\n        std::vector<mint> ans(n);\n        dfs(G, ans,\
+    \ root, -1);\n        return ans;\n    }\n    template<class T>\n    std::pair<std::vector<std::vector<mint>>,\
+    \ std::vector<mint>>\n    get_hash_rerooting(const Graph<T>& G) {\n        auto\
+    \ f = [&](const std::pair<mint, int>& a,\n                     const edge<T>&)\
+    \ -> std::pair<mint, int> {\n            if ((int)base.size() == a.second) {\n\
+    \                base.push_back(mint::raw((1ull << 31) + (rand32() & MASK31)));\n\
+    \            }\n            return {a.first + base[a.second], a.second + 1};\n\
+    \        };\n        auto rr = ReRooting<M, T, decltype(f)>(G, f);\n        std::vector<std::vector<mint>>\
+    \ dp(G.size());\n        std::vector<mint> res(G.size());\n        rep (i, G.size())\
+    \ {\n            dp[i].resize(G[i].size());\n            rep (j, G[i].size())\
+    \ dp[i][j] = rr.get_dp(i, j).first;\n            res[i] = rr[i].first;\n     \
+    \   }\n        return {dp, res};\n    }\n};\n\n/**\n * @brief TreeHash\n * @docs\
+    \ docs/graph/tree/TreeHash.md\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -861,8 +864,8 @@ data:
   isVerificationFile: false
   path: graph/tree/TreeHash.hpp
   requiredBy: []
-  timestamp: '2024-05-17 13:49:08+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-06-27 23:15:50+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
 documentation_of: graph/tree/TreeHash.hpp

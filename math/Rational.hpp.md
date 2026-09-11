@@ -1,31 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
@@ -457,109 +457,110 @@ data:
     \        return res;\n    }\n    void press(std::vector<T>& vec) const {\n   \
     \     assert(sorted);\n        for (auto&& i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
-    };\n#line 4 \"math/Rational.hpp\"\n\ntemplate<class T, bool allow_div_zero = false>\
-    \ class Rational {\nprivate:\n    using LargeT =\n        typename std::conditional<std::is_integral<T>::value,\n\
-    \                                  typename double_size<T>::type, ld>::type;\n\
-    \    T num, den;\n\npublic:\n    static void norm(T& a, T& b) {\n        if IF_CONSTEXPR\
-    \ (!allow_div_zero) {\n            assert(b != 0);\n        }\n        T g = gcd(abs(a),\
-    \ abs(b));\n        a /= g;\n        b /= g;\n        if (b < 0) {\n         \
-    \   a = -a;\n            b = -b;\n        }\n    }\n    void normalize() { norm(num,\
-    \ den); }\n    Rational() : num(0), den(1) {}\n    Rational(T a) : num(a), den(1)\
-    \ {}\n    Rational(T a, T b) : num(a), den(b) { normalize(); }\n    T get_num()\
-    \ const { return num; }\n    T get_den() const { return den; }\n    ld get_ld()\
-    \ const { return (ld)num / den; }\n    std::pair<T, T> get_pair() const { return\
-    \ {num, den}; }\n    Rational& operator++() {\n        num += den;\n        return\
-    \ *this;\n    }\n    Rational operator++(int) {\n        Rational res = *this;\n\
-    \        ++*this;\n        return res;\n    }\n    Rational& operator--() {\n\
-    \        num -= den;\n        return *this;\n    }\n    Rational operator--(int)\
-    \ {\n        Rational res = *this;\n        --*this;\n        return res;\n  \
-    \  }\n    Rational& operator+=(const Rational& other) {\n        T g = gcd(den,\
-    \ other.den);\n        num = num * (other.den / g) + other.num * (den / g);\n\
-    \        den = den / g * other.den;\n        normalize();\n        return *this;\n\
-    \    }\n    Rational& operator-=(const Rational& other) {\n        T g = gcd(den,\
-    \ other.den);\n        num = num * (other.den / g) - other.num * (den / g);\n\
-    \        den = den / g * other.den;\n        normalize();\n        return *this;\n\
-    \    }\n    Rational& operator*=(const Rational& other) {\n        T g1 = gcd(num,\
-    \ other.den);\n        T g2 = gcd(den, other.num);\n        num = (num / g1) *\
-    \ (other.num / g2);\n        den = (den / g2) * (other.den / g1);\n        return\
-    \ *this;\n    }\n    Rational& operator/=(const Rational& other) {\n        return\
-    \ (*this) *= Rational(other.den, other.num);\n    }\n    friend Rational operator+(const\
-    \ Rational& lhs, const Rational& rhs) {\n        return Rational(lhs) += rhs;\n\
-    \    }\n    friend Rational operator-(const Rational& lhs, const Rational& rhs)\
-    \ {\n        return Rational(lhs) -= rhs;\n    }\n    friend Rational operator*(const\
-    \ Rational& lhs, const Rational& rhs) {\n        return Rational(lhs) *= rhs;\n\
-    \    }\n    friend Rational operator/(const Rational& lhs, const Rational& rhs)\
-    \ {\n        return Rational(lhs) /= rhs;\n    }\n    Rational operator+() const\
-    \ { return Rational(*this); }\n    Rational operator-() const { return Rational(-num,\
-    \ den); }\n    friend bool operator==(const Rational& lhs, const Rational& rhs)\
-    \ {\n        return lhs.num == rhs.num && lhs.den == rhs.den;\n    }\n    friend\
-    \ bool operator!=(const Rational& lhs, const Rational& rhs) {\n        return\
-    \ lhs.num != rhs.num || lhs.den != rhs.den;\n    }\n    friend bool operator<(const\
-    \ Rational& lhs, const Rational& rhs) {\n        return (LargeT)lhs.num * rhs.den\
-    \ < (LargeT)rhs.num * lhs.den;\n    }\n    friend bool operator>(const Rational&\
-    \ lhs, const Rational& rhs) {\n        return rhs < lhs;\n    }\n    friend bool\
-    \ operator<=(const Rational& lhs, const Rational& rhs) {\n        return !(rhs\
-    \ < lhs);\n    }\n    friend bool operator>=(const Rational& lhs, const Rational&\
-    \ rhs) {\n        return !(lhs < rhs);\n    }\n    template<class Pr> void print(Pr&\
-    \ a) const { a.print(get_ld()); }\n    template<class Pr> void debug(Pr& a) const\
-    \ {\n        a.print(num);\n        a.print_char('/');\n        a.print(den);\n\
-    \    }\n    template<class Sc> void scan(Sc& a) {\n        a.scan(num);\n    \
-    \    a.scan(den);\n    }\n};\n\nnamespace std {\n\ntemplate<class T> Rational<T>\
-    \ abs(const Rational<T>& x) {\n    return Rational<T>(abs(x.get_num()), x.get_den());\n\
-    }\n\n} // namespace std\n\nusing Fraction = Rational<ll>;\n\n/**\n * @brief Rational(\u6709\
-    \u7406\u6570\u578B)\n * @docs docs/math/Rational.md\n */\n"
+    };\n#line 4 \"math/Rational.hpp\"\n\ntemplate<class T, bool allow_div_zero = false,\n\
+    \         class LargeT =\n             typename std::conditional<std::is_integral<T>::value,\n\
+    \                                       typename double_size<T>::type, ld>::type>\n\
+    class Rational {\nprivate:\n    T num, den;\n\npublic:\n    static void norm(T&\
+    \ a, T& b) {\n        if IF_CONSTEXPR (!allow_div_zero) {\n            assert(b\
+    \ != 0);\n        }\n        T g = gcd(abs(a), abs(b));\n        a /= g;\n   \
+    \     b /= g;\n        if (b < 0) {\n            a = -a;\n            b = -b;\n\
+    \        }\n    }\n    void normalize() { norm(num, den); }\n    Rational() :\
+    \ num(0), den(1) {}\n    Rational(T a) : num(a), den(1) {}\n    Rational(T a,\
+    \ T b) : num(a), den(b) { normalize(); }\n    T get_num() const { return num;\
+    \ }\n    T get_den() const { return den; }\n    ld get_ld() const { return (ld)num\
+    \ / den; }\n    std::pair<T, T> get_pair() const { return {num, den}; }\n    Rational&\
+    \ operator++() {\n        num += den;\n        return *this;\n    }\n    Rational\
+    \ operator++(int) {\n        Rational res = *this;\n        ++*this;\n       \
+    \ return res;\n    }\n    Rational& operator--() {\n        num -= den;\n    \
+    \    return *this;\n    }\n    Rational operator--(int) {\n        Rational res\
+    \ = *this;\n        --*this;\n        return res;\n    }\n    Rational& operator+=(const\
+    \ Rational& other) {\n        T g = gcd(den, other.den);\n        num = num *\
+    \ (other.den / g) + other.num * (den / g);\n        den = den / g * other.den;\n\
+    \        normalize();\n        return *this;\n    }\n    Rational& operator-=(const\
+    \ Rational& other) {\n        T g = gcd(den, other.den);\n        num = num *\
+    \ (other.den / g) - other.num * (den / g);\n        den = den / g * other.den;\n\
+    \        normalize();\n        return *this;\n    }\n    Rational& operator*=(const\
+    \ Rational& other) {\n        T g1 = gcd(num, other.den);\n        T g2 = gcd(den,\
+    \ other.num);\n        num = (num / g1) * (other.num / g2);\n        den = (den\
+    \ / g2) * (other.den / g1);\n        return *this;\n    }\n    Rational& operator/=(const\
+    \ Rational& other) {\n        return (*this) *= Rational(other.den, other.num);\n\
+    \    }\n    friend Rational operator+(const Rational& lhs, const Rational& rhs)\
+    \ {\n        return Rational(lhs) += rhs;\n    }\n    friend Rational operator-(const\
+    \ Rational& lhs, const Rational& rhs) {\n        return Rational(lhs) -= rhs;\n\
+    \    }\n    friend Rational operator*(const Rational& lhs, const Rational& rhs)\
+    \ {\n        return Rational(lhs) *= rhs;\n    }\n    friend Rational operator/(const\
+    \ Rational& lhs, const Rational& rhs) {\n        return Rational(lhs) /= rhs;\n\
+    \    }\n    Rational operator+() const { return Rational(*this); }\n    Rational\
+    \ operator-() const { return Rational(-num, den); }\n    friend bool operator==(const\
+    \ Rational& lhs, const Rational& rhs) {\n        return lhs.num == rhs.num &&\
+    \ lhs.den == rhs.den;\n    }\n    friend bool operator!=(const Rational& lhs,\
+    \ const Rational& rhs) {\n        return lhs.num != rhs.num || lhs.den != rhs.den;\n\
+    \    }\n    friend bool operator<(const Rational& lhs, const Rational& rhs) {\n\
+    \        return (LargeT)lhs.num * rhs.den < (LargeT)rhs.num * lhs.den;\n    }\n\
+    \    friend bool operator>(const Rational& lhs, const Rational& rhs) {\n     \
+    \   return rhs < lhs;\n    }\n    friend bool operator<=(const Rational& lhs,\
+    \ const Rational& rhs) {\n        return !(rhs < lhs);\n    }\n    friend bool\
+    \ operator>=(const Rational& lhs, const Rational& rhs) {\n        return !(lhs\
+    \ < rhs);\n    }\n    template<class Pr> void print(Pr& a) const { a.print(get_ld());\
+    \ }\n    template<class Pr> void debug(Pr& a) const {\n        a.print(num);\n\
+    \        a.print_char('/');\n        a.print(den);\n    }\n    template<class\
+    \ Sc> void scan(Sc& a) {\n        a.scan(num);\n        a.scan(den);\n    }\n\
+    };\n\nnamespace std {\n\ntemplate<class T> Rational<T> abs(const Rational<T>&\
+    \ x) {\n    return Rational<T>(abs(x.get_num()), x.get_den());\n}\n\n} // namespace\
+    \ std\n\nusing Fraction = Rational<ll>;\n\n/**\n * @brief Rational(\u6709\u7406\
+    \u6570\u578B)\n * @docs docs/math/Rational.md\n */\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n\ntemplate<class T, bool\
-    \ allow_div_zero = false> class Rational {\nprivate:\n    using LargeT =\n   \
-    \     typename std::conditional<std::is_integral<T>::value,\n                \
-    \                  typename double_size<T>::type, ld>::type;\n    T num, den;\n\
-    \npublic:\n    static void norm(T& a, T& b) {\n        if IF_CONSTEXPR (!allow_div_zero)\
-    \ {\n            assert(b != 0);\n        }\n        T g = gcd(abs(a), abs(b));\n\
-    \        a /= g;\n        b /= g;\n        if (b < 0) {\n            a = -a;\n\
-    \            b = -b;\n        }\n    }\n    void normalize() { norm(num, den);\
-    \ }\n    Rational() : num(0), den(1) {}\n    Rational(T a) : num(a), den(1) {}\n\
-    \    Rational(T a, T b) : num(a), den(b) { normalize(); }\n    T get_num() const\
-    \ { return num; }\n    T get_den() const { return den; }\n    ld get_ld() const\
-    \ { return (ld)num / den; }\n    std::pair<T, T> get_pair() const { return {num,\
-    \ den}; }\n    Rational& operator++() {\n        num += den;\n        return *this;\n\
-    \    }\n    Rational operator++(int) {\n        Rational res = *this;\n      \
-    \  ++*this;\n        return res;\n    }\n    Rational& operator--() {\n      \
-    \  num -= den;\n        return *this;\n    }\n    Rational operator--(int) {\n\
-    \        Rational res = *this;\n        --*this;\n        return res;\n    }\n\
-    \    Rational& operator+=(const Rational& other) {\n        T g = gcd(den, other.den);\n\
-    \        num = num * (other.den / g) + other.num * (den / g);\n        den = den\
-    \ / g * other.den;\n        normalize();\n        return *this;\n    }\n    Rational&\
-    \ operator-=(const Rational& other) {\n        T g = gcd(den, other.den);\n  \
-    \      num = num * (other.den / g) - other.num * (den / g);\n        den = den\
-    \ / g * other.den;\n        normalize();\n        return *this;\n    }\n    Rational&\
-    \ operator*=(const Rational& other) {\n        T g1 = gcd(num, other.den);\n \
-    \       T g2 = gcd(den, other.num);\n        num = (num / g1) * (other.num / g2);\n\
-    \        den = (den / g2) * (other.den / g1);\n        return *this;\n    }\n\
-    \    Rational& operator/=(const Rational& other) {\n        return (*this) *=\
-    \ Rational(other.den, other.num);\n    }\n    friend Rational operator+(const\
-    \ Rational& lhs, const Rational& rhs) {\n        return Rational(lhs) += rhs;\n\
-    \    }\n    friend Rational operator-(const Rational& lhs, const Rational& rhs)\
-    \ {\n        return Rational(lhs) -= rhs;\n    }\n    friend Rational operator*(const\
-    \ Rational& lhs, const Rational& rhs) {\n        return Rational(lhs) *= rhs;\n\
-    \    }\n    friend Rational operator/(const Rational& lhs, const Rational& rhs)\
-    \ {\n        return Rational(lhs) /= rhs;\n    }\n    Rational operator+() const\
-    \ { return Rational(*this); }\n    Rational operator-() const { return Rational(-num,\
-    \ den); }\n    friend bool operator==(const Rational& lhs, const Rational& rhs)\
-    \ {\n        return lhs.num == rhs.num && lhs.den == rhs.den;\n    }\n    friend\
-    \ bool operator!=(const Rational& lhs, const Rational& rhs) {\n        return\
-    \ lhs.num != rhs.num || lhs.den != rhs.den;\n    }\n    friend bool operator<(const\
-    \ Rational& lhs, const Rational& rhs) {\n        return (LargeT)lhs.num * rhs.den\
-    \ < (LargeT)rhs.num * lhs.den;\n    }\n    friend bool operator>(const Rational&\
-    \ lhs, const Rational& rhs) {\n        return rhs < lhs;\n    }\n    friend bool\
-    \ operator<=(const Rational& lhs, const Rational& rhs) {\n        return !(rhs\
-    \ < lhs);\n    }\n    friend bool operator>=(const Rational& lhs, const Rational&\
-    \ rhs) {\n        return !(lhs < rhs);\n    }\n    template<class Pr> void print(Pr&\
-    \ a) const { a.print(get_ld()); }\n    template<class Pr> void debug(Pr& a) const\
-    \ {\n        a.print(num);\n        a.print_char('/');\n        a.print(den);\n\
-    \    }\n    template<class Sc> void scan(Sc& a) {\n        a.scan(num);\n    \
-    \    a.scan(den);\n    }\n};\n\nnamespace std {\n\ntemplate<class T> Rational<T>\
-    \ abs(const Rational<T>& x) {\n    return Rational<T>(abs(x.get_num()), x.get_den());\n\
-    }\n\n} // namespace std\n\nusing Fraction = Rational<ll>;\n\n/**\n * @brief Rational(\u6709\
-    \u7406\u6570\u578B)\n * @docs docs/math/Rational.md\n */\n"
+    \ allow_div_zero = false,\n         class LargeT =\n             typename std::conditional<std::is_integral<T>::value,\n\
+    \                                       typename double_size<T>::type, ld>::type>\n\
+    class Rational {\nprivate:\n    T num, den;\n\npublic:\n    static void norm(T&\
+    \ a, T& b) {\n        if IF_CONSTEXPR (!allow_div_zero) {\n            assert(b\
+    \ != 0);\n        }\n        T g = gcd(abs(a), abs(b));\n        a /= g;\n   \
+    \     b /= g;\n        if (b < 0) {\n            a = -a;\n            b = -b;\n\
+    \        }\n    }\n    void normalize() { norm(num, den); }\n    Rational() :\
+    \ num(0), den(1) {}\n    Rational(T a) : num(a), den(1) {}\n    Rational(T a,\
+    \ T b) : num(a), den(b) { normalize(); }\n    T get_num() const { return num;\
+    \ }\n    T get_den() const { return den; }\n    ld get_ld() const { return (ld)num\
+    \ / den; }\n    std::pair<T, T> get_pair() const { return {num, den}; }\n    Rational&\
+    \ operator++() {\n        num += den;\n        return *this;\n    }\n    Rational\
+    \ operator++(int) {\n        Rational res = *this;\n        ++*this;\n       \
+    \ return res;\n    }\n    Rational& operator--() {\n        num -= den;\n    \
+    \    return *this;\n    }\n    Rational operator--(int) {\n        Rational res\
+    \ = *this;\n        --*this;\n        return res;\n    }\n    Rational& operator+=(const\
+    \ Rational& other) {\n        T g = gcd(den, other.den);\n        num = num *\
+    \ (other.den / g) + other.num * (den / g);\n        den = den / g * other.den;\n\
+    \        normalize();\n        return *this;\n    }\n    Rational& operator-=(const\
+    \ Rational& other) {\n        T g = gcd(den, other.den);\n        num = num *\
+    \ (other.den / g) - other.num * (den / g);\n        den = den / g * other.den;\n\
+    \        normalize();\n        return *this;\n    }\n    Rational& operator*=(const\
+    \ Rational& other) {\n        T g1 = gcd(num, other.den);\n        T g2 = gcd(den,\
+    \ other.num);\n        num = (num / g1) * (other.num / g2);\n        den = (den\
+    \ / g2) * (other.den / g1);\n        return *this;\n    }\n    Rational& operator/=(const\
+    \ Rational& other) {\n        return (*this) *= Rational(other.den, other.num);\n\
+    \    }\n    friend Rational operator+(const Rational& lhs, const Rational& rhs)\
+    \ {\n        return Rational(lhs) += rhs;\n    }\n    friend Rational operator-(const\
+    \ Rational& lhs, const Rational& rhs) {\n        return Rational(lhs) -= rhs;\n\
+    \    }\n    friend Rational operator*(const Rational& lhs, const Rational& rhs)\
+    \ {\n        return Rational(lhs) *= rhs;\n    }\n    friend Rational operator/(const\
+    \ Rational& lhs, const Rational& rhs) {\n        return Rational(lhs) /= rhs;\n\
+    \    }\n    Rational operator+() const { return Rational(*this); }\n    Rational\
+    \ operator-() const { return Rational(-num, den); }\n    friend bool operator==(const\
+    \ Rational& lhs, const Rational& rhs) {\n        return lhs.num == rhs.num &&\
+    \ lhs.den == rhs.den;\n    }\n    friend bool operator!=(const Rational& lhs,\
+    \ const Rational& rhs) {\n        return lhs.num != rhs.num || lhs.den != rhs.den;\n\
+    \    }\n    friend bool operator<(const Rational& lhs, const Rational& rhs) {\n\
+    \        return (LargeT)lhs.num * rhs.den < (LargeT)rhs.num * lhs.den;\n    }\n\
+    \    friend bool operator>(const Rational& lhs, const Rational& rhs) {\n     \
+    \   return rhs < lhs;\n    }\n    friend bool operator<=(const Rational& lhs,\
+    \ const Rational& rhs) {\n        return !(rhs < lhs);\n    }\n    friend bool\
+    \ operator>=(const Rational& lhs, const Rational& rhs) {\n        return !(lhs\
+    \ < rhs);\n    }\n    template<class Pr> void print(Pr& a) const { a.print(get_ld());\
+    \ }\n    template<class Pr> void debug(Pr& a) const {\n        a.print(num);\n\
+    \        a.print_char('/');\n        a.print(den);\n    }\n    template<class\
+    \ Sc> void scan(Sc& a) {\n        a.scan(num);\n        a.scan(den);\n    }\n\
+    };\n\nnamespace std {\n\ntemplate<class T> Rational<T> abs(const Rational<T>&\
+    \ x) {\n    return Rational<T>(abs(x.get_num()), x.get_den());\n}\n\n} // namespace\
+    \ std\n\nusing Fraction = Rational<ll>;\n\n/**\n * @brief Rational(\u6709\u7406\
+    \u6570\u578B)\n * @docs docs/math/Rational.md\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -575,12 +576,12 @@ data:
   requiredBy:
   - math/LinearModMin.hpp
   - math/SternBrocotTree.hpp
-  timestamp: '2024-05-12 17:35:55+09:00'
+  timestamp: '2026-06-27 23:15:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/number_theory/min_of_mod_of_linear.test.cpp
   - test/yosupo/number_theory/stern_brocot_tree.test.cpp
   - test/yosupo/number_theory/rational_approximation.test.cpp
+  - test/yosupo/number_theory/min_of_mod_of_linear.test.cpp
   - test/aoj/other/1208-SternBrocotTree.test.cpp
   - test/aoj/ALDS1/ALDS1_15_B.test.cpp
 documentation_of: math/Rational.hpp

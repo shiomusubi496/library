@@ -4,37 +4,37 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/2D/Struct2D.hpp
     title: data-struct/2D/Struct2D.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -540,28 +540,28 @@ data:
     \ a); }\n};\n\n} // namespace Monoid\n#line 2 \"data-struct/segment/SegmentTree.hpp\"\
     \n\n#line 5 \"data-struct/segment/SegmentTree.hpp\"\n\ntemplate<class M> class\
     \ SegmentTree {\nprivate:\n    using T = typename M::value_type;\n    int n, ori;\n\
-    \    std::vector<T> data;\n\npublic:\n    SegmentTree() : SegmentTree(0) {}\n\
-    \    SegmentTree(int n) : SegmentTree(std::vector<T>(n, M::id())) {}\n    SegmentTree(int\
-    \ n, const T& v) : SegmentTree(std::vector<T>(n, v)) {}\n    SegmentTree(const\
-    \ std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>& v) {\n\
-    \        ori = v.size();\n        n = 1 << bitop::ceil_log2(ori);\n        data.assign(n\
-    \ << 1, M::id());\n        rep (i, ori) data[n + i] = v[i];\n        rrep (i,\
-    \ n, 1) data[i] = M::op(data[i << 1], data[i << 1 ^ 1]);\n    }\n    template<class\
-    \ Upd> void update(int k, const Upd& upd) {\n        assert(0 <= k && k < ori);\n\
-    \        k += n;\n        data[k] = upd(data[k]);\n        while (k >>= 1) data[k]\
-    \ = M::op(data[k << 1], data[k << 1 ^ 1]);\n    }\n    void set(int k, T x) {\n\
-    \        update(k, [&](T) -> T { return x; });\n    }\n    void apply(int k, T\
-    \ x) {\n        update(k, [&](T a) -> T { return M::op(a, x); });\n    }\n   \
-    \ T prod(int l, int r) const {\n        assert(0 <= l && l <= r && r <= ori);\n\
-    \        l += n;\n        r += n;\n        T lsm = M::id(), rsm = M::id();\n \
-    \       while (l < r) {\n            if (l & 1) lsm = M::op(lsm, data[l++]);\n\
-    \            if (r & 1) rsm = M::op(data[--r], rsm);\n            l >>= 1;\n \
-    \           r >>= 1;\n        }\n        return M::op(lsm, rsm);\n    }\n    T\
-    \ all_prod() const { return data[1]; }\n    T get(int k) const { return data[k\
-    \ + n]; }\n    template<class Cond> int max_right(int l, const Cond& cond) const\
-    \ {\n        assert(0 <= l && l <= ori);\n        assert(cond(M::id()));\n   \
-    \     if (l == ori) return ori;\n        l += n;\n        T sm = M::id();\n  \
-    \      do {\n            while ((l & 1) == 0) l >>= 1;\n            if (!cond(M::op(sm,\
+    \    std::vector<T> data;\n\npublic:\n    int size() const { return n; }\n   \
+    \ SegmentTree() : SegmentTree(0) {}\n    SegmentTree(int n) : SegmentTree(std::vector<T>(n,\
+    \ M::id())) {}\n    SegmentTree(int n, const T& v) : SegmentTree(std::vector<T>(n,\
+    \ v)) {}\n    SegmentTree(const std::vector<T>& v) { init(v); }\n    void init(const\
+    \ std::vector<T>& v) {\n        ori = v.size();\n        n = 1 << bitop::ceil_log2(ori);\n\
+    \        data.assign(n << 1, M::id());\n        rep (i, ori) data[n + i] = v[i];\n\
+    \        rrep (i, n, 1) data[i] = M::op(data[i << 1], data[i << 1 ^ 1]);\n   \
+    \ }\n    template<class Upd> void update(int k, const Upd& upd) {\n        assert(0\
+    \ <= k && k < ori);\n        k += n;\n        data[k] = upd(data[k]);\n      \
+    \  while (k >>= 1) data[k] = M::op(data[k << 1], data[k << 1 ^ 1]);\n    }\n \
+    \   void set(int k, T x) {\n        update(k, [&](T) -> T { return x; });\n  \
+    \  }\n    void apply(int k, T x) {\n        update(k, [&](T a) -> T { return M::op(a,\
+    \ x); });\n    }\n    T prod(int l, int r) const {\n        assert(0 <= l && l\
+    \ <= r && r <= ori);\n        l += n;\n        r += n;\n        T lsm = M::id(),\
+    \ rsm = M::id();\n        while (l < r) {\n            if (l & 1) lsm = M::op(lsm,\
+    \ data[l++]);\n            if (r & 1) rsm = M::op(data[--r], rsm);\n         \
+    \   l >>= 1;\n            r >>= 1;\n        }\n        return M::op(lsm, rsm);\n\
+    \    }\n    T all_prod() const { return data[1]; }\n    T get(int k) const { return\
+    \ data[k + n]; }\n    template<class Cond> int max_right(int l, const Cond& cond)\
+    \ const {\n        assert(0 <= l && l <= ori);\n        assert(cond(M::id()));\n\
+    \        if (l == ori) return ori;\n        l += n;\n        T sm = M::id();\n\
+    \        do {\n            while ((l & 1) == 0) l >>= 1;\n            if (!cond(M::op(sm,\
     \ data[l]))) {\n                while (l < n) {\n                    l <<= 1;\n\
     \                    if (cond(M::op(sm, data[l]))) sm = M::op(sm, data[l++]);\n\
     \                }\n                return l - n;\n            }\n           \
@@ -719,7 +719,7 @@ data:
   isVerificationFile: false
   path: data-struct/2D/SegmentTree2D.hpp
   requiredBy: []
-  timestamp: '2024-05-17 13:27:23+09:00'
+  timestamp: '2026-06-27 23:15:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/data_structure/point_add_rectangle_sum-2DSegTree.test.cpp

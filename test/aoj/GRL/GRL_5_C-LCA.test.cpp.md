@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree/DoublingLowestCommonAncestor.hpp
     title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
       \u308BLCA)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -488,26 +488,24 @@ data:
     \ = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n * @docs docs/graph/Graph.md\n\
     \ */\n#line 2 \"graph/tree/DoublingLowestCommonAncestor.hpp\"\n\n#line 5 \"graph/tree/DoublingLowestCommonAncestor.hpp\"\
     \n\ntemplate<class T> class DoublingLCA {\nprivate:\n    int n, h;\n    std::vector<int>\
-    \ root;\n    Graph<T> G_;\n    const Graph<T>& G;\n    std::vector<edge<T>> par;\n\
-    \    std::vector<int> dep;\n    std::vector<std::vector<int>> dbl;\n    void dfs_build(int\
-    \ v, int p) {\n        for (const auto& e : G[v]) {\n            if (e.to != p)\
-    \ {\n                par[e.to] = edge<T>(e.to, e.from, e.cost, e.idx);\n     \
-    \           dep[e.to] = dep[v] + 1;\n                dfs_build(e.to, v);\n   \
-    \         }\n        }\n    }\n    void init() {\n        n = G.size();\n    \
-    \    h = bitop::ceil_log2(n) + 1;\n        par.resize(n);\n        dep.assign(n,\
-    \ -1);\n        for (int r : root) {\n            par[r] = edge<T>{};\n      \
-    \      dep[r] = 0;\n            dfs_build(r, -1);\n        }\n        rep (i,\
-    \ n) {\n            if (dep[i] != -1) continue;\n            par[i] = edge<T>{};\n\
-    \            dep[i] = 0;\n            dfs_build(i, -1);\n        }\n        dbl.assign(n,\
-    \ std::vector<int>(h, -1));\n        rep (i, n) dbl[i][0] = par[i].to;\n     \
-    \   rep (i, h - 1) {\n            rep (j, n) dbl[j][i + 1] = dbl[j][i] == -1 ?\
-    \ -1 : dbl[dbl[j][i]][i];\n        }\n    }\n\npublic:\n    DoublingLCA(const\
-    \ Graph<T>& G, int r = 0) : root({r}), G(G) { init(); }\n    DoublingLCA(Graph<T>&&\
-    \ G, int r = 0) : root({r}), G_(std::move(G)), G(G_) {\n        init();\n    }\n\
-    \    DoublingLCA(const Graph<T>& G, const std::vector<int>& r) : root(r), G(G)\
-    \ {\n        init();\n    }\n    DoublingLCA(Graph<T>&& G, const std::vector<int>&\
-    \ r)\n        : root(r), G_(std::move(G)), G(G_) {\n        init();\n    }\n \
-    \   int depth(int v) const { return dep[v]; }\n    int parent(int v) const { return\
+    \ root;\n    Graph<T> G;\n    std::vector<edge<T>> par;\n    std::vector<int>\
+    \ dep;\n    std::vector<std::vector<int>> dbl;\n    void dfs_build(int v, int\
+    \ p) {\n        for (const auto& e : G[v]) {\n            if (e.to != p) {\n \
+    \               par[e.to] = edge<T>(e.to, e.from, e.cost, e.idx);\n          \
+    \      dep[e.to] = dep[v] + 1;\n                dfs_build(e.to, v);\n        \
+    \    }\n        }\n    }\n\npublic:\n    DoublingLCA() {}\n    DoublingLCA(const\
+    \ Graph<T>& G_, int r_ = 0) { init(G_, {r_}); }\n    DoublingLCA(const Graph<T>&\
+    \ G_, const std::vector<int>& r_) {\n        init(G_, r_);\n    }\n    void init(const\
+    \ Graph<T>& G_, const std::vector<int>& r_) {\n        G = G_;\n        root =\
+    \ r_;\n        n = G.size();\n        h = bitop::ceil_log2(n) + 1;\n        par.resize(n);\n\
+    \        dep.assign(n, -1);\n        for (int r : root) {\n            par[r]\
+    \ = edge<T>{};\n            dep[r] = 0;\n            dfs_build(r, -1);\n     \
+    \   }\n        rep (i, n) {\n            if (dep[i] != -1) continue;\n       \
+    \     par[i] = edge<T>{};\n            dep[i] = 0;\n            dfs_build(i, -1);\n\
+    \        }\n        dbl.assign(n, std::vector<int>(h, -1));\n        rep (i, n)\
+    \ dbl[i][0] = par[i].to;\n        rep (i, h - 1) {\n            rep (j, n) dbl[j][i\
+    \ + 1] = dbl[j][i] == -1 ? -1 : dbl[dbl[j][i]][i];\n        }\n    }\n    int\
+    \ depth(int v) const { return dep[v]; }\n    int parent(int v) const { return\
     \ par[v].to; }\n    int kth_ancestor(int v, int k) const {\n        if (dep[v]\
     \ < k) return -1;\n        rrep (i, h) {\n            if ((k >> i) & 1) v = dbl[v][i];\n\
     \        }\n        return v;\n    }\n    int kth_pow_of_2_ancestor(int v, int\
@@ -562,7 +560,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_5_C-LCA.test.cpp
   requiredBy: []
-  timestamp: '2024-06-13 00:08:28+09:00'
+  timestamp: '2026-06-27 23:15:50+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_5_C-LCA.test.cpp

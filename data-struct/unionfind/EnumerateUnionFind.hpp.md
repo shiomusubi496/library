@@ -4,31 +4,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/unionfind/UnionFind.hpp
     title: UnionFind
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -456,24 +456,25 @@ data:
     \ */\n#line 5 \"data-struct/unionfind/EnumerateUnionFind.hpp\"\n\nclass EnumerateUnionFind\
     \ {\nprivate:\n    int n;\n    std::vector<int> link;\n    UnionFind uf;\n\npublic:\n\
     \    EnumerateUnionFind() : EnumerateUnionFind(0) {}\n    EnumerateUnionFind(int\
-    \ n) : n(n), link(n, -1), uf(n) {}\n    int find(int x) { return uf.find(x); }\n\
-    \    std::pair<int, int> merge(int x, int y) {\n        auto res = uf.merge(x,\
-    \ y);\n        if (res.second != -1) std::swap(link[res.first], link[res.second]);\n\
-    \        return res;\n    }\n    bool same(int x, int y) { return uf.same(x, y);\
-    \ }\n    int size(int x) { return uf.size(x); }\n    std::vector<std::vector<int>>\
-    \ groups() { return uf.groups(); }\n    bool is_root(int x) const { return uf.is_root(x);\
-    \ }\n    std::vector<int> enumerate(int x) const {\n        assert(0 <= x && x\
-    \ < n);\n        std::vector<int> res;\n        do {\n            res.push_back(x);\n\
-    \            x = link[x];\n        } while (res[0] != x);\n        return res;\n\
-    \    }\n};\n"
+    \ n) : n(n), link(n, -1), uf(n) {\n        rep (i, n) link[i] = i;\n    }\n  \
+    \  int find(int x) { return uf.find(x); }\n    std::pair<int, int> merge(int x,\
+    \ int y) {\n        auto res = uf.merge(x, y);\n        if (res.second != -1)\
+    \ std::swap(link[res.first], link[res.second]);\n        return res;\n    }\n\
+    \    bool same(int x, int y) { return uf.same(x, y); }\n    int size(int x) {\
+    \ return uf.size(x); }\n    std::vector<std::vector<int>> groups() { return uf.groups();\
+    \ }\n    bool is_root(int x) const { return uf.is_root(x); }\n    std::vector<int>\
+    \ enumerate(int x) const {\n        assert(0 <= x && x < n);\n        std::vector<int>\
+    \ res;\n        do {\n            res.push_back(x);\n            x = link[x];\n\
+    \        } while (res[0] != x);\n        return res;\n    }\n};\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"UnionFind.hpp\"\
     \n\nclass EnumerateUnionFind {\nprivate:\n    int n;\n    std::vector<int> link;\n\
     \    UnionFind uf;\n\npublic:\n    EnumerateUnionFind() : EnumerateUnionFind(0)\
-    \ {}\n    EnumerateUnionFind(int n) : n(n), link(n, -1), uf(n) {}\n    int find(int\
-    \ x) { return uf.find(x); }\n    std::pair<int, int> merge(int x, int y) {\n \
-    \       auto res = uf.merge(x, y);\n        if (res.second != -1) std::swap(link[res.first],\
-    \ link[res.second]);\n        return res;\n    }\n    bool same(int x, int y)\
-    \ { return uf.same(x, y); }\n    int size(int x) { return uf.size(x); }\n    std::vector<std::vector<int>>\
+    \ {}\n    EnumerateUnionFind(int n) : n(n), link(n, -1), uf(n) {\n        rep\
+    \ (i, n) link[i] = i;\n    }\n    int find(int x) { return uf.find(x); }\n   \
+    \ std::pair<int, int> merge(int x, int y) {\n        auto res = uf.merge(x, y);\n\
+    \        if (res.second != -1) std::swap(link[res.first], link[res.second]);\n\
+    \        return res;\n    }\n    bool same(int x, int y) { return uf.same(x, y);\
+    \ }\n    int size(int x) { return uf.size(x); }\n    std::vector<std::vector<int>>\
     \ groups() { return uf.groups(); }\n    bool is_root(int x) const { return uf.is_root(x);\
     \ }\n    std::vector<int> enumerate(int x) const {\n        assert(0 <= x && x\
     \ < n);\n        std::vector<int> res;\n        do {\n            res.push_back(x);\n\
@@ -493,7 +494,7 @@ data:
   isVerificationFile: false
   path: data-struct/unionfind/EnumerateUnionFind.hpp
   requiredBy: []
-  timestamp: '2024-05-17 12:02:17+09:00'
+  timestamp: '2026-06-27 23:15:50+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data-struct/unionfind/EnumerateUnionFind.hpp

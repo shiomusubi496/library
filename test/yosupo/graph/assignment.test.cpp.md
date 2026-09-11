@@ -4,31 +4,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/flow/AssignmentProblem.hpp
     title: graph/flow/AssignmentProblem.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -442,22 +442,22 @@ data:
     \     assert(sorted);\n        for (auto&& i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
     };\n#line 2 \"graph/flow/AssignmentProblem.hpp\"\n\n#line 4 \"graph/flow/AssignmentProblem.hpp\"\
-    \n\ntemplate<class T>\nclass AssignmentProblem {\nprivate:\n    T c;\n    std::vector<T>\
+    \n\ntemplate<class T> class AssignmentProblem {\nprivate:\n    T c;\n    std::vector<T>\
     \ X, Y;\n    std::vector<int> P;\n\npublic:\n    AssignmentProblem(std::vector<std::vector<T>>\
     \ C) {\n        int n = C.size();\n        int m = C[0].size();\n        assert(n\
     \ >= m);\n        C.insert(C.begin(), std::vector<T>(m + 1, 0));\n        reps\
-    \ (i, n) C[i].insert(C[i].begin(), 0);\n        ++n; ++m;\n        std::vector<int>\
-    \ way(m);\n        P.resize(m);\n        X.resize(n); Y.resize(m);\n        rep\
-    \ (i, 1, n) {\n            P[0] = i;\n            int j0 = 0;\n            std::vector<T>\
-    \ cur(m, infinity<T>::max);\n            std::vector<bool> vis(m, false);\n  \
-    \          while (P[j0] != 0) {\n                vis[j0] = true;\n           \
-    \     int i0 = P[j0], j1 = 0;\n                T d = infinity<T>::max;\n     \
-    \           rep (j, 1, m) {\n                    if (vis[j]) continue;\n     \
-    \               if (chmin(cur[j], C[i0][j] - X[i0] - Y[j])) way[j] = j0;\n   \
-    \                 if (chmin(d, cur[j])) j1 = j;\n                }\n         \
-    \       rep (j, m) {\n                    if (vis[j]) X[P[j]] += d, Y[j] -= d;\n\
-    \                    else cur[j] -= d;\n                }\n                j0\
-    \ = j1;\n            }\n            do {\n                P[j0] = P[way[j0]];\n\
+    \ (i, n) C[i].insert(C[i].begin(), 0);\n        ++n;\n        ++m;\n        std::vector<int>\
+    \ way(m);\n        P.resize(m);\n        X.resize(n);\n        Y.resize(m);\n\
+    \        rep (i, 1, n) {\n            P[0] = i;\n            int j0 = 0;\n   \
+    \         std::vector<T> cur(m, infinity<T>::max);\n            std::vector<bool>\
+    \ vis(m, false);\n            while (P[j0] != 0) {\n                vis[j0] =\
+    \ true;\n                int i0 = P[j0], j1 = 0;\n                T d = infinity<T>::max;\n\
+    \                rep (j, 1, m) {\n                    if (vis[j]) continue;\n\
+    \                    if (chmin(cur[j], C[i0][j] - X[i0] - Y[j])) way[j] = j0;\n\
+    \                    if (chmin(d, cur[j])) j1 = j;\n                }\n      \
+    \          rep (j, m) {\n                    if (vis[j]) X[P[j]] += d, Y[j] -=\
+    \ d;\n                    else cur[j] -= d;\n                }\n             \
+    \   j0 = j1;\n            }\n            do {\n                P[j0] = P[way[j0]];\n\
     \                j0 = way[j0];\n            } while (j0 != 0);\n        }\n  \
     \      X.erase(X.begin());\n        Y.erase(Y.begin());\n        P.erase(P.begin());\n\
     \        rep (i, n - 1) --P[i];\n        c = 0;\n        rep (i, n - 1) c += X[i];\n\
@@ -489,7 +489,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/graph/assignment.test.cpp
   requiredBy: []
-  timestamp: '2024-08-03 19:01:39+09:00'
+  timestamp: '2026-06-27 23:15:50+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/graph/assignment.test.cpp

@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/FrequencyTableofTreeDistance.hpp
     title: Frequency Table of Tree Distance
   - icon: ':warning:'
@@ -61,7 +61,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/poly/BostanMori.hpp
     title: "Bostan-Mori(\u7DDA\u5F62\u6F38\u5316\u5F0F\u306En\u9805\u76EE)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/poly/FormalPowerSeries.hpp
     title: "FormalPowerSeries(\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570)"
   - icon: ':heavy_check_mark:'
@@ -70,17 +70,17 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/poly/PolynomialInterpolation.hpp
     title: "PolynomialInterpolation(\u591A\u9805\u5F0F\u88DC\u9593)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/poly/SamplingPointsShift.hpp
     title: "SamplingPointsShift(\u6A19\u672C\u70B9\u30B7\u30D5\u30C8)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/poly/SparseFormalPowerSeries.hpp
     title: "SparseFormalPowerSeries(\u758E\u306A\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570\
       )"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/poly/TaylorShift.hpp
     title: TaylorShift
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/WildcardPatternMatching.hpp
     title: WildcardPatternMatching
   _extendedVerifiedWith:
@@ -117,6 +117,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind_fixed_k.test.cpp
     title: test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind_fixed_k.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/bell_number.test.cpp
+    title: test/yosupo/new/bell_number.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/bernoulli_number.test.cpp
     title: test/yosupo/number_theory/bernoulli_number.test.cpp
@@ -177,30 +180,30 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
     title: test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/polynomial/pow_of_formal_power_series_sparse.test.cpp
     title: test/yosupo/polynomial/pow_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/polynomial/product_of_polynomial_sequence.test.cpp
     title: test/yosupo/polynomial/product_of_polynomial_sequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
     title: test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp
     title: test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
     title: test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/string/wildcard_pattern_matching.test.cpp
     title: test/yosupo/string/wildcard_pattern_matching.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
     title: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/math/convolution/Convolution.md
     document_title: "Convolution(\u7573\u307F\u8FBC\u307F)"
@@ -817,11 +820,27 @@ data:
     \ t2 = (c2[i] - t1 + MOD2) * INV1_2 % MOD2;\n        if (t2 < 0) t2 += MOD2;\n\
     \        ll t3 =\n            ((c3[i] - t1 + MOD3) * INV1_3 % MOD3 - t2 + MOD3)\
     \ * INV2_3 % MOD3;\n        if (t3 < 0) t3 += MOD3;\n        res[i] = static_modint<p>(t1\
-    \ + (t2 + t3 * MOD2) % p * MOD1);\n    }\n    return res;\n}\n\ntemplate<class\
-    \ T> void ntt_doubling_(std::vector<T>& a, std::vector<T> b) {\n    static constexpr\
-    \ internal::NthRoot<T> nth_root;\n    int n = a.size();\n    const T z = nth_root.get(bitop::msb(n)\
-    \ + 1);\n    T r = 1;\n    rep (i, n) {\n        b[i] *= r;\n        r *= z;\n\
-    \    }\n    number_theoretic_transform(b);\n    a.reserve(2 * n);\n    a.insert(a.end(),\
+    \ + (t2 + t3 * MOD2) % p * MOD1);\n    }\n    return res;\n}\n\ntemplate<int id>\n\
+    std::vector<dynamic_modint<id>>\nconvolution(const std::vector<dynamic_modint<id>>&\
+    \ a,\n            const std::vector<dynamic_modint<id>>& b) {\n    int n = a.size(),\
+    \ m = b.size();\n    assert(n + m - 1 <= (1 << 26));\n    std::vector<ll> a2(n),\
+    \ b2(m);\n    rep (i, n) a2[i] = a[i].get();\n    rep (i, m) b2[i] = b[i].get();\n\
+    \    static constexpr ll MOD1 = 469762049;\n    static constexpr ll MOD2 = 1811939329;\n\
+    \    static constexpr ll MOD3 = 2013265921;\n    static constexpr ll INV1_2 =\
+    \ mod_pow(MOD1, MOD2 - 2, MOD2);\n    static constexpr ll INV1_3 = mod_pow(MOD1,\
+    \ MOD3 - 2, MOD3);\n    static constexpr ll INV2_3 = mod_pow(MOD2, MOD3 - 2, MOD3);\n\
+    \    auto c1 = convolution<MOD1>(a2, b2);\n    auto c2 = convolution<MOD2>(a2,\
+    \ b2);\n    auto c3 = convolution<MOD3>(a2, b2);\n    std::vector<dynamic_modint<id>>\
+    \ res(n + m - 1);\n    ull p = dynamic_modint<id>::gmod();\n    rep (i, n + m\
+    \ - 1) {\n        ll t1 = c1[i];\n        ll t2 = (c2[i] - t1 + MOD2) * INV1_2\
+    \ % MOD2;\n        if (t2 < 0) t2 += MOD2;\n        ll t3 =\n            ((c3[i]\
+    \ - t1 + MOD3) * INV1_3 % MOD3 - t2 + MOD3) * INV2_3 % MOD3;\n        if (t3 <\
+    \ 0) t3 += MOD3;\n        res[i] = dynamic_modint<id>(t1 + (t2 + t3 * MOD2) %\
+    \ p * MOD1);\n    }\n    return res;\n}\n\ntemplate<class T> void ntt_doubling_(std::vector<T>&\
+    \ a, std::vector<T> b) {\n    static constexpr internal::NthRoot<T> nth_root;\n\
+    \    int n = a.size();\n    const T z = nth_root.get(bitop::msb(n) + 1);\n   \
+    \ T r = 1;\n    rep (i, n) {\n        b[i] *= r;\n        r *= z;\n    }\n   \
+    \ number_theoretic_transform(b);\n    a.reserve(2 * n);\n    a.insert(a.end(),\
     \ all(b));\n}\n\ntemplate<class T> void ntt_doubling_(std::vector<T>& a) {\n \
     \   static constexpr internal::NthRoot<T> nth_root;\n    int n = a.size();\n \
     \   auto b = a;\n    inverse_number_theoretic_transform(b);\n    const T z = nth_root.get(bitop::msb(n)\
@@ -829,7 +848,8 @@ data:
     \    }\n    number_theoretic_transform(b);\n    a.reserve(2 * n);\n    a.insert(a.end(),\
     \ all(b));\n}\n\ntemplate<unsigned int p> struct is_ntt_friendly : std::false_type\
     \ {};\n\ntemplate<> struct is_ntt_friendly<998244353> : std::true_type {};\n\n\
-    /**\n * @brief Convolution(\u7573\u307F\u8FBC\u307F)\n * @docs docs/math/convolution/Convolution.md\n\
+    template<> struct is_ntt_friendly<1811939329> : std::true_type {};\n\n/**\n *\
+    \ @brief Convolution(\u7573\u307F\u8FBC\u307F)\n * @docs docs/math/convolution/Convolution.md\n\
     \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../ModInt.hpp\"\
     \n\nconstexpr ull primitive_root_for_convolution(ull p) {\n    if (p == 2) return\
@@ -919,11 +939,27 @@ data:
     \ t2 = (c2[i] - t1 + MOD2) * INV1_2 % MOD2;\n        if (t2 < 0) t2 += MOD2;\n\
     \        ll t3 =\n            ((c3[i] - t1 + MOD3) * INV1_3 % MOD3 - t2 + MOD3)\
     \ * INV2_3 % MOD3;\n        if (t3 < 0) t3 += MOD3;\n        res[i] = static_modint<p>(t1\
-    \ + (t2 + t3 * MOD2) % p * MOD1);\n    }\n    return res;\n}\n\ntemplate<class\
-    \ T> void ntt_doubling_(std::vector<T>& a, std::vector<T> b) {\n    static constexpr\
-    \ internal::NthRoot<T> nth_root;\n    int n = a.size();\n    const T z = nth_root.get(bitop::msb(n)\
-    \ + 1);\n    T r = 1;\n    rep (i, n) {\n        b[i] *= r;\n        r *= z;\n\
-    \    }\n    number_theoretic_transform(b);\n    a.reserve(2 * n);\n    a.insert(a.end(),\
+    \ + (t2 + t3 * MOD2) % p * MOD1);\n    }\n    return res;\n}\n\ntemplate<int id>\n\
+    std::vector<dynamic_modint<id>>\nconvolution(const std::vector<dynamic_modint<id>>&\
+    \ a,\n            const std::vector<dynamic_modint<id>>& b) {\n    int n = a.size(),\
+    \ m = b.size();\n    assert(n + m - 1 <= (1 << 26));\n    std::vector<ll> a2(n),\
+    \ b2(m);\n    rep (i, n) a2[i] = a[i].get();\n    rep (i, m) b2[i] = b[i].get();\n\
+    \    static constexpr ll MOD1 = 469762049;\n    static constexpr ll MOD2 = 1811939329;\n\
+    \    static constexpr ll MOD3 = 2013265921;\n    static constexpr ll INV1_2 =\
+    \ mod_pow(MOD1, MOD2 - 2, MOD2);\n    static constexpr ll INV1_3 = mod_pow(MOD1,\
+    \ MOD3 - 2, MOD3);\n    static constexpr ll INV2_3 = mod_pow(MOD2, MOD3 - 2, MOD3);\n\
+    \    auto c1 = convolution<MOD1>(a2, b2);\n    auto c2 = convolution<MOD2>(a2,\
+    \ b2);\n    auto c3 = convolution<MOD3>(a2, b2);\n    std::vector<dynamic_modint<id>>\
+    \ res(n + m - 1);\n    ull p = dynamic_modint<id>::gmod();\n    rep (i, n + m\
+    \ - 1) {\n        ll t1 = c1[i];\n        ll t2 = (c2[i] - t1 + MOD2) * INV1_2\
+    \ % MOD2;\n        if (t2 < 0) t2 += MOD2;\n        ll t3 =\n            ((c3[i]\
+    \ - t1 + MOD3) * INV1_3 % MOD3 - t2 + MOD3) * INV2_3 % MOD3;\n        if (t3 <\
+    \ 0) t3 += MOD3;\n        res[i] = dynamic_modint<id>(t1 + (t2 + t3 * MOD2) %\
+    \ p * MOD1);\n    }\n    return res;\n}\n\ntemplate<class T> void ntt_doubling_(std::vector<T>&\
+    \ a, std::vector<T> b) {\n    static constexpr internal::NthRoot<T> nth_root;\n\
+    \    int n = a.size();\n    const T z = nth_root.get(bitop::msb(n) + 1);\n   \
+    \ T r = 1;\n    rep (i, n) {\n        b[i] *= r;\n        r *= z;\n    }\n   \
+    \ number_theoretic_transform(b);\n    a.reserve(2 * n);\n    a.insert(a.end(),\
     \ all(b));\n}\n\ntemplate<class T> void ntt_doubling_(std::vector<T>& a) {\n \
     \   static constexpr internal::NthRoot<T> nth_root;\n    int n = a.size();\n \
     \   auto b = a;\n    inverse_number_theoretic_transform(b);\n    const T z = nth_root.get(bitop::msb(n)\
@@ -931,7 +967,8 @@ data:
     \    }\n    number_theoretic_transform(b);\n    a.reserve(2 * n);\n    a.insert(a.end(),\
     \ all(b));\n}\n\ntemplate<unsigned int p> struct is_ntt_friendly : std::false_type\
     \ {};\n\ntemplate<> struct is_ntt_friendly<998244353> : std::true_type {};\n\n\
-    /**\n * @brief Convolution(\u7573\u307F\u8FBC\u307F)\n * @docs docs/math/convolution/Convolution.md\n\
+    template<> struct is_ntt_friendly<1811939329> : std::true_type {};\n\n/**\n *\
+    \ @brief Convolution(\u7573\u307F\u8FBC\u307F)\n * @docs docs/math/convolution/Convolution.md\n\
     \ */\n"
   dependsOn:
   - other/template.hpp
@@ -947,61 +984,62 @@ data:
   isVerificationFile: false
   path: math/convolution/Convolution.hpp
   requiredBy:
-  - string/WildcardPatternMatching.hpp
-  - math/convolution/RelaxedConvolution.hpp
-  - math/convolution/MultidimensionalConvolution.hpp
   - math/Factorial.hpp
+  - math/StirlingNumber.hpp
+  - math/convolution/MultidimensionalConvolution.hpp
+  - math/convolution/RelaxedConvolution.hpp
   - math/SubsetSum.hpp
+  - math/ExpPolySum.hpp
+  - math/BigInteger.hpp
+  - math/poly/PolynomialInterpolation.hpp
   - math/poly/SamplingPointsShift.hpp
+  - math/poly/FormalPowerSeries.hpp
+  - math/poly/SparseFormalPowerSeries.hpp
   - math/poly/MultipointEvaluation.hpp
   - math/poly/TaylorShift.hpp
   - math/poly/BostanMori.hpp
-  - math/poly/PolynomialInterpolation.hpp
-  - math/poly/SparseFormalPowerSeries.hpp
-  - math/poly/FormalPowerSeries.hpp
-  - math/ExpPolySum.hpp
-  - math/StirlingNumber.hpp
-  - math/BigInteger.hpp
+  - string/WildcardPatternMatching.hpp
   - graph/tree/FrequencyTableofTreeDistance.hpp
-  timestamp: '2024-12-16 12:15:38+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-06-27 23:15:50+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind_fixed_k.test.cpp
+  - test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
+  - test/yosupo/enumerative_combinatorics/partition_function.test.cpp
+  - test/yosupo/enumerative_combinatorics/factorial.test.cpp
+  - test/yosupo/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
+  - test/yosupo/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
+  - test/yosupo/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
+  - test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp
+  - test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
+  - test/yosupo/other/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/yosupo/convolution/convolution_mod.test.cpp
   - test/yosupo/convolution/multivariate_convolution.test.cpp
   - test/yosupo/convolution/convolution_mod_1000000007.test.cpp
-  - test/yosupo/other/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp
-  - test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
-  - test/yosupo/string/wildcard_pattern_matching.test.cpp
-  - test/yosupo/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
-  - test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
-  - test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind_fixed_k.test.cpp
-  - test/yosupo/enumerative_combinatorics/partition_function.test.cpp
-  - test/yosupo/enumerative_combinatorics/factorial.test.cpp
-  - test/yosupo/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
-  - test/yosupo/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
-  - test/yosupo/number_theory/bernoulli_number.test.cpp
-  - test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
   - test/yosupo/polynomial/log_of_formal_power_series.test.cpp
+  - test/yosupo/polynomial/product_of_polynomial_sequence.test.cpp
+  - test/yosupo/polynomial/exp_of_formal_power_series.test.cpp
+  - test/yosupo/polynomial/multipoint_evaluation.test.cpp
   - test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
   - test/yosupo/polynomial/composition_of_formal_power_series.test.cpp
-  - test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-  - test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp
+  - test/yosupo/polynomial/inv_of_formal_power_series.test.cpp
+  - test/yosupo/polynomial/log_of_formal_power_series_sparse.test.cpp
+  - test/yosupo/polynomial/exp_of_formal_power_series_sparse.test.cpp
+  - test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
+  - test/yosupo/polynomial/division_of_polynomials.test.cpp
   - test/yosupo/polynomial/multipoint_evaluation_on_geometric_sequence.test.cpp
   - test/yosupo/polynomial/compositional_inverse_of_formal_power_series.test.cpp
-  - test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
-  - test/yosupo/polynomial/pow_of_formal_power_series_sparse.test.cpp
-  - test/yosupo/polynomial/exp_of_formal_power_series_sparse.test.cpp
-  - test/yosupo/polynomial/inv_of_formal_power_series.test.cpp
-  - test/yosupo/polynomial/product_of_polynomial_sequence.test.cpp
   - test/yosupo/polynomial/polynomial_interpolation.test.cpp
-  - test/yosupo/polynomial/multipoint_evaluation.test.cpp
-  - test/yosupo/polynomial/log_of_formal_power_series_sparse.test.cpp
   - test/yosupo/polynomial/polynomial_interpolation_on_geometric_sequence.test.cpp
-  - test/yosupo/polynomial/exp_of_formal_power_series-RelaxedConvolution.test.cpp
-  - test/yosupo/polynomial/exp_of_formal_power_series.test.cpp
+  - test/yosupo/polynomial/pow_of_formal_power_series_sparse.test.cpp
+  - test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp
+  - test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
+  - test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
   - test/yosupo/polynomial/inv_of_formal_power_series_sparse.test.cpp
-  - test/yosupo/polynomial/division_of_polynomials.test.cpp
+  - test/yosupo/polynomial/exp_of_formal_power_series-RelaxedConvolution.test.cpp
+  - test/yosupo/new/bell_number.test.cpp
+  - test/yosupo/number_theory/bernoulli_number.test.cpp
+  - test/yosupo/string/wildcard_pattern_matching.test.cpp
   - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
   - test/aoj/DPL/DPL_5_G.test.cpp
 documentation_of: math/convolution/Convolution.hpp

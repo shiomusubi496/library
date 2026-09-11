@@ -4,31 +4,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: dp/MonotoneMinima.hpp
     title: MonotoneMinima
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -455,29 +455,52 @@ data:
     \       H, W, [&](int i, int j, int k) { return f(i, j) < f(i, k); });\n}\n\n\
     /**\n * @brief MonotoneMinima\n * @docs docs/dp/MonotoneMinima.md\n */\n#line\
     \ 5 \"math/convolution/MinPlusConvolution.hpp\"\n\ntemplate<class T>\nstd::vector<T>\
-    \ min_plus_convolution(const std::vector<T>& a,\n                            \
-    \        const std::vector<T>& b) {\n    int n = a.size(), m = b.size();\n   \
-    \ if (n == 0 || m == 0) return {};\n    // b must be convex\n    rep (i, m - 2)\
-    \ assert(b[i + 1] - b[i] <= b[i + 2] - b[i + 1]);\n    auto idx = monotone_minima_comp(n\
-    \ + m - 1, n, [&](int i, int j, int k) {\n        if (i - j < 0 || i - j >= m\
-    \ || i - k < 0 || i - k >= m) {\n            return std::max(j - i - 1, i - j\
-    \ - m) <\n                   std::max(k - i - 1, i - k - m);\n        }\n    \
-    \    return a[j] + b[i - j] < a[k] + b[i - k];\n    });\n    std::vector<T> res(n\
-    \ + m - 1);\n    rep (i, n + m - 1) res[i] = a[idx[i]] + b[i - idx[i]];\n    return\
-    \ res;\n}\n\n/**\n * @brief Min Plus Convolution\n * @docs docs/math/convolution/MinPlusConvolution.md\n\
-    \ */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../dp/MonotoneMinima.hpp\"\
-    \n\ntemplate<class T>\nstd::vector<T> min_plus_convolution(const std::vector<T>&\
-    \ a,\n                                    const std::vector<T>& b) {\n    int\
-    \ n = a.size(), m = b.size();\n    if (n == 0 || m == 0) return {};\n    // b\
-    \ must be convex\n    rep (i, m - 2) assert(b[i + 1] - b[i] <= b[i + 2] - b[i\
-    \ + 1]);\n    auto idx = monotone_minima_comp(n + m - 1, n, [&](int i, int j,\
-    \ int k) {\n        if (i - j < 0 || i - j >= m || i - k < 0 || i - k >= m) {\n\
-    \            return std::max(j - i - 1, i - j - m) <\n                   std::max(k\
+    \ min_plus_convolution_convex_convex(const std::vector<T>& a,  std::vector<T>&\
+    \ b) {\n    int n = a.size(), m = b.size();\n    if (n == 0 || m == 0) return\
+    \ {};\n    rep (i, n - 2) assert(a[i + 1] - a[i] <= a[i + 2] - a[i + 1]);\n  \
+    \  rep (i, m - 2) assert(b[i + 1] - b[i] <= b[i + 2] - b[i + 1]);\n    std::vector<T>\
+    \ res(n + m - 1);\n    int j = 0, k = 0;\n    rep (i, n + m - 1) {\n        res[i]\
+    \ = a[j] + b[k];\n        if (j == n - 1) ++k;\n        else if (k == m - 1) ++j;\n\
+    \        else if (a[j + 1] - a[j] <= b[k + 1] - b[k]) ++j;\n        else ++k;\n\
+    \    }\n    return res;\n}\n\ntemplate<class T>\nstd::vector<T> min_plus_convolution(std::vector<T>\
+    \ a, std::vector<T> b) {\n    int n = a.size(), m = b.size();\n    if (n == 0\
+    \ || m == 0) return {};\n    // b must be convex\n    bool is_a_convex = true;\n\
+    \    bool is_b_convex = true;\n    rep (i, n - 2) if (a[i + 1] - a[i] > a[i +\
+    \ 2] - a[i + 1]) is_a_convex = false;\n    rep (i, m - 2) if (b[i + 1] - b[i]\
+    \ > b[i + 2] - b[i + 1]) is_b_convex = false;\n    assert(is_a_convex || is_b_convex);\n\
+    \    if (is_a_convex && is_b_convex) {\n        return min_plus_convolution_convex_convex(a,\
+    \ b);\n    }\n    if (is_a_convex) {\n        std::swap(a, b);\n        std::swap(n,\
+    \ m);\n    }\n    auto idx = monotone_minima_comp(n + m - 1, n, [&](int i, int\
+    \ j, int k) {\n        if (i - j < 0 || i - j >= m || i - k < 0 || i - k >= m)\
+    \ {\n            return std::max(j - i - 1, i - j - m) <\n                   std::max(k\
     \ - i - 1, i - k - m);\n        }\n        return a[j] + b[i - j] < a[k] + b[i\
     \ - k];\n    });\n    std::vector<T> res(n + m - 1);\n    rep (i, n + m - 1) res[i]\
     \ = a[idx[i]] + b[i - idx[i]];\n    return res;\n}\n\n/**\n * @brief Min Plus\
     \ Convolution\n * @docs docs/math/convolution/MinPlusConvolution.md\n */\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../dp/MonotoneMinima.hpp\"\
+    \n\ntemplate<class T>\nstd::vector<T> min_plus_convolution_convex_convex(const\
+    \ std::vector<T>& a,  std::vector<T>& b) {\n    int n = a.size(), m = b.size();\n\
+    \    if (n == 0 || m == 0) return {};\n    rep (i, n - 2) assert(a[i + 1] - a[i]\
+    \ <= a[i + 2] - a[i + 1]);\n    rep (i, m - 2) assert(b[i + 1] - b[i] <= b[i +\
+    \ 2] - b[i + 1]);\n    std::vector<T> res(n + m - 1);\n    int j = 0, k = 0;\n\
+    \    rep (i, n + m - 1) {\n        res[i] = a[j] + b[k];\n        if (j == n -\
+    \ 1) ++k;\n        else if (k == m - 1) ++j;\n        else if (a[j + 1] - a[j]\
+    \ <= b[k + 1] - b[k]) ++j;\n        else ++k;\n    }\n    return res;\n}\n\ntemplate<class\
+    \ T>\nstd::vector<T> min_plus_convolution(std::vector<T> a, std::vector<T> b)\
+    \ {\n    int n = a.size(), m = b.size();\n    if (n == 0 || m == 0) return {};\n\
+    \    // b must be convex\n    bool is_a_convex = true;\n    bool is_b_convex =\
+    \ true;\n    rep (i, n - 2) if (a[i + 1] - a[i] > a[i + 2] - a[i + 1]) is_a_convex\
+    \ = false;\n    rep (i, m - 2) if (b[i + 1] - b[i] > b[i + 2] - b[i + 1]) is_b_convex\
+    \ = false;\n    assert(is_a_convex || is_b_convex);\n    if (is_a_convex && is_b_convex)\
+    \ {\n        return min_plus_convolution_convex_convex(a, b);\n    }\n    if (is_a_convex)\
+    \ {\n        std::swap(a, b);\n        std::swap(n, m);\n    }\n    auto idx =\
+    \ monotone_minima_comp(n + m - 1, n, [&](int i, int j, int k) {\n        if (i\
+    \ - j < 0 || i - j >= m || i - k < 0 || i - k >= m) {\n            return std::max(j\
+    \ - i - 1, i - j - m) <\n                   std::max(k - i - 1, i - k - m);\n\
+    \        }\n        return a[j] + b[i - j] < a[k] + b[i - k];\n    });\n    std::vector<T>\
+    \ res(n + m - 1);\n    rep (i, n + m - 1) res[i] = a[idx[i]] + b[i - idx[i]];\n\
+    \    return res;\n}\n\n/**\n * @brief Min Plus Convolution\n * @docs docs/math/convolution/MinPlusConvolution.md\n\
+    \ */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -492,7 +515,7 @@ data:
   isVerificationFile: false
   path: math/convolution/MinPlusConvolution.hpp
   requiredBy: []
-  timestamp: '2024-12-18 19:56:12+09:00'
+  timestamp: '2026-06-27 23:15:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/convolution/min_plus_convolution_convex_arbitrary.test.cpp

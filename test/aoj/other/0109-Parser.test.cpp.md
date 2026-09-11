@@ -1,34 +1,34 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   - icon: ':heavy_check_mark:'
     path: string/Parser.hpp
     title: string/Parser.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -442,77 +442,81 @@ data:
     \     assert(sorted);\n        for (auto&& i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
     };\n#line 2 \"string/Parser.hpp\"\n\n#line 4 \"string/Parser.hpp\"\n\ntemplate<class\
-    \ Res>\nclass Parser {\npublic:\n    class ParseError : public std::exception\
-    \ {\n    private:\n        std::string message;\n\n    public:\n        ParseError(const\
+    \ Res> class Parser {\npublic:\n    class ParseError : public std::exception {\n\
+    \    private:\n        std::string message;\n\n    public:\n        ParseError(const\
     \ std::string& message) : message(message) {}\n        const char* what() const\
-    \ noexcept override {\n            return message.c_str();\n        }\n    };\n\
-    \    class State;\n\nprivate:\n    using Iter = typename std::string::const_iterator;\n\
-    \    using ParserFunc = std::function<Res(State&)>;\n    using ParserFuncs = std::vector<ParserFunc>;\n\
+    \ noexcept override { return message.c_str(); }\n    };\n    class State;\n\n\
+    private:\n    using Iter = typename std::string::const_iterator;\n    using ParserFunc\
+    \ = std::function<Res(State&)>;\n    using ParserFuncs = std::vector<ParserFunc>;\n\
     \    using ParserName = std::string;\n    using ParserNames = std::vector<ParserName>;\n\
     \n    ParserFuncs parsers;\n    ParserNames names;\n\npublic:\n    class State\
     \ {\n    private:\n        ParserFuncs& parsers;\n        ParserNames& names;\n\
     \        Iter& iter;\n\n    public:\n        State(ParserFuncs& parsers, ParserNames&\
-    \ names, Iter& iter) : parsers(parsers), names(names), iter(iter) {}\n       \
-    \ char operator*() const {\n            return *iter;\n        }\n        void\
-    \ operator++() {\n            ++iter;\n        }\n        void operator--() {\n\
-    \            --iter;\n        }\n        void consume(char expected) {\n     \
-    \       if (*iter == '\\0') throw ParseError(\"expected '\" + std::string(1, expected)\
-    \ + \"', but got EOF\");\n            if (*iter != expected) throw ParseError(\"\
-    expected '\" + std::string(1, expected) + \"', but got '\" + std::string(1, *iter)\
-    \ + \"'\");\n            iter++;\n        }\n        void consume(const std::string&\
-    \ expected) {\n            for (char c : expected) consume(c);\n        }\n  \
-    \      Res call(const ParserName& name) {\n            rep (i, names.size()) {\n\
-    \                if (names[i] == name) return parsers[i](*this);\n           \
-    \ }\n            throw ParseError(\"unknown parser name: \" + name);\n       \
-    \ }\n        void error(const std::string& message) {\n            throw ParseError(message);\n\
-    \        }\n    };\n\n    Parser() {}\n    void add_parser(const ParserName& name,\
-    \ const ParserFunc& parser) {\n        names.push_back(name);\n        parsers.push_back(parser);\n\
-    \    }\n    std::function<int()> f;\n    Res parse(const std::string& s, int expr\
-    \ = 0) {\n        Iter iter = s.begin();\n        State state(parsers, names,\
-    \ iter);\n        Res res = parsers[expr](state);\n        if (iter != s.end())\
-    \ throw ParseError(\"unexpected character: '\" + std::string(1, *iter) + \"'\"\
-    );\n        return res;\n    }\n};\n\ntemplate<class Res>\nclass OperatorParser\
-    \ {\nprivate:\n    using P = Parser<Res>;\n\npublic:\n    using State = typename\
-    \ P::State;\n\nprivate:\n    using OperatorFunc = std::function<Res(Res, Res)>;\n\
-    \    using FunctionFunc = std::function<Res(Res)>;\n    using TermFunc = std::function<Res(typename\
-    \ P::State&)>;\n\n    std::vector<std::vector<OperatorFunc>> ops;\n    std::vector<std::vector<std::string>>\
-    \ op_names;\n    std::vector<FunctionFunc> funcs;\n    std::vector<std::string>\
-    \ func_names;\n    TermFunc term;\n\n    static Res int_term(typename P::State&\
-    \ state) {\n        bool neg = false;\n        if (*state == '-') {\n        \
-    \    neg = true;\n            ++state;\n        }\n        int res = 0;\n    \
-    \    while ('0' <= *state && *state <= '9') {\n            res = res * 10 + (*state\
-    \ - '0');\n            ++state;\n        }\n        if (neg) res = -res;\n   \
-    \     return res;\n    }\n\npublic:\n    OperatorParser() {}\n    OperatorParser(int\
-    \ n) : ops(n), op_names(n), term(int_term) {}\n    OperatorParser(int n, const\
-    \ TermFunc& term) : ops(n), op_names(n), term(term) {}\n    void add_operator(int\
-    \ i, const std::string& name, const OperatorFunc& parser) {\n        ops[i].push_back(parser);\n\
+    \ names, Iter& iter)\n            : parsers(parsers), names(names), iter(iter)\
+    \ {}\n        char operator*() const { return *iter; }\n        void operator++()\
+    \ { ++iter; }\n        void operator--() { --iter; }\n        void consume(char\
+    \ expected) {\n            if (*iter == '\\0')\n                throw ParseError(\"\
+    expected '\" + std::string(1, expected) +\n                                 \"\
+    ', but got EOF\");\n            if (*iter != expected)\n                throw\
+    \ ParseError(\"expected '\" + std::string(1, expected) +\n                   \
+    \              \"', but got '\" + std::string(1, *iter) + \"'\");\n          \
+    \  iter++;\n        }\n        void consume(const std::string& expected) {\n \
+    \           for (char c : expected) consume(c);\n        }\n        Res call(const\
+    \ ParserName& name) {\n            rep (i, names.size()) {\n                if\
+    \ (names[i] == name) return parsers[i](*this);\n            }\n            throw\
+    \ ParseError(\"unknown parser name: \" + name);\n        }\n        void error(const\
+    \ std::string& message) { throw ParseError(message); }\n    };\n\n    Parser()\
+    \ {}\n    void add_parser(const ParserName& name, const ParserFunc& parser) {\n\
+    \        names.push_back(name);\n        parsers.push_back(parser);\n    }\n \
+    \   std::function<int()> f;\n    Res parse(const std::string& s, int expr = 0)\
+    \ {\n        Iter iter = s.begin();\n        State state(parsers, names, iter);\n\
+    \        Res res = parsers[expr](state);\n        if (iter != s.end())\n     \
+    \       throw ParseError(\"unexpected character: '\" + std::string(1, *iter) +\n\
+    \                             \"'\");\n        return res;\n    }\n};\n\ntemplate<class\
+    \ Res> class OperatorParser {\nprivate:\n    using P = Parser<Res>;\n\npublic:\n\
+    \    using State = typename P::State;\n\nprivate:\n    using OperatorFunc = std::function<Res(Res,\
+    \ Res)>;\n    using FunctionFunc = std::function<Res(Res)>;\n    using TermFunc\
+    \ = std::function<Res(typename P::State&)>;\n\n    std::vector<std::vector<OperatorFunc>>\
+    \ ops;\n    std::vector<std::vector<std::string>> op_names;\n    std::vector<FunctionFunc>\
+    \ funcs;\n    std::vector<std::string> func_names;\n    TermFunc term;\n\n   \
+    \ static Res int_term(typename P::State& state) {\n        bool neg = false;\n\
+    \        if (*state == '-') {\n            neg = true;\n            ++state;\n\
+    \        }\n        int res = 0;\n        while ('0' <= *state && *state <= '9')\
+    \ {\n            res = res * 10 + (*state - '0');\n            ++state;\n    \
+    \    }\n        if (neg) res = -res;\n        return res;\n    }\n\npublic:\n\
+    \    OperatorParser() {}\n    OperatorParser(int n) : ops(n), op_names(n), term(int_term)\
+    \ {}\n    OperatorParser(int n, const TermFunc& term)\n        : ops(n), op_names(n),\
+    \ term(term) {}\n    void add_operator(int i, const std::string& name,\n     \
+    \                 const OperatorFunc& parser) {\n        ops[i].push_back(parser);\n\
     \        op_names[i].push_back(name);\n    }\n    void add_function(const std::string&\
     \ name, const FunctionFunc& parser) {\n        funcs.push_back(parser);\n    \
     \    func_names.push_back(name);\n    }\n    Res parse(const std::string& s) {\n\
-    \        P parser;\n        rrep (i, ops.size()) {\n            parser.add_parser(\"\
-    op\" + std::to_string(i + 1), [this, i](typename P::State& state) -> Res {\n \
-    \               Res res = state.call(\"op\" + std::to_string(i));\n          \
-    \      while (true) {\n                    bool found = false;\n             \
-    \       rep (j, ops[i].size()) {\n                        found = true;\n    \
-    \                    rep (k, op_names[i][j].size()) {\n                      \
-    \      if (*state == op_names[i][j][k]) ++state;\n                           \
-    \ else {\n                                found = false;\n                   \
-    \             rep (k) --state;\n                                break;\n     \
-    \                       }\n                        }\n                       \
-    \ if (found) {\n                            res = ops[i][j](res, state.call(\"\
-    op\" + std::to_string(i)));\n                            break;\n            \
-    \            }\n                    }\n                    if (!found) break;\n\
-    \                }\n                return res;\n            });\n        }\n\
-    \        parser.add_parser(\"op0\", [this](typename P::State& state) -> Res {\n\
-    \            if (*state == '(') {\n                ++state;\n                Res\
-    \ res = state.call(\"op\" + std::to_string(ops.size()));\n                state.consume(')');\n\
-    \                return res;\n            }\n            rep (i, funcs.size())\
-    \ {\n                bool found = true;\n                rep (j, func_names[i].size())\
-    \ {\n                    if (*state == func_names[i][j]) ++state;\n          \
-    \          else {\n                        found = false;\n                  \
-    \      rep (j) --state;\n                        break;\n                    }\n\
-    \                }\n                if (found) {\n                    state.consume('(');\n\
-    \                    Res res = funcs[i](state.call(\"op\" + std::to_string(ops.size())));\n\
+    \        P parser;\n        rrep (i, ops.size()) {\n            parser.add_parser(\n\
+    \                \"op\" + std::to_string(i + 1),\n                [this, i](typename\
+    \ P::State& state) -> Res {\n                    Res res = state.call(\"op\" +\
+    \ std::to_string(i));\n                    while (true) {\n                  \
+    \      bool found = false;\n                        rep (j, ops[i].size()) {\n\
+    \                            found = true;\n                            rep (k,\
+    \ op_names[i][j].size()) {\n                                if (*state == op_names[i][j][k])\
+    \ ++state;\n                                else {\n                         \
+    \           found = false;\n                                    rep (k) --state;\n\
+    \                                    break;\n                                }\n\
+    \                            }\n                            if (found) {\n   \
+    \                             res = ops[i][j](\n                             \
+    \       res, state.call(\"op\" + std::to_string(i)));\n                      \
+    \          break;\n                            }\n                        }\n\
+    \                        if (!found) break;\n                    }\n         \
+    \           return res;\n                });\n        }\n        parser.add_parser(\"\
+    op0\", [this](typename P::State& state) -> Res {\n            if (*state == '(')\
+    \ {\n                ++state;\n                Res res = state.call(\"op\" + std::to_string(ops.size()));\n\
+    \                state.consume(')');\n                return res;\n          \
+    \  }\n            rep (i, funcs.size()) {\n                bool found = true;\n\
+    \                rep (j, func_names[i].size()) {\n                    if (*state\
+    \ == func_names[i][j]) ++state;\n                    else {\n                \
+    \        found = false;\n                        rep (j) --state;\n          \
+    \              break;\n                    }\n                }\n            \
+    \    if (found) {\n                    state.consume('(');\n                 \
+    \   Res res =\n                        funcs[i](state.call(\"op\" + std::to_string(ops.size())));\n\
     \                    state.consume(')');\n                    return res;\n  \
     \              }\n            }\n            return term(state);\n        });\n\
     \        return parser.parse(s, 0);\n    }\n};\n#line 4 \"test/aoj/other/0109-Parser.test.cpp\"\
@@ -546,7 +550,7 @@ data:
   isVerificationFile: true
   path: test/aoj/other/0109-Parser.test.cpp
   requiredBy: []
-  timestamp: '2024-12-16 20:52:52+09:00'
+  timestamp: '2026-06-27 23:15:50+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/other/0109-Parser.test.cpp

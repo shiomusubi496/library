@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/GaussianInteger.hpp
     title: GaussianInteger
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/MontgomeryModInt.hpp
     title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
   - icon: ':heavy_check_mark:'
@@ -17,37 +17,37 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/num/TwoSquareSum.hpp
     title: math/num/TwoSquareSum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/Random.hpp
     title: Random
   - icon: ':heavy_check_mark:'
     path: string/RunLength.hpp
     title: "RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -683,18 +683,19 @@ data:
     \ {\n            for (auto&& g : res) g *= gpows[e];\n            continue;\n\
     \        }\n        std::vector<G> gs(e + 1);\n        rep (i, e + 1) gs[i] =\
     \ gpows[i] * gpows[e - i].conj();\n        std::vector<G> nres;\n        for (auto\
-    \ g : gs) for (auto i : res) nres.push_back(g * i);\n        res = std::move(nres);\n\
-    \    }\n    for (auto&& g : res) {\n        while (g.real <= 0 || g.imag < 0)\
-    \ g = {-g.imag, g.real};\n    }\n    std::vector<std::pair<T, T>> ans(res.size());\n\
-    \    rep (i, res.size()) ans[i] = {res[i].real, res[i].imag};\n    return ans;\n\
-    }\n#line 4 \"test/yosupo/new/two_square_sum.test.cpp\"\nusing namespace std;\n\
-    int main() {\n    int T; scan >> T;\n    rep (T) {\n        ll n; scan >> n;\n\
-    \        if (n == 0) {\n            prints(1);\n            prints(0, 0);\n  \
-    \          continue;\n        }\n        auto res = two_square_sum(n);\n     \
-    \   vector<pair<ll, ll>> ans;\n        for (auto [a, b] : res) {\n           \
-    \ rep (4) {\n                swap(a, b);\n                a = -a;\n          \
-    \      if (a >= 0 && b >= 0) ans.emplace_back(a, b);\n            }\n        }\n\
-    \        prints(ans.size());\n        for (auto p : ans) prints(p);\n    }\n}\n"
+    \ g : gs)\n            for (auto i : res) nres.push_back(g * i);\n        res\
+    \ = std::move(nres);\n    }\n    for (auto&& g : res) {\n        while (g.real\
+    \ <= 0 || g.imag < 0) g = {-g.imag, g.real};\n    }\n    std::vector<std::pair<T,\
+    \ T>> ans(res.size());\n    rep (i, res.size()) ans[i] = {res[i].real, res[i].imag};\n\
+    \    return ans;\n}\n#line 4 \"test/yosupo/new/two_square_sum.test.cpp\"\nusing\
+    \ namespace std;\nint main() {\n    int T; scan >> T;\n    rep (T) {\n       \
+    \ ll n; scan >> n;\n        if (n == 0) {\n            prints(1);\n          \
+    \  prints(0, 0);\n            continue;\n        }\n        auto res = two_square_sum(n);\n\
+    \        vector<pair<ll, ll>> ans;\n        for (auto [a, b] : res) {\n      \
+    \      rep (4) {\n                swap(a, b);\n                a = -a;\n     \
+    \           if (a >= 0 && b >= 0) ans.emplace_back(a, b);\n            }\n   \
+    \     }\n        prints(ans.size());\n        for (auto p : ans) prints(p);\n\
+    \    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/two_square_sum\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../math/num/TwoSquareSum.hpp\"\
     \nusing namespace std;\nint main() {\n    int T; scan >> T;\n    rep (T) {\n \
@@ -725,7 +726,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/new/two_square_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-12-19 20:07:49+09:00'
+  timestamp: '2026-06-27 23:15:50+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/new/two_square_sum.test.cpp

@@ -1,31 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
@@ -583,14 +583,14 @@ data:
   isVerificationFile: false
   path: math/BarrettReduction.hpp
   requiredBy:
-  - math/ArbitraryModCombinatorics.hpp
   - math/SmallModStirlingNumber.hpp
   - math/DiscreteLogarithm.hpp
+  - math/ArbitraryModCombinatorics.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/enumerative_combinatorics/binomial_coefficient_prime_mod.test.cpp
   - test/yosupo/enumerative_combinatorics/binomial_coefficient.test.cpp
+  - test/yosupo/enumerative_combinatorics/binomial_coefficient_prime_mod.test.cpp
   - test/yosupo/number_theory/discrete_logarithm_mod.test.cpp
   - test/yosupo/linear_algebra/matrix_det_arbitrary_mod.test.cpp
 documentation_of: math/BarrettReduction.hpp

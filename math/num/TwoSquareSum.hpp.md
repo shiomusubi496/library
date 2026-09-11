@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/GaussianInteger.hpp
     title: GaussianInteger
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/MontgomeryModInt.hpp
     title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
   - icon: ':heavy_check_mark:'
@@ -14,37 +14,37 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/num/PollardRho.hpp
     title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/Random.hpp
     title: Random
   - icon: ':heavy_check_mark:'
     path: string/RunLength.hpp
     title: "RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -679,11 +679,11 @@ data:
     \ {\n            for (auto&& g : res) g *= gpows[e];\n            continue;\n\
     \        }\n        std::vector<G> gs(e + 1);\n        rep (i, e + 1) gs[i] =\
     \ gpows[i] * gpows[e - i].conj();\n        std::vector<G> nres;\n        for (auto\
-    \ g : gs) for (auto i : res) nres.push_back(g * i);\n        res = std::move(nres);\n\
-    \    }\n    for (auto&& g : res) {\n        while (g.real <= 0 || g.imag < 0)\
-    \ g = {-g.imag, g.real};\n    }\n    std::vector<std::pair<T, T>> ans(res.size());\n\
-    \    rep (i, res.size()) ans[i] = {res[i].real, res[i].imag};\n    return ans;\n\
-    }\n"
+    \ g : gs)\n            for (auto i : res) nres.push_back(g * i);\n        res\
+    \ = std::move(nres);\n    }\n    for (auto&& g : res) {\n        while (g.real\
+    \ <= 0 || g.imag < 0) g = {-g.imag, g.real};\n    }\n    std::vector<std::pair<T,\
+    \ T>> ans(res.size());\n    rep (i, res.size()) ans[i] = {res[i].real, res[i].imag};\n\
+    \    return ans;\n}\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"PollardRho.hpp\"\
     \n#include \"../GaussianInteger.hpp\"\n\nstd::pair<ll, ll> two_square_sum_prime(ll\
     \ p) {\n    assert(p == 2 || p % 4 == 1);\n    if (p == 2) return {1, 1};\n  \
@@ -707,11 +707,11 @@ data:
     \ {\n            for (auto&& g : res) g *= gpows[e];\n            continue;\n\
     \        }\n        std::vector<G> gs(e + 1);\n        rep (i, e + 1) gs[i] =\
     \ gpows[i] * gpows[e - i].conj();\n        std::vector<G> nres;\n        for (auto\
-    \ g : gs) for (auto i : res) nres.push_back(g * i);\n        res = std::move(nres);\n\
-    \    }\n    for (auto&& g : res) {\n        while (g.real <= 0 || g.imag < 0)\
-    \ g = {-g.imag, g.real};\n    }\n    std::vector<std::pair<T, T>> ans(res.size());\n\
-    \    rep (i, res.size()) ans[i] = {res[i].real, res[i].imag};\n    return ans;\n\
-    }\n"
+    \ g : gs)\n            for (auto i : res) nres.push_back(g * i);\n        res\
+    \ = std::move(nres);\n    }\n    for (auto&& g : res) {\n        while (g.real\
+    \ <= 0 || g.imag < 0) g = {-g.imag, g.real};\n    }\n    std::vector<std::pair<T,\
+    \ T>> ans(res.size());\n    rep (i, res.size()) ans[i] = {res[i].real, res[i].imag};\n\
+    \    return ans;\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -731,7 +731,7 @@ data:
   isVerificationFile: false
   path: math/num/TwoSquareSum.hpp
   requiredBy: []
-  timestamp: '2024-12-19 20:07:49+09:00'
+  timestamp: '2026-06-27 23:15:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/new/two_square_sum.test.cpp

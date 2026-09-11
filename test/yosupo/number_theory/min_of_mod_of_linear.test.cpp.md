@@ -10,31 +10,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/SternBrocotTree.hpp
     title: Stern-Brocot Tree
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -450,10 +450,10 @@ data:
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
     };\n#line 2 \"math/LinearModMin.hpp\"\n\n#line 2 \"math/SternBrocotTree.hpp\"\n\
     \n#line 2 \"math/Rational.hpp\"\n\n#line 4 \"math/Rational.hpp\"\n\ntemplate<class\
-    \ T, bool allow_div_zero = false> class Rational {\nprivate:\n    using LargeT\
-    \ =\n        typename std::conditional<std::is_integral<T>::value,\n         \
-    \                         typename double_size<T>::type, ld>::type;\n    T num,\
-    \ den;\n\npublic:\n    static void norm(T& a, T& b) {\n        if IF_CONSTEXPR\
+    \ T, bool allow_div_zero = false,\n         class LargeT =\n             typename\
+    \ std::conditional<std::is_integral<T>::value,\n                             \
+    \          typename double_size<T>::type, ld>::type>\nclass Rational {\nprivate:\n\
+    \    T num, den;\n\npublic:\n    static void norm(T& a, T& b) {\n        if IF_CONSTEXPR\
     \ (!allow_div_zero) {\n            assert(b != 0);\n        }\n        T g = gcd(abs(a),\
     \ abs(b));\n        a /= g;\n        b /= g;\n        if (b < 0) {\n         \
     \   a = -a;\n            b = -b;\n        }\n    }\n    void normalize() { norm(num,\
@@ -601,7 +601,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/number_theory/min_of_mod_of_linear.test.cpp
   requiredBy: []
-  timestamp: '2024-07-19 18:01:49+09:00'
+  timestamp: '2026-06-27 23:15:50+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/number_theory/min_of_mod_of_linear.test.cpp

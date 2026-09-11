@@ -1,56 +1,56 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/FrequencyTableofTreeDistance.hpp
     title: Frequency Table of Tree Distance
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/TreeCentroid.hpp
     title: "TreeCentroid(\u6728\u306E\u91CD\u5FC3)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/convolution/Convolution.hpp
     title: "Convolution(\u7573\u307F\u8FBC\u307F)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/num/ChineseRemainder.hpp
     title: "Chinese Remainder(\u4E2D\u56FD\u5270\u4F59\u5B9A\u7406)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/frequency_table_of_tree_distance
@@ -733,11 +733,27 @@ data:
     \ t2 = (c2[i] - t1 + MOD2) * INV1_2 % MOD2;\n        if (t2 < 0) t2 += MOD2;\n\
     \        ll t3 =\n            ((c3[i] - t1 + MOD3) * INV1_3 % MOD3 - t2 + MOD3)\
     \ * INV2_3 % MOD3;\n        if (t3 < 0) t3 += MOD3;\n        res[i] = static_modint<p>(t1\
-    \ + (t2 + t3 * MOD2) % p * MOD1);\n    }\n    return res;\n}\n\ntemplate<class\
-    \ T> void ntt_doubling_(std::vector<T>& a, std::vector<T> b) {\n    static constexpr\
-    \ internal::NthRoot<T> nth_root;\n    int n = a.size();\n    const T z = nth_root.get(bitop::msb(n)\
-    \ + 1);\n    T r = 1;\n    rep (i, n) {\n        b[i] *= r;\n        r *= z;\n\
-    \    }\n    number_theoretic_transform(b);\n    a.reserve(2 * n);\n    a.insert(a.end(),\
+    \ + (t2 + t3 * MOD2) % p * MOD1);\n    }\n    return res;\n}\n\ntemplate<int id>\n\
+    std::vector<dynamic_modint<id>>\nconvolution(const std::vector<dynamic_modint<id>>&\
+    \ a,\n            const std::vector<dynamic_modint<id>>& b) {\n    int n = a.size(),\
+    \ m = b.size();\n    assert(n + m - 1 <= (1 << 26));\n    std::vector<ll> a2(n),\
+    \ b2(m);\n    rep (i, n) a2[i] = a[i].get();\n    rep (i, m) b2[i] = b[i].get();\n\
+    \    static constexpr ll MOD1 = 469762049;\n    static constexpr ll MOD2 = 1811939329;\n\
+    \    static constexpr ll MOD3 = 2013265921;\n    static constexpr ll INV1_2 =\
+    \ mod_pow(MOD1, MOD2 - 2, MOD2);\n    static constexpr ll INV1_3 = mod_pow(MOD1,\
+    \ MOD3 - 2, MOD3);\n    static constexpr ll INV2_3 = mod_pow(MOD2, MOD3 - 2, MOD3);\n\
+    \    auto c1 = convolution<MOD1>(a2, b2);\n    auto c2 = convolution<MOD2>(a2,\
+    \ b2);\n    auto c3 = convolution<MOD3>(a2, b2);\n    std::vector<dynamic_modint<id>>\
+    \ res(n + m - 1);\n    ull p = dynamic_modint<id>::gmod();\n    rep (i, n + m\
+    \ - 1) {\n        ll t1 = c1[i];\n        ll t2 = (c2[i] - t1 + MOD2) * INV1_2\
+    \ % MOD2;\n        if (t2 < 0) t2 += MOD2;\n        ll t3 =\n            ((c3[i]\
+    \ - t1 + MOD3) * INV1_3 % MOD3 - t2 + MOD3) * INV2_3 % MOD3;\n        if (t3 <\
+    \ 0) t3 += MOD3;\n        res[i] = dynamic_modint<id>(t1 + (t2 + t3 * MOD2) %\
+    \ p * MOD1);\n    }\n    return res;\n}\n\ntemplate<class T> void ntt_doubling_(std::vector<T>&\
+    \ a, std::vector<T> b) {\n    static constexpr internal::NthRoot<T> nth_root;\n\
+    \    int n = a.size();\n    const T z = nth_root.get(bitop::msb(n) + 1);\n   \
+    \ T r = 1;\n    rep (i, n) {\n        b[i] *= r;\n        r *= z;\n    }\n   \
+    \ number_theoretic_transform(b);\n    a.reserve(2 * n);\n    a.insert(a.end(),\
     \ all(b));\n}\n\ntemplate<class T> void ntt_doubling_(std::vector<T>& a) {\n \
     \   static constexpr internal::NthRoot<T> nth_root;\n    int n = a.size();\n \
     \   auto b = a;\n    inverse_number_theoretic_transform(b);\n    const T z = nth_root.get(bitop::msb(n)\
@@ -745,7 +761,8 @@ data:
     \    }\n    number_theoretic_transform(b);\n    a.reserve(2 * n);\n    a.insert(a.end(),\
     \ all(b));\n}\n\ntemplate<unsigned int p> struct is_ntt_friendly : std::false_type\
     \ {};\n\ntemplate<> struct is_ntt_friendly<998244353> : std::true_type {};\n\n\
-    /**\n * @brief Convolution(\u7573\u307F\u8FBC\u307F)\n * @docs docs/math/convolution/Convolution.md\n\
+    template<> struct is_ntt_friendly<1811939329> : std::true_type {};\n\n/**\n *\
+    \ @brief Convolution(\u7573\u307F\u8FBC\u307F)\n * @docs docs/math/convolution/Convolution.md\n\
     \ */\n#line 2 \"graph/tree/TreeCentroid.hpp\"\n\n#line 5 \"graph/tree/TreeCentroid.hpp\"\
     \n\ntemplate<class T> class TreeCentroids {\nprivate:\n    int n;\n    const Graph<T>&\
     \ G;\n    std::vector<int> sz;\n    std::vector<int> cent;\n    int dfs(int v,\
@@ -853,8 +870,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
   requiredBy: []
-  timestamp: '2024-12-19 20:07:49+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-06-27 23:15:50+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
 layout: document

@@ -92,10 +92,10 @@ data:
       title: SlopeTrick
   - name: data-struct/segment
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: data-struct/segment/BinaryIndexedTree.hpp
       title: BinaryIndexedTree(FenwickTree, BIT)
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: data-struct/segment/CumulativeSum.hpp
       title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
     - icon: ':heavy_check_mark:'
@@ -127,7 +127,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-struct/segment/PlusMinusOneRMQ.hpp
       title: PlusMinusOneRMQ($\pm1$RMQ)
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: data-struct/segment/RAQBIT.hpp
       title: BinaryIndexedTree(FenwickTree, BIT)
     - icon: ':heavy_check_mark:'
@@ -136,7 +136,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-struct/segment/RangeSortQuery.hpp
       title: RangeSortQuery
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: data-struct/segment/SegmentTree.hpp
       title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
     - icon: ':heavy_check_mark:'
@@ -254,7 +254,7 @@ data:
       title: geometry/template.hpp
   - name: graph
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/Graph.hpp
       title: Graph-template
   - name: graph/connected
@@ -378,24 +378,24 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/tree/CartesianTree.hpp
       title: CartesianTree
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/tree/ContourQuery.hpp
       title: graph/tree/ContourQuery.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/tree/DoublingLowestCommonAncestor.hpp
       title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
         \u308BLCA)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/tree/EulerTour.hpp
       title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
     - icon: ':heavy_check_mark:'
       path: graph/tree/EulerTourSubtree.hpp
       title: "EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\
         \u6728\u30AF\u30A8\u30EA)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/tree/FrequencyTableofTreeDistance.hpp
       title: Frequency Table of Tree Distance
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/tree/HeavyLightDecomposition.hpp
       title: "HeavyLightDecomposition(HL\u5206\u89E3)"
     - icon: ':heavy_check_mark:'
@@ -404,19 +404,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/tree/PermutationTree.hpp
       title: graph/tree/PermutationTree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/tree/ReRooting.hpp
       title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
     - icon: ':warning:'
       path: graph/tree/StaticTopTree.hpp
       title: graph/tree/StaticTopTree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/tree/TreeCentroid.hpp
       title: "TreeCentroid(\u6728\u306E\u91CD\u5FC3)"
     - icon: ':heavy_check_mark:'
       path: graph/tree/TreeDiameter.hpp
       title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/tree/TreeHash.hpp
       title: TreeHash
   - name: math
@@ -430,7 +430,10 @@ data:
     - icon: ':warning:'
       path: math/BigInteger.hpp
       title: math/BigInteger.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
+      path: math/BinomPrefixSum.hpp
+      title: BinomPrefixSum
+    - icon: ':question:'
       path: math/Combinatorics.hpp
       title: Combinatorics
     - icon: ':heavy_check_mark:'
@@ -451,10 +454,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/LinearModMin.hpp
       title: LinearModMin
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/ModInt.hpp
       title: ModInt
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/MontgomeryModInt.hpp
       title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
     - icon: ':heavy_check_mark:'
@@ -472,7 +475,7 @@ data:
     - icon: ':warning:'
       path: math/SmallModStirlingNumber.hpp
       title: SmallModStirlingNumber
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/SqrtMod.hpp
       title: "SqrtMod(\u5E73\u65B9\u5270\u4F59)"
     - icon: ':heavy_check_mark:'
@@ -499,7 +502,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/convolution/BitwiseXorConvolution.hpp
       title: BitwiseXorConvolution
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/convolution/Convolution.hpp
       title: "Convolution(\u7573\u307F\u8FBC\u307F)"
     - icon: ':heavy_check_mark:'
@@ -556,7 +559,7 @@ data:
       title: "Matrix(\u884C\u5217)"
   - name: math/num
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/num/ChineseRemainder.hpp
       title: "Chinese Remainder(\u4E2D\u56FD\u5270\u4F59\u5B9A\u7406)"
     - icon: ':heavy_check_mark:'
@@ -571,6 +574,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/num/KthRoot.hpp
       title: "KthRoot(k\u4E57\u6839)"
+    - icon: ':heavy_check_mark:'
+      path: math/num/LucyDP.hpp
+      title: math/num/LucyDP.hpp
     - icon: ':heavy_check_mark:'
       path: math/num/MillerRabin.hpp
       title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
@@ -592,7 +598,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/poly/BostanMori.hpp
       title: "Bostan-Mori(\u7DDA\u5F62\u6F38\u5316\u5F0F\u306En\u9805\u76EE)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/poly/FormalPowerSeries.hpp
       title: "FormalPowerSeries(\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570)"
     - icon: ':heavy_check_mark:'
@@ -601,30 +607,30 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/poly/PolynomialInterpolation.hpp
       title: "PolynomialInterpolation(\u591A\u9805\u5F0F\u88DC\u9593)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/poly/SamplingPointsShift.hpp
       title: "SamplingPointsShift(\u6A19\u672C\u70B9\u30B7\u30D5\u30C8)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/poly/SparseFormalPowerSeries.hpp
       title: "SparseFormalPowerSeries(\u758E\u306A\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570\
         )"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/poly/TaylorShift.hpp
       title: TaylorShift
   - name: other
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/monoid.hpp
       title: other/monoid.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/monoid2.hpp
       title: other/monoid2.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/template.hpp
       title: other/template.hpp
   - name: random
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: random/Random.hpp
       title: Random
     - icon: ':heavy_check_mark:'
@@ -648,7 +654,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/Parser.hpp
       title: string/Parser.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: string/RollingHash.hpp
       title: "RollingHash(\u30ED\u30EA\u30CF)"
     - icon: ':heavy_check_mark:'
@@ -657,7 +663,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/SuffixArray.hpp
       title: SuffixArray
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: string/WildcardPatternMatching.hpp
       title: WildcardPatternMatching
     - icon: ':heavy_check_mark:'
@@ -665,28 +671,28 @@ data:
       title: Z-Algorithm
   - name: template
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/alias.hpp
       title: template/alias.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/bitop.hpp
       title: template/bitop.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/func.hpp
       title: template/func.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/in.hpp
       title: template/in.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/macros.hpp
       title: template/macros.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/out.hpp
       title: template/out.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/type_traits.hpp
       title: template/type_traits.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/util.hpp
       title: template/util.hpp
   verificationCategories:
@@ -1299,6 +1305,9 @@ data:
   - name: test/yosupo/new
     pages:
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/new/bell_number.test.cpp
+      title: test/yosupo/new/bell_number.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/new/two_square_sum.test.cpp
       title: test/yosupo/new/two_square_sum.test.cpp
   - name: test/yosupo/number_theory
@@ -1306,6 +1315,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/number_theory/bernoulli_number.test.cpp
       title: test/yosupo/number_theory/bernoulli_number.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/number_theory/counting_primes.test.cpp
+      title: test/yosupo/number_theory/counting_primes.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/number_theory/discrete_logarithm_mod.test.cpp
       title: test/yosupo/number_theory/discrete_logarithm_mod.test.cpp
@@ -1418,19 +1430,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
       title: test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/polynomial/pow_of_formal_power_series_sparse.test.cpp
       title: test/yosupo/polynomial/pow_of_formal_power_series_sparse.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/polynomial/product_of_polynomial_sequence.test.cpp
       title: test/yosupo/polynomial/product_of_polynomial_sequence.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
       title: test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp
       title: test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
       title: test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
   - name: test/yosupo/sample
@@ -1458,7 +1470,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/string/suffixarray.test.cpp
       title: test/yosupo/string/suffixarray.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/string/wildcard_pattern_matching.test.cpp
       title: test/yosupo/string/wildcard_pattern_matching.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1472,16 +1484,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/tree/common_interval_decomposition_tree.test.cpp
       title: test/yosupo/tree/common_interval_decomposition_tree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
       title: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/tree/jump_on_tree.test.cpp
       title: test/yosupo/tree/jump_on_tree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/tree/lca-HLD.test.cpp
       title: test/yosupo/tree/lca-HLD.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
       title: test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1490,13 +1502,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/tree/tree_path_composite_sum.test.cpp
       title: test/yosupo/tree/tree_path_composite_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/tree/vertex_add_path_sum.test.cpp
       title: test/yosupo/tree/vertex_add_path_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/tree/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
       title: test/yosupo/tree/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/tree/vertex_add_range_contour_sum_on_tree.test.cpp
       title: test/yosupo/tree/vertex_add_range_contour_sum_on_tree.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1505,16 +1517,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/tree/vertex_add_subtree_sum-HLD.test.cpp
       title: test/yosupo/tree/vertex_add_subtree_sum-HLD.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/tree/vertex_add_subtree_sum.test.cpp
       title: test/yosupo/tree/vertex_add_subtree_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/tree/vertex_get_range_contour_add_on_tree.test.cpp
       title: test/yosupo/tree/vertex_get_range_contour_add_on_tree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/tree/vertex_set_path_composite-HLD.test.cpp
       title: test/yosupo/tree/vertex_set_path_composite-HLD.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/tree/vertex_set_path_composite.test.cpp
       title: test/yosupo/tree/vertex_set_path_composite.test.cpp
   - name: test/yuki
@@ -1525,7 +1537,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
       title: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yuki/1435_SegTree-BinarySearch.test.cpp
       title: test/yuki/1435_SegTree-BinarySearch.test.cpp
     - icon: ':heavy_check_mark:'

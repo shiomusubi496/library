@@ -1,31 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
@@ -65,10 +65,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/other/SlidingWindowAggregation.hpp
     title: SlidingWindowAggregation(SWAG)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/BinaryIndexedTree.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/CumulativeSum.hpp
     title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
   - icon: ':heavy_check_mark:'
@@ -100,7 +100,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/PlusMinusOneRMQ.hpp
     title: PlusMinusOneRMQ($\pm1$RMQ)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/RAQBIT.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
   - icon: ':heavy_check_mark:'
@@ -109,7 +109,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/RangeSortQuery.hpp
     title: RangeSortQuery
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':heavy_check_mark:'
@@ -142,7 +142,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/mst/DirectedMST.hpp
     title: "DirectedMST(\u6700\u5C0F\u6709\u5411\u5168\u57DF\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
   - icon: ':heavy_check_mark:'
@@ -151,10 +151,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree/PermutationTree.hpp
     title: graph/tree/PermutationTree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree/ReRooting.hpp
     title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/TreeHash.hpp
     title: TreeHash
   - icon: ':heavy_check_mark:'
@@ -169,10 +169,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/convolution/BitwiseXorConvolution.hpp
     title: BitwiseXorConvolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/RollingHash.hpp
     title: "RollingHash(\u30ED\u30EA\u30CF)"
   _extendedVerifiedWith:
@@ -350,19 +350,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/common_interval_decomposition_tree.test.cpp
     title: test/yosupo/tree/common_interval_decomposition_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
     title: test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/tree_path_composite_sum.test.cpp
     title: test/yosupo/tree/tree_path_composite_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/tree/vertex_add_path_sum.test.cpp
     title: test/yosupo/tree/vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/tree/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
     title: test/yosupo/tree/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/tree/vertex_add_range_contour_sum_on_tree.test.cpp
     title: test/yosupo/tree/vertex_add_range_contour_sum_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -371,30 +371,30 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/vertex_add_subtree_sum-HLD.test.cpp
     title: test/yosupo/tree/vertex_add_subtree_sum-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/tree/vertex_add_subtree_sum.test.cpp
     title: test/yosupo/tree/vertex_add_subtree_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/tree/vertex_get_range_contour_add_on_tree.test.cpp
     title: test/yosupo/tree/vertex_get_range_contour_add_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/tree/vertex_set_path_composite-HLD.test.cpp
     title: test/yosupo/tree/vertex_set_path_composite-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/tree/vertex_set_path_composite.test.cpp
     title: test/yosupo/tree/vertex_set_path_composite.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
     title: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yuki/1435_SegTree-BinarySearch.test.cpp
     title: test/yuki/1435_SegTree-BinarySearch.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yuki/855_DynamicSegTree.test.cpp
     title: test/yuki/855_DynamicSegTree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"other/monoid.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
@@ -989,129 +989,129 @@ data:
   isVerificationFile: false
   path: other/monoid.hpp
   requiredBy:
-  - other/monoid2.hpp
-  - string/RollingHash.hpp
+  - data-struct/other/DequeOperateAggregation.hpp
+  - data-struct/other/SlidingWindowAggregation.hpp
+  - data-struct/other/SkipList.hpp
+  - data-struct/bst/SplayTree.hpp
+  - data-struct/heap/LeftistHeap.hpp
+  - data-struct/heap/SkewHeap.hpp
+  - data-struct/wavelet/CumulativeSumWM.hpp
+  - data-struct/wavelet/SegmentTreeWM.hpp
+  - data-struct/wavelet/WaveletMatrixStruct.hpp
+  - data-struct/segment/LinearRMQ.hpp
+  - data-struct/segment/CumulativeSum.hpp
+  - data-struct/segment/SegmentTree.hpp
+  - data-struct/segment/SqrtDecomposition.hpp
+  - data-struct/segment/DynamicLazySegmentTree.hpp
+  - data-struct/segment/PlusMinusOneRMQ.hpp
+  - data-struct/segment/RAQBIT.hpp
+  - data-struct/segment/BinaryIndexedTree.hpp
+  - data-struct/segment/LCARMQ.hpp
+  - data-struct/segment/StaticRangeCountDistinct.hpp
+  - data-struct/segment/RangeSortQuery.hpp
+  - data-struct/segment/SparseTable.hpp
+  - data-struct/segment/StarrySkyTree.hpp
+  - data-struct/segment/DualSegmentTree.hpp
+  - data-struct/segment/SegmentTreeBeats.hpp
+  - data-struct/segment/DisjointSparseTable.hpp
+  - data-struct/segment/LazySegmentTree.hpp
+  - data-struct/segment/DynamicSegmentTree.hpp
+  - data-struct/segment/RangeAssignSegmentTree.hpp
+  - data-struct/segment/NonMergeSegmentTree.hpp
+  - data-struct/2D/CumulativeSum2D.hpp
+  - data-struct/2D/DualSegmentTree2D.hpp
+  - data-struct/2D/StaticRectangleAddRectangleSum.hpp
+  - data-struct/2D/SegmentTree2D.hpp
+  - data-struct/2D/Struct2D.hpp
+  - data-struct/2D/AreaofUnionofRectangles.hpp
+  - data-struct/unionfind/WeightedUnionFind.hpp
   - math/convolution/BitwiseXorConvolution.hpp
   - math/convolution/BitwiseOrConvolution.hpp
   - math/convolution/BitwiseAndConvolution.hpp
   - math/DiscreteLogarithm.hpp
-  - data-struct/other/SlidingWindowAggregation.hpp
-  - data-struct/other/SkipList.hpp
-  - data-struct/other/DequeOperateAggregation.hpp
-  - data-struct/segment/StarrySkyTree.hpp
-  - data-struct/segment/SqrtDecomposition.hpp
-  - data-struct/segment/CumulativeSum.hpp
-  - data-struct/segment/RangeAssignSegmentTree.hpp
-  - data-struct/segment/BinaryIndexedTree.hpp
-  - data-struct/segment/LCARMQ.hpp
-  - data-struct/segment/LazySegmentTree.hpp
-  - data-struct/segment/DisjointSparseTable.hpp
-  - data-struct/segment/SegmentTree.hpp
-  - data-struct/segment/NonMergeSegmentTree.hpp
-  - data-struct/segment/LinearRMQ.hpp
-  - data-struct/segment/StaticRangeCountDistinct.hpp
-  - data-struct/segment/SegmentTreeBeats.hpp
-  - data-struct/segment/SparseTable.hpp
-  - data-struct/segment/PlusMinusOneRMQ.hpp
-  - data-struct/segment/DynamicLazySegmentTree.hpp
-  - data-struct/segment/DynamicSegmentTree.hpp
-  - data-struct/segment/DualSegmentTree.hpp
-  - data-struct/segment/RAQBIT.hpp
-  - data-struct/segment/RangeSortQuery.hpp
-  - data-struct/unionfind/WeightedUnionFind.hpp
-  - data-struct/2D/Struct2D.hpp
-  - data-struct/2D/StaticRectangleAddRectangleSum.hpp
-  - data-struct/2D/AreaofUnionofRectangles.hpp
-  - data-struct/2D/DualSegmentTree2D.hpp
-  - data-struct/2D/CumulativeSum2D.hpp
-  - data-struct/2D/SegmentTree2D.hpp
-  - data-struct/bst/SplayTree.hpp
-  - data-struct/wavelet/CumulativeSumWM.hpp
-  - data-struct/wavelet/WaveletMatrixStruct.hpp
-  - data-struct/wavelet/SegmentTreeWM.hpp
-  - data-struct/heap/SkewHeap.hpp
-  - data-struct/heap/LeftistHeap.hpp
-  - graph/tree/PMORMQLCA.hpp
-  - graph/tree/PermutationTree.hpp
-  - graph/tree/TreeHash.hpp
+  - other/monoid2.hpp
+  - string/RollingHash.hpp
   - graph/tree/EulerTour.hpp
+  - graph/tree/PMORMQLCA.hpp
   - graph/tree/ReRooting.hpp
+  - graph/tree/TreeHash.hpp
+  - graph/tree/PermutationTree.hpp
   - graph/mst/DirectedMST.hpp
   timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yosupo/convolution/bitwise_xor_convolution.test.cpp
   - test/yosupo/convolution/lcm_convolution.test.cpp
-  - test/yosupo/convolution/bitwise_and_convolution.test.cpp
-  - test/yosupo/convolution/gcd_convolution.test.cpp
   - test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
+  - test/yosupo/convolution/gcd_convolution.test.cpp
+  - test/yosupo/convolution/bitwise_xor_convolution.test.cpp
+  - test/yosupo/convolution/bitwise_and_convolution.test.cpp
   - test/yosupo/number_theory/discrete_logarithm_mod.test.cpp
-  - test/yosupo/tree/vertex_add_subtree_sum.test.cpp
-  - test/yosupo/tree/vertex_add_subtree_sum-2.test.cpp
-  - test/yosupo/tree/vertex_add_subtree_sum-HLD.test.cpp
-  - test/yosupo/tree/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
-  - test/yosupo/tree/vertex_get_range_contour_add_on_tree.test.cpp
-  - test/yosupo/tree/vertex_set_path_composite.test.cpp
-  - test/yosupo/tree/vertex_add_path_sum.test.cpp
-  - test/yosupo/tree/tree_path_composite_sum.test.cpp
-  - test/yosupo/tree/vertex_add_range_contour_sum_on_tree.test.cpp
-  - test/yosupo/tree/common_interval_decomposition_tree.test.cpp
-  - test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
-  - test/yosupo/tree/vertex_set_path_composite-HLD.test.cpp
-  - test/yosupo/data_structure/range_set_range_composite.test.cpp
-  - test/yosupo/data_structure/unionfind_with_potential_non_commutative_group.test.cpp
-  - test/yosupo/data_structure/rectangle_add_point_get.test.cpp
-  - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SplayTree.test.cpp
-  - test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
-  - test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
-  - test/yosupo/data_structure/range_kth_smallest-seg.test.cpp
-  - test/yosupo/data_structure/static_range_sum-CumulativeSum.test.cpp
-  - test/yosupo/data_structure/staticrmq-LinearRMQ.test.cpp
-  - test/yosupo/data_structure/static_range_sum-DisjointSparseTable.test.cpp
-  - test/yosupo/data_structure/unionfind_with_potential.test.cpp
   - test/yosupo/data_structure/range_chmin_chmax_add_range_sum.test.cpp
-  - test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp
-  - test/yosupo/data_structure/range_affine_point_get.test.cpp
-  - test/yosupo/data_structure/rectangle_sum-2DCum.test.cpp
-  - test/yosupo/data_structure/static_range_inversions_query.test.cpp
-  - test/yosupo/data_structure/queue_operate_all_composite.test.cpp
-  - test/yosupo/data_structure/staticrmq-SparseTable.test.cpp
-  - test/yosupo/data_structure/range_affine_range_sum.test.cpp
-  - test/yosupo/data_structure/point_set_range_composite.test.cpp
-  - test/yosupo/data_structure/point_add_rectangle_sum-2DSegTree.test.cpp
-  - test/yosupo/data_structure/point_add_range_sum.test.cpp
-  - test/yosupo/data_structure/range_reverse_range_sum.test.cpp
   - test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
-  - test/yosupo/data_structure/range_kth_smallest-sqrt.test.cpp
-  - test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
+  - test/yosupo/data_structure/rectangle_sum-2DCum.test.cpp
+  - test/yosupo/data_structure/static_range_sum-CumulativeSum.test.cpp
   - test/yosupo/data_structure/deque_operate_all_composite.test.cpp
+  - test/yosupo/data_structure/static_range_inversions_query.test.cpp
+  - test/yosupo/data_structure/range_affine_range_sum.test.cpp
+  - test/yosupo/data_structure/range_kth_smallest-sqrt.test.cpp
+  - test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp
+  - test/yosupo/data_structure/unionfind_with_potential.test.cpp
+  - test/yosupo/data_structure/range_set_range_composite.test.cpp
   - test/yosupo/data_structure/static_range_count_distinct.test.cpp
-  - test/yosupo/data_structure/rectangle_sum-WM.test.cpp
+  - test/yosupo/data_structure/range_affine_point_get.test.cpp
+  - test/yosupo/data_structure/staticrmq-LinearRMQ.test.cpp
   - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
+  - test/yosupo/data_structure/queue_operate_all_composite.test.cpp
+  - test/yosupo/data_structure/unionfind_with_potential_non_commutative_group.test.cpp
+  - test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
+  - test/yosupo/data_structure/point_add_range_sum.test.cpp
   - test/yosupo/data_structure/point_add_rectangle_sum-WM.test.cpp
+  - test/yosupo/data_structure/range_kth_smallest-seg.test.cpp
+  - test/yosupo/data_structure/point_add_rectangle_sum-2DSegTree.test.cpp
+  - test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
+  - test/yosupo/data_structure/rectangle_sum-WM.test.cpp
+  - test/yosupo/data_structure/static_range_sum-DisjointSparseTable.test.cpp
+  - test/yosupo/data_structure/range_reverse_range_sum.test.cpp
+  - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SplayTree.test.cpp
+  - test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
+  - test/yosupo/data_structure/staticrmq-SparseTable.test.cpp
+  - test/yosupo/data_structure/point_set_range_composite.test.cpp
+  - test/yosupo/data_structure/rectangle_add_point_get.test.cpp
+  - test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
+  - test/yosupo/tree/common_interval_decomposition_tree.test.cpp
+  - test/yosupo/tree/vertex_set_path_composite-HLD.test.cpp
+  - test/yosupo/tree/vertex_add_subtree_sum-2.test.cpp
+  - test/yosupo/tree/vertex_add_path_sum.test.cpp
+  - test/yosupo/tree/vertex_set_path_composite.test.cpp
+  - test/yosupo/tree/vertex_get_range_contour_add_on_tree.test.cpp
+  - test/yosupo/tree/vertex_add_subtree_sum-HLD.test.cpp
+  - test/yosupo/tree/vertex_add_range_contour_sum_on_tree.test.cpp
+  - test/yosupo/tree/tree_path_composite_sum.test.cpp
+  - test/yosupo/tree/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
+  - test/yosupo/tree/vertex_add_subtree_sum.test.cpp
   - test/yosupo/graph/directedmst.test.cpp
-  - test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
-  - test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
   - test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
   - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-  - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
+  - test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
   - test/aoj/GRL/GRL_5_E-HLD.test.cpp
-  - test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
-  - test/aoj/DSL/DSL_2_A-RMQ.test.cpp
-  - test/aoj/DSL/DSL_2_D-RUQ.test.cpp
-  - test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
-  - test/aoj/DSL/DSL_2_E-RAQ.test.cpp
+  - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
+  - test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
   - test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
+  - test/aoj/DSL/DSL_2_E-RAQ.test.cpp
   - test/aoj/DSL/DSL_2_B-BIT.test.cpp
-  - test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
-  - test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
-  - test/aoj/DSL/DSL_2_B-RSQ.test.cpp
-  - test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
   - test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
+  - test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
+  - test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
+  - test/aoj/DSL/DSL_2_D-RUQ.test.cpp
+  - test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
   - test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
-  - test/yuki/855_DynamicSegTree.test.cpp
+  - test/aoj/DSL/DSL_2_A-RMQ.test.cpp
+  - test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
+  - test/aoj/DSL/DSL_2_B-RSQ.test.cpp
+  - test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
   - test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
   - test/yuki/1435_SegTree-BinarySearch.test.cpp
+  - test/yuki/855_DynamicSegTree.test.cpp
 documentation_of: other/monoid.hpp
 layout: document
 redirect_from:

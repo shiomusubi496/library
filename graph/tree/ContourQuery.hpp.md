@@ -1,53 +1,53 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/TreeCentroid.hpp
     title: "TreeCentroid(\u6728\u306E\u91CD\u5FC3)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/tree/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
     title: test/yosupo/tree/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/tree/vertex_add_range_contour_sum_on_tree.test.cpp
     title: test/yosupo/tree/vertex_add_range_contour_sum_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/tree/vertex_get_range_contour_add_on_tree.test.cpp
     title: test/yosupo/tree/vertex_get_range_contour_add_on_tree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/tree/ContourQuery.hpp\"\n\n#line 2 \"other/template.hpp\"\
@@ -555,23 +555,24 @@ data:
     \ for (auto e : H[v]) dfs(e.to);\n    }\n\npublic:\n    template<class F> ContourQuery(const\
     \ Graph<T>& G, F&& f) : G(G) {\n        n = G.size();\n        CentroidDecomposition<T>\
     \ cd(G);\n        root = cd.get_root();\n        H = cd.get();\n\n        par.assign(n,\
-    \ -1);\n        dep.assign(n, -1);\n        build_dfs(root, -1, 0);\n        int\
-    \ h = *std::max_element(all(dep)) + 1;\n        vt.assign(n, {});\n        ct.assign(n,\
-    \ {});\n        cpar.assign(n, std::vector<int>(h, -1));\n        dist.assign(n,\
-    \ std::vector<T>(h, -1));\n        dfs(root);\n\n        rdx1.assign(n, std::vector<int>(h,\
-    \ -1));\n        rdx2.assign(n, std::vector<int>(h, -1));\n        std::vector<std::vector<int>>\
-    \ dat(2 * n);\n        rep (i, n) {\n            dat[i].resize(vt[i].size());\n\
-    \            rep (j, vt[i].size()) {\n                dat[i][j] = vt[i][j].second;\n\
-    \                rdx1[vt[i][j].second][dep[i]] = j;\n            }\n        }\n\
-    \        idx.resize(n);\n        int cnt = n;\n        rep (i, n) {\n        \
-    \    idx[i].resize(ct[i].size());\n            rep (j, ct[i].size()) {\n     \
-    \           if (ct[i][j].empty()) continue;\n                dat[cnt].resize(ct[i][j].size());\n\
-    \                rep (k, ct[i][j].size()) {\n                    dat[cnt][k] =\
-    \ ct[i][j][k].second;\n                    rdx2[ct[i][j][k].second][dep[i]] =\
-    \ k;\n                }\n                idx[i][j] = cnt++;\n            }\n \
-    \       }\n        f(dat);\n        if IF_CONSTEXPR (weighted) {\n           \
-    \ ddx2.resize(n);\n            rep (i, n) {\n                ddx2[i].resize(ct[i].size());\n\
-    \                rep (j, 1, vt[i].size()) {\n                    ddx2[i][cpar[vt[i][j].second][dep[i]]].push_back(j);\n\
+    \ -1);\n        dep.assign(n, -1);\n        build_dfs(root, -1, 0);\n        print\
+    \ << \"Yay!\" << endl;\n        int h = *std::max_element(all(dep)) + 1;\n   \
+    \     vt.assign(n, {});\n        ct.assign(n, {});\n        cpar.assign(n, std::vector<int>(h,\
+    \ -1));\n        dist.assign(n, std::vector<T>(h, -1));\n        dfs(root);\n\n\
+    \        rdx1.assign(n, std::vector<int>(h, -1));\n        rdx2.assign(n, std::vector<int>(h,\
+    \ -1));\n        std::vector<std::vector<int>> dat(2 * n);\n        rep (i, n)\
+    \ {\n            dat[i].resize(vt[i].size());\n            rep (j, vt[i].size())\
+    \ {\n                dat[i][j] = vt[i][j].second;\n                rdx1[vt[i][j].second][dep[i]]\
+    \ = j;\n            }\n        }\n        idx.resize(n);\n        int cnt = n;\n\
+    \        rep (i, n) {\n            idx[i].resize(ct[i].size());\n            rep\
+    \ (j, ct[i].size()) {\n                if (ct[i][j].empty()) continue;\n     \
+    \           dat[cnt].resize(ct[i][j].size());\n                rep (k, ct[i][j].size())\
+    \ {\n                    dat[cnt][k] = ct[i][j][k].second;\n                 \
+    \   rdx2[ct[i][j][k].second][dep[i]] = k;\n                }\n               \
+    \ idx[i][j] = cnt++;\n            }\n        }\n        f(dat);\n        if IF_CONSTEXPR\
+    \ (weighted) {\n            ddx2.resize(n);\n            rep (i, n) {\n      \
+    \          ddx2[i].resize(ct[i].size());\n                rep (j, 1, vt[i].size())\
+    \ {\n                    ddx2[i][cpar[vt[i][j].second][dep[i]]].push_back(j);\n\
     \                }\n            }\n        }\n        else {\n            ddx1.resize(n);\n\
     \            rep (i, n) {\n                T m = vt[i].back().first;\n       \
     \         ddx1[i].assign(m + 1, -1);\n                rep (j, vt[i].size()) {\n\
@@ -673,23 +674,24 @@ data:
     \ e : H[v]) dfs(e.to);\n    }\n\npublic:\n    template<class F> ContourQuery(const\
     \ Graph<T>& G, F&& f) : G(G) {\n        n = G.size();\n        CentroidDecomposition<T>\
     \ cd(G);\n        root = cd.get_root();\n        H = cd.get();\n\n        par.assign(n,\
-    \ -1);\n        dep.assign(n, -1);\n        build_dfs(root, -1, 0);\n        int\
-    \ h = *std::max_element(all(dep)) + 1;\n        vt.assign(n, {});\n        ct.assign(n,\
-    \ {});\n        cpar.assign(n, std::vector<int>(h, -1));\n        dist.assign(n,\
-    \ std::vector<T>(h, -1));\n        dfs(root);\n\n        rdx1.assign(n, std::vector<int>(h,\
-    \ -1));\n        rdx2.assign(n, std::vector<int>(h, -1));\n        std::vector<std::vector<int>>\
-    \ dat(2 * n);\n        rep (i, n) {\n            dat[i].resize(vt[i].size());\n\
-    \            rep (j, vt[i].size()) {\n                dat[i][j] = vt[i][j].second;\n\
-    \                rdx1[vt[i][j].second][dep[i]] = j;\n            }\n        }\n\
-    \        idx.resize(n);\n        int cnt = n;\n        rep (i, n) {\n        \
-    \    idx[i].resize(ct[i].size());\n            rep (j, ct[i].size()) {\n     \
-    \           if (ct[i][j].empty()) continue;\n                dat[cnt].resize(ct[i][j].size());\n\
-    \                rep (k, ct[i][j].size()) {\n                    dat[cnt][k] =\
-    \ ct[i][j][k].second;\n                    rdx2[ct[i][j][k].second][dep[i]] =\
-    \ k;\n                }\n                idx[i][j] = cnt++;\n            }\n \
-    \       }\n        f(dat);\n        if IF_CONSTEXPR (weighted) {\n           \
-    \ ddx2.resize(n);\n            rep (i, n) {\n                ddx2[i].resize(ct[i].size());\n\
-    \                rep (j, 1, vt[i].size()) {\n                    ddx2[i][cpar[vt[i][j].second][dep[i]]].push_back(j);\n\
+    \ -1);\n        dep.assign(n, -1);\n        build_dfs(root, -1, 0);\n        print\
+    \ << \"Yay!\" << endl;\n        int h = *std::max_element(all(dep)) + 1;\n   \
+    \     vt.assign(n, {});\n        ct.assign(n, {});\n        cpar.assign(n, std::vector<int>(h,\
+    \ -1));\n        dist.assign(n, std::vector<T>(h, -1));\n        dfs(root);\n\n\
+    \        rdx1.assign(n, std::vector<int>(h, -1));\n        rdx2.assign(n, std::vector<int>(h,\
+    \ -1));\n        std::vector<std::vector<int>> dat(2 * n);\n        rep (i, n)\
+    \ {\n            dat[i].resize(vt[i].size());\n            rep (j, vt[i].size())\
+    \ {\n                dat[i][j] = vt[i][j].second;\n                rdx1[vt[i][j].second][dep[i]]\
+    \ = j;\n            }\n        }\n        idx.resize(n);\n        int cnt = n;\n\
+    \        rep (i, n) {\n            idx[i].resize(ct[i].size());\n            rep\
+    \ (j, ct[i].size()) {\n                if (ct[i][j].empty()) continue;\n     \
+    \           dat[cnt].resize(ct[i][j].size());\n                rep (k, ct[i][j].size())\
+    \ {\n                    dat[cnt][k] = ct[i][j][k].second;\n                 \
+    \   rdx2[ct[i][j][k].second][dep[i]] = k;\n                }\n               \
+    \ idx[i][j] = cnt++;\n            }\n        }\n        f(dat);\n        if IF_CONSTEXPR\
+    \ (weighted) {\n            ddx2.resize(n);\n            rep (i, n) {\n      \
+    \          ddx2[i].resize(ct[i].size());\n                rep (j, 1, vt[i].size())\
+    \ {\n                    ddx2[i][cpar[vt[i][j].second][dep[i]]].push_back(j);\n\
     \                }\n            }\n        }\n        else {\n            ddx1.resize(n);\n\
     \            rep (i, n) {\n                T m = vt[i].back().first;\n       \
     \         ddx1[i].assign(m + 1, -1);\n                rep (j, vt[i].size()) {\n\
@@ -780,12 +782,12 @@ data:
   isVerificationFile: false
   path: graph/tree/ContourQuery.hpp
   requiredBy: []
-  timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-06-27 23:15:50+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yosupo/tree/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
   - test/yosupo/tree/vertex_get_range_contour_add_on_tree.test.cpp
   - test/yosupo/tree/vertex_add_range_contour_sum_on_tree.test.cpp
+  - test/yosupo/tree/vertex_add_range_contour_sum_on_tree-weighted.test.cpp
 documentation_of: graph/tree/ContourQuery.hpp
 layout: document
 redirect_from:

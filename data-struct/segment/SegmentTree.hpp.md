@@ -1,34 +1,34 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
@@ -44,7 +44,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/wavelet/SegmentTreeWM.hpp
     title: WaveletMatrixPointAddRectangleSum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
   - icon: ':heavy_check_mark:'
@@ -81,24 +81,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
     title: test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/tree/vertex_add_path_sum.test.cpp
     title: test/yosupo/tree/vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/tree/vertex_add_subtree_sum.test.cpp
     title: test/yosupo/tree/vertex_add_subtree_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/tree/vertex_set_path_composite-HLD.test.cpp
     title: test/yosupo/tree/vertex_set_path_composite-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/tree/vertex_set_path_composite.test.cpp
     title: test/yosupo/tree/vertex_set_path_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yuki/1435_SegTree-BinarySearch.test.cpp
     title: test/yuki/1435_SegTree-BinarySearch.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/data-struct/segment/SegmentTree.md
     document_title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
@@ -594,41 +594,42 @@ data:
     \ typename E_::value_type;\n    static T op(const T& a, const T& b) { return E_::op(b,\
     \ a); }\n};\n\n} // namespace Monoid\n#line 5 \"data-struct/segment/SegmentTree.hpp\"\
     \n\ntemplate<class M> class SegmentTree {\nprivate:\n    using T = typename M::value_type;\n\
-    \    int n, ori;\n    std::vector<T> data;\n\npublic:\n    SegmentTree() : SegmentTree(0)\
-    \ {}\n    SegmentTree(int n) : SegmentTree(std::vector<T>(n, M::id())) {}\n  \
-    \  SegmentTree(int n, const T& v) : SegmentTree(std::vector<T>(n, v)) {}\n   \
-    \ SegmentTree(const std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>&\
-    \ v) {\n        ori = v.size();\n        n = 1 << bitop::ceil_log2(ori);\n   \
-    \     data.assign(n << 1, M::id());\n        rep (i, ori) data[n + i] = v[i];\n\
-    \        rrep (i, n, 1) data[i] = M::op(data[i << 1], data[i << 1 ^ 1]);\n   \
-    \ }\n    template<class Upd> void update(int k, const Upd& upd) {\n        assert(0\
-    \ <= k && k < ori);\n        k += n;\n        data[k] = upd(data[k]);\n      \
-    \  while (k >>= 1) data[k] = M::op(data[k << 1], data[k << 1 ^ 1]);\n    }\n \
-    \   void set(int k, T x) {\n        update(k, [&](T) -> T { return x; });\n  \
-    \  }\n    void apply(int k, T x) {\n        update(k, [&](T a) -> T { return M::op(a,\
-    \ x); });\n    }\n    T prod(int l, int r) const {\n        assert(0 <= l && l\
-    \ <= r && r <= ori);\n        l += n;\n        r += n;\n        T lsm = M::id(),\
-    \ rsm = M::id();\n        while (l < r) {\n            if (l & 1) lsm = M::op(lsm,\
-    \ data[l++]);\n            if (r & 1) rsm = M::op(data[--r], rsm);\n         \
-    \   l >>= 1;\n            r >>= 1;\n        }\n        return M::op(lsm, rsm);\n\
-    \    }\n    T all_prod() const { return data[1]; }\n    T get(int k) const { return\
-    \ data[k + n]; }\n    template<class Cond> int max_right(int l, const Cond& cond)\
-    \ const {\n        assert(0 <= l && l <= ori);\n        assert(cond(M::id()));\n\
-    \        if (l == ori) return ori;\n        l += n;\n        T sm = M::id();\n\
-    \        do {\n            while ((l & 1) == 0) l >>= 1;\n            if (!cond(M::op(sm,\
-    \ data[l]))) {\n                while (l < n) {\n                    l <<= 1;\n\
-    \                    if (cond(M::op(sm, data[l]))) sm = M::op(sm, data[l++]);\n\
-    \                }\n                return l - n;\n            }\n           \
-    \ sm = M::op(sm, data[l++]);\n        } while ((l & -l) != l);\n        return\
-    \ ori;\n    }\n    template<class Cond> int min_left(int r, const Cond& cond)\
-    \ const {\n        assert(0 <= r && r <= ori);\n        assert(cond(M::id()));\n\
-    \        if (r == 0) return 0;\n        r += n;\n        T sm = M::id();\n   \
-    \     do {\n            --r;\n            while ((r & 1) && r > 1) r >>= 1;\n\
-    \            if (!cond(M::op(data[r], sm))) {\n                while (r < n) {\n\
-    \                    r = r << 1 ^ 1;\n                    if (cond(M::op(data[r],\
-    \ sm))) sm = M::op(data[r--], sm);\n                }\n                return\
-    \ r + 1 - n;\n            }\n            sm = M::op(data[r], sm);\n        } while\
-    \ ((r & -r) != r);\n        return 0;\n    }\n};\n\n// verified with test/aoj/DSL/DSL_2_A-RMQ.test.cpp\n\
+    \    int n, ori;\n    std::vector<T> data;\n\npublic:\n    int size() const {\
+    \ return n; }\n    SegmentTree() : SegmentTree(0) {}\n    SegmentTree(int n) :\
+    \ SegmentTree(std::vector<T>(n, M::id())) {}\n    SegmentTree(int n, const T&\
+    \ v) : SegmentTree(std::vector<T>(n, v)) {}\n    SegmentTree(const std::vector<T>&\
+    \ v) { init(v); }\n    void init(const std::vector<T>& v) {\n        ori = v.size();\n\
+    \        n = 1 << bitop::ceil_log2(ori);\n        data.assign(n << 1, M::id());\n\
+    \        rep (i, ori) data[n + i] = v[i];\n        rrep (i, n, 1) data[i] = M::op(data[i\
+    \ << 1], data[i << 1 ^ 1]);\n    }\n    template<class Upd> void update(int k,\
+    \ const Upd& upd) {\n        assert(0 <= k && k < ori);\n        k += n;\n   \
+    \     data[k] = upd(data[k]);\n        while (k >>= 1) data[k] = M::op(data[k\
+    \ << 1], data[k << 1 ^ 1]);\n    }\n    void set(int k, T x) {\n        update(k,\
+    \ [&](T) -> T { return x; });\n    }\n    void apply(int k, T x) {\n        update(k,\
+    \ [&](T a) -> T { return M::op(a, x); });\n    }\n    T prod(int l, int r) const\
+    \ {\n        assert(0 <= l && l <= r && r <= ori);\n        l += n;\n        r\
+    \ += n;\n        T lsm = M::id(), rsm = M::id();\n        while (l < r) {\n  \
+    \          if (l & 1) lsm = M::op(lsm, data[l++]);\n            if (r & 1) rsm\
+    \ = M::op(data[--r], rsm);\n            l >>= 1;\n            r >>= 1;\n     \
+    \   }\n        return M::op(lsm, rsm);\n    }\n    T all_prod() const { return\
+    \ data[1]; }\n    T get(int k) const { return data[k + n]; }\n    template<class\
+    \ Cond> int max_right(int l, const Cond& cond) const {\n        assert(0 <= l\
+    \ && l <= ori);\n        assert(cond(M::id()));\n        if (l == ori) return\
+    \ ori;\n        l += n;\n        T sm = M::id();\n        do {\n            while\
+    \ ((l & 1) == 0) l >>= 1;\n            if (!cond(M::op(sm, data[l]))) {\n    \
+    \            while (l < n) {\n                    l <<= 1;\n                 \
+    \   if (cond(M::op(sm, data[l]))) sm = M::op(sm, data[l++]);\n               \
+    \ }\n                return l - n;\n            }\n            sm = M::op(sm,\
+    \ data[l++]);\n        } while ((l & -l) != l);\n        return ori;\n    }\n\
+    \    template<class Cond> int min_left(int r, const Cond& cond) const {\n    \
+    \    assert(0 <= r && r <= ori);\n        assert(cond(M::id()));\n        if (r\
+    \ == 0) return 0;\n        r += n;\n        T sm = M::id();\n        do {\n  \
+    \          --r;\n            while ((r & 1) && r > 1) r >>= 1;\n            if\
+    \ (!cond(M::op(data[r], sm))) {\n                while (r < n) {\n           \
+    \         r = r << 1 ^ 1;\n                    if (cond(M::op(data[r], sm))) sm\
+    \ = M::op(data[r--], sm);\n                }\n                return r + 1 - n;\n\
+    \            }\n            sm = M::op(data[r], sm);\n        } while ((r & -r)\
+    \ != r);\n        return 0;\n    }\n};\n\n// verified with test/aoj/DSL/DSL_2_A-RMQ.test.cpp\n\
     template<class T, int id = -1>\nusing RangeMinimumQuery = SegmentTree<Monoid::Min<T,\
     \ id>>;\n\ntemplate<class T, int id = -1>\nusing RangeMaximumQuery = SegmentTree<Monoid::Max<T,\
     \ id>>;\n\n// verified with test/aoj/DSL/DSL_2_B-RSQ.test.cpp\ntemplate<class\
@@ -637,41 +638,42 @@ data:
     \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\
     \n\ntemplate<class M> class SegmentTree {\nprivate:\n    using T = typename M::value_type;\n\
-    \    int n, ori;\n    std::vector<T> data;\n\npublic:\n    SegmentTree() : SegmentTree(0)\
-    \ {}\n    SegmentTree(int n) : SegmentTree(std::vector<T>(n, M::id())) {}\n  \
-    \  SegmentTree(int n, const T& v) : SegmentTree(std::vector<T>(n, v)) {}\n   \
-    \ SegmentTree(const std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>&\
-    \ v) {\n        ori = v.size();\n        n = 1 << bitop::ceil_log2(ori);\n   \
-    \     data.assign(n << 1, M::id());\n        rep (i, ori) data[n + i] = v[i];\n\
-    \        rrep (i, n, 1) data[i] = M::op(data[i << 1], data[i << 1 ^ 1]);\n   \
-    \ }\n    template<class Upd> void update(int k, const Upd& upd) {\n        assert(0\
-    \ <= k && k < ori);\n        k += n;\n        data[k] = upd(data[k]);\n      \
-    \  while (k >>= 1) data[k] = M::op(data[k << 1], data[k << 1 ^ 1]);\n    }\n \
-    \   void set(int k, T x) {\n        update(k, [&](T) -> T { return x; });\n  \
-    \  }\n    void apply(int k, T x) {\n        update(k, [&](T a) -> T { return M::op(a,\
-    \ x); });\n    }\n    T prod(int l, int r) const {\n        assert(0 <= l && l\
-    \ <= r && r <= ori);\n        l += n;\n        r += n;\n        T lsm = M::id(),\
-    \ rsm = M::id();\n        while (l < r) {\n            if (l & 1) lsm = M::op(lsm,\
-    \ data[l++]);\n            if (r & 1) rsm = M::op(data[--r], rsm);\n         \
-    \   l >>= 1;\n            r >>= 1;\n        }\n        return M::op(lsm, rsm);\n\
-    \    }\n    T all_prod() const { return data[1]; }\n    T get(int k) const { return\
-    \ data[k + n]; }\n    template<class Cond> int max_right(int l, const Cond& cond)\
-    \ const {\n        assert(0 <= l && l <= ori);\n        assert(cond(M::id()));\n\
-    \        if (l == ori) return ori;\n        l += n;\n        T sm = M::id();\n\
-    \        do {\n            while ((l & 1) == 0) l >>= 1;\n            if (!cond(M::op(sm,\
-    \ data[l]))) {\n                while (l < n) {\n                    l <<= 1;\n\
-    \                    if (cond(M::op(sm, data[l]))) sm = M::op(sm, data[l++]);\n\
-    \                }\n                return l - n;\n            }\n           \
-    \ sm = M::op(sm, data[l++]);\n        } while ((l & -l) != l);\n        return\
-    \ ori;\n    }\n    template<class Cond> int min_left(int r, const Cond& cond)\
-    \ const {\n        assert(0 <= r && r <= ori);\n        assert(cond(M::id()));\n\
-    \        if (r == 0) return 0;\n        r += n;\n        T sm = M::id();\n   \
-    \     do {\n            --r;\n            while ((r & 1) && r > 1) r >>= 1;\n\
-    \            if (!cond(M::op(data[r], sm))) {\n                while (r < n) {\n\
-    \                    r = r << 1 ^ 1;\n                    if (cond(M::op(data[r],\
-    \ sm))) sm = M::op(data[r--], sm);\n                }\n                return\
-    \ r + 1 - n;\n            }\n            sm = M::op(data[r], sm);\n        } while\
-    \ ((r & -r) != r);\n        return 0;\n    }\n};\n\n// verified with test/aoj/DSL/DSL_2_A-RMQ.test.cpp\n\
+    \    int n, ori;\n    std::vector<T> data;\n\npublic:\n    int size() const {\
+    \ return n; }\n    SegmentTree() : SegmentTree(0) {}\n    SegmentTree(int n) :\
+    \ SegmentTree(std::vector<T>(n, M::id())) {}\n    SegmentTree(int n, const T&\
+    \ v) : SegmentTree(std::vector<T>(n, v)) {}\n    SegmentTree(const std::vector<T>&\
+    \ v) { init(v); }\n    void init(const std::vector<T>& v) {\n        ori = v.size();\n\
+    \        n = 1 << bitop::ceil_log2(ori);\n        data.assign(n << 1, M::id());\n\
+    \        rep (i, ori) data[n + i] = v[i];\n        rrep (i, n, 1) data[i] = M::op(data[i\
+    \ << 1], data[i << 1 ^ 1]);\n    }\n    template<class Upd> void update(int k,\
+    \ const Upd& upd) {\n        assert(0 <= k && k < ori);\n        k += n;\n   \
+    \     data[k] = upd(data[k]);\n        while (k >>= 1) data[k] = M::op(data[k\
+    \ << 1], data[k << 1 ^ 1]);\n    }\n    void set(int k, T x) {\n        update(k,\
+    \ [&](T) -> T { return x; });\n    }\n    void apply(int k, T x) {\n        update(k,\
+    \ [&](T a) -> T { return M::op(a, x); });\n    }\n    T prod(int l, int r) const\
+    \ {\n        assert(0 <= l && l <= r && r <= ori);\n        l += n;\n        r\
+    \ += n;\n        T lsm = M::id(), rsm = M::id();\n        while (l < r) {\n  \
+    \          if (l & 1) lsm = M::op(lsm, data[l++]);\n            if (r & 1) rsm\
+    \ = M::op(data[--r], rsm);\n            l >>= 1;\n            r >>= 1;\n     \
+    \   }\n        return M::op(lsm, rsm);\n    }\n    T all_prod() const { return\
+    \ data[1]; }\n    T get(int k) const { return data[k + n]; }\n    template<class\
+    \ Cond> int max_right(int l, const Cond& cond) const {\n        assert(0 <= l\
+    \ && l <= ori);\n        assert(cond(M::id()));\n        if (l == ori) return\
+    \ ori;\n        l += n;\n        T sm = M::id();\n        do {\n            while\
+    \ ((l & 1) == 0) l >>= 1;\n            if (!cond(M::op(sm, data[l]))) {\n    \
+    \            while (l < n) {\n                    l <<= 1;\n                 \
+    \   if (cond(M::op(sm, data[l]))) sm = M::op(sm, data[l++]);\n               \
+    \ }\n                return l - n;\n            }\n            sm = M::op(sm,\
+    \ data[l++]);\n        } while ((l & -l) != l);\n        return ori;\n    }\n\
+    \    template<class Cond> int min_left(int r, const Cond& cond) const {\n    \
+    \    assert(0 <= r && r <= ori);\n        assert(cond(M::id()));\n        if (r\
+    \ == 0) return 0;\n        r += n;\n        T sm = M::id();\n        do {\n  \
+    \          --r;\n            while ((r & 1) && r > 1) r >>= 1;\n            if\
+    \ (!cond(M::op(data[r], sm))) {\n                while (r < n) {\n           \
+    \         r = r << 1 ^ 1;\n                    if (cond(M::op(data[r], sm))) sm\
+    \ = M::op(data[r--], sm);\n                }\n                return r + 1 - n;\n\
+    \            }\n            sm = M::op(data[r], sm);\n        } while ((r & -r)\
+    \ != r);\n        return 0;\n    }\n};\n\n// verified with test/aoj/DSL/DSL_2_A-RMQ.test.cpp\n\
     template<class T, int id = -1>\nusing RangeMinimumQuery = SegmentTree<Monoid::Min<T,\
     \ id>>;\n\ntemplate<class T, int id = -1>\nusing RangeMaximumQuery = SegmentTree<Monoid::Max<T,\
     \ id>>;\n\n// verified with test/aoj/DSL/DSL_2_B-RSQ.test.cpp\ntemplate<class\
@@ -692,24 +694,24 @@ data:
   isVerificationFile: false
   path: data-struct/segment/SegmentTree.hpp
   requiredBy:
+  - data-struct/wavelet/SegmentTreeWM.hpp
   - data-struct/segment/LCARMQ.hpp
   - data-struct/segment/RangeSortQuery.hpp
   - data-struct/2D/SegmentTree2D.hpp
-  - data-struct/wavelet/SegmentTreeWM.hpp
-  - graph/tree/PMORMQLCA.hpp
   - graph/tree/EulerTour.hpp
-  timestamp: '2024-05-12 17:35:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - graph/tree/PMORMQLCA.hpp
+  timestamp: '2026-06-27 23:15:50+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yosupo/tree/vertex_add_subtree_sum.test.cpp
-  - test/yosupo/tree/vertex_set_path_composite.test.cpp
-  - test/yosupo/tree/vertex_add_path_sum.test.cpp
-  - test/yosupo/tree/vertex_set_path_composite-HLD.test.cpp
-  - test/yosupo/data_structure/point_set_range_composite.test.cpp
-  - test/yosupo/data_structure/point_add_rectangle_sum-2DSegTree.test.cpp
-  - test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
   - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
   - test/yosupo/data_structure/point_add_rectangle_sum-WM.test.cpp
+  - test/yosupo/data_structure/point_add_rectangle_sum-2DSegTree.test.cpp
+  - test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
+  - test/yosupo/data_structure/point_set_range_composite.test.cpp
+  - test/yosupo/tree/vertex_set_path_composite-HLD.test.cpp
+  - test/yosupo/tree/vertex_add_path_sum.test.cpp
+  - test/yosupo/tree/vertex_set_path_composite.test.cpp
+  - test/yosupo/tree/vertex_add_subtree_sum.test.cpp
   - test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
   - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
   - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
