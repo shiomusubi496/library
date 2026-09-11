@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/template.hpp
     title: geometry/template.hpp
   - icon: ':question:'
@@ -38,10 +38,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: geometry/Circle.hpp
     title: geometry/Circle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/Line.hpp
     title: geometry/Line.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/Polygon.hpp
     title: geometry/Polygon.hpp
   - icon: ':heavy_check_mark:'
@@ -114,21 +114,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
     title: test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/geometry/closest_pair.test.cpp
     title: test/yosupo/geometry/closest_pair.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/geometry/furthest_pair.test.cpp
     title: test/yosupo/geometry/furthest_pair.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/geometry/sort_points_by_argument.test.cpp
     title: test/yosupo/geometry/sort_points_by_argument.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/geometry/static_convex_hull.test.cpp
     title: test/yosupo/geometry/static_convex_hull.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geometry/Point.hpp\"\n\n#line 2 \"geometry/template.hpp\"\
@@ -142,15 +142,15 @@ data:
     \ i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b);\
     \ i += (ll)(c))\n#define rep(...) OVERLOAD5(__VA_ARGS__, REP4, REP3, REP2, REP1)(__VA_ARGS__)\n\
     #define RREP2(i, a) for (ll i = (ll)(a)-1; i >= 0; --i)\n#define RREP3(i, a, b)\
-    \ for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n#define RREP4(i, a, b, c) for (ll\
-    \ i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n#define rrep(...) OVERLOAD5(__VA_ARGS__,\
+    \ for (ll i = (ll)(b)-1; i >= (ll)(a); --i)\n#define RREP4(i, a, b, c) for (ll\
+    \ i = (ll)(b)-1; i >= (ll)(a); i -= (ll)(c))\n#define rrep(...) OVERLOAD5(__VA_ARGS__,\
     \ RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define REPS2(i, b) for (ll i = 1; i <= (ll)(b);\
     \ ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define\
     \ REPS4(i, a, b, c) for (ll i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define\
     \ reps(...) OVERLOAD5(__VA_ARGS__, REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define\
     \ RREPS2(i, a) for (ll i = (ll)(a); i > 0; --i)\n#define RREPS3(i, a, b) for (ll\
-    \ i = (ll)(a); i > (ll)(b); --i)\n#define RREPS4(i, a, b, c) for (ll i = (ll)(a);\
-    \ i > (ll)(b); i -= (ll)(c))\n#define rreps(...) OVERLOAD5(__VA_ARGS__, RREPS4,\
+    \ i = (ll)(b); i > (ll)(a); --i)\n#define RREPS4(i, a, b, c) for (ll i = (ll)(b);\
+    \ i > (ll)(a); i -= (ll)(c))\n#define rreps(...) OVERLOAD5(__VA_ARGS__, RREPS4,\
     \ RREPS3, RREPS2)(__VA_ARGS__)\n\n#define each_for(...) for (auto&& __VA_ARGS__)\n\
     #define each_const(...) for (const auto& __VA_ARGS__)\n\n#define all(v) std::begin(v),\
     \ std::end(v)\n#define rall(v) std::rbegin(v), std::rend(v)\n\n#if __cpp_if_constexpr\
@@ -216,19 +216,21 @@ data:
     struct range_rank : std::integral_constant<std::size_t, 0> {};\ntemplate<class\
     \ T>\nstruct range_rank<T, true>\n    : std::integral_constant<std::size_t,\n\
     \                             range_rank<typename T::value_type>::value + 1> {};\n\
-    \ntemplate<std::size_t size> struct int_least {\n    static_assert(size <= 128,\
-    \ \"size must be less than or equal to 128\");\n\n    using type = typename std::conditional<\n\
-    \        size <= 8, std::int_least8_t,\n        typename std::conditional<\n \
-    \           size <= 16, std::int_least16_t,\n            typename std::conditional<\n\
-    \                size <= 32, std::int_least32_t,\n                typename std::conditional<size\
-    \ <= 64, std::int_least64_t,\n                                          i128>::type>::type>::type>::type;\n\
+    \ntemplate<std::size_t size> struct int_least {\n#ifndef IGNORE_TYPE_SIZE_ASSERT\n\
+    \    static_assert(size <= 128, \"size must be less than or equal to 128\");\n\
+    #endif\n\n    using type = typename std::conditional<\n        size <= 8, std::int_least8_t,\n\
+    \        typename std::conditional<\n            size <= 16, std::int_least16_t,\n\
+    \            typename std::conditional<\n                size <= 32, std::int_least32_t,\n\
+    \                typename std::conditional<size <= 64, std::int_least64_t,\n \
+    \                                         i128>::type>::type>::type>::type;\n\
     };\n\ntemplate<std::size_t size> using int_least_t = typename int_least<size>::type;\n\
-    \ntemplate<std::size_t size> struct uint_least {\n    static_assert(size <= 128,\
-    \ \"size must be less than or equal to 128\");\n\n    using type = typename std::conditional<\n\
-    \        size <= 8, std::uint_least8_t,\n        typename std::conditional<\n\
-    \            size <= 16, std::uint_least16_t,\n            typename std::conditional<\n\
-    \                size <= 32, std::uint_least32_t,\n                typename std::conditional<size\
-    \ <= 64, std::uint_least64_t,\n                                          u128>::type>::type>::type>::type;\n\
+    \ntemplate<std::size_t size> struct uint_least {\n#ifndef IGNORE_TYPE_SIZE_ASSERT\n\
+    \    static_assert(size <= 128, \"size must be less than or equal to 128\");\n\
+    #endif\n\n    using type = typename std::conditional<\n        size <= 8, std::uint_least8_t,\n\
+    \        typename std::conditional<\n            size <= 16, std::uint_least16_t,\n\
+    \            typename std::conditional<\n                size <= 32, std::uint_least32_t,\n\
+    \                typename std::conditional<size <= 64, std::uint_least64_t,\n\
+    \                                          u128>::type>::type>::type>::type;\n\
     };\n\ntemplate<std::size_t size> using uint_least_t = typename uint_least<size>::type;\n\
     \ntemplate<class T>\nusing double_size_int = int_least<std::numeric_limits<T>::digits\
     \ * 2 + 1>;\ntemplate<class T> using double_size_int_t = typename double_size_int<T>::type;\n\
@@ -243,12 +245,13 @@ data:
     \ template<class, class = void> struct has_scan : std::false_type {};\n    template<class\
     \ T>\n    struct has_scan<\n        T, decltype(std::declval<T>().scan(std::declval<Scanner&>()),\
     \ (void)0)>\n        : std::true_type {};\n    int fd;\n    int idx, sz;\n   \
-    \ bool state;\n    std::array<char, IO_BUFFER_SIZE + 1> buffer;\n    inline char\
-    \ cur() {\n        if (idx == sz) load();\n        if (idx == sz) {\n        \
-    \    state = false;\n            return '\\0';\n        }\n        return buffer[idx];\n\
+    \ bool state;\n    std::array<char, buf_size + 1> buffer;\n    inline char cur()\
+    \ {\n        if (idx == sz) load();\n        if (idx == sz) {\n            state\
+    \ = false;\n            return '\\0';\n        }\n        return buffer[idx];\n\
     \    }\n    inline void next() {\n        if (idx == sz) load();\n        if (idx\
     \ == sz) return;\n        ++idx;\n    }\n\npublic:\n    inline void load() {\n\
-    \        int len = sz - idx;\n        if (idx < len) return;\n        std::memcpy(buffer.begin(),\
+    \        assert(0 <= idx && idx <= sz && sz <= (int)buf_size);\n        int len\
+    \ = sz - idx;\n        if (idx < len) return;\n        std::memcpy(buffer.begin(),\
     \ buffer.begin() + idx, len);\n        sz = len + read(fd, buffer.data() + len,\
     \ buf_size - len);\n        buffer[sz] = 0;\n        idx = 0;\n    }\n\n    Scanner(int\
     \ fd) : fd(fd), idx(0), sz(0), state(true) {}\n    Scanner(FILE* fp) : fd(fileno(fp)),\
@@ -413,17 +416,25 @@ data:
     \    return pr;\n}\n\nstruct SetPrec {\n    int n;\n    template<class Pr> void\
     \ print(Pr& pr) const { pr.set_decimal_precision(n); }\n    template<class Pr>\
     \ void debug(Pr& pr) const { pr.set_decimal_precision(n); }\n};\nSetPrec setprec(int\
-    \ n) { return SetPrec{n}; };\n\nPrinter<> print(1), eprint(2);\n\nvoid prints()\
-    \ { print.print_char('\\n'); }\n\ntemplate<class T> auto prints(const T& v) ->\
-    \ decltype(print << v, (void)0) {\n    print << v;\n    print.print_char('\\n');\n\
-    }\n\ntemplate<class Head, class... Tail>\nauto prints(const Head& head, const\
-    \ Tail&... tail)\n    -> decltype(print << head, (void)0) {\n    print << head;\n\
-    \    print.print_char(' ');\n    prints(tail...);\n}\n\nPrinter<IO_BUFFER_SIZE,\
-    \ true> debug(1), edebug(2);\n\nvoid debugs() { debug.print_char('\\n'); }\n\n\
-    template<class T> auto debugs(const T& v) -> decltype(debug << v, (void)0) {\n\
-    \    debug << v;\n    debug.print_char('\\n');\n}\n\ntemplate<class Head, class...\
-    \ Tail>\nauto debugs(const Head& head, const Tail&... tail)\n    -> decltype(debug\
-    \ << head, (void)0) {\n    debug << head;\n    debug.print_char(' ');\n    debugs(tail...);\n\
+    \ n) { return SetPrec{n}; };\n\n#if SHIO_LOCAL\n\nPrinter<> printer(1), eprinter(2);\n\
+    \n#else\n\nclass NullPrinter {\npublic:\n    template<class T> NullPrinter& operator<<(const\
+    \ T&) { return *this; }\n    NullPrinter& operator<<(NullPrinter& (*)(NullPrinter&))\
+    \ { return *this; }\n    void print_char(char) {}\n    template<class T> void\
+    \ print(const T&) {}\n    template<class... Args> void operator()(const Args&...)\
+    \ {}\n    template<class T> void set_decimal_precision(T) {}\n};\n\nNullPrinter&\
+    \ endl(NullPrinter& pr) { return pr; }\nNullPrinter& flush(NullPrinter& pr) {\
+    \ return pr; }\n\nPrinter<> printer(1);\nNullPrinter eprinter;\n\n#endif\n\nvoid\
+    \ prints() { printer.print_char('\\n'); }\n\ntemplate<class T> auto prints(const\
+    \ T& v) -> decltype(printer << v, (void)0) {\n    printer << v;\n    printer.print_char('\\\
+    n');\n}\n\ntemplate<class Head, class... Tail>\nauto prints(const Head& head,\
+    \ const Tail&... tail)\n    -> decltype(printer << head, (void)0) {\n    printer\
+    \ << head;\n    printer.print_char(' ');\n    prints(tail...);\n}\n\n#ifdef SHIO_LOCAL\n\
+    \nPrinter<IO_BUFFER_SIZE, true> debug(1), edebug(2);\n\n#else\n\nNullPrinter debug,\
+    \ edebug;\n\n#endif\n\nvoid debugs() { debug.print_char('\\n'); }\n\ntemplate<class\
+    \ T> auto debugs(const T& v) -> decltype(debug << v, (void)0) {\n    debug <<\
+    \ v;\n    debug.print_char('\\n');\n}\n\ntemplate<class Head, class... Tail>\n\
+    auto debugs(const Head& head, const Tail&... tail)\n    -> decltype(debug << head,\
+    \ (void)0) {\n    debug << head;\n    debug.print_char(' ');\n    debugs(tail...);\n\
     }\n#line 2 \"template/bitop.hpp\"\n\n#line 6 \"template/bitop.hpp\"\n\nnamespace\
     \ bitop {\n\n#define KTH_BIT(b, k) (((b) >> (k)) & 1)\n#define POW2(k) (1ull <<\
     \ (k))\n\ninline ull next_combination(int n, ull x) {\n    if (n == 0) return\
@@ -667,8 +678,8 @@ data:
   - geometry/Segment.hpp
   - geometry/All.hpp
   - geometry/Triangle.hpp
-  timestamp: '2024-07-20 19:33:32+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-09-12 01:05:48+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/geometry/sort_points_by_argument.test.cpp
   - test/yosupo/geometry/static_convex_hull.test.cpp
