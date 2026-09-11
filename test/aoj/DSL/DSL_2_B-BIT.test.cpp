@@ -8,6 +8,6 @@ int main() {
     rep (q) {
         int t, a, b; scan >> t >> a >> b;
         if (t == 0) BIT.add(a - 1, b);
-        else print << BIT.sum(a - 1, b) << endl;
+        else printer << BIT.sum(a - 1, b) << endl;
     }
 }

@@ -4,5 +4,5 @@
 using namespace std;
 int main() {
     ll N; scan >> N;
-    print << euler_phi(N) << endl;
+    printer << euler_phi(N) << endl;
 }

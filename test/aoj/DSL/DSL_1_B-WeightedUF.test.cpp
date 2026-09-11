@@ -13,8 +13,8 @@ int main() {
         }
         else {
             int x, y; scan >> x >> y;
-            if (WUF.same(x, y)) print << WUF.diff(x, y) << endl;
-            else print << "?" << endl;
+            if (WUF.same(x, y)) printer << WUF.diff(x, y) << endl;
+            else printer << "?" << endl;
         }
     }
 }

@@ -6,6 +6,6 @@ int main() {
     int n; scan >> n;
     vector<int> a(n); scan >> a;
     LongestIncreasingSubsequence<vector<int>> lis(a);
-    print << lis.size() << endl;
-    print << lis.get() << endl;
+    printer << lis.size() << endl;
+    printer << lis.get() << endl;
 }

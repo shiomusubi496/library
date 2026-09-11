@@ -25,7 +25,7 @@ int main() {
         }
         else {
             int k; scan >> k;
-            print << seg.get(k) << endl;
+            printer << seg.get(k) << endl;
         }
     }
 }

@@ -13,10 +13,10 @@ int main() {
     }
     vector<ll> D = Dijkstra(G, s);
     if (D[t] == infinity<ll>::value) {
-        print << "-1" << endl;
+        printer << "-1" << endl;
         return 0;
     }
     Edges<ll> R = RestorePath(G, D, s, t);
-    print << D[t] << ' ' << R.size() << endl;
-    for (const auto& e : R) print << e.from << ' ' << e.to << endl;
+    printer << D[t] << ' ' << R.size() << endl;
+    for (const auto& e : R) printer << e.from << ' ' << e.to << endl;
 }

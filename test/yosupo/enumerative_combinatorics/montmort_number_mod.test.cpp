@@ -7,6 +7,6 @@ int main() {
     int N, M; scan >> N >> M;
     mint::set_mod(M);
     auto v = montmort_number<mint>(N);
-    rep (i, 1, v.size()) print << ' ' << v[i];
-    print << endl;
+    rep (i, 1, v.size()) printer << ' ' << v[i];
+    printer << endl;
 }

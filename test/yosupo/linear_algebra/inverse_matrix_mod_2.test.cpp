@@ -17,8 +17,8 @@ int main() {
     if (res.empty()) prints(-1);
     else {
         rep (i, N) {
-            rep (j, N) print << res[i][j];
-            print << '\n';
+            rep (j, N) printer << res[i][j];
+            printer << '\n';
         }
     }
 }

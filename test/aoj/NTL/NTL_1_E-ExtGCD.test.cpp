@@ -4,6 +4,6 @@ using namespace std;
 int main() {
     int a, b; scan >> a >> b;
     PLL p = extGCD(a, b);
-    if (p.first - p.second < (p.second + a) - (p.first - b)) print << p << endl;
-    else print << p.first - b << ' ' << p.second + a << endl;
+    if (p.first - p.second < (p.second + a) - (p.first - b)) printer << p << endl;
+    else printer << p.first - b << ' ' << p.second + a << endl;
 }

@@ -50,7 +50,7 @@ int main() {
                     x = p.first * x + p.second;
                 }
             );
-            print << x << endl;
+            printer << x << endl;
         }
     }
 }

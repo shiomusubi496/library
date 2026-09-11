@@ -8,6 +8,6 @@ int main() {
     rep (q) {
         int t, a, b; scan >> t >> a >> b;
         if (t == 0) seg.set(a, b);
-        else print << seg.prod(a, b + 1) << endl;
+        else printer << seg.prod(a, b + 1) << endl;
     }
 }

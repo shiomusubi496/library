@@ -32,7 +32,7 @@ int main() {
         int n = g.size();
         BipartiteGraph<unweighted_edge> BG(g);
         if (!BG.is_bipartite()) {
-            print << "-1" << endl;
+            printer << "-1" << endl;
             return 0;
         }
         int a = 0;
@@ -43,5 +43,5 @@ int main() {
     rep (i, N + 1) {
         if (bs[i]) chmax(ans, i * (N - i));
     }
-    print << N * (N - 1) / 2 - ans << endl;
+    printer << N * (N - 1) / 2 - ans << endl;
 }

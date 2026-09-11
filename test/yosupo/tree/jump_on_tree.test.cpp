@@ -13,6 +13,6 @@ int main() {
     DoublingLCA<int> dlca(G);
     rep (Q) {
         int s, t, k; scan >> s >> t >> k;
-        print << dlca.kth_next_vertex(s, t, k) << endl;
+        printer << dlca.kth_next_vertex(s, t, k) << endl;
     }
 }

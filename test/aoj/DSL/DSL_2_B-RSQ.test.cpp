@@ -8,6 +8,6 @@ int main() {
     rep (q) {
         int t, a, b; scan >> t >> a >> b;
         if (t == 0) RSQ.apply(a - 1, b);
-        else print << RSQ.prod(a - 1, b) << endl;
+        else printer << RSQ.prod(a - 1, b) << endl;
     }
 }

@@ -7,6 +7,6 @@ int main() {
     auto v = IsPrime(N).get_primes();
     vector<int> ans; ans.reserve(v.size());
     rep (i, B, v.size(), A) ans.push_back(v[i]);
-    print << v.size() << " " << ans.size() << endl;
+    printer << v.size() << " " << ans.size() << endl;
     prints(ans);
 }

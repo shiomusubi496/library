@@ -8,6 +8,6 @@ int main() {
     CumulativeSum<ll> CS(A);
     rep (Q) {
         int l, r; scan >> l >> r;
-        print << CS.prod(l, r) << endl;
+        printer << CS.prod(l, r) << endl;
     }
 }

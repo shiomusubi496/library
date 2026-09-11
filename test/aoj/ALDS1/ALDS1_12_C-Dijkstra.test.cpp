@@ -16,6 +16,6 @@ int main() {
     }
     auto v = Dijkstra(G);
     rep (i, N) {
-        print << i << ' ' << v[i] << endl;
+        printer << i << ' ' << v[i] << endl;
     }
 }

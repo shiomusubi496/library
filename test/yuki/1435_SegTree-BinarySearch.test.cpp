@@ -34,5 +34,5 @@ int main() {
         ans2 += i - idx - 1;
     }
     assert(ans1 == ans2);
-    print << ans1 << endl;
+    printer << ans1 << endl;
 }

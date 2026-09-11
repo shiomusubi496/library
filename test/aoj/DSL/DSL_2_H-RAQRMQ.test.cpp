@@ -13,7 +13,7 @@ int main() {
         }
         else {
             int l, r; scan >> l >> r;
-            print << RAQRMQ.prod(l, r + 1) << endl;
+            printer << RAQRMQ.prod(l, r + 1) << endl;
         }
     }
 }

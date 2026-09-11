@@ -5,5 +5,5 @@
 using namespace std;
 int main() {
     Triangle t; scan >> t;
-    print << t.incenter() << ' ' << t.inradius() << endl;
+    printer << t.incenter() << ' ' << t.inradius() << endl;
 }

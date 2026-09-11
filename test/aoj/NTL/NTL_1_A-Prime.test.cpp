@@ -3,5 +3,5 @@
 using namespace std;
 int main() {
     int N; scan >> N;
-    print << N << ": " << prime_factor(N) << endl;
+    printer << N << ": " << prime_factor(N) << endl;
 }

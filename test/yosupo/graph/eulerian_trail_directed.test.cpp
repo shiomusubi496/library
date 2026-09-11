@@ -16,14 +16,14 @@ int main() {
         if (et.has_trail()) {
             const auto& trail = et.get_trail();
             prints("Yes");
-            print << (trail.empty() ? 0 : trail[0].from);
-            rep (i, M) print << " " << trail[i].to;
-            print << endl;
+            printer << (trail.empty() ? 0 : trail[0].from);
+            rep (i, M) printer << " " << trail[i].to;
+            printer << endl;
             rep (i, M) {
-                print << trail[i].idx;
-                if (i != M - 1) print << " ";
+                printer << trail[i].idx;
+                if (i != M - 1) printer << " ";
             }
-            print << endl;
+            printer << endl;
         }
         else {
             prints("No");

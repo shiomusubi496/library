@@ -11,5 +11,5 @@ int main() {
     rep (i, k + 1) {
         ans += mint(-1).pow(k - i) * comb::comb(k, i) * mint(i).pow(n);
     }
-    print << ans << endl;
+    printer << ans << endl;
 }

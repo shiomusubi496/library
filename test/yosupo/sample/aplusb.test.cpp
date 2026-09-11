@@ -4,5 +4,5 @@ using namespace std;
 int main() {
     int a, b;
     scan >> a >> b;
-    print << a + b << endl;
+    printer << a + b << endl;
 }

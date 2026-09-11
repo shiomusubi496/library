@@ -29,7 +29,7 @@ int main() {
             int a; scan >> a;
             int ans = 0;
             ET.each_edge(0, a, [&](int l, int r){ ans += BIT.sum(l, r); });
-            print << ans << endl;
+            printer << ans << endl;
         }
     }
 }

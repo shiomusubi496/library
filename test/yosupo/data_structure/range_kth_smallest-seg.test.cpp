@@ -30,6 +30,6 @@ int main() {
             if (cnt > k) ok = mid;
             else ng = mid;
         }
-        print << ok << endl;
+        printer << ok << endl;
     }
 }

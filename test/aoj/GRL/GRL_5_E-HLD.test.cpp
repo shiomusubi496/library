@@ -31,7 +31,7 @@ int main() {
             HLD.each_edge(0, u, [&](int l, int r) {
                 ans += seg.prod(l, r);
             });
-            print << ans << endl;
+            printer << ans << endl;
         }
     }
 }

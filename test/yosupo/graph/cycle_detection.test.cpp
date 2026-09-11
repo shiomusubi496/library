@@ -11,10 +11,10 @@ int main() {
         G.add_edge(a, b, true);
     }
     GraphCycle<int> GC(G);
-    if (!GC.has_cycle()) print << "-1" << endl;
+    if (!GC.has_cycle()) printer << "-1" << endl;
     else {
         auto v = GC.get_cycle();
-        print << v.size() << endl;
-        for (const auto& e : GC.get_cycle()) print << e.idx << endl;
+        printer << v.size() << endl;
+        for (const auto& e : GC.get_cycle()) printer << e.idx << endl;
     }
 }

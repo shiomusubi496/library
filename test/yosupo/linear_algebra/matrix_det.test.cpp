@@ -9,5 +9,5 @@ using Mat = Matrix<mint>;
 int main() {
     int n; scan >> n;
     Mat a(n, n); scan >> a;
-    print << determinant(a) << endl;
+    printer << determinant(a) << endl;
 }

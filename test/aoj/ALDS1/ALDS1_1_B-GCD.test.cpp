@@ -3,5 +3,5 @@
 using namespace std;
 int main() {
     int x, y; scan >> x >> y;
-    print << gcd(x, y) << endl;
+    printer << gcd(x, y) << endl;
 }

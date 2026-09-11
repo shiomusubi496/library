@@ -16,9 +16,9 @@ int main() {
     GMatrix<int> GM = ListToMatrix(G);
     for (const auto& v : GM) {
         rep (i, N) {
-            if (v[i] == 1) print << 1;
-            else print << 0;
-            print << " \n"[i == N - 1];
+            if (v[i] == 1) printer << 1;
+            else printer << 0;
+            printer << " \n"[i == N - 1];
         }
     }
 }

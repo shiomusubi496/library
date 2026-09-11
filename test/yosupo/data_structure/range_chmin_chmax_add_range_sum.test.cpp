@@ -26,7 +26,7 @@ int main() {
         }
         else {
             int l, r; scan >> l >> r;
-            print << seg.prod_sum(l, r) << endl;
+            printer << seg.prod_sum(l, r) << endl;
         }
     }
 }

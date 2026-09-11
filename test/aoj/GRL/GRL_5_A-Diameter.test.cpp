@@ -12,5 +12,5 @@ int main() {
         G.add_edge(a, b, c);
     }
     TreeDiameter<int> TD(G);
-    print << TD.diameter() << endl;
+    printer << TD.diameter() << endl;
 }

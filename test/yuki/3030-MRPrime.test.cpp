@@ -6,6 +6,6 @@ int main() {
     int n; scan >> n;
     rep (n) {
         ull x; scan >> x;
-        print << x << " " << is_prime_mr(x) << endl;
+        printer << x << " " << is_prime_mr(x) << endl;
     }
 }

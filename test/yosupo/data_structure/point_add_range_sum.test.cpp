@@ -12,6 +12,6 @@ int main() {
     rep (Q) {
         int t, a, b; scan >> t >> a >> b;
         if (t == 0) BIT.add(a, b);
-        else print << BIT.sum(a, b) << endl;
+        else printer << BIT.sum(a, b) << endl;
     }
 }

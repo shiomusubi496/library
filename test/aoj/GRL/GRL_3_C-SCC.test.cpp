@@ -14,6 +14,6 @@ int main() {
     int q; scan >> q;
     rep (q) {
         int a, b; scan >> a >> b;
-        print << (SCC[a] == SCC[b]) << endl;
+        printer << (SCC[a] == SCC[b]) << endl;
     }
 }

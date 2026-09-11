@@ -7,6 +7,6 @@ int main() {
     rep (T) {
         i128 a, b;
         scan >> a >> b;
-        print << a + b << '\n';
+        printer << a + b << '\n';
     }
 }

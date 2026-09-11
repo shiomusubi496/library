@@ -24,6 +24,6 @@ int main() {
     SegmentTreeWM<Monoid::Sum<ll>> wm(xs, ys, zs);
     for (const auto& [a, b, c, d, e] : B) {
         if (a == 0) wm.apply(b, c, d);
-        else print << wm.prod(b, d, c, e) << endl;
+        else printer << wm.prod(b, d, c, e) << endl;
     }
 }

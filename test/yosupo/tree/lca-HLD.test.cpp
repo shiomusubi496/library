@@ -13,6 +13,6 @@ int main() {
     HeavyLightDecomposition<unweighted_edge> HLD(G);
     rep (Q) {
         int a, b; scan >> a >> b;
-        print << HLD.lca(a, b) << endl;
+        printer << HLD.lca(a, b) << endl;
     }
 }

@@ -13,7 +13,7 @@ int main() {
         }
         else {
             int k; scan >> k;
-            print << RAQ.get(k - 1) << endl;
+            printer << RAQ.get(k - 1) << endl;
         }
     }
 }

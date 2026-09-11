@@ -8,5 +8,5 @@ int main() {
     int n; scan >> n;
     vector<Point> p(n); scan >> p;
     auto ps = closest_pair(p);
-    print << distance(ps.first, ps.second) << endl;
+    printer << distance(ps.first, ps.second) << endl;
 }

@@ -8,6 +8,6 @@ int main() {
     StaticRangeFrequency<int> srf(A);
     rep (Q) {
         int l, r, x; scan >> l >> r >> x;
-        print << srf.count(l, r, x) << endl;
+        printer << srf.count(l, r, x) << endl;
     }
 }

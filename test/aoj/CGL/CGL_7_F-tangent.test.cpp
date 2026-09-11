@@ -8,6 +8,6 @@ int main() {
     Circle c; scan >> c;
     auto ps = tangent_points(c, p);
     sort(all(ps));
-    print << ps[0] << endl;
-    print << ps[1] << endl;
+    printer << ps[0] << endl;
+    printer << ps[1] << endl;
 }

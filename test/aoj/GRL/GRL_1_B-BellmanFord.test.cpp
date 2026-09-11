@@ -9,11 +9,11 @@ int main() {
     for (auto&& e : Ed) scan >> e.from >> e.to >> e.cost;
     auto dist = BellmanFord(V, Ed, r);
     if (count(all(dist), -infinity<int>::value)) {
-        print << "NEGATIVE CYCLE" << endl;
+        printer << "NEGATIVE CYCLE" << endl;
         return 0;
     }
     rep (i, V) {
-        if (dist[i] == infinity<int>::value) print << "INF" << endl;
-        else print << dist[i] << endl;
+        if (dist[i] == infinity<int>::value) printer << "INF" << endl;
+        else printer << dist[i] << endl;
     }
 }

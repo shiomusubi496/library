@@ -10,6 +10,6 @@ int main() {
     CumulativeSumWM<Monoid::Sum<ll>> seg(A, B, C);
     rep (Q) {
         ll a, b, c, d; scan >> a >> b >> c >> d;
-        print << seg.prod(a, c, b, d) << endl;
+        printer << seg.prod(a, c, b, d) << endl;
     }
 }

@@ -14,5 +14,5 @@ int main() {
             }
         }
     }
-    print << Prim(G).first << endl;
+    printer << Prim(G).first << endl;
 }

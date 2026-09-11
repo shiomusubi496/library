@@ -31,7 +31,7 @@ int main() {
             int u, v; scan >> u >> v;
             ll ans = 0;
             ET.each_vertex(u, v, [&](int l, int r) { ans += BIT.sum(l, r); });
-            print << ans << endl;
+            printer << ans << endl;
         }
     }
 }

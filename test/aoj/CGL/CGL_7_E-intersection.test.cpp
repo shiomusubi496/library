@@ -10,8 +10,8 @@ int main() {
     if (ps.size() == 0) {
         assert(false);
     } else if (ps.size() == 1) {
-        print << ps[0] << ' ' << ps[0] << endl;
+        printer << ps[0] << ' ' << ps[0] << endl;
     } else {
-        print << ps[0] << ' ' << ps[1] << endl;
+        printer << ps[0] << ' ' << ps[1] << endl;
     }
 }

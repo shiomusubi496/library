@@ -14,5 +14,5 @@ int main() {
         return x + e.cost;
     };
     ReRooting<Monoid::Max<ll>, ll, decltype(f)> rr(G, f, vector<ll>(N, 0));
-    rep (i, N) print << rr[i] << endl;
+    rep (i, N) printer << rr[i] << endl;
 }

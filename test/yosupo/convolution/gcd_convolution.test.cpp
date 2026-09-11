@@ -12,5 +12,5 @@ int main() {
     reps (i, N) scan >> A[i];
     reps (i, N) scan >> B[i];
     auto v = gcd_convolution<Monoid::Sum<mint>, Monoid::Product<mint>>(A, B);
-    reps (i, N) print << v[i] << " \n"[i == N];
+    reps (i, N) printer << v[i] << " \n"[i == N];
 }

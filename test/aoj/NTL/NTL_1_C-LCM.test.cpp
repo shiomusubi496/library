@@ -8,5 +8,5 @@ int main() {
         int a; scan >> a;
         l = lcm(l, a);
     }
-    print << l << endl;
+    printer << l << endl;
 }

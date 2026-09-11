@@ -15,7 +15,7 @@ int main() {
             case 'D': nx++; break;
         }
         if (nx < 0 || nx >= H || ny < 0 || ny >= W) {
-            print << x + 1 << " " << y + 1 << endl;
+            printer << x + 1 << " " << y + 1 << endl;
             return 0;
         }
         x = nx, y = ny;

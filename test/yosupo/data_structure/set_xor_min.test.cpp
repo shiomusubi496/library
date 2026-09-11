@@ -16,7 +16,7 @@ int main() {
         }
         else {
             BT.xor_all(x);
-            print << BT.kth_element(0) << endl;
+            printer << BT.kth_element(0) << endl;
             BT.xor_all(x);
         }
     }

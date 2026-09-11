@@ -18,7 +18,7 @@ int main() {
         else {
             mint x; scan >> x;
             auto p = SWAG.all_prod();
-            print << p.first * x + p.second << endl;
+            printer << p.first * x + p.second << endl;
         }
     }
 }

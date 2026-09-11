@@ -103,5 +103,5 @@ int main() {
     for (const auto& p : mpr) ans += W + 1 - p.second;
     for (const auto& p : mpu) ans += p.second;
     for (const auto& p : mpd) ans += H + 1 - p.second;
-    print << ans << endl;
+    printer << ans << endl;
 }

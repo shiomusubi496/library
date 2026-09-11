@@ -7,5 +7,5 @@ int main() {
     int V, E; scan >> V >> E;
     Edges<int> Ed(E);
     for (auto&& e : Ed) scan >> e.from >> e.to >> e.cost;
-    print << Kruskal(V, Ed).first << endl;
+    printer << Kruskal(V, Ed).first << endl;
 }

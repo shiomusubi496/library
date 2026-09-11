@@ -15,7 +15,7 @@ int main() {
         if (t == 0) seg.set(a, PMM{b, c});
         else {
             PMM p = seg.prod(a, b);
-            print << p.first * c + p.second << endl;
+            printer << p.first * c + p.second << endl;
         }
     }
 }

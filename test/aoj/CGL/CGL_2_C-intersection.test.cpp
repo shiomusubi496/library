@@ -7,6 +7,6 @@ int main() {
     int q; scan >> q;
     rep (q) {
         Segment s1, s2; scan >> s1 >> s2;
-        print << intersection(Line(s1), Line(s2)) << endl;
+        printer << intersection(Line(s1), Line(s2)) << endl;
     }
 }

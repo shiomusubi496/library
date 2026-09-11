@@ -10,5 +10,5 @@ int main() {
         int a; scan >> a;
         if (PF.is_prime(a)) ans++;
     }
-    print << ans << endl;
+    printer << ans << endl;
 }

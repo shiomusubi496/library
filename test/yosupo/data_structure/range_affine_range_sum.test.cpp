@@ -18,7 +18,7 @@ int main() {
         }
         else {
             int l, r; scan >> l >> r;
-            print << seg.prod(l, r) << endl;
+            printer << seg.prod(l, r) << endl;
         }
     }
 }

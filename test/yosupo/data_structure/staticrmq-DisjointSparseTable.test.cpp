@@ -8,6 +8,6 @@ int main() {
     DisjointSparseTable<Monoid::Min<int>> ST(A);
     rep (Q) {
         int l, r; scan >> l >> r;
-        print << ST.prod(l, r) << endl;
+        printer << ST.prod(l, r) << endl;
     }
 }

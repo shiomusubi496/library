@@ -53,5 +53,5 @@ int main() {
         chmax(res, dp[i][j]);
         if (i == j && i == A[3 * N - 1]) chmax(res, dp[i][j] + 1);
     }
-    print << ans + res << endl;
+    printer << ans + res << endl;
 }

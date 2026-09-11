@@ -22,6 +22,6 @@ int main() {
                 ng = mid;
             }
         }
-        print << ok + 1 << endl;
+        printer << ok + 1 << endl;
     }
 }

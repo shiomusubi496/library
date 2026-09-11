@@ -17,6 +17,6 @@ int main() {
     int Q; scan >> Q;
     rep (i, Q) {
         int a, b; scan >> a >> b;
-        print << T.lca(a, b) << endl;
+        printer << T.lca(a, b) << endl;
     }
 }

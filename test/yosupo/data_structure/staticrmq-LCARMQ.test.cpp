@@ -8,6 +8,6 @@ int main() {
     LCARMQ<int> RMQ(A);
     rep (Q) {
         int l, r; scan >> l >> r;
-        print << RMQ.prod(l, r) << endl;
+        printer << RMQ.prod(l, r) << endl;
     }
 }

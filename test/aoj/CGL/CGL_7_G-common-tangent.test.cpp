@@ -7,5 +7,5 @@ int main() {
     Circle c1, c2; scan >> c1 >> c2;
     auto ps = common_tangents(c1, c2);
     sort(all(ps));
-    for (const auto& p : ps) print << p << endl;
+    for (const auto& p : ps) printer << p << endl;
 }

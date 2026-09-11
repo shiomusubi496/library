@@ -8,5 +8,5 @@ int main() {
     for (const auto& i : divisors(c)) {
         if (a <= i && i <= b) ++ans;
     }
-    print << ans << endl;
+    printer << ans << endl;
 }

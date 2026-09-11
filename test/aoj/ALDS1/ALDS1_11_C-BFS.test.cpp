@@ -16,6 +16,6 @@ int main() {
     }
     vector<int> dist = BFS(G);
     rep (i, N) {
-        print << i + 1 << ' ' << dist[i] << endl;
+        printer << i + 1 << ' ' << dist[i] << endl;
     }
 }

@@ -10,5 +10,5 @@ int main() {
         int a, b; scan >> a >> b;
         G.add_edge(a, b, true);
     }
-    print << GraphCycle<int>(G).has_cycle() << endl;
+    printer << GraphCycle<int>(G).has_cycle() << endl;
 }

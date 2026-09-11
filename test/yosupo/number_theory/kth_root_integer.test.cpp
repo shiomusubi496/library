@@ -6,6 +6,6 @@ int main() {
     int T; scan >> T;
     rep (T) {
         ull a, k; scan >> a >> k;
-        print << kth_root(a, k) << endl;
+        printer << kth_root(a, k) << endl;
     }
 }

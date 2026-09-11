@@ -11,6 +11,6 @@ int main() {
         st.insert(a, b + 1);
         auto p = st.find(a);
         chmax(ans, p.second - p.first);
-        print << ans << endl;
+        printer << ans << endl;
     }
 }

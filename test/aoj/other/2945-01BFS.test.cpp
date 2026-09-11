@@ -30,6 +30,6 @@ int main() {
         }
         int ans = 0;
         rep (i, N) ans += ZeroOneBFS(G, E[i].first * 100 + E[i].second)[E[i + 1].first * 100 + E[i + 1].second];
-        print << ans << endl;
+        printer << ans << endl;
     }
 }

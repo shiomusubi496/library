@@ -7,6 +7,6 @@ int main() {
     rep (q) {
         ll n; scan >> n;
         auto res = factorize(n);
-        print << res.size() << " " << res << endl;
+        printer << res.size() << " " << res << endl;
     }
 }

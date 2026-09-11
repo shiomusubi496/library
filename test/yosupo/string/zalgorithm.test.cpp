@@ -4,5 +4,5 @@
 using namespace std;
 int main() {
     string S; scan >> S;
-    print << ZAlgorithm(S) << endl;
+    printer << ZAlgorithm(S) << endl;
 }

@@ -13,5 +13,5 @@ int main() {
     reverse(all(a)); reverse(all(b));
     auto c = bitwise_or_convolution<mint>(a, b);
     reverse(all(c));
-    print << c << endl;
+    printer << c << endl;
 }

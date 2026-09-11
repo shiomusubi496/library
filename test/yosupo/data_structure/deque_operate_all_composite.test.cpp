@@ -23,7 +23,7 @@ int main() {
         else {
             mint x; scan >> x;
             auto a = d.all_prod();
-            print << a.first * x + a.second << endl;
+            printer << a.first * x + a.second << endl;
         }
     }
 }

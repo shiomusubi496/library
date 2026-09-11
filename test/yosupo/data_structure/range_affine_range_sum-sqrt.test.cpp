@@ -39,7 +39,7 @@ int main() {
             auto h = [&](const pair<mint, int>& p) -> mint {
                 return p.first;
             };
-            print << seg.prod<Monoid::Sum<mint>>(l, r, g, h) << endl;
+            printer << seg.prod<Monoid::Sum<mint>>(l, r, g, h) << endl;
         }
     }
 }

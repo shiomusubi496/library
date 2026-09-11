@@ -19,5 +19,5 @@ int main() {
         if (a.from != b.from) return a.from < b.from;
         return a.to < b.to;
     });
-    for (const auto& e : v) print << e.from << ' ' << e.to << endl;
+    for (const auto& e : v) printer << e.from << ' ' << e.to << endl;
 }

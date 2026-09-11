@@ -5,6 +5,6 @@ int main() {
     int t; scan >> t;
     while (t--) {
         ll n, m, a, b; scan >> n >> m >> a >> b;
-        print << floor_sum(n, m, a, b) << endl;
+        printer << floor_sum(n, m, a, b) << endl;
     }
 }

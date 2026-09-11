@@ -9,6 +9,6 @@ int main() {
     int q; scan >> q;
     rep (q) {
         Point p2; scan >> p2;
-        print << reflection(l, p2) << endl;
+        printer << reflection(l, p2) << endl;
     }
 }

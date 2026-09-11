@@ -4,6 +4,6 @@
 using namespace std;
 int main() {
     string S; scan >> S;
-    for (const auto& p : RunLength(S)) print << p.first;
-    print << endl;
+    for (const auto& p : RunLength(S)) printer << p.first;
+    printer << endl;
 }

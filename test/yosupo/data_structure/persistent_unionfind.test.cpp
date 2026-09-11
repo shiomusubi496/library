@@ -14,7 +14,7 @@ int main() {
             A[i + 1] = uf.merge(A[tm + 1], a, b).second;
         }
         else {
-            print << uf.same(A[tm + 1], a, b) << endl;
+            printer << uf.same(A[tm + 1], a, b) << endl;
         }
     }
 }

@@ -4,5 +4,5 @@
 using namespace std;
 int main() {
     string S; scan >> S;
-    print << ManacherEven(S) << endl;
+    printer << ManacherEven(S) << endl;
 }

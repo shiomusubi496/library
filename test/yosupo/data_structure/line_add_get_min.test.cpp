@@ -17,7 +17,7 @@ int main() {
         }
         else {
             ll p; scan >> p;
-            print << CHT.get_min(p) << endl;
+            printer << CHT.get_min(p) << endl;
         }
     }
 }

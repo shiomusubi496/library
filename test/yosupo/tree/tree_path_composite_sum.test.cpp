@@ -25,5 +25,5 @@ int main() {
         return {e.cost.first * (x.first + a[e.from]) + e.cost.second * (x.second + 1), x.second + 1};
     };
     auto rr = make_rerooting<PairSum>(G, f);
-    rep (i, n) print << rr[i].first + a[i] << " \n"[i == n - 1];
+    rep (i, n) printer << rr[i].first + a[i] << " \n"[i == n - 1];
 }

@@ -10,6 +10,6 @@ int main() {
         int t, u, v;
         scan >> t >> u >> v;
         if (t == 0) UF.merge(u, v);
-        else print << UF.same(u, v) << endl;
+        else printer << UF.same(u, v) << endl;
     }
 }

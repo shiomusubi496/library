@@ -11,5 +11,5 @@ int main() {
     vector<mint> a(1 << N), b(1 << N);
     scan >> a >> b;
     auto c = bitwise_and_convolution<mint>(a, b);
-    print << c << endl;
+    printer << c << endl;
 }

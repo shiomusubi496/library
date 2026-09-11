@@ -12,11 +12,11 @@ int main() {
         SAT.add_clause(abs(a) - 1, a > 0, abs(b) - 1, b > 0);
     }
     auto v = SAT.sat();
-    if (v.size() == 0) print << "s UNSATISFIABLE" << endl;
+    if (v.size() == 0) printer << "s UNSATISFIABLE" << endl;
     else {
-        print << "s SATISFIABLE" << endl;
-        print << "v ";
-        rep (i, N) print << (v[i] ? i + 1 : -i - 1) << ' ';
-        print << 0 << endl;
+        printer << "s SATISFIABLE" << endl;
+        printer << "v ";
+        rep (i, N) printer << (v[i] ? i + 1 : -i - 1) << ' ';
+        printer << 0 << endl;
     }
 }

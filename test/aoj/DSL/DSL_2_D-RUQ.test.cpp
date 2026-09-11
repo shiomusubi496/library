@@ -13,7 +13,7 @@ int main() {
         }
         else {
             int k; scan >> k;
-            print << RUQ.get(k) << endl;
+            printer << RUQ.get(k) << endl;
         }
     }
 }

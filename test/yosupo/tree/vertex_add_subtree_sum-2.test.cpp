@@ -29,7 +29,7 @@ int main() {
             int u; scan >> u;
             ll ans = 0;
             ET.each_vertex_subtree(u, [&](int l, int r) { ans += BIT.sum(l, r); });
-            print << ans << endl;
+            printer << ans << endl;
         }
     }
 }

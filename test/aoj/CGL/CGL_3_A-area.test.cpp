@@ -5,5 +5,5 @@ using namespace std;
 int main() {
     int n; scan >> n;
     Polygon p(n); scan >> p;
-    print << setprec(1) << area(p) << endl;
+    printer << setprec(1) << area(p) << endl;
 }

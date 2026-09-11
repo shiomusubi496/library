@@ -11,10 +11,10 @@ int main() {
         g.add_edge(a, b);
     }
     ThreeEdgeConnectedComponents<int> tecc(g);
-    print << tecc.size() << endl;
+    printer << tecc.size() << endl;
     for (auto g : tecc.groups()) {
-        print << g.size();
-        for (auto v : g) print << " " << v;
-        print << endl;
+        printer << g.size();
+        for (auto v : g) printer << " " << v;
+        printer << endl;
     }
 }

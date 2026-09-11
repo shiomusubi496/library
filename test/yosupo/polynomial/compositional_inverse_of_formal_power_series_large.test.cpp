@@ -1,11 +1,12 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/compositional_inverse_of_formal_power_series"
+#define PROBLEM "https://judge.yosupo.jp/problem/compositional_inverse_of_formal_power_series_large"
 #include "../../../other/template.hpp"
 #include "../../../math/poly/FormalPowerSeries.hpp"
+#include "../../../math/poly/CompositionalInverse.hpp"
 #include "../../../math/ModInt.hpp"
 using namespace std;
 using mint = modint998244353;
 int main() {
     int n; scan >> n;
     FormalPowerSeries<mint> f(n); scan >> f;
-    prints(f.compinv());
+    prints(compositional_inverse(f));
 }

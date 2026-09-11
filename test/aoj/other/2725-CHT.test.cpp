@@ -20,5 +20,5 @@ int main() {
             dp[i + t].add_line(2 * f, val - f * f);
         }
     }
-    print << ans << endl;
+    printer << ans << endl;
 }

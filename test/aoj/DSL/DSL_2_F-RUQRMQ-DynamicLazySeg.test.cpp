@@ -13,7 +13,7 @@ int main() {
         }
         else {
             int l, r; scan >> l >> r;
-            print << RUQRMQ.prod(l, r + 1) << endl;
+            printer << RUQRMQ.prod(l, r + 1) << endl;
         }
     }
 }

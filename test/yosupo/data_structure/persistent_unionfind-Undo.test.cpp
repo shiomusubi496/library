@@ -30,6 +30,6 @@ int main() {
     } func{G, A, ans, UFU};
     func(0);
     rep (i, Q) {
-        if (ans[i] != -1) print << ans[i] << endl;
+        if (ans[i] != -1) printer << ans[i] << endl;
     }
 }

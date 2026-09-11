@@ -11,6 +11,6 @@ int main() {
             ll n = x.get_num(), d = x.get_den();
             return n * n < p * d * d;
         }, n);
-        print << r.get_num() << "/" << r.get_den() << " " << l.get_num() << "/" << l.get_den() << endl;
+        printer << r.get_num() << "/" << r.get_den() << " " << l.get_num() << "/" << l.get_den() << endl;
     }
 }

@@ -10,5 +10,5 @@ int main() {
     rep (i, N) {
         if (v[i] == -1) v[i] = i;
     }
-    print << v << endl;
+    printer << v << endl;
 }

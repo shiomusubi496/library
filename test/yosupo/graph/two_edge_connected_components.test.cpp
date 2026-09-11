@@ -11,8 +11,8 @@ int main() {
         G.add_edge(a, b);
     }
     auto tecc = TwoEdgeConnectedComponents<int>(G).groups();
-    print << tecc.size() << endl;
+    printer << tecc.size() << endl;
     for (const auto& v : tecc) {
-        print << v.size() << ' ' << v << endl;
+        printer << v.size() << ' ' << v << endl;
     }
 }

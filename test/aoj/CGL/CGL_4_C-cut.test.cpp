@@ -9,6 +9,6 @@ int main() {
     int q; scan >> q;
     rep (q) {
         Point a, b; scan >> a >> b;
-        print << area(polygon_cut(p, a, b)) << endl;
+        printer << area(polygon_cut(p, a, b)) << endl;
     }
 }

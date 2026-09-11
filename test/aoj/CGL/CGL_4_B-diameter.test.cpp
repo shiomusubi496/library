@@ -7,5 +7,5 @@ int main() {
     int n; scan >> n;
     Polygon p(n); scan >> p;
     auto ps = diameter(p);
-    print << distance(ps.first, ps.second) << endl;
+    printer << distance(ps.first, ps.second) << endl;
 }

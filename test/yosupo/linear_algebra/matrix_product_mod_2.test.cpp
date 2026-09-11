@@ -18,7 +18,7 @@ int main() {
     }
     matx C = A * B;
     rep (i, N) rep (j, K) {
-        print << C[i][j];
-        if (j == K - 1) print << '\n';
+        printer << C[i][j];
+        if (j == K - 1) printer << '\n';
     }
 }

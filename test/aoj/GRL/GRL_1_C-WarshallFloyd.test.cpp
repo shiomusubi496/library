@@ -13,15 +13,15 @@ int main() {
     WarshallFloyd(D);
     rep (i, V) {
         if (D[i][i] < 0) {
-            print << "NEGATIVE CYCLE" << endl;
+            printer << "NEGATIVE CYCLE" << endl;
             return 0;
         }
     }
     rep (i, V) {
         rep (j, V) {
-            if (D[i][j] == infinity<ll>::value) print << "INF";
-            else print << D[i][j];
-            print << " \n"[j == V - 1];
+            if (D[i][j] == infinity<ll>::value) printer << "INF";
+            else printer << D[i][j];
+            printer << " \n"[j == V - 1];
         }
     }
 }

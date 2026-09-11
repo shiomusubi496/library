@@ -8,6 +8,6 @@ int main() {
     int q; scan >> q;
     rep (q) {
         Point a; scan >> a;
-        print << (contains(p, a) ? 1 : 0) + (contains(p, a, false) ? 1 : 0) << endl;
+        printer << (contains(p, a) ? 1 : 0) + (contains(p, a, false) ? 1 : 0) << endl;
     }
 }

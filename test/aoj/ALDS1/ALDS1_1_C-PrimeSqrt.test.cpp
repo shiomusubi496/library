@@ -8,5 +8,5 @@ int main() {
         int a; scan >> a;
         if (is_prime(a)) ans++;
     }
-    print << ans << endl;
+    printer << ans << endl;
 }

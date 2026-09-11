@@ -14,7 +14,7 @@ int main() {
         else {
             int t; scan >> t;
             int frt = PA.get(t, 0);
-            print << PA.get(t, frt + 1) << endl;
+            printer << PA.get(t, frt + 1) << endl;
             PA.set(t, 0, frt + 1);
         }
     }
