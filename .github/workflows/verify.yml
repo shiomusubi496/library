@@ -11,6 +11,8 @@ jobs:
 
     - name: Set up Python
       uses: actions/setup-python@v1
+      with:
+        python-version: 3.11
 
     - name: Install dependencies
       run: pip3 install -U online-judge-verify-helper
@@ -71,6 +73,6 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
-        DROPBOX_TOKEN: ${{ secrets.DROPBOX_TOKEN }}
+        # DROPBOX_TOKEN: ${{ secrets.DROPBOX_TOKEN }}
         GH_PAT: ${{ secrets.GH_PAT }}
       run: oj-verify all
