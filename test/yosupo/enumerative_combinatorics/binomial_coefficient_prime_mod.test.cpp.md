@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: math/BarrettReduction.hpp
     title: math/BarrettReduction.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/Combinatorics.hpp
     title: Combinatorics
   - icon: ':question:'
@@ -590,7 +590,7 @@ data:
     \ n) {\n        const int b = factorial.size();\n        if (n < b) return;\n\
     \        factorial.resize(n + 1);\n        rep (i, b, n + 1) factorial[i] = factorial[i\
     \ - 1] * i;\n        factinv.resize(n + 1);\n        factinv[n] = T(1) / factorial[n];\n\
-    \        rreps (i, n, b) factinv[i - 1] = factinv[i] * i;\n    }\n    static T\
+    \        rreps (i, b, n) factinv[i - 1] = factinv[i] * i;\n    }\n    static T\
     \ fact(ll x) {\n        if (x < 0) return 0;\n        init(x);\n        return\
     \ factorial[x];\n    }\n    static T finv(ll x) {\n        if (x < 0) return 0;\n\
     \        init(x);\n        return factinv[x];\n    }\n    static T inv(ll x) {\n\
@@ -694,7 +694,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/enumerative_combinatorics/binomial_coefficient_prime_mod.test.cpp
   requiredBy: []
-  timestamp: '2026-09-12 01:05:48+09:00'
+  timestamp: '2026-09-12 14:55:19+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/enumerative_combinatorics/binomial_coefficient_prime_mod.test.cpp

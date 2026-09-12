@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/tree/HeavyLightDecomposition.hpp
     title: "HeavyLightDecomposition(HL\u5206\u89E3)"
   - icon: ':question:'
@@ -42,9 +42,9 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/GRL_5_E
@@ -577,7 +577,7 @@ data:
     \ std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>& v) {\n\
     \        ori = v.size();\n        h = bitop::ceil_log2(ori);\n        n = 1 <<\
     \ h;\n        data.assign(n << 1, M::id());\n        rep (i, ori) data[n + i]\
-    \ = v[i];\n        rrep (i, n, 1) calc(i);\n        lazy.resize(n);\n        lazyflag.assign(n,\
+    \ = v[i];\n        rrep (i, 1, n) calc(i);\n        lazy.resize(n);\n        lazyflag.assign(n,\
     \ false);\n    }\n    void eval_all() {\n        rep (i, h) {\n            rep\
     \ (j, 1 << i) eval((1 << i) + j, 1 << (h - i));\n        }\n    }\n    T prod(int\
     \ l, int r) {\n        assert(0 <= l && l <= r && r <= ori);\n        if (l ==\
@@ -781,8 +781,8 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_5_E-HLD.test.cpp
   requiredBy: []
-  timestamp: '2026-09-12 01:07:36+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-09-12 14:55:19+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_5_E-HLD.test.cpp
 layout: document

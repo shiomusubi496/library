@@ -571,7 +571,7 @@ data:
     \ << h;\n        idx.resize(n << 1);\n        rep (i, xs.size()) idx[xs[i] + n].push_back(ys[i]);\n\
     \        rep (i, ori) {\n            std::sort(all(idx[i + n]));\n           \
     \ idx[i + n].erase(std::unique(all(idx[i + n])), idx[i + n].end());\n        }\n\
-    \        rrep (i, n, 1) {\n            std::merge(all(idx[i << 1]), all(idx[i\
+    \        rrep (i, 1, n) {\n            std::merge(all(idx[i << 1]), all(idx[i\
     \ << 1 | 1]),\n                       std::back_inserter(idx[i]));\n         \
     \   idx[i].erase(std::unique(all(idx[i])), idx[i].end());\n        }\n       \
     \ std::vector<int> sz(n << 1);\n        rep (i, n << 1) sz[i] = idx[i].size();\n\
@@ -589,7 +589,7 @@ data:
     \ n][k].second, tmp[i + n][j].second);\n                }\n                else\
     \ {\n                    tmp[i + n][++k] = tmp[i + n][j];\n                }\n\
     \            }\n            tmp[i + n].resize(k + 1);\n        }\n        rrep\
-    \ (i, n, 1) {\n            tmp[i].reserve(tmp[i << 1].size() + tmp[i << 1 | 1].size());\n\
+    \ (i, 1, n) {\n            tmp[i].reserve(tmp[i << 1].size() + tmp[i << 1 | 1].size());\n\
     \            std::merge(\n                all(tmp[i << 1]), all(tmp[i << 1 | 1]),\n\
     \                std::back_inserter(tmp[i]),\n                [](const auto& a,\
     \ const auto& b) { return a.first < b.first; });\n            int k = 0;\n   \
@@ -626,19 +626,31 @@ data:
     \   int a = std::lower_bound(all(idx[r]), u) - idx[r].begin();\n             \
     \   int b = std::lower_bound(all(idx[r]), d) - idx[r].begin();\n             \
     \   mrg(r, a, b, false);\n            }\n            l >>= 1;\n            r >>=\
-    \ 1;\n        }\n    }\n    template<class Mrg> void get(ll x, ll y, Mrg&& mrg)\
-    \ const {\n        int k = psx.get(x) + n;\n        auto itr = std::lower_bound(all(idx[k]),\
-    \ y);\n        assert(itr != idx[k].end() && *itr == y);\n        mrg(k, itr -\
-    \ idx[k].begin());\n    }\n};\n#line 7 \"data-struct/2D/CumulativeSum2D.hpp\"\n\
-    \ntemplate<class M> class CumulativeSum2D {\nprivate:\n    using T = typename\
-    \ M::value_type;\n    int n;\n    std::vector<CumulativeSum<M>> seg;\n    Struct2D\
-    \ str;\n\npublic:\n    CumulativeSum2D(const std::vector<ll>& xs, const std::vector<ll>&\
-    \ ys,\n                    const std::vector<T>& v) {\n        auto f = [&](const\
-    \ auto& dat) {\n            n = dat.size() >> 1;\n            seg.resize(n <<\
-    \ 1);\n            rep (i, 1, n << 1) seg[i] = CumulativeSum<M>(dat[i]);\n   \
-    \     };\n        str.init<decltype((f)), M>(f, xs, ys, v);\n    }\n\n    T prod(ll\
-    \ l, ll r, ll u, ll d) {\n        T res = M::id();\n        str.prod(l, r, u,\
-    \ d, [&](int k, int a, int b, bool) {\n            res = M::op(res, seg[k].prod(a,\
+    \ 1;\n        }\n    }\n    template<class F, class Mrg> ll min_left(ll r, ll\
+    \ u, ll d, F&& f, Mrg&& mrg) const {\n        r = psx.lower_bound(r);\n      \
+    \  if (r == 0) return 0;\n        r += n;\n        do {\n            --r;\n  \
+    \          while ((r & 1) && r > 1) r >>= 1;\n            int a = std::lower_bound(all(idx[r]),\
+    \ u) - idx[r].begin();\n            int b = std::lower_bound(all(idx[r]), d) -\
+    \ idx[r].begin();\n            mrg(r, a, b, true);\n            if (!f()) {\n\
+    \                mrg(r, a, b, false);\n                while (r < n) {\n     \
+    \               r = r << 1 ^ 1;\n                    int a = std::lower_bound(all(idx[r]),\
+    \ u) - idx[r].begin();\n                    int b = std::lower_bound(all(idx[r]),\
+    \ d) - idx[r].begin();\n                    mrg(r, a, b, true);\n            \
+    \        if (f()) --r;\n                    else mrg(r, a, b, false);\n      \
+    \          }\n                return psx[r - n] + 1;\n            }\n        }\
+    \ while ((r & -r) != r);\n        return 0;\n    }\n    template<class Mrg> void\
+    \ get(ll x, ll y, Mrg&& mrg) const {\n        int k = psx.get(x) + n;\n      \
+    \  auto itr = std::lower_bound(all(idx[k]), y);\n        assert(itr != idx[k].end()\
+    \ && *itr == y);\n        mrg(k, itr - idx[k].begin());\n    }\n};\n#line 7 \"\
+    data-struct/2D/CumulativeSum2D.hpp\"\n\ntemplate<class M> class CumulativeSum2D\
+    \ {\nprivate:\n    using T = typename M::value_type;\n    int n;\n    std::vector<CumulativeSum<M>>\
+    \ seg;\n    Struct2D str;\n\npublic:\n    CumulativeSum2D(const std::vector<ll>&\
+    \ xs, const std::vector<ll>& ys,\n                    const std::vector<T>& v)\
+    \ {\n        auto f = [&](const auto& dat) {\n            n = dat.size() >> 1;\n\
+    \            seg.resize(n << 1);\n            rep (i, 1, n << 1) seg[i] = CumulativeSum<M>(dat[i]);\n\
+    \        };\n        str.init<decltype((f)), M>(f, xs, ys, v);\n    }\n\n    T\
+    \ prod(ll l, ll r, ll u, ll d) {\n        T res = M::id();\n        str.prod(l,\
+    \ r, u, d, [&](int k, int a, int b, bool) {\n            res = M::op(res, seg[k].prod(a,\
     \ b));\n        });\n        return res;\n    }\n\n    T get(ll x, ll y) {\n \
     \       T res = M::id();\n        str.get(x, y, [&](int k, int a) { res = M::op(res,\
     \ seg[k].get(a)); });\n        return res;\n    }\n};\n"
@@ -672,7 +684,7 @@ data:
   isVerificationFile: false
   path: data-struct/2D/CumulativeSum2D.hpp
   requiredBy: []
-  timestamp: '2026-09-12 01:05:48+09:00'
+  timestamp: '2026-09-12 14:55:19+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/data_structure/rectangle_sum-2DCum.test.cpp

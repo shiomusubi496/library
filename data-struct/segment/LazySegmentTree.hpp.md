@@ -45,13 +45,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
     title: test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
     title: test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
     title: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_E-HLD.test.cpp
     title: test/aoj/GRL/GRL_5_E-HLD.test.cpp
   - icon: ':x:'
@@ -598,7 +598,7 @@ data:
     \ std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>& v) {\n\
     \        ori = v.size();\n        h = bitop::ceil_log2(ori);\n        n = 1 <<\
     \ h;\n        data.assign(n << 1, M::id());\n        rep (i, ori) data[n + i]\
-    \ = v[i];\n        rrep (i, n, 1) calc(i);\n        lazy.resize(n);\n        lazyflag.assign(n,\
+    \ = v[i];\n        rrep (i, 1, n) calc(i);\n        lazy.resize(n);\n        lazyflag.assign(n,\
     \ false);\n    }\n    void eval_all() {\n        rep (i, h) {\n            rep\
     \ (j, 1 << i) eval((1 << i) + j, 1 << (h - i));\n        }\n    }\n    T prod(int\
     \ l, int r) {\n        assert(0 <= l && l <= r && r <= ori);\n        if (l ==\
@@ -691,7 +691,7 @@ data:
     \ std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>& v) {\n\
     \        ori = v.size();\n        h = bitop::ceil_log2(ori);\n        n = 1 <<\
     \ h;\n        data.assign(n << 1, M::id());\n        rep (i, ori) data[n + i]\
-    \ = v[i];\n        rrep (i, n, 1) calc(i);\n        lazy.resize(n);\n        lazyflag.assign(n,\
+    \ = v[i];\n        rrep (i, 1, n) calc(i);\n        lazy.resize(n);\n        lazyflag.assign(n,\
     \ false);\n    }\n    void eval_all() {\n        rep (i, h) {\n            rep\
     \ (j, 1 << i) eval((1 << i) + j, 1 << (h - i));\n        }\n    }\n    T prod(int\
     \ l, int r) {\n        assert(0 <= l && l <= r && r <= ori);\n        if (l ==\
@@ -774,7 +774,7 @@ data:
   requiredBy:
   - data-struct/segment/RangeAssignSegmentTree.hpp
   - data-struct/2D/AreaofUnionofRectangles.hpp
-  timestamp: '2026-09-12 01:05:48+09:00'
+  timestamp: '2026-09-12 14:55:19+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/data_structure/range_affine_range_sum.test.cpp

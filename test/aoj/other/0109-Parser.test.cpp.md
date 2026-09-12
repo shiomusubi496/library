@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/Parser.hpp
     title: string/Parser.hpp
   - icon: ':question:'
@@ -33,9 +33,9 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/0109
@@ -492,7 +492,7 @@ data:
     \ funcs;\n    std::vector<std::string> func_names;\n    TermFunc term;\n\n   \
     \ static Res int_term(typename P::State& state) {\n        bool neg = false;\n\
     \        if (*state == '-') {\n            neg = true;\n            ++state;\n\
-    \        }\n        int res = 0;\n        while ('0' <= *state && *state <= '9')\
+    \        }\n        Res res = 0;\n        while ('0' <= *state && *state <= '9')\
     \ {\n            res = res * 10 + (*state - '0');\n            ++state;\n    \
     \    }\n        if (neg) res = -res;\n        return res;\n    }\n\npublic:\n\
     \    OperatorParser() {}\n    OperatorParser(int n) : ops(n), op_names(n), term(int_term)\
@@ -561,8 +561,8 @@ data:
   isVerificationFile: true
   path: test/aoj/other/0109-Parser.test.cpp
   requiredBy: []
-  timestamp: '2026-09-12 01:05:48+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-09-12 14:55:19+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/other/0109-Parser.test.cpp
 layout: document

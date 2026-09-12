@@ -553,7 +553,7 @@ data:
     \ v) : SegmentTree(std::vector<T>(n, v)) {}\n    SegmentTree(const std::vector<T>&\
     \ v) { init(v); }\n    void init(const std::vector<T>& v) {\n        ori = v.size();\n\
     \        n = 1 << bitop::ceil_log2(ori);\n        data.assign(n << 1, M::id());\n\
-    \        rep (i, ori) data[n + i] = v[i];\n        rrep (i, n, 1) data[i] = M::op(data[i\
+    \        rep (i, ori) data[n + i] = v[i];\n        rrep (i, 1, n) data[i] = M::op(data[i\
     \ << 1], data[i << 1 ^ 1]);\n    }\n    template<class Upd> void update(int k,\
     \ const Upd& upd) {\n        assert(0 <= k && k < ori);\n        k += n;\n   \
     \     data[k] = upd(data[k]);\n        while (k >>= 1) data[k] = M::op(data[k\
@@ -632,7 +632,7 @@ data:
   isVerificationFile: true
   path: test/yuki/1435_SegTree-BinarySearch.test.cpp
   requiredBy: []
-  timestamp: '2026-09-12 01:07:36+09:00'
+  timestamp: '2026-09-12 14:55:19+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yuki/1435_SegTree-BinarySearch.test.cpp

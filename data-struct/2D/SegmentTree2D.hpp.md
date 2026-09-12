@@ -557,7 +557,7 @@ data:
     \ v)) {}\n    SegmentTree(const std::vector<T>& v) { init(v); }\n    void init(const\
     \ std::vector<T>& v) {\n        ori = v.size();\n        n = 1 << bitop::ceil_log2(ori);\n\
     \        data.assign(n << 1, M::id());\n        rep (i, ori) data[n + i] = v[i];\n\
-    \        rrep (i, n, 1) data[i] = M::op(data[i << 1], data[i << 1 ^ 1]);\n   \
+    \        rrep (i, 1, n) data[i] = M::op(data[i << 1], data[i << 1 ^ 1]);\n   \
     \ }\n    template<class Upd> void update(int k, const Upd& upd) {\n        assert(0\
     \ <= k && k < ori);\n        k += n;\n        data[k] = upd(data[k]);\n      \
     \  while (k >>= 1) data[k] = M::op(data[k << 1], data[k << 1 ^ 1]);\n    }\n \
@@ -599,7 +599,7 @@ data:
     \     h = bitop::ceil_log2(ori);\n        n = 1 << h;\n        idx.resize(n <<\
     \ 1);\n        rep (i, xs.size()) idx[xs[i] + n].push_back(ys[i]);\n        rep\
     \ (i, ori) {\n            std::sort(all(idx[i + n]));\n            idx[i + n].erase(std::unique(all(idx[i\
-    \ + n])), idx[i + n].end());\n        }\n        rrep (i, n, 1) {\n          \
+    \ + n])), idx[i + n].end());\n        }\n        rrep (i, 1, n) {\n          \
     \  std::merge(all(idx[i << 1]), all(idx[i << 1 | 1]),\n                      \
     \ std::back_inserter(idx[i]));\n            idx[i].erase(std::unique(all(idx[i])),\
     \ idx[i].end());\n        }\n        std::vector<int> sz(n << 1);\n        rep\
@@ -617,7 +617,7 @@ data:
     \ =\n                        M::op(tmp[i + n][k].second, tmp[i + n][j].second);\n\
     \                }\n                else {\n                    tmp[i + n][++k]\
     \ = tmp[i + n][j];\n                }\n            }\n            tmp[i + n].resize(k\
-    \ + 1);\n        }\n        rrep (i, n, 1) {\n            tmp[i].reserve(tmp[i\
+    \ + 1);\n        }\n        rrep (i, 1, n) {\n            tmp[i].reserve(tmp[i\
     \ << 1].size() + tmp[i << 1 | 1].size());\n            std::merge(\n         \
     \       all(tmp[i << 1]), all(tmp[i << 1 | 1]),\n                std::back_inserter(tmp[i]),\n\
     \                [](const auto& a, const auto& b) { return a.first < b.first;\
@@ -654,37 +654,53 @@ data:
     \   int a = std::lower_bound(all(idx[r]), u) - idx[r].begin();\n             \
     \   int b = std::lower_bound(all(idx[r]), d) - idx[r].begin();\n             \
     \   mrg(r, a, b, false);\n            }\n            l >>= 1;\n            r >>=\
-    \ 1;\n        }\n    }\n    template<class Mrg> void get(ll x, ll y, Mrg&& mrg)\
-    \ const {\n        int k = psx.get(x) + n;\n        auto itr = std::lower_bound(all(idx[k]),\
-    \ y);\n        assert(itr != idx[k].end() && *itr == y);\n        mrg(k, itr -\
-    \ idx[k].begin());\n    }\n};\n#line 7 \"data-struct/2D/SegmentTree2D.hpp\"\n\n\
-    template<class M> class SegmentTree2D {\nprivate:\n    using T = typename M::value_type;\n\
-    \    int n;\n    std::vector<SegmentTree<M>> seg;\n    Struct2D str;\n\npublic:\n\
-    \    SegmentTree2D(const std::vector<ll>& xs, const std::vector<ll>& ys) {\n \
-    \       str.init(\n            [&](const auto& sz) {\n                n = sz.size()\
-    \ >> 1;\n                seg.resize(n << 1);\n                rep (i, n << 1)\
-    \ seg[i] = SegmentTree<M>(sz[i]);\n            },\n            xs, ys);\n    }\n\
-    \    SegmentTree2D(const std::vector<ll>& xs, const std::vector<ll>& ys,\n   \
-    \               const std::vector<T>& v) {\n        auto f = [&](const auto& dat)\
-    \ {\n            n = dat.size() >> 1;\n            seg.resize(n << 1);\n     \
-    \       rep (i, n << 1) seg[i] = SegmentTree<M>(dat[i]);\n        };\n       \
-    \ str.init<decltype((f)), M>(f, xs, ys, v);\n    }\n\n    template<class Upd>\
-    \ void update(ll x, ll y, Upd&& upd) {\n        T cur = M::id();\n        str.update(\n\
-    \            x, y,\n            [&](int k, int i) {\n                seg[k].update(i,\
-    \ upd);\n                cur = seg[k].get(i);\n            },\n            [&](int\
-    \ k, int i) { seg[k].set(i, cur); },\n            [&](int k, int i, bool f) {\n\
-    \                if (f) cur = M::op(cur, seg[k].get(i));\n                else\
-    \ cur = M::op(seg[k].get(i), cur);\n            });\n    }\n    void set(ll x,\
-    \ ll y, const T& v) {\n        update(x, y, [&](const T&) { return v; });\n  \
-    \  }\n    void apply(ll x, ll y, const T& v) {\n        str.apply(x, y, [&](int\
-    \ k, int i) { seg[k].apply(i, v); });\n    }\n    T prod(ll l, ll r, ll u, ll\
-    \ d) const {\n        T lsm = M::id(), rsm = M::id();\n        str.prod(l, r,\
-    \ u, d, [&](int k, int a, int b, bool f) {\n            if (f) lsm = M::op(lsm,\
+    \ 1;\n        }\n    }\n    template<class F, class Mrg> ll min_left(ll r, ll\
+    \ u, ll d, F&& f, Mrg&& mrg) const {\n        r = psx.lower_bound(r);\n      \
+    \  if (r == 0) return 0;\n        r += n;\n        do {\n            --r;\n  \
+    \          while ((r & 1) && r > 1) r >>= 1;\n            int a = std::lower_bound(all(idx[r]),\
+    \ u) - idx[r].begin();\n            int b = std::lower_bound(all(idx[r]), d) -\
+    \ idx[r].begin();\n            mrg(r, a, b, true);\n            if (!f()) {\n\
+    \                mrg(r, a, b, false);\n                while (r < n) {\n     \
+    \               r = r << 1 ^ 1;\n                    int a = std::lower_bound(all(idx[r]),\
+    \ u) - idx[r].begin();\n                    int b = std::lower_bound(all(idx[r]),\
+    \ d) - idx[r].begin();\n                    mrg(r, a, b, true);\n            \
+    \        if (f()) --r;\n                    else mrg(r, a, b, false);\n      \
+    \          }\n                return psx[r - n] + 1;\n            }\n        }\
+    \ while ((r & -r) != r);\n        return 0;\n    }\n    template<class Mrg> void\
+    \ get(ll x, ll y, Mrg&& mrg) const {\n        int k = psx.get(x) + n;\n      \
+    \  auto itr = std::lower_bound(all(idx[k]), y);\n        assert(itr != idx[k].end()\
+    \ && *itr == y);\n        mrg(k, itr - idx[k].begin());\n    }\n};\n#line 7 \"\
+    data-struct/2D/SegmentTree2D.hpp\"\n\ntemplate<class M> class SegmentTree2D {\n\
+    private:\n    using T = typename M::value_type;\n    int n;\n    std::vector<SegmentTree<M>>\
+    \ seg;\n    Struct2D str;\n\npublic:\n    SegmentTree2D(const std::vector<ll>&\
+    \ xs, const std::vector<ll>& ys) {\n        str.init(\n            [&](const auto&\
+    \ sz) {\n                n = sz.size() >> 1;\n                seg.resize(n <<\
+    \ 1);\n                rep (i, n << 1) seg[i] = SegmentTree<M>(sz[i]);\n     \
+    \       },\n            xs, ys);\n    }\n    SegmentTree2D(const std::vector<ll>&\
+    \ xs, const std::vector<ll>& ys,\n                  const std::vector<T>& v) {\n\
+    \        auto f = [&](const auto& dat) {\n            n = dat.size() >> 1;\n \
+    \           seg.resize(n << 1);\n            rep (i, n << 1) seg[i] = SegmentTree<M>(dat[i]);\n\
+    \        };\n        str.init<decltype((f)), M>(f, xs, ys, v);\n    }\n\n    template<class\
+    \ Upd> void update(ll x, ll y, Upd&& upd) {\n        T cur = M::id();\n      \
+    \  str.update(\n            x, y,\n            [&](int k, int i) {\n         \
+    \       seg[k].update(i, upd);\n                cur = seg[k].get(i);\n       \
+    \     },\n            [&](int k, int i) { seg[k].set(i, cur); },\n           \
+    \ [&](int k, int i, bool f) {\n                if (f) cur = M::op(cur, seg[k].get(i));\n\
+    \                else cur = M::op(seg[k].get(i), cur);\n            });\n    }\n\
+    \    void set(ll x, ll y, const T& v) {\n        update(x, y, [&](const T&) {\
+    \ return v; });\n    }\n    void apply(ll x, ll y, const T& v) {\n        str.apply(x,\
+    \ y, [&](int k, int i) { seg[k].apply(i, v); });\n    }\n    T prod(ll l, ll r,\
+    \ ll u, ll d) const {\n        T lsm = M::id(), rsm = M::id();\n        str.prod(l,\
+    \ r, u, d, [&](int k, int a, int b, bool f) {\n            if (f) lsm = M::op(lsm,\
     \ seg[k].prod(a, b));\n            else rsm = M::op(seg[k].prod(a, b), rsm);\n\
     \        });\n        return M::op(lsm, rsm);\n    }\n    T get(ll x, ll y) {\n\
     \        T res = M::id();\n        str.get(x, y, [&](int k, int i) { res = seg[k].get(i);\
     \ });\n        return res;\n    }\n    T all_prod() const { return seg[1].all_prod();\
-    \ }\n};\n\n/**\n * @brief SegmentTree2D\n */\n"
+    \ }\n    template<class F> ll min_left(ll r, ll u, ll d, F&& f) const {\n    \
+    \    T sm = M::id();\n        return str.min_left(r, u, d, [&] { return f(sm);\
+    \ }, [&](int k, int a, int b, bool f) {\n            if (f) sm = M::op(sm, seg[k].prod(a,\
+    \ b));\n            else sm = M::inv(sm, seg[k].prod(a, b));\n        });\n  \
+    \  }\n};\n\n/**\n * @brief SegmentTree2D\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\
     \n#include \"../segment/SegmentTree.hpp\"\n#include \"Struct2D.hpp\"\n\ntemplate<class\
     \ M> class SegmentTree2D {\nprivate:\n    using T = typename M::value_type;\n\
@@ -713,7 +729,11 @@ data:
     \        });\n        return M::op(lsm, rsm);\n    }\n    T get(ll x, ll y) {\n\
     \        T res = M::id();\n        str.get(x, y, [&](int k, int i) { res = seg[k].get(i);\
     \ });\n        return res;\n    }\n    T all_prod() const { return seg[1].all_prod();\
-    \ }\n};\n\n/**\n * @brief SegmentTree2D\n */\n"
+    \ }\n    template<class F> ll min_left(ll r, ll u, ll d, F&& f) const {\n    \
+    \    T sm = M::id();\n        return str.min_left(r, u, d, [&] { return f(sm);\
+    \ }, [&](int k, int a, int b, bool f) {\n            if (f) sm = M::op(sm, seg[k].prod(a,\
+    \ b));\n            else sm = M::inv(sm, seg[k].prod(a, b));\n        });\n  \
+    \  }\n};\n\n/**\n * @brief SegmentTree2D\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -730,7 +750,7 @@ data:
   isVerificationFile: false
   path: data-struct/2D/SegmentTree2D.hpp
   requiredBy: []
-  timestamp: '2026-09-12 01:05:48+09:00'
+  timestamp: '2026-09-12 14:55:19+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/data_structure/point_add_rectangle_sum-2DSegTree.test.cpp

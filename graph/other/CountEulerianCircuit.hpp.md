@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: graph/mst/CountSpanningTree.hpp
     title: "CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/Combinatorics.hpp
     title: Combinatorics
   - icon: ':question:'
@@ -767,7 +767,7 @@ data:
     \ factinv;\n\npublic:\n    static void init(ll n) {\n        const int b = factorial.size();\n\
     \        if (n < b) return;\n        factorial.resize(n + 1);\n        rep (i,\
     \ b, n + 1) factorial[i] = factorial[i - 1] * i;\n        factinv.resize(n + 1);\n\
-    \        factinv[n] = T(1) / factorial[n];\n        rreps (i, n, b) factinv[i\
+    \        factinv[n] = T(1) / factorial[n];\n        rreps (i, b, n) factinv[i\
     \ - 1] = factinv[i] * i;\n    }\n    static T fact(ll x) {\n        if (x < 0)\
     \ return 0;\n        init(x);\n        return factorial[x];\n    }\n    static\
     \ T finv(ll x) {\n        if (x < 0) return 0;\n        init(x);\n        return\
@@ -835,7 +835,7 @@ data:
   isVerificationFile: false
   path: graph/other/CountEulerianCircuit.hpp
   requiredBy: []
-  timestamp: '2026-09-12 01:05:48+09:00'
+  timestamp: '2026-09-12 14:55:19+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/graph/counting_eulerian_circuits.test.cpp

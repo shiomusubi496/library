@@ -459,7 +459,7 @@ data:
     \        if (dpL[i] <= dpL[i - 1]) continue;\n        ll p = dpL[i - 1];\n   \
     \     rep (j, 1, m + 1) {\n            if (n / j < i * i) break;\n           \
     \ (n / j <= m2 ? dpL[n / j] : dpR[j]) -=\n                (n / (i * j) <= m2 ?\
-    \ dpL[n / (i * j)] : dpR[i * j]) - p;\n        }\n        rrep (j, m2, 1) {\n\
+    \ dpL[n / (i * j)] : dpR[i * j]) - p;\n        }\n        rrep (j, 1, m2) {\n\
     \            if (j < i * i) break;\n            dpL[j] -= dpL[j / i] - p;\n  \
     \      }\n    }\n    return dpR[1];\n}\n#line 4 \"test/yosupo/number_theory/counting_primes.test.cpp\"\
     \nusing namespace std;\nint main() {\n    ll n; scan >> n;\n    prints(LucyDP(n));\n\
@@ -482,7 +482,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/number_theory/counting_primes.test.cpp
   requiredBy: []
-  timestamp: '2026-09-12 01:05:48+09:00'
+  timestamp: '2026-09-12 14:55:19+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/number_theory/counting_primes.test.cpp

@@ -541,9 +541,10 @@ data:
     \ bool operator<=(const Line& l1, const Line& l2) {\n        return !(l2 < l1);\n\
     \    }\n    friend bool operator>=(const Line& l1, const Line& l2) {\n       \
     \ return !(l1 < l2);\n    }\n    bool is_on(const Point& p) const {\n        return\
-    \ cmp(a * p.x + b * p.y + c, 0) == 0;\n    }\n    template<class Pr> void debug(Pr&\
-    \ print) const {\n        print << a;\n        print.print_char('x');\n      \
-    \  print.print_char('+');\n        print << b;\n        print.print_char('y');\n\
+    \ cmp(a * p.x + b * p.y + c, 0) == 0;\n    }\n    int is_on2(const Point& p) const\
+    \ {\n        return cmp(a * p.x + b * p.y + c, 0);\n    }\n    template<class\
+    \ Pr> void debug(Pr& print) const {\n        print << a;\n        print.print_char('x');\n\
+    \        print.print_char('+');\n        print << b;\n        print.print_char('y');\n\
     \        print.print_char('+');\n        print << c;\n        print.print_char('=');\n\
     \        print.print_char('0');\n    }\n};\n\n#ifndef GEOMETRY_REAL_TYPE\nReal\
     \ distance(const Point& p, const Line& l) {\n    return std::abs(l.a * p.x + l.b\
@@ -656,7 +657,7 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL/CGL_5_A-closest.test.cpp
   requiredBy: []
-  timestamp: '2026-09-12 01:07:36+09:00'
+  timestamp: '2026-09-12 14:55:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL/CGL_5_A-closest.test.cpp

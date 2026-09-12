@@ -582,7 +582,7 @@ data:
     \ v)) {}\n    SegmentTreeBeats(const std::vector<T>& v) { init(v); }\n    void\
     \ init(const std::vector<T>& v) {\n        ori = v.size();\n        h = bitop::ceil_log2(ori);\n\
     \        n = 1 << h;\n        data.assign(n << 1, M::id());\n        rep (i, ori)\
-    \ data[n + i] = v[i];\n        rrep (i, n, 1) calc(i);\n        lazy.resize(n);\n\
+    \ data[n + i] = v[i];\n        rrep (i, 1, n) calc(i);\n        lazy.resize(n);\n\
     \        lazyflag.resize(n, false);\n    }\n    template<class Upd> void update(int\
     \ k, const Upd& upd) {\n        assert(0 <= k && k < ori);\n        update(1,\
     \ 0, n, k, upd);\n    }\n    void set(int k, const T& x) {\n        update(k,\
@@ -705,7 +705,7 @@ data:
     \ v)) {}\n    SegmentTreeBeats(const std::vector<T>& v) { init(v); }\n    void\
     \ init(const std::vector<T>& v) {\n        ori = v.size();\n        h = bitop::ceil_log2(ori);\n\
     \        n = 1 << h;\n        data.assign(n << 1, M::id());\n        rep (i, ori)\
-    \ data[n + i] = v[i];\n        rrep (i, n, 1) calc(i);\n        lazy.resize(n);\n\
+    \ data[n + i] = v[i];\n        rrep (i, 1, n) calc(i);\n        lazy.resize(n);\n\
     \        lazyflag.resize(n, false);\n    }\n    template<class Upd> void update(int\
     \ k, const Upd& upd) {\n        assert(0 <= k && k < ori);\n        update(1,\
     \ 0, n, k, upd);\n    }\n    void set(int k, const T& x) {\n        update(k,\
@@ -804,7 +804,7 @@ data:
   isVerificationFile: false
   path: data-struct/segment/SegmentTreeBeats.hpp
   requiredBy: []
-  timestamp: '2026-09-12 01:05:48+09:00'
+  timestamp: '2026-09-12 14:55:19+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/data_structure/range_chmin_chmax_add_range_sum.test.cpp

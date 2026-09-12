@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/Combinatorics.hpp
     title: Combinatorics
   - icon: ':question:'
@@ -36,9 +36,9 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DPL_5_B
@@ -586,7 +586,7 @@ data:
     \ factinv;\n\npublic:\n    static void init(ll n) {\n        const int b = factorial.size();\n\
     \        if (n < b) return;\n        factorial.resize(n + 1);\n        rep (i,\
     \ b, n + 1) factorial[i] = factorial[i - 1] * i;\n        factinv.resize(n + 1);\n\
-    \        factinv[n] = T(1) / factorial[n];\n        rreps (i, n, b) factinv[i\
+    \        factinv[n] = T(1) / factorial[n];\n        rreps (i, b, n) factinv[i\
     \ - 1] = factinv[i] * i;\n    }\n    static T fact(ll x) {\n        if (x < 0)\
     \ return 0;\n        init(x);\n        return factorial[x];\n    }\n    static\
     \ T finv(ll x) {\n        if (x < 0) return 0;\n        init(x);\n        return\
@@ -629,8 +629,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DPL/DPL_5_B.test.cpp
   requiredBy: []
-  timestamp: '2026-09-12 01:07:36+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-09-12 14:55:19+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DPL/DPL_5_B.test.cpp
 layout: document

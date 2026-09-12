@@ -610,7 +610,7 @@ data:
     \ - 1].node) {\n                all_apply(ptr, k - 1, nd->nxt[k].lazy);\n    \
     \        }\n            nd->nxt[k].lazyflag = false;\n        }\n    }\n    static\
     \ inline void all_eval(const nodepair& sl, int k) {\n        auto nd = sl.first;\n\
-    \        int cnt = 0;\n        rrep (i, sl.first->level(), 1) {\n            while\
+    \        int cnt = 0;\n        rrep (i, 1, sl.first->level()) {\n            while\
     \ (cnt + nd->nxt[i].dist <= k) {\n                cnt += nd->nxt[i].dist;\n  \
     \              nd = nd->nxt[i].node;\n            }\n            eval(nd, i);\n\
     \        }\n    }\n    static inline void calc(const node_ptr& l, int k) {\n \
@@ -619,10 +619,10 @@ data:
     \         ptr = ptr->nxt[k - 1].node) {\n            l->nxt[k].sm = M::op(l->nxt[k].sm,\
     \ ptr->nxt[k - 1].sm);\n        }\n    }\n    static inline void all_calc(const\
     \ nodepair& sl, int k) {\n        auto nd = sl.first;\n        int cnt = 0;\n\
-    \        std::vector<node_ptr> nds(sl.first->level());\n        rrep (i, sl.first->level(),\
-    \ 1) {\n            while (cnt + nd->nxt[i].dist <= k) {\n                cnt\
-    \ += nd->nxt[i].dist;\n                nd = nd->nxt[i].node;\n            }\n\
-    \            nds[i] = nd;\n        }\n        rep (i, 1, sl.first->level()) calc(nds[i],\
+    \        std::vector<node_ptr> nds(sl.first->level());\n        rrep (i, 1, sl.first->level())\
+    \ {\n            while (cnt + nd->nxt[i].dist <= k) {\n                cnt +=\
+    \ nd->nxt[i].dist;\n                nd = nd->nxt[i].node;\n            }\n   \
+    \         nds[i] = nd;\n        }\n        rep (i, 1, sl.first->level()) calc(nds[i],\
     \ i);\n    }\n    static void match_level(nodepair& lhs, nodepair& rhs) {\n  \
     \      const int llv = lhs.first->level(), rlv = rhs.second->level();\n      \
     \  if (llv < rlv) {\n            eval(lhs.first, llv - 1);\n            lhs.first->prv.resize(rlv,\
@@ -675,7 +675,7 @@ data:
     \ - 1] = 0;\n        rrep (i, h - 1) {\n            lft[i] = lft[i + 1];\n   \
     \         idx[i] = idx[i + 1];\n            while (idx[i] + lft[i]->nxt[i].dist\
     \ < k) {\n                idx[i] += lft[i]->nxt[i].dist;\n                lft[i]\
-    \ = lft[i]->nxt[i].node;\n            }\n        }\n        rrep (i, h, 1) eval(lft[i],\
+    \ = lft[i]->nxt[i].node;\n            }\n        }\n        rrep (i, 1, h) eval(lft[i],\
     \ i);\n        node_ptr npl = new node(h);\n        node_ptr npr = lft[0]->nxt[0].node;\n\
     \        rep (i, h) {\n            const auto l = lft[i];\n            const auto\
     \ r = lft[i]->nxt[i].node;\n            const int d = l->nxt[i].dist;\n      \
@@ -761,7 +761,7 @@ data:
     \ {\n            lft[i] = lft[i + 1];\n            idx[i] = idx[i + 1];\n    \
     \        while (idx[i] + lft[i]->nxt[i].dist < k) {\n                idx[i] +=\
     \ lft[i]->nxt[i].dist;\n                lft[i] = lft[i]->nxt[i].node;\n      \
-    \      }\n        }\n        rrep (i, h, 1) eval(lft[i], i);\n        const int\
+    \      }\n        }\n        rrep (i, 1, h) eval(lft[i], i);\n        const int\
     \ lev = get_level(rnd);\n        node_ptr np = new node(lev);\n        if (lev\
     \ < h) {\n            rep (i, lev) {\n                const auto l = lft[i];\n\
     \                const auto r = lft[i]->nxt[i].node;\n                np->nxt[i]\
@@ -847,7 +847,7 @@ data:
     \ sm = M::op(sm, np->prv[t]->nxt[t].sm);\n                r -= np->prv[t]->nxt[t].dist;\n\
     \                np = np->prv[t];\n                if (np == sl.first) return\
     \ 0;\n            }\n        }\n        return r;\n    }\n    std::vector<T> get_data()\
-    \ const {\n        rrep (i, sl.first->level(), 1) {\n            for (node_ptr\
+    \ const {\n        rrep (i, 1, sl.first->level()) {\n            for (node_ptr\
     \ ptr = sl.first; ptr != sl.second;\n                 ptr = ptr->nxt[i].node)\
     \ {\n                eval(ptr, i);\n            }\n        }\n        std::vector<T>\
     \ res;\n        res.reserve(size());\n        for (node_ptr ptr = sl.first; ptr\
@@ -893,7 +893,7 @@ data:
     \ - 1].node) {\n                all_apply(ptr, k - 1, nd->nxt[k].lazy);\n    \
     \        }\n            nd->nxt[k].lazyflag = false;\n        }\n    }\n    static\
     \ inline void all_eval(const nodepair& sl, int k) {\n        auto nd = sl.first;\n\
-    \        int cnt = 0;\n        rrep (i, sl.first->level(), 1) {\n            while\
+    \        int cnt = 0;\n        rrep (i, 1, sl.first->level()) {\n            while\
     \ (cnt + nd->nxt[i].dist <= k) {\n                cnt += nd->nxt[i].dist;\n  \
     \              nd = nd->nxt[i].node;\n            }\n            eval(nd, i);\n\
     \        }\n    }\n    static inline void calc(const node_ptr& l, int k) {\n \
@@ -902,10 +902,10 @@ data:
     \         ptr = ptr->nxt[k - 1].node) {\n            l->nxt[k].sm = M::op(l->nxt[k].sm,\
     \ ptr->nxt[k - 1].sm);\n        }\n    }\n    static inline void all_calc(const\
     \ nodepair& sl, int k) {\n        auto nd = sl.first;\n        int cnt = 0;\n\
-    \        std::vector<node_ptr> nds(sl.first->level());\n        rrep (i, sl.first->level(),\
-    \ 1) {\n            while (cnt + nd->nxt[i].dist <= k) {\n                cnt\
-    \ += nd->nxt[i].dist;\n                nd = nd->nxt[i].node;\n            }\n\
-    \            nds[i] = nd;\n        }\n        rep (i, 1, sl.first->level()) calc(nds[i],\
+    \        std::vector<node_ptr> nds(sl.first->level());\n        rrep (i, 1, sl.first->level())\
+    \ {\n            while (cnt + nd->nxt[i].dist <= k) {\n                cnt +=\
+    \ nd->nxt[i].dist;\n                nd = nd->nxt[i].node;\n            }\n   \
+    \         nds[i] = nd;\n        }\n        rep (i, 1, sl.first->level()) calc(nds[i],\
     \ i);\n    }\n    static void match_level(nodepair& lhs, nodepair& rhs) {\n  \
     \      const int llv = lhs.first->level(), rlv = rhs.second->level();\n      \
     \  if (llv < rlv) {\n            eval(lhs.first, llv - 1);\n            lhs.first->prv.resize(rlv,\
@@ -958,7 +958,7 @@ data:
     \ - 1] = 0;\n        rrep (i, h - 1) {\n            lft[i] = lft[i + 1];\n   \
     \         idx[i] = idx[i + 1];\n            while (idx[i] + lft[i]->nxt[i].dist\
     \ < k) {\n                idx[i] += lft[i]->nxt[i].dist;\n                lft[i]\
-    \ = lft[i]->nxt[i].node;\n            }\n        }\n        rrep (i, h, 1) eval(lft[i],\
+    \ = lft[i]->nxt[i].node;\n            }\n        }\n        rrep (i, 1, h) eval(lft[i],\
     \ i);\n        node_ptr npl = new node(h);\n        node_ptr npr = lft[0]->nxt[0].node;\n\
     \        rep (i, h) {\n            const auto l = lft[i];\n            const auto\
     \ r = lft[i]->nxt[i].node;\n            const int d = l->nxt[i].dist;\n      \
@@ -1044,7 +1044,7 @@ data:
     \ {\n            lft[i] = lft[i + 1];\n            idx[i] = idx[i + 1];\n    \
     \        while (idx[i] + lft[i]->nxt[i].dist < k) {\n                idx[i] +=\
     \ lft[i]->nxt[i].dist;\n                lft[i] = lft[i]->nxt[i].node;\n      \
-    \      }\n        }\n        rrep (i, h, 1) eval(lft[i], i);\n        const int\
+    \      }\n        }\n        rrep (i, 1, h) eval(lft[i], i);\n        const int\
     \ lev = get_level(rnd);\n        node_ptr np = new node(lev);\n        if (lev\
     \ < h) {\n            rep (i, lev) {\n                const auto l = lft[i];\n\
     \                const auto r = lft[i]->nxt[i].node;\n                np->nxt[i]\
@@ -1130,7 +1130,7 @@ data:
     \ sm = M::op(sm, np->prv[t]->nxt[t].sm);\n                r -= np->prv[t]->nxt[t].dist;\n\
     \                np = np->prv[t];\n                if (np == sl.first) return\
     \ 0;\n            }\n        }\n        return r;\n    }\n    std::vector<T> get_data()\
-    \ const {\n        rrep (i, sl.first->level(), 1) {\n            for (node_ptr\
+    \ const {\n        rrep (i, 1, sl.first->level()) {\n            for (node_ptr\
     \ ptr = sl.first; ptr != sl.second;\n                 ptr = ptr->nxt[i].node)\
     \ {\n                eval(ptr, i);\n            }\n        }\n        std::vector<T>\
     \ res;\n        res.reserve(size());\n        for (node_ptr ptr = sl.first; ptr\
@@ -1156,7 +1156,7 @@ data:
   isVerificationFile: false
   path: data-struct/other/SkipList.hpp
   requiredBy: []
-  timestamp: '2026-09-12 01:05:48+09:00'
+  timestamp: '2026-09-12 14:55:19+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data-struct/other/SkipList.hpp

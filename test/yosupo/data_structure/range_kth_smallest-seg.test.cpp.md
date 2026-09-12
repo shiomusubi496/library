@@ -556,7 +556,7 @@ data:
     \        data.assign(n << 1, M::id());\n    }\n    void init(const std::vector<T>&\
     \ v) {\n        ori = v.size();\n        n = 1 << bitop::ceil_log2(ori);\n   \
     \     data.assign(n << 1, M::id());\n        rep (i, ori) data[n + i] = v[i];\n\
-    \        rrep (i, n, 1) data[i] = M::op(data[i << 1], data[i << 1 ^ 1]);\n   \
+    \        rrep (i, 1, n) data[i] = M::op(data[i << 1], data[i << 1 ^ 1]);\n   \
     \ }\n    template<class Upd> void update(int k, const Upd& upd) {\n        assert(0\
     \ <= k && k < ori);\n        k += n;\n        upd(data[k]);\n        while (k\
     \ >>= 1) upd(data[k]);\n    }\n    T prod(int l, int r) const {\n        assert(0\
@@ -651,7 +651,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/range_kth_smallest-seg.test.cpp
   requiredBy: []
-  timestamp: '2026-09-12 01:07:36+09:00'
+  timestamp: '2026-09-12 14:55:19+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/range_kth_smallest-seg.test.cpp

@@ -523,7 +523,7 @@ data:
     \ factorial.resize(n + 1);\n        rep (i, b, n + 1) {\n            if (i % p\
     \ != 0) factorial[i] = bar.mul(factorial[i - 1], i);\n            else factorial[i]\
     \ = factorial[i - 1];\n        }\n        factinv.resize(n + 1);\n        factinv[n]\
-    \ = mod_inv(factorial[n], bar.get_mod());\n        rreps (i, n, b) {\n       \
+    \ = mod_inv(factorial[n], bar.get_mod());\n        rreps (i, b, n) {\n       \
     \     if (i % p != 0) factinv[i - 1] = bar.mul(factinv[i], i);\n            else\
     \ factinv[i - 1] = factinv[i];\n        }\n    }\n    unsigned int comb(ll n,\
     \ ll r) {\n        if (r < 0 || r > n) return 0;\n        if (n < 0) return 0;\n\
@@ -574,7 +574,7 @@ data:
     \ b, n + 1) {\n            if (i % p != 0) factorial[i] = bar.mul(factorial[i\
     \ - 1], i);\n            else factorial[i] = factorial[i - 1];\n        }\n  \
     \      factinv.resize(n + 1);\n        factinv[n] = mod_inv(factorial[n], bar.get_mod());\n\
-    \        rreps (i, n, b) {\n            if (i % p != 0) factinv[i - 1] = bar.mul(factinv[i],\
+    \        rreps (i, b, n) {\n            if (i % p != 0) factinv[i - 1] = bar.mul(factinv[i],\
     \ i);\n            else factinv[i - 1] = factinv[i];\n        }\n    }\n    unsigned\
     \ int comb(ll n, ll r) {\n        if (r < 0 || r > n) return 0;\n        if (n\
     \ < 0) return 0;\n        ll k = n - r;\n        unsigned int res = 1;\n     \
@@ -626,7 +626,7 @@ data:
   isVerificationFile: false
   path: math/ArbitraryModCombinatorics.hpp
   requiredBy: []
-  timestamp: '2026-09-12 01:05:48+09:00'
+  timestamp: '2026-09-12 14:55:19+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/enumerative_combinatorics/binomial_coefficient.test.cpp

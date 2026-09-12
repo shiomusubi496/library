@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':x:'
+    path: data-struct/other/Mo.hpp
+    title: Mo's Algorithm
+  - icon: ':question:'
     path: math/Combinatorics.hpp
     title: Combinatorics
   - icon: ':question:'
@@ -583,7 +586,7 @@ data:
     \ n) {\n        const int b = factorial.size();\n        if (n < b) return;\n\
     \        factorial.resize(n + 1);\n        rep (i, b, n + 1) factorial[i] = factorial[i\
     \ - 1] * i;\n        factinv.resize(n + 1);\n        factinv[n] = T(1) / factorial[n];\n\
-    \        rreps (i, n, b) factinv[i - 1] = factinv[i] * i;\n    }\n    static T\
+    \        rreps (i, b, n) factinv[i - 1] = factinv[i] * i;\n    }\n    static T\
     \ fact(ll x) {\n        if (x < 0) return 0;\n        init(x);\n        return\
     \ factorial[x];\n    }\n    static T finv(ll x) {\n        if (x < 0) return 0;\n\
     \        init(x);\n        return factinv[x];\n    }\n    static T inv(ll x) {\n\
@@ -602,24 +605,75 @@ data:
     \ 1, r); }\n};\n\ntemplate<class T>\nstd::vector<T> Combinatorics<T>::factorial\
     \ = std::vector<T>(1, 1);\ntemplate<class T>\nstd::vector<T> Combinatorics<T>::factinv\
     \ = std::vector<T>(1, 1);\n\n/**\n * @brief Combinatorics\n * @docs docs/math/Combinatorics.md\n\
-    \ */\n#line 5 \"math/BinomPrefixSum.hpp\"\n\ntemplate<class T, class Comb = Combinatorics<T>>\
-    \ class BinomPrefixSum {\n    int n, k;\n    T val;\n\npublic:\n    BinomPrefixSum()\
-    \ : BinomPrefixSum(0, 0) {}\n    BinomPrefixSum(int n_, int k_) : n(n_), k(k_),\
-    \ val(0) {\n        Comb::init(n);\n        rep (i, k) val += Comb::comb(n, i);\n\
-    \    }\n    T k_inc() { return val += Comb::comb(n, k++); }\n    T k_dec() { return\
-    \ val -= Comb::comb(n, --k); }\n    T n_inc() { return val += val - Comb::comb(n++,\
-    \ k - 1); }\n    T n_dec() { return val = (val + Comb::comb(--n, k - 1)) / 2;\
-    \ }\n    T get() const { return val; }\n};\n\n/**\n * @brief BinomPrefixSum\n\
-    \ */\n"
-  code: "#pragma once\n\n#include \"../other/template.hpp\"\n#include \"Combinatorics.hpp\"\
+    \ */\n#line 2 \"data-struct/other/Mo.hpp\"\n\n#line 4 \"data-struct/other/Mo.hpp\"\
+    \n\nclass Mo {\nprivate:\n    int n;\n    std::vector<std::pair<int, int>> data;\n\
+    \npublic:\n    Mo() = default;\n    Mo(int n) : n(n) {}\n    Mo(int n, const std::vector<std::pair<int,\
+    \ int>>& a) : n(n), data(a) {}\n    Mo(int n, std::vector<std::pair<int, int>>&&\
+    \ a)\n        : n(n), data(std::move(a)) {}\n    void push(int l, int r) { data.emplace_back(l,\
+    \ r); }\n    void set_n(int n_) { n = n_; }\n    template<class AL, class AR,\
+    \ class DL, class DR, class REM>\n    void build(const AL& add_left, const AR&\
+    \ add_right, const DL& delete_left,\n               const DR& delete_right, const\
+    \ REM& rem) const {\n        if (data.empty()) return;\n        int q = data.size();\n\
+    \        const int w = std::max<int>(1, 1.0 * n / sqrt(2.0 * q / 3.0));\n    \
+    \    std::vector<int> idx(q);\n        rep (i, q) idx[i] = i;\n        std::sort(all(idx),\
+    \ [&](int a, int b) -> bool {\n            const int ab = data[a].first / w, bb\
+    \ = data[b].first / w;\n            if (ab != bb) return ab < bb;\n          \
+    \  return ab & 1 ? data[a].second < data[b].second\n                         \
+    \ : data[a].second > data[b].second;\n        });\n        int l = 0, r = 0;\n\
+    \        for (const auto& i : idx) {\n            while (data[i].first < l) add_left(--l);\n\
+    \            while (data[i].second > r) add_right(r++);\n            while (data[i].first\
+    \ > l) delete_left(l++);\n            while (data[i].second < r) delete_right(--r);\n\
+    \            rem(i);\n        }\n    }\n    template<class A, class D, class REM>\n\
+    \    void build(const A& add, const D& del, const REM& rem) const {\n        build(add,\
+    \ add, del, del, rem);\n    }\n};\n\n/**\n * @brief Mo's Algorithm\n * @docs docs/data-struct/other/Mo.md\n\
+    \ * @see https://nyaannyaan.github.io/library/misc/mo.hpp\n */\n#line 6 \"math/BinomPrefixSum.hpp\"\
     \n\ntemplate<class T, class Comb = Combinatorics<T>> class BinomPrefixSum {\n\
-    \    int n, k;\n    T val;\n\npublic:\n    BinomPrefixSum() : BinomPrefixSum(0,\
+    public:\n    int n, k;\n    T val;\n\npublic:\n    BinomPrefixSum() : BinomPrefixSum(0,\
     \ 0) {}\n    BinomPrefixSum(int n_, int k_) : n(n_), k(k_), val(0) {\n       \
     \ Comb::init(n);\n        rep (i, k) val += Comb::comb(n, i);\n    }\n    T k_inc()\
     \ { return val += Comb::comb(n, k++); }\n    T k_dec() { return val -= Comb::comb(n,\
     \ --k); }\n    T n_inc() { return val += val - Comb::comb(n++, k - 1); }\n   \
     \ T n_dec() { return val = (val + Comb::comb(--n, k - 1)) / 2; }\n    T get()\
-    \ const { return val; }\n};\n\n/**\n * @brief BinomPrefixSum\n */\n"
+    \ const { return val; }\n};\n\ntemplate<class T, class Comb = Combinatorics<T>>\
+    \ class OfflineBinomPrefixSum {\n    int mx;\n    std::vector<std::pair<int, int>>\
+    \ qs;\n    std::vector<T> res, memo;\n    std::vector<int> idx;\n\npublic:\n \
+    \   OfflineBinomPrefixSum() : OfflineBinomPrefixSum(0) {}\n    OfflineBinomPrefixSum(int\
+    \ n) : mx(n), memo(n + 1, 1) {\n        rep (i, n) memo[i + 1] = memo[i] * 2;\n\
+    \    }\n    void push(int n, int k) {\n        if (n < k) {\n            while\
+    \ ((int)memo.size() <= n) memo.push_back(memo.back() * 2);\n            res.push_back(memo[n]);\n\
+    \            return;\n        }\n        res.push_back(0);\n        chmax(mx,\
+    \ n);\n        qs.emplace_back(k, n);\n        idx.push_back(res.size() - 1);\n\
+    \    }\n    std::vector<T> build() {\n        Comb::init(mx);\n        Mo mo(mx,\
+    \ qs);\n        BinomPrefixSum<T, Comb> bps;\n        mo.build(\n            [&](int)\
+    \ { bps.k_dec(); },\n            [&](int) { bps.n_inc(); },\n            [&](int)\
+    \ { bps.k_inc(); },\n            [&](int) { bps.n_dec(); },\n            [&](int\
+    \ i) { res[idx[i]] = bps.get(); }\n        );\n        return res;\n    }\n  \
+    \  T operator[](int k) const { return res[k]; }\n};\n\n/**\n * @brief BinomPrefixSum\n\
+    \ */\n"
+  code: "#pragma once\n\n#include \"../other/template.hpp\"\n#include \"Combinatorics.hpp\"\
+    \n#include \"../data-struct/other/Mo.hpp\"\n\ntemplate<class T, class Comb = Combinatorics<T>>\
+    \ class BinomPrefixSum {\npublic:\n    int n, k;\n    T val;\n\npublic:\n    BinomPrefixSum()\
+    \ : BinomPrefixSum(0, 0) {}\n    BinomPrefixSum(int n_, int k_) : n(n_), k(k_),\
+    \ val(0) {\n        Comb::init(n);\n        rep (i, k) val += Comb::comb(n, i);\n\
+    \    }\n    T k_inc() { return val += Comb::comb(n, k++); }\n    T k_dec() { return\
+    \ val -= Comb::comb(n, --k); }\n    T n_inc() { return val += val - Comb::comb(n++,\
+    \ k - 1); }\n    T n_dec() { return val = (val + Comb::comb(--n, k - 1)) / 2;\
+    \ }\n    T get() const { return val; }\n};\n\ntemplate<class T, class Comb = Combinatorics<T>>\
+    \ class OfflineBinomPrefixSum {\n    int mx;\n    std::vector<std::pair<int, int>>\
+    \ qs;\n    std::vector<T> res, memo;\n    std::vector<int> idx;\n\npublic:\n \
+    \   OfflineBinomPrefixSum() : OfflineBinomPrefixSum(0) {}\n    OfflineBinomPrefixSum(int\
+    \ n) : mx(n), memo(n + 1, 1) {\n        rep (i, n) memo[i + 1] = memo[i] * 2;\n\
+    \    }\n    void push(int n, int k) {\n        if (n < k) {\n            while\
+    \ ((int)memo.size() <= n) memo.push_back(memo.back() * 2);\n            res.push_back(memo[n]);\n\
+    \            return;\n        }\n        res.push_back(0);\n        chmax(mx,\
+    \ n);\n        qs.emplace_back(k, n);\n        idx.push_back(res.size() - 1);\n\
+    \    }\n    std::vector<T> build() {\n        Comb::init(mx);\n        Mo mo(mx,\
+    \ qs);\n        BinomPrefixSum<T, Comb> bps;\n        mo.build(\n            [&](int)\
+    \ { bps.k_dec(); },\n            [&](int) { bps.n_inc(); },\n            [&](int)\
+    \ { bps.k_inc(); },\n            [&](int) { bps.n_dec(); },\n            [&](int\
+    \ i) { res[idx[i]] = bps.get(); }\n        );\n        return res;\n    }\n  \
+    \  T operator[](int k) const { return res[k]; }\n};\n\n/**\n * @brief BinomPrefixSum\n\
+    \ */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -632,10 +686,11 @@ data:
   - template/util.hpp
   - math/Combinatorics.hpp
   - math/ModInt.hpp
+  - data-struct/other/Mo.hpp
   isVerificationFile: false
   path: math/BinomPrefixSum.hpp
   requiredBy: []
-  timestamp: '2026-09-12 01:05:48+09:00'
+  timestamp: '2026-09-12 14:55:19+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/BinomPrefixSum.hpp

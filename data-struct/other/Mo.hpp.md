@@ -28,7 +28,10 @@ data:
   - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: math/BinomPrefixSum.hpp
+    title: BinomPrefixSum
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/yosupo/data_structure/static_range_inversions_query.test.cpp
@@ -452,48 +455,48 @@ data:
     \     assert(sorted);\n        for (auto&& i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
     };\n#line 4 \"data-struct/other/Mo.hpp\"\n\nclass Mo {\nprivate:\n    int n;\n\
-    \    std::vector<std::pair<int, int>> data;\n\npublic:\n    Mo(int n) : n(n) {}\n\
-    \    Mo(int n, const std::vector<std::pair<int, int>>& a) : n(n), data(a) {}\n\
-    \    Mo(int n, std::vector<std::pair<int, int>>&& a)\n        : n(n), data(std::move(a))\
-    \ {}\n    void push(int l, int r) { data.emplace_back(l, r); }\n    template<class\
-    \ AL, class AR, class DL, class DR, class REM>\n    void build(const AL& add_left,\
-    \ const AR& add_right, const DL& delete_left,\n               const DR& delete_right,\
-    \ const REM& rem) const {\n        if (data.empty()) return;\n        int q =\
-    \ data.size();\n        const int w = std::max<int>(1, 1.0 * n / sqrt(2.0 * q\
-    \ / 3.0));\n        std::vector<int> idx(q);\n        rep (i, q) idx[i] = i;\n\
-    \        std::sort(all(idx), [&](int a, int b) -> bool {\n            const int\
-    \ ab = data[a].first / w, bb = data[b].first / w;\n            if (ab != bb) return\
-    \ ab < bb;\n            return ab & 1 ? data[a].second < data[b].second\n    \
-    \                      : data[a].second > data[b].second;\n        });\n     \
-    \   int l = 0, r = 0;\n        for (const auto& i : idx) {\n            while\
-    \ (data[i].first < l) add_left(--l);\n            while (data[i].second > r) add_right(r++);\n\
-    \            while (data[i].first > l) delete_left(l++);\n            while (data[i].second\
-    \ < r) delete_right(--r);\n            rem(i);\n        }\n    }\n    template<class\
-    \ A, class D, class REM>\n    void build(const A& add, const D& del, const REM&\
-    \ rem) const {\n        build(add, add, del, del, rem);\n    }\n};\n\n/**\n *\
-    \ @brief Mo's Algorithm\n * @docs docs/data-struct/other/Mo.md\n * @see https://nyaannyaan.github.io/library/misc/mo.hpp\n\
-    \ */\n"
+    \    std::vector<std::pair<int, int>> data;\n\npublic:\n    Mo() = default;\n\
+    \    Mo(int n) : n(n) {}\n    Mo(int n, const std::vector<std::pair<int, int>>&\
+    \ a) : n(n), data(a) {}\n    Mo(int n, std::vector<std::pair<int, int>>&& a)\n\
+    \        : n(n), data(std::move(a)) {}\n    void push(int l, int r) { data.emplace_back(l,\
+    \ r); }\n    void set_n(int n_) { n = n_; }\n    template<class AL, class AR,\
+    \ class DL, class DR, class REM>\n    void build(const AL& add_left, const AR&\
+    \ add_right, const DL& delete_left,\n               const DR& delete_right, const\
+    \ REM& rem) const {\n        if (data.empty()) return;\n        int q = data.size();\n\
+    \        const int w = std::max<int>(1, 1.0 * n / sqrt(2.0 * q / 3.0));\n    \
+    \    std::vector<int> idx(q);\n        rep (i, q) idx[i] = i;\n        std::sort(all(idx),\
+    \ [&](int a, int b) -> bool {\n            const int ab = data[a].first / w, bb\
+    \ = data[b].first / w;\n            if (ab != bb) return ab < bb;\n          \
+    \  return ab & 1 ? data[a].second < data[b].second\n                         \
+    \ : data[a].second > data[b].second;\n        });\n        int l = 0, r = 0;\n\
+    \        for (const auto& i : idx) {\n            while (data[i].first < l) add_left(--l);\n\
+    \            while (data[i].second > r) add_right(r++);\n            while (data[i].first\
+    \ > l) delete_left(l++);\n            while (data[i].second < r) delete_right(--r);\n\
+    \            rem(i);\n        }\n    }\n    template<class A, class D, class REM>\n\
+    \    void build(const A& add, const D& del, const REM& rem) const {\n        build(add,\
+    \ add, del, del, rem);\n    }\n};\n\n/**\n * @brief Mo's Algorithm\n * @docs docs/data-struct/other/Mo.md\n\
+    \ * @see https://nyaannyaan.github.io/library/misc/mo.hpp\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\nclass Mo {\nprivate:\n\
-    \    int n;\n    std::vector<std::pair<int, int>> data;\n\npublic:\n    Mo(int\
-    \ n) : n(n) {}\n    Mo(int n, const std::vector<std::pair<int, int>>& a) : n(n),\
-    \ data(a) {}\n    Mo(int n, std::vector<std::pair<int, int>>&& a)\n        : n(n),\
-    \ data(std::move(a)) {}\n    void push(int l, int r) { data.emplace_back(l, r);\
-    \ }\n    template<class AL, class AR, class DL, class DR, class REM>\n    void\
-    \ build(const AL& add_left, const AR& add_right, const DL& delete_left,\n    \
-    \           const DR& delete_right, const REM& rem) const {\n        if (data.empty())\
-    \ return;\n        int q = data.size();\n        const int w = std::max<int>(1,\
-    \ 1.0 * n / sqrt(2.0 * q / 3.0));\n        std::vector<int> idx(q);\n        rep\
-    \ (i, q) idx[i] = i;\n        std::sort(all(idx), [&](int a, int b) -> bool {\n\
-    \            const int ab = data[a].first / w, bb = data[b].first / w;\n     \
-    \       if (ab != bb) return ab < bb;\n            return ab & 1 ? data[a].second\
-    \ < data[b].second\n                          : data[a].second > data[b].second;\n\
-    \        });\n        int l = 0, r = 0;\n        for (const auto& i : idx) {\n\
-    \            while (data[i].first < l) add_left(--l);\n            while (data[i].second\
-    \ > r) add_right(r++);\n            while (data[i].first > l) delete_left(l++);\n\
-    \            while (data[i].second < r) delete_right(--r);\n            rem(i);\n\
-    \        }\n    }\n    template<class A, class D, class REM>\n    void build(const\
-    \ A& add, const D& del, const REM& rem) const {\n        build(add, add, del,\
-    \ del, rem);\n    }\n};\n\n/**\n * @brief Mo's Algorithm\n * @docs docs/data-struct/other/Mo.md\n\
+    \    int n;\n    std::vector<std::pair<int, int>> data;\n\npublic:\n    Mo() =\
+    \ default;\n    Mo(int n) : n(n) {}\n    Mo(int n, const std::vector<std::pair<int,\
+    \ int>>& a) : n(n), data(a) {}\n    Mo(int n, std::vector<std::pair<int, int>>&&\
+    \ a)\n        : n(n), data(std::move(a)) {}\n    void push(int l, int r) { data.emplace_back(l,\
+    \ r); }\n    void set_n(int n_) { n = n_; }\n    template<class AL, class AR,\
+    \ class DL, class DR, class REM>\n    void build(const AL& add_left, const AR&\
+    \ add_right, const DL& delete_left,\n               const DR& delete_right, const\
+    \ REM& rem) const {\n        if (data.empty()) return;\n        int q = data.size();\n\
+    \        const int w = std::max<int>(1, 1.0 * n / sqrt(2.0 * q / 3.0));\n    \
+    \    std::vector<int> idx(q);\n        rep (i, q) idx[i] = i;\n        std::sort(all(idx),\
+    \ [&](int a, int b) -> bool {\n            const int ab = data[a].first / w, bb\
+    \ = data[b].first / w;\n            if (ab != bb) return ab < bb;\n          \
+    \  return ab & 1 ? data[a].second < data[b].second\n                         \
+    \ : data[a].second > data[b].second;\n        });\n        int l = 0, r = 0;\n\
+    \        for (const auto& i : idx) {\n            while (data[i].first < l) add_left(--l);\n\
+    \            while (data[i].second > r) add_right(r++);\n            while (data[i].first\
+    \ > l) delete_left(l++);\n            while (data[i].second < r) delete_right(--r);\n\
+    \            rem(i);\n        }\n    }\n    template<class A, class D, class REM>\n\
+    \    void build(const A& add, const D& del, const REM& rem) const {\n        build(add,\
+    \ add, del, del, rem);\n    }\n};\n\n/**\n * @brief Mo's Algorithm\n * @docs docs/data-struct/other/Mo.md\n\
     \ * @see https://nyaannyaan.github.io/library/misc/mo.hpp\n */\n"
   dependsOn:
   - other/template.hpp
@@ -507,8 +510,9 @@ data:
   - template/util.hpp
   isVerificationFile: false
   path: data-struct/other/Mo.hpp
-  requiredBy: []
-  timestamp: '2026-09-12 01:05:48+09:00'
+  requiredBy:
+  - math/BinomPrefixSum.hpp
+  timestamp: '2026-09-12 14:55:19+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/data_structure/static_range_inversions_query.test.cpp
