@@ -2,20 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: data-struct/segment/BinaryIndexedTree.hpp
-    title: BinaryIndexedTree(FenwickTree, BIT)
-  - icon: ':question:'
-    path: data-struct/segment/SegmentTree.hpp
-    title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
+    path: data-struct/unionfind/UnionFind.hpp
+    title: UnionFind
   - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':question:'
-    path: graph/tree/EulerTour.hpp
-    title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
-  - icon: ':question:'
-    path: other/monoid.hpp
-    title: other/monoid.hpp
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
@@ -44,17 +35,16 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
-  _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yosupo/new/minimum_steiner_tree.test.cpp
+    title: test/yosupo/new/minimum_steiner_tree.test.cpp
+  _isVerificationFailed: true
+  _pathExtension: hpp
+  _verificationStatusIcon: ':x:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/GRL_5_D
-    links:
-    - https://onlinejudge.u-aizu.ac.jp/problems/GRL_5_D
-  bundledCode: "#line 1 \"test/aoj/GRL/GRL_5_D-EulerTour.test.cpp\"\n#define PROBLEM\
-    \ \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_5_D\"\n#line 2 \"other/template.hpp\"\
+    links: []
+  bundledCode: "#line 2 \"graph/mst/MinimumSteinerTree.hpp\"\n\n#line 2 \"other/template.hpp\"\
     \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
     \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define OVERLOAD5(a,\
     \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
@@ -464,118 +454,7 @@ data:
     \        return res;\n    }\n    void press(std::vector<T>& vec) const {\n   \
     \     assert(sorted);\n        for (auto&& i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
-    };\n#line 2 \"data-struct/segment/BinaryIndexedTree.hpp\"\n\n#line 2 \"other/monoid.hpp\"\
-    \n\n#line 4 \"other/monoid.hpp\"\n\nnamespace Monoid {\n\ntemplate<class M, class\
-    \ = void>\nclass has_value_type : public std::false_type {};\ntemplate<class M>\n\
-    class has_value_type<M, decltype((void)std::declval<typename M::value_type>())>\n\
-    \    : public std::true_type {};\n\ntemplate<class M, class = void> class has_op\
-    \ : public std::false_type {};\ntemplate<class M>\nclass has_op<M, decltype((void)M::op)>\
-    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_id\
-    \ : public std::false_type {};\ntemplate<class M>\nclass has_id<M, decltype((void)M::id)>\
-    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_inv\
-    \ : public std::false_type {};\ntemplate<class M>\nclass has_inv<M, decltype((void)M::inv)>\
-    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_get_inv\
-    \ : public std::false_type {};\ntemplate<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)>\
-    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_init\
-    \ : public std::false_type {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init(0,\
-    \ 0))> : public std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op\
-    \ : public std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
-    \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_semigroup\
-    \ : public std::false_type {};\ntemplate<class T>\nclass is_semigroup<T, decltype(std::declval<typename\
-    \ T::value_type>(),\n                               (void)T::op)> : public std::true_type\
-    \ {};\n\ntemplate<class T, class = void> class is_monoid : public std::false_type\
-    \ {};\n\ntemplate<class T>\nclass is_monoid<T, decltype(std::declval<typename\
-    \ T::value_type>(), (void)T::op,\n                            (void)T::id)> :\
-    \ public std::true_type {};\n\ntemplate<class T, class = void> class is_group\
-    \ : public std::false_type {};\n\ntemplate<class T>\nclass is_group<T, decltype(std::declval<typename\
-    \ T::value_type>(), (void)T::op,\n                           (void)T::id, (void)T::get_inv)>\n\
-    \    : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
-    \ : public std::false_type {};\ntemplate<class T>\nclass is_action<T, typename\
-    \ std::enable_if<is_monoid<typename T::M>::value &&\n                        \
-    \                   is_semigroup<typename T::E>::value &&\n                  \
-    \                         (has_op<T>::value ||\n                             \
-    \               has_mul_op<T>::value)>::type>\n    : public std::true_type {};\n\
-    \ntemplate<class T, class = void>\nclass is_distributable_action : public std::false_type\
-    \ {};\ntemplate<class T>\nclass is_distributable_action<\n    T,\n    typename\
-    \ std::enable_if<is_action<T>::value && !has_mul_op<T>::value>::type>\n    : public\
-    \ std::true_type {};\n\ntemplate<class T> struct Sum {\n    using value_type =\
-    \ T;\n    static constexpr T op(const T& a, const T& b) { return a + b; }\n  \
-    \  static constexpr T id() { return T{0}; }\n    static constexpr T inv(const\
-    \ T& a, const T& b) { return a - b; }\n    static constexpr T get_inv(const T&\
-    \ a) { return -a; }\n};\n\ntemplate<class T, int i = -1> struct Min {\n    using\
-    \ value_type = T;\n    static T max_value;\n    static T op(const T& a, const\
-    \ T& b) { return a < b ? a : b; }\n    static T id() { return max_value; }\n};\n\
-    template<class T> struct Min<T, -1> {\n    using value_type = T;\n    static constexpr\
-    \ T op(const T& a, const T& b) { return a < b ? a : b; }\n    static constexpr\
-    \ T id() { return infinity<T>::value; }\n};\ntemplate<class T> struct Min<T, -2>\
-    \ {\n    using value_type = T;\n    static constexpr T op(const T& a, const T&\
-    \ b) { return a < b ? a : b; }\n    static constexpr T id() { return infinity<T>::max;\
-    \ }\n};\ntemplate<class T, int id> T Min<T, id>::max_value;\n\ntemplate<class\
-    \ T, int i = -1> struct Max {\n    using value_type = T;\n    static T min_value;\n\
-    \    static T op(const T& a, const T& b) { return a > b ? a : b; }\n    static\
-    \ T id() { return min_value; }\n};\ntemplate<class T> struct Max<T, -1> {\n  \
-    \  using value_type = T;\n    static constexpr T op(const T& a, const T& b) {\
-    \ return a > b ? a : b; }\n    static constexpr T id() { return infinity<T>::mvalue;\
-    \ }\n};\ntemplate<class T> struct Max<T, -2> {\n    using value_type = T;\n  \
-    \  static constexpr T op(const T& a, const T& b) { return a > b ? a : b; }\n \
-    \   static constexpr T id() { return infinity<T>::min; }\n};\n\ntemplate<class\
-    \ T> struct Assign {\n    using value_type = T;\n    static constexpr T op(const\
-    \ T&, const T& b) { return b; }\n};\n\n\ntemplate<class T, int id = -1> struct\
-    \ AssignMin {\n    using M = Min<T, id>;\n    using E = Assign<T>;\n    static\
-    \ constexpr T op(const T& a, const T&) { return a; }\n};\n\ntemplate<class T,\
-    \ int id = -1> struct AssignMax {\n    using M = Max<T, id>;\n    using E = Assign<T>;\n\
-    \    static constexpr T op(const T& a, const T&) { return a; }\n};\n\ntemplate<class\
-    \ T> struct AssignSum {\n    using M = Sum<T>;\n    using E = Assign<T>;\n   \
-    \ static constexpr T mul_op(const T& a, int b, const T&) { return a * b; }\n};\n\
-    \ntemplate<class T, int id = -1> struct AddMin {\n    using M = Min<T, id>;\n\
-    \    using E = Sum<T>;\n    static constexpr T op(const T& a, const T& b) { return\
-    \ b + a; }\n};\n\ntemplate<class T, int id = -1> struct AddMax {\n    using M\
-    \ = Max<T, id>;\n    using E = Sum<T>;\n    static constexpr T op(const T& a,\
-    \ const T& b) { return b + a; }\n};\n\ntemplate<class T> struct AddSum {\n   \
-    \ using M = Sum<T>;\n    using E = Sum<T>;\n    static constexpr T mul_op(const\
-    \ T& a, int b, const T& c) {\n        return c + a * b;\n    }\n};\n\ntemplate<class\
-    \ T, int id = -1> struct ChminMin {\n    using M = Min<T, id>;\n    using E =\
-    \ Min<T>;\n    static constexpr T op(const T& a, const T& b) { return std::min(b,\
-    \ a); }\n};\n\ntemplate<class T, int id = -1> struct ChminMax {\n    using M =\
-    \ Max<T, id>;\n    using E = Min<T>;\n    static constexpr T op(const T& a, const\
-    \ T& b) { return std::min(b, a); }\n};\n\ntemplate<class T, int id = -1> struct\
-    \ ChmaxMin {\n    using M = Min<T, id>;\n    using E = Max<T>;\n    static constexpr\
-    \ T op(const T& a, const T& b) { return std::max(b, a); }\n};\n\ntemplate<class\
-    \ T, int id = -1> struct ChmaxMax {\n    using M = Max<T, id>;\n    using E =\
-    \ Max<T>;\n    static constexpr T op(const T& a, const T& b) { return std::max(b,\
-    \ a); }\n};\n\n\ntemplate<class M> struct ReverseMonoid {\n    using value_type\
-    \ = typename M::value_type;\n    static value_type op(const value_type& a, const\
-    \ value_type& b) {\n        return M::op(b, a);\n    }\n    static value_type\
-    \ id() {\n        static_assert(has_id<M>::value, \"id is not defined\");\n  \
-    \      return M::id();\n    }\n    static value_type inv(const value_type& a,\
-    \ const value_type& b) {\n        static_assert(has_inv<M>::value, \"inv is not\
-    \ defined\");\n        return M::inv(b, a);\n    }\n    static value_type get_inv(const\
-    \ value_type& a) {\n        static_assert(has_get_inv<M>::value, \"get_inv is\
-    \ not defined\");\n        return M::get_inv(a);\n    }\n};\n\ntemplate<class\
-    \ E_> struct MakeAction {\n    using M = E_;\n    using E = E_;\n    using T =\
-    \ typename E_::value_type;\n    static T op(const T& a, const T& b) { return E_::op(b,\
-    \ a); }\n};\n\n} // namespace Monoid\n#line 5 \"data-struct/segment/BinaryIndexedTree.hpp\"\
-    \n\ntemplate<class M, bool = Monoid::is_monoid<M>::value> class BinaryIndexedTree\
-    \ {\nprivate:\n    using T = typename M::value_type;\n    int n;\n    std::vector<T>\
-    \ data;\n\npublic:\n    BinaryIndexedTree() : BinaryIndexedTree(0) {}\n    BinaryIndexedTree(int\
-    \ n_) { init(n_); }\n    void init(int n_) {\n        n = n_;\n        data.assign(n\
-    \ + 1, M::id());\n    }\n    void apply(int k, T x) {\n        assert(0 <= k &&\
-    \ k < n);\n        ++k;\n        while (k <= n) {\n            data[k] = M::op(data[k],\
-    \ x);\n            k += k & -k;\n        }\n    }\n    T prod(int k) const {\n\
-    \        assert(0 <= k && k <= n);\n        T res = M::id();\n        while (k)\
-    \ {\n            res = M::op(res, data[k]);\n            k -= k & -k;\n      \
-    \  }\n        return res;\n    }\n    template<bool AlwaysTrue = true,\n     \
-    \        typename std::enable_if<Monoid::has_inv<M>::value &&\n              \
-    \                       AlwaysTrue>::type* = nullptr>\n    T prod(int l, int r)\
-    \ const {\n        assert(l <= r);\n        return M::inv(prod(r), prod(l));\n\
-    \    }\n    T get(int k) const { return prod(k, k + 1); }\n    void set(int k,\
-    \ T x) { apply(k, M::inv(x, get(k))); }\n};\n\ntemplate<class T>\nclass BinaryIndexedTree<T,\
-    \ false> : public BinaryIndexedTree<Monoid::Sum<T>> {\nprivate:\n    using Base\
-    \ = BinaryIndexedTree<Monoid::Sum<T>>;\n\npublic:\n    using Base::Base;\n   \
-    \ void add(int k, T x) { this->apply(k, x); }\n    T sum(int k) const { return\
-    \ this->prod(k); }\n    T sum(int l, int r) const { return this->prod(l, r); }\n\
-    };\n\n/**\n * @brief BinaryIndexedTree(FenwickTree, BIT)\n * @docs docs/data-struct/segment/BinaryIndexedTree.md\n\
-    \ */\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class\
+    };\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class\
     \ T = int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
     \ : from(-1), to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1)\n\
     \        : from(f), to(t), cost(c), idx(i) {}\n    edge(int f, int t, T&& c, int\
@@ -616,113 +495,72 @@ data:
     }\n\n\nstruct unweighted_edge {\n    template<class... Args> unweighted_edge(const\
     \ Args&...) {}\n    operator int() { return 1; }\n};\n\nusing UnweightedGraph\
     \ = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n * @docs docs/graph/Graph.md\n\
-    \ */\n#line 2 \"graph/tree/EulerTour.hpp\"\n\n#line 2 \"data-struct/segment/SegmentTree.hpp\"\
-    \n\n#line 5 \"data-struct/segment/SegmentTree.hpp\"\n\ntemplate<class M> class\
-    \ SegmentTree {\nprivate:\n    using T = typename M::value_type;\n    int n, ori;\n\
-    \    std::vector<T> data;\n\npublic:\n    int size() const { return n; }\n   \
-    \ SegmentTree() : SegmentTree(0) {}\n    SegmentTree(int n) : SegmentTree(std::vector<T>(n,\
-    \ M::id())) {}\n    SegmentTree(int n, const T& v) : SegmentTree(std::vector<T>(n,\
-    \ v)) {}\n    SegmentTree(const std::vector<T>& v) { init(v); }\n    void init(const\
-    \ std::vector<T>& v) {\n        ori = v.size();\n        n = 1 << bitop::ceil_log2(ori);\n\
-    \        data.assign(n << 1, M::id());\n        rep (i, ori) data[n + i] = v[i];\n\
-    \        rrep (i, 1, n) data[i] = M::op(data[i << 1], data[i << 1 ^ 1]);\n   \
-    \ }\n    template<class Upd> void update(int k, const Upd& upd) {\n        assert(0\
-    \ <= k && k < ori);\n        k += n;\n        data[k] = upd(data[k]);\n      \
-    \  while (k >>= 1) data[k] = M::op(data[k << 1], data[k << 1 ^ 1]);\n    }\n \
-    \   void set(int k, T x) {\n        update(k, [&](T) -> T { return x; });\n  \
-    \  }\n    void apply(int k, T x) {\n        update(k, [&](T a) -> T { return M::op(a,\
-    \ x); });\n    }\n    T prod(int l, int r) const {\n        assert(0 <= l && l\
-    \ <= r && r <= ori);\n        l += n;\n        r += n;\n        T lsm = M::id(),\
-    \ rsm = M::id();\n        while (l < r) {\n            if (l & 1) lsm = M::op(lsm,\
-    \ data[l++]);\n            if (r & 1) rsm = M::op(data[--r], rsm);\n         \
-    \   l >>= 1;\n            r >>= 1;\n        }\n        return M::op(lsm, rsm);\n\
-    \    }\n    T all_prod() const { return data[1]; }\n    T get(int k) const { return\
-    \ data[k + n]; }\n    template<class Cond> int max_right(int l, const Cond& cond)\
-    \ const {\n        assert(0 <= l && l <= ori);\n        assert(cond(M::id()));\n\
-    \        if (l == ori) return ori;\n        l += n;\n        T sm = M::id();\n\
-    \        do {\n            while ((l & 1) == 0) l >>= 1;\n            if (!cond(M::op(sm,\
-    \ data[l]))) {\n                while (l < n) {\n                    l <<= 1;\n\
-    \                    if (cond(M::op(sm, data[l]))) sm = M::op(sm, data[l++]);\n\
-    \                }\n                return l - n;\n            }\n           \
-    \ sm = M::op(sm, data[l++]);\n        } while ((l & -l) != l);\n        return\
-    \ ori;\n    }\n    template<class Cond> int min_left(int r, const Cond& cond)\
-    \ const {\n        assert(0 <= r && r <= ori);\n        assert(cond(M::id()));\n\
-    \        if (r == 0) return 0;\n        r += n;\n        T sm = M::id();\n   \
-    \     do {\n            --r;\n            while ((r & 1) && r > 1) r >>= 1;\n\
-    \            if (!cond(M::op(data[r], sm))) {\n                while (r < n) {\n\
-    \                    r = r << 1 ^ 1;\n                    if (cond(M::op(data[r],\
-    \ sm))) sm = M::op(data[r--], sm);\n                }\n                return\
-    \ r + 1 - n;\n            }\n            sm = M::op(data[r], sm);\n        } while\
-    \ ((r & -r) != r);\n        return 0;\n    }\n};\n\n// verified with test/aoj/DSL/DSL_2_A-RMQ.test.cpp\n\
-    template<class T, int id = -1>\nusing RangeMinimumQuery = SegmentTree<Monoid::Min<T,\
-    \ id>>;\n\ntemplate<class T, int id = -1>\nusing RangeMaximumQuery = SegmentTree<Monoid::Max<T,\
-    \ id>>;\n\n// verified with test/aoj/DSL/DSL_2_B-RSQ.test.cpp\ntemplate<class\
-    \ T> using RangeSumQuery = SegmentTree<Monoid::Sum<T>>;\n\n/**\n * @brief SegmentTree(\u30BB\
-    \u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/data-struct/segment/SegmentTree.md\n\
-    \ */\n#line 6 \"graph/tree/EulerTour.hpp\"\n\nnamespace Monoid {\nstruct PairMinForEulerTour\
-    \ {\n    using value_type = std::pair<int, int>;\n    static value_type op(const\
-    \ value_type& a, const value_type& b) {\n        return a.first < b.first ? a\
-    \ : b;\n    }\n    static value_type id() { return {infinity<int>::value, -1};\
-    \ }\n};\n} // namespace Monoid\n\ntemplate<class T, class StaticRMQ = SegmentTree<Monoid::PairMinForEulerTour>>\n\
-    class EulerTour {\nprivate:\n    int n, cnt;\n    std::vector<int> root;\n   \
-    \ const Graph<T>& G;\n    std::vector<int> dep;\n    std::vector<std::pair<int,\
-    \ int>> idx;\n    std::vector<std::pair<int, int>> rmqvec;\n    StaticRMQ RMQ;\n\
-    \    void dfs(int v, int p) {\n        idx[v].first = cnt++;\n        rmqvec.emplace_back(dep[v],\
-    \ v);\n        for (const auto& e : G[v]) {\n            if (e.to == p) continue;\n\
-    \            dep[e.to] = dep[v] + 1;\n            dfs(e.to, v);\n            rmqvec.emplace_back(dep[v],\
-    \ v);\n        }\n        idx[v].second = cnt++;\n    }\n    void init() {\n \
-    \       n = G.size();\n        dep.assign(n, 0);\n        idx.assign(n, {-1, -1});\n\
-    \        rmqvec.reserve(n << 1);\n        cnt = 0;\n        for (const auto& r\
-    \ : root) {\n            dfs(r, -1);\n            rmqvec.emplace_back(-1, -1);\n\
-    \        }\n        rep (i, n) {\n            if (idx[i].first != -1) continue;\n\
-    \            dfs(i, -1);\n            rmqvec.emplace_back(-1, -1);\n        }\n\
-    \        RMQ.init(rmqvec);\n    }\n\npublic:\n    EulerTour(const Graph<T>& G,\
-    \ int root = 0) : root({root}), G(G) { init(); }\n    EulerTour(const Graph<T>&\
-    \ G, const std::vector<int>& root)\n        : root(root), G(G) {\n        init();\n\
-    \    }\n    const std::pair<int, int>& get_idx(int k) const& { return idx[k];\
-    \ }\n    std::pair<int, int> get_idx(int k) && { return std::move(idx[k]); }\n\
-    \    int get_par(int a, int b) const { return dep[a] < dep[b] ? a : b; }\n   \
-    \ int get_dep(int v) const { return dep[v]; }\n    int dist(int u, int v) const\
-    \ { return dep[u] + dep[v] - dep[lca(u, v)] * 2; }\n    int lca(int u, int v)\
-    \ const {\n        return RMQ\n            .prod(std::min(idx[u].first, idx[v].first),\n\
-    \                  std::max(idx[u].second, idx[v].second))\n            .second;\n\
-    \    }\n    template<class F> void each_vertex_subtree(int v, const F& f) const\
-    \ {\n        f(idx[v].first, idx[v].second + 1);\n    }\n    template<class F>\
-    \ void each_edge_subtree(int v, const F& f) const {\n        f(idx[v].first +\
-    \ 1, idx[v].second + 1);\n    }\n    template<class F> void each_vertex(int u,\
-    \ int v, const F& f) const {\n        each_vertex(u, v, f, f);\n    }\n    template<class\
-    \ F, class G>\n    void each_vertex(int u, int v, const F& f, const G& g) const\
-    \ {\n        int l = lca(u, v);\n        g(idx[l].first, idx[u].first + 1);\n\
-    \        f(idx[l].first + 1, idx[v].first + 1);\n    }\n    template<class F>\
-    \ void each_edge(int u, int v, const F& f) const {\n        each_edge(u, v, f,\
-    \ f);\n    }\n    template<class F, class G>\n    void each_edge(int u, int v,\
-    \ const F& f, const G& g) const {\n        int l = lca(u, v);\n        g(idx[l].first\
-    \ + 1, idx[u].first + 1);\n        f(idx[l].first + 1, idx[v].first + 1);\n  \
-    \  }\n};\n\n/**\n * @brief EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\
-    )\n * @docs docs/graph/tree/EulerTour.md\n */\n#line 6 \"test/aoj/GRL/GRL_5_D-EulerTour.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int N; scan >> N;\n    Graph<int> G(N);\n\
-    \    rep (i, N) {\n        int k; scan >> k;\n        rep (k) {\n            int\
-    \ a; scan >> a;\n            G.add_edge(i, a);\n        }\n    }\n    EulerTour<int>\
-    \ ET(G);\n    BinaryIndexedTree<int> BIT(2 * N);\n    int Q; scan >> Q;\n    rep\
-    \ (Q) {\n        int q; scan >> q;\n        if (q == 0) {\n            int a,\
-    \ b; scan >> a >> b;\n            auto p = ET.get_idx(a);\n            BIT.add(p.first,\
-    \ b);\n            BIT.add(p.second, -b);\n        }\n        else {\n       \
-    \     int a; scan >> a;\n            int ans = 0;\n            ET.each_edge(0,\
-    \ a, [&](int l, int r){ ans += BIT.sum(l, r); });\n            printer << ans\
-    \ << endl;\n        }\n    }\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_5_D\"\n#include\
-    \ \"../../../other/template.hpp\"\n#include \"../../../data-struct/segment/BinaryIndexedTree.hpp\"\
-    \n#include \"../../../graph/Graph.hpp\"\n#include \"../../../graph/tree/EulerTour.hpp\"\
-    \nusing namespace std;\nint main() {\n    int N; scan >> N;\n    Graph<int> G(N);\n\
-    \    rep (i, N) {\n        int k; scan >> k;\n        rep (k) {\n            int\
-    \ a; scan >> a;\n            G.add_edge(i, a);\n        }\n    }\n    EulerTour<int>\
-    \ ET(G);\n    BinaryIndexedTree<int> BIT(2 * N);\n    int Q; scan >> Q;\n    rep\
-    \ (Q) {\n        int q; scan >> q;\n        if (q == 0) {\n            int a,\
-    \ b; scan >> a >> b;\n            auto p = ET.get_idx(a);\n            BIT.add(p.first,\
-    \ b);\n            BIT.add(p.second, -b);\n        }\n        else {\n       \
-    \     int a; scan >> a;\n            int ans = 0;\n            ET.each_edge(0,\
-    \ a, [&](int l, int r){ ans += BIT.sum(l, r); });\n            printer << ans\
-    \ << endl;\n        }\n    }\n}\n"
+    \ */\n#line 2 \"data-struct/unionfind/UnionFind.hpp\"\n\n#line 4 \"data-struct/unionfind/UnionFind.hpp\"\
+    \n\nclass UnionFind {\nprivate:\n    int n;\n    std::vector<int> par;\n\npublic:\n\
+    \    UnionFind() : UnionFind(0) {}\n    UnionFind(int n) : n(n), par(n, -1) {}\n\
+    \    int find(int x) {\n        assert(0 <= x && x < n);\n        return par[x]\
+    \ < 0 ? x : par[x] = find(par[x]);\n    }\n    std::pair<int, int> merge(int x,\
+    \ int y) {\n        x = find(x);\n        y = find(y);\n        if (x == y) return\
+    \ {x, -1};\n        if (par[x] > par[y]) std::swap(x, y);\n        par[x] += par[y];\n\
+    \        par[y] = x;\n        return {x, y};\n    }\n    bool same(int x, int\
+    \ y) { return find(x) == find(y); }\n    int size(int x) { return -par[find(x)];\
+    \ }\n    std::vector<std::vector<int>> groups() {\n        std::vector<std::vector<int>>\
+    \ res(n);\n        rep (i, n) res[find(i)].push_back(i);\n        res.erase(\n\
+    \            remove_if(all(res),\n                      [](const std::vector<int>&\
+    \ v) { return v.empty(); }),\n            res.end());\n        return res;\n \
+    \   }\n    bool is_root(int x) const {\n        assert(0 <= x && x < n);\n   \
+    \     return par[x] < 0;\n    }\n};\n\n/**\n * @brief UnionFind\n * @docs docs/data-struct/unionfind/UnionFind.md\n\
+    \ */\n#line 6 \"graph/mst/MinimumSteinerTree.hpp\"\n\ntemplate<class T> std::pair<T,\
+    \ Edges<T>> minimum_steiner_tree(Graph<T> G, std::vector<int> X) {\n    int N\
+    \ = G.size(), K = X.size();\n    std::vector<std::vector<T>> dp(1 << K, std::vector<T>(N,\
+    \ infinity<T>::value));\n    std::vector<Edges<T>> prv1(1 << K, Edges<T>(N));\n\
+    \    std::vector<std::vector<int>> prv2(1 << K, std::vector<int>(N, -1));\n  \
+    \  rep (i, N) {\n        dp[0][i] = 0;\n        prv2[0][i] = -2;\n    }\n    rep\
+    \ (i, K) {\n        dp[1 << i][X[i]] = 0;\n        prv2[1 << i][X[i]] = -2;\n\
+    \    }\n    prique<std::pair<T, int>> que;\n    rep (S, 1, 1 << K) {\n       \
+    \ for (ll U = (S - 1) & S; U > (S ^ U); U = (U - 1) & S) {\n            rep (i,\
+    \ N) {\n                if (chmin(dp[S][i], dp[U][i] + dp[S ^ U][i])) {\n    \
+    \                prv2[S][i] = U;\n                }\n            }\n        }\n\
+    \        rep (i, N) que.emplace(dp[S][i], i);\n        while (!que.empty()) {\n\
+    \            T c = std::move(que.top().first);\n            int v = que.top().second;\n\
+    \            que.pop();\n            if (dp[S][v] != c) continue;\n          \
+    \  for (const auto& e : G[v]) {\n                if (chmin(dp[S][e.to], c + e.cost))\
+    \ {\n                    prv1[S][e.to] = e;\n                    prv2[S][e.to]\
+    \ = -1;\n                    que.emplace(dp[S][e.to], e.to);\n               \
+    \ }\n            }\n        }\n    }\n    std::queue<std::pair<int, int>> que2;\n\
+    \    Edges<T> res;\n    int v = std::min_element(all(dp.back())) - dp.back().begin();\n\
+    \    que2.emplace((1 << K) - 1, v);\n    while (!que2.empty()) {\n        auto\
+    \ [S, v] = que2.front();\n        que2.pop();\n        if (prv2[S][v] >= 0) {\n\
+    \            que2.emplace(prv2[S][v], v);\n            que2.emplace(S ^ prv2[S][v],\
+    \ v);\n        }\n        else if (prv2[S][v] == -1) {\n            res.push_back(prv1[S][v]);\n\
+    \            que2.emplace(S, prv1[S][v].from);\n        }\n    }\n    return {*std::min_element(all(dp.back())),\
+    \ res};\n}\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
+    \n#include \"../../data-struct/unionfind/UnionFind.hpp\"\n\ntemplate<class T>\
+    \ std::pair<T, Edges<T>> minimum_steiner_tree(Graph<T> G, std::vector<int> X)\
+    \ {\n    int N = G.size(), K = X.size();\n    std::vector<std::vector<T>> dp(1\
+    \ << K, std::vector<T>(N, infinity<T>::value));\n    std::vector<Edges<T>> prv1(1\
+    \ << K, Edges<T>(N));\n    std::vector<std::vector<int>> prv2(1 << K, std::vector<int>(N,\
+    \ -1));\n    rep (i, N) {\n        dp[0][i] = 0;\n        prv2[0][i] = -2;\n \
+    \   }\n    rep (i, K) {\n        dp[1 << i][X[i]] = 0;\n        prv2[1 << i][X[i]]\
+    \ = -2;\n    }\n    prique<std::pair<T, int>> que;\n    rep (S, 1, 1 << K) {\n\
+    \        for (ll U = (S - 1) & S; U > (S ^ U); U = (U - 1) & S) {\n          \
+    \  rep (i, N) {\n                if (chmin(dp[S][i], dp[U][i] + dp[S ^ U][i]))\
+    \ {\n                    prv2[S][i] = U;\n                }\n            }\n \
+    \       }\n        rep (i, N) que.emplace(dp[S][i], i);\n        while (!que.empty())\
+    \ {\n            T c = std::move(que.top().first);\n            int v = que.top().second;\n\
+    \            que.pop();\n            if (dp[S][v] != c) continue;\n          \
+    \  for (const auto& e : G[v]) {\n                if (chmin(dp[S][e.to], c + e.cost))\
+    \ {\n                    prv1[S][e.to] = e;\n                    prv2[S][e.to]\
+    \ = -1;\n                    que.emplace(dp[S][e.to], e.to);\n               \
+    \ }\n            }\n        }\n    }\n    std::queue<std::pair<int, int>> que2;\n\
+    \    Edges<T> res;\n    int v = std::min_element(all(dp.back())) - dp.back().begin();\n\
+    \    que2.emplace((1 << K) - 1, v);\n    while (!que2.empty()) {\n        auto\
+    \ [S, v] = que2.front();\n        que2.pop();\n        if (prv2[S][v] >= 0) {\n\
+    \            que2.emplace(prv2[S][v], v);\n            que2.emplace(S ^ prv2[S][v],\
+    \ v);\n        }\n        else if (prv2[S][v] == -1) {\n            res.push_back(prv1[S][v]);\n\
+    \            que2.emplace(S, prv1[S][v].from);\n        }\n    }\n    return {*std::min_element(all(dp.back())),\
+    \ res};\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -733,21 +571,19 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  - data-struct/segment/BinaryIndexedTree.hpp
-  - other/monoid.hpp
   - graph/Graph.hpp
-  - graph/tree/EulerTour.hpp
-  - data-struct/segment/SegmentTree.hpp
-  isVerificationFile: true
-  path: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
+  - data-struct/unionfind/UnionFind.hpp
+  isVerificationFile: false
+  path: graph/mst/MinimumSteinerTree.hpp
   requiredBy: []
-  timestamp: '2026-09-12 14:55:19+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
+  timestamp: '2026-09-12 16:59:40+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/yosupo/new/minimum_steiner_tree.test.cpp
+documentation_of: graph/mst/MinimumSteinerTree.hpp
 layout: document
 redirect_from:
-- /verify/test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-- /verify/test/aoj/GRL/GRL_5_D-EulerTour.test.cpp.html
-title: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
+- /library/graph/mst/MinimumSteinerTree.hpp
+- /library/graph/mst/MinimumSteinerTree.hpp.html
+title: graph/mst/MinimumSteinerTree.hpp
 ---

@@ -32,19 +32,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: dp/DivideAndConquerOptimization.hpp
     title: Divide and Conquer Optimization
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/convolution/MinPlusConvolution.hpp
     title: Min Plus Convolution
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/other/2603-SMAWK.test.cpp
     title: test/aoj/other/2603-SMAWK.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/min_plus_convolution_convex_arbitrary.test.cpp
     title: test/yosupo/convolution/min_plus_convolution_convex_arbitrary.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/dp/MonotoneMinima.md
     document_title: MonotoneMinima
@@ -496,7 +496,7 @@ data:
   - math/convolution/MinPlusConvolution.hpp
   - dp/DivideAndConquerOptimization.hpp
   timestamp: '2026-09-12 01:05:48+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/convolution/min_plus_convolution_convex_arbitrary.test.cpp
   - test/aoj/other/2603-SMAWK.test.cpp

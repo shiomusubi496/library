@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: math/Rational.hpp
     title: "Rational(\u6709\u7406\u6570\u578B)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/SternBrocotTree.hpp
     title: Stern-Brocot Tree
   - icon: ':question:'

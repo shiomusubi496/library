@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: dp/MonotoneMinima.hpp
     title: MonotoneMinima
   - icon: ':question:'
@@ -33,12 +33,12 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/min_plus_convolution_convex_arbitrary.test.cpp
     title: test/yosupo/convolution/min_plus_convolution_convex_arbitrary.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/math/convolution/MinPlusConvolution.md
     document_title: Min Plus Convolution
@@ -527,7 +527,7 @@ data:
   path: math/convolution/MinPlusConvolution.hpp
   requiredBy: []
   timestamp: '2026-09-12 01:05:48+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/convolution/min_plus_convolution_convex_arbitrary.test.cpp
 documentation_of: math/convolution/MinPlusConvolution.hpp

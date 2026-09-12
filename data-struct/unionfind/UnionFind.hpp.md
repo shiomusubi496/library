@@ -44,6 +44,9 @@ data:
   - icon: ':x:'
     path: graph/mst/ManhattanMST.hpp
     title: Manhattan Minimum Spanning Tree
+  - icon: ':x:'
+    path: graph/mst/MinimumSteinerTree.hpp
+    title: graph/mst/MinimumSteinerTree.hpp
   - icon: ':heavy_check_mark:'
     path: graph/mst/Prim.hpp
     title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
@@ -84,6 +87,9 @@ data:
   - icon: ':x:'
     path: test/yosupo/graph/manhattanmst.test.cpp
     title: test/yosupo/graph/manhattanmst.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/new/minimum_steiner_tree.test.cpp
+    title: test/yosupo/new/minimum_steiner_tree.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -551,12 +557,14 @@ data:
   - graph/other/BipartiteEdgeColoring.hpp
   - graph/mst/ManhattanMST.hpp
   - graph/mst/DirectedMST.hpp
+  - graph/mst/MinimumSteinerTree.hpp
   - graph/mst/Kruskal.hpp
   - graph/mst/Prim.hpp
   timestamp: '2026-09-12 01:05:48+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/atcoder/abc349_g-RangeUF.test.cpp
+  - test/yosupo/new/minimum_steiner_tree.test.cpp
   - test/yosupo/data_structure/range_parallel_unionfind.test.cpp
   - test/yosupo/data_structure/unionfind.test.cpp
   - test/yosupo/graph/bipartite_edge_coloring.test.cpp

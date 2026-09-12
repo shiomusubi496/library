@@ -32,14 +32,14 @@ data:
   - icon: ':x:'
     path: math/LinearModMin.hpp
     title: LinearModMin
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/SternBrocotTree.hpp
     title: Stern-Brocot Tree
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_15_B.test.cpp
     title: test/aoj/ALDS1/ALDS1_15_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/other/1208-SternBrocotTree.test.cpp
     title: test/aoj/other/1208-SternBrocotTree.test.cpp
   - icon: ':x:'
