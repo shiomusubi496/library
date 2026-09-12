@@ -48,14 +48,14 @@ data:
   - icon: ':x:'
     path: math/TetrationMod.hpp
     title: TetrationMod
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/num/EulerPhi.hpp
     title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/num/MillerRabin.hpp
     title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
       )"
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/num/PollardRho.hpp
     title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
   - icon: ':x:'
@@ -90,9 +90,12 @@ data:
   - icon: ':x:'
     path: test/aoj/DPL/DPL_5_G.test.cpp
     title: test/aoj/DPL/DPL_5_G.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/NTL/NTL_1_D-Phi.test.cpp
     title: test/aoj/NTL/NTL_1_D-Phi.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/enumerative_combinatorics/bell_number.test.cpp
+    title: test/yosupo/enumerative_combinatorics/bell_number.test.cpp
   - icon: ':x:'
     path: test/yosupo/enumerative_combinatorics/factorial.test.cpp
     title: test/yosupo/enumerative_combinatorics/factorial.test.cpp
@@ -115,12 +118,6 @@ data:
     path: test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind_fixed_k.test.cpp
     title: test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind_fixed_k.test.cpp
   - icon: ':x:'
-    path: test/yosupo/new/bell_number.test.cpp
-    title: test/yosupo/new/bell_number.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/new/two_square_sum.test.cpp
-    title: test/yosupo/new/two_square_sum.test.cpp
-  - icon: ':x:'
     path: test/yosupo/number_theory/bernoulli_number.test.cpp
     title: test/yosupo/number_theory/bernoulli_number.test.cpp
   - icon: ':x:'
@@ -138,6 +135,9 @@ data:
   - icon: ':x:'
     path: test/yosupo/number_theory/tetration_mod.test.cpp
     title: test/yosupo/number_theory/tetration_mod.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/number_theory/two_square_sum.test.cpp
+    title: test/yosupo/number_theory/two_square_sum.test.cpp
   - icon: ':x:'
     path: test/yosupo/other/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/yosupo/other/kth_term_of_linearly_recurrent_sequence.test.cpp
@@ -209,7 +209,7 @@ data:
     title: test/yuki/3030-MRPrime.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/math/MontgomeryModInt.md
     document_title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
@@ -802,11 +802,12 @@ data:
   - math/poly/BostanMori.hpp
   - math/TetrationMod.hpp
   timestamp: '2026-09-12 01:05:48+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind_fixed_k.test.cpp
   - test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
   - test/yosupo/enumerative_combinatorics/partition_function.test.cpp
+  - test/yosupo/enumerative_combinatorics/bell_number.test.cpp
   - test/yosupo/enumerative_combinatorics/factorial.test.cpp
   - test/yosupo/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
   - test/yosupo/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
@@ -833,13 +834,12 @@ data:
   - test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
   - test/yosupo/polynomial/inv_of_formal_power_series_sparse.test.cpp
   - test/yosupo/polynomial/exp_of_formal_power_series-RelaxedConvolution.test.cpp
-  - test/yosupo/new/bell_number.test.cpp
-  - test/yosupo/new/two_square_sum.test.cpp
   - test/yosupo/number_theory/tetration_mod.test.cpp
   - test/yosupo/number_theory/sqrt_mod.test.cpp
   - test/yosupo/number_theory/primality_test.test.cpp
   - test/yosupo/number_theory/bernoulli_number.test.cpp
   - test/yosupo/number_theory/factorize.test.cpp
+  - test/yosupo/number_theory/two_square_sum.test.cpp
   - test/yosupo/number_theory/primitive_root.test.cpp
   - test/aoj/NTL/NTL_1_D-Phi.test.cpp
   - test/aoj/DPL/DPL_5_G.test.cpp

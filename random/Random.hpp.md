@@ -38,10 +38,10 @@ data:
   - icon: ':x:'
     path: math/TetrationMod.hpp
     title: TetrationMod
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/num/EulerPhi.hpp
     title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/num/PollardRho.hpp
     title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
   - icon: ':x:'
@@ -60,12 +60,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
     title: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/NTL/NTL_1_D-Phi.test.cpp
     title: test/aoj/NTL/NTL_1_D-Phi.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/new/two_square_sum.test.cpp
-    title: test/yosupo/new/two_square_sum.test.cpp
   - icon: ':x:'
     path: test/yosupo/number_theory/factorize.test.cpp
     title: test/yosupo/number_theory/factorize.test.cpp
@@ -75,6 +72,9 @@ data:
   - icon: ':x:'
     path: test/yosupo/number_theory/tetration_mod.test.cpp
     title: test/yosupo/number_theory/tetration_mod.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/number_theory/two_square_sum.test.cpp
+    title: test/yosupo/number_theory/two_square_sum.test.cpp
   - icon: ':x:'
     path: test/yosupo/string/wildcard_pattern_matching.test.cpp
     title: test/yosupo/string/wildcard_pattern_matching.test.cpp
@@ -587,9 +587,9 @@ data:
   timestamp: '2026-09-12 01:05:48+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yosupo/new/two_square_sum.test.cpp
   - test/yosupo/number_theory/tetration_mod.test.cpp
   - test/yosupo/number_theory/factorize.test.cpp
+  - test/yosupo/number_theory/two_square_sum.test.cpp
   - test/yosupo/number_theory/primitive_root.test.cpp
   - test/yosupo/string/wildcard_pattern_matching.test.cpp
   - test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp

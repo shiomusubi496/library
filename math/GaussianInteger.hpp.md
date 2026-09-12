@@ -34,11 +34,11 @@ data:
     title: math/num/TwoSquareSum.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/yosupo/new/two_square_sum.test.cpp
-    title: test/yosupo/new/two_square_sum.test.cpp
-  - icon: ':x:'
     path: test/yosupo/number_theory/gcd_of_gaussian_integers.test.cpp
     title: test/yosupo/number_theory/gcd_of_gaussian_integers.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/number_theory/two_square_sum.test.cpp
+    title: test/yosupo/number_theory/two_square_sum.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -553,8 +553,8 @@ data:
   timestamp: '2026-09-12 01:05:48+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yosupo/new/two_square_sum.test.cpp
   - test/yosupo/number_theory/gcd_of_gaussian_integers.test.cpp
+  - test/yosupo/number_theory/two_square_sum.test.cpp
 documentation_of: math/GaussianInteger.hpp
 layout: document
 redirect_from:

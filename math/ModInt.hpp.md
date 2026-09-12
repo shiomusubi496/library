@@ -138,13 +138,13 @@ data:
   - icon: ':x:'
     path: test/aoj/DPL/DPL_5_G.test.cpp
     title: test/aoj/DPL/DPL_5_G.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
     title: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/bitwise_and_convolution.test.cpp
     title: test/yosupo/convolution/bitwise_and_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/bitwise_xor_convolution.test.cpp
     title: test/yosupo/convolution/bitwise_xor_convolution.test.cpp
   - icon: ':x:'
@@ -204,6 +204,9 @@ data:
   - icon: ':x:'
     path: test/yosupo/data_structure/unionfind_with_potential_non_commutative_group.test.cpp
     title: test/yosupo/data_structure/unionfind_with_potential_non_commutative_group.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/enumerative_combinatorics/bell_number.test.cpp
+    title: test/yosupo/enumerative_combinatorics/bell_number.test.cpp
   - icon: ':x:'
     path: test/yosupo/enumerative_combinatorics/binomial_coefficient_prime_mod.test.cpp
     title: test/yosupo/enumerative_combinatorics/binomial_coefficient_prime_mod.test.cpp
@@ -279,9 +282,6 @@ data:
   - icon: ':x:'
     path: test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
     title: test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/new/bell_number.test.cpp
-    title: test/yosupo/new/bell_number.test.cpp
   - icon: ':x:'
     path: test/yosupo/number_theory/bernoulli_number.test.cpp
     title: test/yosupo/number_theory/bernoulli_number.test.cpp
@@ -1088,6 +1088,7 @@ data:
   - test/yosupo/enumerative_combinatorics/montmort_number_mod.test.cpp
   - test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
   - test/yosupo/enumerative_combinatorics/partition_function.test.cpp
+  - test/yosupo/enumerative_combinatorics/bell_number.test.cpp
   - test/yosupo/enumerative_combinatorics/binomial_coefficient_prime_mod.test.cpp
   - test/yosupo/enumerative_combinatorics/factorial.test.cpp
   - test/yosupo/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
@@ -1124,7 +1125,6 @@ data:
   - test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
   - test/yosupo/polynomial/inv_of_formal_power_series_sparse.test.cpp
   - test/yosupo/polynomial/exp_of_formal_power_series-RelaxedConvolution.test.cpp
-  - test/yosupo/new/bell_number.test.cpp
   - test/yosupo/number_theory/tetration_mod.test.cpp
   - test/yosupo/number_theory/bernoulli_number.test.cpp
   - test/yosupo/number_theory/primitive_root.test.cpp

@@ -4,14 +4,14 @@ data:
   - icon: ':x:'
     path: math/GaussianInteger.hpp
     title: GaussianInteger
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/MontgomeryModInt.hpp
     title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/num/MillerRabin.hpp
     title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
       )"
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/num/PollardRho.hpp
     title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
   - icon: ':x:'
@@ -23,7 +23,7 @@ data:
   - icon: ':question:'
     path: random/Random.hpp
     title: Random
-  - icon: ':x:'
+  - icon: ':question:'
     path: string/RunLength.hpp
     title: "RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
   - icon: ':question:'
@@ -60,8 +60,8 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/two_square_sum
     links:
     - https://judge.yosupo.jp/problem/two_square_sum
-  bundledCode: "#line 1 \"test/yosupo/new/two_square_sum.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/two_square_sum\"\n#line 2 \"other/template.hpp\"\
+  bundledCode: "#line 1 \"test/yosupo/number_theory/two_square_sum.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/two_square_sum\"\n#line 2 \"other/template.hpp\"\
     \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
     \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define OVERLOAD5(a,\
     \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
@@ -698,10 +698,10 @@ data:
     \ = std::move(nres);\n    }\n    for (auto&& g : res) {\n        while (g.real\
     \ <= 0 || g.imag < 0) g = {-g.imag, g.real};\n    }\n    std::vector<std::pair<T,\
     \ T>> ans(res.size());\n    rep (i, res.size()) ans[i] = {res[i].real, res[i].imag};\n\
-    \    return ans;\n}\n#line 4 \"test/yosupo/new/two_square_sum.test.cpp\"\nusing\
-    \ namespace std;\nint main() {\n    int T; scan >> T;\n    rep (T) {\n       \
-    \ ll n; scan >> n;\n        if (n == 0) {\n            prints(1);\n          \
-    \  prints(0, 0);\n            continue;\n        }\n        auto res = two_square_sum(n);\n\
+    \    return ans;\n}\n#line 4 \"test/yosupo/number_theory/two_square_sum.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int T; scan >> T;\n    rep (T) {\n \
+    \       ll n; scan >> n;\n        if (n == 0) {\n            prints(1);\n    \
+    \        prints(0, 0);\n            continue;\n        }\n        auto res = two_square_sum(n);\n\
     \        vector<pair<ll, ll>> ans;\n        for (auto [a, b] : res) {\n      \
     \      rep (4) {\n                swap(a, b);\n                a = -a;\n     \
     \           if (a >= 0 && b >= 0) ans.emplace_back(a, b);\n            }\n   \
@@ -735,15 +735,15 @@ data:
   - string/RunLength.hpp
   - math/GaussianInteger.hpp
   isVerificationFile: true
-  path: test/yosupo/new/two_square_sum.test.cpp
+  path: test/yosupo/number_theory/two_square_sum.test.cpp
   requiredBy: []
-  timestamp: '2026-09-12 01:05:48+09:00'
+  timestamp: '2026-09-12 13:44:28+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/yosupo/new/two_square_sum.test.cpp
+documentation_of: test/yosupo/number_theory/two_square_sum.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/new/two_square_sum.test.cpp
-- /verify/test/yosupo/new/two_square_sum.test.cpp.html
-title: test/yosupo/new/two_square_sum.test.cpp
+- /verify/test/yosupo/number_theory/two_square_sum.test.cpp
+- /verify/test/yosupo/number_theory/two_square_sum.test.cpp.html
+title: test/yosupo/number_theory/two_square_sum.test.cpp
 ---

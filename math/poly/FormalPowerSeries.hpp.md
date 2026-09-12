@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/MontgomeryModInt.hpp
     title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
   - icon: ':x:'
@@ -81,6 +81,9 @@ data:
     path: test/aoj/DPL/DPL_5_G.test.cpp
     title: test/aoj/DPL/DPL_5_G.test.cpp
   - icon: ':x:'
+    path: test/yosupo/enumerative_combinatorics/bell_number.test.cpp
+    title: test/yosupo/enumerative_combinatorics/bell_number.test.cpp
+  - icon: ':x:'
     path: test/yosupo/enumerative_combinatorics/factorial.test.cpp
     title: test/yosupo/enumerative_combinatorics/factorial.test.cpp
   - icon: ':x:'
@@ -101,9 +104,6 @@ data:
   - icon: ':x:'
     path: test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind_fixed_k.test.cpp
     title: test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind_fixed_k.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/new/bell_number.test.cpp
-    title: test/yosupo/new/bell_number.test.cpp
   - icon: ':x:'
     path: test/yosupo/number_theory/bernoulli_number.test.cpp
     title: test/yosupo/number_theory/bernoulli_number.test.cpp
@@ -1477,6 +1477,7 @@ data:
   - test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind_fixed_k.test.cpp
   - test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
   - test/yosupo/enumerative_combinatorics/partition_function.test.cpp
+  - test/yosupo/enumerative_combinatorics/bell_number.test.cpp
   - test/yosupo/enumerative_combinatorics/factorial.test.cpp
   - test/yosupo/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
   - test/yosupo/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
@@ -1503,7 +1504,6 @@ data:
   - test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
   - test/yosupo/polynomial/inv_of_formal_power_series_sparse.test.cpp
   - test/yosupo/polynomial/exp_of_formal_power_series-RelaxedConvolution.test.cpp
-  - test/yosupo/new/bell_number.test.cpp
   - test/yosupo/number_theory/bernoulli_number.test.cpp
   - test/aoj/DPL/DPL_5_G.test.cpp
 documentation_of: math/poly/FormalPowerSeries.hpp

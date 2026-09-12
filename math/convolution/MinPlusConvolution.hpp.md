@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: dp/MonotoneMinima.hpp
     title: MonotoneMinima
   - icon: ':question:'
