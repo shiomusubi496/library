@@ -94,6 +94,9 @@ data:
   - icon: ':x:'
     path: math/poly/BostanMori.hpp
     title: "Bostan-Mori(\u7DDA\u5F62\u6F38\u5316\u5F0F\u306En\u9805\u76EE)"
+  - icon: ':x:'
+    path: math/poly/CompositionalInverse.hpp
+    title: math/poly/CompositionalInverse.hpp
   - icon: ':question:'
     path: math/poly/FormalPowerSeries.hpp
     title: "FormalPowerSeries(\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570)"
@@ -174,25 +177,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/point_set_range_composite.test.cpp
     title: test/yosupo/data_structure/point_set_range_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
     title: test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
     title: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/range_affine_point_get.test.cpp
     title: test/yosupo/data_structure/range_affine_point_get.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
     title: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/range_affine_range_sum.test.cpp
     title: test/yosupo/data_structure/range_affine_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/range_parallel_unionfind.test.cpp
     title: test/yosupo/data_structure/range_parallel_unionfind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/range_set_range_composite.test.cpp
     title: test/yosupo/data_structure/range_set_range_composite.test.cpp
   - icon: ':x:'
@@ -300,6 +303,12 @@ data:
   - icon: ':x:'
     path: test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
     title: test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/polynomial/composition_of_formal_power_series_large.test.cpp
+    title: test/yosupo/polynomial/composition_of_formal_power_series_large.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/polynomial/compositional_inverse_of_formal_power_series_large.test.cpp
+    title: test/yosupo/polynomial/compositional_inverse_of_formal_power_series_large.test.cpp
   - icon: ':x:'
     path: test/yosupo/polynomial/division_of_polynomials.test.cpp
     title: test/yosupo/polynomial/division_of_polynomials.test.cpp
@@ -1067,6 +1076,7 @@ data:
   - math/poly/SamplingPointsShift.hpp
   - math/poly/FormalPowerSeries.hpp
   - math/poly/SparseFormalPowerSeries.hpp
+  - math/poly/CompositionalInverse.hpp
   - math/poly/MultipointEvaluation.hpp
   - math/poly/TaylorShift.hpp
   - math/poly/BostanMori.hpp
@@ -1106,6 +1116,7 @@ data:
   - test/yosupo/convolution/convolution_mod_1000000007.test.cpp
   - test/yosupo/convolution/bitwise_xor_convolution.test.cpp
   - test/yosupo/convolution/bitwise_and_convolution.test.cpp
+  - test/yosupo/polynomial/composition_of_formal_power_series_large.test.cpp
   - test/yosupo/polynomial/log_of_formal_power_series.test.cpp
   - test/yosupo/polynomial/product_of_polynomial_sequence.test.cpp
   - test/yosupo/polynomial/exp_of_formal_power_series.test.cpp
@@ -1113,6 +1124,7 @@ data:
   - test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
   - test/yosupo/polynomial/inv_of_formal_power_series.test.cpp
   - test/yosupo/polynomial/log_of_formal_power_series_sparse.test.cpp
+  - test/yosupo/polynomial/compositional_inverse_of_formal_power_series_large.test.cpp
   - test/yosupo/polynomial/exp_of_formal_power_series_sparse.test.cpp
   - test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
   - test/yosupo/polynomial/division_of_polynomials.test.cpp

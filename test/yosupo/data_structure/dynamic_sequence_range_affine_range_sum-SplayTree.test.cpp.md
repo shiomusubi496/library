@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/bst/SplayTree.hpp
     title: data-struct/bst/SplayTree.hpp
   - icon: ':question:'

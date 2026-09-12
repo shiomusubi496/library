@@ -6,10 +6,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-struct/2D/AreaofUnionofRectangles.hpp
       title: data-struct/2D/AreaofUnionofRectangles.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/2D/CumulativeSum2D.hpp
       title: data-struct/2D/CumulativeSum2D.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/2D/DualSegmentTree2D.hpp
       title: data-struct/2D/DualSegmentTree2D.hpp
     - icon: ':heavy_check_mark:'
@@ -18,12 +18,12 @@ data:
     - icon: ':x:'
       path: data-struct/2D/StaticRectangleAddRectangleSum.hpp
       title: data-struct/2D/StaticRectangleAddRectangleSum.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/2D/Struct2D.hpp
       title: data-struct/2D/Struct2D.hpp
   - name: data-struct/bst
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/bst/SplayTree.hpp
       title: data-struct/bst/SplayTree.hpp
   - name: data-struct/cht
@@ -34,7 +34,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-struct/cht/ConvexHullTrickAddMonotone.hpp
       title: ConvexHullTrickAddMonotone
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/cht/LiChaoTree.hpp
       title: LiChaoTree
   - name: data-struct/heap
@@ -53,7 +53,7 @@ data:
       title: SkewHeap
   - name: data-struct/other
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/other/BinaryTrie.hpp
       title: BinaryTrie
     - icon: ':x:'
@@ -65,7 +65,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-struct/other/MaxRectangle.hpp
       title: "MaxRectangle(\u6700\u5927\u9577\u65B9\u5F62)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/other/Mo.hpp
       title: Mo's Algorithm
     - icon: ':x:'
@@ -84,7 +84,7 @@ data:
     - icon: ':warning:'
       path: data-struct/other/SkipList.hpp
       title: SkipList
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/other/SlidingWindowAggregation.hpp
       title: SlidingWindowAggregation(SWAG)
     - icon: ':x:'
@@ -95,13 +95,13 @@ data:
     - icon: ':question:'
       path: data-struct/segment/BinaryIndexedTree.hpp
       title: BinaryIndexedTree(FenwickTree, BIT)
-    - icon: ':x:'
+    - icon: ':question:'
       path: data-struct/segment/CumulativeSum.hpp
       title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
     - icon: ':x:'
       path: data-struct/segment/DisjointSparseTable.hpp
       title: DisjointSparseTable
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/segment/DualSegmentTree.hpp
       title: "DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
     - icon: ':heavy_check_mark:'
@@ -114,14 +114,14 @@ data:
     - icon: ':x:'
       path: data-struct/segment/LCARMQ.hpp
       title: LCARMQ
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/segment/LazySegmentTree.hpp
       title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
     - icon: ':x:'
       path: data-struct/segment/LinearRMQ.hpp
       title: "LinearRMQ(\u524D\u8A08\u7B97$\\Theta(N)$\u30AF\u30A8\u30EA\u6BCE$\\\
         Theta(1)$\u306ERMQ)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/segment/NonMergeSegmentTree.hpp
       title: NonMergeSegmentTree
     - icon: ':question:'
@@ -130,31 +130,31 @@ data:
     - icon: ':x:'
       path: data-struct/segment/RAQBIT.hpp
       title: BinaryIndexedTree(FenwickTree, BIT)
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/segment/RangeAssignSegmentTree.hpp
       title: RangeAssignSegmentTree
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/segment/RangeSortQuery.hpp
       title: RangeSortQuery
     - icon: ':question:'
       path: data-struct/segment/SegmentTree.hpp
       title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/segment/SegmentTreeBeats.hpp
       title: SegmentTreeBeats!
     - icon: ':question:'
       path: data-struct/segment/SparseTable.hpp
       title: SparseTable
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/segment/SqrtDecomposition.hpp
       title: "SqrtDecomposition(\u5E73\u65B9\u5206\u5272)"
     - icon: ':x:'
       path: data-struct/segment/StarrySkyTree.hpp
       title: data-struct/segment/StarrySkyTree.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/segment/StaticRangeCountDistinct.hpp
       title: data-struct/segment/StaticRangeCountDistinct.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/segment/StaticRangeFrequency.hpp
       title: StaticRangeFrequency
     - icon: ':x:'
@@ -174,7 +174,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-struct/unionfind/PersistentUnionFind.hpp
       title: "PersistentUnionFind(\u5B8C\u5168\u6C38\u7D9AUF)"
-    - icon: ':x:'
+    - icon: ':question:'
       path: data-struct/unionfind/RangeParallelUnionFind.hpp
       title: RangeParallelUnionFind
     - icon: ':question:'
@@ -188,19 +188,19 @@ data:
       title: "WeightedUnionFind(\u91CD\u307F\u4ED8\u304DUF)"
   - name: data-struct/wavelet
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/wavelet/CumulativeSumWM.hpp
       title: WaveletMatrixPointAddRectangleSum.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/wavelet/FullyIndexableDictionary.hpp
       title: "FullyIndexableDictionary(\u5B8C\u5099\u8F9E\u66F8)"
     - icon: ':heavy_check_mark:'
       path: data-struct/wavelet/SegmentTreeWM.hpp
       title: WaveletMatrixPointAddRectangleSum.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/wavelet/WaveletMatrix.hpp
       title: WaveletMatrix
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/wavelet/WaveletMatrixStruct.hpp
       title: data-struct/wavelet/WaveletMatrixStruct.hpp
   - name: dp
@@ -601,6 +601,9 @@ data:
     - icon: ':x:'
       path: math/poly/BostanMori.hpp
       title: "Bostan-Mori(\u7DDA\u5F62\u6F38\u5316\u5F0F\u306En\u9805\u76EE)"
+    - icon: ':x:'
+      path: math/poly/CompositionalInverse.hpp
+      title: math/poly/CompositionalInverse.hpp
     - icon: ':question:'
       path: math/poly/FormalPowerSeries.hpp
       title: "FormalPowerSeries(\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570)"
@@ -1066,64 +1069,64 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/point_set_range_composite.test.cpp
       title: test/yosupo/data_structure/point_set_range_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
       title: test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
       title: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/range_affine_point_get.test.cpp
       title: test/yosupo/data_structure/range_affine_point_get.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
       title: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/range_affine_range_sum.test.cpp
       title: test/yosupo/data_structure/range_affine_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/range_chmin_chmax_add_range_sum.test.cpp
       title: test/yosupo/data_structure/range_chmin_chmax_add_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/range_kth_smallest-seg.test.cpp
       title: test/yosupo/data_structure/range_kth_smallest-seg.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/range_kth_smallest-sqrt.test.cpp
       title: test/yosupo/data_structure/range_kth_smallest-sqrt.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
       title: test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/range_parallel_unionfind.test.cpp
       title: test/yosupo/data_structure/range_parallel_unionfind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/range_reverse_range_sum.test.cpp
       title: test/yosupo/data_structure/range_reverse_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/range_set_range_composite.test.cpp
       title: test/yosupo/data_structure/range_set_range_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/rectangle_add_point_get.test.cpp
       title: test/yosupo/data_structure/rectangle_add_point_get.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/rectangle_sum-2DCum.test.cpp
       title: test/yosupo/data_structure/rectangle_sum-2DCum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/rectangle_sum-WM.test.cpp
       title: test/yosupo/data_structure/rectangle_sum-WM.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/segment_add_get_min.test.cpp
       title: test/yosupo/data_structure/segment_add_get_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/set_xor_min.test.cpp
       title: test/yosupo/data_structure/set_xor_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/static_range_count_distinct.test.cpp
       title: test/yosupo/data_structure/static_range_count_distinct.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/static_range_frequency.test.cpp
       title: test/yosupo/data_structure/static_range_frequency.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/static_range_inversions_query.test.cpp
       title: test/yosupo/data_structure/static_range_inversions_query.test.cpp
     - icon: ':x:'

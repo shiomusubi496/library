@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: data-struct/segment/BinaryIndexedTree.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
-  - icon: ':x:'
+  - icon: ':question:'
     path: data-struct/segment/CumulativeSum.hpp
     title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
   - icon: ':x:'

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: data-struct/unionfind/RangeParallelUnionFind.hpp
     title: RangeParallelUnionFind
   - icon: ':question:'

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/other/Mo.hpp
     title: Mo's Algorithm
   - icon: ':question:'

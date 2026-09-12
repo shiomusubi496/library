@@ -32,7 +32,7 @@ data:
   - icon: ':warning:'
     path: data-struct/unionfind/EnumerateUnionFind.hpp
     title: data-struct/unionfind/EnumerateUnionFind.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: data-struct/unionfind/RangeParallelUnionFind.hpp
     title: RangeParallelUnionFind
   - icon: ':x:'
@@ -72,7 +72,7 @@ data:
   - icon: ':x:'
     path: test/atcoder/abc349_g-RangeUF.test.cpp
     title: test/atcoder/abc349_g-RangeUF.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/range_parallel_unionfind.test.cpp
     title: test/yosupo/data_structure/range_parallel_unionfind.test.cpp
   - icon: ':x:'

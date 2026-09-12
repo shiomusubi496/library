@@ -38,7 +38,7 @@ data:
   - icon: ':x:'
     path: data-struct/segment/LCARMQ.hpp
     title: LCARMQ
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/RangeSortQuery.hpp
     title: RangeSortQuery
   - icon: ':heavy_check_mark:'
@@ -75,7 +75,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/point_set_range_composite.test.cpp
     title: test/yosupo/data_structure/point_set_range_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
     title: test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
   - icon: ':x:'
