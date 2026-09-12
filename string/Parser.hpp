@@ -99,7 +99,7 @@ private:
             neg = true;
             ++state;
         }
-        int res = 0;
+        Res res = 0;
         while ('0' <= *state && *state <= '9') {
             res = res * 10 + (*state - '0');
             ++state;

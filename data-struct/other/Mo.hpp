@@ -8,11 +8,13 @@ private:
     std::vector<std::pair<int, int>> data;
 
 public:
+    Mo() = default;
     Mo(int n) : n(n) {}
     Mo(int n, const std::vector<std::pair<int, int>>& a) : n(n), data(a) {}
     Mo(int n, std::vector<std::pair<int, int>>&& a)
         : n(n), data(std::move(a)) {}
     void push(int l, int r) { data.emplace_back(l, r); }
+    void set_n(int n_) { n = n_; }
     template<class AL, class AR, class DL, class DR, class REM>
     void build(const AL& add_left, const AR& add_right, const DL& delete_left,
                const DR& delete_right, const REM& rem) const {

@@ -66,6 +66,13 @@ public:
         return res;
     }
     T all_prod() const { return seg[1].all_prod(); }
+    template<class F> ll min_left(ll r, ll u, ll d, F&& f) const {
+        T sm = M::id();
+        return str.min_left(r, u, d, [&] { return f(sm); }, [&](int k, int a, int b, bool f) {
+            if (f) sm = M::op(sm, seg[k].prod(a, b));
+            else sm = M::inv(sm, seg[k].prod(a, b));
+        });
+    }
 };
 
 /**

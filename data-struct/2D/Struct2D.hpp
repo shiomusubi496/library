@@ -23,7 +23,7 @@ public:
             std::sort(all(idx[i + n]));
             idx[i + n].erase(std::unique(all(idx[i + n])), idx[i + n].end());
         }
-        rrep (i, n, 1) {
+        rrep (i, 1, n) {
             std::merge(all(idx[i << 1]), all(idx[i << 1 | 1]),
                        std::back_inserter(idx[i]));
             idx[i].erase(std::unique(all(idx[i])), idx[i].end());
@@ -60,7 +60,7 @@ public:
             }
             tmp[i + n].resize(k + 1);
         }
-        rrep (i, n, 1) {
+        rrep (i, 1, n) {
             tmp[i].reserve(tmp[i << 1].size() + tmp[i << 1 | 1].size());
             std::merge(
                 all(tmp[i << 1]), all(tmp[i << 1 | 1]),
@@ -137,6 +137,31 @@ public:
             l >>= 1;
             r >>= 1;
         }
+    }
+    template<class F, class Mrg> ll min_left(ll r, ll u, ll d, F&& f, Mrg&& mrg) const {
+        r = psx.lower_bound(r);
+        if (r == 0) return 0;
+        r += n;
+        do {
+            --r;
+            while ((r & 1) && r > 1) r >>= 1;
+            int a = std::lower_bound(all(idx[r]), u) - idx[r].begin();
+            int b = std::lower_bound(all(idx[r]), d) - idx[r].begin();
+            mrg(r, a, b, true);
+            if (!f()) {
+                mrg(r, a, b, false);
+                while (r < n) {
+                    r = r << 1 ^ 1;
+                    int a = std::lower_bound(all(idx[r]), u) - idx[r].begin();
+                    int b = std::lower_bound(all(idx[r]), d) - idx[r].begin();
+                    mrg(r, a, b, true);
+                    if (f()) --r;
+                    else mrg(r, a, b, false);
+                }
+                return psx[r - n] + 1;
+            }
+        } while ((r & -r) != r);
+        return 0;
     }
     template<class Mrg> void get(ll x, ll y, Mrg&& mrg) const {
         int k = psx.get(x) + n;

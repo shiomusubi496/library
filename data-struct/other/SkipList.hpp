@@ -81,7 +81,7 @@ private:
     static inline void all_eval(const nodepair& sl, int k) {
         auto nd = sl.first;
         int cnt = 0;
-        rrep (i, sl.first->level(), 1) {
+        rrep (i, 1, sl.first->level()) {
             while (cnt + nd->nxt[i].dist <= k) {
                 cnt += nd->nxt[i].dist;
                 nd = nd->nxt[i].node;
@@ -101,7 +101,7 @@ private:
         auto nd = sl.first;
         int cnt = 0;
         std::vector<node_ptr> nds(sl.first->level());
-        rrep (i, sl.first->level(), 1) {
+        rrep (i, 1, sl.first->level()) {
             while (cnt + nd->nxt[i].dist <= k) {
                 cnt += nd->nxt[i].dist;
                 nd = nd->nxt[i].node;
@@ -211,7 +211,7 @@ private:
                 lft[i] = lft[i]->nxt[i].node;
             }
         }
-        rrep (i, h, 1) eval(lft[i], i);
+        rrep (i, 1, h) eval(lft[i], i);
         node_ptr npl = new node(h);
         node_ptr npr = lft[0]->nxt[0].node;
         rep (i, h) {
@@ -393,7 +393,7 @@ public:
                 lft[i] = lft[i]->nxt[i].node;
             }
         }
-        rrep (i, h, 1) eval(lft[i], i);
+        rrep (i, 1, h) eval(lft[i], i);
         const int lev = get_level(rnd);
         node_ptr np = new node(lev);
         if (lev < h) {
@@ -587,7 +587,7 @@ public:
         return r;
     }
     std::vector<T> get_data() const {
-        rrep (i, sl.first->level(), 1) {
+        rrep (i, 1, sl.first->level()) {
             for (node_ptr ptr = sl.first; ptr != sl.second;
                  ptr = ptr->nxt[i].node) {
                 eval(ptr, i);

@@ -21,13 +21,12 @@ template<class T> class NthRoot {
 private:
     static constexpr unsigned int lg =
         bitop::msb((T::get_mod() - 1) & (1 - T::get_mod()));
-    T root[lg + 1];
-    T inv_root[lg + 1];
-    T rate[lg + 1];
-    T inv_rate[lg + 1];
+    T root[lg + 1], inv_root[lg + 1];
+    T rate[lg + 1], inv_rate[lg + 1];
+    T rate3[lg + 1], inv_rate3[lg + 1];
 
 public:
-    constexpr NthRoot() : root{}, inv_root{}, rate{}, inv_rate{} {
+    constexpr NthRoot() : root{}, inv_root{}, rate{}, inv_rate{}, rate3{}, inv_rate3{} {
         root[lg] = T{primitive_root_for_convolution(T::get_mod())}.pow(
             (T::get_mod() - 1) >> lg);
         inv_root[lg] = root[lg].inv();
@@ -35,15 +34,19 @@ public:
             root[i] = root[i + 1] * root[i + 1];
             inv_root[i] = inv_root[i + 1] * inv_root[i + 1];
         }
-        T r = 1;
+        T r = 1, ir = 1;
         rep (i, 2, lg + 1) {
             rate[i - 2] = r * root[i];
-            r = r * inv_root[i];
+            inv_rate[i - 2] = ir * inv_root[i];
+            r *= inv_root[i];
+            ir *= root[i];
         }
-        r = 1;
-        rep (i, 2, lg + 1) {
-            inv_rate[i - 2] = r * inv_root[i];
-            r = r * root[i];
+        r = ir = 1;
+        rep (i, 3, lg + 1) {
+            rate3[i - 3] = r * root[i];
+            inv_rate3[i - 3] = ir * inv_root[i];
+            r *= inv_root[i];
+            ir *= root[i];
         }
     }
     static constexpr unsigned int get_lg() { return lg; }
@@ -51,38 +54,85 @@ public:
     constexpr T inv(int n) const { return inv_root[n]; }
     constexpr T get_rate(int n) const { return rate[n]; }
     constexpr T get_inv_rate(int n) const { return inv_rate[n]; }
+    constexpr T get_rate3(int n) const { return rate3[n]; }
+    constexpr T get_inv_rate3(int n) const { return inv_rate3[n]; }
 };
 
 template<class T> void number_theoretic_transform(std::vector<T>& a) {
     static constexpr NthRoot<T> nth_root;
+    static constexpr ull MOD = T::get_mod();
+    static constexpr ull MOD2 = MOD * MOD;
     int n = a.size();
     for (int i = n >> 1; i > 0; i >>= 1) {
-        T z = T::raw(1);
-        rep (j, 0, n, i << 1) {
-            rep (k, i) {
-                const T x = a[j + k];
-                const T y = a[j + i + k] * z;
-                a[j + k] = x + y;
-                a[j + i + k] = x - y;
+        if (i == 1) {
+            T z = T::raw(1);
+            rep (j, 0, n, i << 1) {
+                rep (k, i) {
+                    const T x = a[j + k];
+                    const T y = a[j + i + k] * z;
+                    a[j + k] = x + y;
+                    a[j + i + k] = x - y;
+                }
+                z *= nth_root.get_rate(popcnt(j & ~(j + (i << 1))));
             }
-            z *= nth_root.get_rate(popcnt(j & ~(j + (i << 1))));
+        }
+        else {
+            i >>= 1;
+            T z = 1, y = nth_root.get(2);
+            rep (j, 0, n, i << 2) {
+                T z2 = z * z, z3 = z2 * z;
+                rep (k, i) {
+                    ull a0 = a[j + k].get();
+                    ull a1 = a[j + k + i].get() * (ull)z.get();
+                    ull a2 = a[j + k + i * 2].get() * (ull)z2.get();
+                    ull a3 = a[j + k + i * 3].get() * (ull)z3.get();
+                    ull tmp = T(a1 + MOD2 - a3).get() * (ull)y.get();
+                    a[j + k] = a0 + a2 + a1 + a3;
+                    a[j + k + i] = a0 + a2 + MOD2 * 2 - a1 - a3;
+                    a[j + k + i * 2] = a0 + MOD2 - a2 + tmp;
+                    a[j + k + i * 3] = a0 + MOD2 * 2 - a2 - tmp;
+                }
+                z *= nth_root.get_rate3(popcnt(j & ~(j + (i << 2))));
+            }
         }
     }
 }
 
 template<class T> void inverse_number_theoretic_transform(std::vector<T>& a) {
     static constexpr NthRoot<T> nth_root;
+    static constexpr ull MOD = T::get_mod();
     int n = a.size();
     for (int i = 1; i < n; i <<= 1) {
-        T z = T::raw(1);
-        rep (j, 0, n, i << 1) {
-            rep (k, i) {
-                const T x = a[j + k];
-                const T y = a[j + i + k];
-                a[j + k] = x + y;
-                a[j + i + k] = (x - y) * z;
+        if (i == n / 2) {
+            T z = T::raw(1);
+            rep (j, 0, n, i << 1) {
+                rep (k, i) {
+                    const T x = a[j + k];
+                    const T y = a[j + i + k];
+                    a[j + k] = x + y;
+                    a[j + i + k] = (x - y) * z;
+                }
+                z *= nth_root.get_inv_rate(popcnt(j & ~(j + (i << 1))));
             }
-            z *= nth_root.get_inv_rate(popcnt(j & ~(j + (i << 1))));
+        }
+        else {
+            T z = 1, y = nth_root.inv(2);
+            rep (j, 0, n, i << 2) {
+                T z2 = z * z, z3 = z2 * z;
+                rep (k, i) {
+                    ull a0 = a[j + k].get();
+                    ull a1 = a[j + k + i].get();
+                    ull a2 = a[j + k + i * 2].get();
+                    ull a3 = a[j + k + i * 3].get();
+                    ull tmp = (a2 + MOD - a3) * (ull)y.get() % MOD;
+                    a[j + k] = a0 + a2 + a1 + a3;
+                    a[j + k + i] = (a0 + MOD - a1 + tmp) * (ull)z.get();
+                    a[j + k + i * 2] = (a0 + a1 + 2 * MOD - a2 - a3) * (ull)z2.get();
+                    a[j + k + i * 3] = (a0 + 2 * MOD - a1 - tmp) * (ull)z3.get();
+                }
+                z *= nth_root.get_inv_rate3(popcnt(j & ~(j + (i << 2))));
+            }
+            i <<= 1;
         }
     }
     T inv_n = T(1) / n;
@@ -194,6 +244,7 @@ convolution_for_any_mod(const std::vector<static_modint<p>>& a,
                         const std::vector<static_modint<p>>& b) {
     int n = a.size(), m = b.size();
     assert(n + m - 1 <= (1 << 26));
+    if (n == 0 || m == 0) return {};
     std::vector<ll> a2(n), b2(m);
     rep (i, n) a2[i] = a[i].get();
     rep (i, m) b2[i] = b[i].get();
@@ -225,6 +276,7 @@ convolution(const std::vector<dynamic_modint<id>>& a,
             const std::vector<dynamic_modint<id>>& b) {
     int n = a.size(), m = b.size();
     assert(n + m - 1 <= (1 << 26));
+    if (n == 0 || m == 0) return {};
     std::vector<ll> a2(n), b2(m);
     rep (i, n) a2[i] = a[i].get();
     rep (i, m) b2[i] = b[i].get();
@@ -247,6 +299,31 @@ convolution(const std::vector<dynamic_modint<id>>& a,
             ((c3[i] - t1 + MOD3) * INV1_3 % MOD3 - t2 + MOD3) * INV2_3 % MOD3;
         if (t3 < 0) t3 += MOD3;
         res[i] = dynamic_modint<id>(t1 + (t2 + t3 * MOD2) % p * MOD1);
+    }
+    return res;
+}
+std::vector<ll> convolution_ll(const std::vector<ll>& a, const std::vector<ll>& b) {
+    int n = a.size(), m = b.size();
+    assert(n + m - 1 <= (1 << 26));
+    if (n == 0 || m == 0) return {};
+    static constexpr ll MOD1 = 469762049;
+    static constexpr ll MOD2 = 1811939329;
+    static constexpr ll MOD3 = 2013265921;
+    static constexpr ll INV1_2 = mod_pow(MOD1, MOD2 - 2, MOD2);
+    static constexpr ll INV1_3 = mod_pow(MOD1, MOD3 - 2, MOD3);
+    static constexpr ll INV2_3 = mod_pow(MOD2, MOD3 - 2, MOD3);
+    auto c1 = convolution<MOD1>(a, b);
+    auto c2 = convolution<MOD2>(a, b);
+    auto c3 = convolution<MOD3>(a, b);
+    std::vector<ll> res(n + m - 1);
+    rep (i, n + m - 1) {
+        ll t1 = c1[i];
+        ll t2 = (c2[i] - t1 + MOD2) * INV1_2 % MOD2;
+        if (t2 < 0) t2 += MOD2;
+        ll t3 =
+            ((c3[i] - t1 + MOD3) * INV1_3 % MOD3 - t2 + MOD3) * INV2_3 % MOD3;
+        if (t3 < 0) t3 += MOD3;
+        res[i] = t1 + (t2 + t3 * MOD2) * MOD1;
     }
     return res;
 }

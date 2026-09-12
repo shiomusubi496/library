@@ -35,6 +35,9 @@ public:
     bool is_on(const Point& p) const {
         return cmp(a * p.x + b * p.y + c, 0) == 0;
     }
+    int is_on2(const Point& p) const {
+        return cmp(a * p.x + b * p.y + c, 0);
+    }
     template<class Pr> void debug(Pr& print) const {
         print << a;
         print.print_char('x');

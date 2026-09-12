@@ -26,8 +26,14 @@ public:
     }
     static Rat decode_path(std::vector<std::pair<char, int>> path, Rat s = 1) {
         std::reverse(all(path));
-        T a = s.get_num(), b = s.get_den();
+        T a = 1, b = 1;
         for (const auto& p : path) {
+            if (p.first == 'R') a += b * p.second;
+            else b += a * p.second;
+        }
+        std::vector<std::pair<char, int>> path2 = encode_path(s);
+        std::reverse(all(path2));
+        for (const auto& p : path2) {
             if (p.first == 'R') a += b * p.second;
             else b += a * p.second;
         }

@@ -22,6 +22,7 @@ public:
             a = -a;
             b = -b;
         }
+        if (b == 0 && a < 0) a = -a;
     }
     void normalize() { norm(num, den); }
     Rational() : num(0), den(1) {}

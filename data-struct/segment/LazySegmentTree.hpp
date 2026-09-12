@@ -62,7 +62,7 @@ public:
         n = 1 << h;
         data.assign(n << 1, M::id());
         rep (i, ori) data[n + i] = v[i];
-        rrep (i, n, 1) calc(i);
+        rrep (i, 1, n) calc(i);
         lazy.resize(n);
         lazyflag.assign(n, false);
     }

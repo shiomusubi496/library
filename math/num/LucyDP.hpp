@@ -18,7 +18,7 @@ ll LucyDP(ll n) {
             (n / j <= m2 ? dpL[n / j] : dpR[j]) -=
                 (n / (i * j) <= m2 ? dpL[n / (i * j)] : dpR[i * j]) - p;
         }
-        rrep (j, m2, 1) {
+        rrep (j, 1, m2) {
             if (j < i * i) break;
             dpL[j] -= dpL[j / i] - p;
         }

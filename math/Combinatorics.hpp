@@ -16,7 +16,7 @@ public:
         rep (i, b, n + 1) factorial[i] = factorial[i - 1] * i;
         factinv.resize(n + 1);
         factinv[n] = T(1) / factorial[n];
-        rreps (i, n, b) factinv[i - 1] = factinv[i] * i;
+        rreps (i, b, n) factinv[i - 1] = factinv[i] * i;
     }
     static T fact(ll x) {
         if (x < 0) return 0;

@@ -28,7 +28,7 @@ public:
         }
         factinv.resize(n + 1);
         factinv[n] = mod_inv(factorial[n], bar.get_mod());
-        rreps (i, n, b) {
+        rreps (i, b, n) {
             if (i % p != 0) factinv[i - 1] = bar.mul(factinv[i], i);
             else factinv[i - 1] = factinv[i];
         }

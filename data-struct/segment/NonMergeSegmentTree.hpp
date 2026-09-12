@@ -25,7 +25,7 @@ public:
         n = 1 << bitop::ceil_log2(ori);
         data.assign(n << 1, M::id());
         rep (i, ori) data[n + i] = v[i];
-        rrep (i, n, 1) data[i] = M::op(data[i << 1], data[i << 1 ^ 1]);
+        rrep (i, 1, n) data[i] = M::op(data[i << 1], data[i << 1 ^ 1]);
     }
     template<class Upd> void update(int k, const Upd& upd) {
         assert(0 <= k && k < ori);
