@@ -64,6 +64,9 @@ data:
   - icon: ':x:'
     path: math/poly/CompositionalInverse.hpp
     title: math/poly/CompositionalInverse.hpp
+  - icon: ':x:'
+    path: math/poly/ConsecutiveTermsOfLinearRecurrence.hpp
+    title: math/poly/ConsecutiveTermsOfLinearRecurrence.hpp
   - icon: ':question:'
     path: math/poly/FormalPowerSeries.hpp
     title: "FormalPowerSeries(\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570)"
@@ -126,6 +129,9 @@ data:
   - icon: ':x:'
     path: test/yosupo/number_theory/bernoulli_number.test.cpp
     title: test/yosupo/number_theory/bernoulli_number.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/other/consecutive_terms_of_linear_recurrent_sequence.test.cpp
+    title: test/yosupo/other/consecutive_terms_of_linear_recurrent_sequence.test.cpp
   - icon: ':x:'
     path: test/yosupo/other/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/yosupo/other/kth_term_of_linearly_recurrent_sequence.test.cpp
@@ -1095,6 +1101,7 @@ data:
   - math/SubsetSum.hpp
   - math/ExpPolySum.hpp
   - math/BigInteger.hpp
+  - math/poly/ConsecutiveTermsOfLinearRecurrence.hpp
   - math/poly/PolynomialInterpolation.hpp
   - math/poly/SamplingPointsShift.hpp
   - math/poly/FormalPowerSeries.hpp
@@ -1116,6 +1123,7 @@ data:
   - test/yosupo/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
   - test/yosupo/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
   - test/yosupo/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
+  - test/yosupo/other/consecutive_terms_of_linear_recurrent_sequence.test.cpp
   - test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp
   - test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
   - test/yosupo/other/kth_term_of_linearly_recurrent_sequence.test.cpp

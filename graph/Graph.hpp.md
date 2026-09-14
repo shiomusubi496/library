@@ -46,24 +46,24 @@ data:
     path: graph/connected/StronglyConnectedComponents.hpp
     title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/connected/ThreeEdgeConnectedComponents.hpp
     title: "ThreeEdgeConnectedComponents(\u4E09\u8FBA\u9023\u7D50\u6210\u5206\u5206\
       \u89E3)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/connected/TwoEdgeConnectedComponents.hpp
     title: "TwoEdgeConnectedComponents(\u4E8C\u8FBA\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/mst/CountSpanningTree.hpp
     title: "CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/mst/DirectedMST.hpp
     title: "DirectedMST(\u6700\u5C0F\u6709\u5411\u5168\u57DF\u6728)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/mst/Kruskal.hpp
     title: "Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/mst/ManhattanMST.hpp
     title: Manhattan Minimum Spanning Tree
   - icon: ':x:'
@@ -84,22 +84,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/other/CountEulerianCircuit.hpp
     title: CountEulerianCircuit(BEST Theorem)
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/other/EnumerateCliques.hpp
     title: EnumerateCliques
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/other/EnumerateTriangles.hpp
     title: EnumerateTriangles
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/other/EulerianTrail.hpp
     title: EulerianTrail
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/other/GraphCycle.hpp
     title: "GraphCycle(\u9589\u8DEF\u691C\u51FA)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/other/LowLink.hpp
     title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/other/MaximumIndependentSet.hpp
     title: "MaximumIndependentSet(\u6700\u5927\u72EC\u7ACB\u96C6\u5408)"
   - icon: ':heavy_check_mark:'
@@ -115,7 +115,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest-path/BreadthFirstSearch.hpp
     title: "BFS(\u5E45\u512A\u5148\u63A2\u7D22)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest-path/Dijkstra.hpp
     title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
   - icon: ':question:'
@@ -272,43 +272,43 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/counting_eulerian_circuits.test.cpp
     title: test/yosupo/graph/counting_eulerian_circuits.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/counting_spanning_tree_directed.test.cpp
     title: test/yosupo/graph/counting_spanning_tree_directed.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/counting_spanning_tree_undirected.test.cpp
     title: test/yosupo/graph/counting_spanning_tree_undirected.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/cycle_detection.test.cpp
     title: test/yosupo/graph/cycle_detection.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/directedmst.test.cpp
     title: test/yosupo/graph/directedmst.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/enumerate_cliques.test.cpp
     title: test/yosupo/graph/enumerate_cliques.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/enumerate_triangles.test.cpp
     title: test/yosupo/graph/enumerate_triangles.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/eulerian_trail_directed.test.cpp
     title: test/yosupo/graph/eulerian_trail_directed.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/eulerian_trail_undirected.test.cpp
     title: test/yosupo/graph/eulerian_trail_undirected.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/manhattanmst.test.cpp
     title: test/yosupo/graph/manhattanmst.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/maximum_independent_set.test.cpp
     title: test/yosupo/graph/maximum_independent_set.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/shortest_path.test.cpp
     title: test/yosupo/graph/shortest_path.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/three_edge_connected_components.test.cpp
     title: test/yosupo/graph/three_edge_connected_components.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/two_edge_connected_components.test.cpp
     title: test/yosupo/graph/two_edge_connected_components.test.cpp
   - icon: ':x:'

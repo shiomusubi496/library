@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix/Determinant.hpp
     title: "Determinant(\u884C\u5217\u5F0F)"
   - icon: ':question:'
@@ -48,15 +48,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/counting_eulerian_circuits.test.cpp
     title: test/yosupo/graph/counting_eulerian_circuits.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/counting_spanning_tree_directed.test.cpp
     title: test/yosupo/graph/counting_spanning_tree_directed.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/counting_spanning_tree_undirected.test.cpp
     title: test/yosupo/graph/counting_spanning_tree_undirected.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/graph/mst/CountSpanningTree.md
     document_title: "CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)"
@@ -794,7 +794,7 @@ data:
   requiredBy:
   - graph/other/CountEulerianCircuit.hpp
   timestamp: '2026-09-12 01:05:48+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/graph/counting_spanning_tree_undirected.test.cpp
   - test/yosupo/graph/counting_eulerian_circuits.test.cpp

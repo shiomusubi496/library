@@ -35,13 +35,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/unionfind/RangeParallelUnionFind.hpp
     title: RangeParallelUnionFind
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/mst/DirectedMST.hpp
     title: "DirectedMST(\u6700\u5C0F\u6709\u5411\u5168\u57DF\u6728)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/mst/Kruskal.hpp
     title: "Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/mst/ManhattanMST.hpp
     title: Manhattan Minimum Spanning Tree
   - icon: ':x:'
@@ -78,10 +78,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/bipartite_edge_coloring.test.cpp
     title: test/yosupo/graph/bipartite_edge_coloring.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/directedmst.test.cpp
     title: test/yosupo/graph/directedmst.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/manhattanmst.test.cpp
     title: test/yosupo/graph/manhattanmst.test.cpp
   - icon: ':x:'

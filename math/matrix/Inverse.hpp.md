@@ -36,15 +36,15 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/inverse_matrix.test.cpp
     title: test/yosupo/linear_algebra/inverse_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/inverse_matrix_mod_2.test.cpp
     title: test/yosupo/linear_algebra/inverse_matrix_mod_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/math/matrix/Inverse.md
     document_title: "Inverse(\u9006\u884C\u5217)"
@@ -714,7 +714,7 @@ data:
   path: math/matrix/Inverse.hpp
   requiredBy: []
   timestamp: '2026-09-12 01:05:48+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/linear_algebra/inverse_matrix_mod_2.test.cpp
   - test/yosupo/linear_algebra/inverse_matrix.test.cpp

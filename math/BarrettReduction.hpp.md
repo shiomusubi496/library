@@ -45,7 +45,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/enumerative_combinatorics/binomial_coefficient_prime_mod.test.cpp
     title: test/yosupo/enumerative_combinatorics/binomial_coefficient_prime_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/matrix_det_arbitrary_mod.test.cpp
     title: test/yosupo/linear_algebra/matrix_det_arbitrary_mod.test.cpp
   - icon: ':x:'

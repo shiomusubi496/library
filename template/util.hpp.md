@@ -47,7 +47,7 @@ data:
   - icon: ':warning:'
     path: data-struct/heap/LeftistHeap.hpp
     title: LeftistHeap
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/heap/SkewHeap.hpp
     title: SkewHeap
   - icon: ':heavy_check_mark:'
@@ -256,11 +256,11 @@ data:
     path: graph/connected/StronglyConnectedComponents.hpp
     title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/connected/ThreeEdgeConnectedComponents.hpp
     title: "ThreeEdgeConnectedComponents(\u4E09\u8FBA\u9023\u7D50\u6210\u5206\u5206\
       \u89E3)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/connected/TwoEdgeConnectedComponents.hpp
     title: "TwoEdgeConnectedComponents(\u4E8C\u8FBA\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
@@ -276,16 +276,16 @@ data:
   - icon: ':x:'
     path: graph/flow/ProjectSelectionProblem.hpp
     title: "ProjectSelectionProblem(\u71C3\u3084\u3059\u57CB\u3081\u308B)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/mst/CountSpanningTree.hpp
     title: "CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/mst/DirectedMST.hpp
     title: "DirectedMST(\u6700\u5C0F\u6709\u5411\u5168\u57DF\u6728)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/mst/Kruskal.hpp
     title: "Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/mst/ManhattanMST.hpp
     title: Manhattan Minimum Spanning Tree
   - icon: ':x:'
@@ -306,22 +306,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/other/CountEulerianCircuit.hpp
     title: CountEulerianCircuit(BEST Theorem)
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/other/EnumerateCliques.hpp
     title: EnumerateCliques
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/other/EnumerateTriangles.hpp
     title: EnumerateTriangles
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/other/EulerianTrail.hpp
     title: EulerianTrail
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/other/GraphCycle.hpp
     title: "GraphCycle(\u9589\u8DEF\u691C\u51FA)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/other/LowLink.hpp
     title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/other/MaximumIndependentSet.hpp
     title: "MaximumIndependentSet(\u6700\u5927\u72EC\u7ACB\u96C6\u5408)"
   - icon: ':heavy_check_mark:'
@@ -337,7 +337,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest-path/BreadthFirstSearch.hpp
     title: "BFS(\u5E45\u512A\u5148\u63A2\u7D22)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest-path/Dijkstra.hpp
     title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
   - icon: ':question:'
@@ -514,10 +514,10 @@ data:
     path: math/convolution/SupersetZetaMoebiusTransform.hpp
     title: "SupersetZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
       \u30A6\u30B9\u5909\u63DB)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix/Determinant.hpp
     title: "Determinant(\u884C\u5217\u5F0F)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix/Inverse.hpp
     title: "Inverse(\u9006\u884C\u5217)"
   - icon: ':x:'
@@ -566,6 +566,9 @@ data:
   - icon: ':x:'
     path: math/poly/CompositionalInverse.hpp
     title: math/poly/CompositionalInverse.hpp
+  - icon: ':x:'
+    path: math/poly/ConsecutiveTermsOfLinearRecurrence.hpp
+    title: math/poly/ConsecutiveTermsOfLinearRecurrence.hpp
   - icon: ':question:'
     path: math/poly/FormalPowerSeries.hpp
     title: "FormalPowerSeries(\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570)"
@@ -1115,64 +1118,64 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/counting_eulerian_circuits.test.cpp
     title: test/yosupo/graph/counting_eulerian_circuits.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/counting_spanning_tree_directed.test.cpp
     title: test/yosupo/graph/counting_spanning_tree_directed.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/counting_spanning_tree_undirected.test.cpp
     title: test/yosupo/graph/counting_spanning_tree_undirected.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/cycle_detection.test.cpp
     title: test/yosupo/graph/cycle_detection.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/directedmst.test.cpp
     title: test/yosupo/graph/directedmst.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/enumerate_cliques.test.cpp
     title: test/yosupo/graph/enumerate_cliques.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/enumerate_triangles.test.cpp
     title: test/yosupo/graph/enumerate_triangles.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/eulerian_trail_directed.test.cpp
     title: test/yosupo/graph/eulerian_trail_directed.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/eulerian_trail_undirected.test.cpp
     title: test/yosupo/graph/eulerian_trail_undirected.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/manhattanmst.test.cpp
     title: test/yosupo/graph/manhattanmst.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/maximum_independent_set.test.cpp
     title: test/yosupo/graph/maximum_independent_set.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/shortest_path.test.cpp
     title: test/yosupo/graph/shortest_path.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/three_edge_connected_components.test.cpp
     title: test/yosupo/graph/three_edge_connected_components.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/two_edge_connected_components.test.cpp
     title: test/yosupo/graph/two_edge_connected_components.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/inverse_matrix.test.cpp
     title: test/yosupo/linear_algebra/inverse_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/inverse_matrix_mod_2.test.cpp
     title: test/yosupo/linear_algebra/inverse_matrix_mod_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/matrix_det.test.cpp
     title: test/yosupo/linear_algebra/matrix_det.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/matrix_det_arbitrary_mod.test.cpp
     title: test/yosupo/linear_algebra/matrix_det_arbitrary_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/matrix_det_mod_2.test.cpp
     title: test/yosupo/linear_algebra/matrix_det_mod_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/matrix_product.test.cpp
     title: test/yosupo/linear_algebra/matrix_product.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/matrix_product_mod_2.test.cpp
     title: test/yosupo/linear_algebra/matrix_product_mod_2.test.cpp
   - icon: ':x:'
@@ -1250,6 +1253,9 @@ data:
   - icon: ':x:'
     path: test/yosupo/number_theory/two_square_sum.test.cpp
     title: test/yosupo/number_theory/two_square_sum.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/other/consecutive_terms_of_linear_recurrent_sequence.test.cpp
+    title: test/yosupo/other/consecutive_terms_of_linear_recurrent_sequence.test.cpp
   - icon: ':x:'
     path: test/yosupo/other/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/yosupo/other/kth_term_of_linearly_recurrent_sequence.test.cpp
@@ -1697,6 +1703,7 @@ data:
   - math/num/Divisors.hpp
   - math/num/EnumerateQuotients.hpp
   - math/FloorSum.hpp
+  - math/poly/ConsecutiveTermsOfLinearRecurrence.hpp
   - math/poly/PolynomialInterpolation.hpp
   - math/poly/SamplingPointsShift.hpp
   - math/poly/FormalPowerSeries.hpp
@@ -1808,6 +1815,7 @@ data:
   - test/yosupo/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
   - test/yosupo/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
   - test/yosupo/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
+  - test/yosupo/other/consecutive_terms_of_linear_recurrent_sequence.test.cpp
   - test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp
   - test/yosupo/other/longest_increasing_subsequence.test.cpp
   - test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp

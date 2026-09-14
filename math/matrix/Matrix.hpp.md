@@ -32,16 +32,16 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/mst/CountSpanningTree.hpp
     title: "CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)"
   - icon: ':heavy_check_mark:'
     path: graph/other/CountEulerianCircuit.hpp
     title: CountEulerianCircuit(BEST Theorem)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix/Determinant.hpp
     title: "Determinant(\u884C\u5217\u5F0F)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix/Inverse.hpp
     title: "Inverse(\u9006\u884C\u5217)"
   - icon: ':x:'
@@ -54,31 +54,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/counting_eulerian_circuits.test.cpp
     title: test/yosupo/graph/counting_eulerian_circuits.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/counting_spanning_tree_directed.test.cpp
     title: test/yosupo/graph/counting_spanning_tree_directed.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/counting_spanning_tree_undirected.test.cpp
     title: test/yosupo/graph/counting_spanning_tree_undirected.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/inverse_matrix.test.cpp
     title: test/yosupo/linear_algebra/inverse_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/inverse_matrix_mod_2.test.cpp
     title: test/yosupo/linear_algebra/inverse_matrix_mod_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/matrix_det.test.cpp
     title: test/yosupo/linear_algebra/matrix_det.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/matrix_det_arbitrary_mod.test.cpp
     title: test/yosupo/linear_algebra/matrix_det_arbitrary_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/matrix_det_mod_2.test.cpp
     title: test/yosupo/linear_algebra/matrix_det_mod_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/matrix_product.test.cpp
     title: test/yosupo/linear_algebra/matrix_product.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/matrix_product_mod_2.test.cpp
     title: test/yosupo/linear_algebra/matrix_product_mod_2.test.cpp
   - icon: ':x:'

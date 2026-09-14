@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/other/BipartiteEdgeColoring.hpp
     title: graph/other/BipartiteEdgeColoring.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/other/EulerianTrail.hpp
     title: EulerianTrail
   - icon: ':question:'

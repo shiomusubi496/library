@@ -8,7 +8,7 @@ data:
     path: graph/connected/BiConnectedComponents.hpp
     title: "BiConnectedComponents(\u4E8C\u91CD\u9802\u70B9\u9023\u7D50\u6210\u5206\
       \u5206\u89E3)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/other/LowLink.hpp
     title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
   - icon: ':question:'

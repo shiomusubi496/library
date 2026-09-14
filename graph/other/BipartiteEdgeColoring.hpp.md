@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/other/EulerianTrail.hpp
     title: EulerianTrail
   - icon: ':question:'
