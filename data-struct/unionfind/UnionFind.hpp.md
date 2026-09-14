@@ -32,7 +32,7 @@ data:
   - icon: ':warning:'
     path: data-struct/unionfind/EnumerateUnionFind.hpp
     title: data-struct/unionfind/EnumerateUnionFind.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: data-struct/unionfind/RangeParallelUnionFind.hpp
     title: RangeParallelUnionFind
   - icon: ':x:'
@@ -47,7 +47,7 @@ data:
   - icon: ':x:'
     path: graph/mst/MinimumSteinerTree.hpp
     title: graph/mst/MinimumSteinerTree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/mst/Prim.hpp
     title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
   - icon: ':x:'
@@ -60,19 +60,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
     title: test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_1_A-UF.test.cpp
     title: test/aoj/DSL/DSL_1_A-UF.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
     title: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_2_A-Prim.test.cpp
     title: test/aoj/GRL/GRL_2_A-Prim.test.cpp
   - icon: ':x:'
     path: test/atcoder/abc349_g-RangeUF.test.cpp
     title: test/atcoder/abc349_g-RangeUF.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/range_parallel_unionfind.test.cpp
     title: test/yosupo/data_structure/range_parallel_unionfind.test.cpp
   - icon: ':x:'

@@ -32,28 +32,28 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/2D/CumulativeSum2D.hpp
     title: data-struct/2D/CumulativeSum2D.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/2D/DualSegmentTree2D.hpp
     title: data-struct/2D/DualSegmentTree2D.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/2D/SegmentTree2D.hpp
     title: SegmentTree2D
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/point_add_rectangle_sum-2DSegTree.test.cpp
     title: test/yosupo/data_structure/point_add_rectangle_sum-2DSegTree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/rectangle_add_point_get.test.cpp
     title: test/yosupo/data_structure/rectangle_add_point_get.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/rectangle_sum-2DCum.test.cpp
     title: test/yosupo/data_structure/rectangle_sum-2DCum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"data-struct/2D/Struct2D.hpp\"\n\n#line 2 \"other/template.hpp\"\
@@ -732,7 +732,7 @@ data:
   - data-struct/2D/DualSegmentTree2D.hpp
   - data-struct/2D/SegmentTree2D.hpp
   timestamp: '2026-09-12 14:55:19+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/data_structure/rectangle_sum-2DCum.test.cpp
   - test/yosupo/data_structure/point_add_rectangle_sum-2DSegTree.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: math/MontgomeryModInt.hpp
     title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
   - icon: ':question:'
@@ -35,10 +35,10 @@ data:
   - icon: ':x:'
     path: math/TetrationMod.hpp
     title: TetrationMod
-  - icon: ':question:'
+  - icon: ':x:'
     path: math/num/EulerPhi.hpp
     title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: math/num/PollardRho.hpp
     title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
   - icon: ':x:'
@@ -48,7 +48,7 @@ data:
     path: math/num/TwoSquareSum.hpp
     title: math/num/TwoSquareSum.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/NTL/NTL_1_D-Phi.test.cpp
     title: test/aoj/NTL/NTL_1_D-Phi.test.cpp
   - icon: ':x:'
@@ -71,7 +71,7 @@ data:
     title: test/yuki/3030-MRPrime.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/math/num/MillerRabin.md
     document_title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\
@@ -613,7 +613,7 @@ data:
   - math/num/PrimitiveRoot.hpp
   - math/TetrationMod.hpp
   timestamp: '2026-09-12 01:05:48+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/number_theory/tetration_mod.test.cpp
   - test/yosupo/number_theory/primality_test.test.cpp

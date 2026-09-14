@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: math/Rational.hpp
     title: "Rational(\u6709\u7406\u6570\u578B)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: math/SternBrocotTree.hpp
     title: Stern-Brocot Tree
   - icon: ':question:'
@@ -36,9 +36,9 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/1208
@@ -594,7 +594,7 @@ data:
   path: test/aoj/other/1208-SternBrocotTree.test.cpp
   requiredBy: []
   timestamp: '2026-09-12 14:55:19+09:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/other/1208-SternBrocotTree.test.cpp
 layout: document

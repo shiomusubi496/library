@@ -33,7 +33,7 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
     title: test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
   - icon: ':x:'
@@ -44,7 +44,7 @@ data:
     title: test/yosupo/data_structure/unionfind_with_potential_non_commutative_group.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/data-struct/unionfind/WeightedUnionFind.md
     document_title: "WeightedUnionFind(\u91CD\u307F\u4ED8\u304DUF)"
@@ -619,7 +619,7 @@ data:
   path: data-struct/unionfind/WeightedUnionFind.hpp
   requiredBy: []
   timestamp: '2026-09-12 01:05:48+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/data_structure/unionfind_with_potential.test.cpp
   - test/yosupo/data_structure/unionfind_with_potential_non_commutative_group.test.cpp

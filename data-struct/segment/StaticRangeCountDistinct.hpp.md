@@ -36,12 +36,12 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/static_range_count_distinct.test.cpp
     title: test/yosupo/data_structure/static_range_count_distinct.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"data-struct/segment/StaticRangeCountDistinct.hpp\"\n\n#line\
@@ -608,7 +608,7 @@ data:
   path: data-struct/segment/StaticRangeCountDistinct.hpp
   requiredBy: []
   timestamp: '2026-09-12 01:05:48+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/data_structure/static_range_count_distinct.test.cpp
 documentation_of: data-struct/segment/StaticRangeCountDistinct.hpp

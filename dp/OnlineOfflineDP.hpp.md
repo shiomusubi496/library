@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: dp/SMAWK.hpp
     title: SMAWK
   - icon: ':question:'

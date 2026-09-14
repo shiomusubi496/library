@@ -29,14 +29,14 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: dp/DivideAndConquerOptimization.hpp
     title: Divide and Conquer Optimization
   - icon: ':x:'
     path: dp/OnlineOfflineDP.hpp
     title: Online Offline DP
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/other/2603-SMAWK.test.cpp
     title: test/aoj/other/2603-SMAWK.test.cpp
   - icon: ':x:'
@@ -44,7 +44,7 @@ data:
     title: test/yuki/705-Monge.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/dp/SMAWK.md
     document_title: SMAWK
@@ -515,7 +515,7 @@ data:
   - dp/DivideAndConquerOptimization.hpp
   - dp/OnlineOfflineDP.hpp
   timestamp: '2026-09-12 01:05:48+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/other/2603-SMAWK.test.cpp
   - test/yuki/705-Monge.test.cpp

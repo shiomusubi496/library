@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: dp/MonotoneMinima.hpp
     title: MonotoneMinima
-  - icon: ':question:'
+  - icon: ':x:'
     path: dp/SMAWK.hpp
     title: SMAWK
   - icon: ':question:'
@@ -36,12 +36,12 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/other/2603-SMAWK.test.cpp
     title: test/aoj/other/2603-SMAWK.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/dp/DivideAndConquerOptimization.md
     document_title: Divide and Conquer Optimization
@@ -537,7 +537,7 @@ data:
   path: dp/DivideAndConquerOptimization.hpp
   requiredBy: []
   timestamp: '2026-09-12 01:05:48+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/other/2603-SMAWK.test.cpp
 documentation_of: dp/DivideAndConquerOptimization.hpp

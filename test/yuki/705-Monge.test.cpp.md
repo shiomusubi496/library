@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: dp/OnlineOfflineDP.hpp
     title: Online Offline DP
-  - icon: ':question:'
+  - icon: ':x:'
     path: dp/SMAWK.hpp
     title: SMAWK
   - icon: ':question:'

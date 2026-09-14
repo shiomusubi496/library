@@ -32,7 +32,7 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/2D/CumulativeSum2D.hpp
     title: data-struct/2D/CumulativeSum2D.hpp
   - icon: ':x:'
@@ -41,14 +41,14 @@ data:
   - icon: ':x:'
     path: data-struct/segment/RAQBIT.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/wavelet/CumulativeSumWM.hpp
     title: WaveletMatrixPointAddRectangleSum.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/rectangle_sum-2DCum.test.cpp
     title: test/yosupo/data_structure/rectangle_sum-2DCum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/rectangle_sum-WM.test.cpp
     title: test/yosupo/data_structure/rectangle_sum-WM.test.cpp
   - icon: ':x:'
@@ -62,7 +62,7 @@ data:
     title: test/yosupo/tree/vertex_get_range_contour_add_on_tree.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/data-struct/segment/CumulativeSum.md
     document_title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
@@ -616,7 +616,7 @@ data:
   - data-struct/2D/CumulativeSum2D.hpp
   - data-struct/2D/StaticRectangleAddRectangleSum.hpp
   timestamp: '2026-09-12 01:05:48+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
   - test/yosupo/data_structure/rectangle_sum-2DCum.test.cpp

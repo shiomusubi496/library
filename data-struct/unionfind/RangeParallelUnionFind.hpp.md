@@ -36,12 +36,12 @@ data:
   - icon: ':x:'
     path: test/atcoder/abc349_g-RangeUF.test.cpp
     title: test/atcoder/abc349_g-RangeUF.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/range_parallel_unionfind.test.cpp
     title: test/yosupo/data_structure/range_parallel_unionfind.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/data-struct/unionfind/RangeParallelUnionFind.md
     document_title: RangeParallelUnionFind
@@ -547,7 +547,7 @@ data:
   path: data-struct/unionfind/RangeParallelUnionFind.hpp
   requiredBy: []
   timestamp: '2026-09-12 01:05:48+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/atcoder/abc349_g-RangeUF.test.cpp
   - test/yosupo/data_structure/range_parallel_unionfind.test.cpp
