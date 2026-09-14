@@ -1,74 +1,46 @@
 #pragma once
 
 #include "../../other/template.hpp"
-#include "../../other/monoid.hpp"
 
-template<class T, class Comp = std::less<T>, class A = Monoid::AddMin<T>>
+template<class T, class Comp = std::less<T>>
 class LeftistHeap {
-private:
-    using M = typename A::M;
-    using E = typename A::E;
-    using U = typename E::value_type;
-
-    static_assert(std::is_same<typename M::value_type, T>::value,
-                  "Monoid and LeftistHeap value_type mismatch");
-
+public:
     struct node;
-    using node_ptr = node*;
+    using node_ptr = std::shared_ptr<node>;
     struct node {
         T val;
-        U lazy;
         int s = 0;
         node_ptr l = nullptr, r = nullptr;
         template<class... Args>
         node(Args&&... args)
-            : val(std::forward<Args>(args)...), lazy(E::id()) {}
+            : val(std::forward<Args>(args)...) {}
     };
 
-    static void apply_all(node_ptr ptr, U x) {
-        if (!ptr) return;
-        ptr->val = A::op(x, ptr->val);
-        ptr->lazy = E::op(ptr->lazy, x);
-    }
-    static void eval(node_ptr x) {
-        if (x->lazy == E::id()) return;
-        apply_all(x->l, x->lazy);
-        apply_all(x->r, x->lazy);
-        x->lazy = E::id();
-    }
-
+private:
     static node_ptr meld(node_ptr a, node_ptr b) {
         if (!a) return b;
         if (!b) return a;
         if (Comp()(a->val, b->val)) std::swap(a, b);
-        eval(a);
-        a->r = meld(a->r, b);
-        if (!a->l || a->l->s < a->r->s) std::swap(a->l, a->r);
-        a->s = (a->r ? a->r->s : 0) + 1;
-        return a;
+        node_ptr c = std::make_shared<node>(a->val);
+        c->l = a->l;
+        c->r = meld(a->r, b);
+        if (!c->l || c->l->s < c->r->s) std::swap(c->l, c->r);
+        c->s = (c->r ? c->r->s : 0) + 1;
+        return c;
     }
 
     static node_ptr push(node_ptr x, T val) { return meld(x, new node{val}); }
     template<class... Args>
     static node_ptr emplace(node_ptr x, Args&&... args) {
-        return meld(x, new node{std::forward<Args>(args)...});
+        return meld(x, std::make_shared<node>(std::forward<Args>(args)...));
     }
     static node_ptr pop(node_ptr x) {
-        eval(x);
         auto p = meld(x->l, x->r);
-        delete x;
         return p;
     }
     static T top(node_ptr x) { return x->val; }
-    static void clear(node_ptr x) {
-        if (!x) return;
-        clear(x->l);
-        clear(x->r);
-        delete x;
-    }
     static node_ptr copy(node_ptr x) {
         if (!x) return nullptr;
-        eval(x);
         node_ptr y = new node{x->val};
         y->l = copy(x->l);
         y->r = copy(x->r);
@@ -108,7 +80,6 @@ public:
     bool empty() const { return !root; }
     int size() const { return sz; }
     void clear() {
-        clear(root);
         root = nullptr;
         sz = 0;
     }
@@ -129,17 +100,18 @@ public:
         assert(!empty());
         return top(root);
     }
-    void apply(U x) { apply_all(root, x); }
-    LeftistHeap& meld(LeftistHeap&& other) {
+    LeftistHeap& meld(const LeftistHeap& other) {
         root = meld(root, other.root);
         sz += other.sz;
-        other.root = nullptr;
-        other.sz = 0;
         return *this;
     }
-    friend LeftistHeap meld(LeftistHeap&& a, LeftisHeap&& b) {
-        return std::move(a.meld(std::move(b)));
+    friend LeftistHeap meld(const LeftistHeap& a, const LeftistHeap& b) {
+        LeftistHeap h;
+        h.root = meld(a.root, b.root);
+        h.sz = a.sz + b.sz;
+        return h;
     }
+    node_ptr get_root() const { return root; }
 };
 
 /**
