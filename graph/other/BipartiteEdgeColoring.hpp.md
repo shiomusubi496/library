@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/other/EulerianTrail.hpp
     title: EulerianTrail
   - icon: ':question:'
@@ -39,12 +39,12 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/bipartite_edge_coloring.test.cpp
     title: test/yosupo/graph/bipartite_edge_coloring.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/other/BipartiteEdgeColoring.hpp\"\n\n#line 2 \"other/template.hpp\"\
@@ -754,7 +754,7 @@ data:
   path: graph/other/BipartiteEdgeColoring.hpp
   requiredBy: []
   timestamp: '2026-09-12 01:05:48+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/graph/bipartite_edge_coloring.test.cpp
 documentation_of: graph/other/BipartiteEdgeColoring.hpp

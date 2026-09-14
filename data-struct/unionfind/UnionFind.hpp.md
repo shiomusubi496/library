@@ -50,7 +50,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/mst/Prim.hpp
     title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/other/BipartiteEdgeColoring.hpp
     title: graph/other/BipartiteEdgeColoring.hpp
   _extendedVerifiedWith:
@@ -75,7 +75,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/unionfind.test.cpp
     title: test/yosupo/data_structure/unionfind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/bipartite_edge_coloring.test.cpp
     title: test/yosupo/graph/bipartite_edge_coloring.test.cpp
   - icon: ':x:'

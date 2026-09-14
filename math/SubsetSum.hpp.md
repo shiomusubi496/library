@@ -51,12 +51,12 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
     title: test/yosupo/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/math/SubsetSum.md
     document_title: SubsetSum
@@ -1116,7 +1116,7 @@ data:
   path: math/SubsetSum.hpp
   requiredBy: []
   timestamp: '2026-09-12 14:55:19+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
 documentation_of: math/SubsetSum.hpp

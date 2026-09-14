@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/wavelet/FullyIndexableDictionary.hpp
     title: "FullyIndexableDictionary(\u5B8C\u5099\u8F9E\u66F8)"
   - icon: ':question:'
@@ -35,7 +35,7 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/wavelet/CumulativeSumWM.hpp
     title: WaveletMatrixPointAddRectangleSum.hpp
   - icon: ':heavy_check_mark:'
@@ -48,9 +48,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/rectangle_sum-WM.test.cpp
     title: test/yosupo/data_structure/rectangle_sum-WM.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yosupo/new/static_range_sum_with_upper_bound.test.cpp
+    title: test/yosupo/new/static_range_sum_with_upper_bound.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"data-struct/wavelet/WaveletMatrixStruct.hpp\"\n\n#line 2\
@@ -662,8 +665,9 @@ data:
   - data-struct/wavelet/CumulativeSumWM.hpp
   - data-struct/wavelet/SegmentTreeWM.hpp
   timestamp: '2026-09-12 01:05:48+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yosupo/new/static_range_sum_with_upper_bound.test.cpp
   - test/yosupo/data_structure/point_add_rectangle_sum-WM.test.cpp
   - test/yosupo/data_structure/rectangle_sum-WM.test.cpp
 documentation_of: data-struct/wavelet/WaveletMatrixStruct.hpp

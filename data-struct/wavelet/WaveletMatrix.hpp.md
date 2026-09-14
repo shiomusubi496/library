@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/wavelet/FullyIndexableDictionary.hpp
     title: "FullyIndexableDictionary(\u5B8C\u5099\u8F9E\u66F8)"
   - icon: ':question:'
@@ -36,9 +36,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
     title: test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yosupo/new/static_range_sum_with_upper_bound.test.cpp
+    title: test/yosupo/new/static_range_sum_with_upper_bound.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/data-struct/wavelet/WaveletMatrix.md
     document_title: WaveletMatrix
@@ -609,8 +612,9 @@ data:
   path: data-struct/wavelet/WaveletMatrix.hpp
   requiredBy: []
   timestamp: '2026-09-12 01:05:48+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yosupo/new/static_range_sum_with_upper_bound.test.cpp
   - test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
 documentation_of: data-struct/wavelet/WaveletMatrix.hpp
 layout: document

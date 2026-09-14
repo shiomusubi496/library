@@ -2,17 +2,23 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: math/BarrettReduction.hpp
-    title: math/BarrettReduction.hpp
-  - icon: ':x:'
-    path: math/num/KthRoot.hpp
-    title: "KthRoot(k\u4E57\u6839)"
+    path: data-struct/segment/CumulativeSum.hpp
+    title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
+  - icon: ':question:'
+    path: data-struct/wavelet/CumulativeSumWM.hpp
+    title: WaveletMatrixPointAddRectangleSum.hpp
+  - icon: ':question:'
+    path: data-struct/wavelet/FullyIndexableDictionary.hpp
+    title: "FullyIndexableDictionary(\u5B8C\u5099\u8F9E\u66F8)"
+  - icon: ':question:'
+    path: data-struct/wavelet/WaveletMatrix.hpp
+    title: WaveletMatrix
+  - icon: ':question:'
+    path: data-struct/wavelet/WaveletMatrixStruct.hpp
+    title: data-struct/wavelet/WaveletMatrixStruct.hpp
   - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':question:'
-    path: other/monoid2.hpp
-    title: other/monoid2.hpp
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
@@ -41,59 +47,59 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/yosupo/number_theory/discrete_logarithm_mod.test.cpp
-    title: test/yosupo/number_theory/discrete_logarithm_mod.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: true
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/math/DiscreteLogarithm.md
-    document_title: "Discrete Logarithm(\u96E2\u6563\u5BFE\u6570)"
-    links: []
-  bundledCode: "#line 2 \"math/DiscreteLogarithm.hpp\"\n\n#line 2 \"other/template.hpp\"\
-    \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
-    \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define OVERLOAD5(a,\
-    \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
-    \                                                           \\\n    for (ll REP_COUNTER_##c\
-    \ = 0; REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b,\
-    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
-    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
-    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) OVERLOAD5(__VA_ARGS__,\
-    \ REP4, REP3, REP2, REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1;\
-    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(b)-1; i >= (ll)(a); --i)\n\
-    #define RREP4(i, a, b, c) for (ll i = (ll)(b)-1; i >= (ll)(a); i -= (ll)(c))\n\
-    #define rrep(...) OVERLOAD5(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define\
-    \ REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b) for (ll\
-    \ i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll i = (ll)(a)\
-    \ + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) OVERLOAD5(__VA_ARGS__, REPS4,\
-    \ REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a); i > 0;\
-    \ --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(b); i > (ll)(a); --i)\n#define\
-    \ RREPS4(i, a, b, c) for (ll i = (ll)(b); i > (ll)(a); i -= (ll)(c))\n#define\
-    \ rreps(...) OVERLOAD5(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define\
-    \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
-    \ __VA_ARGS__)\n\n#define all(v) std::begin(v), std::end(v)\n#define rall(v) std::rbegin(v),\
-    \ std::rend(v)\n\n#if __cpp_if_constexpr >= 201606L\n#define IF_CONSTEXPR constexpr\n\
-    #else\n#define IF_CONSTEXPR\n#endif\n\n#define IO_BUFFER_SIZE (1 << 17)\n#line\
-    \ 2 \"template/alias.hpp\"\n\n#line 4 \"template/alias.hpp\"\n\nusing ll = long\
-    \ long;\nusing uint = unsigned int;\nusing ull = unsigned long long;\nusing i128\
-    \ = __int128_t;\nusing u128 = __uint128_t;\nusing ld = long double;\nusing PLL\
-    \ = std::pair<ll, ll>;\ntemplate<class T>\nusing prique = std::priority_queue<T,\
-    \ std::vector<T>, std::greater<T>>;\n\ntemplate<class T> struct infinity {\n \
-    \   static constexpr T value = std::numeric_limits<T>::max() / 2;\n    static\
-    \ constexpr T mvalue = std::numeric_limits<T>::lowest() / 2;\n    static constexpr\
-    \ T max = std::numeric_limits<T>::max();\n    static constexpr T min = std::numeric_limits<T>::lowest();\n\
-    };\n\n#if __cplusplus <= 201402L\ntemplate<class T> constexpr T infinity<T>::value;\n\
-    template<class T> constexpr T infinity<T>::mvalue;\ntemplate<class T> constexpr\
-    \ T infinity<T>::max;\ntemplate<class T> constexpr T infinity<T>::min;\n#endif\n\
-    \n#if __cpp_variable_templates >= 201304L\ntemplate<class T> constexpr T INF =\
-    \ infinity<T>::value;\n#endif\n\nconstexpr ll inf = infinity<ll>::value;\nconstexpr\
-    \ ld EPS = 1e-8;\nconstexpr ld PI = 3.1415926535897932384626;\n#line 2 \"template/type_traits.hpp\"\
-    \n\n#line 5 \"template/type_traits.hpp\"\n\ntemplate<class T, class... Args> struct\
-    \ function_traits_impl {\n    using result_type = T;\n    template<std::size_t\
-    \ idx>\n    using argument_type =\n        typename std::tuple_element<idx, std::tuple<Args...>>::type;\n\
-    \    using argument_tuple = std::tuple<Args...>;\n    static constexpr std::size_t\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/static_range_sum_with_upper_bound
+    links:
+    - https://judge.yosupo.jp/problem/static_range_sum_with_upper_bound
+  bundledCode: "#line 1 \"test/yosupo/new/static_range_sum_with_upper_bound.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_sum_with_upper_bound\"\
+    \n#line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
+    \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
+    \ __LINE__\n#endif\n\n#define OVERLOAD5(a, b, c, d, e, ...) e\n#define REP1_0(b,\
+    \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
+    \                     \\\n    for (ll REP_COUNTER_##c = 0; REP_COUNTER_##c < (ll)(b);\
+    \ ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define REP2(i,\
+    \ b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i = (ll)(a);\
+    \ i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b);\
+    \ i += (ll)(c))\n#define rep(...) OVERLOAD5(__VA_ARGS__, REP4, REP3, REP2, REP1)(__VA_ARGS__)\n\
+    #define RREP2(i, a) for (ll i = (ll)(a)-1; i >= 0; --i)\n#define RREP3(i, a, b)\
+    \ for (ll i = (ll)(b)-1; i >= (ll)(a); --i)\n#define RREP4(i, a, b, c) for (ll\
+    \ i = (ll)(b)-1; i >= (ll)(a); i -= (ll)(c))\n#define rrep(...) OVERLOAD5(__VA_ARGS__,\
+    \ RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define REPS2(i, b) for (ll i = 1; i <= (ll)(b);\
+    \ ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define\
+    \ REPS4(i, a, b, c) for (ll i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define\
+    \ reps(...) OVERLOAD5(__VA_ARGS__, REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define\
+    \ RREPS2(i, a) for (ll i = (ll)(a); i > 0; --i)\n#define RREPS3(i, a, b) for (ll\
+    \ i = (ll)(b); i > (ll)(a); --i)\n#define RREPS4(i, a, b, c) for (ll i = (ll)(b);\
+    \ i > (ll)(a); i -= (ll)(c))\n#define rreps(...) OVERLOAD5(__VA_ARGS__, RREPS4,\
+    \ RREPS3, RREPS2)(__VA_ARGS__)\n\n#define each_for(...) for (auto&& __VA_ARGS__)\n\
+    #define each_const(...) for (const auto& __VA_ARGS__)\n\n#define all(v) std::begin(v),\
+    \ std::end(v)\n#define rall(v) std::rbegin(v), std::rend(v)\n\n#if __cpp_if_constexpr\
+    \ >= 201606L\n#define IF_CONSTEXPR constexpr\n#else\n#define IF_CONSTEXPR\n#endif\n\
+    \n#define IO_BUFFER_SIZE (1 << 17)\n#line 2 \"template/alias.hpp\"\n\n#line 4\
+    \ \"template/alias.hpp\"\n\nusing ll = long long;\nusing uint = unsigned int;\n\
+    using ull = unsigned long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\
+    using ld = long double;\nusing PLL = std::pair<ll, ll>;\ntemplate<class T>\nusing\
+    \ prique = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\ntemplate<class\
+    \ T> struct infinity {\n    static constexpr T value = std::numeric_limits<T>::max()\
+    \ / 2;\n    static constexpr T mvalue = std::numeric_limits<T>::lowest() / 2;\n\
+    \    static constexpr T max = std::numeric_limits<T>::max();\n    static constexpr\
+    \ T min = std::numeric_limits<T>::lowest();\n};\n\n#if __cplusplus <= 201402L\n\
+    template<class T> constexpr T infinity<T>::value;\ntemplate<class T> constexpr\
+    \ T infinity<T>::mvalue;\ntemplate<class T> constexpr T infinity<T>::max;\ntemplate<class\
+    \ T> constexpr T infinity<T>::min;\n#endif\n\n#if __cpp_variable_templates >=\
+    \ 201304L\ntemplate<class T> constexpr T INF = infinity<T>::value;\n#endif\n\n\
+    constexpr ll inf = infinity<ll>::value;\nconstexpr ld EPS = 1e-8;\nconstexpr ld\
+    \ PI = 3.1415926535897932384626;\n#line 2 \"template/type_traits.hpp\"\n\n#line\
+    \ 5 \"template/type_traits.hpp\"\n\ntemplate<class T, class... Args> struct function_traits_impl\
+    \ {\n    using result_type = T;\n    template<std::size_t idx>\n    using argument_type\
+    \ =\n        typename std::tuple_element<idx, std::tuple<Args...>>::type;\n  \
+    \  using argument_tuple = std::tuple<Args...>;\n    static constexpr std::size_t\
     \ arg_size() { return sizeof...(Args); }\n};\n\ntemplate<class> struct function_traits_helper;\n\
     \ntemplate<class Res, class Tp, class... Args>\nstruct function_traits_helper<Res\
     \ (Tp::*)(Args...)> {\n    using type = function_traits_impl<Res, Args...>;\n\
@@ -462,22 +468,100 @@ data:
     \        return res;\n    }\n    void press(std::vector<T>& vec) const {\n   \
     \     assert(sorted);\n        for (auto&& i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
-    };\n#line 2 \"other/monoid2.hpp\"\n\n#line 2 \"other/monoid.hpp\"\n\n#line 4 \"\
-    other/monoid.hpp\"\n\nnamespace Monoid {\n\ntemplate<class M, class = void>\n\
-    class has_value_type : public std::false_type {};\ntemplate<class M>\nclass has_value_type<M,\
-    \ decltype((void)std::declval<typename M::value_type>())>\n    : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_op : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_op<M, decltype((void)M::op)> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_id : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_id<M, decltype((void)M::id)> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_inv : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_inv<M, decltype((void)M::inv)> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_get_inv : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)> : public\
-    \ std::true_type {};\n\ntemplate<class M, class = void> class has_init : public\
-    \ std::false_type {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init(0,\
-    \ 0))> : public std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op\
-    \ : public std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
+    };\n#line 2 \"data-struct/wavelet/WaveletMatrix.hpp\"\n\n#line 2 \"data-struct/wavelet/FullyIndexableDictionary.hpp\"\
+    \n\n#line 4 \"data-struct/wavelet/FullyIndexableDictionary.hpp\"\n\nclass FullyIndexableDictionary\
+    \ {\nprivate:\n    int n, b;\n    std::vector<unsigned int> bit, sm;\n\npublic:\n\
+    \    FullyIndexableDictionary() = default;\n    FullyIndexableDictionary(int n)\
+    \ : n(n), b((n >> 5) + 1), bit(b), sm(b) {}\n    void set(int i) { bit[i >> 5]\
+    \ |= 1U << (i & 31); }\n    bool get(int i) const { return (bool)((bit[i >> 5]\
+    \ >> (i & 31)) & 1); }\n    bool operator[](int i) const { return get(i); }\n\
+    \    void build() {\n        rep (i, b - 1) sm[i + 1] = sm[i] + popcnt(bit[i]);\n\
+    \    }\n    int rank(int i) const {\n        return sm[i >> 5] + popcnt(bit[i\
+    \ >> 5] & ((1U << (i & 31)) - 1));\n    }\n    int rank(bool x, int i) const {\
+    \ return x ? rank(i) : i - rank(i); }\n    int select(bool x, int i) const {\n\
+    \        int l = 0, r = n;\n        while (r - l > 1) {\n            int m = (l\
+    \ + r) >> 1;\n            if (rank(x, m) <= i) l = m;\n            else r = m;\n\
+    \        }\n        return l;\n    }\n};\n\n/**\n * @brief FullyIndexableDictionary(\u5B8C\
+    \u5099\u8F9E\u66F8)\n * @docs docs/data-struct/wavelet/FullyIndexableDictionary.md\n\
+    \ */\n#line 5 \"data-struct/wavelet/WaveletMatrix.hpp\"\n\ntemplate<class T> class\
+    \ WaveletMatrix {\nprivate:\n    int n, m, h;\n    compressor<T> ps;\n    std::vector<FullyIndexableDictionary>\
+    \ dat;\n    std::vector<int> mid, start;\n\npublic:\n    WaveletMatrix() = default;\n\
+    \    WaveletMatrix(const std::vector<T>& v) { init(v); }\n    void init(std::vector<T>\
+    \ v_) {\n        n = v_.size();\n        ps.push(v_);\n        ps.build();\n \
+    \       m = ps.size();\n        std::vector<int> v = ps.pressed(v_);\n       \
+    \ h = bitop::ceil_log2(m + 1);\n        dat.assign(h, FullyIndexableDictionary(n));\n\
+    \        mid.resize(h);\n        std::vector<int> lv(n), rv(n);\n        rrep\
+    \ (i, h) {\n            int l = 0, r = 0;\n            rep (j, n) {\n        \
+    \        if ((v[j] >> i) & 1) {\n                    dat[i].set(j);\n        \
+    \            rv[r++] = v[j];\n                }\n                else {\n    \
+    \                lv[l++] = v[j];\n                }\n            }\n         \
+    \   dat[i].build();\n            mid[i] = l;\n            v.swap(lv);\n      \
+    \      rep (j, r) v[l + j] = rv[j];\n        }\n        start.resize(m);\n   \
+    \     rep (i, n) {\n            if (i == 0 || v[i - 1] != v[i]) start[v[i]] =\
+    \ i;\n        }\n    }\n    T access(int k) const {\n        assert(0 <= k &&\
+    \ k < n);\n        int res = 0;\n        rrep (i, h) {\n            if (dat[i][k])\
+    \ {\n                res |= (1ull << i);\n                k = dat[i].rank(true,\
+    \ k) + mid[i];\n            }\n            else {\n                k = dat[i].rank(false,\
+    \ k);\n            }\n        }\n        return ps[res];\n    }\n    T operator[](int\
+    \ k) const { return access(k); }\n    int rank(int k, const T& x) const {\n  \
+    \      assert(0 <= k && k <= n);\n        int v = ps.lower_bound(x);\n       \
+    \ if (v == ps.size() || ps[v] != x) return 0;\n        rrep (i, h) {\n       \
+    \     if ((v >> i) & 1) k = dat[i].rank(true, k) + mid[i];\n            else k\
+    \ = dat[i].rank(false, k);\n        }\n        return k - start[v];\n    }\n \
+    \   int rank(const T& x) const { return rank(n, x); }\n    int rank(int l, int\
+    \ r, const T& x) const {\n        assert(0 <= l && l <= r && r <= n);\n      \
+    \  int v = ps.lower_bound(x);\n        if (v == ps.size() || ps[v] != x) return\
+    \ 0;\n        rrep (i, h) {\n            if ((v >> i) & 1) {\n               \
+    \ l = dat[i].rank(true, l) + mid[i];\n                r = dat[i].rank(true, r)\
+    \ + mid[i];\n            }\n            else {\n                l = dat[i].rank(false,\
+    \ l);\n                r = dat[i].rank(false, r);\n            }\n        }\n\
+    \        return r - l;\n    }\n    int select(const T& x, int k) const {\n   \
+    \     assert(0 <= k && k < rank(x));\n        int v = ps.get(x);\n        k +=\
+    \ start[v];\n        rep (i, h) {\n            if (mid[i] <= k) k = dat[i].select(true,\
+    \ k - mid[i]);\n            else k = dat[i].select(false, k);\n        }\n   \
+    \     return k;\n    }\n    T kth_smallest(int l, int r, int k) const {\n    \
+    \    assert(0 <= l && l <= r && r <= n);\n        assert(0 <= k && k < r - l);\n\
+    \        int res = 0;\n        rrep (i, h) {\n            int cnt = dat[i].rank(false,\
+    \ r) - dat[i].rank(false, l);\n            if (cnt <= k) {\n                res\
+    \ |= (1ull << i);\n                l = dat[i].rank(true, l) + mid[i];\n      \
+    \          r = dat[i].rank(true, r) + mid[i];\n                k -= cnt;\n   \
+    \         }\n            else {\n                l = dat[i].rank(false, l);\n\
+    \                r = dat[i].rank(false, r);\n            }\n        }\n      \
+    \  return ps[res];\n    }\n    T kth_largest(int l, int r, int k) const {\n  \
+    \      return kth_smallest(l, r, r - l - 1 - k);\n    }\n    int range_freq(int\
+    \ l, int r, const T& upper) const {\n        assert(0 <= l && l <= r && r <= n);\n\
+    \        int v = ps.lower_bound(upper);\n        int res = 0;\n        rrep (i,\
+    \ h) {\n            if ((v >> i) & 1) {\n                const int a = dat[i].rank(true,\
+    \ l);\n                const int b = dat[i].rank(true, r);\n                res\
+    \ += (r - l) - (b - a);\n                l = a + mid[i];\n                r =\
+    \ b + mid[i];\n            }\n            else {\n                l = dat[i].rank(false,\
+    \ l);\n                r = dat[i].rank(false, r);\n            }\n        }\n\
+    \        return res;\n    }\n    int range_freq(int l, int r, const T& lower,\
+    \ const T& upper) const {\n        return range_freq(l, r, upper) - range_freq(l,\
+    \ r, lower);\n    }\n    // max v[i] s.t. (l <= i < r) && (v[i] < upper)\n   \
+    \ T prev_value(int l, int r, const T& upper) const {\n        int cnt = range_freq(l,\
+    \ r, upper);\n        if (cnt == 0) return infinity<T>::mvalue;\n        return\
+    \ kth_smallest(l, r, cnt - 1);\n    }\n    // min v[i] s.t. (l <= i < r) && (lower\
+    \ <= v[i])\n    T next_value(int l, int r, const T& lower) const {\n        int\
+    \ cnt = range_freq(l, r, lower);\n        if (cnt == r - l) return infinity<T>::value;\n\
+    \        return kth_smallest(l, r, cnt);\n    }\n};\n\n/**\n * @brief WaveletMatrix\n\
+    \ * @docs docs/data-struct/wavelet/WaveletMatrix.md\n */\n#line 2 \"data-struct/wavelet/CumulativeSumWM.hpp\"\
+    \n\n#line 2 \"other/monoid.hpp\"\n\n#line 4 \"other/monoid.hpp\"\n\nnamespace\
+    \ Monoid {\n\ntemplate<class M, class = void>\nclass has_value_type : public std::false_type\
+    \ {};\ntemplate<class M>\nclass has_value_type<M, decltype((void)std::declval<typename\
+    \ M::value_type>())>\n    : public std::true_type {};\n\ntemplate<class M, class\
+    \ = void> class has_op : public std::false_type {};\ntemplate<class M>\nclass\
+    \ has_op<M, decltype((void)M::op)> : public std::true_type {};\n\ntemplate<class\
+    \ M, class = void> class has_id : public std::false_type {};\ntemplate<class M>\n\
+    class has_id<M, decltype((void)M::id)> : public std::true_type {};\n\ntemplate<class\
+    \ M, class = void> class has_inv : public std::false_type {};\ntemplate<class\
+    \ M>\nclass has_inv<M, decltype((void)M::inv)> : public std::true_type {};\n\n\
+    template<class M, class = void> class has_get_inv : public std::false_type {};\n\
+    template<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)> : public std::true_type\
+    \ {};\n\ntemplate<class M, class = void> class has_init : public std::false_type\
+    \ {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init(0, 0))> : public\
+    \ std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op : public\
+    \ std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
     \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_semigroup\
     \ : public std::false_type {};\ntemplate<class T>\nclass is_semigroup<T, decltype(std::declval<typename\
     \ T::value_type>(),\n                               (void)T::op)> : public std::true_type\
@@ -552,168 +636,87 @@ data:
     \ not defined\");\n        return M::get_inv(a);\n    }\n};\n\ntemplate<class\
     \ E_> struct MakeAction {\n    using M = E_;\n    using E = E_;\n    using T =\
     \ typename E_::value_type;\n    static T op(const T& a, const T& b) { return E_::op(b,\
-    \ a); }\n};\n\n} // namespace Monoid\n#line 5 \"other/monoid2.hpp\"\n\nnamespace\
-    \ Monoid {\n\ntemplate<class T> struct Product {\n    using value_type = T;\n\
-    \    static T op(const T& a, const T& b) { return a * b; }\n    static T id()\
-    \ { return T{1}; }\n    static T inv(const T& a, const T& b) { return a / b; }\n\
-    \    static T get_inv(const T& a) { return T{1} / a; }\n};\n\ntemplate<class T>\
-    \ struct Composite {\n    using value_type = std::pair<T, T>;\n    static value_type\
-    \ op(const value_type& a, const value_type& b) {\n        return {b.first * a.first,\
-    \ b.first * a.second + b.second};\n    }\n    static value_type id() { return\
-    \ {T{1}, T{0}}; }\n    static value_type get_inv(const value_type& a) {\n    \
-    \    return {T{1} / a.first, -a.second / a.first};\n    }\n    static value_type\
-    \ inv(const value_type& a, const value_type& b) {\n        return op(a, get_inv(b));\n\
-    \    }\n};\n\ntemplate<class T> struct GCD {\n    using value_type = T;\n    static\
-    \ T op(T a, T b) { return gcd(a, b); }\n    static T id() { return 0; }\n};\n\
-    template<class T> struct LCM {\n    using value_type = T;\n    static T op(T a,\
-    \ T b) { return lcm(a, b); }\n    static T id() { return 1; }\n};\n\ntemplate<class\
-    \ T> struct AddAssign {\n    using value_type = std::pair<bool, T>; // false:\
-    \ add, true: assign\n    static value_type op(const value_type& a, const value_type&\
-    \ b) {\n        if (b.first) return b;\n        return {a.first, a.second + b.second};\n\
-    \    }\n    static value_type id() { return {false, T{0}}; }\n};\n\ntemplate<class\
-    \ T, T max_value = infinity<T>::max> struct MinCount {\n    using value_type =\
-    \ std::pair<T, ll>;\n    static value_type op(const value_type& a, const value_type&\
-    \ b) {\n        if (a.first < b.first) return a;\n        if (a.first > b.first)\
-    \ return b;\n        return {a.first, a.second + b.second};\n    }\n    static\
-    \ value_type id() { return {max_value, 0}; }\n};\n\n\ntemplate<class T> struct\
-    \ AffineSum {\n    using M = Sum<T>;\n    using E = Composite<T>;\n    using U\
-    \ = typename E::value_type;\n    static T mul_op(const U& a, int b, const T& c)\
-    \ {\n        return a.first * c + a.second * b;\n    }\n};\n\ntemplate<class T>\
-    \ struct AddAssignSum {\n    using M = Sum<T>;\n    using E = AddAssign<T>;\n\
-    \    using U = typename E::value_type;\n    static T mul_op(const U& a, int b,\
-    \ const T& c) {\n        if (a.first) return a.second * b;\n        return c +\
-    \ a.second * b;\n    }\n};\n\ntemplate<class T> struct AddMinCount {\n    using\
-    \ M = MinCount<T>;\n    using E = Sum<T>;\n    using U = typename M::value_type;\n\
-    \    static U op(const T& a, const U& b) { return {a + b.first, b.second}; }\n\
-    };\n\n} // namespace Monoid\n#line 2 \"math/num/KthRoot.hpp\"\n\n#line 4 \"math/num/KthRoot.hpp\"\
-    \n\null kth_root(ull n, ull k) {\n    if (n <= 1 || k == 1) return n;\n    if\
-    \ (k >= 65) return 1;\n    auto is_over = [&](ull x) -> bool {\n        u128 res\
-    \ = 1, a = x;\n        for (int b = k; b; b >>= 1, a *= a) {\n            if (b\
-    \ & 1) res *= a;\n        }\n        return res > n;\n    };\n    ll res = pow(n,\
-    \ 1.0 / k);\n    while (!is_over(res + 1)) ++res;\n    while (is_over(res)) --res;\n\
-    \    return res;\n}\n\n/**\n * @brief KthRoot(k\u4E57\u6839)\n * @docs docs/math/num/KthRoot.md\n\
-    \ */\n#line 2 \"math/BarrettReduction.hpp\"\n\n#line 4 \"math/BarrettReduction.hpp\"\
-    \n\nclass BarrettReduction {\nprivate:\n    unsigned int m;\n    unsigned long\
-    \ long im;\n\npublic:\n    BarrettReduction(unsigned int m_)\n        : m(m_),\
-    \ im((unsigned long long)(-1) / m + 1) {}\n\n    inline void set_mod(unsigned\
-    \ int m_) {\n        m = m_;\n        im = (unsigned long long)(-1) / m + 1;\n\
-    \    }\n\n    inline unsigned int get_mod() const { return m; }\n\n    unsigned\
-    \ int reduce(ull a) const {\n        ull x = static_cast<ull>((static_cast<u128>(a)\
-    \ * im) >> 64);\n        unsigned int v = static_cast<unsigned int>(a - x * static_cast<ull>(m));\n\
-    \        return v >= m ? v + m : v;\n    }\n\n    unsigned int rem(ull a) const\
-    \ { return reduce(a); }\n\n    ull quo(ull a) const {\n        ull x = static_cast<ull>((static_cast<u128>(a)\
-    \ * im) >> 64);\n        unsigned int v = static_cast<unsigned int>(a - x * static_cast<ull>(m));\n\
-    \        return v >= m ? x - 1 : x;\n    }\n\n    unsigned int mul(unsigned int\
-    \ a, unsigned int b) const {\n        return reduce(static_cast<ull>(a) * b);\n\
-    \    }\n};\n\n\ntemplate<int id> class BarrettModInt {\nprivate:\n    unsigned\
-    \ int val;\n\n    static BarrettReduction bar;\n\npublic:\n    BarrettModInt()\
-    \ : val(0) {}\n    template<class U, typename std::enable_if<\n              \
-    \            std::is_integral<U>::value>::type* = nullptr>\n    BarrettModInt(U\
-    \ x) {\n        long long v = (long long)(x % (long long)bar.get_mod());\n   \
-    \     if (v < 0) v += bar.get_mod();\n        val = (unsigned int)v;\n    }\n\n\
-    \    unsigned int get() const { return val; }\n    static unsigned int get_mod()\
-    \ { return bar.get_mod(); }\n\n    static void set_mod(unsigned int v) { bar.set_mod(v);\
-    \ }\n\n    BarrettModInt operator+() const { return *this; }\n    BarrettModInt\
-    \ operator-() const {\n        BarrettModInt res;\n        if (val) res.val =\
-    \ bar.get_mod() - val;\n        return res;\n    }\n    BarrettModInt& operator++()\
-    \ {\n        ++val;\n        if (val == bar.get_mod()) val = 0;\n        return\
-    \ *this;\n    }\n    BarrettModInt& operator--() {\n        if (val == 0) val\
-    \ = bar.get_mod();\n        --val;\n        return *this;\n    }\n    BarrettModInt\
-    \ operator++(int) {\n        BarrettModInt res = *this;\n        ++*this;\n  \
-    \      return res;\n    }\n    BarrettModInt operator--(int) {\n        BarrettModInt\
-    \ res = *this;\n        --*this;\n        return res;\n    }\n\n    BarrettModInt&\
-    \ operator+=(const BarrettModInt& rhs) {\n        val += rhs.val;\n        if\
-    \ (val >= bar.get_mod()) val -= bar.get_mod();\n        return *this;\n    }\n\
-    \    BarrettModInt& operator-=(const BarrettModInt& rhs) {\n        if (val <\
-    \ rhs.val) val += bar.get_mod();\n        val -= rhs.val;\n        return *this;\n\
-    \    }\n    BarrettModInt& operator*=(const BarrettModInt& rhs) {\n        val\
-    \ = bar.mul(val, rhs.val);\n        return *this;\n    }\n\n    BarrettModInt\
-    \ pow(ull n) const {\n        BarrettModInt res = 1, x = *this;\n        while\
-    \ (n) {\n            if (n & 1) res *= x;\n            x *= x;\n            n\
-    \ >>= 1;\n        }\n        return res;\n    }\n\n    BarrettModInt inv() const\
-    \ { return mod_inv(val, bar.get_mod()); }\n\n    BarrettModInt& operator/=(const\
-    \ BarrettModInt& rhs) {\n        return *this *= rhs.inv();\n    }\n\n    friend\
-    \ BarrettModInt operator+(const BarrettModInt& lhs,\n                        \
-    \           const BarrettModInt& rhs) {\n        return BarrettModInt(lhs) +=\
-    \ rhs;\n    }\n    friend BarrettModInt operator-(const BarrettModInt& lhs,\n\
-    \                                   const BarrettModInt& rhs) {\n        return\
-    \ BarrettModInt(lhs) -= rhs;\n    }\n    friend BarrettModInt operator*(const\
-    \ BarrettModInt& lhs,\n                                   const BarrettModInt&\
-    \ rhs) {\n        return BarrettModInt(lhs) *= rhs;\n    }\n    friend BarrettModInt\
-    \ operator/(const BarrettModInt& lhs,\n                                   const\
-    \ BarrettModInt& rhs) {\n        return BarrettModInt(lhs) /= rhs;\n    }\n\n\
-    \    friend bool operator==(const BarrettModInt& lhs, const BarrettModInt& rhs)\
-    \ {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
-    \ BarrettModInt& lhs, const BarrettModInt& rhs) {\n        return lhs.val != rhs.val;\n\
-    \    }\n\n    template<class Pr> void print(Pr& a) const { a.print(bar.reduce(val));\
-    \ }\n    template<class Pr> void debug(Pr& a) const { a.print(bar.reduce(val));\
-    \ }\n    template<class Sc> void scan(Sc& a) {\n        ll v;\n        a.scan(v);\n\
-    \        *this = v;\n    }\n};\n\ntemplate<int id>\nBarrettReduction BarrettModInt<id>::bar\
-    \ = BarrettReduction(998244353);\n\nusing bmodint = BarrettModInt<-1>;\n#line\
-    \ 7 \"math/DiscreteLogarithm.hpp\"\n\ntemplate<class A,\n         class Container\
-    \ = std::unordered_map<typename A::M::value_type, ll>>\nll baby_step_giant_step(const\
-    \ typename A::M::value_type& a,\n                        const typename A::M::value_type&\
-    \ b,\n                        const typename A::E::value_type& f, ll MAX) {\n\
-    \    using T = typename A::M::value_type;\n    using U = typename A::E::value_type;\n\
-    \    ll s = kth_root(MAX, 2) + 1;\n    Container mp;\n    {\n        const U g\
-    \ = A::E::get_inv(f);\n        T x = b;\n        rep (i, s) {\n            if\
-    \ (mp.count(x) == 0) mp[x] = i;\n            x = A::op(g, x);\n        }\n   \
-    \ }\n    {\n        U g = A::E::id();\n        rep (s) g = A::E::op(g, f);\n \
-    \       T x = a;\n        rep (i, s) {\n            if (mp.count(x)) return i\
-    \ * s + mp[x];\n            x = A::op(g, x);\n        }\n    }\n    return -1;\n\
-    }\n\nnamespace Monoid {\n\ntemplate<class T> struct ProductAction {\n    using\
-    \ M = Product<T>;\n    using E = Product<T>;\n    static T op(T a, T b) { return\
-    \ a * b; }\n};\n\n} // namespace Monoid\n\ntemplate<class T> struct hash_mint_for_discrete_logarithm\
-    \ {\n    std::size_t operator()(const T& x) const {\n        return std::hash<unsigned\
-    \ int>()(x.get());\n    }\n};\n\n// min k (a*x^k=b)\ntemplate<class T> ll discrete_logarithm_mint(T\
-    \ a, T x, T b) {\n    return baby_step_giant_step<\n        Monoid::ProductAction<T>,\n\
-    \        std::unordered_map<T, ll, hash_mint_for_discrete_logarithm<T>>>(\n  \
-    \      a, b, x, T::get_mod());\n}\n\ntemplate<class T> ll discrete_logarithm_mint(T\
-    \ x, T b) {\n    return discrete_logarithm_mint<T>(T{1}, x, b);\n}\n\n// min k\
-    \ (a*x^k = b (mod m))\nll discrete_logarithm(ll a, ll x, ll b, ll m) {\n    if\
-    \ (a == b) return 0;\n\n    ll g = 1, tmp = x;\n    int cnt = 0;\n    ll cur =\
-    \ a;\n    while ((tmp = gcd(tmp, m / g)) != 1) {\n        g *= tmp;\n        ++cnt;\n\
-    \        (cur *= x) %= m;\n        if (cur == b) return cnt;\n    }\n    if (g\
-    \ != 1) {\n        if (b % g != 0) return -1;\n        b /= g;\n        cur /=\
-    \ g;\n        m /= g;\n    }\n\n    using mint = bmodint;\n    mint::set_mod(m);\n\
-    \n    const ll ans = discrete_logarithm_mint<mint>(mint{cur}, mint{x}, mint{b});\n\
-    \    if (ans == -1) return -1;\n    return ans + cnt;\n}\n\nll discrete_logarithm(ll\
-    \ x, ll b, ll m) {\n    return discrete_logarithm(m == 1 ? 0 : 1, x, b, m);\n\
-    }\n\n/**\n * @brief Discrete Logarithm(\u96E2\u6563\u5BFE\u6570)\n * @docs docs/math/DiscreteLogarithm.md\n\
-    \ */\n"
-  code: "#pragma once\n\n#include \"../other/template.hpp\"\n#include \"../other/monoid2.hpp\"\
-    \n#include \"num/KthRoot.hpp\"\n#include \"BarrettReduction.hpp\"\n\ntemplate<class\
-    \ A,\n         class Container = std::unordered_map<typename A::M::value_type,\
-    \ ll>>\nll baby_step_giant_step(const typename A::M::value_type& a,\n        \
-    \                const typename A::M::value_type& b,\n                       \
-    \ const typename A::E::value_type& f, ll MAX) {\n    using T = typename A::M::value_type;\n\
-    \    using U = typename A::E::value_type;\n    ll s = kth_root(MAX, 2) + 1;\n\
-    \    Container mp;\n    {\n        const U g = A::E::get_inv(f);\n        T x\
-    \ = b;\n        rep (i, s) {\n            if (mp.count(x) == 0) mp[x] = i;\n \
-    \           x = A::op(g, x);\n        }\n    }\n    {\n        U g = A::E::id();\n\
-    \        rep (s) g = A::E::op(g, f);\n        T x = a;\n        rep (i, s) {\n\
-    \            if (mp.count(x)) return i * s + mp[x];\n            x = A::op(g,\
-    \ x);\n        }\n    }\n    return -1;\n}\n\nnamespace Monoid {\n\ntemplate<class\
-    \ T> struct ProductAction {\n    using M = Product<T>;\n    using E = Product<T>;\n\
-    \    static T op(T a, T b) { return a * b; }\n};\n\n} // namespace Monoid\n\n\
-    template<class T> struct hash_mint_for_discrete_logarithm {\n    std::size_t operator()(const\
-    \ T& x) const {\n        return std::hash<unsigned int>()(x.get());\n    }\n};\n\
-    \n// min k (a*x^k=b)\ntemplate<class T> ll discrete_logarithm_mint(T a, T x, T\
-    \ b) {\n    return baby_step_giant_step<\n        Monoid::ProductAction<T>,\n\
-    \        std::unordered_map<T, ll, hash_mint_for_discrete_logarithm<T>>>(\n  \
-    \      a, b, x, T::get_mod());\n}\n\ntemplate<class T> ll discrete_logarithm_mint(T\
-    \ x, T b) {\n    return discrete_logarithm_mint<T>(T{1}, x, b);\n}\n\n// min k\
-    \ (a*x^k = b (mod m))\nll discrete_logarithm(ll a, ll x, ll b, ll m) {\n    if\
-    \ (a == b) return 0;\n\n    ll g = 1, tmp = x;\n    int cnt = 0;\n    ll cur =\
-    \ a;\n    while ((tmp = gcd(tmp, m / g)) != 1) {\n        g *= tmp;\n        ++cnt;\n\
-    \        (cur *= x) %= m;\n        if (cur == b) return cnt;\n    }\n    if (g\
-    \ != 1) {\n        if (b % g != 0) return -1;\n        b /= g;\n        cur /=\
-    \ g;\n        m /= g;\n    }\n\n    using mint = bmodint;\n    mint::set_mod(m);\n\
-    \n    const ll ans = discrete_logarithm_mint<mint>(mint{cur}, mint{x}, mint{b});\n\
-    \    if (ans == -1) return -1;\n    return ans + cnt;\n}\n\nll discrete_logarithm(ll\
-    \ x, ll b, ll m) {\n    return discrete_logarithm(m == 1 ? 0 : 1, x, b, m);\n\
-    }\n\n/**\n * @brief Discrete Logarithm(\u96E2\u6563\u5BFE\u6570)\n * @docs docs/math/DiscreteLogarithm.md\n\
-    \ */\n"
+    \ a); }\n};\n\n} // namespace Monoid\n#line 2 \"data-struct/wavelet/WaveletMatrixStruct.hpp\"\
+    \n\n#line 6 \"data-struct/wavelet/WaveletMatrixStruct.hpp\"\n\nclass WaveletMatrixStruct\
+    \ {\nprivate:\n    int n, m, h;\n    compressor<PLL> points;\n    compressor<ll>\
+    \ ps;\n    std::vector<FullyIndexableDictionary> dat;\n    std::vector<int> mid;\n\
+    \npublic:\n    template<class F>\n    void init(F&& f, const std::vector<ll>&\
+    \ xs, const std::vector<ll>& ys) {\n        rep (i, xs.size()) points.emplace_back(xs[i],\
+    \ ys[i]);\n        points.build();\n        ps.push(ys);\n        ps.build();\n\
+    \        n = points.size();\n        m = ps.size();\n        h = bitop::ceil_log2(m\
+    \ + 1);\n        std::vector<int> v(n);\n        rep (i, n) v[i] = ps.get(points[i].second);\n\
+    \        dat.assign(h, FullyIndexableDictionary(n));\n        mid.resize(h);\n\
+    \        std::vector<int> lv(n), rv(n);\n        rrep (i, h) {\n            int\
+    \ l = 0, r = 0;\n            rep (j, n) {\n                if ((v[j] >> i) & 1)\
+    \ {\n                    dat[i].set(j);\n                    rv[r++] = v[j];\n\
+    \                }\n                else {\n                    lv[l++] = v[j];\n\
+    \                }\n            }\n            dat[i].build();\n            mid[i]\
+    \ = l;\n            v.swap(lv);\n            rep (j, r) v[l + j] = rv[j];\n  \
+    \      }\n        f(h, n);\n    }\n    template<class F, class M>\n    void init(F&&\
+    \ f, const std::vector<ll>& xs, const std::vector<ll>& ys,\n              const\
+    \ std::vector<typename M::value_type>& zs) {\n        using T = typename M::value_type;\n\
+    \        init([](int, int) {}, xs, ys);\n        std::vector<std::vector<T>> v(h,\
+    \ std::vector<T>(n, M::id()));\n        rep (i, xs.size()) {\n            apply(xs[i],\
+    \ ys[i],\n                  [&](int j, int k) { v[j][k] = M::op(v[j][k], zs[i]);\
+    \ });\n        }\n        f(v);\n    }\n    template<class Upd> void apply(ll\
+    \ x, ll y, Upd&& upd) {\n        int k = points.get(PLL{x, y});\n        int v\
+    \ = ps.get(y);\n        rrep (i, h) {\n            if ((v >> i) & 1) k = dat[i].rank(true,\
+    \ k) + mid[i];\n            else k = dat[i].rank(false, k);\n            upd(i,\
+    \ k);\n        }\n    }\n\nprivate:\n    template<class Mrg> void prod(int l,\
+    \ int r, int upper, Mrg&& mrg) const {\n        rrep (i, h) {\n            const\
+    \ int l0 = dat[i].rank(false, l);\n            const int r0 = dat[i].rank(false,\
+    \ r);\n            if ((upper >> i) & 1) {\n                mrg(i, l0, r0);\n\
+    \                l = l - l0 + mid[i];\n                r = r - r0 + mid[i];\n\
+    \            }\n            else {\n                l = l0;\n                r\
+    \ = r0;\n            }\n        }\n    }\n\npublic:\n    template<class Mrg, class\
+    \ Mrg2>\n    void prod(ll xl, ll xr, ll yl, ll yr, Mrg&& mrg, Mrg2&& mrg2) const\
+    \ {\n        int l = points.lower_bound(PLL{xl, infinity<ll>::mvalue});\n    \
+    \    int r = points.lower_bound(PLL{xr, infinity<ll>::mvalue});\n        int y\
+    \ = ps.lower_bound(yl);\n        int z = ps.lower_bound(yr);\n        prod(l,\
+    \ r, z, mrg);\n        prod(l, r, y, mrg2);\n    }\n};\n#line 2 \"data-struct/segment/CumulativeSum.hpp\"\
+    \n\n#line 5 \"data-struct/segment/CumulativeSum.hpp\"\n\ntemplate<class M, bool\
+    \ = Monoid::is_monoid<M>::value> class CumulativeSum {\nprivate:\n    using T\
+    \ = typename M::value_type;\n    int n;\n    std::vector<T> data;\n\npublic:\n\
+    \    CumulativeSum() = default;\n    CumulativeSum(const std::vector<T>& v) {\
+    \ init(v); }\n    void init(const std::vector<T>& v) {\n        n = v.size();\n\
+    \        data.assign(n + 1, M::id());\n        rep (i, n) data[i + 1] = M::op(data[i],\
+    \ v[i]);\n    }\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<Monoid::has_inv<M>::value\
+    \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
+    \ T prod(int l, int r) const {\n        assert(0 <= l && l <= r && r <= n);\n\
+    \        return M::inv(data[r], data[l]);\n    }\n    const std::vector<T>& get_data()\
+    \ const& { return data; }\n    std::vector<T> get_data() && { return std::move(data);\
+    \ }\n};\n\ntemplate<class T>\nclass CumulativeSum<T, false> : public CumulativeSum<Monoid::Sum<T>>\
+    \ {\nprivate:\n    using Base = CumulativeSum<Monoid::Sum<T>>;\n\npublic:\n  \
+    \  using Base::Base;\n};\n\n/**\n * @brief CumulativeSum(\u7D2F\u7A4D\u548C)\n\
+    \ * @docs docs/data-struct/segment/CumulativeSum.md\n */\n#line 7 \"data-struct/wavelet/CumulativeSumWM.hpp\"\
+    \n\ntemplate<class M> class CumulativeSumWM {\nprivate:\n    using T = typename\
+    \ M::value_type;\n    std::vector<CumulativeSum<M>> seg;\n    WaveletMatrixStruct\
+    \ wms;\n\npublic:\n    CumulativeSumWM(const std::vector<ll>& xs, const std::vector<ll>&\
+    \ ys,\n                    const std::vector<typename M::value_type>& v) {\n \
+    \       auto f = [&](const std::vector<std::vector<T>>& dat) {\n            seg.resize(dat.size());\n\
+    \            rep (i, dat.size()) seg[i] = CumulativeSum<M>(dat[i]);\n        };\n\
+    \        wms.init<decltype((f)), M>(f, xs, ys, v);\n    }\n\n    T prod(ll l,\
+    \ ll r, ll u, ll d) {\n        T res = M::id();\n        wms.prod(\n         \
+    \   l, r, u, d,\n            [&](int k, int a, int b) { res = M::op(res, seg[k].prod(a,\
+    \ b)); },\n            [&](int k, int a, int b) { res = M::inv(res, seg[k].prod(a,\
+    \ b)); });\n        return res;\n    }\n};\n\n/**\n * @brief WaveletMatrixPointAddRectangleSum.hpp\n\
+    \ * @docs docs/data-struct/wavelet/WaveletMatrixPointAddRectangleSum.md\n */\n\
+    #line 5 \"test/yosupo/new/static_range_sum_with_upper_bound.test.cpp\"\nusing\
+    \ namespace std;\nint main() {\n    int N, Q; scan >> N >> Q;\n    vector<ll>\
+    \ A(N); scan >> A;\n    WaveletMatrix<ll> wm(A);\n    CumulativeSumWM<Monoid::Sum<ll>>\
+    \ seg([&] {\n        vector<ll> A(N); iota(all(A), 0);\n        return A;\n  \
+    \  }(), A, A);\n    rep (Q) {\n        int l, r; scan >> l >> r;\n        ll x;\
+    \ scan >> x;\n        prints(wm.range_freq(l, r, x + 1), seg.prod(l, r, 0, x +\
+    \ 1));\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_sum_with_upper_bound\"\
+    \n#include \"../../../other/template.hpp\"\n#include \"../../../data-struct/wavelet/WaveletMatrix.hpp\"\
+    \n#include \"../../../data-struct/wavelet/CumulativeSumWM.hpp\"\nusing namespace\
+    \ std;\nint main() {\n    int N, Q; scan >> N >> Q;\n    vector<ll> A(N); scan\
+    \ >> A;\n    WaveletMatrix<ll> wm(A);\n    CumulativeSumWM<Monoid::Sum<ll>> seg([&]\
+    \ {\n        vector<ll> A(N); iota(all(A), 0);\n        return A;\n    }(), A,\
+    \ A);\n    rep (Q) {\n        int l, r; scan >> l >> r;\n        ll x; scan >>\
+    \ x;\n        prints(wm.range_freq(l, r, x + 1), seg.prod(l, r, 0, x + 1));\n\
+    \    }\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -724,28 +727,22 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  - other/monoid2.hpp
+  - data-struct/wavelet/WaveletMatrix.hpp
+  - data-struct/wavelet/FullyIndexableDictionary.hpp
+  - data-struct/wavelet/CumulativeSumWM.hpp
   - other/monoid.hpp
-  - math/num/KthRoot.hpp
-  - math/BarrettReduction.hpp
-  isVerificationFile: false
-  path: math/DiscreteLogarithm.hpp
+  - data-struct/wavelet/WaveletMatrixStruct.hpp
+  - data-struct/segment/CumulativeSum.hpp
+  isVerificationFile: true
+  path: test/yosupo/new/static_range_sum_with_upper_bound.test.cpp
   requiredBy: []
-  timestamp: '2026-09-12 01:05:48+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/yosupo/number_theory/discrete_logarithm_mod.test.cpp
-documentation_of: math/DiscreteLogarithm.hpp
+  timestamp: '2026-09-14 19:47:02+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
+  verifiedWith: []
+documentation_of: test/yosupo/new/static_range_sum_with_upper_bound.test.cpp
 layout: document
 redirect_from:
-- /library/math/DiscreteLogarithm.hpp
-- /library/math/DiscreteLogarithm.hpp.html
-title: "Discrete Logarithm(\u96E2\u6563\u5BFE\u6570)"
+- /verify/test/yosupo/new/static_range_sum_with_upper_bound.test.cpp
+- /verify/test/yosupo/new/static_range_sum_with_upper_bound.test.cpp.html
+title: test/yosupo/new/static_range_sum_with_upper_bound.test.cpp
 ---
-## 概要
-
-$x, b, m$ が与えられたとき、 $x^k \equiv b \pmod m$ なる最小の非負整数 $k$ を求める。
-
-- `ll baby_step_giant_step(T a, T b, U f, ll MAX)` : $f$ がたかだか $MAX$ の周期を持つとき、 $f^k(a)=b$ なる最小の非負整数 $k$ を返す。存在しない場合は $-1$ 。 $\Theta(\sqrt{MAX})$ 。
-- `ll discrete_logarithm(ll a, ll x, ll b, ll m)` : $a \times x^k \equiv b \pmod m$ なる最小の非負整数 $k$ を返す。存在しない場合は $-1$ 。 $\Theta(\sqrt{m})$ 。
-- `ll discrete_logarithm(ll x, ll b, ll m)` : $a=1$ の場合。離散対数。 $\Theta(\sqrt{m})$ 。

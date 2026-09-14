@@ -32,11 +32,11 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/other/BipartiteEdgeColoring.hpp
     title: graph/other/BipartiteEdgeColoring.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/bipartite_edge_coloring.test.cpp
     title: test/yosupo/graph/bipartite_edge_coloring.test.cpp
   - icon: ':x:'
@@ -47,7 +47,7 @@ data:
     title: test/yosupo/graph/eulerian_trail_undirected.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/graph/other/EulerianTrail.md
     document_title: EulerianTrail
@@ -583,7 +583,7 @@ data:
   requiredBy:
   - graph/other/BipartiteEdgeColoring.hpp
   timestamp: '2026-09-12 01:05:48+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/graph/bipartite_edge_coloring.test.cpp
   - test/yosupo/graph/eulerian_trail_undirected.test.cpp

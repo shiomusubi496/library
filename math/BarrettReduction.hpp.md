@@ -29,7 +29,7 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/ArbitraryModCombinatorics.hpp
     title: "ArbitraryModCombinatorics(\u4EFB\u610FmodCombination)"
   - icon: ':x:'
@@ -39,10 +39,10 @@ data:
     path: math/SmallModStirlingNumber.hpp
     title: SmallModStirlingNumber
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/enumerative_combinatorics/binomial_coefficient.test.cpp
     title: test/yosupo/enumerative_combinatorics/binomial_coefficient.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/enumerative_combinatorics/binomial_coefficient_prime_mod.test.cpp
     title: test/yosupo/enumerative_combinatorics/binomial_coefficient_prime_mod.test.cpp
   - icon: ':x:'
@@ -53,7 +53,7 @@ data:
     title: test/yosupo/number_theory/discrete_logarithm_mod.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/BarrettReduction.hpp\"\n\n#line 2 \"other/template.hpp\"\
@@ -598,7 +598,7 @@ data:
   - math/DiscreteLogarithm.hpp
   - math/ArbitraryModCombinatorics.hpp
   timestamp: '2026-09-12 01:05:48+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/enumerative_combinatorics/binomial_coefficient.test.cpp
   - test/yosupo/enumerative_combinatorics/binomial_coefficient_prime_mod.test.cpp

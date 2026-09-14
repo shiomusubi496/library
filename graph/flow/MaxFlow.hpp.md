@@ -36,7 +36,7 @@ data:
     path: graph/flow/ProjectSelectionProblem.hpp
     title: "ProjectSelectionProblem(\u71C3\u3084\u3059\u57CB\u3081\u308B)"
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/bipartitematching.test.cpp
     title: test/yosupo/graph/bipartitematching.test.cpp
   - icon: ':x:'
@@ -47,7 +47,7 @@ data:
     title: test/yuki/2713-PSP.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/graph/flow/MaxFlow.md
     document_title: "MaxFlow(\u6700\u5927\u6D41)"
@@ -568,7 +568,7 @@ data:
   - graph/flow/ProjectSelectionProblem.hpp
   - graph/flow/KProjectSelectionProblem.hpp
   timestamp: '2026-09-12 01:05:48+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/graph/bipartitematching.test.cpp
   - test/yuki/2713-PSP.test.cpp
