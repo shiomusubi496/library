@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/BarrettReduction.hpp
     title: math/BarrettReduction.hpp
   - icon: ':question:'
@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/matrix/Determinant.hpp
     title: "Determinant(\u884C\u5217\u5F0F)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix/Matrix.hpp
     title: "Matrix(\u884C\u5217)"
   - icon: ':question:'

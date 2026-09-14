@@ -41,7 +41,7 @@ data:
   - icon: ':question:'
     path: data-struct/segment/RAQBIT.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/wavelet/CumulativeSumWM.hpp
     title: WaveletMatrixPointAddRectangleSum.hpp
   _extendedVerifiedWith:
@@ -57,7 +57,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
     title: test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/static_range_sum_with_upper_bound.test.cpp
     title: test/yosupo/new/static_range_sum_with_upper_bound.test.cpp
   - icon: ':x:'

@@ -30,12 +30,12 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/counting_primes.test.cpp
     title: test/yosupo/number_theory/counting_primes.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/num/LucyDP.hpp\"\n\n#line 2 \"other/template.hpp\"\n\
@@ -482,7 +482,7 @@ data:
   path: math/num/LucyDP.hpp
   requiredBy: []
   timestamp: '2026-09-12 14:55:19+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/number_theory/counting_primes.test.cpp
 documentation_of: math/num/LucyDP.hpp

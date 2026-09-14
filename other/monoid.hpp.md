@@ -50,9 +50,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/bst/SplayTree.hpp
     title: data-struct/bst/SplayTree.hpp
-  - icon: ':warning:'
-    path: data-struct/heap/LeftistHeap.hpp
-    title: LeftistHeap
   - icon: ':heavy_check_mark:'
     path: data-struct/heap/SkewHeap.hpp
     title: SkewHeap
@@ -87,7 +84,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/LCARMQ.hpp
     title: LCARMQ
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/LazySegmentTree.hpp
     title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':heavy_check_mark:'
@@ -130,13 +127,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/unionfind/WeightedUnionFind.hpp
     title: "WeightedUnionFind(\u91CD\u307F\u4ED8\u304DUF)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/wavelet/CumulativeSumWM.hpp
     title: WaveletMatrixPointAddRectangleSum.hpp
   - icon: ':heavy_check_mark:'
     path: data-struct/wavelet/SegmentTreeWM.hpp
     title: WaveletMatrixPointAddRectangleSum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/wavelet/WaveletMatrixStruct.hpp
     title: data-struct/wavelet/WaveletMatrixStruct.hpp
   - icon: ':heavy_check_mark:'
@@ -157,7 +154,7 @@ data:
   - icon: ':x:'
     path: graph/tree/TreeHash.hpp
     title: TreeHash
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/DiscreteLogarithm.hpp
     title: "Discrete Logarithm(\u96E2\u6563\u5BFE\u6570)"
   - icon: ':heavy_check_mark:'
@@ -344,13 +341,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/directedmst.test.cpp
     title: test/yosupo/graph/directedmst.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/range_add_range_min.test.cpp
     title: test/yosupo/new/range_add_range_min.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/static_range_sum_with_upper_bound.test.cpp
     title: test/yosupo/new/static_range_sum_with_upper_bound.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/discrete_logarithm_mod.test.cpp
     title: test/yosupo/number_theory/discrete_logarithm_mod.test.cpp
   - icon: ':x:'
@@ -1010,7 +1007,6 @@ data:
   - data-struct/other/SlidingWindowAggregation.hpp
   - data-struct/other/SkipList.hpp
   - data-struct/bst/SplayTree.hpp
-  - data-struct/heap/LeftistHeap.hpp
   - data-struct/heap/SkewHeap.hpp
   - data-struct/wavelet/CumulativeSumWM.hpp
   - data-struct/wavelet/SegmentTreeWM.hpp

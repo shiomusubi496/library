@@ -31,7 +31,10 @@ data:
   - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: graph/shortest-path/KShortestWalk.hpp
+    title: graph/shortest-path/KShortestWalk.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp
@@ -42,6 +45,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
     title: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/graph/k_shortest_walk.test.cpp
+    title: test/yosupo/graph/k_shortest_walk.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/shortest_path.test.cpp
     title: test/yosupo/graph/shortest_path.test.cpp
@@ -536,11 +542,13 @@ data:
   - graph/Graph.hpp
   isVerificationFile: false
   path: graph/shortest-path/Dijkstra.hpp
-  requiredBy: []
+  requiredBy:
+  - graph/shortest-path/KShortestWalk.hpp
   timestamp: '2026-09-12 01:05:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/graph/shortest_path.test.cpp
+  - test/yosupo/graph/k_shortest_walk.test.cpp
   - test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
   - test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp
   - test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp

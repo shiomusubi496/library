@@ -41,7 +41,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/heap/IntervalHeap.hpp
     title: IntervalHeap
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/heap/LeftistHeap.hpp
     title: LeftistHeap
   - icon: ':heavy_check_mark:'
@@ -106,7 +106,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/LCARMQ.hpp
     title: LCARMQ
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/LazySegmentTree.hpp
     title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':heavy_check_mark:'
@@ -167,7 +167,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/unionfind/RangeParallelUnionFind.hpp
     title: RangeParallelUnionFind
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/unionfind/UnionFind.hpp
     title: UnionFind
   - icon: ':heavy_check_mark:'
@@ -176,19 +176,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/unionfind/WeightedUnionFind.hpp
     title: "WeightedUnionFind(\u91CD\u307F\u4ED8\u304DUF)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/wavelet/CumulativeSumWM.hpp
     title: WaveletMatrixPointAddRectangleSum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/wavelet/FullyIndexableDictionary.hpp
     title: "FullyIndexableDictionary(\u5B8C\u5099\u8F9E\u66F8)"
   - icon: ':heavy_check_mark:'
     path: data-struct/wavelet/SegmentTreeWM.hpp
     title: WaveletMatrixPointAddRectangleSum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/wavelet/WaveletMatrix.hpp
     title: WaveletMatrix
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/wavelet/WaveletMatrixStruct.hpp
     title: data-struct/wavelet/WaveletMatrixStruct.hpp
   - icon: ':warning:'
@@ -285,7 +285,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/mst/ManhattanMST.hpp
     title: Manhattan Minimum Spanning Tree
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/mst/MinimumSteinerTree.hpp
     title: graph/mst/MinimumSteinerTree.hpp
   - icon: ':heavy_check_mark:'
@@ -337,6 +337,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest-path/Dijkstra.hpp
     title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
+  - icon: ':heavy_check_mark:'
+    path: graph/shortest-path/KShortestWalk.hpp
+    title: graph/shortest-path/KShortestWalk.hpp
   - icon: ':question:'
     path: graph/shortest-path/Restore.hpp
     title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
@@ -394,7 +397,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/ArbitraryModCombinatorics.hpp
     title: "ArbitraryModCombinatorics(\u4EFB\u610FmodCombination)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/BarrettReduction.hpp
     title: math/BarrettReduction.hpp
   - icon: ':warning:'
@@ -406,7 +409,7 @@ data:
   - icon: ':question:'
     path: math/Combinatorics.hpp
     title: Combinatorics
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/DiscreteLogarithm.hpp
     title: "Discrete Logarithm(\u96E2\u6563\u5BFE\u6570)"
   - icon: ':x:'
@@ -418,7 +421,7 @@ data:
   - icon: ':x:'
     path: math/FloorSum.hpp
     title: FloorSum
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/GaussianInteger.hpp
     title: GaussianInteger
   - icon: ':x:'
@@ -451,7 +454,7 @@ data:
   - icon: ':question:'
     path: math/SternBrocotTree.hpp
     title: Stern-Brocot Tree
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/StirlingNumber.hpp
     title: "StirlingNumber(\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\u30EB\
       \u6570, \u30D9\u30EB\u30CC\u30FC\u30A4\u6570, \u5206\u5272\u6570)"
@@ -517,10 +520,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/matrix/Inverse.hpp
     title: "Inverse(\u9006\u884C\u5217)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix/LinearEquations.hpp
     title: "LinearEquations(\u7DDA\u5F62\u65B9\u7A0B\u5F0F)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix/Matrix.hpp
     title: "Matrix(\u884C\u5217)"
   - icon: ':x:'
@@ -529,16 +532,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/num/Divisors.hpp
     title: "Divisors(\u7D04\u6570\u5217\u6319)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/num/EnumerateQuotients.hpp
     title: "Enumerate Quotients(\u5546\u5217\u6319)"
   - icon: ':question:'
     path: math/num/EulerPhi.hpp
     title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/num/KthRoot.hpp
     title: "KthRoot(k\u4E57\u6839)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/num/LucyDP.hpp
     title: math/num/LucyDP.hpp
   - icon: ':question:'
@@ -1146,6 +1149,9 @@ data:
     path: test/yosupo/graph/eulerian_trail_undirected.test.cpp
     title: test/yosupo/graph/eulerian_trail_undirected.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/graph/k_shortest_walk.test.cpp
+    title: test/yosupo/graph/k_shortest_walk.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/manhattanmst.test.cpp
     title: test/yosupo/graph/manhattanmst.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1181,49 +1187,49 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/matrix_product_mod_2.test.cpp
     title: test/yosupo/linear_algebra/matrix_product_mod_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/matrix_rank.test.cpp
     title: test/yosupo/linear_algebra/matrix_rank.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/matrix_rank_mod_2.test.cpp
     title: test/yosupo/linear_algebra/matrix_rank_mod_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/pow_of_matrix.test.cpp
     title: test/yosupo/linear_algebra/pow_of_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
     title: test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/minimum_steiner_tree.test.cpp
     title: test/yosupo/new/minimum_steiner_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/range_add_range_min.test.cpp
     title: test/yosupo/new/range_add_range_min.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/static_range_sum_with_upper_bound.test.cpp
     title: test/yosupo/new/static_range_sum_with_upper_bound.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/bernoulli_number.test.cpp
     title: test/yosupo/number_theory/bernoulli_number.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/counting_primes.test.cpp
     title: test/yosupo/number_theory/counting_primes.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/discrete_logarithm_mod.test.cpp
     title: test/yosupo/number_theory/discrete_logarithm_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/enumerate_primes.test.cpp
     title: test/yosupo/number_theory/enumerate_primes.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/enumerate_quotients.test.cpp
     title: test/yosupo/number_theory/enumerate_quotients.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/factorize.test.cpp
     title: test/yosupo/number_theory/factorize.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/gcd_of_gaussian_integers.test.cpp
     title: test/yosupo/number_theory/gcd_of_gaussian_integers.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/kth_root_integer.test.cpp
     title: test/yosupo/number_theory/kth_root_integer.test.cpp
   - icon: ':x:'
@@ -1818,6 +1824,7 @@ data:
   - graph/shortest-path/Restore.hpp
   - graph/shortest-path/BreadthFirstSearch.hpp
   - graph/shortest-path/Dijkstra.hpp
+  - graph/shortest-path/KShortestWalk.hpp
   - graph/shortest-path/ZeroOneBFS.hpp
   - graph/flow/AssignmentProblem.hpp
   - graph/flow/ProjectSelectionProblem.hpp
@@ -1993,6 +2000,7 @@ data:
   - test/yosupo/graph/counting_eulerian_circuits.test.cpp
   - test/yosupo/graph/maximum_independent_set.test.cpp
   - test/yosupo/graph/counting_spanning_tree_directed.test.cpp
+  - test/yosupo/graph/k_shortest_walk.test.cpp
   - test/yosupo/graph/assignment.test.cpp
   - test/yosupo/graph/enumerate_triangles.test.cpp
   - test/yosupo/graph/biconnected_components.test.cpp

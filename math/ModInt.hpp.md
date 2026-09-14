@@ -56,7 +56,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/MontmortNumber.hpp
     title: "MontmortNumber(\u652A\u4E71\u9806\u5217)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/StirlingNumber.hpp
     title: "StirlingNumber(\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\u30EB\
       \u6570, \u30D9\u30EB\u30CC\u30FC\u30A4\u6570, \u5206\u5272\u6570)"
@@ -82,10 +82,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/matrix/Inverse.hpp
     title: "Inverse(\u9006\u884C\u5217)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix/LinearEquations.hpp
     title: "LinearEquations(\u7DDA\u5F62\u65B9\u7A0B\u5F0F)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix/Matrix.hpp
     title: "Matrix(\u884C\u5217)"
   - icon: ':x:'
@@ -276,19 +276,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/matrix_product_mod_2.test.cpp
     title: test/yosupo/linear_algebra/matrix_product_mod_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/matrix_rank.test.cpp
     title: test/yosupo/linear_algebra/matrix_rank.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/matrix_rank_mod_2.test.cpp
     title: test/yosupo/linear_algebra/matrix_rank_mod_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/pow_of_matrix.test.cpp
     title: test/yosupo/linear_algebra/pow_of_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
     title: test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/bernoulli_number.test.cpp
     title: test/yosupo/number_theory/bernoulli_number.test.cpp
   - icon: ':x:'

@@ -2,17 +2,14 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: data-struct/unionfind/UnionFind.hpp
-    title: UnionFind
+    path: data-struct/heap/LeftistHeap.hpp
+    title: LeftistHeap
   - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':heavy_check_mark:'
-    path: graph/mst/Kruskal.hpp
-    title: "Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
-  - icon: ':heavy_check_mark:'
-    path: graph/mst/ManhattanMST.hpp
-    title: Manhattan Minimum Spanning Tree
+    path: graph/shortest-path/Dijkstra.hpp
+    title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
@@ -41,17 +38,16 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/graph/k_shortest_walk.test.cpp
+    title: test/yosupo/graph/k_shortest_walk.test.cpp
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/manhattanmst
-    links:
-    - https://judge.yosupo.jp/problem/manhattanmst
-  bundledCode: "#line 1 \"test/yosupo/graph/manhattanmst.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/manhattanmst\"\n#line 2 \"other/template.hpp\"\
+    links: []
+  bundledCode: "#line 2 \"graph/shortest-path/KShortestWalk.hpp\"\n\n#line 2 \"other/template.hpp\"\
     \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
     \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define OVERLOAD5(a,\
     \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
@@ -461,18 +457,60 @@ data:
     \        return res;\n    }\n    void press(std::vector<T>& vec) const {\n   \
     \     assert(sorted);\n        for (auto&& i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
-    };\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class\
-    \ T = int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
-    \ : from(-1), to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1)\n\
-    \        : from(f), to(t), cost(c), idx(i) {}\n    edge(int f, int t, T&& c, int\
-    \ i = -1)\n        : from(f), to(t), cost(std::move(c)), idx(i) {}\n    operator\
-    \ int() const { return to; }\n    friend bool operator<(const edge<T>& lhs, const\
-    \ edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n    }\n    friend bool\
-    \ operator>(const edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost\
-    \ > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using Edges = std::vector<edge<T>>;\n\
-    template<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class\
-    \ T = int> class Graph : public std::vector<std::vector<edge<T>>> {\nprivate:\n\
-    \    using Base = std::vector<std::vector<edge<T>>>;\n\npublic:\n    int edge_id\
+    };\n#line 2 \"data-struct/heap/LeftistHeap.hpp\"\n\n#line 4 \"data-struct/heap/LeftistHeap.hpp\"\
+    \n\ntemplate<class T, class Comp = std::less<T>>\nclass LeftistHeap {\npublic:\n\
+    \    struct node;\n    using node_ptr = std::shared_ptr<node>;\n    struct node\
+    \ {\n        T val;\n        int s = 0;\n        node_ptr l = nullptr, r = nullptr;\n\
+    \        template<class... Args>\n        node(Args&&... args)\n            :\
+    \ val(std::forward<Args>(args)...) {}\n    };\n\nprivate:\n    static node_ptr\
+    \ meld(node_ptr a, node_ptr b) {\n        if (!a) return b;\n        if (!b) return\
+    \ a;\n        if (Comp()(a->val, b->val)) std::swap(a, b);\n        node_ptr c\
+    \ = std::make_shared<node>(a->val);\n        c->l = a->l;\n        c->r = meld(a->r,\
+    \ b);\n        if (!c->l || c->l->s < c->r->s) std::swap(c->l, c->r);\n      \
+    \  c->s = (c->r ? c->r->s : 0) + 1;\n        return c;\n    }\n\n    static node_ptr\
+    \ push(node_ptr x, T val) { return meld(x, new node{val}); }\n    template<class...\
+    \ Args>\n    static node_ptr emplace(node_ptr x, Args&&... args) {\n        return\
+    \ meld(x, std::make_shared<node>(std::forward<Args>(args)...));\n    }\n    static\
+    \ node_ptr pop(node_ptr x) {\n        auto p = meld(x->l, x->r);\n        return\
+    \ p;\n    }\n    static T top(node_ptr x) { return x->val; }\n    static node_ptr\
+    \ copy(node_ptr x) {\n        if (!x) return nullptr;\n        node_ptr y = new\
+    \ node{x->val};\n        y->l = copy(x->l);\n        y->r = copy(x->r);\n    \
+    \    return y;\n    }\n\n    node_ptr root;\n    int sz;\n\npublic:\n    LeftistHeap()\
+    \ : root(nullptr), sz(0) {}\n    LeftistHeap(const LeftistHeap& other)\n     \
+    \   : root(copy(other.root)), sz(other.sz) {}\n    LeftistHeap& operator=(const\
+    \ LeftistHeap& other) {\n        if (this != &other) {\n            clear();\n\
+    \            root = copy(other.root);\n            sz = other.sz;\n        }\n\
+    \        return *this;\n    }\n    LeftistHeap(LeftistHeap&& other) noexcept :\
+    \ root(other.root), sz(other.sz) {\n        other.root = nullptr;\n        other.sz\
+    \ = 0;\n    }\n    LeftistHeap& operator=(LeftistHeap&& other) noexcept {\n  \
+    \      if (this != &other) {\n            root = other.root;\n            sz =\
+    \ other.sz;\n            other.root = nullptr;\n            other.sz = 0;\n  \
+    \      }\n        return *this;\n    }\n    ~LeftistHeap() { clear(); }\n\n  \
+    \  bool empty() const { return !root; }\n    int size() const { return sz; }\n\
+    \    void clear() {\n        root = nullptr;\n        sz = 0;\n    }\n    void\
+    \ push(T val) {\n        root = push(root, val);\n        ++sz;\n    }\n    template<class...\
+    \ Args> void emplace(Args&&... args) {\n        root = emplace(root, std::forward<Args>(args)...);\n\
+    \        ++sz;\n    }\n    void pop() {\n        assert(!empty());\n        root\
+    \ = pop(root);\n        --sz;\n    }\n    T top() {\n        assert(!empty());\n\
+    \        return top(root);\n    }\n    LeftistHeap& meld(const LeftistHeap& other)\
+    \ {\n        root = meld(root, other.root);\n        sz += other.sz;\n       \
+    \ return *this;\n    }\n    friend LeftistHeap meld(const LeftistHeap& a, const\
+    \ LeftistHeap& b) {\n        LeftistHeap h;\n        h.root = meld(a.root, b.root);\n\
+    \        h.sz = a.sz + b.sz;\n        return h;\n    }\n    node_ptr get_root()\
+    \ const { return root; }\n};\n\n/**\n * @brief LeftistHeap\n * @docs docs/data-struct/heap/LeftistHeap.md\n\
+    \ */\n#line 2 \"graph/shortest-path/Dijkstra.hpp\"\n\n#line 2 \"graph/Graph.hpp\"\
+    \n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int> struct edge {\n   \
+    \ int from, to;\n    T cost;\n    int idx;\n    edge() : from(-1), to(-1) {}\n\
+    \    edge(int f, int t, const T& c = 1, int i = -1)\n        : from(f), to(t),\
+    \ cost(c), idx(i) {}\n    edge(int f, int t, T&& c, int i = -1)\n        : from(f),\
+    \ to(t), cost(std::move(c)), idx(i) {}\n    operator int() const { return to;\
+    \ }\n    friend bool operator<(const edge<T>& lhs, const edge<T>& rhs) {\n   \
+    \     return lhs.cost < rhs.cost;\n    }\n    friend bool operator>(const edge<T>&\
+    \ lhs, const edge<T>& rhs) {\n        return lhs.cost > rhs.cost;\n    }\n};\n\
+    \ntemplate<class T = int> using Edges = std::vector<edge<T>>;\ntemplate<class\
+    \ T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class T =\
+    \ int> class Graph : public std::vector<std::vector<edge<T>>> {\nprivate:\n  \
+    \  using Base = std::vector<std::vector<edge<T>>>;\n\npublic:\n    int edge_id\
     \ = 0;\n    using Base::Base;\n    int edge_size() const { return edge_id; }\n\
     \    int add_edge(int a, int b, const T& c, bool is_directed = false) {\n    \
     \    assert(0 <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
@@ -502,58 +540,71 @@ data:
     }\n\n\nstruct unweighted_edge {\n    template<class... Args> unweighted_edge(const\
     \ Args&...) {}\n    operator int() { return 1; }\n};\n\nusing UnweightedGraph\
     \ = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n * @docs docs/graph/Graph.md\n\
-    \ */\n#line 2 \"graph/mst/ManhattanMST.hpp\"\n\n#line 2 \"graph/mst/Kruskal.hpp\"\
-    \n\n#line 2 \"data-struct/unionfind/UnionFind.hpp\"\n\n#line 4 \"data-struct/unionfind/UnionFind.hpp\"\
-    \n\nclass UnionFind {\nprivate:\n    int n;\n    std::vector<int> par;\n\npublic:\n\
-    \    UnionFind() : UnionFind(0) {}\n    UnionFind(int n) : n(n), par(n, -1) {}\n\
-    \    int find(int x) {\n        assert(0 <= x && x < n);\n        return par[x]\
-    \ < 0 ? x : par[x] = find(par[x]);\n    }\n    std::pair<int, int> merge(int x,\
-    \ int y) {\n        x = find(x);\n        y = find(y);\n        if (x == y) return\
-    \ {x, -1};\n        if (par[x] > par[y]) std::swap(x, y);\n        par[x] += par[y];\n\
-    \        par[y] = x;\n        return {x, y};\n    }\n    bool same(int x, int\
-    \ y) { return find(x) == find(y); }\n    int size(int x) { return -par[find(x)];\
-    \ }\n    std::vector<std::vector<int>> groups() {\n        std::vector<std::vector<int>>\
-    \ res(n);\n        rep (i, n) res[find(i)].push_back(i);\n        res.erase(\n\
-    \            remove_if(all(res),\n                      [](const std::vector<int>&\
-    \ v) { return v.empty(); }),\n            res.end());\n        return res;\n \
-    \   }\n    bool is_root(int x) const {\n        assert(0 <= x && x < n);\n   \
-    \     return par[x] < 0;\n    }\n};\n\n/**\n * @brief UnionFind\n * @docs docs/data-struct/unionfind/UnionFind.md\n\
-    \ */\n#line 6 \"graph/mst/Kruskal.hpp\"\n\ntemplate<class T> std::pair<T, Edges<T>>\
-    \ Kruskal(int N, Edges<T> Ed) {\n    std::sort(all(Ed));\n    UnionFind UF(N);\n\
-    \    T res = 0;\n    Edges<T> es;\n    for (const auto& e : Ed) {\n        if\
-    \ (UF.merge(e.from, e.to).second >= 0) {\n            res += e.cost;\n       \
-    \     es.push_back(e);\n        }\n    }\n    return {res, es};\n}\n\n/**\n *\
-    \ @brief Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)\n * @docs docs/graph/mst/Kruskal.md\n\
-    \ */\n#line 6 \"graph/mst/ManhattanMST.hpp\"\n\ntemplate<class T> class ManhattanMST\
-    \ {\nprivate:\n    std::vector<std::pair<T, T>> ps;\n    T res;\n    Edges<T>\
-    \ es;\n\npublic:\n    ManhattanMST(const std::vector<std::pair<T, T>>& ps_) :\
-    \ ps(ps_) {\n        int n = ps.size();\n        std::vector<T> xs(n), ys(n);\n\
-    \        rep (i, n) {\n            xs[i] = ps[i].first;\n            ys[i] = ps[i].second;\n\
-    \        }\n        std::vector<int> ord(n);\n        std::iota(all(ord), 0);\n\
-    \        rep (s, 2) {\n            rep (t, 2) {\n                std::sort(all(ord),\
-    \ [&](int i, int j) {\n                    return xs[i] + ys[i] < xs[j] + ys[j];\n\
-    \                });\n                std::map<T, int> mp;\n                for\
-    \ (int i : ord) {\n                    for (auto it = mp.lower_bound(-ys[i]);\
-    \ it != mp.end();\n                         it = mp.erase(it)) {\n           \
-    \             int j = it->second;\n                        if (xs[i] - ys[i] <\
-    \ xs[j] - ys[j]) break;\n                        es.emplace_back(i, j,\n     \
-    \                                   std::abs(xs[i] - xs[j]) +\n              \
-    \                              std::abs(ys[i] - ys[j]));\n                   \
-    \ }\n                    mp[-ys[i]] = i;\n                }\n                swap(xs,\
-    \ ys);\n            }\n            rep (i, n) xs[i] = -xs[i];\n        }\n   \
-    \     std::tie(res, es) = Kruskal(n, es);\n    }\n    T cost() const { return\
-    \ res; }\n    const Edges<T>& edges() const& { return es; }\n    Edges<T> edges()\
-    \ && { return std::move(es); }\n};\n\n/**\n * @brief Manhattan Minimum Spanning\
-    \ Tree\n * @docs docs/graph/mst/ManhattanMST.md\n */\n#line 5 \"test/yosupo/graph/manhattanmst.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int N; scan >> N;\n    vector<PLL> A(N);\
-    \ scan >> A;\n    ManhattanMST mst(A);\n    prints(mst.cost());\n    for (auto\
-    \ e : mst.edges()) prints(e.from, e.to);\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/manhattanmst\"\n#include\
-    \ \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\n#include\
-    \ \"../../../graph/mst/ManhattanMST.hpp\"\nusing namespace std;\nint main() {\n\
-    \    int N; scan >> N;\n    vector<PLL> A(N); scan >> A;\n    ManhattanMST mst(A);\n\
-    \    prints(mst.cost());\n    for (auto e : mst.edges()) prints(e.from, e.to);\n\
-    }\n"
+    \ */\n#line 5 \"graph/shortest-path/Dijkstra.hpp\"\n\ntemplate<class T> std::vector<T>\
+    \ Dijkstra(const Graph<T>& G, int start = 0) {\n    assert(0 <= start && start\
+    \ < (int)G.size());\n    std::vector<T> dist(G.size(), infinity<T>::value);\n\
+    \    dist[start] = 0;\n    prique<std::pair<T, int>> que;\n    que.emplace(0,\
+    \ start);\n    while (!que.empty()) {\n        T c = std::move(que.top().first);\n\
+    \        int v = que.top().second;\n        que.pop();\n        if (dist[v] !=\
+    \ c) continue;\n        for (const auto& e : G[v]) {\n            if (chmin(dist[e.to],\
+    \ c + e.cost)) que.emplace(dist[e.to], e.to);\n        }\n    }\n    return dist;\n\
+    }\n\n/**\n * @brief Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)\n * @docs\
+    \ docs/graph/shortest-path/Dijkstra.md\n */\n#line 6 \"graph/shortest-path/KShortestWalk.hpp\"\
+    \n\ntemplate<class T>\nclass KShortestWalk {\nprivate:\n    using heap = LeftistHeap<edge<T>,\
+    \ std::greater<edge<T>>>;\n\n    const Graph<T>& G, RG;\n    int n, s, t, K;\n\
+    \    std::vector<heap> H;\n    std::vector<T> ans;\n\npublic:\n    KShortestWalk(const\
+    \ Graph<T>& G_, int s_, int t_, int k_) : G(G_), RG(ReverseGraph(G_)), n(G_.size()),\
+    \ s(s_), t(t_), K(k_) {\n        std::vector<T> dist = Dijkstra(RG, t);\n    \
+    \    std::vector<int> prv(n, -1);\n        std::queue<int> que;\n        prv[t]\
+    \ = -2;\n        que.push(t);\n        H.resize(n);\n        while (!que.empty())\
+    \ {\n            int v = que.front(); que.pop();\n            for (const auto&\
+    \ e : G[v]) {\n                if (prv[v] != e.idx && dist[e.to] != infinity<T>::value)\
+    \ {\n                    H[v].emplace(v, e.to, e.cost + dist[e.to] - dist[v],\
+    \ e.idx);\n                }\n            }\n            for (const auto& e :\
+    \ RG[v]) {\n                if (dist[e.to] == dist[v] + e.cost && prv[e.to] ==\
+    \ -1) {\n                    prv[e.to] = e.idx;\n                    que.push(e.to);\n\
+    \                    H[e.to].meld(H[v]);\n                }\n            }\n \
+    \       }\n        using PTN = std::pair<T, typename heap::node_ptr>;\n      \
+    \  auto cmp = [](const PTN& a, const PTN& b) { return a.first > b.first; };\n\
+    \        std::priority_queue<PTN, std::vector<PTN>, decltype(cmp)> pq(cmp);\n\
+    \        ans.clear();\n        heap h;\n        if (dist[s] != infinity<T>::value)\
+    \ {\n            h.emplace(-1, s, dist[s], -1);\n            pq.emplace(dist[s],\
+    \ h.get_root());\n        }\n        while (!pq.empty() && (int)ans.size() < K)\
+    \ {\n            T c = pq.top().first;\n            auto nd = pq.top().second;\n\
+    \            pq.pop();\n            ans.push_back(c);\n            if (nd->l)\
+    \ pq.emplace(c + nd->l->val.cost - nd->val.cost, nd->l);\n            if (nd->r)\
+    \ pq.emplace(c + nd->r->val.cost - nd->val.cost, nd->r);\n            if (!H[nd->val.to].empty())\
+    \ {\n                pq.emplace(c + H[nd->val.to].get_root()->val.cost, H[nd->val.to].get_root());\n\
+    \            }\n        }\n        ans.resize(K, -1);\n    }\n    std::vector<T>\
+    \ get() const { return ans; }\n};\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../data-struct/heap/LeftistHeap.hpp\"\
+    \n#include \"Dijkstra.hpp\"\n\ntemplate<class T>\nclass KShortestWalk {\nprivate:\n\
+    \    using heap = LeftistHeap<edge<T>, std::greater<edge<T>>>;\n\n    const Graph<T>&\
+    \ G, RG;\n    int n, s, t, K;\n    std::vector<heap> H;\n    std::vector<T> ans;\n\
+    \npublic:\n    KShortestWalk(const Graph<T>& G_, int s_, int t_, int k_) : G(G_),\
+    \ RG(ReverseGraph(G_)), n(G_.size()), s(s_), t(t_), K(k_) {\n        std::vector<T>\
+    \ dist = Dijkstra(RG, t);\n        std::vector<int> prv(n, -1);\n        std::queue<int>\
+    \ que;\n        prv[t] = -2;\n        que.push(t);\n        H.resize(n);\n   \
+    \     while (!que.empty()) {\n            int v = que.front(); que.pop();\n  \
+    \          for (const auto& e : G[v]) {\n                if (prv[v] != e.idx &&\
+    \ dist[e.to] != infinity<T>::value) {\n                    H[v].emplace(v, e.to,\
+    \ e.cost + dist[e.to] - dist[v], e.idx);\n                }\n            }\n \
+    \           for (const auto& e : RG[v]) {\n                if (dist[e.to] == dist[v]\
+    \ + e.cost && prv[e.to] == -1) {\n                    prv[e.to] = e.idx;\n   \
+    \                 que.push(e.to);\n                    H[e.to].meld(H[v]);\n \
+    \               }\n            }\n        }\n        using PTN = std::pair<T,\
+    \ typename heap::node_ptr>;\n        auto cmp = [](const PTN& a, const PTN& b)\
+    \ { return a.first > b.first; };\n        std::priority_queue<PTN, std::vector<PTN>,\
+    \ decltype(cmp)> pq(cmp);\n        ans.clear();\n        heap h;\n        if (dist[s]\
+    \ != infinity<T>::value) {\n            h.emplace(-1, s, dist[s], -1);\n     \
+    \       pq.emplace(dist[s], h.get_root());\n        }\n        while (!pq.empty()\
+    \ && (int)ans.size() < K) {\n            T c = pq.top().first;\n            auto\
+    \ nd = pq.top().second;\n            pq.pop();\n            ans.push_back(c);\n\
+    \            if (nd->l) pq.emplace(c + nd->l->val.cost - nd->val.cost, nd->l);\n\
+    \            if (nd->r) pq.emplace(c + nd->r->val.cost - nd->val.cost, nd->r);\n\
+    \            if (!H[nd->val.to].empty()) {\n                pq.emplace(c + H[nd->val.to].get_root()->val.cost,\
+    \ H[nd->val.to].get_root());\n            }\n        }\n        ans.resize(K,\
+    \ -1);\n    }\n    std::vector<T> get() const { return ans; }\n};\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -564,20 +615,20 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
+  - data-struct/heap/LeftistHeap.hpp
+  - graph/shortest-path/Dijkstra.hpp
   - graph/Graph.hpp
-  - graph/mst/ManhattanMST.hpp
-  - graph/mst/Kruskal.hpp
-  - data-struct/unionfind/UnionFind.hpp
-  isVerificationFile: true
-  path: test/yosupo/graph/manhattanmst.test.cpp
+  isVerificationFile: false
+  path: graph/shortest-path/KShortestWalk.hpp
   requiredBy: []
-  timestamp: '2026-09-12 01:05:48+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: test/yosupo/graph/manhattanmst.test.cpp
+  timestamp: '2026-09-14 23:11:13+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yosupo/graph/k_shortest_walk.test.cpp
+documentation_of: graph/shortest-path/KShortestWalk.hpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/graph/manhattanmst.test.cpp
-- /verify/test/yosupo/graph/manhattanmst.test.cpp.html
-title: test/yosupo/graph/manhattanmst.test.cpp
+- /library/graph/shortest-path/KShortestWalk.hpp
+- /library/graph/shortest-path/KShortestWalk.hpp.html
+title: graph/shortest-path/KShortestWalk.hpp
 ---

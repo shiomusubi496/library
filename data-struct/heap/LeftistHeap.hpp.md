@@ -2,9 +2,6 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: other/monoid.hpp
-    title: other/monoid.hpp
-  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   - icon: ':question:'
@@ -31,11 +28,17 @@ data:
   - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: graph/shortest-path/KShortestWalk.hpp
+    title: graph/shortest-path/KShortestWalk.hpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/graph/k_shortest_walk.test.cpp
+    title: test/yosupo/graph/k_shortest_walk.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/data-struct/heap/LeftistHeap.md
     document_title: LeftistHeap
@@ -450,123 +453,23 @@ data:
     \        return res;\n    }\n    void press(std::vector<T>& vec) const {\n   \
     \     assert(sorted);\n        for (auto&& i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
-    };\n#line 2 \"other/monoid.hpp\"\n\n#line 4 \"other/monoid.hpp\"\n\nnamespace\
-    \ Monoid {\n\ntemplate<class M, class = void>\nclass has_value_type : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_value_type<M, decltype((void)std::declval<typename\
-    \ M::value_type>())>\n    : public std::true_type {};\n\ntemplate<class M, class\
-    \ = void> class has_op : public std::false_type {};\ntemplate<class M>\nclass\
-    \ has_op<M, decltype((void)M::op)> : public std::true_type {};\n\ntemplate<class\
-    \ M, class = void> class has_id : public std::false_type {};\ntemplate<class M>\n\
-    class has_id<M, decltype((void)M::id)> : public std::true_type {};\n\ntemplate<class\
-    \ M, class = void> class has_inv : public std::false_type {};\ntemplate<class\
-    \ M>\nclass has_inv<M, decltype((void)M::inv)> : public std::true_type {};\n\n\
-    template<class M, class = void> class has_get_inv : public std::false_type {};\n\
-    template<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_init : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init(0, 0))> : public\
-    \ std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op : public\
-    \ std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
-    \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_semigroup\
-    \ : public std::false_type {};\ntemplate<class T>\nclass is_semigroup<T, decltype(std::declval<typename\
-    \ T::value_type>(),\n                               (void)T::op)> : public std::true_type\
-    \ {};\n\ntemplate<class T, class = void> class is_monoid : public std::false_type\
-    \ {};\n\ntemplate<class T>\nclass is_monoid<T, decltype(std::declval<typename\
-    \ T::value_type>(), (void)T::op,\n                            (void)T::id)> :\
-    \ public std::true_type {};\n\ntemplate<class T, class = void> class is_group\
-    \ : public std::false_type {};\n\ntemplate<class T>\nclass is_group<T, decltype(std::declval<typename\
-    \ T::value_type>(), (void)T::op,\n                           (void)T::id, (void)T::get_inv)>\n\
-    \    : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
-    \ : public std::false_type {};\ntemplate<class T>\nclass is_action<T, typename\
-    \ std::enable_if<is_monoid<typename T::M>::value &&\n                        \
-    \                   is_semigroup<typename T::E>::value &&\n                  \
-    \                         (has_op<T>::value ||\n                             \
-    \               has_mul_op<T>::value)>::type>\n    : public std::true_type {};\n\
-    \ntemplate<class T, class = void>\nclass is_distributable_action : public std::false_type\
-    \ {};\ntemplate<class T>\nclass is_distributable_action<\n    T,\n    typename\
-    \ std::enable_if<is_action<T>::value && !has_mul_op<T>::value>::type>\n    : public\
-    \ std::true_type {};\n\ntemplate<class T> struct Sum {\n    using value_type =\
-    \ T;\n    static constexpr T op(const T& a, const T& b) { return a + b; }\n  \
-    \  static constexpr T id() { return T{0}; }\n    static constexpr T inv(const\
-    \ T& a, const T& b) { return a - b; }\n    static constexpr T get_inv(const T&\
-    \ a) { return -a; }\n};\n\ntemplate<class T, int i = -1> struct Min {\n    using\
-    \ value_type = T;\n    static T max_value;\n    static T op(const T& a, const\
-    \ T& b) { return a < b ? a : b; }\n    static T id() { return max_value; }\n};\n\
-    template<class T> struct Min<T, -1> {\n    using value_type = T;\n    static constexpr\
-    \ T op(const T& a, const T& b) { return a < b ? a : b; }\n    static constexpr\
-    \ T id() { return infinity<T>::value; }\n};\ntemplate<class T> struct Min<T, -2>\
-    \ {\n    using value_type = T;\n    static constexpr T op(const T& a, const T&\
-    \ b) { return a < b ? a : b; }\n    static constexpr T id() { return infinity<T>::max;\
-    \ }\n};\ntemplate<class T, int id> T Min<T, id>::max_value;\n\ntemplate<class\
-    \ T, int i = -1> struct Max {\n    using value_type = T;\n    static T min_value;\n\
-    \    static T op(const T& a, const T& b) { return a > b ? a : b; }\n    static\
-    \ T id() { return min_value; }\n};\ntemplate<class T> struct Max<T, -1> {\n  \
-    \  using value_type = T;\n    static constexpr T op(const T& a, const T& b) {\
-    \ return a > b ? a : b; }\n    static constexpr T id() { return infinity<T>::mvalue;\
-    \ }\n};\ntemplate<class T> struct Max<T, -2> {\n    using value_type = T;\n  \
-    \  static constexpr T op(const T& a, const T& b) { return a > b ? a : b; }\n \
-    \   static constexpr T id() { return infinity<T>::min; }\n};\n\ntemplate<class\
-    \ T> struct Assign {\n    using value_type = T;\n    static constexpr T op(const\
-    \ T&, const T& b) { return b; }\n};\n\n\ntemplate<class T, int id = -1> struct\
-    \ AssignMin {\n    using M = Min<T, id>;\n    using E = Assign<T>;\n    static\
-    \ constexpr T op(const T& a, const T&) { return a; }\n};\n\ntemplate<class T,\
-    \ int id = -1> struct AssignMax {\n    using M = Max<T, id>;\n    using E = Assign<T>;\n\
-    \    static constexpr T op(const T& a, const T&) { return a; }\n};\n\ntemplate<class\
-    \ T> struct AssignSum {\n    using M = Sum<T>;\n    using E = Assign<T>;\n   \
-    \ static constexpr T mul_op(const T& a, int b, const T&) { return a * b; }\n};\n\
-    \ntemplate<class T, int id = -1> struct AddMin {\n    using M = Min<T, id>;\n\
-    \    using E = Sum<T>;\n    static constexpr T op(const T& a, const T& b) { return\
-    \ b + a; }\n};\n\ntemplate<class T, int id = -1> struct AddMax {\n    using M\
-    \ = Max<T, id>;\n    using E = Sum<T>;\n    static constexpr T op(const T& a,\
-    \ const T& b) { return b + a; }\n};\n\ntemplate<class T> struct AddSum {\n   \
-    \ using M = Sum<T>;\n    using E = Sum<T>;\n    static constexpr T mul_op(const\
-    \ T& a, int b, const T& c) {\n        return c + a * b;\n    }\n};\n\ntemplate<class\
-    \ T, int id = -1> struct ChminMin {\n    using M = Min<T, id>;\n    using E =\
-    \ Min<T>;\n    static constexpr T op(const T& a, const T& b) { return std::min(b,\
-    \ a); }\n};\n\ntemplate<class T, int id = -1> struct ChminMax {\n    using M =\
-    \ Max<T, id>;\n    using E = Min<T>;\n    static constexpr T op(const T& a, const\
-    \ T& b) { return std::min(b, a); }\n};\n\ntemplate<class T, int id = -1> struct\
-    \ ChmaxMin {\n    using M = Min<T, id>;\n    using E = Max<T>;\n    static constexpr\
-    \ T op(const T& a, const T& b) { return std::max(b, a); }\n};\n\ntemplate<class\
-    \ T, int id = -1> struct ChmaxMax {\n    using M = Max<T, id>;\n    using E =\
-    \ Max<T>;\n    static constexpr T op(const T& a, const T& b) { return std::max(b,\
-    \ a); }\n};\n\n\ntemplate<class M> struct ReverseMonoid {\n    using value_type\
-    \ = typename M::value_type;\n    static value_type op(const value_type& a, const\
-    \ value_type& b) {\n        return M::op(b, a);\n    }\n    static value_type\
-    \ id() {\n        static_assert(has_id<M>::value, \"id is not defined\");\n  \
-    \      return M::id();\n    }\n    static value_type inv(const value_type& a,\
-    \ const value_type& b) {\n        static_assert(has_inv<M>::value, \"inv is not\
-    \ defined\");\n        return M::inv(b, a);\n    }\n    static value_type get_inv(const\
-    \ value_type& a) {\n        static_assert(has_get_inv<M>::value, \"get_inv is\
-    \ not defined\");\n        return M::get_inv(a);\n    }\n};\n\ntemplate<class\
-    \ E_> struct MakeAction {\n    using M = E_;\n    using E = E_;\n    using T =\
-    \ typename E_::value_type;\n    static T op(const T& a, const T& b) { return E_::op(b,\
-    \ a); }\n};\n\n} // namespace Monoid\n#line 5 \"data-struct/heap/LeftistHeap.hpp\"\
-    \n\ntemplate<class T, class Comp = std::less<T>, class A = Monoid::AddMin<T>>\n\
-    class LeftistHeap {\nprivate:\n    using M = typename A::M;\n    using E = typename\
-    \ A::E;\n    using U = typename E::value_type;\n\n    static_assert(std::is_same<typename\
-    \ M::value_type, T>::value,\n                  \"Monoid and LeftistHeap value_type\
-    \ mismatch\");\n\n    struct node;\n    using node_ptr = node*;\n    struct node\
-    \ {\n        T val;\n        U lazy;\n        int s = 0;\n        node_ptr l =\
-    \ nullptr, r = nullptr;\n        template<class... Args>\n        node(Args&&...\
-    \ args)\n            : val(std::forward<Args>(args)...), lazy(E::id()) {}\n  \
-    \  };\n\n    static void apply_all(node_ptr ptr, U x) {\n        if (!ptr) return;\n\
-    \        ptr->val = A::op(x, ptr->val);\n        ptr->lazy = E::op(ptr->lazy,\
-    \ x);\n    }\n    static void eval(node_ptr x) {\n        if (x->lazy == E::id())\
-    \ return;\n        apply_all(x->l, x->lazy);\n        apply_all(x->r, x->lazy);\n\
-    \        x->lazy = E::id();\n    }\n\n    static node_ptr meld(node_ptr a, node_ptr\
-    \ b) {\n        if (!a) return b;\n        if (!b) return a;\n        if (Comp()(a->val,\
-    \ b->val)) std::swap(a, b);\n        eval(a);\n        a->r = meld(a->r, b);\n\
-    \        if (!a->l || a->l->s < a->r->s) std::swap(a->l, a->r);\n        a->s\
-    \ = (a->r ? a->r->s : 0) + 1;\n        return a;\n    }\n\n    static node_ptr\
-    \ push(node_ptr x, T val) { return meld(x, new node{val}); }\n    template<class...\
-    \ Args>\n    static node_ptr emplace(node_ptr x, Args&&... args) {\n        return\
-    \ meld(x, new node{std::forward<Args>(args)...});\n    }\n    static node_ptr\
-    \ pop(node_ptr x) {\n        eval(x);\n        auto p = meld(x->l, x->r);\n  \
-    \      delete x;\n        return p;\n    }\n    static T top(node_ptr x) { return\
-    \ x->val; }\n    static void clear(node_ptr x) {\n        if (!x) return;\n  \
-    \      clear(x->l);\n        clear(x->r);\n        delete x;\n    }\n    static\
-    \ node_ptr copy(node_ptr x) {\n        if (!x) return nullptr;\n        eval(x);\n\
-    \        node_ptr y = new node{x->val};\n        y->l = copy(x->l);\n        y->r\
+    };\n#line 4 \"data-struct/heap/LeftistHeap.hpp\"\n\ntemplate<class T, class Comp\
+    \ = std::less<T>>\nclass LeftistHeap {\npublic:\n    struct node;\n    using node_ptr\
+    \ = std::shared_ptr<node>;\n    struct node {\n        T val;\n        int s =\
+    \ 0;\n        node_ptr l = nullptr, r = nullptr;\n        template<class... Args>\n\
+    \        node(Args&&... args)\n            : val(std::forward<Args>(args)...)\
+    \ {}\n    };\n\nprivate:\n    static node_ptr meld(node_ptr a, node_ptr b) {\n\
+    \        if (!a) return b;\n        if (!b) return a;\n        if (Comp()(a->val,\
+    \ b->val)) std::swap(a, b);\n        node_ptr c = std::make_shared<node>(a->val);\n\
+    \        c->l = a->l;\n        c->r = meld(a->r, b);\n        if (!c->l || c->l->s\
+    \ < c->r->s) std::swap(c->l, c->r);\n        c->s = (c->r ? c->r->s : 0) + 1;\n\
+    \        return c;\n    }\n\n    static node_ptr push(node_ptr x, T val) { return\
+    \ meld(x, new node{val}); }\n    template<class... Args>\n    static node_ptr\
+    \ emplace(node_ptr x, Args&&... args) {\n        return meld(x, std::make_shared<node>(std::forward<Args>(args)...));\n\
+    \    }\n    static node_ptr pop(node_ptr x) {\n        auto p = meld(x->l, x->r);\n\
+    \        return p;\n    }\n    static T top(node_ptr x) { return x->val; }\n \
+    \   static node_ptr copy(node_ptr x) {\n        if (!x) return nullptr;\n    \
+    \    node_ptr y = new node{x->val};\n        y->l = copy(x->l);\n        y->r\
     \ = copy(x->r);\n        return y;\n    }\n\n    node_ptr root;\n    int sz;\n\
     \npublic:\n    LeftistHeap() : root(nullptr), sz(0) {}\n    LeftistHeap(const\
     \ LeftistHeap& other)\n        : root(copy(other.root)), sz(other.sz) {}\n   \
@@ -579,45 +482,35 @@ data:
     \            sz = other.sz;\n            other.root = nullptr;\n            other.sz\
     \ = 0;\n        }\n        return *this;\n    }\n    ~LeftistHeap() { clear();\
     \ }\n\n    bool empty() const { return !root; }\n    int size() const { return\
-    \ sz; }\n    void clear() {\n        clear(root);\n        root = nullptr;\n \
-    \       sz = 0;\n    }\n    void push(T val) {\n        root = push(root, val);\n\
-    \        ++sz;\n    }\n    template<class... Args> void emplace(Args&&... args)\
-    \ {\n        root = emplace(root, std::forward<Args>(args)...);\n        ++sz;\n\
-    \    }\n    void pop() {\n        assert(!empty());\n        root = pop(root);\n\
-    \        --sz;\n    }\n    T top() {\n        assert(!empty());\n        return\
-    \ top(root);\n    }\n    void apply(U x) { apply_all(root, x); }\n    LeftistHeap&\
-    \ meld(LeftistHeap&& other) {\n        root = meld(root, other.root);\n      \
-    \  sz += other.sz;\n        other.root = nullptr;\n        other.sz = 0;\n   \
-    \     return *this;\n    }\n    friend LeftistHeap meld(LeftistHeap&& a, LeftisHeap&&\
-    \ b) {\n        return std::move(a.meld(std::move(b)));\n    }\n};\n\n/**\n *\
-    \ @brief LeftistHeap\n * @docs docs/data-struct/heap/LeftistHeap.md\n */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\
-    \n\ntemplate<class T, class Comp = std::less<T>, class A = Monoid::AddMin<T>>\n\
-    class LeftistHeap {\nprivate:\n    using M = typename A::M;\n    using E = typename\
-    \ A::E;\n    using U = typename E::value_type;\n\n    static_assert(std::is_same<typename\
-    \ M::value_type, T>::value,\n                  \"Monoid and LeftistHeap value_type\
-    \ mismatch\");\n\n    struct node;\n    using node_ptr = node*;\n    struct node\
-    \ {\n        T val;\n        U lazy;\n        int s = 0;\n        node_ptr l =\
-    \ nullptr, r = nullptr;\n        template<class... Args>\n        node(Args&&...\
-    \ args)\n            : val(std::forward<Args>(args)...), lazy(E::id()) {}\n  \
-    \  };\n\n    static void apply_all(node_ptr ptr, U x) {\n        if (!ptr) return;\n\
-    \        ptr->val = A::op(x, ptr->val);\n        ptr->lazy = E::op(ptr->lazy,\
-    \ x);\n    }\n    static void eval(node_ptr x) {\n        if (x->lazy == E::id())\
-    \ return;\n        apply_all(x->l, x->lazy);\n        apply_all(x->r, x->lazy);\n\
-    \        x->lazy = E::id();\n    }\n\n    static node_ptr meld(node_ptr a, node_ptr\
-    \ b) {\n        if (!a) return b;\n        if (!b) return a;\n        if (Comp()(a->val,\
-    \ b->val)) std::swap(a, b);\n        eval(a);\n        a->r = meld(a->r, b);\n\
-    \        if (!a->l || a->l->s < a->r->s) std::swap(a->l, a->r);\n        a->s\
-    \ = (a->r ? a->r->s : 0) + 1;\n        return a;\n    }\n\n    static node_ptr\
-    \ push(node_ptr x, T val) { return meld(x, new node{val}); }\n    template<class...\
-    \ Args>\n    static node_ptr emplace(node_ptr x, Args&&... args) {\n        return\
-    \ meld(x, new node{std::forward<Args>(args)...});\n    }\n    static node_ptr\
-    \ pop(node_ptr x) {\n        eval(x);\n        auto p = meld(x->l, x->r);\n  \
-    \      delete x;\n        return p;\n    }\n    static T top(node_ptr x) { return\
-    \ x->val; }\n    static void clear(node_ptr x) {\n        if (!x) return;\n  \
-    \      clear(x->l);\n        clear(x->r);\n        delete x;\n    }\n    static\
-    \ node_ptr copy(node_ptr x) {\n        if (!x) return nullptr;\n        eval(x);\n\
-    \        node_ptr y = new node{x->val};\n        y->l = copy(x->l);\n        y->r\
+    \ sz; }\n    void clear() {\n        root = nullptr;\n        sz = 0;\n    }\n\
+    \    void push(T val) {\n        root = push(root, val);\n        ++sz;\n    }\n\
+    \    template<class... Args> void emplace(Args&&... args) {\n        root = emplace(root,\
+    \ std::forward<Args>(args)...);\n        ++sz;\n    }\n    void pop() {\n    \
+    \    assert(!empty());\n        root = pop(root);\n        --sz;\n    }\n    T\
+    \ top() {\n        assert(!empty());\n        return top(root);\n    }\n    LeftistHeap&\
+    \ meld(const LeftistHeap& other) {\n        root = meld(root, other.root);\n \
+    \       sz += other.sz;\n        return *this;\n    }\n    friend LeftistHeap\
+    \ meld(const LeftistHeap& a, const LeftistHeap& b) {\n        LeftistHeap h;\n\
+    \        h.root = meld(a.root, b.root);\n        h.sz = a.sz + b.sz;\n       \
+    \ return h;\n    }\n    node_ptr get_root() const { return root; }\n};\n\n/**\n\
+    \ * @brief LeftistHeap\n * @docs docs/data-struct/heap/LeftistHeap.md\n */\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T,\
+    \ class Comp = std::less<T>>\nclass LeftistHeap {\npublic:\n    struct node;\n\
+    \    using node_ptr = std::shared_ptr<node>;\n    struct node {\n        T val;\n\
+    \        int s = 0;\n        node_ptr l = nullptr, r = nullptr;\n        template<class...\
+    \ Args>\n        node(Args&&... args)\n            : val(std::forward<Args>(args)...)\
+    \ {}\n    };\n\nprivate:\n    static node_ptr meld(node_ptr a, node_ptr b) {\n\
+    \        if (!a) return b;\n        if (!b) return a;\n        if (Comp()(a->val,\
+    \ b->val)) std::swap(a, b);\n        node_ptr c = std::make_shared<node>(a->val);\n\
+    \        c->l = a->l;\n        c->r = meld(a->r, b);\n        if (!c->l || c->l->s\
+    \ < c->r->s) std::swap(c->l, c->r);\n        c->s = (c->r ? c->r->s : 0) + 1;\n\
+    \        return c;\n    }\n\n    static node_ptr push(node_ptr x, T val) { return\
+    \ meld(x, new node{val}); }\n    template<class... Args>\n    static node_ptr\
+    \ emplace(node_ptr x, Args&&... args) {\n        return meld(x, std::make_shared<node>(std::forward<Args>(args)...));\n\
+    \    }\n    static node_ptr pop(node_ptr x) {\n        auto p = meld(x->l, x->r);\n\
+    \        return p;\n    }\n    static T top(node_ptr x) { return x->val; }\n \
+    \   static node_ptr copy(node_ptr x) {\n        if (!x) return nullptr;\n    \
+    \    node_ptr y = new node{x->val};\n        y->l = copy(x->l);\n        y->r\
     \ = copy(x->r);\n        return y;\n    }\n\n    node_ptr root;\n    int sz;\n\
     \npublic:\n    LeftistHeap() : root(nullptr), sz(0) {}\n    LeftistHeap(const\
     \ LeftistHeap& other)\n        : root(copy(other.root)), sz(other.sz) {}\n   \
@@ -630,18 +523,18 @@ data:
     \            sz = other.sz;\n            other.root = nullptr;\n            other.sz\
     \ = 0;\n        }\n        return *this;\n    }\n    ~LeftistHeap() { clear();\
     \ }\n\n    bool empty() const { return !root; }\n    int size() const { return\
-    \ sz; }\n    void clear() {\n        clear(root);\n        root = nullptr;\n \
-    \       sz = 0;\n    }\n    void push(T val) {\n        root = push(root, val);\n\
-    \        ++sz;\n    }\n    template<class... Args> void emplace(Args&&... args)\
-    \ {\n        root = emplace(root, std::forward<Args>(args)...);\n        ++sz;\n\
-    \    }\n    void pop() {\n        assert(!empty());\n        root = pop(root);\n\
-    \        --sz;\n    }\n    T top() {\n        assert(!empty());\n        return\
-    \ top(root);\n    }\n    void apply(U x) { apply_all(root, x); }\n    LeftistHeap&\
-    \ meld(LeftistHeap&& other) {\n        root = meld(root, other.root);\n      \
-    \  sz += other.sz;\n        other.root = nullptr;\n        other.sz = 0;\n   \
-    \     return *this;\n    }\n    friend LeftistHeap meld(LeftistHeap&& a, LeftisHeap&&\
-    \ b) {\n        return std::move(a.meld(std::move(b)));\n    }\n};\n\n/**\n *\
-    \ @brief LeftistHeap\n * @docs docs/data-struct/heap/LeftistHeap.md\n */\n"
+    \ sz; }\n    void clear() {\n        root = nullptr;\n        sz = 0;\n    }\n\
+    \    void push(T val) {\n        root = push(root, val);\n        ++sz;\n    }\n\
+    \    template<class... Args> void emplace(Args&&... args) {\n        root = emplace(root,\
+    \ std::forward<Args>(args)...);\n        ++sz;\n    }\n    void pop() {\n    \
+    \    assert(!empty());\n        root = pop(root);\n        --sz;\n    }\n    T\
+    \ top() {\n        assert(!empty());\n        return top(root);\n    }\n    LeftistHeap&\
+    \ meld(const LeftistHeap& other) {\n        root = meld(root, other.root);\n \
+    \       sz += other.sz;\n        return *this;\n    }\n    friend LeftistHeap\
+    \ meld(const LeftistHeap& a, const LeftistHeap& b) {\n        LeftistHeap h;\n\
+    \        h.root = meld(a.root, b.root);\n        h.sz = a.sz + b.sz;\n       \
+    \ return h;\n    }\n    node_ptr get_root() const { return root; }\n};\n\n/**\n\
+    \ * @brief LeftistHeap\n * @docs docs/data-struct/heap/LeftistHeap.md\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -652,13 +545,14 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  - other/monoid.hpp
   isVerificationFile: false
   path: data-struct/heap/LeftistHeap.hpp
-  requiredBy: []
-  timestamp: '2026-09-12 01:05:48+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  requiredBy:
+  - graph/shortest-path/KShortestWalk.hpp
+  timestamp: '2026-09-14 23:11:13+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yosupo/graph/k_shortest_walk.test.cpp
 documentation_of: data-struct/heap/LeftistHeap.hpp
 layout: document
 redirect_from:
@@ -670,8 +564,6 @@ title: LeftistHeap
 
 meldable heap の一種で、最悪計算量が保証されているため永続化可能。
 
-また、全体に値を加算する操作も可能。
-
 `std::priority_queue` と色々合わせている。
 
 - `LeftistHeap()` : コンストラクタ。
@@ -682,4 +574,4 @@ meldable heap の一種で、最悪計算量が保証されているため永続
 - `T top()` : 最大値を返す。 $\Theta(1)$ 。
 - `void clear()` : 空にする。 $\Theta(n)$ 。
 - `void apply(U x)` : 全体に x を適用する。順序関係を維持する必要がある。 $\Theta(1)$ 。
-- `LeftistHeap& meld(LeftistHeap&& other)` : マージする。 $\Theta(\log n)$ 。
+- `LeftistHeap& meld(const LeftistHeap& other)` : マージする。 $\Theta(\log n)$ 。

@@ -51,7 +51,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/NTL/NTL_1_D-Phi.test.cpp
     title: test/aoj/NTL/NTL_1_D-Phi.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/factorize.test.cpp
     title: test/yosupo/number_theory/factorize.test.cpp
   - icon: ':x:'

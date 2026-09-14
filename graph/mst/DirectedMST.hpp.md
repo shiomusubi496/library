@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/heap/SkewHeap.hpp
     title: SkewHeap
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/unionfind/UnionFind.hpp
     title: UnionFind
   - icon: ':question:'

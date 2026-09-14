@@ -2,8 +2,6 @@
 
 meldable heap の一種で、最悪計算量が保証されているため永続化可能。
 
-また、全体に値を加算する操作も可能。
-
 `std::priority_queue` と色々合わせている。
 
 - `LeftistHeap()` : コンストラクタ。
@@ -14,4 +12,4 @@ meldable heap の一種で、最悪計算量が保証されているため永続
 - `T top()` : 最大値を返す。 $\Theta(1)$ 。
 - `void clear()` : 空にする。 $\Theta(n)$ 。
 - `void apply(U x)` : 全体に x を適用する。順序関係を維持する必要がある。 $\Theta(1)$ 。
-- `LeftistHeap& meld(LeftistHeap&& other)` : マージする。 $\Theta(\log n)$ 。
+- `LeftistHeap& meld(const LeftistHeap& other)` : マージする。 $\Theta(\log n)$ 。

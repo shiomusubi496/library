@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/BarrettReduction.hpp
     title: math/BarrettReduction.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/DiscreteLogarithm.hpp
     title: "Discrete Logarithm(\u96E2\u6563\u5BFE\u6570)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/num/KthRoot.hpp
     title: "KthRoot(k\u4E57\u6839)"
   - icon: ':question:'
@@ -45,9 +45,9 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/discrete_logarithm_mod
@@ -712,7 +712,7 @@ data:
   path: test/yosupo/number_theory/discrete_logarithm_mod.test.cpp
   requiredBy: []
   timestamp: '2026-09-12 01:05:48+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/number_theory/discrete_logarithm_mod.test.cpp
 layout: document

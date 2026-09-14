@@ -66,7 +66,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/mst/ManhattanMST.hpp
     title: Manhattan Minimum Spanning Tree
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/mst/MinimumSteinerTree.hpp
     title: graph/mst/MinimumSteinerTree.hpp
   - icon: ':heavy_check_mark:'
@@ -118,6 +118,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest-path/Dijkstra.hpp
     title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
+  - icon: ':heavy_check_mark:'
+    path: graph/shortest-path/KShortestWalk.hpp
+    title: graph/shortest-path/KShortestWalk.hpp
   - icon: ':question:'
     path: graph/shortest-path/Restore.hpp
     title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
@@ -297,6 +300,9 @@ data:
     path: test/yosupo/graph/eulerian_trail_undirected.test.cpp
     title: test/yosupo/graph/eulerian_trail_undirected.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/graph/k_shortest_walk.test.cpp
+    title: test/yosupo/graph/k_shortest_walk.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/manhattanmst.test.cpp
     title: test/yosupo/graph/manhattanmst.test.cpp
   - icon: ':heavy_check_mark:'
@@ -311,7 +317,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/two_edge_connected_components.test.cpp
     title: test/yosupo/graph/two_edge_connected_components.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/minimum_steiner_tree.test.cpp
     title: test/yosupo/new/minimum_steiner_tree.test.cpp
   - icon: ':x:'
@@ -926,6 +932,7 @@ data:
   - graph/shortest-path/Restore.hpp
   - graph/shortest-path/BreadthFirstSearch.hpp
   - graph/shortest-path/Dijkstra.hpp
+  - graph/shortest-path/KShortestWalk.hpp
   - graph/shortest-path/ZeroOneBFS.hpp
   timestamp: '2026-09-12 01:05:48+09:00'
   verificationStatus: LIBRARY_SOME_WA
@@ -966,6 +973,7 @@ data:
   - test/yosupo/graph/counting_eulerian_circuits.test.cpp
   - test/yosupo/graph/maximum_independent_set.test.cpp
   - test/yosupo/graph/counting_spanning_tree_directed.test.cpp
+  - test/yosupo/graph/k_shortest_walk.test.cpp
   - test/yosupo/graph/enumerate_triangles.test.cpp
   - test/yosupo/graph/biconnected_components.test.cpp
   - test/yosupo/graph/chromatic_number.test.cpp

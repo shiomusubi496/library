@@ -54,7 +54,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
     title: test/yosupo/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/factorize.test.cpp
     title: test/yosupo/number_theory/factorize.test.cpp
   - icon: ':x:'

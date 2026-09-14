@@ -44,7 +44,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/mst/ManhattanMST.hpp
     title: Manhattan Minimum Spanning Tree
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/mst/MinimumSteinerTree.hpp
     title: graph/mst/MinimumSteinerTree.hpp
   - icon: ':heavy_check_mark:'
@@ -84,12 +84,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/manhattanmst.test.cpp
     title: test/yosupo/graph/manhattanmst.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/minimum_steiner_tree.test.cpp
     title: test/yosupo/new/minimum_steiner_tree.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/data-struct/unionfind/UnionFind.md
     document_title: UnionFind
@@ -558,7 +558,7 @@ data:
   - graph/mst/Kruskal.hpp
   - graph/mst/Prim.hpp
   timestamp: '2026-09-12 01:05:48+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/new/minimum_steiner_tree.test.cpp
   - test/yosupo/data_structure/range_parallel_unionfind.test.cpp

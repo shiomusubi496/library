@@ -76,12 +76,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind_fixed_k.test.cpp
     title: test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind_fixed_k.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/bernoulli_number.test.cpp
     title: test/yosupo/number_theory/bernoulli_number.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/math/StirlingNumber.md
     document_title: "StirlingNumber(\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\
@@ -1289,7 +1289,7 @@ data:
   path: math/StirlingNumber.hpp
   requiredBy: []
   timestamp: '2026-09-12 14:55:19+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind_fixed_k.test.cpp
   - test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
