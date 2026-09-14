@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: data-struct/2D/AreaofUnionofRectangles.hpp
     title: data-struct/2D/AreaofUnionofRectangles.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: data-struct/segment/LazySegmentTree.hpp
     title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':question:'

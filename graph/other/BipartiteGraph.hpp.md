@@ -32,13 +32,10 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/atcoder/arc099_c-Bipartite.test.cpp
-    title: test/atcoder/arc099_c-Bipartite.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     _deprecated_at_docs: docs/graph/other/BipartiteGraph.md
     document_title: "BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A)"
@@ -544,9 +541,8 @@ data:
   path: graph/other/BipartiteGraph.hpp
   requiredBy: []
   timestamp: '2026-09-12 01:05:48+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/atcoder/arc099_c-Bipartite.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: graph/other/BipartiteGraph.hpp
 layout: document
 redirect_from:

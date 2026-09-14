@@ -34,9 +34,6 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/atcoder/abc349_g-RangeUF.test.cpp
-    title: test/atcoder/abc349_g-RangeUF.test.cpp
-  - icon: ':x:'
     path: test/yosupo/data_structure/range_parallel_unionfind.test.cpp
     title: test/yosupo/data_structure/range_parallel_unionfind.test.cpp
   _isVerificationFailed: true
@@ -549,7 +546,6 @@ data:
   timestamp: '2026-09-12 01:05:48+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/atcoder/abc349_g-RangeUF.test.cpp
   - test/yosupo/data_structure/range_parallel_unionfind.test.cpp
 documentation_of: data-struct/unionfind/RangeParallelUnionFind.hpp
 layout: document

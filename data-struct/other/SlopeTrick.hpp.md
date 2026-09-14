@@ -29,13 +29,10 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/atcoder/arc070_c-SlopeTrick.test.cpp
-    title: test/atcoder/arc070_c-SlopeTrick.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     _deprecated_at_docs: docs/data-struct/other/SlopeTrick.md
     document_title: SlopeTrick
@@ -499,9 +496,8 @@ data:
   path: data-struct/other/SlopeTrick.hpp
   requiredBy: []
   timestamp: '2026-09-12 01:05:48+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/atcoder/arc070_c-SlopeTrick.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: data-struct/other/SlopeTrick.hpp
 layout: document
 redirect_from:

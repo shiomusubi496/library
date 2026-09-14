@@ -29,13 +29,10 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/atcoder/agc002_d-PartialPersistentArray.test.cpp
-    title: test/atcoder/agc002_d-PartialPersistentArray.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     _deprecated_at_docs: docs/data-struct/other/PartialPersistentArray.md
     document_title: "PartialPersistentArray(\u90E8\u5206\u6C38\u7D9A\u914D\u5217)"
@@ -499,9 +496,8 @@ data:
   path: data-struct/other/PartialPersistentArray.hpp
   requiredBy: []
   timestamp: '2026-09-12 01:05:48+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/atcoder/agc002_d-PartialPersistentArray.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: data-struct/other/PartialPersistentArray.hpp
 layout: document
 redirect_from:

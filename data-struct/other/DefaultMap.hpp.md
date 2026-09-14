@@ -29,13 +29,10 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/atcoder/abc176_f-DefaultMap.test.cpp
-    title: test/atcoder/abc176_f-DefaultMap.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     _deprecated_at_docs: docs/data-struct/other/DefaultMap.md
     document_title: DefaultMap
@@ -522,9 +519,8 @@ data:
   path: data-struct/other/DefaultMap.hpp
   requiredBy: []
   timestamp: '2026-09-12 01:05:48+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/atcoder/abc176_f-DefaultMap.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: data-struct/other/DefaultMap.hpp
 layout: document
 redirect_from:

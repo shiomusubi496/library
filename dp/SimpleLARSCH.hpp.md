@@ -29,16 +29,13 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':warning:'
     path: dp/AlienDP.hpp
     title: AlienDP
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/atcoder/abc218_h-AlienDP.test.cpp
-    title: test/atcoder/abc218_h-AlienDP.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"dp/SimpleLARSCH.hpp\"\n\n#line 2 \"other/template.hpp\"\n\
@@ -487,9 +484,8 @@ data:
   requiredBy:
   - dp/AlienDP.hpp
   timestamp: '2026-09-12 01:05:48+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/atcoder/abc218_h-AlienDP.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: dp/SimpleLARSCH.hpp
 layout: document
 redirect_from:

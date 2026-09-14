@@ -47,7 +47,7 @@ data:
   - icon: ':x:'
     path: graph/mst/MinimumSteinerTree.hpp
     title: graph/mst/MinimumSteinerTree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/mst/Prim.hpp
     title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
   - icon: ':x:'
@@ -60,18 +60,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
     title: test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_1_A-UF.test.cpp
     title: test/aoj/DSL/DSL_1_A-UF.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
     title: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_2_A-Prim.test.cpp
     title: test/aoj/GRL/GRL_2_A-Prim.test.cpp
-  - icon: ':x:'
-    path: test/atcoder/abc349_g-RangeUF.test.cpp
-    title: test/atcoder/abc349_g-RangeUF.test.cpp
   - icon: ':x:'
     path: test/yosupo/data_structure/range_parallel_unionfind.test.cpp
     title: test/yosupo/data_structure/range_parallel_unionfind.test.cpp
@@ -563,7 +560,6 @@ data:
   timestamp: '2026-09-12 01:05:48+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/atcoder/abc349_g-RangeUF.test.cpp
   - test/yosupo/new/minimum_steiner_tree.test.cpp
   - test/yosupo/data_structure/range_parallel_unionfind.test.cpp
   - test/yosupo/data_structure/unionfind.test.cpp
