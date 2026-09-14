@@ -1,9 +1,12 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: data-struct/wavelet/FullyIndexableDictionary.hpp
-    title: "FullyIndexableDictionary(\u5B8C\u5099\u8F9E\u66F8)"
+  - icon: ':question:'
+    path: data-struct/segment/LazySegmentTree.hpp
+    title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
+  - icon: ':question:'
+    path: other/monoid.hpp
+    title: other/monoid.hpp
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
@@ -32,59 +35,59 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
-    title: test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
-  _isVerificationFailed: false
-  _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _extendedVerifiedWith: []
+  _isVerificationFailed: true
+  _pathExtension: cpp
+  _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/data-struct/wavelet/WaveletMatrix.md
-    document_title: WaveletMatrix
-    links: []
-  bundledCode: "#line 2 \"data-struct/wavelet/WaveletMatrix.hpp\"\n\n#line 2 \"other/template.hpp\"\
-    \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
-    \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define OVERLOAD5(a,\
-    \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
-    \                                                           \\\n    for (ll REP_COUNTER_##c\
-    \ = 0; REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b,\
-    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
-    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
-    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) OVERLOAD5(__VA_ARGS__,\
-    \ REP4, REP3, REP2, REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1;\
-    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(b)-1; i >= (ll)(a); --i)\n\
-    #define RREP4(i, a, b, c) for (ll i = (ll)(b)-1; i >= (ll)(a); i -= (ll)(c))\n\
-    #define rrep(...) OVERLOAD5(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define\
-    \ REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b) for (ll\
-    \ i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll i = (ll)(a)\
-    \ + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) OVERLOAD5(__VA_ARGS__, REPS4,\
-    \ REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a); i > 0;\
-    \ --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(b); i > (ll)(a); --i)\n#define\
-    \ RREPS4(i, a, b, c) for (ll i = (ll)(b); i > (ll)(a); i -= (ll)(c))\n#define\
-    \ rreps(...) OVERLOAD5(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define\
-    \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
-    \ __VA_ARGS__)\n\n#define all(v) std::begin(v), std::end(v)\n#define rall(v) std::rbegin(v),\
-    \ std::rend(v)\n\n#if __cpp_if_constexpr >= 201606L\n#define IF_CONSTEXPR constexpr\n\
-    #else\n#define IF_CONSTEXPR\n#endif\n\n#define IO_BUFFER_SIZE (1 << 17)\n#line\
-    \ 2 \"template/alias.hpp\"\n\n#line 4 \"template/alias.hpp\"\n\nusing ll = long\
-    \ long;\nusing uint = unsigned int;\nusing ull = unsigned long long;\nusing i128\
-    \ = __int128_t;\nusing u128 = __uint128_t;\nusing ld = long double;\nusing PLL\
-    \ = std::pair<ll, ll>;\ntemplate<class T>\nusing prique = std::priority_queue<T,\
-    \ std::vector<T>, std::greater<T>>;\n\ntemplate<class T> struct infinity {\n \
-    \   static constexpr T value = std::numeric_limits<T>::max() / 2;\n    static\
-    \ constexpr T mvalue = std::numeric_limits<T>::lowest() / 2;\n    static constexpr\
-    \ T max = std::numeric_limits<T>::max();\n    static constexpr T min = std::numeric_limits<T>::lowest();\n\
-    };\n\n#if __cplusplus <= 201402L\ntemplate<class T> constexpr T infinity<T>::value;\n\
-    template<class T> constexpr T infinity<T>::mvalue;\ntemplate<class T> constexpr\
-    \ T infinity<T>::max;\ntemplate<class T> constexpr T infinity<T>::min;\n#endif\n\
-    \n#if __cpp_variable_templates >= 201304L\ntemplate<class T> constexpr T INF =\
-    \ infinity<T>::value;\n#endif\n\nconstexpr ll inf = infinity<ll>::value;\nconstexpr\
-    \ ld EPS = 1e-8;\nconstexpr ld PI = 3.1415926535897932384626;\n#line 2 \"template/type_traits.hpp\"\
-    \n\n#line 5 \"template/type_traits.hpp\"\n\ntemplate<class T, class... Args> struct\
-    \ function_traits_impl {\n    using result_type = T;\n    template<std::size_t\
-    \ idx>\n    using argument_type =\n        typename std::tuple_element<idx, std::tuple<Args...>>::type;\n\
-    \    using argument_tuple = std::tuple<Args...>;\n    static constexpr std::size_t\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/range_add_range_min
+    links:
+    - https://judge.yosupo.jp/problem/range_add_range_min
+  bundledCode: "#line 1 \"test/yosupo/new/range_add_range_min.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/range_add_range_min\"\n#line 2 \"\
+    other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
+    \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
+    \ __LINE__\n#endif\n\n#define OVERLOAD5(a, b, c, d, e, ...) e\n#define REP1_0(b,\
+    \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
+    \                     \\\n    for (ll REP_COUNTER_##c = 0; REP_COUNTER_##c < (ll)(b);\
+    \ ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define REP2(i,\
+    \ b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i = (ll)(a);\
+    \ i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b);\
+    \ i += (ll)(c))\n#define rep(...) OVERLOAD5(__VA_ARGS__, REP4, REP3, REP2, REP1)(__VA_ARGS__)\n\
+    #define RREP2(i, a) for (ll i = (ll)(a)-1; i >= 0; --i)\n#define RREP3(i, a, b)\
+    \ for (ll i = (ll)(b)-1; i >= (ll)(a); --i)\n#define RREP4(i, a, b, c) for (ll\
+    \ i = (ll)(b)-1; i >= (ll)(a); i -= (ll)(c))\n#define rrep(...) OVERLOAD5(__VA_ARGS__,\
+    \ RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define REPS2(i, b) for (ll i = 1; i <= (ll)(b);\
+    \ ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define\
+    \ REPS4(i, a, b, c) for (ll i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define\
+    \ reps(...) OVERLOAD5(__VA_ARGS__, REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define\
+    \ RREPS2(i, a) for (ll i = (ll)(a); i > 0; --i)\n#define RREPS3(i, a, b) for (ll\
+    \ i = (ll)(b); i > (ll)(a); --i)\n#define RREPS4(i, a, b, c) for (ll i = (ll)(b);\
+    \ i > (ll)(a); i -= (ll)(c))\n#define rreps(...) OVERLOAD5(__VA_ARGS__, RREPS4,\
+    \ RREPS3, RREPS2)(__VA_ARGS__)\n\n#define each_for(...) for (auto&& __VA_ARGS__)\n\
+    #define each_const(...) for (const auto& __VA_ARGS__)\n\n#define all(v) std::begin(v),\
+    \ std::end(v)\n#define rall(v) std::rbegin(v), std::rend(v)\n\n#if __cpp_if_constexpr\
+    \ >= 201606L\n#define IF_CONSTEXPR constexpr\n#else\n#define IF_CONSTEXPR\n#endif\n\
+    \n#define IO_BUFFER_SIZE (1 << 17)\n#line 2 \"template/alias.hpp\"\n\n#line 4\
+    \ \"template/alias.hpp\"\n\nusing ll = long long;\nusing uint = unsigned int;\n\
+    using ull = unsigned long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\
+    using ld = long double;\nusing PLL = std::pair<ll, ll>;\ntemplate<class T>\nusing\
+    \ prique = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\ntemplate<class\
+    \ T> struct infinity {\n    static constexpr T value = std::numeric_limits<T>::max()\
+    \ / 2;\n    static constexpr T mvalue = std::numeric_limits<T>::lowest() / 2;\n\
+    \    static constexpr T max = std::numeric_limits<T>::max();\n    static constexpr\
+    \ T min = std::numeric_limits<T>::lowest();\n};\n\n#if __cplusplus <= 201402L\n\
+    template<class T> constexpr T infinity<T>::value;\ntemplate<class T> constexpr\
+    \ T infinity<T>::mvalue;\ntemplate<class T> constexpr T infinity<T>::max;\ntemplate<class\
+    \ T> constexpr T infinity<T>::min;\n#endif\n\n#if __cpp_variable_templates >=\
+    \ 201304L\ntemplate<class T> constexpr T INF = infinity<T>::value;\n#endif\n\n\
+    constexpr ll inf = infinity<ll>::value;\nconstexpr ld EPS = 1e-8;\nconstexpr ld\
+    \ PI = 3.1415926535897932384626;\n#line 2 \"template/type_traits.hpp\"\n\n#line\
+    \ 5 \"template/type_traits.hpp\"\n\ntemplate<class T, class... Args> struct function_traits_impl\
+    \ {\n    using result_type = T;\n    template<std::size_t idx>\n    using argument_type\
+    \ =\n        typename std::tuple_element<idx, std::tuple<Args...>>::type;\n  \
+    \  using argument_tuple = std::tuple<Args...>;\n    static constexpr std::size_t\
     \ arg_size() { return sizeof...(Args); }\n};\n\ntemplate<class> struct function_traits_helper;\n\
     \ntemplate<class Res, class Tp, class... Args>\nstruct function_traits_helper<Res\
     \ (Tp::*)(Args...)> {\n    using type = function_traits_impl<Res, Args...>;\n\
@@ -453,147 +456,201 @@ data:
     \        return res;\n    }\n    void press(std::vector<T>& vec) const {\n   \
     \     assert(sorted);\n        for (auto&& i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
-    };\n#line 2 \"data-struct/wavelet/FullyIndexableDictionary.hpp\"\n\n#line 4 \"\
-    data-struct/wavelet/FullyIndexableDictionary.hpp\"\n\nclass FullyIndexableDictionary\
-    \ {\nprivate:\n    int n, b;\n    std::vector<unsigned int> bit, sm;\n\npublic:\n\
-    \    FullyIndexableDictionary() = default;\n    FullyIndexableDictionary(int n)\
-    \ : n(n), b((n >> 5) + 1), bit(b), sm(b) {}\n    void set(int i) { bit[i >> 5]\
-    \ |= 1U << (i & 31); }\n    bool get(int i) const { return (bool)((bit[i >> 5]\
-    \ >> (i & 31)) & 1); }\n    bool operator[](int i) const { return get(i); }\n\
-    \    void build() {\n        rep (i, b - 1) sm[i + 1] = sm[i] + popcnt(bit[i]);\n\
-    \    }\n    int rank(int i) const {\n        return sm[i >> 5] + popcnt(bit[i\
-    \ >> 5] & ((1U << (i & 31)) - 1));\n    }\n    int rank(bool x, int i) const {\
-    \ return x ? rank(i) : i - rank(i); }\n    int select(bool x, int i) const {\n\
-    \        int l = 0, r = n;\n        while (r - l > 1) {\n            int m = (l\
-    \ + r) >> 1;\n            if (rank(x, m) <= i) l = m;\n            else r = m;\n\
-    \        }\n        return l;\n    }\n};\n\n/**\n * @brief FullyIndexableDictionary(\u5B8C\
-    \u5099\u8F9E\u66F8)\n * @docs docs/data-struct/wavelet/FullyIndexableDictionary.md\n\
-    \ */\n#line 5 \"data-struct/wavelet/WaveletMatrix.hpp\"\n\ntemplate<class T> class\
-    \ WaveletMatrix {\nprivate:\n    int n, m, h;\n    compressor<T> ps;\n    std::vector<FullyIndexableDictionary>\
-    \ dat;\n    std::vector<int> mid, start;\n\npublic:\n    WaveletMatrix() = default;\n\
-    \    WaveletMatrix(const std::vector<T>& v) { init(v); }\n    void init(std::vector<T>\
-    \ v_) {\n        n = v_.size();\n        ps.push(v_);\n        ps.build();\n \
-    \       m = ps.size();\n        std::vector<int> v = ps.pressed(v_);\n       \
-    \ h = bitop::ceil_log2(m + 1);\n        dat.assign(h, FullyIndexableDictionary(n));\n\
-    \        mid.resize(h);\n        std::vector<int> lv(n), rv(n);\n        rrep\
-    \ (i, h) {\n            int l = 0, r = 0;\n            rep (j, n) {\n        \
-    \        if ((v[j] >> i) & 1) {\n                    dat[i].set(j);\n        \
-    \            rv[r++] = v[j];\n                }\n                else {\n    \
-    \                lv[l++] = v[j];\n                }\n            }\n         \
-    \   dat[i].build();\n            mid[i] = l;\n            v.swap(lv);\n      \
-    \      rep (j, r) v[l + j] = rv[j];\n        }\n        start.resize(m);\n   \
-    \     rep (i, n) {\n            if (i == 0 || v[i - 1] != v[i]) start[v[i]] =\
-    \ i;\n        }\n    }\n    T access(int k) const {\n        assert(0 <= k &&\
-    \ k < n);\n        int res = 0;\n        rrep (i, h) {\n            if (dat[i][k])\
-    \ {\n                res |= (1ull << i);\n                k = dat[i].rank(true,\
-    \ k) + mid[i];\n            }\n            else {\n                k = dat[i].rank(false,\
-    \ k);\n            }\n        }\n        return ps[res];\n    }\n    T operator[](int\
-    \ k) const { return access(k); }\n    int rank(int k, const T& x) const {\n  \
-    \      assert(0 <= k && k <= n);\n        int v = ps.lower_bound(x);\n       \
-    \ if (v == ps.size() || ps[v] != x) return 0;\n        rrep (i, h) {\n       \
-    \     if ((v >> i) & 1) k = dat[i].rank(true, k) + mid[i];\n            else k\
-    \ = dat[i].rank(false, k);\n        }\n        return k - start[v];\n    }\n \
-    \   int rank(const T& x) const { return rank(n, x); }\n    int rank(int l, int\
-    \ r, const T& x) const {\n        assert(0 <= l && l <= r && r <= n);\n      \
-    \  int v = ps.lower_bound(x);\n        if (v == ps.size() || ps[v] != x) return\
-    \ 0;\n        rrep (i, h) {\n            if ((v >> i) & 1) {\n               \
-    \ l = dat[i].rank(true, l) + mid[i];\n                r = dat[i].rank(true, r)\
-    \ + mid[i];\n            }\n            else {\n                l = dat[i].rank(false,\
-    \ l);\n                r = dat[i].rank(false, r);\n            }\n        }\n\
-    \        return r - l;\n    }\n    int select(const T& x, int k) const {\n   \
-    \     assert(0 <= k && k < rank(x));\n        int v = ps.get(x);\n        k +=\
-    \ start[v];\n        rep (i, h) {\n            if (mid[i] <= k) k = dat[i].select(true,\
-    \ k - mid[i]);\n            else k = dat[i].select(false, k);\n        }\n   \
-    \     return k;\n    }\n    T kth_smallest(int l, int r, int k) const {\n    \
-    \    assert(0 <= l && l <= r && r <= n);\n        assert(0 <= k && k < r - l);\n\
-    \        int res = 0;\n        rrep (i, h) {\n            int cnt = dat[i].rank(false,\
-    \ r) - dat[i].rank(false, l);\n            if (cnt <= k) {\n                res\
-    \ |= (1ull << i);\n                l = dat[i].rank(true, l) + mid[i];\n      \
-    \          r = dat[i].rank(true, r) + mid[i];\n                k -= cnt;\n   \
-    \         }\n            else {\n                l = dat[i].rank(false, l);\n\
-    \                r = dat[i].rank(false, r);\n            }\n        }\n      \
-    \  return ps[res];\n    }\n    T kth_largest(int l, int r, int k) const {\n  \
-    \      return kth_smallest(l, r, r - l - 1 - k);\n    }\n    int range_freq(int\
-    \ l, int r, const T& upper) const {\n        assert(0 <= l && l <= r && r <= n);\n\
-    \        int v = ps.lower_bound(upper);\n        int res = 0;\n        rrep (i,\
-    \ h) {\n            if ((v >> i) & 1) {\n                const int a = dat[i].rank(true,\
-    \ l);\n                const int b = dat[i].rank(true, r);\n                res\
-    \ += (r - l) - (b - a);\n                l = a + mid[i];\n                r =\
-    \ b + mid[i];\n            }\n            else {\n                l = dat[i].rank(false,\
-    \ l);\n                r = dat[i].rank(false, r);\n            }\n        }\n\
-    \        return res;\n    }\n    int range_freq(int l, int r, const T& lower,\
-    \ const T& upper) const {\n        return range_freq(l, r, upper) - range_freq(l,\
-    \ r, lower);\n    }\n    // max v[i] s.t. (l <= i < r) && (v[i] < upper)\n   \
-    \ T prev_value(int l, int r, const T& upper) const {\n        int cnt = range_freq(l,\
-    \ r, upper);\n        if (cnt == 0) return infinity<T>::mvalue;\n        return\
-    \ kth_smallest(l, r, cnt - 1);\n    }\n    // min v[i] s.t. (l <= i < r) && (lower\
-    \ <= v[i])\n    T next_value(int l, int r, const T& lower) const {\n        int\
-    \ cnt = range_freq(l, r, lower);\n        if (cnt == r - l) return infinity<T>::value;\n\
-    \        return kth_smallest(l, r, cnt);\n    }\n};\n\n/**\n * @brief WaveletMatrix\n\
-    \ * @docs docs/data-struct/wavelet/WaveletMatrix.md\n */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"FullyIndexableDictionary.hpp\"\
-    \n\ntemplate<class T> class WaveletMatrix {\nprivate:\n    int n, m, h;\n    compressor<T>\
-    \ ps;\n    std::vector<FullyIndexableDictionary> dat;\n    std::vector<int> mid,\
-    \ start;\n\npublic:\n    WaveletMatrix() = default;\n    WaveletMatrix(const std::vector<T>&\
-    \ v) { init(v); }\n    void init(std::vector<T> v_) {\n        n = v_.size();\n\
-    \        ps.push(v_);\n        ps.build();\n        m = ps.size();\n        std::vector<int>\
-    \ v = ps.pressed(v_);\n        h = bitop::ceil_log2(m + 1);\n        dat.assign(h,\
-    \ FullyIndexableDictionary(n));\n        mid.resize(h);\n        std::vector<int>\
-    \ lv(n), rv(n);\n        rrep (i, h) {\n            int l = 0, r = 0;\n      \
-    \      rep (j, n) {\n                if ((v[j] >> i) & 1) {\n                \
-    \    dat[i].set(j);\n                    rv[r++] = v[j];\n                }\n\
-    \                else {\n                    lv[l++] = v[j];\n               \
-    \ }\n            }\n            dat[i].build();\n            mid[i] = l;\n   \
-    \         v.swap(lv);\n            rep (j, r) v[l + j] = rv[j];\n        }\n \
-    \       start.resize(m);\n        rep (i, n) {\n            if (i == 0 || v[i\
-    \ - 1] != v[i]) start[v[i]] = i;\n        }\n    }\n    T access(int k) const\
-    \ {\n        assert(0 <= k && k < n);\n        int res = 0;\n        rrep (i,\
-    \ h) {\n            if (dat[i][k]) {\n                res |= (1ull << i);\n  \
-    \              k = dat[i].rank(true, k) + mid[i];\n            }\n           \
-    \ else {\n                k = dat[i].rank(false, k);\n            }\n        }\n\
-    \        return ps[res];\n    }\n    T operator[](int k) const { return access(k);\
-    \ }\n    int rank(int k, const T& x) const {\n        assert(0 <= k && k <= n);\n\
-    \        int v = ps.lower_bound(x);\n        if (v == ps.size() || ps[v] != x)\
-    \ return 0;\n        rrep (i, h) {\n            if ((v >> i) & 1) k = dat[i].rank(true,\
-    \ k) + mid[i];\n            else k = dat[i].rank(false, k);\n        }\n     \
-    \   return k - start[v];\n    }\n    int rank(const T& x) const { return rank(n,\
-    \ x); }\n    int rank(int l, int r, const T& x) const {\n        assert(0 <= l\
-    \ && l <= r && r <= n);\n        int v = ps.lower_bound(x);\n        if (v ==\
-    \ ps.size() || ps[v] != x) return 0;\n        rrep (i, h) {\n            if ((v\
-    \ >> i) & 1) {\n                l = dat[i].rank(true, l) + mid[i];\n         \
-    \       r = dat[i].rank(true, r) + mid[i];\n            }\n            else {\n\
-    \                l = dat[i].rank(false, l);\n                r = dat[i].rank(false,\
-    \ r);\n            }\n        }\n        return r - l;\n    }\n    int select(const\
-    \ T& x, int k) const {\n        assert(0 <= k && k < rank(x));\n        int v\
-    \ = ps.get(x);\n        k += start[v];\n        rep (i, h) {\n            if (mid[i]\
-    \ <= k) k = dat[i].select(true, k - mid[i]);\n            else k = dat[i].select(false,\
-    \ k);\n        }\n        return k;\n    }\n    T kth_smallest(int l, int r, int\
-    \ k) const {\n        assert(0 <= l && l <= r && r <= n);\n        assert(0 <=\
-    \ k && k < r - l);\n        int res = 0;\n        rrep (i, h) {\n            int\
-    \ cnt = dat[i].rank(false, r) - dat[i].rank(false, l);\n            if (cnt <=\
-    \ k) {\n                res |= (1ull << i);\n                l = dat[i].rank(true,\
-    \ l) + mid[i];\n                r = dat[i].rank(true, r) + mid[i];\n         \
-    \       k -= cnt;\n            }\n            else {\n                l = dat[i].rank(false,\
-    \ l);\n                r = dat[i].rank(false, r);\n            }\n        }\n\
-    \        return ps[res];\n    }\n    T kth_largest(int l, int r, int k) const\
-    \ {\n        return kth_smallest(l, r, r - l - 1 - k);\n    }\n    int range_freq(int\
-    \ l, int r, const T& upper) const {\n        assert(0 <= l && l <= r && r <= n);\n\
-    \        int v = ps.lower_bound(upper);\n        int res = 0;\n        rrep (i,\
-    \ h) {\n            if ((v >> i) & 1) {\n                const int a = dat[i].rank(true,\
-    \ l);\n                const int b = dat[i].rank(true, r);\n                res\
-    \ += (r - l) - (b - a);\n                l = a + mid[i];\n                r =\
-    \ b + mid[i];\n            }\n            else {\n                l = dat[i].rank(false,\
-    \ l);\n                r = dat[i].rank(false, r);\n            }\n        }\n\
-    \        return res;\n    }\n    int range_freq(int l, int r, const T& lower,\
-    \ const T& upper) const {\n        return range_freq(l, r, upper) - range_freq(l,\
-    \ r, lower);\n    }\n    // max v[i] s.t. (l <= i < r) && (v[i] < upper)\n   \
-    \ T prev_value(int l, int r, const T& upper) const {\n        int cnt = range_freq(l,\
-    \ r, upper);\n        if (cnt == 0) return infinity<T>::mvalue;\n        return\
-    \ kth_smallest(l, r, cnt - 1);\n    }\n    // min v[i] s.t. (l <= i < r) && (lower\
-    \ <= v[i])\n    T next_value(int l, int r, const T& lower) const {\n        int\
-    \ cnt = range_freq(l, r, lower);\n        if (cnt == r - l) return infinity<T>::value;\n\
-    \        return kth_smallest(l, r, cnt);\n    }\n};\n\n/**\n * @brief WaveletMatrix\n\
-    \ * @docs docs/data-struct/wavelet/WaveletMatrix.md\n */\n"
+    };\n#line 2 \"data-struct/segment/LazySegmentTree.hpp\"\n\n#line 2 \"other/monoid.hpp\"\
+    \n\n#line 4 \"other/monoid.hpp\"\n\nnamespace Monoid {\n\ntemplate<class M, class\
+    \ = void>\nclass has_value_type : public std::false_type {};\ntemplate<class M>\n\
+    class has_value_type<M, decltype((void)std::declval<typename M::value_type>())>\n\
+    \    : public std::true_type {};\n\ntemplate<class M, class = void> class has_op\
+    \ : public std::false_type {};\ntemplate<class M>\nclass has_op<M, decltype((void)M::op)>\
+    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_id\
+    \ : public std::false_type {};\ntemplate<class M>\nclass has_id<M, decltype((void)M::id)>\
+    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_inv\
+    \ : public std::false_type {};\ntemplate<class M>\nclass has_inv<M, decltype((void)M::inv)>\
+    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_get_inv\
+    \ : public std::false_type {};\ntemplate<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)>\
+    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_init\
+    \ : public std::false_type {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init(0,\
+    \ 0))> : public std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op\
+    \ : public std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
+    \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_semigroup\
+    \ : public std::false_type {};\ntemplate<class T>\nclass is_semigroup<T, decltype(std::declval<typename\
+    \ T::value_type>(),\n                               (void)T::op)> : public std::true_type\
+    \ {};\n\ntemplate<class T, class = void> class is_monoid : public std::false_type\
+    \ {};\n\ntemplate<class T>\nclass is_monoid<T, decltype(std::declval<typename\
+    \ T::value_type>(), (void)T::op,\n                            (void)T::id)> :\
+    \ public std::true_type {};\n\ntemplate<class T, class = void> class is_group\
+    \ : public std::false_type {};\n\ntemplate<class T>\nclass is_group<T, decltype(std::declval<typename\
+    \ T::value_type>(), (void)T::op,\n                           (void)T::id, (void)T::get_inv)>\n\
+    \    : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
+    \ : public std::false_type {};\ntemplate<class T>\nclass is_action<T, typename\
+    \ std::enable_if<is_monoid<typename T::M>::value &&\n                        \
+    \                   is_semigroup<typename T::E>::value &&\n                  \
+    \                         (has_op<T>::value ||\n                             \
+    \               has_mul_op<T>::value)>::type>\n    : public std::true_type {};\n\
+    \ntemplate<class T, class = void>\nclass is_distributable_action : public std::false_type\
+    \ {};\ntemplate<class T>\nclass is_distributable_action<\n    T,\n    typename\
+    \ std::enable_if<is_action<T>::value && !has_mul_op<T>::value>::type>\n    : public\
+    \ std::true_type {};\n\ntemplate<class T> struct Sum {\n    using value_type =\
+    \ T;\n    static constexpr T op(const T& a, const T& b) { return a + b; }\n  \
+    \  static constexpr T id() { return T{0}; }\n    static constexpr T inv(const\
+    \ T& a, const T& b) { return a - b; }\n    static constexpr T get_inv(const T&\
+    \ a) { return -a; }\n};\n\ntemplate<class T, int i = -1> struct Min {\n    using\
+    \ value_type = T;\n    static T max_value;\n    static T op(const T& a, const\
+    \ T& b) { return a < b ? a : b; }\n    static T id() { return max_value; }\n};\n\
+    template<class T> struct Min<T, -1> {\n    using value_type = T;\n    static constexpr\
+    \ T op(const T& a, const T& b) { return a < b ? a : b; }\n    static constexpr\
+    \ T id() { return infinity<T>::value; }\n};\ntemplate<class T> struct Min<T, -2>\
+    \ {\n    using value_type = T;\n    static constexpr T op(const T& a, const T&\
+    \ b) { return a < b ? a : b; }\n    static constexpr T id() { return infinity<T>::max;\
+    \ }\n};\ntemplate<class T, int id> T Min<T, id>::max_value;\n\ntemplate<class\
+    \ T, int i = -1> struct Max {\n    using value_type = T;\n    static T min_value;\n\
+    \    static T op(const T& a, const T& b) { return a > b ? a : b; }\n    static\
+    \ T id() { return min_value; }\n};\ntemplate<class T> struct Max<T, -1> {\n  \
+    \  using value_type = T;\n    static constexpr T op(const T& a, const T& b) {\
+    \ return a > b ? a : b; }\n    static constexpr T id() { return infinity<T>::mvalue;\
+    \ }\n};\ntemplate<class T> struct Max<T, -2> {\n    using value_type = T;\n  \
+    \  static constexpr T op(const T& a, const T& b) { return a > b ? a : b; }\n \
+    \   static constexpr T id() { return infinity<T>::min; }\n};\n\ntemplate<class\
+    \ T> struct Assign {\n    using value_type = T;\n    static constexpr T op(const\
+    \ T&, const T& b) { return b; }\n};\n\n\ntemplate<class T, int id = -1> struct\
+    \ AssignMin {\n    using M = Min<T, id>;\n    using E = Assign<T>;\n    static\
+    \ constexpr T op(const T& a, const T&) { return a; }\n};\n\ntemplate<class T,\
+    \ int id = -1> struct AssignMax {\n    using M = Max<T, id>;\n    using E = Assign<T>;\n\
+    \    static constexpr T op(const T& a, const T&) { return a; }\n};\n\ntemplate<class\
+    \ T> struct AssignSum {\n    using M = Sum<T>;\n    using E = Assign<T>;\n   \
+    \ static constexpr T mul_op(const T& a, int b, const T&) { return a * b; }\n};\n\
+    \ntemplate<class T, int id = -1> struct AddMin {\n    using M = Min<T, id>;\n\
+    \    using E = Sum<T>;\n    static constexpr T op(const T& a, const T& b) { return\
+    \ b + a; }\n};\n\ntemplate<class T, int id = -1> struct AddMax {\n    using M\
+    \ = Max<T, id>;\n    using E = Sum<T>;\n    static constexpr T op(const T& a,\
+    \ const T& b) { return b + a; }\n};\n\ntemplate<class T> struct AddSum {\n   \
+    \ using M = Sum<T>;\n    using E = Sum<T>;\n    static constexpr T mul_op(const\
+    \ T& a, int b, const T& c) {\n        return c + a * b;\n    }\n};\n\ntemplate<class\
+    \ T, int id = -1> struct ChminMin {\n    using M = Min<T, id>;\n    using E =\
+    \ Min<T>;\n    static constexpr T op(const T& a, const T& b) { return std::min(b,\
+    \ a); }\n};\n\ntemplate<class T, int id = -1> struct ChminMax {\n    using M =\
+    \ Max<T, id>;\n    using E = Min<T>;\n    static constexpr T op(const T& a, const\
+    \ T& b) { return std::min(b, a); }\n};\n\ntemplate<class T, int id = -1> struct\
+    \ ChmaxMin {\n    using M = Min<T, id>;\n    using E = Max<T>;\n    static constexpr\
+    \ T op(const T& a, const T& b) { return std::max(b, a); }\n};\n\ntemplate<class\
+    \ T, int id = -1> struct ChmaxMax {\n    using M = Max<T, id>;\n    using E =\
+    \ Max<T>;\n    static constexpr T op(const T& a, const T& b) { return std::max(b,\
+    \ a); }\n};\n\n\ntemplate<class M> struct ReverseMonoid {\n    using value_type\
+    \ = typename M::value_type;\n    static value_type op(const value_type& a, const\
+    \ value_type& b) {\n        return M::op(b, a);\n    }\n    static value_type\
+    \ id() {\n        static_assert(has_id<M>::value, \"id is not defined\");\n  \
+    \      return M::id();\n    }\n    static value_type inv(const value_type& a,\
+    \ const value_type& b) {\n        static_assert(has_inv<M>::value, \"inv is not\
+    \ defined\");\n        return M::inv(b, a);\n    }\n    static value_type get_inv(const\
+    \ value_type& a) {\n        static_assert(has_get_inv<M>::value, \"get_inv is\
+    \ not defined\");\n        return M::get_inv(a);\n    }\n};\n\ntemplate<class\
+    \ E_> struct MakeAction {\n    using M = E_;\n    using E = E_;\n    using T =\
+    \ typename E_::value_type;\n    static T op(const T& a, const T& b) { return E_::op(b,\
+    \ a); }\n};\n\n} // namespace Monoid\n#line 5 \"data-struct/segment/LazySegmentTree.hpp\"\
+    \n\ntemplate<class A> class LazySegmentTree {\n    static_assert(Monoid::is_action<A>::value,\
+    \ \"A must be action\");\n\nprivate:\n    using M = typename A::M;\n    using\
+    \ E = typename A::E;\n    using T = typename M::value_type;\n    using U = typename\
+    \ E::value_type;\n    int h, n, ori;\n    std::vector<T> data;\n    std::vector<U>\
+    \ lazy;\n    std::vector<bool> lazyflag;\n\n    template<bool AlwaysTrue = true,\n\
+    \             typename std::enable_if<!Monoid::has_mul_op<A>::value &&\n     \
+    \                                AlwaysTrue>::type* = nullptr>\n    static inline\
+    \ T Aop(const U& a, const T& b, int) {\n        return A::op(a, b);\n    }\n \
+    \   template<bool AlwaysTrue = true,\n             typename std::enable_if<Monoid::has_mul_op<A>::value\
+    \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
+    \ static inline T Aop(const U& a, const T& b, int c) {\n        return A::mul_op(a,\
+    \ c, b);\n    }\n\n    void all_apply(int k, const U& x, int d) {\n        data[k]\
+    \ = Aop(x, data[k], d);\n        if (k < n) {\n            if (lazyflag[k]) {\n\
+    \                lazy[k] = E::op(lazy[k], x);\n            }\n            else\
+    \ {\n                lazy[k] = x;\n                lazyflag[k] = true;\n     \
+    \       }\n        }\n    }\n    void eval(int k, int d) {\n        if (lazyflag[k])\
+    \ {\n            all_apply(k << 1, lazy[k], d >> 1);\n            all_apply(k\
+    \ << 1 ^ 1, lazy[k], d >> 1);\n            lazyflag[k] = false;\n        }\n \
+    \   }\n    void calc(int k) { data[k] = M::op(data[k << 1], data[k << 1 ^ 1]);\
+    \ }\n\npublic:\n    LazySegmentTree() : LazySegmentTree(0) {}\n    LazySegmentTree(int\
+    \ n) : LazySegmentTree(std::vector<T>(n, M::id())) {}\n    LazySegmentTree(int\
+    \ n, const T& v)\n        : LazySegmentTree(std::vector<T>(n, v)) {}\n    LazySegmentTree(const\
+    \ std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>& v) {\n\
+    \        ori = v.size();\n        h = bitop::ceil_log2(ori);\n        n = 1 <<\
+    \ h;\n        data.assign(n << 1, M::id());\n        rep (i, ori) data[n + i]\
+    \ = v[i];\n        rrep (i, 1, n) calc(i);\n        lazy.resize(n);\n        lazyflag.assign(n,\
+    \ false);\n    }\n    void eval_all() {\n        rep (i, h) {\n            rep\
+    \ (j, 1 << i) eval((1 << i) + j, 1 << (h - i));\n        }\n    }\n    T prod(int\
+    \ l, int r) {\n        assert(0 <= l && l <= r && r <= ori);\n        if (l ==\
+    \ r) return M::id();\n\n        l += n, r += n;\n        rreps (i, h) {\n    \
+    \        bool seen = false;\n            if (((l >> i) << i) != l) eval(l >> i,\
+    \ 1 << i), seen = true;\n            if (((r >> i) << i) != r) eval((r - 1) >>\
+    \ i, 1 << i), seen = true;\n            if (!seen) break;\n        }\n\n     \
+    \   T lsm = M::id(), rsm = M::id();\n        while (l != r) {\n            if\
+    \ (l & 1) lsm = M::op(lsm, data[l++]);\n            if (r & 1) rsm = M::op(data[--r],\
+    \ rsm);\n            l >>= 1, r >>= 1;\n        }\n        return M::op(lsm, rsm);\n\
+    \    }\n    T get(int k) {\n        assert(0 <= k && k < ori);\n\n        k +=\
+    \ n;\n        rreps (i, h) eval(k >> i, 1 << i);\n        return data[k];\n  \
+    \  }\n    T all_prod() const { return data[1]; }\n    template<class Upd> void\
+    \ update(int k, const Upd& upd) {\n        assert(0 <= k && k < ori);\n\n    \
+    \    k += n;\n        rreps (i, h) eval(k >> i, 1 << i);\n        data[k] = upd(data[k]);\n\
+    \        reps (i, h) calc(k >> i);\n    }\n    void set(int k, const T& x) {\n\
+    \        update(k, [&](const T&) -> T { return x; });\n    }\n    void apply(int\
+    \ k, const U& x) {\n        update(k, [&](const T& a) -> T { return A::op(x, a);\
+    \ });\n    }\n    void apply(int l, int r, const U& x) {\n        assert(0 <=\
+    \ l && l <= r && r <= ori);\n        if (l == r) return;\n\n        l += n, r\
+    \ += n;\n        int lst = h + 1;\n        rreps (i, h) {\n            if (((l\
+    \ >> i) << i) != l) eval(l >> i, 1 << i), lst = i;\n            if (((r >> i)\
+    \ << i) != r) eval((r - 1) >> i, 1 << i), lst = i;\n            if (lst != i)\
+    \ break;\n        }\n\n        for (int l2 = l, r2 = r, d = 1; l2 != r2; l2 >>=\
+    \ 1, r2 >>= 1, d <<= 1) {\n            if (l2 & 1) all_apply(l2++, x, d);\n  \
+    \          if (r2 & 1) all_apply(--r2, x, d);\n        }\n\n        rep (i, lst,\
+    \ h + 1) {\n            if (((l >> i) << i) != l) calc(l >> i);\n            if\
+    \ (((r >> i) << i) != r) calc((r - 1) >> i);\n        }\n    }\n    template<class\
+    \ C> int max_right(int l, const C& cond) {\n        assert(0 <= l && l <= ori);\n\
+    \        assert(cond(M::id()));\n        if (l == ori) return ori;\n\n       \
+    \ l += n;\n        rreps (i, h) {\n            if (((l >> i) << i) != l) eval(l\
+    \ >> i, 1 << i);\n            else break;\n        }\n\n        T sm = M::id();\n\
+    \        int d = 1;\n        do {\n            while ((l & 1) == 0) l >>= 1, d\
+    \ <<= 1;\n            if (!cond(M::op(sm, data[l]))) {\n                while\
+    \ (l < n) {\n                    eval(l, d);\n                    l <<= 1;\n \
+    \                   d >>= 1;\n                    if (cond(M::op(sm, data[l])))\
+    \ sm = M::op(sm, data[l++]);\n                }\n                return l - n;\n\
+    \            }\n            sm = M::op(sm, data[l++]);\n        } while ((l &\
+    \ -l) != l);\n        return ori;\n    }\n    template<class C> int min_left(int\
+    \ r, const C& cond) {\n        assert(0 <= r && r <= ori);\n        assert(cond(M::id()));\n\
+    \        if (r == 0) return 0;\n\n        r += n;\n        rreps (i, h) {\n  \
+    \          if (((r >> i) << i) != r) eval((r - 1) >> i, 1 << i);\n           \
+    \ else break;\n        }\n\n        T sm = M::id();\n        int d = 1;\n    \
+    \    do {\n            --r;\n            while ((r & 1) && r > 1) r >>= 1, d <<=\
+    \ 1;\n            if (!cond(M::op(data[r], sm))) {\n                while (r <\
+    \ n) {\n                    eval(r, d);\n                    r = r << 1 ^ 1;\n\
+    \                    d >>= 1;\n                    if (cond(M::op(data[r], sm)))\
+    \ sm = M::op(data[r--], sm);\n                }\n                return r + 1\
+    \ - n;\n            }\n            sm = M::op(data[r], sm);\n        } while ((r\
+    \ & -r) != r);\n        return 0;\n    }\n};\n\ntemplate<class T, int id = -1>\n\
+    using RangeUpdateQueryRangeMinimumQuery =\n    LazySegmentTree<Monoid::AssignMin<T,\
+    \ id>>;\n\ntemplate<class T, int id = -1>\nusing RangeUpdateQueryRangeMaximumQuery\
+    \ =\n    LazySegmentTree<Monoid::AssignMax<T, id>>;\n\ntemplate<class T>\nusing\
+    \ RangeUpdateQueryRangeSumQuery = LazySegmentTree<Monoid::AssignSum<T>>;\n\ntemplate<class\
+    \ T, int id = -1>\nusing RangeAddQueryRangeMinimumQuery = LazySegmentTree<Monoid::AddMin<T,\
+    \ id>>;\n\ntemplate<class T, int id = -1>\nusing RangeAddQueryRangeMaximumQuery\
+    \ = LazySegmentTree<Monoid::AddMax<T, id>>;\n\ntemplate<class T>\nusing RangeAddQueryRangeSumQuery\
+    \ = LazySegmentTree<Monoid::AddSum<T>>;\n\ntemplate<class T, int id = -1>\nusing\
+    \ RangeChminQueryRangeMinimumQuery =\n    LazySegmentTree<Monoid::ChminMin<T,\
+    \ id>>;\n\ntemplate<class T, int id = -1>\nusing RangeChminQueryRangeMaximumQuery\
+    \ =\n    LazySegmentTree<Monoid::ChminMax<T, id>>;\n\ntemplate<class T, int id\
+    \ = -1>\nusing RangeChmaxQueryRangeMinimumQuery =\n    LazySegmentTree<Monoid::ChmaxMin<T,\
+    \ id>>;\n\ntemplate<class T, int id = -1>\nusing RangeChmaxQueryRangeMaximumQuery\
+    \ =\n    LazySegmentTree<Monoid::ChmaxMax<T, id>>;\n\n/**\n * @brief LazySegmentTree(\u9045\
+    \u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/data-struct/segment/LazySegmentTree.md\n\
+    \ */\n#line 4 \"test/yosupo/new/range_add_range_min.test.cpp\"\nusing namespace\
+    \ std;\nint main() {\n    int N, Q; scan >> N >> Q;\n    vector<ll> A(N); scan\
+    \ >> A;\n    RangeAddQueryRangeMinimumQuery<ll> seg(A);\n    rep (Q) {\n     \
+    \   int t, l, r; scan >> t >> l >> r;\n        if (t == 0) {\n            ll x;\
+    \ scan >> x;\n            seg.apply(l, r, x);\n        }\n        else {\n   \
+    \         prints(seg.prod(l, r));\n        }\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_add_range_min\"\n\
+    #include \"../../../other/template.hpp\"\n#include \"../../../data-struct/segment/LazySegmentTree.hpp\"\
+    \nusing namespace std;\nint main() {\n    int N, Q; scan >> N >> Q;\n    vector<ll>\
+    \ A(N); scan >> A;\n    RangeAddQueryRangeMinimumQuery<ll> seg(A);\n    rep (Q)\
+    \ {\n        int t, l, r; scan >> t >> l >> r;\n        if (t == 0) {\n      \
+    \      ll x; scan >> x;\n            seg.apply(l, r, x);\n        }\n        else\
+    \ {\n            prints(seg.prod(l, r));\n        }\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -604,33 +661,18 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  - data-struct/wavelet/FullyIndexableDictionary.hpp
-  isVerificationFile: false
-  path: data-struct/wavelet/WaveletMatrix.hpp
+  - data-struct/segment/LazySegmentTree.hpp
+  - other/monoid.hpp
+  isVerificationFile: true
+  path: test/yosupo/new/range_add_range_min.test.cpp
   requiredBy: []
-  timestamp: '2026-09-12 01:05:48+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
-documentation_of: data-struct/wavelet/WaveletMatrix.hpp
+  timestamp: '2026-09-14 19:07:59+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
+  verifiedWith: []
+documentation_of: test/yosupo/new/range_add_range_min.test.cpp
 layout: document
 redirect_from:
-- /library/data-struct/wavelet/WaveletMatrix.hpp
-- /library/data-struct/wavelet/WaveletMatrix.hpp.html
-title: WaveletMatrix
+- /verify/test/yosupo/new/range_add_range_min.test.cpp
+- /verify/test/yosupo/new/range_add_range_min.test.cpp.html
+title: test/yosupo/new/range_add_range_min.test.cpp
 ---
-## 概要
-
-数列が与えられたとき、区間に対して色々できる。以下値の種類数を $m$ とする。
-
-- `WaveletMatrix(vector<T> a)` : 列 `a` で初期化する。 $\Theta(n \log n)$ 。空間は $\Theta(n \log m)$ bit 。
-- `T access(int k)` : `a[k]` を返す。 $\Theta(\log m)$ 。
-- `T operator[](int k)` : 上に同じ。
-- `int rank(int r, T x)` : `a[0:r)` の `x` の個数を返す。 $\Theta(\log m)$ 。
-- `int rank(int l, int r, T x)` : `a[l:r)` の `x` の個数を返す。 $\Theta(\log m)$ 。
-- `int select(T x, int k)` : `x` のうち `k` 個目にある値の index を返す。 $\Theta(\log n \log m)$ 。
-- `T kth_smallest(int l, int r, int k)` : `a[l:r)` を昇順ソートしたとき `k` 番目の値を返す。 $\Theta(\log m)$ 。
-- `T kth_largest(int l, int r, int k)` : `a[l:r)` を降順ソートしたとき `k` 番目の値を返す。 $\Theta(\log m)$ 。
-- `int range_freq(int l, int r, T lower, T upper)` : `a[l:r)` のうち `[lower:upper)` に収まる値の個数を返す。 $\Theta(\log m)$ 。
-- `T prev_value(int l, int r, T upper)` : `a[l:r)` のうち `upper` より小さい最大の値を返す。存在しなければ -inf を返す。 $\Theta(\log m)$ 。
-- `T next_value(int l, int r, T lower)` : `a[l:r)` のうち `lower` 以上の最小の値を返す。存在しなければ inf を返す。 $\Theta(\log m)$ 。

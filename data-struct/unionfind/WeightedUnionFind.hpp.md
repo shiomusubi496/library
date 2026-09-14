@@ -36,15 +36,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
     title: test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/unionfind_with_potential.test.cpp
     title: test/yosupo/data_structure/unionfind_with_potential.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/unionfind_with_potential_non_commutative_group.test.cpp
     title: test/yosupo/data_structure/unionfind_with_potential_non_commutative_group.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/data-struct/unionfind/WeightedUnionFind.md
     document_title: "WeightedUnionFind(\u91CD\u307F\u4ED8\u304DUF)"
@@ -619,7 +619,7 @@ data:
   path: data-struct/unionfind/WeightedUnionFind.hpp
   requiredBy: []
   timestamp: '2026-09-12 01:05:48+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/data_structure/unionfind_with_potential.test.cpp
   - test/yosupo/data_structure/unionfind_with_potential_non_commutative_group.test.cpp

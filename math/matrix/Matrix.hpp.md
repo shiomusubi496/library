@@ -48,7 +48,7 @@ data:
     path: math/matrix/LinearEquations.hpp
     title: "LinearEquations(\u7DDA\u5F62\u65B9\u7A0B\u5F0F)"
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/unionfind_with_potential_non_commutative_group.test.cpp
     title: test/yosupo/data_structure/unionfind_with_potential_non_commutative_group.test.cpp
   - icon: ':x:'
@@ -95,7 +95,7 @@ data:
     title: test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/math/matrix/Matrix.md
     document_title: "Matrix(\u884C\u5217)"
@@ -827,7 +827,7 @@ data:
   - graph/other/CountEulerianCircuit.hpp
   - graph/mst/CountSpanningTree.hpp
   timestamp: '2026-09-12 01:05:48+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/data_structure/unionfind_with_potential_non_commutative_group.test.cpp
   - test/yosupo/linear_algebra/matrix_rank.test.cpp
