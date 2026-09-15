@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/compositional_inverse_of_formal_power_series_large"
 #include "../../../other/template.hpp"
 #include "../../../math/poly/FormalPowerSeries.hpp"
-#include "../../../math/poly/CompositionalInverse.hpp"
+#include "../../../math/poly/Composition.hpp"
 #include "../../../math/ModInt.hpp"
 using namespace std;
 using mint = modint998244353;

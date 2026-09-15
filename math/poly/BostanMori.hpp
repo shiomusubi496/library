@@ -4,7 +4,7 @@
 #include "FormalPowerSeries.hpp"
 
 template<class T, typename std::enable_if<
-                      is_ntt_friendly<T::get_mod()>::value>::type* = nullptr>
+                      is_ntt_friendly_modint<T>::value>::type* = nullptr>
 T bostan_mori(FormalPowerSeries<T> P, FormalPowerSeries<T> Q, ll n) {
     static constexpr internal::NthRoot<T> nth_root;
     T res = 0;
@@ -49,7 +49,7 @@ T bostan_mori(FormalPowerSeries<T> P, FormalPowerSeries<T> Q, ll n) {
 }
 
 template<class T, typename std::enable_if<
-                      !is_ntt_friendly<T::get_mod()>::value>::type* = nullptr>
+                      !is_ntt_friendly_modint<T>::value>::type* = nullptr>
 T bostan_mori(FormalPowerSeries<T> P, FormalPowerSeries<T> Q, ll n) {
     T res = 0;
     if (P.size() >= Q.size()) {

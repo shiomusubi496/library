@@ -4,7 +4,7 @@
 #include "FormalPowerSeries.hpp"
 
 template<class T, typename std::enable_if<
-                      is_ntt_friendly<T::get_mod()>::value>::type* = nullptr>
+                      is_ntt_friendly_modint<T>::value>::type* = nullptr>
 FormalPowerSeries<T> power_projection(FormalPowerSeries<T> f, FormalPowerSeries<T> g) {
     static constexpr internal::NthRoot<T> nth_root;
     assert(!f.empty() && f[0] == 0);
@@ -40,7 +40,7 @@ FormalPowerSeries<T> power_projection(FormalPowerSeries<T> f, FormalPowerSeries<
 }
 
 template<class T, typename std::enable_if<
-                      !is_ntt_friendly<T::get_mod()>::value>::type* = nullptr>
+                      !is_ntt_friendly_modint<T>::value>::type* = nullptr>
 FormalPowerSeries<T> power_projection(FormalPowerSeries<T> f, FormalPowerSeries<T> g) {
     assert(!f.empty() && f[0] == 0);
     assert(f.size() == g.size());
