@@ -7,6 +7,21 @@ template<class T> class SternBrocotTree {
 public:
     using Rat = Rational<T, true>;
 
+    static std::pair<Rat, Rat> _decode(std::vector<std::pair<char, int>> a) {
+        T xn = 0, xd = 1, yn = 1, yd = 0;
+        for (const auto& p : a) {
+            if (p.first == 'R') {
+                xn += yn * p.second;
+                xd += yd * p.second;
+            }
+            else {
+                yn += xn * p.second;
+                yd += xd * p.second;
+            }
+        }
+        return {{xn, xd}, {yn, yd}};
+    }
+
     static std::vector<std::pair<char, int>> encode_path(Rat x) {
         std::vector<std::pair<char, int>> res;
         T a = x.get_num(), b = x.get_den();
@@ -24,20 +39,9 @@ public:
         }
         return res;
     }
-    static Rat decode_path(std::vector<std::pair<char, int>> path, Rat s = 1) {
-        std::reverse(all(path));
-        T a = 1, b = 1;
-        for (const auto& p : path) {
-            if (p.first == 'R') a += b * p.second;
-            else b += a * p.second;
-        }
-        std::vector<std::pair<char, int>> path2 = encode_path(s);
-        std::reverse(all(path2));
-        for (const auto& p : path2) {
-            if (p.first == 'R') a += b * p.second;
-            else b += a * p.second;
-        }
-        return Rat(a, b);
+    static Rat decode_path(std::vector<std::pair<char, int>> path) {
+        auto [a, b] = _decode(path);
+        return Rat(a.get_num() + b.get_num(), a.get_den() + b.get_den());
     }
     static Rat lca(Rat x, Rat y) {
         auto px = encode_path(x), py = encode_path(y);
@@ -66,7 +70,7 @@ public:
     }
     static std::pair<Rat, Rat> range(Rat x) {
         auto px = encode_path(x);
-        return {decode_path(px, {0, 1}), decode_path(px, {1, 0})};
+        return _decode(px);
     }
     template<class Cond> static std::pair<Rat, Rat> max_right(Cond cond, T n) {
         assert(n >= 1);
