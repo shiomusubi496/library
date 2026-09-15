@@ -1,51 +1,51 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/MontgomeryModInt.hpp
     title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/num/MillerRabin.hpp
     title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
       )"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/3030
+    PROBLEM: https://yukicoder.me/problems/no/8030
     links:
-    - https://yukicoder.me/problems/no/3030
-  bundledCode: "#line 1 \"test/yuki/3030-MRPrime.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/3030\"\
+    - https://yukicoder.me/problems/no/8030
+  bundledCode: "#line 1 \"test/yuki/3030-MRPrime.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/8030\"\
     \n#line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
     \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
     \ __LINE__\n#endif\n\n#define OVERLOAD5(a, b, c, d, e, ...) e\n#define REP1_0(b,\
@@ -549,7 +549,7 @@ data:
     \nusing namespace std;\nint main() {\n    int n; scan >> n;\n    rep (n) {\n \
     \       ull x; scan >> x;\n        printer << x << \" \" << is_prime_mr(x) <<\
     \ endl;\n    }\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/3030\"\n#include \"../../other/template.hpp\"\
+  code: "#define PROBLEM \"https://yukicoder.me/problems/no/8030\"\n#include \"../../other/template.hpp\"\
     \n#include \"../../math/num/MillerRabin.hpp\"\nusing namespace std;\nint main()\
     \ {\n    int n; scan >> n;\n    rep (n) {\n        ull x; scan >> x;\n       \
     \ printer << x << \" \" << is_prime_mr(x) << endl;\n    }\n}\n"
@@ -568,8 +568,8 @@ data:
   isVerificationFile: true
   path: test/yuki/3030-MRPrime.test.cpp
   requiredBy: []
-  timestamp: '2026-09-12 01:07:36+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-09-16 00:51:29+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yuki/3030-MRPrime.test.cpp
 layout: document

@@ -1,59 +1,59 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/Combinatorics.hpp
     title: Combinatorics
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/MontgomeryModInt.hpp
     title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/SqrtMod.hpp
     title: "SqrtMod(\u5E73\u65B9\u5270\u4F59)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/convolution/Convolution.hpp
     title: "Convolution(\u7573\u307F\u8FBC\u307F)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/poly/FormalPowerSeries.hpp
     title: "FormalPowerSeries(\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp
     title: test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/poly/SquareRoot.hpp\"\n\n#line 2 \"other/template.hpp\"\
@@ -1036,12 +1036,12 @@ data:
     \ sqrt(FormalPowerSeries<T> t, int deg = -1) {\n    if (deg == -1) deg = t.size();\n\
     \    T a;\n    int d = -1;\n    rep (i, t.size()) {\n        if (t[i] != 0) {\n\
     \            a = t[i];\n            d = i;\n            break;\n        }\n  \
-    \  }\n    if (d == -1) {\n        FormalPowerSeries res(deg);\n        return\
+    \  }\n    if (d == -1) {\n        FormalPowerSeries<T> res(deg);\n        return\
     \ res;\n    }\n    if (d & 1) return {};\n    deg -= (d >> 1);\n    if (deg <=\
-    \ 0) {\n        FormalPowerSeries res(deg + (d >> 1));\n        return res;\n\
+    \ 0) {\n        FormalPowerSeries<T> res(deg + (d >> 1));\n        return res;\n\
     \    }\n    t >>= d;\n    T sq = sqrt_mod<T>(a.get());\n    if (sq == -1) return\
-    \ {};\n    FormalPowerSeries f(1, sq);\n    for (int m = 1; m < deg; m <<= 1)\
-    \ {\n        f = (f + t * f.inv(2 * m)).prefix(2 * m) / 2;\n    }\n    return\
+    \ {};\n    FormalPowerSeries<T> f(1, sq);\n    for (int m = 1; m < deg; m <<=\
+    \ 1) {\n        f = (f + t * f.inv(2 * m)).prefix(2 * m) / 2;\n    }\n    return\
     \ f.prefix(deg) << (d >> 1);\n}\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"FormalPowerSeries.hpp\"\
     \n#include \"../SqrtMod.hpp\"\n\ntemplate<class T, typename std::enable_if<\n\
@@ -1072,12 +1072,12 @@ data:
     \ sqrt(FormalPowerSeries<T> t, int deg = -1) {\n    if (deg == -1) deg = t.size();\n\
     \    T a;\n    int d = -1;\n    rep (i, t.size()) {\n        if (t[i] != 0) {\n\
     \            a = t[i];\n            d = i;\n            break;\n        }\n  \
-    \  }\n    if (d == -1) {\n        FormalPowerSeries res(deg);\n        return\
+    \  }\n    if (d == -1) {\n        FormalPowerSeries<T> res(deg);\n        return\
     \ res;\n    }\n    if (d & 1) return {};\n    deg -= (d >> 1);\n    if (deg <=\
-    \ 0) {\n        FormalPowerSeries res(deg + (d >> 1));\n        return res;\n\
+    \ 0) {\n        FormalPowerSeries<T> res(deg + (d >> 1));\n        return res;\n\
     \    }\n    t >>= d;\n    T sq = sqrt_mod<T>(a.get());\n    if (sq == -1) return\
-    \ {};\n    FormalPowerSeries f(1, sq);\n    for (int m = 1; m < deg; m <<= 1)\
-    \ {\n        f = (f + t * f.inv(2 * m)).prefix(2 * m) / 2;\n    }\n    return\
+    \ {};\n    FormalPowerSeries<T> f(1, sq);\n    for (int m = 1; m < deg; m <<=\
+    \ 1) {\n        f = (f + t * f.inv(2 * m)).prefix(2 * m) / 2;\n    }\n    return\
     \ f.prefix(deg) << (d >> 1);\n}\n"
   dependsOn:
   - other/template.hpp
@@ -1098,8 +1098,8 @@ data:
   isVerificationFile: false
   path: math/poly/SquareRoot.hpp
   requiredBy: []
-  timestamp: '2026-09-15 23:10:14+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-09-15 23:32:24+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp
 documentation_of: math/poly/SquareRoot.hpp

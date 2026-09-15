@@ -1,31 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
@@ -473,9 +473,9 @@ data:
     \                                       typename double_size<T>::type, ld>::type>\n\
     class Rational {\nprivate:\n    T num, den;\n\npublic:\n    static void norm(T&\
     \ a, T& b) {\n        if IF_CONSTEXPR (!allow_div_zero) {\n            assert(b\
-    \ != 0);\n        }\n        T g = gcd(abs(a), abs(b));\n        a /= g;\n   \
-    \     b /= g;\n        if (b < 0) {\n            a = -a;\n            b = -b;\n\
-    \        }\n        if (b == 0 && a < 0) a = -a;\n    }\n    void normalize()\
+    \ != 0);\n        }\n        T g = gcd(std::abs(a), std::abs(b));\n        a /=\
+    \ g;\n        b /= g;\n        if (b < 0) {\n            a = -a;\n           \
+    \ b = -b;\n        }\n        if (b == 0 && a < 0) a = -a;\n    }\n    void normalize()\
     \ { norm(num, den); }\n    Rational() : num(0), den(1) {}\n    Rational(T a) :\
     \ num(a), den(1) {}\n    Rational(T a, T b) : num(a), den(b) { normalize(); }\n\
     \    T get_num() const { return num; }\n    T get_den() const { return den; }\n\
@@ -517,7 +517,7 @@ data:
     \ {\n        a.print(num);\n        a.print_char('/');\n        a.print(den);\n\
     \    }\n    template<class Sc> void scan(Sc& a) {\n        a.scan(num);\n    \
     \    a.scan(den);\n    }\n};\n\nnamespace std {\n\ntemplate<class T> Rational<T>\
-    \ abs(const Rational<T>& x) {\n    return Rational<T>(abs(x.get_num()), x.get_den());\n\
+    \ abs(const Rational<T>& x) {\n    return Rational<T>(std::abs(x.get_num()), std::abs(x.get_den()));\n\
     }\n\n} // namespace std\n\nusing Fraction = Rational<ll>;\n\n/**\n * @brief Rational(\u6709\
     \u7406\u6570\u578B)\n * @docs docs/math/Rational.md\n */\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n\ntemplate<class T, bool\
@@ -525,9 +525,9 @@ data:
     \                                       typename double_size<T>::type, ld>::type>\n\
     class Rational {\nprivate:\n    T num, den;\n\npublic:\n    static void norm(T&\
     \ a, T& b) {\n        if IF_CONSTEXPR (!allow_div_zero) {\n            assert(b\
-    \ != 0);\n        }\n        T g = gcd(abs(a), abs(b));\n        a /= g;\n   \
-    \     b /= g;\n        if (b < 0) {\n            a = -a;\n            b = -b;\n\
-    \        }\n        if (b == 0 && a < 0) a = -a;\n    }\n    void normalize()\
+    \ != 0);\n        }\n        T g = gcd(std::abs(a), std::abs(b));\n        a /=\
+    \ g;\n        b /= g;\n        if (b < 0) {\n            a = -a;\n           \
+    \ b = -b;\n        }\n        if (b == 0 && a < 0) a = -a;\n    }\n    void normalize()\
     \ { norm(num, den); }\n    Rational() : num(0), den(1) {}\n    Rational(T a) :\
     \ num(a), den(1) {}\n    Rational(T a, T b) : num(a), den(b) { normalize(); }\n\
     \    T get_num() const { return num; }\n    T get_den() const { return den; }\n\
@@ -569,7 +569,7 @@ data:
     \ {\n        a.print(num);\n        a.print_char('/');\n        a.print(den);\n\
     \    }\n    template<class Sc> void scan(Sc& a) {\n        a.scan(num);\n    \
     \    a.scan(den);\n    }\n};\n\nnamespace std {\n\ntemplate<class T> Rational<T>\
-    \ abs(const Rational<T>& x) {\n    return Rational<T>(abs(x.get_num()), x.get_den());\n\
+    \ abs(const Rational<T>& x) {\n    return Rational<T>(std::abs(x.get_num()), std::abs(x.get_den()));\n\
     }\n\n} // namespace std\n\nusing Fraction = Rational<ll>;\n\n/**\n * @brief Rational(\u6709\
     \u7406\u6570\u578B)\n * @docs docs/math/Rational.md\n */\n"
   dependsOn:
@@ -587,7 +587,7 @@ data:
   requiredBy:
   - math/LinearModMin.hpp
   - math/SternBrocotTree.hpp
-  timestamp: '2026-09-12 14:55:19+09:00'
+  timestamp: '2026-09-16 00:34:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/number_theory/stern_brocot_tree.test.cpp
