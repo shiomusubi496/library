@@ -74,19 +74,19 @@ FormalPowerSeries<T> sqrt(FormalPowerSeries<T> t, int deg = -1) {
         }
     }
     if (d == -1) {
-        FormalPowerSeries res(deg);
+        FormalPowerSeries<T> res(deg);
         return res;
     }
     if (d & 1) return {};
     deg -= (d >> 1);
     if (deg <= 0) {
-        FormalPowerSeries res(deg + (d >> 1));
+        FormalPowerSeries<T> res(deg + (d >> 1));
         return res;
     }
     t >>= d;
     T sq = sqrt_mod<T>(a.get());
     if (sq == -1) return {};
-    FormalPowerSeries f(1, sq);
+    FormalPowerSeries<T> f(1, sq);
     for (int m = 1; m < deg; m <<= 1) {
         f = (f + t * f.inv(2 * m)).prefix(2 * m) / 2;
     }
