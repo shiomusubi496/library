@@ -424,13 +424,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/Factorial.hpp
     title: "Factorial(\u968E\u4E57)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/FloorSum.hpp
     title: FloorSum
   - icon: ':question:'
     path: math/GaussianInteger.hpp
     title: GaussianInteger
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/LinearModMin.hpp
     title: LinearModMin
   - icon: ':question:'
@@ -442,7 +442,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/MontmortNumber.hpp
     title: "MontmortNumber(\u652A\u4E71\u9806\u5217)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/NimProduct.hpp
     title: math/NimProduct.hpp
   - icon: ':x:'
@@ -467,7 +467,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/SubsetSum.hpp
     title: SubsetSum
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/TetrationMod.hpp
     title: TetrationMod
   - icon: ':heavy_check_mark:'
@@ -541,7 +541,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/num/EnumerateQuotients.hpp
     title: "Enumerate Quotients(\u5546\u5217\u6319)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/num/EulerPhi.hpp
     title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
   - icon: ':heavy_check_mark:'
@@ -560,7 +560,7 @@ data:
   - icon: ':question:'
     path: math/num/PrimeFactor.hpp
     title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/num/PrimitiveRoot.hpp
     title: "PrimitiveRoot(\u539F\u59CB\u6839)"
   - icon: ':x:'
@@ -570,8 +570,8 @@ data:
     path: math/poly/BostanMori.hpp
     title: "Bostan-Mori(\u7DDA\u5F62\u6F38\u5316\u5F0F\u306En\u9805\u76EE)"
   - icon: ':x:'
-    path: math/poly/CompositionalInverse.hpp
-    title: math/poly/CompositionalInverse.hpp
+    path: math/poly/Composition.hpp
+    title: math/poly/Composition.hpp
   - icon: ':x:'
     path: math/poly/ConsecutiveTermsOfLinearRecurrence.hpp
     title: math/poly/ConsecutiveTermsOfLinearRecurrence.hpp
@@ -591,6 +591,9 @@ data:
     path: math/poly/SparseFormalPowerSeries.hpp
     title: "SparseFormalPowerSeries(\u758E\u306A\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570\
       )"
+  - icon: ':x:'
+    path: math/poly/SquareRoot.hpp
+    title: math/poly/SquareRoot.hpp
   - icon: ':question:'
     path: math/poly/TaylorShift.hpp
     title: TaylorShift
@@ -1232,31 +1235,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/kth_root_integer.test.cpp
     title: test/yosupo/number_theory/kth_root_integer.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/min_of_mod_of_linear.test.cpp
     title: test/yosupo/number_theory/min_of_mod_of_linear.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/nim_product_64.test.cpp
     title: test/yosupo/number_theory/nim_product_64.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/primality_test.test.cpp
     title: test/yosupo/number_theory/primality_test.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/primitive_root.test.cpp
     title: test/yosupo/number_theory/primitive_root.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/rational_approximation.test.cpp
     title: test/yosupo/number_theory/rational_approximation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/sqrt_mod.test.cpp
     title: test/yosupo/number_theory/sqrt_mod.test.cpp
   - icon: ':x:'
     path: test/yosupo/number_theory/stern_brocot_tree.test.cpp
     title: test/yosupo/number_theory/stern_brocot_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/sum_of_floor_of_linear.test.cpp
     title: test/yosupo/number_theory/sum_of_floor_of_linear.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/tetration_mod.test.cpp
     title: test/yosupo/number_theory/tetration_mod.test.cpp
   - icon: ':x:'
@@ -1832,12 +1835,13 @@ data:
   - math/num/Divisors.hpp
   - math/num/EnumerateQuotients.hpp
   - math/FloorSum.hpp
+  - math/poly/SquareRoot.hpp
   - math/poly/ConsecutiveTermsOfLinearRecurrence.hpp
   - math/poly/PolynomialInterpolation.hpp
   - math/poly/SamplingPointsShift.hpp
   - math/poly/FormalPowerSeries.hpp
   - math/poly/SparseFormalPowerSeries.hpp
-  - math/poly/CompositionalInverse.hpp
+  - math/poly/Composition.hpp
   - math/poly/MultipointEvaluation.hpp
   - math/poly/TaylorShift.hpp
   - math/poly/BostanMori.hpp

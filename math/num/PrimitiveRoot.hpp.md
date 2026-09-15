@@ -49,12 +49,12 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/primitive_root.test.cpp
     title: test/yosupo/number_theory/primitive_root.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/math/num/PrimitiveRoot.md
     document_title: "PrimitiveRoot(\u539F\u59CB\u6839)"
@@ -797,7 +797,7 @@ data:
   path: math/num/PrimitiveRoot.hpp
   requiredBy: []
   timestamp: '2026-09-12 01:05:48+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/number_theory/primitive_root.test.cpp
 documentation_of: math/num/PrimitiveRoot.hpp

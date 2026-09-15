@@ -709,23 +709,22 @@ data:
     \ c;\n    }\n    a.resize(m);\n    b.resize(m);\n    number_theoretic_transform(a);\n\
     \    number_theoretic_transform(b);\n    rep (i, m) a[i] *= b[i];\n    inverse_number_theoretic_transform(a);\n\
     \    a.resize(n);\n    return a;\n}\n\n} // namespace internal\n\nusing internal::inverse_number_theoretic_transform;\n\
-    using internal::number_theoretic_transform;\n\ntemplate<unsigned int p>\nstd::vector<static_modint<p>>\n\
-    convolution_for_any_mod(const std::vector<static_modint<p>>& a,\n            \
-    \            const std::vector<static_modint<p>>& b);\n\ntemplate<unsigned int\
-    \ p>\nstd::vector<static_modint<p>>\nconvolution(const std::vector<static_modint<p>>&\
-    \ a,\n            const std::vector<static_modint<p>>& b) {\n    unsigned int\
-    \ n = a.size(), m = b.size();\n    if (n == 0 || m == 0) return {};\n    if (n\
-    \ <= 60 || m <= 60) return internal::convolution_naive(a, b);\n    if (n + m -\
-    \ 1 <= ((1 - p) & (p - 1))) {\n        if (n == m && a == b) return internal::convolution_pow2(a);\n\
-    \        return internal::convolution(a, b);\n    }\n    return convolution_for_any_mod(a,\
-    \ b);\n}\n\ntemplate<unsigned int p>\nstd::vector<ll> convolution(const std::vector<ll>&\
-    \ a,\n                            const std::vector<ll>& b) {\n    int n = a.size(),\
-    \ m = b.size();\n    std::vector<static_modint<p>> a2(n), b2(m);\n    rep (i,\
-    \ n) a2[i] = a[i];\n    rep (i, m) b2[i] = b[i];\n    auto c2 = convolution(a2,\
-    \ b2);\n    std::vector<ll> c(c2.size());\n    rep (i, c2.size()) c[i] = c2[i].get();\n\
-    \    return c;\n}\n\ntemplate<unsigned int p>\nstd::vector<static_modint<p>>\n\
-    convolution_for_any_mod(const std::vector<static_modint<p>>& a,\n            \
-    \            const std::vector<static_modint<p>>& b) {\n    int n = a.size(),\
+    using internal::number_theoretic_transform;\n\ntemplate<class T>\nstd::vector<T>\n\
+    convolution_for_any_mod(const std::vector<T>& a,\n                        const\
+    \ std::vector<T>& b);\n\ntemplate<unsigned int p>\nstd::vector<static_modint<p>>\n\
+    convolution(const std::vector<static_modint<p>>& a,\n            const std::vector<static_modint<p>>&\
+    \ b) {\n    unsigned int n = a.size(), m = b.size();\n    if (n == 0 || m == 0)\
+    \ return {};\n    if (n <= 60 || m <= 60) return internal::convolution_naive(a,\
+    \ b);\n    if (n + m - 1 <= ((1 - p) & (p - 1))) {\n        if (n == m && a ==\
+    \ b) return internal::convolution_pow2(a);\n        return internal::convolution(a,\
+    \ b);\n    }\n    return convolution_for_any_mod(a, b);\n}\n\ntemplate<unsigned\
+    \ int p>\nstd::vector<ll> convolution(const std::vector<ll>& a,\n            \
+    \                const std::vector<ll>& b) {\n    int n = a.size(), m = b.size();\n\
+    \    std::vector<static_modint<p>> a2(n), b2(m);\n    rep (i, n) a2[i] = a[i];\n\
+    \    rep (i, m) b2[i] = b[i];\n    auto c2 = convolution(a2, b2);\n    std::vector<ll>\
+    \ c(c2.size());\n    rep (i, c2.size()) c[i] = c2[i].get();\n    return c;\n}\n\
+    \ntemplate<class T>\nstd::vector<T>\nconvolution_for_any_mod(const std::vector<T>&\
+    \ a,\n                        const std::vector<T>& b) {\n    int n = a.size(),\
     \ m = b.size();\n    assert(n + m - 1 <= (1 << 26));\n    if (n == 0 || m == 0)\
     \ return {};\n    std::vector<ll> a2(n), b2(m);\n    rep (i, n) a2[i] = a[i].get();\n\
     \    rep (i, m) b2[i] = b[i].get();\n    static constexpr ll MOD1 = 469762049;\n\
@@ -734,102 +733,88 @@ data:
     \ ll INV1_3 = mod_pow(MOD1, MOD3 - 2, MOD3);\n    static constexpr ll INV2_3 =\
     \ mod_pow(MOD2, MOD3 - 2, MOD3);\n    auto c1 = convolution<MOD1>(a2, b2);\n \
     \   auto c2 = convolution<MOD2>(a2, b2);\n    auto c3 = convolution<MOD3>(a2,\
-    \ b2);\n    std::vector<static_modint<p>> res(n + m - 1);\n    rep (i, n + m -\
-    \ 1) {\n        ll t1 = c1[i];\n        ll t2 = (c2[i] - t1 + MOD2) * INV1_2 %\
-    \ MOD2;\n        if (t2 < 0) t2 += MOD2;\n        ll t3 =\n            ((c3[i]\
-    \ - t1 + MOD3) * INV1_3 % MOD3 - t2 + MOD3) * INV2_3 % MOD3;\n        if (t3 <\
-    \ 0) t3 += MOD3;\n        res[i] = static_modint<p>(t1 + (t2 + t3 * MOD2) % p\
-    \ * MOD1);\n    }\n    return res;\n}\n\ntemplate<int id>\nstd::vector<dynamic_modint<id>>\n\
-    convolution(const std::vector<dynamic_modint<id>>& a,\n            const std::vector<dynamic_modint<id>>&\
+    \ b2);\n    std::vector<T> res(n + m - 1);\n    rep (i, n + m - 1) {\n       \
+    \ ll t1 = c1[i];\n        ll t2 = (c2[i] - t1 + MOD2) * INV1_2 % MOD2;\n     \
+    \   if (t2 < 0) t2 += MOD2;\n        ll t3 =\n            ((c3[i] - t1 + MOD3)\
+    \ * INV1_3 % MOD3 - t2 + MOD3) * INV2_3 % MOD3;\n        if (t3 < 0) t3 += MOD3;\n\
+    \        res[i] = (t1 + T(t2 + t3 * MOD2) * MOD1);\n    }\n    return res;\n}\n\
+    \ntemplate<int id>\nstd::vector<dynamic_modint<id>>\nconvolution(const std::vector<dynamic_modint<id>>&\
+    \ a,\n            const std::vector<dynamic_modint<id>>& b) {\n    return convolution_for_any_mod(a,\
+    \ b);\n}\n\nstd::vector<ll> convolution_ll(const std::vector<ll>& a, const std::vector<ll>&\
     \ b) {\n    int n = a.size(), m = b.size();\n    assert(n + m - 1 <= (1 << 26));\n\
-    \    if (n == 0 || m == 0) return {};\n    std::vector<ll> a2(n), b2(m);\n   \
-    \ rep (i, n) a2[i] = a[i].get();\n    rep (i, m) b2[i] = b[i].get();\n    static\
-    \ constexpr ll MOD1 = 469762049;\n    static constexpr ll MOD2 = 1811939329;\n\
-    \    static constexpr ll MOD3 = 2013265921;\n    static constexpr ll INV1_2 =\
-    \ mod_pow(MOD1, MOD2 - 2, MOD2);\n    static constexpr ll INV1_3 = mod_pow(MOD1,\
-    \ MOD3 - 2, MOD3);\n    static constexpr ll INV2_3 = mod_pow(MOD2, MOD3 - 2, MOD3);\n\
-    \    auto c1 = convolution<MOD1>(a2, b2);\n    auto c2 = convolution<MOD2>(a2,\
-    \ b2);\n    auto c3 = convolution<MOD3>(a2, b2);\n    std::vector<dynamic_modint<id>>\
-    \ res(n + m - 1);\n    ull p = dynamic_modint<id>::gmod();\n    rep (i, n + m\
-    \ - 1) {\n        ll t1 = c1[i];\n        ll t2 = (c2[i] - t1 + MOD2) * INV1_2\
-    \ % MOD2;\n        if (t2 < 0) t2 += MOD2;\n        ll t3 =\n            ((c3[i]\
-    \ - t1 + MOD3) * INV1_3 % MOD3 - t2 + MOD3) * INV2_3 % MOD3;\n        if (t3 <\
-    \ 0) t3 += MOD3;\n        res[i] = dynamic_modint<id>(t1 + (t2 + t3 * MOD2) %\
-    \ p * MOD1);\n    }\n    return res;\n}\nstd::vector<ll> convolution_ll(const\
-    \ std::vector<ll>& a, const std::vector<ll>& b) {\n    int n = a.size(), m = b.size();\n\
-    \    assert(n + m - 1 <= (1 << 26));\n    if (n == 0 || m == 0) return {};\n \
-    \   static constexpr ll MOD1 = 469762049;\n    static constexpr ll MOD2 = 1811939329;\n\
-    \    static constexpr ll MOD3 = 2013265921;\n    static constexpr ll INV1_2 =\
-    \ mod_pow(MOD1, MOD2 - 2, MOD2);\n    static constexpr ll INV1_3 = mod_pow(MOD1,\
-    \ MOD3 - 2, MOD3);\n    static constexpr ll INV2_3 = mod_pow(MOD2, MOD3 - 2, MOD3);\n\
-    \    auto c1 = convolution<MOD1>(a, b);\n    auto c2 = convolution<MOD2>(a, b);\n\
-    \    auto c3 = convolution<MOD3>(a, b);\n    std::vector<ll> res(n + m - 1);\n\
-    \    rep (i, n + m - 1) {\n        ll t1 = c1[i];\n        ll t2 = (c2[i] - t1\
-    \ + MOD2) * INV1_2 % MOD2;\n        if (t2 < 0) t2 += MOD2;\n        ll t3 =\n\
-    \            ((c3[i] - t1 + MOD3) * INV1_3 % MOD3 - t2 + MOD3) * INV2_3 % MOD3;\n\
-    \        if (t3 < 0) t3 += MOD3;\n        res[i] = t1 + (t2 + t3 * MOD2) * MOD1;\n\
-    \    }\n    return res;\n}\n\ntemplate<class T> void ntt_doubling_(std::vector<T>&\
-    \ a, std::vector<T> b) {\n    static constexpr internal::NthRoot<T> nth_root;\n\
-    \    int n = a.size();\n    const T z = nth_root.get(bitop::msb(n) + 1);\n   \
-    \ T r = 1;\n    rep (i, n) {\n        b[i] *= r;\n        r *= z;\n    }\n   \
-    \ number_theoretic_transform(b);\n    a.reserve(2 * n);\n    a.insert(a.end(),\
+    \    if (n == 0 || m == 0) return {};\n    static constexpr ll MOD1 = 469762049;\n\
+    \    static constexpr ll MOD2 = 1811939329;\n    static constexpr ll MOD3 = 2013265921;\n\
+    \    static constexpr ll INV1_2 = mod_pow(MOD1, MOD2 - 2, MOD2);\n    static constexpr\
+    \ ll INV1_3 = mod_pow(MOD1, MOD3 - 2, MOD3);\n    static constexpr ll INV2_3 =\
+    \ mod_pow(MOD2, MOD3 - 2, MOD3);\n    auto c1 = convolution<MOD1>(a, b);\n   \
+    \ auto c2 = convolution<MOD2>(a, b);\n    auto c3 = convolution<MOD3>(a, b);\n\
+    \    std::vector<ll> res(n + m - 1);\n    rep (i, n + m - 1) {\n        ll t1\
+    \ = c1[i];\n        ll t2 = (c2[i] - t1 + MOD2) * INV1_2 % MOD2;\n        if (t2\
+    \ < 0) t2 += MOD2;\n        ll t3 =\n            ((c3[i] - t1 + MOD3) * INV1_3\
+    \ % MOD3 - t2 + MOD3) * INV2_3 % MOD3;\n        if (t3 < 0) t3 += MOD3;\n    \
+    \    res[i] = t1 + (t2 + t3 * MOD2) * MOD1;\n    }\n    return res;\n}\n\ntemplate<class\
+    \ T> void ntt_doubling_(std::vector<T>& a, std::vector<T> b) {\n    static constexpr\
+    \ internal::NthRoot<T> nth_root;\n    int n = a.size();\n    const T z = nth_root.get(bitop::msb(n)\
+    \ + 1);\n    T r = 1;\n    rep (i, n) {\n        b[i] *= r;\n        r *= z;\n\
+    \    }\n    number_theoretic_transform(b);\n    a.reserve(2 * n);\n    a.insert(a.end(),\
     \ all(b));\n}\n\ntemplate<class T> void ntt_doubling_(std::vector<T>& a) {\n \
     \   static constexpr internal::NthRoot<T> nth_root;\n    int n = a.size();\n \
     \   auto b = a;\n    inverse_number_theoretic_transform(b);\n    const T z = nth_root.get(bitop::msb(n)\
     \ + 1);\n    T r = 1;\n    rep (i, n) {\n        b[i] *= r;\n        r *= z;\n\
     \    }\n    number_theoretic_transform(b);\n    a.reserve(2 * n);\n    a.insert(a.end(),\
-    \ all(b));\n}\n\ntemplate<unsigned int p> struct is_ntt_friendly : std::false_type\
-    \ {};\n\ntemplate<> struct is_ntt_friendly<998244353> : std::true_type {};\n\n\
-    template<> struct is_ntt_friendly<1811939329> : std::true_type {};\n\n/**\n *\
-    \ @brief Convolution(\u7573\u307F\u8FBC\u307F)\n * @docs docs/math/convolution/Convolution.md\n\
-    \ */\n#line 7 \"string/WildcardPatternMatching.hpp\"\n\nnamespace internal {\n\
-    \ntemplate<class T>\nstd::vector<bool> wildcard_mod(const std::vector<int>& a,\n\
-    \                               const std::vector<int>& b) {\n    const int n\
-    \ = a.size(), m = b.size();\n    const int lg = bitop::ceil_log2(n), N = 1 <<\
-    \ lg;\n    std::vector<T> A1(N), B1(N), A2(N), B2(N), A3(N), B3(N);\n    std::vector<T>\
-    \ C1(N), C2(n - m + 1);\n    rep (i, n) A1[i] = a[i] == 0 ? 0 : 1;\n    rep (i,\
-    \ m) B1[i] = b[m - 1 - i] == 0 ? 0 : 1;\n    rep (i, n) A2[i] = a[i] * A1[i];\n\
-    \    rep (i, m) B2[i] = b[m - 1 - i] * B1[i];\n    rep (i, n) A3[i] = a[i] * A2[i];\n\
-    \    rep (i, m) B3[i] = b[m - 1 - i] * B2[i];\n    if (find(all(a), 0) == a.end())\
-    \ {\n        T sm = 0;\n        rep (i, m) sm += B3[i];\n        rep (i, n - m\
-    \ + 1) C2[i] += sm;\n    }\n    else {\n        number_theoretic_transform(A1);\n\
-    \        number_theoretic_transform(B3);\n        rep (i, N) C1[i] += A1[i] *\
-    \ B3[i];\n    }\n    if (find(all(b), 0) == b.end()) {\n        std::vector<T>\
-    \ cum(n + 1);\n        rep (i, n) cum[i + 1] = cum[i] + A3[i];\n        rep (i,\
-    \ n - m + 1) C2[i] += cum[i + m] - cum[i];\n    }\n    else {\n        number_theoretic_transform(A3);\n\
-    \        number_theoretic_transform(B1);\n        rep (i, N) C1[i] += A3[i] *\
-    \ B1[i];\n    }\n    number_theoretic_transform(A2);\n    number_theoretic_transform(B2);\n\
-    \    rep (i, N) C1[i] -= 2 * A2[i] * B2[i];\n    inverse_number_theoretic_transform(C1);\n\
-    \    std::vector<bool> c(n - m + 1);\n    rep (i, n - m + 1) c[i] = (C1[i + m\
-    \ - 1] + C2[i] == 0);\n    return c;\n}\n\ntemplate<class T>\nstd::vector<bool>\
-    \ wildcard_random(const std::vector<int>& a,\n                               \
-    \   const std::vector<int>& b) {\n    const int n = a.size(), m = b.size();\n\
-    \    const int lg = bitop::ceil_log2(n), N = 1 << lg;\n    bool a0 = find(all(a),\
-    \ 0) == a.end();\n    bool b0 = find(all(b), 0) == b.end();\n    std::vector<T>\
-    \ A1(N), B1(N), A2(N), B2(N);\n    std::vector<T> C1(N), C2(n - m + 1);\n    if\
-    \ (a0) {\n        rep (i, n) A1[i] = a[i] == 0 ? 0 : 1;\n        rep (i, m) {\n\
-    \            B1[i] = b[m - 1 - i] == 0\n                        ? 0\n        \
-    \                : rand32.uniform<int>(1, T::get_mod() - 1);\n        }\n    }\n\
-    \    else {\n        rep (i, n) {\n            A1[i] = a[i] == 0 ? 0 : rand32.uniform<int>(1,\
-    \ T::get_mod() - 1);\n        }\n        rep (i, m) B1[i] = b[m - 1 - i] == 0\
-    \ ? 0 : 1;\n    }\n    rep (i, n) A2[i] = a[i] * A1[i];\n    rep (i, m) B2[i]\
-    \ = b[m - 1 - i] * B1[i];\n    if (a0) {\n        T sm = 0;\n        rep (i, m)\
-    \ sm += B2[i];\n        rep (i, n - m + 1) C2[i] -= sm;\n    }\n    else {\n \
-    \       number_theoretic_transform(A1);\n        number_theoretic_transform(B2);\n\
-    \        rep (i, N) C1[i] -= A1[i] * B2[i];\n    }\n    if (!a0 && b0) {\n   \
-    \     std::vector<T> cum(n + 1);\n        rep (i, n) cum[i + 1] = cum[i] + A2[i];\n\
-    \        rep (i, n - m + 1) C2[i] += cum[i + m] - cum[i];\n    }\n    else {\n\
-    \        number_theoretic_transform(A2);\n        number_theoretic_transform(B1);\n\
-    \        rep (i, N) C1[i] += A2[i] * B1[i];\n    }\n    inverse_number_theoretic_transform(C1);\n\
-    \    std::vector<bool> c(n - m + 1);\n    rep (i, n - m + 1) c[i] = (C1[i + m\
-    \ - 1] + C2[i] == 0);\n    return c;\n}\n\n} // namespace internal\n\nstd::vector<bool>\
-    \ wildcard_pattern_matching(std::vector<int> a,\n                            \
-    \                std::vector<int> b, int MAX,\n                              \
-    \              bool deterministic = true) {\n    const int n = a.size(), m = b.size();\n\
-    \    if (n < m) return {};\n    i128 MAX_VAL = (i128)MAX * MAX * m;\n    static\
-    \ constexpr int MOD1 = 2113929217, MOD2 = 2013265921,\n                      \
-    \   MOD3 = 1811939329;\n    if (!deterministic) {\n        return internal::wildcard_random<static_modint<MOD1>>(a,\
-    \ b);\n    }\n    std::vector<bool> res = internal::wildcard_mod<static_modint<MOD1>>(a,\
+    \ all(b));\n}\n\ntemplate<unsigned int p> \nusing is_ntt_friendly = std::integral_constant<bool,\
+    \ (1 << 23) <= ((1 - p) & (p - 1))>;\n\ntemplate<class T>\nstruct is_ntt_friendly_modint\
+    \ : std::false_type {};\n\ntemplate<unsigned int p>\nstruct is_ntt_friendly_modint<static_modint<p>>\
+    \ : is_ntt_friendly<p> {};\n\n/**\n * @brief Convolution(\u7573\u307F\u8FBC\u307F\
+    )\n * @docs docs/math/convolution/Convolution.md\n */\n#line 7 \"string/WildcardPatternMatching.hpp\"\
+    \n\nnamespace internal {\n\ntemplate<class T>\nstd::vector<bool> wildcard_mod(const\
+    \ std::vector<int>& a,\n                               const std::vector<int>&\
+    \ b) {\n    const int n = a.size(), m = b.size();\n    const int lg = bitop::ceil_log2(n),\
+    \ N = 1 << lg;\n    std::vector<T> A1(N), B1(N), A2(N), B2(N), A3(N), B3(N);\n\
+    \    std::vector<T> C1(N), C2(n - m + 1);\n    rep (i, n) A1[i] = a[i] == 0 ?\
+    \ 0 : 1;\n    rep (i, m) B1[i] = b[m - 1 - i] == 0 ? 0 : 1;\n    rep (i, n) A2[i]\
+    \ = a[i] * A1[i];\n    rep (i, m) B2[i] = b[m - 1 - i] * B1[i];\n    rep (i, n)\
+    \ A3[i] = a[i] * A2[i];\n    rep (i, m) B3[i] = b[m - 1 - i] * B2[i];\n    if\
+    \ (find(all(a), 0) == a.end()) {\n        T sm = 0;\n        rep (i, m) sm +=\
+    \ B3[i];\n        rep (i, n - m + 1) C2[i] += sm;\n    }\n    else {\n       \
+    \ number_theoretic_transform(A1);\n        number_theoretic_transform(B3);\n \
+    \       rep (i, N) C1[i] += A1[i] * B3[i];\n    }\n    if (find(all(b), 0) ==\
+    \ b.end()) {\n        std::vector<T> cum(n + 1);\n        rep (i, n) cum[i + 1]\
+    \ = cum[i] + A3[i];\n        rep (i, n - m + 1) C2[i] += cum[i + m] - cum[i];\n\
+    \    }\n    else {\n        number_theoretic_transform(A3);\n        number_theoretic_transform(B1);\n\
+    \        rep (i, N) C1[i] += A3[i] * B1[i];\n    }\n    number_theoretic_transform(A2);\n\
+    \    number_theoretic_transform(B2);\n    rep (i, N) C1[i] -= 2 * A2[i] * B2[i];\n\
+    \    inverse_number_theoretic_transform(C1);\n    std::vector<bool> c(n - m +\
+    \ 1);\n    rep (i, n - m + 1) c[i] = (C1[i + m - 1] + C2[i] == 0);\n    return\
+    \ c;\n}\n\ntemplate<class T>\nstd::vector<bool> wildcard_random(const std::vector<int>&\
+    \ a,\n                                  const std::vector<int>& b) {\n    const\
+    \ int n = a.size(), m = b.size();\n    const int lg = bitop::ceil_log2(n), N =\
+    \ 1 << lg;\n    bool a0 = find(all(a), 0) == a.end();\n    bool b0 = find(all(b),\
+    \ 0) == b.end();\n    std::vector<T> A1(N), B1(N), A2(N), B2(N);\n    std::vector<T>\
+    \ C1(N), C2(n - m + 1);\n    if (a0) {\n        rep (i, n) A1[i] = a[i] == 0 ?\
+    \ 0 : 1;\n        rep (i, m) {\n            B1[i] = b[m - 1 - i] == 0\n      \
+    \                  ? 0\n                        : rand32.uniform<int>(1, T::get_mod()\
+    \ - 1);\n        }\n    }\n    else {\n        rep (i, n) {\n            A1[i]\
+    \ = a[i] == 0 ? 0 : rand32.uniform<int>(1, T::get_mod() - 1);\n        }\n   \
+    \     rep (i, m) B1[i] = b[m - 1 - i] == 0 ? 0 : 1;\n    }\n    rep (i, n) A2[i]\
+    \ = a[i] * A1[i];\n    rep (i, m) B2[i] = b[m - 1 - i] * B1[i];\n    if (a0) {\n\
+    \        T sm = 0;\n        rep (i, m) sm += B2[i];\n        rep (i, n - m + 1)\
+    \ C2[i] -= sm;\n    }\n    else {\n        number_theoretic_transform(A1);\n \
+    \       number_theoretic_transform(B2);\n        rep (i, N) C1[i] -= A1[i] * B2[i];\n\
+    \    }\n    if (!a0 && b0) {\n        std::vector<T> cum(n + 1);\n        rep\
+    \ (i, n) cum[i + 1] = cum[i] + A2[i];\n        rep (i, n - m + 1) C2[i] += cum[i\
+    \ + m] - cum[i];\n    }\n    else {\n        number_theoretic_transform(A2);\n\
+    \        number_theoretic_transform(B1);\n        rep (i, N) C1[i] += A2[i] *\
+    \ B1[i];\n    }\n    inverse_number_theoretic_transform(C1);\n    std::vector<bool>\
+    \ c(n - m + 1);\n    rep (i, n - m + 1) c[i] = (C1[i + m - 1] + C2[i] == 0);\n\
+    \    return c;\n}\n\n} // namespace internal\n\nstd::vector<bool> wildcard_pattern_matching(std::vector<int>\
+    \ a,\n                                            std::vector<int> b, int MAX,\n\
+    \                                            bool deterministic = true) {\n  \
+    \  const int n = a.size(), m = b.size();\n    if (n < m) return {};\n    i128\
+    \ MAX_VAL = (i128)MAX * MAX * m;\n    static constexpr int MOD1 = 2113929217,\
+    \ MOD2 = 2013265921,\n                         MOD3 = 1811939329;\n    if (!deterministic)\
+    \ {\n        return internal::wildcard_random<static_modint<MOD1>>(a, b);\n  \
+    \  }\n    std::vector<bool> res = internal::wildcard_mod<static_modint<MOD1>>(a,\
     \ b);\n    if (MAX_VAL >= MOD1) {\n        auto c = internal::wildcard_mod<static_modint<MOD2>>(a,\
     \ b);\n        rep (i, n - m + 1) res[i] = res[i] && c[i];\n    }\n    if (MAX_VAL\
     \ >= (i128)MOD1 * MOD2) {\n        auto c = internal::wildcard_mod<static_modint<MOD3>>(a,\
@@ -880,7 +865,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/string/wildcard_pattern_matching.test.cpp
   requiredBy: []
-  timestamp: '2026-09-12 14:55:19+09:00'
+  timestamp: '2026-09-15 21:48:30+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/string/wildcard_pattern_matching.test.cpp

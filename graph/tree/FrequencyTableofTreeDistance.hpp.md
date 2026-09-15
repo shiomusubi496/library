@@ -703,23 +703,22 @@ data:
     \ c;\n    }\n    a.resize(m);\n    b.resize(m);\n    number_theoretic_transform(a);\n\
     \    number_theoretic_transform(b);\n    rep (i, m) a[i] *= b[i];\n    inverse_number_theoretic_transform(a);\n\
     \    a.resize(n);\n    return a;\n}\n\n} // namespace internal\n\nusing internal::inverse_number_theoretic_transform;\n\
-    using internal::number_theoretic_transform;\n\ntemplate<unsigned int p>\nstd::vector<static_modint<p>>\n\
-    convolution_for_any_mod(const std::vector<static_modint<p>>& a,\n            \
-    \            const std::vector<static_modint<p>>& b);\n\ntemplate<unsigned int\
-    \ p>\nstd::vector<static_modint<p>>\nconvolution(const std::vector<static_modint<p>>&\
-    \ a,\n            const std::vector<static_modint<p>>& b) {\n    unsigned int\
-    \ n = a.size(), m = b.size();\n    if (n == 0 || m == 0) return {};\n    if (n\
-    \ <= 60 || m <= 60) return internal::convolution_naive(a, b);\n    if (n + m -\
-    \ 1 <= ((1 - p) & (p - 1))) {\n        if (n == m && a == b) return internal::convolution_pow2(a);\n\
-    \        return internal::convolution(a, b);\n    }\n    return convolution_for_any_mod(a,\
-    \ b);\n}\n\ntemplate<unsigned int p>\nstd::vector<ll> convolution(const std::vector<ll>&\
-    \ a,\n                            const std::vector<ll>& b) {\n    int n = a.size(),\
-    \ m = b.size();\n    std::vector<static_modint<p>> a2(n), b2(m);\n    rep (i,\
-    \ n) a2[i] = a[i];\n    rep (i, m) b2[i] = b[i];\n    auto c2 = convolution(a2,\
-    \ b2);\n    std::vector<ll> c(c2.size());\n    rep (i, c2.size()) c[i] = c2[i].get();\n\
-    \    return c;\n}\n\ntemplate<unsigned int p>\nstd::vector<static_modint<p>>\n\
-    convolution_for_any_mod(const std::vector<static_modint<p>>& a,\n            \
-    \            const std::vector<static_modint<p>>& b) {\n    int n = a.size(),\
+    using internal::number_theoretic_transform;\n\ntemplate<class T>\nstd::vector<T>\n\
+    convolution_for_any_mod(const std::vector<T>& a,\n                        const\
+    \ std::vector<T>& b);\n\ntemplate<unsigned int p>\nstd::vector<static_modint<p>>\n\
+    convolution(const std::vector<static_modint<p>>& a,\n            const std::vector<static_modint<p>>&\
+    \ b) {\n    unsigned int n = a.size(), m = b.size();\n    if (n == 0 || m == 0)\
+    \ return {};\n    if (n <= 60 || m <= 60) return internal::convolution_naive(a,\
+    \ b);\n    if (n + m - 1 <= ((1 - p) & (p - 1))) {\n        if (n == m && a ==\
+    \ b) return internal::convolution_pow2(a);\n        return internal::convolution(a,\
+    \ b);\n    }\n    return convolution_for_any_mod(a, b);\n}\n\ntemplate<unsigned\
+    \ int p>\nstd::vector<ll> convolution(const std::vector<ll>& a,\n            \
+    \                const std::vector<ll>& b) {\n    int n = a.size(), m = b.size();\n\
+    \    std::vector<static_modint<p>> a2(n), b2(m);\n    rep (i, n) a2[i] = a[i];\n\
+    \    rep (i, m) b2[i] = b[i];\n    auto c2 = convolution(a2, b2);\n    std::vector<ll>\
+    \ c(c2.size());\n    rep (i, c2.size()) c[i] = c2[i].get();\n    return c;\n}\n\
+    \ntemplate<class T>\nstd::vector<T>\nconvolution_for_any_mod(const std::vector<T>&\
+    \ a,\n                        const std::vector<T>& b) {\n    int n = a.size(),\
     \ m = b.size();\n    assert(n + m - 1 <= (1 << 26));\n    if (n == 0 || m == 0)\
     \ return {};\n    std::vector<ll> a2(n), b2(m);\n    rep (i, n) a2[i] = a[i].get();\n\
     \    rep (i, m) b2[i] = b[i].get();\n    static constexpr ll MOD1 = 469762049;\n\
@@ -728,66 +727,52 @@ data:
     \ ll INV1_3 = mod_pow(MOD1, MOD3 - 2, MOD3);\n    static constexpr ll INV2_3 =\
     \ mod_pow(MOD2, MOD3 - 2, MOD3);\n    auto c1 = convolution<MOD1>(a2, b2);\n \
     \   auto c2 = convolution<MOD2>(a2, b2);\n    auto c3 = convolution<MOD3>(a2,\
-    \ b2);\n    std::vector<static_modint<p>> res(n + m - 1);\n    rep (i, n + m -\
-    \ 1) {\n        ll t1 = c1[i];\n        ll t2 = (c2[i] - t1 + MOD2) * INV1_2 %\
-    \ MOD2;\n        if (t2 < 0) t2 += MOD2;\n        ll t3 =\n            ((c3[i]\
-    \ - t1 + MOD3) * INV1_3 % MOD3 - t2 + MOD3) * INV2_3 % MOD3;\n        if (t3 <\
-    \ 0) t3 += MOD3;\n        res[i] = static_modint<p>(t1 + (t2 + t3 * MOD2) % p\
-    \ * MOD1);\n    }\n    return res;\n}\n\ntemplate<int id>\nstd::vector<dynamic_modint<id>>\n\
-    convolution(const std::vector<dynamic_modint<id>>& a,\n            const std::vector<dynamic_modint<id>>&\
+    \ b2);\n    std::vector<T> res(n + m - 1);\n    rep (i, n + m - 1) {\n       \
+    \ ll t1 = c1[i];\n        ll t2 = (c2[i] - t1 + MOD2) * INV1_2 % MOD2;\n     \
+    \   if (t2 < 0) t2 += MOD2;\n        ll t3 =\n            ((c3[i] - t1 + MOD3)\
+    \ * INV1_3 % MOD3 - t2 + MOD3) * INV2_3 % MOD3;\n        if (t3 < 0) t3 += MOD3;\n\
+    \        res[i] = (t1 + T(t2 + t3 * MOD2) * MOD1);\n    }\n    return res;\n}\n\
+    \ntemplate<int id>\nstd::vector<dynamic_modint<id>>\nconvolution(const std::vector<dynamic_modint<id>>&\
+    \ a,\n            const std::vector<dynamic_modint<id>>& b) {\n    return convolution_for_any_mod(a,\
+    \ b);\n}\n\nstd::vector<ll> convolution_ll(const std::vector<ll>& a, const std::vector<ll>&\
     \ b) {\n    int n = a.size(), m = b.size();\n    assert(n + m - 1 <= (1 << 26));\n\
-    \    if (n == 0 || m == 0) return {};\n    std::vector<ll> a2(n), b2(m);\n   \
-    \ rep (i, n) a2[i] = a[i].get();\n    rep (i, m) b2[i] = b[i].get();\n    static\
-    \ constexpr ll MOD1 = 469762049;\n    static constexpr ll MOD2 = 1811939329;\n\
-    \    static constexpr ll MOD3 = 2013265921;\n    static constexpr ll INV1_2 =\
-    \ mod_pow(MOD1, MOD2 - 2, MOD2);\n    static constexpr ll INV1_3 = mod_pow(MOD1,\
-    \ MOD3 - 2, MOD3);\n    static constexpr ll INV2_3 = mod_pow(MOD2, MOD3 - 2, MOD3);\n\
-    \    auto c1 = convolution<MOD1>(a2, b2);\n    auto c2 = convolution<MOD2>(a2,\
-    \ b2);\n    auto c3 = convolution<MOD3>(a2, b2);\n    std::vector<dynamic_modint<id>>\
-    \ res(n + m - 1);\n    ull p = dynamic_modint<id>::gmod();\n    rep (i, n + m\
-    \ - 1) {\n        ll t1 = c1[i];\n        ll t2 = (c2[i] - t1 + MOD2) * INV1_2\
-    \ % MOD2;\n        if (t2 < 0) t2 += MOD2;\n        ll t3 =\n            ((c3[i]\
-    \ - t1 + MOD3) * INV1_3 % MOD3 - t2 + MOD3) * INV2_3 % MOD3;\n        if (t3 <\
-    \ 0) t3 += MOD3;\n        res[i] = dynamic_modint<id>(t1 + (t2 + t3 * MOD2) %\
-    \ p * MOD1);\n    }\n    return res;\n}\nstd::vector<ll> convolution_ll(const\
-    \ std::vector<ll>& a, const std::vector<ll>& b) {\n    int n = a.size(), m = b.size();\n\
-    \    assert(n + m - 1 <= (1 << 26));\n    if (n == 0 || m == 0) return {};\n \
-    \   static constexpr ll MOD1 = 469762049;\n    static constexpr ll MOD2 = 1811939329;\n\
-    \    static constexpr ll MOD3 = 2013265921;\n    static constexpr ll INV1_2 =\
-    \ mod_pow(MOD1, MOD2 - 2, MOD2);\n    static constexpr ll INV1_3 = mod_pow(MOD1,\
-    \ MOD3 - 2, MOD3);\n    static constexpr ll INV2_3 = mod_pow(MOD2, MOD3 - 2, MOD3);\n\
-    \    auto c1 = convolution<MOD1>(a, b);\n    auto c2 = convolution<MOD2>(a, b);\n\
-    \    auto c3 = convolution<MOD3>(a, b);\n    std::vector<ll> res(n + m - 1);\n\
-    \    rep (i, n + m - 1) {\n        ll t1 = c1[i];\n        ll t2 = (c2[i] - t1\
-    \ + MOD2) * INV1_2 % MOD2;\n        if (t2 < 0) t2 += MOD2;\n        ll t3 =\n\
-    \            ((c3[i] - t1 + MOD3) * INV1_3 % MOD3 - t2 + MOD3) * INV2_3 % MOD3;\n\
-    \        if (t3 < 0) t3 += MOD3;\n        res[i] = t1 + (t2 + t3 * MOD2) * MOD1;\n\
-    \    }\n    return res;\n}\n\ntemplate<class T> void ntt_doubling_(std::vector<T>&\
-    \ a, std::vector<T> b) {\n    static constexpr internal::NthRoot<T> nth_root;\n\
-    \    int n = a.size();\n    const T z = nth_root.get(bitop::msb(n) + 1);\n   \
-    \ T r = 1;\n    rep (i, n) {\n        b[i] *= r;\n        r *= z;\n    }\n   \
-    \ number_theoretic_transform(b);\n    a.reserve(2 * n);\n    a.insert(a.end(),\
+    \    if (n == 0 || m == 0) return {};\n    static constexpr ll MOD1 = 469762049;\n\
+    \    static constexpr ll MOD2 = 1811939329;\n    static constexpr ll MOD3 = 2013265921;\n\
+    \    static constexpr ll INV1_2 = mod_pow(MOD1, MOD2 - 2, MOD2);\n    static constexpr\
+    \ ll INV1_3 = mod_pow(MOD1, MOD3 - 2, MOD3);\n    static constexpr ll INV2_3 =\
+    \ mod_pow(MOD2, MOD3 - 2, MOD3);\n    auto c1 = convolution<MOD1>(a, b);\n   \
+    \ auto c2 = convolution<MOD2>(a, b);\n    auto c3 = convolution<MOD3>(a, b);\n\
+    \    std::vector<ll> res(n + m - 1);\n    rep (i, n + m - 1) {\n        ll t1\
+    \ = c1[i];\n        ll t2 = (c2[i] - t1 + MOD2) * INV1_2 % MOD2;\n        if (t2\
+    \ < 0) t2 += MOD2;\n        ll t3 =\n            ((c3[i] - t1 + MOD3) * INV1_3\
+    \ % MOD3 - t2 + MOD3) * INV2_3 % MOD3;\n        if (t3 < 0) t3 += MOD3;\n    \
+    \    res[i] = t1 + (t2 + t3 * MOD2) * MOD1;\n    }\n    return res;\n}\n\ntemplate<class\
+    \ T> void ntt_doubling_(std::vector<T>& a, std::vector<T> b) {\n    static constexpr\
+    \ internal::NthRoot<T> nth_root;\n    int n = a.size();\n    const T z = nth_root.get(bitop::msb(n)\
+    \ + 1);\n    T r = 1;\n    rep (i, n) {\n        b[i] *= r;\n        r *= z;\n\
+    \    }\n    number_theoretic_transform(b);\n    a.reserve(2 * n);\n    a.insert(a.end(),\
     \ all(b));\n}\n\ntemplate<class T> void ntt_doubling_(std::vector<T>& a) {\n \
     \   static constexpr internal::NthRoot<T> nth_root;\n    int n = a.size();\n \
     \   auto b = a;\n    inverse_number_theoretic_transform(b);\n    const T z = nth_root.get(bitop::msb(n)\
     \ + 1);\n    T r = 1;\n    rep (i, n) {\n        b[i] *= r;\n        r *= z;\n\
     \    }\n    number_theoretic_transform(b);\n    a.reserve(2 * n);\n    a.insert(a.end(),\
-    \ all(b));\n}\n\ntemplate<unsigned int p> struct is_ntt_friendly : std::false_type\
-    \ {};\n\ntemplate<> struct is_ntt_friendly<998244353> : std::true_type {};\n\n\
-    template<> struct is_ntt_friendly<1811939329> : std::true_type {};\n\n/**\n *\
-    \ @brief Convolution(\u7573\u307F\u8FBC\u307F)\n * @docs docs/math/convolution/Convolution.md\n\
-    \ */\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class\
-    \ T = int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
-    \ : from(-1), to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1)\n\
-    \        : from(f), to(t), cost(c), idx(i) {}\n    edge(int f, int t, T&& c, int\
-    \ i = -1)\n        : from(f), to(t), cost(std::move(c)), idx(i) {}\n    operator\
-    \ int() const { return to; }\n    friend bool operator<(const edge<T>& lhs, const\
-    \ edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n    }\n    friend bool\
-    \ operator>(const edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost\
-    \ > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using Edges = std::vector<edge<T>>;\n\
-    template<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class\
-    \ T = int> class Graph : public std::vector<std::vector<edge<T>>> {\nprivate:\n\
-    \    using Base = std::vector<std::vector<edge<T>>>;\n\npublic:\n    int edge_id\
+    \ all(b));\n}\n\ntemplate<unsigned int p> \nusing is_ntt_friendly = std::integral_constant<bool,\
+    \ (1 << 23) <= ((1 - p) & (p - 1))>;\n\ntemplate<class T>\nstruct is_ntt_friendly_modint\
+    \ : std::false_type {};\n\ntemplate<unsigned int p>\nstruct is_ntt_friendly_modint<static_modint<p>>\
+    \ : is_ntt_friendly<p> {};\n\n/**\n * @brief Convolution(\u7573\u307F\u8FBC\u307F\
+    )\n * @docs docs/math/convolution/Convolution.md\n */\n#line 2 \"graph/Graph.hpp\"\
+    \n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int> struct edge {\n   \
+    \ int from, to;\n    T cost;\n    int idx;\n    edge() : from(-1), to(-1) {}\n\
+    \    edge(int f, int t, const T& c = 1, int i = -1)\n        : from(f), to(t),\
+    \ cost(c), idx(i) {}\n    edge(int f, int t, T&& c, int i = -1)\n        : from(f),\
+    \ to(t), cost(std::move(c)), idx(i) {}\n    operator int() const { return to;\
+    \ }\n    friend bool operator<(const edge<T>& lhs, const edge<T>& rhs) {\n   \
+    \     return lhs.cost < rhs.cost;\n    }\n    friend bool operator>(const edge<T>&\
+    \ lhs, const edge<T>& rhs) {\n        return lhs.cost > rhs.cost;\n    }\n};\n\
+    \ntemplate<class T = int> using Edges = std::vector<edge<T>>;\ntemplate<class\
+    \ T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class T =\
+    \ int> class Graph : public std::vector<std::vector<edge<T>>> {\nprivate:\n  \
+    \  using Base = std::vector<std::vector<edge<T>>>;\n\npublic:\n    int edge_id\
     \ = 0;\n    using Base::Base;\n    int edge_size() const { return edge_id; }\n\
     \    int add_edge(int a, int b, const T& c, bool is_directed = false) {\n    \
     \    assert(0 <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
@@ -949,7 +934,7 @@ data:
   isVerificationFile: false
   path: graph/tree/FrequencyTableofTreeDistance.hpp
   requiredBy: []
-  timestamp: '2026-09-12 14:55:19+09:00'
+  timestamp: '2026-09-15 21:48:30+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp

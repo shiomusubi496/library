@@ -4,30 +4,15 @@ data:
   - icon: ':question:'
     path: math/Combinatorics.hpp
     title: Combinatorics
-  - icon: ':x:'
-    path: math/ExpPolySum.hpp
-    title: ExpPolySum($\sum_{i=0}^{\infty}r^ii^d$)
   - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':x:'
-    path: math/PowEnumerate.hpp
-    title: PowEnumerate
   - icon: ':question:'
     path: math/convolution/Convolution.hpp
     title: "Convolution(\u7573\u307F\u8FBC\u307F)"
   - icon: ':question:'
-    path: math/num/PrimeFactor.hpp
-    title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
-  - icon: ':question:'
     path: math/poly/FormalPowerSeries.hpp
     title: "FormalPowerSeries(\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570)"
-  - icon: ':x:'
-    path: math/poly/SamplingPointsShift.hpp
-    title: "SamplingPointsShift(\u6A19\u672C\u70B9\u30B7\u30D5\u30C8)"
-  - icon: ':question:'
-    path: math/poly/TaylorShift.hpp
-    title: TaylorShift
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
@@ -56,59 +41,60 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yosupo/polynomial/composition_of_formal_power_series_large.test.cpp
+    title: test/yosupo/polynomial/composition_of_formal_power_series_large.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/polynomial/compositional_inverse_of_formal_power_series_large.test.cpp
+    title: test/yosupo/polynomial/compositional_inverse_of_formal_power_series_large.test.cpp
   _isVerificationFailed: true
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/sum_of_exponential_times_polynomial
-    links:
-    - https://judge.yosupo.jp/problem/sum_of_exponential_times_polynomial
-  bundledCode: "#line 1 \"test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/sum_of_exponential_times_polynomial\"\
-    \n#line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
-    \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
-    \ __LINE__\n#endif\n\n#define OVERLOAD5(a, b, c, d, e, ...) e\n#define REP1_0(b,\
-    \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
-    \                     \\\n    for (ll REP_COUNTER_##c = 0; REP_COUNTER_##c < (ll)(b);\
-    \ ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define REP2(i,\
-    \ b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i = (ll)(a);\
-    \ i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b);\
-    \ i += (ll)(c))\n#define rep(...) OVERLOAD5(__VA_ARGS__, REP4, REP3, REP2, REP1)(__VA_ARGS__)\n\
-    #define RREP2(i, a) for (ll i = (ll)(a)-1; i >= 0; --i)\n#define RREP3(i, a, b)\
-    \ for (ll i = (ll)(b)-1; i >= (ll)(a); --i)\n#define RREP4(i, a, b, c) for (ll\
-    \ i = (ll)(b)-1; i >= (ll)(a); i -= (ll)(c))\n#define rrep(...) OVERLOAD5(__VA_ARGS__,\
-    \ RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define REPS2(i, b) for (ll i = 1; i <= (ll)(b);\
-    \ ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define\
-    \ REPS4(i, a, b, c) for (ll i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define\
-    \ reps(...) OVERLOAD5(__VA_ARGS__, REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define\
-    \ RREPS2(i, a) for (ll i = (ll)(a); i > 0; --i)\n#define RREPS3(i, a, b) for (ll\
-    \ i = (ll)(b); i > (ll)(a); --i)\n#define RREPS4(i, a, b, c) for (ll i = (ll)(b);\
-    \ i > (ll)(a); i -= (ll)(c))\n#define rreps(...) OVERLOAD5(__VA_ARGS__, RREPS4,\
-    \ RREPS3, RREPS2)(__VA_ARGS__)\n\n#define each_for(...) for (auto&& __VA_ARGS__)\n\
-    #define each_const(...) for (const auto& __VA_ARGS__)\n\n#define all(v) std::begin(v),\
-    \ std::end(v)\n#define rall(v) std::rbegin(v), std::rend(v)\n\n#if __cpp_if_constexpr\
-    \ >= 201606L\n#define IF_CONSTEXPR constexpr\n#else\n#define IF_CONSTEXPR\n#endif\n\
-    \n#define IO_BUFFER_SIZE (1 << 17)\n#line 2 \"template/alias.hpp\"\n\n#line 4\
-    \ \"template/alias.hpp\"\n\nusing ll = long long;\nusing uint = unsigned int;\n\
-    using ull = unsigned long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\
-    using ld = long double;\nusing PLL = std::pair<ll, ll>;\ntemplate<class T>\nusing\
-    \ prique = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\ntemplate<class\
-    \ T> struct infinity {\n    static constexpr T value = std::numeric_limits<T>::max()\
-    \ / 2;\n    static constexpr T mvalue = std::numeric_limits<T>::lowest() / 2;\n\
-    \    static constexpr T max = std::numeric_limits<T>::max();\n    static constexpr\
-    \ T min = std::numeric_limits<T>::lowest();\n};\n\n#if __cplusplus <= 201402L\n\
-    template<class T> constexpr T infinity<T>::value;\ntemplate<class T> constexpr\
-    \ T infinity<T>::mvalue;\ntemplate<class T> constexpr T infinity<T>::max;\ntemplate<class\
-    \ T> constexpr T infinity<T>::min;\n#endif\n\n#if __cpp_variable_templates >=\
-    \ 201304L\ntemplate<class T> constexpr T INF = infinity<T>::value;\n#endif\n\n\
-    constexpr ll inf = infinity<ll>::value;\nconstexpr ld EPS = 1e-8;\nconstexpr ld\
-    \ PI = 3.1415926535897932384626;\n#line 2 \"template/type_traits.hpp\"\n\n#line\
-    \ 5 \"template/type_traits.hpp\"\n\ntemplate<class T, class... Args> struct function_traits_impl\
-    \ {\n    using result_type = T;\n    template<std::size_t idx>\n    using argument_type\
-    \ =\n        typename std::tuple_element<idx, std::tuple<Args...>>::type;\n  \
-    \  using argument_tuple = std::tuple<Args...>;\n    static constexpr std::size_t\
+    links: []
+  bundledCode: "#line 2 \"math/poly/Composition.hpp\"\n\n#line 2 \"other/template.hpp\"\
+    \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
+    \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define OVERLOAD5(a,\
+    \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
+    \                                                           \\\n    for (ll REP_COUNTER_##c\
+    \ = 0; REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b,\
+    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
+    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
+    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) OVERLOAD5(__VA_ARGS__,\
+    \ REP4, REP3, REP2, REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1;\
+    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(b)-1; i >= (ll)(a); --i)\n\
+    #define RREP4(i, a, b, c) for (ll i = (ll)(b)-1; i >= (ll)(a); i -= (ll)(c))\n\
+    #define rrep(...) OVERLOAD5(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define\
+    \ REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b) for (ll\
+    \ i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll i = (ll)(a)\
+    \ + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) OVERLOAD5(__VA_ARGS__, REPS4,\
+    \ REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a); i > 0;\
+    \ --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(b); i > (ll)(a); --i)\n#define\
+    \ RREPS4(i, a, b, c) for (ll i = (ll)(b); i > (ll)(a); i -= (ll)(c))\n#define\
+    \ rreps(...) OVERLOAD5(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define\
+    \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
+    \ __VA_ARGS__)\n\n#define all(v) std::begin(v), std::end(v)\n#define rall(v) std::rbegin(v),\
+    \ std::rend(v)\n\n#if __cpp_if_constexpr >= 201606L\n#define IF_CONSTEXPR constexpr\n\
+    #else\n#define IF_CONSTEXPR\n#endif\n\n#define IO_BUFFER_SIZE (1 << 17)\n#line\
+    \ 2 \"template/alias.hpp\"\n\n#line 4 \"template/alias.hpp\"\n\nusing ll = long\
+    \ long;\nusing uint = unsigned int;\nusing ull = unsigned long long;\nusing i128\
+    \ = __int128_t;\nusing u128 = __uint128_t;\nusing ld = long double;\nusing PLL\
+    \ = std::pair<ll, ll>;\ntemplate<class T>\nusing prique = std::priority_queue<T,\
+    \ std::vector<T>, std::greater<T>>;\n\ntemplate<class T> struct infinity {\n \
+    \   static constexpr T value = std::numeric_limits<T>::max() / 2;\n    static\
+    \ constexpr T mvalue = std::numeric_limits<T>::lowest() / 2;\n    static constexpr\
+    \ T max = std::numeric_limits<T>::max();\n    static constexpr T min = std::numeric_limits<T>::lowest();\n\
+    };\n\n#if __cplusplus <= 201402L\ntemplate<class T> constexpr T infinity<T>::value;\n\
+    template<class T> constexpr T infinity<T>::mvalue;\ntemplate<class T> constexpr\
+    \ T infinity<T>::max;\ntemplate<class T> constexpr T infinity<T>::min;\n#endif\n\
+    \n#if __cpp_variable_templates >= 201304L\ntemplate<class T> constexpr T INF =\
+    \ infinity<T>::value;\n#endif\n\nconstexpr ll inf = infinity<ll>::value;\nconstexpr\
+    \ ld EPS = 1e-8;\nconstexpr ld PI = 3.1415926535897932384626;\n#line 2 \"template/type_traits.hpp\"\
+    \n\n#line 5 \"template/type_traits.hpp\"\n\ntemplate<class T, class... Args> struct\
+    \ function_traits_impl {\n    using result_type = T;\n    template<std::size_t\
+    \ idx>\n    using argument_type =\n        typename std::tuple_element<idx, std::tuple<Args...>>::type;\n\
+    \    using argument_tuple = std::tuple<Args...>;\n    static constexpr std::size_t\
     \ arg_size() { return sizeof...(Args); }\n};\n\ntemplate<class> struct function_traits_helper;\n\
     \ntemplate<class Res, class Tp, class... Args>\nstruct function_traits_helper<Res\
     \ (Tp::*)(Args...)> {\n    using type = function_traits_impl<Res, Args...>;\n\
@@ -477,7 +463,8 @@ data:
     \        return res;\n    }\n    void press(std::vector<T>& vec) const {\n   \
     \     assert(sorted);\n        for (auto&& i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
-    };\n#line 2 \"math/ModInt.hpp\"\n\n#line 4 \"math/ModInt.hpp\"\n\ntemplate<class\
+    };\n#line 2 \"math/poly/FormalPowerSeries.hpp\"\n\n#line 2 \"math/convolution/Convolution.hpp\"\
+    \n\n#line 2 \"math/ModInt.hpp\"\n\n#line 4 \"math/ModInt.hpp\"\n\ntemplate<class\
     \ T, T mod> class StaticModInt {\n    static_assert(std::is_integral<T>::value,\
     \ \"T must be integral\");\n    static_assert(std::is_unsigned<T>::value, \"T\
     \ must be unsigned\");\n    static_assert(mod > 0, \"mod must be positive\");\n\
@@ -602,43 +589,17 @@ data:
     \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\ntemplate<class\
     \ T, int id> T DynamicModInt<T, id>::mod = 998244353;\n\ntemplate<int id> using\
     \ dynamic_modint = DynamicModInt<unsigned int, id>;\nusing modint = dynamic_modint<-1>;\n\
-    \n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n#line 2 \"math/ExpPolySum.hpp\"\
-    \n\n#line 2 \"math/Combinatorics.hpp\"\n\n#line 5 \"math/Combinatorics.hpp\"\n\
-    \ntemplate<class T> class Combinatorics {\nprivate:\n    static std::vector<T>\
-    \ factorial;\n    static std::vector<T> factinv;\n\npublic:\n    static void init(ll\
-    \ n) {\n        const int b = factorial.size();\n        if (n < b) return;\n\
-    \        factorial.resize(n + 1);\n        rep (i, b, n + 1) factorial[i] = factorial[i\
-    \ - 1] * i;\n        factinv.resize(n + 1);\n        factinv[n] = T(1) / factorial[n];\n\
-    \        rreps (i, b, n) factinv[i - 1] = factinv[i] * i;\n    }\n    static T\
-    \ fact(ll x) {\n        if (x < 0) return 0;\n        init(x);\n        return\
-    \ factorial[x];\n    }\n    static T finv(ll x) {\n        if (x < 0) return 0;\n\
-    \        init(x);\n        return factinv[x];\n    }\n    static T inv(ll x) {\n\
-    \        if (x <= 0) return 0;\n        init(x);\n        return factorial[x -\
-    \ 1] * factinv[x];\n    }\n    static T perm(ll n, ll r) {\n        if (r < 0\
-    \ || r > n) return 0;\n        init(n);\n        return factorial[n] * factinv[n\
-    \ - r];\n    }\n    static T comb(ll n, ll r) {\n        if (n < 0) return 0;\n\
-    \        if (r < 0 || r > n) return 0;\n        init(n);\n        return factorial[n]\
-    \ * factinv[n - r] * factinv[r];\n    }\n    static T homo(ll n, ll r) { return\
-    \ comb(n + r - 1, r); }\n    static T small_perm(ll n, ll r) {\n        if (r\
-    \ < 0 || r > n) return 0;\n        T res = 1;\n        reps (i, r) res *= n -\
-    \ r + i;\n        return res;\n    }\n    static T small_comb(ll n, ll r) {\n\
-    \        if (r < 0 || r > n) return 0;\n        chmin(r, n - r);\n        init(r);\n\
-    \        T res = factinv[r];\n        reps (i, r) res *= n - r + i;\n        return\
-    \ res;\n    }\n    static T small_homo(ll n, ll r) { return small_comb(n + r -\
-    \ 1, r); }\n};\n\ntemplate<class T>\nstd::vector<T> Combinatorics<T>::factorial\
-    \ = std::vector<T>(1, 1);\ntemplate<class T>\nstd::vector<T> Combinatorics<T>::factinv\
-    \ = std::vector<T>(1, 1);\n\n/**\n * @brief Combinatorics\n * @docs docs/math/Combinatorics.md\n\
-    \ */\n#line 2 \"math/poly/SamplingPointsShift.hpp\"\n\n#line 2 \"math/convolution/Convolution.hpp\"\
-    \n\n#line 5 \"math/convolution/Convolution.hpp\"\n\nconstexpr ull primitive_root_for_convolution(ull\
-    \ p) {\n    if (p == 2) return 1;\n    if (p == 998244353) return 3;\n    if (p\
-    \ == 469762049) return 3;\n    if (p == 1811939329) return 11;\n    if (p == 2013265921)\
-    \ return 11;\n    rep (g, 2, p) {\n        if (mod_pow(g, (p - 1) >> 1, p) !=\
-    \ 1) return g;\n    }\n    return -1;\n}\n\nnamespace internal {\n\ntemplate<class\
-    \ T> class NthRoot {\nprivate:\n    static constexpr unsigned int lg =\n     \
-    \   bitop::msb((T::get_mod() - 1) & (1 - T::get_mod()));\n    T root[lg + 1],\
-    \ inv_root[lg + 1];\n    T rate[lg + 1], inv_rate[lg + 1];\n    T rate3[lg + 1],\
-    \ inv_rate3[lg + 1];\n\npublic:\n    constexpr NthRoot() : root{}, inv_root{},\
-    \ rate{}, inv_rate{}, rate3{}, inv_rate3{} {\n        root[lg] = T{primitive_root_for_convolution(T::get_mod())}.pow(\n\
+    \n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n#line 5 \"math/convolution/Convolution.hpp\"\
+    \n\nconstexpr ull primitive_root_for_convolution(ull p) {\n    if (p == 2) return\
+    \ 1;\n    if (p == 998244353) return 3;\n    if (p == 469762049) return 3;\n \
+    \   if (p == 1811939329) return 11;\n    if (p == 2013265921) return 11;\n   \
+    \ rep (g, 2, p) {\n        if (mod_pow(g, (p - 1) >> 1, p) != 1) return g;\n \
+    \   }\n    return -1;\n}\n\nnamespace internal {\n\ntemplate<class T> class NthRoot\
+    \ {\nprivate:\n    static constexpr unsigned int lg =\n        bitop::msb((T::get_mod()\
+    \ - 1) & (1 - T::get_mod()));\n    T root[lg + 1], inv_root[lg + 1];\n    T rate[lg\
+    \ + 1], inv_rate[lg + 1];\n    T rate3[lg + 1], inv_rate3[lg + 1];\n\npublic:\n\
+    \    constexpr NthRoot() : root{}, inv_root{}, rate{}, inv_rate{}, rate3{}, inv_rate3{}\
+    \ {\n        root[lg] = T{primitive_root_for_convolution(T::get_mod())}.pow(\n\
     \            (T::get_mod() - 1) >> lg);\n        inv_root[lg] = root[lg].inv();\n\
     \        rrep (i, lg) {\n            root[i] = root[i + 1] * root[i + 1];\n  \
     \          inv_root[i] = inv_root[i + 1] * inv_root[i + 1];\n        }\n     \
@@ -775,8 +736,33 @@ data:
     \ (1 << 23) <= ((1 - p) & (p - 1))>;\n\ntemplate<class T>\nstruct is_ntt_friendly_modint\
     \ : std::false_type {};\n\ntemplate<unsigned int p>\nstruct is_ntt_friendly_modint<static_modint<p>>\
     \ : is_ntt_friendly<p> {};\n\n/**\n * @brief Convolution(\u7573\u307F\u8FBC\u307F\
-    )\n * @docs docs/math/convolution/Convolution.md\n */\n#line 2 \"math/poly/FormalPowerSeries.hpp\"\
-    \n\n#line 6 \"math/poly/FormalPowerSeries.hpp\"\n\ntemplate<class T> class FormalPowerSeries\
+    )\n * @docs docs/math/convolution/Convolution.md\n */\n#line 2 \"math/Combinatorics.hpp\"\
+    \n\n#line 5 \"math/Combinatorics.hpp\"\n\ntemplate<class T> class Combinatorics\
+    \ {\nprivate:\n    static std::vector<T> factorial;\n    static std::vector<T>\
+    \ factinv;\n\npublic:\n    static void init(ll n) {\n        const int b = factorial.size();\n\
+    \        if (n < b) return;\n        factorial.resize(n + 1);\n        rep (i,\
+    \ b, n + 1) factorial[i] = factorial[i - 1] * i;\n        factinv.resize(n + 1);\n\
+    \        factinv[n] = T(1) / factorial[n];\n        rreps (i, b, n) factinv[i\
+    \ - 1] = factinv[i] * i;\n    }\n    static T fact(ll x) {\n        if (x < 0)\
+    \ return 0;\n        init(x);\n        return factorial[x];\n    }\n    static\
+    \ T finv(ll x) {\n        if (x < 0) return 0;\n        init(x);\n        return\
+    \ factinv[x];\n    }\n    static T inv(ll x) {\n        if (x <= 0) return 0;\n\
+    \        init(x);\n        return factorial[x - 1] * factinv[x];\n    }\n    static\
+    \ T perm(ll n, ll r) {\n        if (r < 0 || r > n) return 0;\n        init(n);\n\
+    \        return factorial[n] * factinv[n - r];\n    }\n    static T comb(ll n,\
+    \ ll r) {\n        if (n < 0) return 0;\n        if (r < 0 || r > n) return 0;\n\
+    \        init(n);\n        return factorial[n] * factinv[n - r] * factinv[r];\n\
+    \    }\n    static T homo(ll n, ll r) { return comb(n + r - 1, r); }\n    static\
+    \ T small_perm(ll n, ll r) {\n        if (r < 0 || r > n) return 0;\n        T\
+    \ res = 1;\n        reps (i, r) res *= n - r + i;\n        return res;\n    }\n\
+    \    static T small_comb(ll n, ll r) {\n        if (r < 0 || r > n) return 0;\n\
+    \        chmin(r, n - r);\n        init(r);\n        T res = factinv[r];\n   \
+    \     reps (i, r) res *= n - r + i;\n        return res;\n    }\n    static T\
+    \ small_homo(ll n, ll r) { return small_comb(n + r - 1, r); }\n};\n\ntemplate<class\
+    \ T>\nstd::vector<T> Combinatorics<T>::factorial = std::vector<T>(1, 1);\ntemplate<class\
+    \ T>\nstd::vector<T> Combinatorics<T>::factinv = std::vector<T>(1, 1);\n\n/**\n\
+    \ * @brief Combinatorics\n * @docs docs/math/Combinatorics.md\n */\n#line 6 \"\
+    math/poly/FormalPowerSeries.hpp\"\n\ntemplate<class T> class FormalPowerSeries\
     \ : public std::vector<T> {\nprivate:\n    using Base = std::vector<T>;\n    using\
     \ Comb = Combinatorics<T>;\n\npublic:\n    using Base::Base;\n    FormalPowerSeries(const\
     \ Base& v) : Base(v) {}\n    FormalPowerSeries(Base&& v) : Base(std::move(v))\
@@ -933,85 +919,126 @@ data:
     \ b);\n        return *this;\n    }\n};\n\n/**\n * @brief FormalPowerSeries(\u5F62\
     \u5F0F\u7684\u51AA\u7D1A\u6570)\n * @docs docs/math/poly/FormalPowerSeries.md\n\
     \ * @see https://nyaannyaan.github.io/library/fps/formal-power-series.hpp\n */\n\
-    #line 2 \"math/poly/TaylorShift.hpp\"\n\n#line 7 \"math/poly/TaylorShift.hpp\"\
-    \n\ntemplate<class T, class Comb = Combinatorics<T>>\nFormalPowerSeries<T> taylor_shift(FormalPowerSeries<T>\
-    \ f, T a) {\n    const int n = f.size();\n    Comb::init(n);\n    rep (i, n) f[i]\
-    \ *= Comb::fact(i);\n    FormalPowerSeries<T> g(n);\n    T p = 1;\n    rep (i,\
-    \ n) {\n        g[n - 1 - i] = p * Comb::finv(i);\n        p *= a;\n    }\n  \
-    \  f *= g;\n    f >>= n - 1;\n    rep (i, n) f[i] *= Comb::finv(i);\n    return\
-    \ f;\n}\n\n/**\n * @brief TaylorShift\n * @docs docs/math/poly/TaylorShift.md\n\
-    \ */\n#line 8 \"math/poly/SamplingPointsShift.hpp\"\n\ntemplate<class T, class\
-    \ Comb = Combinatorics<T>>\nstd::vector<T> sampling_points_shift(std::vector<T>\
-    \ a, int m, T t) {\n    const int n = a.size();\n    Comb::init(std::max(n, m));\n\
-    \    FormalPowerSeries<T> f(n), g(n);\n    rep (i, n) f[i] = i & 1 ? -Comb::finv(i)\
-    \ : Comb::finv(i);\n    rep (i, n) g[i] = a[i] * Comb::finv(i);\n    f = (f *\
-    \ g).prefix(n);\n    rep (i, n) f[i] *= Comb::fact(i);\n    T p = 1;\n    rep\
-    \ (i, n) {\n        g[n - 1 - i] = p * Comb::finv(i);\n        p *= t--;\n   \
-    \ }\n    f = (f * g) >> (n - 1);\n    rep (i, n) f[i] *= Comb::finv(i);\n    g.resize(m);\n\
-    \    rep (i, m) g[i] = Comb::finv(i);\n    f = (f * g).prefix(m);\n    rep (i,\
-    \ m) f[i] *= Comb::fact(i);\n    return std::vector<T>(f);\n}\n\ntemplate<class\
-    \ T, class Comb = Combinatorics<T>>\nT sampling_points_shift(std::vector<T> a,\
-    \ T t) {\n    const int n = a.size();\n    Comb::init(n - 1);\n    std::vector<T>\
-    \ cum(n, 1);\n    rep (i, n - 1) cum[i + 1] = cum[i] * (i - t);\n    T res = 0,\
-    \ cur = 1;\n    rrep (i, n) {\n        res += a[i] * cum[i] * cur * (i & 1 ? -Comb::finv(i)\
-    \ : Comb::finv(i)) *\n               Comb::finv(n - i - 1);\n        cur *= i\
-    \ - t;\n    }\n    return res;\n}\n\n/**\n * @brief SamplingPointsShift(\u6A19\
-    \u672C\u70B9\u30B7\u30D5\u30C8)\n * @docs docs/math/poly/SamplingPointsShift.md\n\
-    \ */\n#line 2 \"math/PowEnumerate.hpp\"\n\n#line 2 \"math/num/PrimeFactor.hpp\"\
-    \n\n#line 4 \"math/num/PrimeFactor.hpp\"\n\nclass PrimeFactor {\nprivate:\n  \
-    \  int MAX;\n    std::vector<int> era, primes;\n\npublic:\n    PrimeFactor(int\
-    \ MAX) : MAX(MAX), era(MAX + 1, -1), primes() {\n        rep (i, 2, MAX + 1) {\n\
-    \            if (era[i] == -1) {\n                era[i] = i;\n              \
-    \  primes.push_back(i);\n            }\n            for (const auto& p : primes)\
-    \ {\n                if (i * p > MAX) break;\n                era[i * p] = p;\n\
-    \            }\n        }\n    }\n    bool is_prime(int x) const { return era[x]\
-    \ == x; }\n    int get_factor(int x) const { return era[x]; }\n    std::vector<int>\
-    \ factorize(int x) const {\n        std::vector<int> res;\n        for (; x >\
-    \ 1; x /= era[x]) res.push_back(era[x]);\n        return res;\n    }\n    const\
-    \ std::vector<int>& get_primes() const& { return primes; }\n    std::vector<int>\
-    \ get_primes() && { return std::move(primes); }\n};\n\nclass IsPrime {\nprivate:\n\
-    \    int MAX;\n    std::vector<bool> era;\n    std::vector<int> primes;\n\npublic:\n\
-    \    IsPrime(int MAX) : MAX(MAX), era(MAX + 1, true), primes() {\n        era[0]\
-    \ = era[1] = false;\n        rep (i, 2, MAX + 1) {\n            if (era[i]) primes.push_back(i);\n\
-    \            for (const auto& p : primes) {\n                if (i * p > MAX)\
-    \ break;\n                era[i * p] = false;\n            }\n        }\n    }\n\
-    \    bool is_prime(int x) { return era[x]; }\n    const std::vector<int>& get_primes()\
-    \ const& { return primes; }\n    std::vector<int> get_primes() && { return std::move(primes);\
-    \ }\n};\n\n/**\n * @brief PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\
-    \u306E\u7BE9)\n * @docs docs/math/num/PrimeFactor.md\n */\n#line 5 \"math/PowEnumerate.hpp\"\
-    \n\n// 1/a[i]   O(n + log p)\ntemplate<class T> std::vector<T> inv_enumerate(std::vector<T>\
-    \ a) {\n    int n = a.size();\n    std::vector<T> res(n + 1);\n    res[0] = 1;\n\
-    \    rep (i, n) res[i + 1] = res[i] * a[i];\n    T iv = 1 / res[n];\n    res.pop_back();\n\
-    \    rrep (i, n) {\n        res[i] *= iv;\n        iv *= a[i];\n    }\n    return\
-    \ res;\n}\n\n// 0^m, 1^m, ..., n^m   O(n log m / log n)\ntemplate<class T> std::vector<T>\
-    \ pow_enumerate(int n, ll m) {\n    if (m == 0) return std::vector<T>(n + 1, 1);\n\
-    \    std::vector<T> res(n + 1);\n    res[0] = 0;\n    res[1] = 1;\n    PrimeFactor\
-    \ pf(n);\n    rep (i, 2, n + 1) {\n        if (pf.is_prime(i)) res[i] = T{i}.pow(m);\n\
-    \        else {\n            ll x = pf.get_factor(i);\n            res[i] = res[x]\
-    \ * res[i / x];\n        }\n    }\n    return res;\n}\n\n/**\n * @brief PowEnumerate\n\
-    \ * @docs docs/math/PowEnumerate.md\n */\n#line 7 \"math/ExpPolySum.hpp\"\n\n\
-    template<class T, class Comb = Combinatorics<T>>\nT exp_poly_sum(T r, int d, ll\
-    \ n = -1) {\n    if (n == -1) assert(r != 1);\n    auto cum = pow_enumerate<T>(d\
-    \ + 1, d);\n    Comb::init(d + 1);\n    T c = 0;\n    {\n        T sm = 0, cur\
-    \ = 1;\n        rep (i, d + 2) {\n            sm += cur * cum[i];\n          \
-    \  cur *= r;\n            cum[i] = sm;\n        }\n    }\n    {\n        T t =\
-    \ 1;\n        rep (i, d + 1) {\n            c += t * Comb::comb(d + 1, i) * cum[d\
-    \ - i];\n            t *= -r;\n        }\n        c /= (1 - r).pow(d + 1);\n \
-    \   }\n    if (n == -1) return c;\n    if (n == 0) return 0;\n    if (r == 1)\
-    \ return sampling_points_shift<T, Comb>(cum, n - 1);\n    cum.pop_back();\n  \
-    \  T iv = 1 / r, cur = 1;\n    rep (i, d + 1) {\n        cum[i] = (c - cum[i])\
-    \ * cur;\n        cur *= iv;\n    }\n    return c - r.pow(n - 1) * sampling_points_shift<T,\
-    \ Comb>(cum, n - 1);\n}\n\n/**\n * @brief ExpPolySum($\\sum_{i=0}^{\\infty}r^ii^d$)\n\
-    \ * @docs docs/math/ExpPolySum.md\n * @see https://kyopro-friends.hatenablog.com/entry/2020/03/11/073122\n\
-    \ */\n#line 5 \"test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp\"\
-    \nusing namespace std;\nusing mint = modint998244353;\nint main() {\n    mint\
-    \ r; scan >> r;\n    ll d, n; scan >> d >> n;\n    prints(exp_poly_sum(r, d, n));\n\
-    }\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sum_of_exponential_times_polynomial\"\
-    \n#include \"../../../other/template.hpp\"\n#include \"../../../math/ModInt.hpp\"\
-    \n#include \"../../../math/ExpPolySum.hpp\"\nusing namespace std;\nusing mint\
-    \ = modint998244353;\nint main() {\n    mint r; scan >> r;\n    ll d, n; scan\
-    \ >> d >> n;\n    prints(exp_poly_sum(r, d, n));\n}\n"
+    #line 5 \"math/poly/Composition.hpp\"\n\ntemplate<class T, typename std::enable_if<\n\
+    \                      is_ntt_friendly_modint<T>::value>::type* = nullptr>\nFormalPowerSeries<T>\
+    \ power_projection(FormalPowerSeries<T> f, FormalPowerSeries<T> g) {\n    static\
+    \ constexpr internal::NthRoot<T> nth_root;\n    assert(!f.empty() && f[0] == 0);\n\
+    \    assert(f.size() == g.size());\n    int n = 1 << bitop::ceil_log2(f.size()),\
+    \ k = 1;\n    FormalPowerSeries<T> W(n * 4);\n    W[0] = 1 / T{2};\n    rep (i,\
+    \ n * 4) W[i + 1] = W[i] * nth_root.get_inv_rate(popcnt(i & ~(i + 1)));\n    FormalPowerSeries<T>\
+    \ P(n * 4), Q(n * 4);\n    rep (i, f.size()) P[n - f.size() + i] = g[i];\n   \
+    \ rep (i, f.size()) Q[i] = -f[i];\n    while (n > 1) {\n        P.resize(n * k\
+    \ * 4);\n        Q.resize(n * k * 4);\n        ++Q[n * k * 2];\n        number_theoretic_transform(P);\n\
+    \        number_theoretic_transform(Q);\n        rep (i, n * k * 2) {\n      \
+    \      P[i] = (P[2 * i] * Q[2 * i + 1] - P[2 * i + 1] * Q[2 * i]) * W[i];\n  \
+    \          Q[i] = Q[i * 2] * Q[i * 2 + 1];\n        }\n        P.resize(n * k\
+    \ * 2);\n        Q.resize(n * k * 2);\n        inverse_number_theoretic_transform(P);\n\
+    \        inverse_number_theoretic_transform(Q);\n        --Q[0];\n        rep\
+    \ (i, k * 2) rep (j, n / 2, n) P[i * n + j] = 0;\n        rep (i, k * 2) rep (j,\
+    \ n / 2, n) Q[i * n + j] = 0;\n        n /= 2; k *= 2;\n    }\n    rep (i, f.size())\
+    \ f[i] = P[(k - 1 - i) * 2];\n    return f;\n}\n\ntemplate<class T, typename std::enable_if<\n\
+    \                      !is_ntt_friendly_modint<T>::value>::type* = nullptr>\n\
+    FormalPowerSeries<T> power_projection(FormalPowerSeries<T> f, FormalPowerSeries<T>\
+    \ g) {\n    assert(!f.empty() && f[0] == 0);\n    assert(f.size() == g.size());\n\
+    \    int n = 1 << bitop::ceil_log2(f.size()), k = 1;\n    FormalPowerSeries<T>\
+    \ P(n * 2), Q(n * 2);\n    rep (i, f.size()) P[n - f.size() + i] = g[i];\n   \
+    \ rep (i, f.size()) Q[i] = -f[i];\n    while (n > 1) {\n        FormalPowerSeries<T>\
+    \ R = Q;\n        rep (i, 1, n * k * 2, 2) R[i] = -R[i];\n        P = P * R +\
+    \ (P << (n * k * 2));\n        Q = Q * R + ((Q + R) << (n * k * 2));\n       \
+    \ FormalPowerSeries<T> U(n * k * 2), V(n * k * 2);\n        rep (i, k * 2) rep\
+    \ (j, n / 2) {\n            U[i * n + j] = P[i * n * 2 + j * 2 + 1];\n       \
+    \     V[i * n + j] = Q[i * n * 2 + j * 2];\n        }\n        P = U; Q = V;\n\
+    \        n /= 2; k *= 2;\n    }\n    rep (i, f.size()) f[i] = P[(k - 1 - i) *\
+    \ 2];\n    return f;\n}\n\ntemplate<class T>\nFormalPowerSeries<T> composition(FormalPowerSeries<T>\
+    \ f, FormalPowerSeries<T> g) {\n    static constexpr internal::NthRoot<T> nth_root;\n\
+    \    assert(f.size() == g.size());\n    assert(!g.empty() && g[0] == 0);\n\n \
+    \   int n = 1 << bitop::ceil_log2(f.size()), k = 1;\n    FormalPowerSeries<T>\
+    \ Q(n * 4);\n    rep (i, f.size()) Q[i] = -g[i];\n\n    FormalPowerSeries<T> W(n\
+    \ * 4);\n    W[0] = 1 / T{2};\n    rep (i, n * 4) W[i + 1] = W[i] * nth_root.get_inv_rate(popcnt(i\
+    \ & ~(i + 1)));\n\n    FormalPowerSeries<T> res = rec_lambda([&](auto&& self,\
+    \ int n, int k, FormalPowerSeries<T> Q) -> FormalPowerSeries<T> {\n        if\
+    \ (n == 1) {\n            FormalPowerSeries<T> res(k * 2);\n            rep (i,\
+    \ f.size()) res[(k - 1 - i) * 2] = f[i];\n            return res;\n        }\n\
+    \        Q.resize(n * k * 4);\n        ++Q[n * k * 2];\n        number_theoretic_transform(Q);\n\
+    \        FormalPowerSeries<T> R(n * k * 2);\n        rep (i, n * k * 2) R[i] =\
+    \ Q[i * 2] * Q[i * 2 + 1];\n        inverse_number_theoretic_transform(R);\n \
+    \       --R[0];\n        rep (i, k * 2) rep (j, n / 2, n) R[i * n + j] = 0;\n\
+    \        R = self(n / 2, k * 2, R);\n        rep (i, k * 2) rep (j, n / 2, n)\
+    \ R[i * n + j] = 0;\n        std::reverse(1 + all(R));\n        number_theoretic_transform(R);\n\
+    \        FormalPowerSeries<T> P(n * k * 4);\n        rrep (i, n * k * 2) {\n \
+    \           P[2 * i] = Q[2 * i + 1] * R[i] * W[i];\n            P[2 * i + 1] =\
+    \ -Q[2 * i] * R[i] * W[i];\n        }\n        inverse_number_theoretic_transform(P);\n\
+    \        std::reverse(1 + all(P));\n        P.resize(n * k * 2);\n        return\
+    \ P;\n    })(n, k, Q) * n;\n\n    FormalPowerSeries<T> ans(f.size());\n    rep\
+    \ (i, f.size()) ans[i] = res[n - 1 - i];\n    return ans;\n}\n\ntemplate<class\
+    \ T, class Comb = Combinatorics<T>>\nFormalPowerSeries<T> compositional_inverse(FormalPowerSeries<T>\
+    \ f, int deg = -1) {\n    assert(f.size() >= 2 && f[0] == 0 && f[1] != 0);\n \
+    \   if (deg == -1) deg = f.size();\n    const T c = f[1].inv();\n    f *= c;\n\
+    \    FormalPowerSeries<T> g(deg);\n    g[0] = 1;\n    g = power_projection(f.prefix(deg),\
+    \ g) * (deg - 1);\n    Comb::init(deg);\n    rep (i, 1, deg) g[i] *= Comb::inv(i);\n\
+    \    std::reverse(all(g));\n    g.pop_back();\n    g = (g.log() / (1 - deg)).exp()\
+    \ << 1;\n    T v = 1;\n    rep (i, deg) {\n        g[i] *= v;\n        v *= c;\n\
+    \    }\n    return g;\n}\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"FormalPowerSeries.hpp\"\
+    \n\ntemplate<class T, typename std::enable_if<\n                      is_ntt_friendly_modint<T>::value>::type*\
+    \ = nullptr>\nFormalPowerSeries<T> power_projection(FormalPowerSeries<T> f, FormalPowerSeries<T>\
+    \ g) {\n    static constexpr internal::NthRoot<T> nth_root;\n    assert(!f.empty()\
+    \ && f[0] == 0);\n    assert(f.size() == g.size());\n    int n = 1 << bitop::ceil_log2(f.size()),\
+    \ k = 1;\n    FormalPowerSeries<T> W(n * 4);\n    W[0] = 1 / T{2};\n    rep (i,\
+    \ n * 4) W[i + 1] = W[i] * nth_root.get_inv_rate(popcnt(i & ~(i + 1)));\n    FormalPowerSeries<T>\
+    \ P(n * 4), Q(n * 4);\n    rep (i, f.size()) P[n - f.size() + i] = g[i];\n   \
+    \ rep (i, f.size()) Q[i] = -f[i];\n    while (n > 1) {\n        P.resize(n * k\
+    \ * 4);\n        Q.resize(n * k * 4);\n        ++Q[n * k * 2];\n        number_theoretic_transform(P);\n\
+    \        number_theoretic_transform(Q);\n        rep (i, n * k * 2) {\n      \
+    \      P[i] = (P[2 * i] * Q[2 * i + 1] - P[2 * i + 1] * Q[2 * i]) * W[i];\n  \
+    \          Q[i] = Q[i * 2] * Q[i * 2 + 1];\n        }\n        P.resize(n * k\
+    \ * 2);\n        Q.resize(n * k * 2);\n        inverse_number_theoretic_transform(P);\n\
+    \        inverse_number_theoretic_transform(Q);\n        --Q[0];\n        rep\
+    \ (i, k * 2) rep (j, n / 2, n) P[i * n + j] = 0;\n        rep (i, k * 2) rep (j,\
+    \ n / 2, n) Q[i * n + j] = 0;\n        n /= 2; k *= 2;\n    }\n    rep (i, f.size())\
+    \ f[i] = P[(k - 1 - i) * 2];\n    return f;\n}\n\ntemplate<class T, typename std::enable_if<\n\
+    \                      !is_ntt_friendly_modint<T>::value>::type* = nullptr>\n\
+    FormalPowerSeries<T> power_projection(FormalPowerSeries<T> f, FormalPowerSeries<T>\
+    \ g) {\n    assert(!f.empty() && f[0] == 0);\n    assert(f.size() == g.size());\n\
+    \    int n = 1 << bitop::ceil_log2(f.size()), k = 1;\n    FormalPowerSeries<T>\
+    \ P(n * 2), Q(n * 2);\n    rep (i, f.size()) P[n - f.size() + i] = g[i];\n   \
+    \ rep (i, f.size()) Q[i] = -f[i];\n    while (n > 1) {\n        FormalPowerSeries<T>\
+    \ R = Q;\n        rep (i, 1, n * k * 2, 2) R[i] = -R[i];\n        P = P * R +\
+    \ (P << (n * k * 2));\n        Q = Q * R + ((Q + R) << (n * k * 2));\n       \
+    \ FormalPowerSeries<T> U(n * k * 2), V(n * k * 2);\n        rep (i, k * 2) rep\
+    \ (j, n / 2) {\n            U[i * n + j] = P[i * n * 2 + j * 2 + 1];\n       \
+    \     V[i * n + j] = Q[i * n * 2 + j * 2];\n        }\n        P = U; Q = V;\n\
+    \        n /= 2; k *= 2;\n    }\n    rep (i, f.size()) f[i] = P[(k - 1 - i) *\
+    \ 2];\n    return f;\n}\n\ntemplate<class T>\nFormalPowerSeries<T> composition(FormalPowerSeries<T>\
+    \ f, FormalPowerSeries<T> g) {\n    static constexpr internal::NthRoot<T> nth_root;\n\
+    \    assert(f.size() == g.size());\n    assert(!g.empty() && g[0] == 0);\n\n \
+    \   int n = 1 << bitop::ceil_log2(f.size()), k = 1;\n    FormalPowerSeries<T>\
+    \ Q(n * 4);\n    rep (i, f.size()) Q[i] = -g[i];\n\n    FormalPowerSeries<T> W(n\
+    \ * 4);\n    W[0] = 1 / T{2};\n    rep (i, n * 4) W[i + 1] = W[i] * nth_root.get_inv_rate(popcnt(i\
+    \ & ~(i + 1)));\n\n    FormalPowerSeries<T> res = rec_lambda([&](auto&& self,\
+    \ int n, int k, FormalPowerSeries<T> Q) -> FormalPowerSeries<T> {\n        if\
+    \ (n == 1) {\n            FormalPowerSeries<T> res(k * 2);\n            rep (i,\
+    \ f.size()) res[(k - 1 - i) * 2] = f[i];\n            return res;\n        }\n\
+    \        Q.resize(n * k * 4);\n        ++Q[n * k * 2];\n        number_theoretic_transform(Q);\n\
+    \        FormalPowerSeries<T> R(n * k * 2);\n        rep (i, n * k * 2) R[i] =\
+    \ Q[i * 2] * Q[i * 2 + 1];\n        inverse_number_theoretic_transform(R);\n \
+    \       --R[0];\n        rep (i, k * 2) rep (j, n / 2, n) R[i * n + j] = 0;\n\
+    \        R = self(n / 2, k * 2, R);\n        rep (i, k * 2) rep (j, n / 2, n)\
+    \ R[i * n + j] = 0;\n        std::reverse(1 + all(R));\n        number_theoretic_transform(R);\n\
+    \        FormalPowerSeries<T> P(n * k * 4);\n        rrep (i, n * k * 2) {\n \
+    \           P[2 * i] = Q[2 * i + 1] * R[i] * W[i];\n            P[2 * i + 1] =\
+    \ -Q[2 * i] * R[i] * W[i];\n        }\n        inverse_number_theoretic_transform(P);\n\
+    \        std::reverse(1 + all(P));\n        P.resize(n * k * 2);\n        return\
+    \ P;\n    })(n, k, Q) * n;\n\n    FormalPowerSeries<T> ans(f.size());\n    rep\
+    \ (i, f.size()) ans[i] = res[n - 1 - i];\n    return ans;\n}\n\ntemplate<class\
+    \ T, class Comb = Combinatorics<T>>\nFormalPowerSeries<T> compositional_inverse(FormalPowerSeries<T>\
+    \ f, int deg = -1) {\n    assert(f.size() >= 2 && f[0] == 0 && f[1] != 0);\n \
+    \   if (deg == -1) deg = f.size();\n    const T c = f[1].inv();\n    f *= c;\n\
+    \    FormalPowerSeries<T> g(deg);\n    g[0] = 1;\n    g = power_projection(f.prefix(deg),\
+    \ g) * (deg - 1);\n    Comb::init(deg);\n    rep (i, 1, deg) g[i] *= Comb::inv(i);\n\
+    \    std::reverse(all(g));\n    g.pop_back();\n    g = (g.log() / (1 - deg)).exp()\
+    \ << 1;\n    T v = 1;\n    rep (i, deg) {\n        g[i] *= v;\n        v *= c;\n\
+    \    }\n    return g;\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -1022,25 +1049,22 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  - math/ModInt.hpp
-  - math/ExpPolySum.hpp
-  - math/Combinatorics.hpp
-  - math/poly/SamplingPointsShift.hpp
-  - math/convolution/Convolution.hpp
   - math/poly/FormalPowerSeries.hpp
-  - math/poly/TaylorShift.hpp
-  - math/PowEnumerate.hpp
-  - math/num/PrimeFactor.hpp
-  isVerificationFile: true
-  path: test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp
+  - math/convolution/Convolution.hpp
+  - math/ModInt.hpp
+  - math/Combinatorics.hpp
+  isVerificationFile: false
+  path: math/poly/Composition.hpp
   requiredBy: []
   timestamp: '2026-09-15 21:48:30+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
-  verifiedWith: []
-documentation_of: test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/yosupo/polynomial/composition_of_formal_power_series_large.test.cpp
+  - test/yosupo/polynomial/compositional_inverse_of_formal_power_series_large.test.cpp
+documentation_of: math/poly/Composition.hpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp
-- /verify/test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp.html
-title: test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp
+- /library/math/poly/Composition.hpp
+- /library/math/poly/Composition.hpp.html
+title: math/poly/Composition.hpp
 ---

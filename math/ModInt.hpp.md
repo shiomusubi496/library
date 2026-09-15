@@ -63,7 +63,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/SubsetSum.hpp
     title: SubsetSum
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/TetrationMod.hpp
     title: TetrationMod
   - icon: ':question:'
@@ -88,15 +88,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/matrix/Matrix.hpp
     title: "Matrix(\u884C\u5217)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/num/PrimitiveRoot.hpp
     title: "PrimitiveRoot(\u539F\u59CB\u6839)"
   - icon: ':x:'
     path: math/poly/BostanMori.hpp
     title: "Bostan-Mori(\u7DDA\u5F62\u6F38\u5316\u5F0F\u306En\u9805\u76EE)"
   - icon: ':x:'
-    path: math/poly/CompositionalInverse.hpp
-    title: math/poly/CompositionalInverse.hpp
+    path: math/poly/Composition.hpp
+    title: math/poly/Composition.hpp
   - icon: ':x:'
     path: math/poly/ConsecutiveTermsOfLinearRecurrence.hpp
     title: math/poly/ConsecutiveTermsOfLinearRecurrence.hpp
@@ -116,6 +116,9 @@ data:
     path: math/poly/SparseFormalPowerSeries.hpp
     title: "SparseFormalPowerSeries(\u758E\u306A\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570\
       )"
+  - icon: ':x:'
+    path: math/poly/SquareRoot.hpp
+    title: math/poly/SquareRoot.hpp
   - icon: ':question:'
     path: math/poly/TaylorShift.hpp
     title: TaylorShift
@@ -291,10 +294,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/bernoulli_number.test.cpp
     title: test/yosupo/number_theory/bernoulli_number.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/primitive_root.test.cpp
     title: test/yosupo/number_theory/primitive_root.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/tetration_mod.test.cpp
     title: test/yosupo/number_theory/tetration_mod.test.cpp
   - icon: ':x:'
@@ -1078,12 +1081,13 @@ data:
   - math/ExpPolySum.hpp
   - math/BigInteger.hpp
   - math/num/PrimitiveRoot.hpp
+  - math/poly/SquareRoot.hpp
   - math/poly/ConsecutiveTermsOfLinearRecurrence.hpp
   - math/poly/PolynomialInterpolation.hpp
   - math/poly/SamplingPointsShift.hpp
   - math/poly/FormalPowerSeries.hpp
   - math/poly/SparseFormalPowerSeries.hpp
-  - math/poly/CompositionalInverse.hpp
+  - math/poly/Composition.hpp
   - math/poly/MultipointEvaluation.hpp
   - math/poly/TaylorShift.hpp
   - math/poly/BostanMori.hpp

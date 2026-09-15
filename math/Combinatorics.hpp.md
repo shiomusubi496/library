@@ -55,8 +55,8 @@ data:
     path: math/poly/BostanMori.hpp
     title: "Bostan-Mori(\u7DDA\u5F62\u6F38\u5316\u5F0F\u306En\u9805\u76EE)"
   - icon: ':x:'
-    path: math/poly/CompositionalInverse.hpp
-    title: math/poly/CompositionalInverse.hpp
+    path: math/poly/Composition.hpp
+    title: math/poly/Composition.hpp
   - icon: ':x:'
     path: math/poly/ConsecutiveTermsOfLinearRecurrence.hpp
     title: math/poly/ConsecutiveTermsOfLinearRecurrence.hpp
@@ -76,6 +76,9 @@ data:
     path: math/poly/SparseFormalPowerSeries.hpp
     title: "SparseFormalPowerSeries(\u758E\u306A\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570\
       )"
+  - icon: ':x:'
+    path: math/poly/SquareRoot.hpp
+    title: math/poly/SquareRoot.hpp
   - icon: ':question:'
     path: math/poly/TaylorShift.hpp
     title: TaylorShift
@@ -819,12 +822,13 @@ data:
   - math/StirlingNumber.hpp
   - math/SubsetSum.hpp
   - math/ExpPolySum.hpp
+  - math/poly/SquareRoot.hpp
   - math/poly/ConsecutiveTermsOfLinearRecurrence.hpp
   - math/poly/PolynomialInterpolation.hpp
   - math/poly/SamplingPointsShift.hpp
   - math/poly/FormalPowerSeries.hpp
   - math/poly/SparseFormalPowerSeries.hpp
-  - math/poly/CompositionalInverse.hpp
+  - math/poly/Composition.hpp
   - math/poly/MultipointEvaluation.hpp
   - math/poly/TaylorShift.hpp
   - math/poly/BostanMori.hpp
