@@ -118,7 +118,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/SqrtDecomposition.hpp
     title: "SqrtDecomposition(\u5E73\u65B9\u5206\u5272)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/StarrySkyTree.hpp
     title: data-struct/segment/StarrySkyTree.hpp
   - icon: ':heavy_check_mark:'
@@ -145,7 +145,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree/PMORMQLCA.hpp
     title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/PermutationTree.hpp
     title: graph/tree/PermutationTree.hpp
   - icon: ':question:'
@@ -350,7 +350,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/discrete_logarithm_mod.test.cpp
     title: test/yosupo/number_theory/discrete_logarithm_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/common_interval_decomposition_tree.test.cpp
     title: test/yosupo/tree/common_interval_decomposition_tree.test.cpp
   - icon: ':x:'

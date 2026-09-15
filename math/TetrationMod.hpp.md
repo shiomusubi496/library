@@ -7,14 +7,14 @@ data:
   - icon: ':question:'
     path: math/MontgomeryModInt.hpp
     title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/num/EulerPhi.hpp
     title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
   - icon: ':question:'
     path: math/num/MillerRabin.hpp
     title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
       )"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/num/PollardRho.hpp
     title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
   - icon: ':question:'
@@ -52,12 +52,12 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/tetration_mod.test.cpp
     title: test/yosupo/number_theory/tetration_mod.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/math/TetrationMod.md
     document_title: TetrationMod
@@ -766,7 +766,7 @@ data:
     \    if (n != 1) res = res / n * (n - 1);\n    return res;\n}\n\nll euler_phi_pollardrho(ll\
     \ n) {\n    for (auto p : expfactorize(n)) n = n / p.first * (p.first - 1);\n\
     \    return n;\n}\n\nclass EulerPhi {\nprivate:\n    std::vector<ll> data;\n\n\
-    public:\n    EulerPhi(ll MAX) data(MAX + 1, 0) {\n        rep (i, MAX + 1) data[i]\
+    public:\n    EulerPhi(ll MAX) : data(MAX + 1, 0) {\n        rep (i, MAX + 1) data[i]\
     \ = i;\n        rep (i, 2, MAX + 1) {\n            if (data[i] != i) continue;\n\
     \            rep (j, i, MAX + 1, i) {\n                data[j] = data[j] / i *\
     \ (i - 1);\n            }\n        }\n    }\n    ll phi(ll x) { return data[x];\
@@ -805,8 +805,8 @@ data:
   isVerificationFile: false
   path: math/TetrationMod.hpp
   requiredBy: []
-  timestamp: '2026-09-15 22:37:49+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-09-15 22:53:34+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/number_theory/tetration_mod.test.cpp
 documentation_of: math/TetrationMod.hpp

@@ -8,7 +8,7 @@ data:
     path: math/num/MillerRabin.hpp
     title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
       )"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/num/PollardRho.hpp
     title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
   - icon: ':question:'
@@ -45,19 +45,19 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/TetrationMod.hpp
     title: TetrationMod
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/NTL/NTL_1_D-Phi.test.cpp
     title: test/aoj/NTL/NTL_1_D-Phi.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/tetration_mod.test.cpp
     title: test/yosupo/number_theory/tetration_mod.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/math/num/EulerPhi.md
     document_title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
@@ -640,7 +640,7 @@ data:
     \    if (n != 1) res = res / n * (n - 1);\n    return res;\n}\n\nll euler_phi_pollardrho(ll\
     \ n) {\n    for (auto p : expfactorize(n)) n = n / p.first * (p.first - 1);\n\
     \    return n;\n}\n\nclass EulerPhi {\nprivate:\n    std::vector<ll> data;\n\n\
-    public:\n    EulerPhi(ll MAX) data(MAX + 1, 0) {\n        rep (i, MAX + 1) data[i]\
+    public:\n    EulerPhi(ll MAX) : data(MAX + 1, 0) {\n        rep (i, MAX + 1) data[i]\
     \ = i;\n        rep (i, 2, MAX + 1) {\n            if (data[i] != i) continue;\n\
     \            rep (j, i, MAX + 1, i) {\n                data[j] = data[j] / i *\
     \ (i - 1);\n            }\n        }\n    }\n    ll phi(ll x) { return data[x];\
@@ -653,7 +653,7 @@ data:
     \ / n * (n - 1);\n    return res;\n}\n\nll euler_phi_pollardrho(ll n) {\n    for\
     \ (auto p : expfactorize(n)) n = n / p.first * (p.first - 1);\n    return n;\n\
     }\n\nclass EulerPhi {\nprivate:\n    std::vector<ll> data;\n\npublic:\n    EulerPhi(ll\
-    \ MAX) data(MAX + 1, 0) {\n        rep (i, MAX + 1) data[i] = i;\n        rep\
+    \ MAX) : data(MAX + 1, 0) {\n        rep (i, MAX + 1) data[i] = i;\n        rep\
     \ (i, 2, MAX + 1) {\n            if (data[i] != i) continue;\n            rep\
     \ (j, i, MAX + 1, i) {\n                data[j] = data[j] / i * (i - 1);\n   \
     \         }\n        }\n    }\n    ll phi(ll x) { return data[x]; }\n};\n\n/**\n\
@@ -678,8 +678,8 @@ data:
   path: math/num/EulerPhi.hpp
   requiredBy:
   - math/TetrationMod.hpp
-  timestamp: '2026-09-15 22:37:49+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-09-15 22:53:34+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/number_theory/tetration_mod.test.cpp
   - test/aoj/NTL/NTL_1_D-Phi.test.cpp
