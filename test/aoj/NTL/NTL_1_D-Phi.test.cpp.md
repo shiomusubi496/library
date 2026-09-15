@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: math/MontgomeryModInt.hpp
     title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/num/EulerPhi.hpp
     title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
   - icon: ':question:'
@@ -49,9 +49,9 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_D
@@ -635,15 +635,15 @@ data:
     \ res / i * (i - 1);\n            while (n % i == 0) n /= i;\n        }\n    }\n\
     \    if (n != 1) res = res / n * (n - 1);\n    return res;\n}\n\nll euler_phi_pollardrho(ll\
     \ n) {\n    for (auto p : expfactorize(n)) n = n / p.first * (p.first - 1);\n\
-    \    return n;\n}\n\nclass EulerPhi {\nprivate:\n    ll MAX;\n    std::vector<ll>\
-    \ data;\n\npublic:\n    EulerPhi(ll MAX) : MAX(MAX), data(MAX + 1, 0) {\n    \
-    \    rep (i, MAX + 1) data[i] = i;\n        rep (i, 2, MAX + 1) {\n          \
-    \  if (data[i] != i) continue;\n            rep (j, i, MAX + 1, i) {\n       \
-    \         data[j] = data[j] / i * (i - 1);\n            }\n        }\n    }\n\
-    \    ll phi(ll x) { return data[x]; }\n};\n\n/**\n * @brief Euler's-Phi(\u30AA\
-    \u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)\n * @docs docs/math/num/EulerPhi.md\n\
-    \ */\n#line 4 \"test/aoj/NTL/NTL_1_D-Phi.test.cpp\"\nusing namespace std;\nint\
-    \ main() {\n    ll N; scan >> N;\n    printer << euler_phi(N) << endl;\n}\n"
+    \    return n;\n}\n\nclass EulerPhi {\nprivate:\n    std::vector<ll> data;\n\n\
+    public:\n    EulerPhi(ll MAX) data(MAX + 1, 0) {\n        rep (i, MAX + 1) data[i]\
+    \ = i;\n        rep (i, 2, MAX + 1) {\n            if (data[i] != i) continue;\n\
+    \            rep (j, i, MAX + 1, i) {\n                data[j] = data[j] / i *\
+    \ (i - 1);\n            }\n        }\n    }\n    ll phi(ll x) { return data[x];\
+    \ }\n};\n\n/**\n * @brief Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\
+    \u6570)\n * @docs docs/math/num/EulerPhi.md\n */\n#line 4 \"test/aoj/NTL/NTL_1_D-Phi.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    ll N; scan >> N;\n    printer << euler_phi(N)\
+    \ << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_D\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../math/num/EulerPhi.hpp\"\
     \nusing namespace std;\nint main() {\n    ll N; scan >> N;\n    printer << euler_phi(N)\
@@ -667,8 +667,8 @@ data:
   isVerificationFile: true
   path: test/aoj/NTL/NTL_1_D-Phi.test.cpp
   requiredBy: []
-  timestamp: '2026-09-12 01:07:36+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-09-15 22:37:49+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/NTL/NTL_1_D-Phi.test.cpp
 layout: document

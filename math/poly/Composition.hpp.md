@@ -42,15 +42,15 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/composition_of_formal_power_series_large.test.cpp
     title: test/yosupo/polynomial/composition_of_formal_power_series_large.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/compositional_inverse_of_formal_power_series_large.test.cpp
     title: test/yosupo/polynomial/compositional_inverse_of_formal_power_series_large.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/poly/Composition.hpp\"\n\n#line 2 \"other/template.hpp\"\
@@ -1057,7 +1057,7 @@ data:
   path: math/poly/Composition.hpp
   requiredBy: []
   timestamp: '2026-09-15 21:48:30+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/polynomial/composition_of_formal_power_series_large.test.cpp
   - test/yosupo/polynomial/compositional_inverse_of_formal_power_series_large.test.cpp

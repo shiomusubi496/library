@@ -71,10 +71,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/sqrt_mod.test.cpp
     title: test/yosupo/number_theory/sqrt_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/exp_of_formal_power_series_sparse.test.cpp
     title: test/yosupo/polynomial/exp_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/inv_of_formal_power_series_sparse.test.cpp
     title: test/yosupo/polynomial/inv_of_formal_power_series_sparse.test.cpp
   - icon: ':x:'

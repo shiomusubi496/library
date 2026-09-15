@@ -32,10 +32,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/SubsetSum.hpp
     title: SubsetSum
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/TetrationMod.hpp
     title: TetrationMod
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/num/EulerPhi.hpp
     title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
   - icon: ':question:'
@@ -44,11 +44,11 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/num/PrimitiveRoot.hpp
     title: "PrimitiveRoot(\u539F\u59CB\u6839)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/num/TwoSquareSum.hpp
     title: math/num/TwoSquareSum.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/NTL/NTL_1_D-Phi.test.cpp
     title: test/aoj/NTL/NTL_1_D-Phi.test.cpp
   - icon: ':heavy_check_mark:'
@@ -60,10 +60,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/primitive_root.test.cpp
     title: test/yosupo/number_theory/primitive_root.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/number_theory/tetration_mod.test.cpp
     title: test/yosupo/number_theory/tetration_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/two_square_sum.test.cpp
     title: test/yosupo/number_theory/two_square_sum.test.cpp
   - icon: ':x:'

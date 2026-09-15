@@ -45,19 +45,19 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/TetrationMod.hpp
     title: TetrationMod
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/NTL/NTL_1_D-Phi.test.cpp
     title: test/aoj/NTL/NTL_1_D-Phi.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/number_theory/tetration_mod.test.cpp
     title: test/yosupo/number_theory/tetration_mod.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/math/num/EulerPhi.md
     document_title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
@@ -639,27 +639,26 @@ data:
     \ res / i * (i - 1);\n            while (n % i == 0) n /= i;\n        }\n    }\n\
     \    if (n != 1) res = res / n * (n - 1);\n    return res;\n}\n\nll euler_phi_pollardrho(ll\
     \ n) {\n    for (auto p : expfactorize(n)) n = n / p.first * (p.first - 1);\n\
-    \    return n;\n}\n\nclass EulerPhi {\nprivate:\n    ll MAX;\n    std::vector<ll>\
-    \ data;\n\npublic:\n    EulerPhi(ll MAX) : MAX(MAX), data(MAX + 1, 0) {\n    \
-    \    rep (i, MAX + 1) data[i] = i;\n        rep (i, 2, MAX + 1) {\n          \
-    \  if (data[i] != i) continue;\n            rep (j, i, MAX + 1, i) {\n       \
-    \         data[j] = data[j] / i * (i - 1);\n            }\n        }\n    }\n\
-    \    ll phi(ll x) { return data[x]; }\n};\n\n/**\n * @brief Euler's-Phi(\u30AA\
-    \u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)\n * @docs docs/math/num/EulerPhi.md\n\
-    \ */\n"
+    \    return n;\n}\n\nclass EulerPhi {\nprivate:\n    std::vector<ll> data;\n\n\
+    public:\n    EulerPhi(ll MAX) data(MAX + 1, 0) {\n        rep (i, MAX + 1) data[i]\
+    \ = i;\n        rep (i, 2, MAX + 1) {\n            if (data[i] != i) continue;\n\
+    \            rep (j, i, MAX + 1, i) {\n                data[j] = data[j] / i *\
+    \ (i - 1);\n            }\n        }\n    }\n    ll phi(ll x) { return data[x];\
+    \ }\n};\n\n/**\n * @brief Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\
+    \u6570)\n * @docs docs/math/num/EulerPhi.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"PollardRho.hpp\"\
     \n\nll euler_phi(ll n) {\n    ll res = n;\n    for (ll i = 2; i * i <= n; ++i)\
     \ {\n        if (n % i == 0) {\n            res = res / i * (i - 1);\n       \
     \     while (n % i == 0) n /= i;\n        }\n    }\n    if (n != 1) res = res\
     \ / n * (n - 1);\n    return res;\n}\n\nll euler_phi_pollardrho(ll n) {\n    for\
     \ (auto p : expfactorize(n)) n = n / p.first * (p.first - 1);\n    return n;\n\
-    }\n\nclass EulerPhi {\nprivate:\n    ll MAX;\n    std::vector<ll> data;\n\npublic:\n\
-    \    EulerPhi(ll MAX) : MAX(MAX), data(MAX + 1, 0) {\n        rep (i, MAX + 1)\
-    \ data[i] = i;\n        rep (i, 2, MAX + 1) {\n            if (data[i] != i) continue;\n\
-    \            rep (j, i, MAX + 1, i) {\n                data[j] = data[j] / i *\
-    \ (i - 1);\n            }\n        }\n    }\n    ll phi(ll x) { return data[x];\
-    \ }\n};\n\n/**\n * @brief Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\
-    \u6570)\n * @docs docs/math/num/EulerPhi.md\n */\n"
+    }\n\nclass EulerPhi {\nprivate:\n    std::vector<ll> data;\n\npublic:\n    EulerPhi(ll\
+    \ MAX) data(MAX + 1, 0) {\n        rep (i, MAX + 1) data[i] = i;\n        rep\
+    \ (i, 2, MAX + 1) {\n            if (data[i] != i) continue;\n            rep\
+    \ (j, i, MAX + 1, i) {\n                data[j] = data[j] / i * (i - 1);\n   \
+    \         }\n        }\n    }\n    ll phi(ll x) { return data[x]; }\n};\n\n/**\n\
+    \ * @brief Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)\n * @docs\
+    \ docs/math/num/EulerPhi.md\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -679,8 +678,8 @@ data:
   path: math/num/EulerPhi.hpp
   requiredBy:
   - math/TetrationMod.hpp
-  timestamp: '2026-09-12 01:05:48+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-09-15 22:37:49+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/number_theory/tetration_mod.test.cpp
   - test/aoj/NTL/NTL_1_D-Phi.test.cpp

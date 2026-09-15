@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: math/convolution/Convolution.hpp
     title: "Convolution(\u7573\u307F\u8FBC\u307F)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/poly/Composition.hpp
     title: math/poly/Composition.hpp
   - icon: ':question:'
@@ -45,9 +45,9 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/composition_of_formal_power_series_large
@@ -1009,7 +1009,7 @@ data:
   path: test/yosupo/polynomial/composition_of_formal_power_series_large.test.cpp
   requiredBy: []
   timestamp: '2026-09-15 21:48:30+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/polynomial/composition_of_formal_power_series_large.test.cpp
 layout: document

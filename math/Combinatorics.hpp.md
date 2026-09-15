@@ -38,7 +38,7 @@ data:
   - icon: ':warning:'
     path: math/BinomPrefixSum.hpp
     title: BinomPrefixSum
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/ExpPolySum.hpp
     title: ExpPolySum($\sum_{i=0}^{\infty}r^ii^d$)
   - icon: ':heavy_check_mark:'
@@ -51,13 +51,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/SubsetSum.hpp
     title: SubsetSum
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/poly/BostanMori.hpp
     title: "Bostan-Mori(\u7DDA\u5F62\u6F38\u5316\u5F0F\u306En\u9805\u76EE)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/poly/Composition.hpp
     title: math/poly/Composition.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/poly/ConsecutiveTermsOfLinearRecurrence.hpp
     title: math/poly/ConsecutiveTermsOfLinearRecurrence.hpp
   - icon: ':question:'
@@ -69,7 +69,7 @@ data:
   - icon: ':x:'
     path: math/poly/PolynomialInterpolation.hpp
     title: "PolynomialInterpolation(\u591A\u9805\u5F0F\u88DC\u9593)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/poly/SamplingPointsShift.hpp
     title: "SamplingPointsShift(\u6A19\u672C\u70B9\u30B7\u30D5\u30C8)"
   - icon: ':question:'
@@ -134,40 +134,40 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/bernoulli_number.test.cpp
     title: test/yosupo/number_theory/bernoulli_number.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/other/consecutive_terms_of_linear_recurrent_sequence.test.cpp
     title: test/yosupo/other/consecutive_terms_of_linear_recurrent_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/other/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/yosupo/other/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp
     title: test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
     title: test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/composition_of_formal_power_series_large.test.cpp
     title: test/yosupo/polynomial/composition_of_formal_power_series_large.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/compositional_inverse_of_formal_power_series_large.test.cpp
     title: test/yosupo/polynomial/compositional_inverse_of_formal_power_series_large.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/division_of_polynomials.test.cpp
     title: test/yosupo/polynomial/division_of_polynomials.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/exp_of_formal_power_series-RelaxedConvolution.test.cpp
     title: test/yosupo/polynomial/exp_of_formal_power_series-RelaxedConvolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/exp_of_formal_power_series.test.cpp
     title: test/yosupo/polynomial/exp_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/exp_of_formal_power_series_sparse.test.cpp
     title: test/yosupo/polynomial/exp_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/inv_of_formal_power_series.test.cpp
     title: test/yosupo/polynomial/inv_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/inv_of_formal_power_series_sparse.test.cpp
     title: test/yosupo/polynomial/inv_of_formal_power_series_sparse.test.cpp
   - icon: ':x:'

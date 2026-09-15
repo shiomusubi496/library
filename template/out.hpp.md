@@ -255,7 +255,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/connected/ConnectedComponents.hpp
     title: "ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/connected/StronglyConnectedComponents.hpp
     title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
@@ -331,7 +331,7 @@ data:
     path: graph/other/TopologicalSort.hpp
     title: "TopologicalSort(\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8\
       )"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/other/TwoSatisfiability.hpp
     title: TwoSatisfiability(2-SAT)
   - icon: ':heavy_check_mark:'
@@ -418,7 +418,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/DiscreteLogarithm.hpp
     title: "Discrete Logarithm(\u96E2\u6563\u5BFE\u6570)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/ExpPolySum.hpp
     title: ExpPolySum($\sum_{i=0}^{\infty}r^ii^d$)
   - icon: ':heavy_check_mark:'
@@ -427,7 +427,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/FloorSum.hpp
     title: FloorSum
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/GaussianInteger.hpp
     title: GaussianInteger
   - icon: ':heavy_check_mark:'
@@ -445,10 +445,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/NimProduct.hpp
     title: math/NimProduct.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/PowEnumerate.hpp
     title: PowEnumerate
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/Rational.hpp
     title: "Rational(\u6709\u7406\u6570\u578B)"
   - icon: ':warning:'
@@ -457,7 +457,7 @@ data:
   - icon: ':question:'
     path: math/SqrtMod.hpp
     title: "SqrtMod(\u5E73\u65B9\u5270\u4F59)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/SternBrocotTree.hpp
     title: Stern-Brocot Tree
   - icon: ':heavy_check_mark:'
@@ -467,7 +467,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/SubsetSum.hpp
     title: SubsetSum
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/TetrationMod.hpp
     title: TetrationMod
   - icon: ':heavy_check_mark:'
@@ -505,7 +505,7 @@ data:
     path: math/convolution/MultipleZetaMoebiusTransform.hpp
     title: "MultipleZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
       \u30A6\u30B9\u5909\u63DB)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/convolution/RelaxedConvolution.hpp
     title: "Relaxed Convolution(\u30AA\u30F3\u30E9\u30A4\u30F3\u7573\u307F\u8FBC\u307F\
       )"
@@ -541,7 +541,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/num/EnumerateQuotients.hpp
     title: "Enumerate Quotients(\u5546\u5217\u6319)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/num/EulerPhi.hpp
     title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
   - icon: ':heavy_check_mark:'
@@ -557,22 +557,22 @@ data:
   - icon: ':question:'
     path: math/num/PollardRho.hpp
     title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/num/PrimeFactor.hpp
     title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
   - icon: ':heavy_check_mark:'
     path: math/num/PrimitiveRoot.hpp
     title: "PrimitiveRoot(\u539F\u59CB\u6839)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/num/TwoSquareSum.hpp
     title: math/num/TwoSquareSum.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/poly/BostanMori.hpp
     title: "Bostan-Mori(\u7DDA\u5F62\u6F38\u5316\u5F0F\u306En\u9805\u76EE)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/poly/Composition.hpp
     title: math/poly/Composition.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/poly/ConsecutiveTermsOfLinearRecurrence.hpp
     title: math/poly/ConsecutiveTermsOfLinearRecurrence.hpp
   - icon: ':question:'
@@ -584,7 +584,7 @@ data:
   - icon: ':x:'
     path: math/poly/PolynomialInterpolation.hpp
     title: "PolynomialInterpolation(\u591A\u9805\u5F0F\u88DC\u9593)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/poly/SamplingPointsShift.hpp
     title: "SamplingPointsShift(\u6A19\u672C\u70B9\u30B7\u30D5\u30C8)"
   - icon: ':question:'
@@ -615,7 +615,7 @@ data:
   - icon: ':x:'
     path: string/LCPArray.hpp
     title: LCPArray
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/LongestIncreasingSubsequence.hpp
     title: "LongestIncreasingSubsequence(LIS,\u6700\u9577\u5897\u52A0\u90E8\u5206\u5217\
       )"
@@ -875,7 +875,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/NTL/NTL_1_C-LCM.test.cpp
     title: test/aoj/NTL/NTL_1_C-LCM.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/NTL/NTL_1_D-Phi.test.cpp
     title: test/aoj/NTL/NTL_1_D-Phi.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1253,58 +1253,58 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/sqrt_mod.test.cpp
     title: test/yosupo/number_theory/sqrt_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/stern_brocot_tree.test.cpp
     title: test/yosupo/number_theory/stern_brocot_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/sum_of_floor_of_linear.test.cpp
     title: test/yosupo/number_theory/sum_of_floor_of_linear.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/number_theory/tetration_mod.test.cpp
     title: test/yosupo/number_theory/tetration_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/two_square_sum.test.cpp
     title: test/yosupo/number_theory/two_square_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/other/consecutive_terms_of_linear_recurrent_sequence.test.cpp
     title: test/yosupo/other/consecutive_terms_of_linear_recurrent_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/other/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/yosupo/other/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/other/longest_increasing_subsequence.test.cpp
     title: test/yosupo/other/longest_increasing_subsequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp
     title: test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
     title: test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/other/two_sat.test.cpp
     title: test/yosupo/other/two_sat.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/composition_of_formal_power_series_large.test.cpp
     title: test/yosupo/polynomial/composition_of_formal_power_series_large.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/compositional_inverse_of_formal_power_series_large.test.cpp
     title: test/yosupo/polynomial/compositional_inverse_of_formal_power_series_large.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/division_of_polynomials.test.cpp
     title: test/yosupo/polynomial/division_of_polynomials.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/exp_of_formal_power_series-RelaxedConvolution.test.cpp
     title: test/yosupo/polynomial/exp_of_formal_power_series-RelaxedConvolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/exp_of_formal_power_series.test.cpp
     title: test/yosupo/polynomial/exp_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/exp_of_formal_power_series_sparse.test.cpp
     title: test/yosupo/polynomial/exp_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/inv_of_formal_power_series.test.cpp
     title: test/yosupo/polynomial/inv_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/inv_of_formal_power_series_sparse.test.cpp
     title: test/yosupo/polynomial/inv_of_formal_power_series_sparse.test.cpp
   - icon: ':x:'

@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: math/MontgomeryModInt.hpp
     title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/num/EulerPhi.hpp
     title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
   - icon: ':question:'
@@ -52,12 +52,12 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/number_theory/tetration_mod.test.cpp
     title: test/yosupo/number_theory/tetration_mod.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/math/TetrationMod.md
     document_title: TetrationMod
@@ -765,19 +765,19 @@ data:
     \ res / i * (i - 1);\n            while (n % i == 0) n /= i;\n        }\n    }\n\
     \    if (n != 1) res = res / n * (n - 1);\n    return res;\n}\n\nll euler_phi_pollardrho(ll\
     \ n) {\n    for (auto p : expfactorize(n)) n = n / p.first * (p.first - 1);\n\
-    \    return n;\n}\n\nclass EulerPhi {\nprivate:\n    ll MAX;\n    std::vector<ll>\
-    \ data;\n\npublic:\n    EulerPhi(ll MAX) : MAX(MAX), data(MAX + 1, 0) {\n    \
-    \    rep (i, MAX + 1) data[i] = i;\n        rep (i, 2, MAX + 1) {\n          \
-    \  if (data[i] != i) continue;\n            rep (j, i, MAX + 1, i) {\n       \
-    \         data[j] = data[j] / i * (i - 1);\n            }\n        }\n    }\n\
-    \    ll phi(ll x) { return data[x]; }\n};\n\n/**\n * @brief Euler's-Phi(\u30AA\
-    \u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)\n * @docs docs/math/num/EulerPhi.md\n\
-    \ */\n#line 6 \"math/TetrationMod.hpp\"\n\nll tetration(ll a, ll b, ll m) {\n\
-    \    assert(m >= 1);\n    if (m == 1) return 0;\n    if (a == 0) return (b & 1)\
-    \ ^ 1;\n    if (b == 0) return 1;\n    if (b == 1) return a % m;\n    if (b ==\
-    \ 2) return mod_pow(a, a, m);\n    ll phi = euler_phi(m);\n    ll x = tetration(a,\
-    \ b - 1, phi);\n    if (x == 0) x += phi;\n    return mod_pow(a, x, m);\n}\n\n\
-    /**\n * @brief TetrationMod\n * @docs docs/math/TetrationMod.md\n */\n"
+    \    return n;\n}\n\nclass EulerPhi {\nprivate:\n    std::vector<ll> data;\n\n\
+    public:\n    EulerPhi(ll MAX) data(MAX + 1, 0) {\n        rep (i, MAX + 1) data[i]\
+    \ = i;\n        rep (i, 2, MAX + 1) {\n            if (data[i] != i) continue;\n\
+    \            rep (j, i, MAX + 1, i) {\n                data[j] = data[j] / i *\
+    \ (i - 1);\n            }\n        }\n    }\n    ll phi(ll x) { return data[x];\
+    \ }\n};\n\n/**\n * @brief Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\
+    \u6570)\n * @docs docs/math/num/EulerPhi.md\n */\n#line 6 \"math/TetrationMod.hpp\"\
+    \n\nll tetration(ll a, ll b, ll m) {\n    assert(m >= 1);\n    if (m == 1) return\
+    \ 0;\n    if (a == 0) return (b & 1) ^ 1;\n    if (b == 0) return 1;\n    if (b\
+    \ == 1) return a % m;\n    if (b == 2) return mod_pow(a, a, m);\n    ll phi =\
+    \ euler_phi(m);\n    ll x = tetration(a, b - 1, phi);\n    if (x == 0) x += phi;\n\
+    \    return mod_pow(a, x, m);\n}\n\n/**\n * @brief TetrationMod\n * @docs docs/math/TetrationMod.md\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n#include \"ModInt.hpp\"\
     \n#include \"num/EulerPhi.hpp\"\n\nll tetration(ll a, ll b, ll m) {\n    assert(m\
     \ >= 1);\n    if (m == 1) return 0;\n    if (a == 0) return (b & 1) ^ 1;\n   \
@@ -805,8 +805,8 @@ data:
   isVerificationFile: false
   path: math/TetrationMod.hpp
   requiredBy: []
-  timestamp: '2026-09-12 01:05:48+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-09-15 22:37:49+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/number_theory/tetration_mod.test.cpp
 documentation_of: math/TetrationMod.hpp

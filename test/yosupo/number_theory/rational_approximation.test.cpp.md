@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/Rational.hpp
     title: "Rational(\u6709\u7406\u6570\u578B)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/SternBrocotTree.hpp
     title: Stern-Brocot Tree
   - icon: ':question:'
@@ -510,62 +510,63 @@ data:
     }\n\n} // namespace std\n\nusing Fraction = Rational<ll>;\n\n/**\n * @brief Rational(\u6709\
     \u7406\u6570\u578B)\n * @docs docs/math/Rational.md\n */\n#line 5 \"math/SternBrocotTree.hpp\"\
     \n\ntemplate<class T> class SternBrocotTree {\npublic:\n    using Rat = Rational<T,\
-    \ true>;\n\n    static std::vector<std::pair<char, int>> encode_path(Rat x) {\n\
-    \        std::vector<std::pair<char, int>> res;\n        T a = x.get_num(), b\
-    \ = x.get_den();\n        while (a != 1 || b != 1) {\n            if (a > b) {\n\
-    \                T tmp = (a - 1) / b;\n                res.emplace_back('R', tmp);\n\
-    \                a -= tmp * b;\n            }\n            else {\n          \
-    \      T tmp = (b - 1) / a;\n                res.emplace_back('L', tmp);\n   \
-    \             b -= tmp * a;\n            }\n        }\n        return res;\n \
-    \   }\n    static Rat decode_path(std::vector<std::pair<char, int>> path, Rat\
-    \ s = 1) {\n        std::reverse(all(path));\n        T a = 1, b = 1;\n      \
-    \  for (const auto& p : path) {\n            if (p.first == 'R') a += b * p.second;\n\
-    \            else b += a * p.second;\n        }\n        std::vector<std::pair<char,\
-    \ int>> path2 = encode_path(s);\n        std::reverse(all(path2));\n        for\
-    \ (const auto& p : path2) {\n            if (p.first == 'R') a += b * p.second;\n\
-    \            else b += a * p.second;\n        }\n        return Rat(a, b);\n \
-    \   }\n    static Rat lca(Rat x, Rat y) {\n        auto px = encode_path(x), py\
-    \ = encode_path(y);\n        std::vector<std::pair<char, int>> res;\n        rep\
-    \ (i, std::min(px.size(), py.size())) {\n            const auto &a = px[i], b\
-    \ = py[i];\n            if (a.first != b.first) break;\n            res.emplace_back(a.first,\
-    \ std::min(a.second, b.second));\n            if (a.second != b.second) break;\n\
-    \        }\n        return decode_path(res);\n    }\n    static Rat ancestor(Rat\
-    \ x, T k) {\n        if (k == 0) return 1;\n        auto px = encode_path(x);\n\
-    \        rep (i, px.size()) {\n            const auto& a = px[i];\n          \
-    \  if (a.second >= k) {\n                px[i].second = k;\n                px.erase(px.begin()\
-    \ + i + 1, px.end());\n                return decode_path(px);\n            }\n\
-    \            k -= a.second;\n        }\n        return -1;\n    }\n    static\
-    \ std::pair<Rat, Rat> range(Rat x) {\n        auto px = encode_path(x);\n    \
-    \    return {decode_path(px, {0, 1}), decode_path(px, {1, 0})};\n    }\n    template<class\
-    \ Cond> static std::pair<Rat, Rat> max_right(Cond cond, T n) {\n        assert(n\
-    \ >= 1);\n        auto f = [&](Rat a, Rat b, T x) {\n            return Rat{a.get_num()\
-    \ + x * b.get_num(),\n                       a.get_den() + x * b.get_den()};\n\
-    \        };\n        Rat l = {0, 1}, r = {1, 0}, m = {1, 1};\n        if (!cond(l))\
-    \ return {-1, l};\n        bool flag = cond(m);\n        while (true) {\n    \
-    \        if (flag) {\n                T ok = 0, ng = 1;\n                while\
-    \ (true) {\n                    auto tmp = f(m, r, ng);\n                    if\
-    \ (std::max(tmp.get_num(), tmp.get_den()) > n ||\n                        !cond(tmp))\n\
-    \                        break;\n                    ok = ng;\n              \
-    \      ng <<= 1;\n                }\n                while (ng - ok > 1) {\n \
-    \                   T mid = (ok + ng) >> 1;\n                    auto tmp = f(m,\
-    \ r, mid);\n                    if (std::max(tmp.get_num(), tmp.get_den()) > n\
-    \ ||\n                        !cond(tmp))\n                        ng = mid;\n\
-    \                    else ok = mid;\n                }\n                l = f(m,\
-    \ r, ok);\n                m = f(m, r, ng);\n                if (std::max(m.get_num(),\
-    \ m.get_den()) > n) return {l, r};\n            }\n            else {\n      \
-    \          T ok = 0, ng = 1;\n                while (true) {\n               \
-    \     auto tmp = f(m, l, ng);\n                    if (std::max(tmp.get_num(),\
-    \ tmp.get_den()) > n || cond(tmp))\n                        break;\n         \
-    \           ok = ng;\n                    ng <<= 1;\n                }\n     \
-    \           while (ng - ok > 1) {\n                    T mid = (ok + ng) >> 1;\n\
-    \                    auto tmp = f(m, l, mid);\n                    if (std::max(tmp.get_num(),\
-    \ tmp.get_den()) > n || cond(tmp))\n                        ng = mid;\n      \
-    \              else ok = mid;\n                }\n                r = f(m, l,\
-    \ ok);\n                m = f(m, l, ng);\n                if (std::max(m.get_num(),\
-    \ m.get_den()) > n) return {l, r};\n            }\n            flag = !flag;\n\
-    \        }\n        return {-1, -1};\n    }\n};\n\n/**\n * @brief Stern-Brocot\
-    \ Tree\n * @docs docs/math/SternBrocotTree.md\n */\n#line 4 \"test/yosupo/number_theory/rational_approximation.test.cpp\"\
-    \nusing namespace std;\nusing SBT = SternBrocotTree<int>;\nusing Rat = typename\
+    \ true>;\n\n    static std::pair<Rat, Rat> _decode(std::vector<std::pair<char,\
+    \ int>> a) {\n        T xn = 0, xd = 1, yn = 1, yd = 0;\n        for (const auto&\
+    \ p : a) {\n            if (p.first == 'R') {\n                xn += yn * p.second;\n\
+    \                xd += yd * p.second;\n            }\n            else {\n   \
+    \             yn += xn * p.second;\n                yd += xd * p.second;\n   \
+    \         }\n        }\n        return {{xn, xd}, {yn, yd}};\n    }\n\n    static\
+    \ std::vector<std::pair<char, int>> encode_path(Rat x) {\n        std::vector<std::pair<char,\
+    \ int>> res;\n        T a = x.get_num(), b = x.get_den();\n        while (a !=\
+    \ 1 || b != 1) {\n            if (a > b) {\n                T tmp = (a - 1) /\
+    \ b;\n                res.emplace_back('R', tmp);\n                a -= tmp *\
+    \ b;\n            }\n            else {\n                T tmp = (b - 1) / a;\n\
+    \                res.emplace_back('L', tmp);\n                b -= tmp * a;\n\
+    \            }\n        }\n        return res;\n    }\n    static Rat decode_path(std::vector<std::pair<char,\
+    \ int>> path) {\n        auto [a, b] = _decode(path);\n        return Rat(a.get_num()\
+    \ + b.get_num(), a.get_den() + b.get_den());\n    }\n    static Rat lca(Rat x,\
+    \ Rat y) {\n        auto px = encode_path(x), py = encode_path(y);\n        std::vector<std::pair<char,\
+    \ int>> res;\n        rep (i, std::min(px.size(), py.size())) {\n            const\
+    \ auto &a = px[i], b = py[i];\n            if (a.first != b.first) break;\n  \
+    \          res.emplace_back(a.first, std::min(a.second, b.second));\n        \
+    \    if (a.second != b.second) break;\n        }\n        return decode_path(res);\n\
+    \    }\n    static Rat ancestor(Rat x, T k) {\n        if (k == 0) return 1;\n\
+    \        auto px = encode_path(x);\n        rep (i, px.size()) {\n           \
+    \ const auto& a = px[i];\n            if (a.second >= k) {\n                px[i].second\
+    \ = k;\n                px.erase(px.begin() + i + 1, px.end());\n            \
+    \    return decode_path(px);\n            }\n            k -= a.second;\n    \
+    \    }\n        return -1;\n    }\n    static std::pair<Rat, Rat> range(Rat x)\
+    \ {\n        auto px = encode_path(x);\n        return _decode(px);\n    }\n \
+    \   template<class Cond> static std::pair<Rat, Rat> max_right(Cond cond, T n)\
+    \ {\n        assert(n >= 1);\n        auto f = [&](Rat a, Rat b, T x) {\n    \
+    \        return Rat{a.get_num() + x * b.get_num(),\n                       a.get_den()\
+    \ + x * b.get_den()};\n        };\n        Rat l = {0, 1}, r = {1, 0}, m = {1,\
+    \ 1};\n        if (!cond(l)) return {-1, l};\n        bool flag = cond(m);\n \
+    \       while (true) {\n            if (flag) {\n                T ok = 0, ng\
+    \ = 1;\n                while (true) {\n                    auto tmp = f(m, r,\
+    \ ng);\n                    if (std::max(tmp.get_num(), tmp.get_den()) > n ||\n\
+    \                        !cond(tmp))\n                        break;\n       \
+    \             ok = ng;\n                    ng <<= 1;\n                }\n   \
+    \             while (ng - ok > 1) {\n                    T mid = (ok + ng) >>\
+    \ 1;\n                    auto tmp = f(m, r, mid);\n                    if (std::max(tmp.get_num(),\
+    \ tmp.get_den()) > n ||\n                        !cond(tmp))\n               \
+    \         ng = mid;\n                    else ok = mid;\n                }\n \
+    \               l = f(m, r, ok);\n                m = f(m, r, ng);\n         \
+    \       if (std::max(m.get_num(), m.get_den()) > n) return {l, r};\n         \
+    \   }\n            else {\n                T ok = 0, ng = 1;\n               \
+    \ while (true) {\n                    auto tmp = f(m, l, ng);\n              \
+    \      if (std::max(tmp.get_num(), tmp.get_den()) > n || cond(tmp))\n        \
+    \                break;\n                    ok = ng;\n                    ng\
+    \ <<= 1;\n                }\n                while (ng - ok > 1) {\n         \
+    \           T mid = (ok + ng) >> 1;\n                    auto tmp = f(m, l, mid);\n\
+    \                    if (std::max(tmp.get_num(), tmp.get_den()) > n || cond(tmp))\n\
+    \                        ng = mid;\n                    else ok = mid;\n     \
+    \           }\n                r = f(m, l, ok);\n                m = f(m, l, ng);\n\
+    \                if (std::max(m.get_num(), m.get_den()) > n) return {l, r};\n\
+    \            }\n            flag = !flag;\n        }\n        return {-1, -1};\n\
+    \    }\n};\n\n/**\n * @brief Stern-Brocot Tree\n * @docs docs/math/SternBrocotTree.md\n\
+    \ */\n#line 4 \"test/yosupo/number_theory/rational_approximation.test.cpp\"\n\
+    using namespace std;\nusing SBT = SternBrocotTree<int>;\nusing Rat = typename\
     \ SBT::Rat;\nint main() {\n    int T; scan >> T;\n    rep (T) {\n        int N,\
     \ X, Y; scan >> N >> X >> Y;\n        Rat r(X, Y);\n        auto [a, b] = SBT::max_right([&](auto\
     \ x) { return x <= r; }, N);\n        if (a == r) b = r;\n        prints(a.get_pair(),\
@@ -592,7 +593,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/number_theory/rational_approximation.test.cpp
   requiredBy: []
-  timestamp: '2026-09-12 14:55:19+09:00'
+  timestamp: '2026-09-15 22:37:49+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/number_theory/rational_approximation.test.cpp

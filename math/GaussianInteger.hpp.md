@@ -29,19 +29,19 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/num/TwoSquareSum.hpp
     title: math/num/TwoSquareSum.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/gcd_of_gaussian_integers.test.cpp
     title: test/yosupo/number_theory/gcd_of_gaussian_integers.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/two_square_sum.test.cpp
     title: test/yosupo/number_theory/two_square_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: GaussianInteger
     links:
@@ -551,7 +551,7 @@ data:
   requiredBy:
   - math/num/TwoSquareSum.hpp
   timestamp: '2026-09-12 01:05:48+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/number_theory/gcd_of_gaussian_integers.test.cpp
   - test/yosupo/number_theory/two_square_sum.test.cpp

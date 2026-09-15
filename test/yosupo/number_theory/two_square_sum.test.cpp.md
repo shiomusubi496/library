@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/GaussianInteger.hpp
     title: GaussianInteger
   - icon: ':question:'
@@ -14,7 +14,7 @@ data:
   - icon: ':question:'
     path: math/num/PollardRho.hpp
     title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/num/TwoSquareSum.hpp
     title: math/num/TwoSquareSum.hpp
   - icon: ':question:'
@@ -52,9 +52,9 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/two_square_sum
@@ -738,7 +738,7 @@ data:
   path: test/yosupo/number_theory/two_square_sum.test.cpp
   requiredBy: []
   timestamp: '2026-09-12 13:44:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/number_theory/two_square_sum.test.cpp
 layout: document
