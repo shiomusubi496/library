@@ -15,7 +15,7 @@ public:
         if IF_CONSTEXPR (!allow_div_zero) {
             assert(b != 0);
         }
-        T g = gcd(abs(a), abs(b));
+        T g = gcd(std::abs(a), std::abs(b));
         a /= g;
         b /= g;
         if (b < 0) {
@@ -121,7 +121,7 @@ public:
 namespace std {
 
 template<class T> Rational<T> abs(const Rational<T>& x) {
-    return Rational<T>(abs(x.get_num()), x.get_den());
+    return Rational<T>(std::abs(x.get_num()), std::abs(x.get_den()));
 }
 
 } // namespace std
