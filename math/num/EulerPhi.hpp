@@ -25,7 +25,7 @@ private:
     std::vector<ll> data;
 
 public:
-    EulerPhi(ll MAX) data(MAX + 1, 0) {
+    EulerPhi(ll MAX) : data(MAX + 1, 0) {
         rep (i, MAX + 1) data[i] = i;
         rep (i, 2, MAX + 1) {
             if (data[i] != i) continue;
