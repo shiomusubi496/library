@@ -63,7 +63,7 @@ FormalPowerSeries<T> sqrt(FormalPowerSeries<T> t, int deg = -1) {
 template<class T, typename std::enable_if<
                       !is_ntt_friendly_modint<T>::value>::type* = nullptr>
 FormalPowerSeries<T> sqrt(FormalPowerSeries<T> t, int deg = -1) {
-    if (deg == -1) deg = tsize();
+    if (deg == -1) deg = t.size();
     T a;
     int d = -1;
     rep (i, t.size()) {
