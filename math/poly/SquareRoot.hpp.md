@@ -1033,7 +1033,7 @@ data:
     \            rep (i, m, 2 * m) g[i] = -u[i];\n        }\n    }\n    return f.prefix(deg)\
     \ << (d >> 1);\n}\ntemplate<class T, typename std::enable_if<\n              \
     \        !is_ntt_friendly_modint<T>::value>::type* = nullptr>\nFormalPowerSeries<T>\
-    \ sqrt(FormalPowerSeries<T> t, int deg = -1) {\n    if (deg == -1) deg = tsize();\n\
+    \ sqrt(FormalPowerSeries<T> t, int deg = -1) {\n    if (deg == -1) deg = t.size();\n\
     \    T a;\n    int d = -1;\n    rep (i, t.size()) {\n        if (t[i] != 0) {\n\
     \            a = t[i];\n            d = i;\n            break;\n        }\n  \
     \  }\n    if (d == -1) {\n        FormalPowerSeries res(deg);\n        return\
@@ -1069,7 +1069,7 @@ data:
     \            rep (i, m, 2 * m) g[i] = -u[i];\n        }\n    }\n    return f.prefix(deg)\
     \ << (d >> 1);\n}\ntemplate<class T, typename std::enable_if<\n              \
     \        !is_ntt_friendly_modint<T>::value>::type* = nullptr>\nFormalPowerSeries<T>\
-    \ sqrt(FormalPowerSeries<T> t, int deg = -1) {\n    if (deg == -1) deg = tsize();\n\
+    \ sqrt(FormalPowerSeries<T> t, int deg = -1) {\n    if (deg == -1) deg = t.size();\n\
     \    T a;\n    int d = -1;\n    rep (i, t.size()) {\n        if (t[i] != 0) {\n\
     \            a = t[i];\n            d = i;\n            break;\n        }\n  \
     \  }\n    if (d == -1) {\n        FormalPowerSeries res(deg);\n        return\
@@ -1098,7 +1098,7 @@ data:
   isVerificationFile: false
   path: math/poly/SquareRoot.hpp
   requiredBy: []
-  timestamp: '2026-09-15 21:48:30+09:00'
+  timestamp: '2026-09-15 23:10:14+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp
