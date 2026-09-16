@@ -66,7 +66,7 @@ FormalPowerSeries<T> power_projection(FormalPowerSeries<T> f, FormalPowerSeries<
 }
 
 template<class T>
-FormalPowerSeries<T> composition(FormalPowerSeries<T> f, FormalPowerSeries<T> g) {
+FormalPowerSeries<T> composite(FormalPowerSeries<T> f, FormalPowerSeries<T> g) {
     static constexpr internal::NthRoot<T> nth_root;
     assert(f.size() == g.size());
     assert(!g.empty() && g[0] == 0);
