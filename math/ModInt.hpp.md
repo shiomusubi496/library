@@ -92,6 +92,9 @@ data:
     path: math/num/PrimitiveRoot.hpp
     title: "PrimitiveRoot(\u539F\u59CB\u6839)"
   - icon: ':heavy_check_mark:'
+    path: math/poly/BerlekampMassey.hpp
+    title: math/poly/BerlekampMassey.hpp
+  - icon: ':heavy_check_mark:'
     path: math/poly/BostanMori.hpp
     title: "Bostan-Mori(\u7DDA\u5F62\u6F38\u5316\u5F0F\u306En\u9805\u76EE)"
   - icon: ':heavy_check_mark:'
@@ -309,6 +312,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/other/consecutive_terms_of_linear_recurrent_sequence.test.cpp
     title: test/yosupo/other/consecutive_terms_of_linear_recurrent_sequence.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/other/find_linear_recurrence.test.cpp
+    title: test/yosupo/other/find_linear_recurrence.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/other/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/yosupo/other/kth_term_of_linearly_recurrent_sequence.test.cpp
@@ -1090,6 +1096,7 @@ data:
   - math/poly/SquareRoot.hpp
   - math/poly/ConsecutiveTermsOfLinearRecurrence.hpp
   - math/poly/PolynomialInterpolation.hpp
+  - math/poly/BerlekampMassey.hpp
   - math/poly/SamplingPointsShift.hpp
   - math/poly/FormalPowerSeries.hpp
   - math/poly/SparseFormalPowerSeries.hpp
@@ -1123,6 +1130,7 @@ data:
   - test/yosupo/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
   - test/yosupo/other/consecutive_terms_of_linear_recurrent_sequence.test.cpp
   - test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp
+  - test/yosupo/other/find_linear_recurrence.test.cpp
   - test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
   - test/yosupo/other/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/yosupo/convolution/lcm_convolution.test.cpp
