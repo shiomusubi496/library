@@ -42,6 +42,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/min_plus_convolution_convex_arbitrary.test.cpp
     title: test/yosupo/convolution/min_plus_convolution_convex_arbitrary.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/convolution/min_plus_convolution_convex_convex.test.cpp
+    title: test/yosupo/convolution/min_plus_convolution_convex_convex.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -499,6 +502,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/convolution/min_plus_convolution_convex_arbitrary.test.cpp
+  - test/yosupo/convolution/min_plus_convolution_convex_convex.test.cpp
   - test/aoj/other/2603-SMAWK.test.cpp
 documentation_of: dp/MonotoneMinima.hpp
 layout: document

@@ -184,6 +184,9 @@ data:
     path: test/yosupo/data_structure/point_set_range_composite.test.cpp
     title: test/yosupo/data_structure/point_set_range_composite.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/point_set_range_composite_large_array.test.cpp
+    title: test/yosupo/data_structure/point_set_range_composite_large_array.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
     title: test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -198,6 +201,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/range_affine_range_sum.test.cpp
     title: test/yosupo/data_structure/range_affine_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/range_affine_range_sum_large_array.test.cpp
+    title: test/yosupo/data_structure/range_affine_range_sum_large_array.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/range_parallel_unionfind.test.cpp
     title: test/yosupo/data_structure/range_parallel_unionfind.test.cpp
@@ -1155,6 +1161,7 @@ data:
   - test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
   - test/yosupo/data_structure/deque_operate_all_composite.test.cpp
   - test/yosupo/data_structure/range_affine_range_sum.test.cpp
+  - test/yosupo/data_structure/range_affine_range_sum_large_array.test.cpp
   - test/yosupo/data_structure/unionfind_with_potential.test.cpp
   - test/yosupo/data_structure/range_set_range_composite.test.cpp
   - test/yosupo/data_structure/range_parallel_unionfind.test.cpp
@@ -1165,6 +1172,7 @@ data:
   - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SplayTree.test.cpp
   - test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
   - test/yosupo/data_structure/point_set_range_composite.test.cpp
+  - test/yosupo/data_structure/point_set_range_composite_large_array.test.cpp
   - test/yosupo/string/wildcard_pattern_matching.test.cpp
   - test/yosupo/linear_algebra/matrix_rank.test.cpp
   - test/yosupo/linear_algebra/inverse_matrix_mod_2.test.cpp

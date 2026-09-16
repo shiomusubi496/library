@@ -930,6 +930,9 @@ data:
     path: test/yosupo/convolution/min_plus_convolution_convex_arbitrary.test.cpp
     title: test/yosupo/convolution/min_plus_convolution_convex_arbitrary.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/convolution/min_plus_convolution_convex_convex.test.cpp
+    title: test/yosupo/convolution/min_plus_convolution_convex_convex.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/multivariate_convolution.test.cpp
     title: test/yosupo/convolution/multivariate_convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -975,6 +978,9 @@ data:
     path: test/yosupo/data_structure/point_set_range_composite.test.cpp
     title: test/yosupo/data_structure/point_set_range_composite.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/point_set_range_composite_large_array.test.cpp
+    title: test/yosupo/data_structure/point_set_range_composite_large_array.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
     title: test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -989,6 +995,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/range_affine_range_sum.test.cpp
     title: test/yosupo/data_structure/range_affine_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/range_affine_range_sum_large_array.test.cpp
+    title: test/yosupo/data_structure/range_affine_range_sum_large_array.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/range_chmin_chmax_add_range_sum.test.cpp
     title: test/yosupo/data_structure/range_chmin_chmax_add_range_sum.test.cpp
@@ -1749,6 +1758,7 @@ data:
   - test/yosupo/convolution/bitwise_xor_convolution.test.cpp
   - test/yosupo/convolution/bitwise_and_convolution.test.cpp
   - test/yosupo/convolution/min_plus_convolution_convex_arbitrary.test.cpp
+  - test/yosupo/convolution/min_plus_convolution_convex_convex.test.cpp
   - test/yosupo/polynomial/composition_of_formal_power_series_large.test.cpp
   - test/yosupo/polynomial/log_of_formal_power_series.test.cpp
   - test/yosupo/polynomial/product_of_polynomial_sequence.test.cpp
@@ -1804,6 +1814,7 @@ data:
   - test/yosupo/data_structure/line_add_get_min.test.cpp
   - test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp
   - test/yosupo/data_structure/double_ended_priority_queue.test.cpp
+  - test/yosupo/data_structure/range_affine_range_sum_large_array.test.cpp
   - test/yosupo/data_structure/unionfind_with_potential.test.cpp
   - test/yosupo/data_structure/range_set_range_composite.test.cpp
   - test/yosupo/data_structure/segment_add_get_min.test.cpp
@@ -1833,6 +1844,7 @@ data:
   - test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
   - test/yosupo/data_structure/staticrmq-SparseTable.test.cpp
   - test/yosupo/data_structure/point_set_range_composite.test.cpp
+  - test/yosupo/data_structure/point_set_range_composite_large_array.test.cpp
   - test/yosupo/data_structure/unionfind.test.cpp
   - test/yosupo/data_structure/set_xor_min.test.cpp
   - test/yosupo/data_structure/rectangle_add_point_get.test.cpp

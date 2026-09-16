@@ -40,6 +40,9 @@ data:
     path: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
     title: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/point_set_range_composite_large_array.test.cpp
+    title: test/yosupo/data_structure/point_set_range_composite_large_array.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
     title: test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -764,6 +767,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
+  - test/yosupo/data_structure/point_set_range_composite_large_array.test.cpp
   - test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
   - test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
   - test/yuki/855_DynamicSegTree.test.cpp

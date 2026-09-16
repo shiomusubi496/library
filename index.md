@@ -1009,6 +1009,9 @@ data:
       path: test/yosupo/convolution/min_plus_convolution_convex_arbitrary.test.cpp
       title: test/yosupo/convolution/min_plus_convolution_convex_arbitrary.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/convolution/min_plus_convolution_convex_convex.test.cpp
+      title: test/yosupo/convolution/min_plus_convolution_convex_convex.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/convolution/multivariate_convolution.test.cpp
       title: test/yosupo/convolution/multivariate_convolution.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1056,6 +1059,9 @@ data:
       path: test/yosupo/data_structure/point_set_range_composite.test.cpp
       title: test/yosupo/data_structure/point_set_range_composite.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/data_structure/point_set_range_composite_large_array.test.cpp
+      title: test/yosupo/data_structure/point_set_range_composite_large_array.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
       title: test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1070,6 +1076,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/range_affine_range_sum.test.cpp
       title: test/yosupo/data_structure/range_affine_range_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/data_structure/range_affine_range_sum_large_array.test.cpp
+      title: test/yosupo/data_structure/range_affine_range_sum_large_array.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/range_chmin_chmax_add_range_sum.test.cpp
       title: test/yosupo/data_structure/range_chmin_chmax_add_range_sum.test.cpp

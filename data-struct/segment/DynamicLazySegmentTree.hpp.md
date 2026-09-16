@@ -39,6 +39,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
     title: test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/range_affine_range_sum_large_array.test.cpp
+    title: test/yosupo/data_structure/range_affine_range_sum_large_array.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -819,6 +822,7 @@ data:
   timestamp: '2026-09-12 01:05:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/data_structure/range_affine_range_sum_large_array.test.cpp
   - test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
   - test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
 documentation_of: data-struct/segment/DynamicLazySegmentTree.hpp
