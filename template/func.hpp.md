@@ -610,6 +610,9 @@ data:
     path: random/Timer.hpp
     title: Timer
   - icon: ':heavy_check_mark:'
+    path: string/AhoCorasick.hpp
+    title: string/AhoCorasick.hpp
+  - icon: ':heavy_check_mark:'
     path: string/LCPArray.hpp
     title: LCPArray
   - icon: ':heavy_check_mark:'
@@ -1200,6 +1203,9 @@ data:
     path: test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
     title: test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/aho_corasick.test.cpp
+    title: test/yosupo/new/aho_corasick.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/majority_voting.test.cpp
     title: test/yosupo/new/majority_voting.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1701,6 +1707,7 @@ data:
   - dp/OnlineOfflineDP.hpp
   - dp/SMAWK.hpp
   - dp/MonotoneMinima.hpp
+  - string/AhoCorasick.hpp
   - string/WildcardPatternMatching.hpp
   - string/ZAlgorithm.hpp
   - string/Manacher.hpp
@@ -1821,6 +1828,7 @@ data:
   - test/yosupo/polynomial/inv_of_formal_power_series_sparse.test.cpp
   - test/yosupo/polynomial/exp_of_formal_power_series-RelaxedConvolution.test.cpp
   - test/yosupo/new/majority_voting.test.cpp
+  - test/yosupo/new/aho_corasick.test.cpp
   - test/yosupo/new/range_add_range_min.test.cpp
   - test/yosupo/new/minimum_steiner_tree.test.cpp
   - test/yosupo/new/static_range_sum_with_upper_bound.test.cpp

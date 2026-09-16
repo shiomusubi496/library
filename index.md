@@ -654,6 +654,9 @@ data:
   - name: string
     pages:
     - icon: ':heavy_check_mark:'
+      path: string/AhoCorasick.hpp
+      title: string/AhoCorasick.hpp
+    - icon: ':heavy_check_mark:'
       path: string/LCPArray.hpp
       title: LCPArray
     - icon: ':heavy_check_mark:'
@@ -1299,6 +1302,9 @@ data:
       title: test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
   - name: test/yosupo/new
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/new/aho_corasick.test.cpp
+      title: test/yosupo/new/aho_corasick.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/new/majority_voting.test.cpp
       title: test/yosupo/new/majority_voting.test.cpp
