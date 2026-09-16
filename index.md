@@ -608,8 +608,8 @@ data:
       path: math/poly/BostanMori.hpp
       title: "Bostan-Mori(\u7DDA\u5F62\u6F38\u5316\u5F0F\u306En\u9805\u76EE)"
     - icon: ':heavy_check_mark:'
-      path: math/poly/Composition.hpp
-      title: math/poly/Composition.hpp
+      path: math/poly/Composite.hpp
+      title: math/poly/Composite.hpp
     - icon: ':heavy_check_mark:'
       path: math/poly/ConsecutiveTermsOfLinearRecurrence.hpp
       title: math/poly/ConsecutiveTermsOfLinearRecurrence.hpp
@@ -1413,7 +1413,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/polynomial/composition_of_formal_power_series_large.test.cpp
       title: test/yosupo/polynomial/composition_of_formal_power_series_large.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/polynomial/compositional_inverse_of_formal_power_series_large.test.cpp
       title: test/yosupo/polynomial/compositional_inverse_of_formal_power_series_large.test.cpp
     - icon: ':heavy_check_mark:'

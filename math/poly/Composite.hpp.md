@@ -45,15 +45,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/composition_of_formal_power_series_large.test.cpp
     title: test/yosupo/polynomial/composition_of_formal_power_series_large.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/polynomial/compositional_inverse_of_formal_power_series_large.test.cpp
-    title: test/yosupo/polynomial/compositional_inverse_of_formal_power_series_large.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"math/poly/Composition.hpp\"\n\n#line 2 \"other/template.hpp\"\
+  bundledCode: "#line 2 \"math/poly/Composite.hpp\"\n\n#line 2 \"other/template.hpp\"\
     \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
     \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define OVERLOAD5(a,\
     \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
@@ -919,7 +916,7 @@ data:
     \ b);\n        return *this;\n    }\n};\n\n/**\n * @brief FormalPowerSeries(\u5F62\
     \u5F0F\u7684\u51AA\u7D1A\u6570)\n * @docs docs/math/poly/FormalPowerSeries.md\n\
     \ * @see https://nyaannyaan.github.io/library/fps/formal-power-series.hpp\n */\n\
-    #line 5 \"math/poly/Composition.hpp\"\n\ntemplate<class T, typename std::enable_if<\n\
+    #line 5 \"math/poly/Composite.hpp\"\n\ntemplate<class T, typename std::enable_if<\n\
     \                      is_ntt_friendly_modint<T>::value>::type* = nullptr>\nFormalPowerSeries<T>\
     \ power_projection(FormalPowerSeries<T> f, FormalPowerSeries<T> g) {\n    static\
     \ constexpr internal::NthRoot<T> nth_root;\n    assert(!f.empty() && f[0] == 0);\n\
@@ -949,7 +946,7 @@ data:
     \ (j, n / 2) {\n            U[i * n + j] = P[i * n * 2 + j * 2 + 1];\n       \
     \     V[i * n + j] = Q[i * n * 2 + j * 2];\n        }\n        P = U; Q = V;\n\
     \        n /= 2; k *= 2;\n    }\n    rep (i, f.size()) f[i] = P[(k - 1 - i) *\
-    \ 2];\n    return f;\n}\n\ntemplate<class T>\nFormalPowerSeries<T> composition(FormalPowerSeries<T>\
+    \ 2];\n    return f;\n}\n\ntemplate<class T>\nFormalPowerSeries<T> composite(FormalPowerSeries<T>\
     \ f, FormalPowerSeries<T> g) {\n    static constexpr internal::NthRoot<T> nth_root;\n\
     \    assert(f.size() == g.size());\n    assert(!g.empty() && g[0] == 0);\n\n \
     \   int n = 1 << bitop::ceil_log2(f.size()), k = 1;\n    FormalPowerSeries<T>\
@@ -1009,7 +1006,7 @@ data:
     \ (j, n / 2) {\n            U[i * n + j] = P[i * n * 2 + j * 2 + 1];\n       \
     \     V[i * n + j] = Q[i * n * 2 + j * 2];\n        }\n        P = U; Q = V;\n\
     \        n /= 2; k *= 2;\n    }\n    rep (i, f.size()) f[i] = P[(k - 1 - i) *\
-    \ 2];\n    return f;\n}\n\ntemplate<class T>\nFormalPowerSeries<T> composition(FormalPowerSeries<T>\
+    \ 2];\n    return f;\n}\n\ntemplate<class T>\nFormalPowerSeries<T> composite(FormalPowerSeries<T>\
     \ f, FormalPowerSeries<T> g) {\n    static constexpr internal::NthRoot<T> nth_root;\n\
     \    assert(f.size() == g.size());\n    assert(!g.empty() && g[0] == 0);\n\n \
     \   int n = 1 << bitop::ceil_log2(f.size()), k = 1;\n    FormalPowerSeries<T>\
@@ -1054,17 +1051,16 @@ data:
   - math/ModInt.hpp
   - math/Combinatorics.hpp
   isVerificationFile: false
-  path: math/poly/Composition.hpp
+  path: math/poly/Composite.hpp
   requiredBy: []
-  timestamp: '2026-09-15 21:48:30+09:00'
+  timestamp: '2026-09-16 18:43:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/polynomial/composition_of_formal_power_series_large.test.cpp
-  - test/yosupo/polynomial/compositional_inverse_of_formal_power_series_large.test.cpp
-documentation_of: math/poly/Composition.hpp
+documentation_of: math/poly/Composite.hpp
 layout: document
 redirect_from:
-- /library/math/poly/Composition.hpp
-- /library/math/poly/Composition.hpp.html
-title: math/poly/Composition.hpp
+- /library/math/poly/Composite.hpp
+- /library/math/poly/Composite.hpp.html
+title: math/poly/Composite.hpp
 ---

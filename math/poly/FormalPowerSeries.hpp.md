@@ -58,8 +58,8 @@ data:
     path: math/poly/BostanMori.hpp
     title: "Bostan-Mori(\u7DDA\u5F62\u6F38\u5316\u5F0F\u306En\u9805\u76EE)"
   - icon: ':heavy_check_mark:'
-    path: math/poly/Composition.hpp
-    title: math/poly/Composition.hpp
+    path: math/poly/Composite.hpp
+    title: math/poly/Composite.hpp
   - icon: ':heavy_check_mark:'
     path: math/poly/ConsecutiveTermsOfLinearRecurrence.hpp
     title: math/poly/ConsecutiveTermsOfLinearRecurrence.hpp
@@ -131,9 +131,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/composition_of_formal_power_series_large.test.cpp
     title: test/yosupo/polynomial/composition_of_formal_power_series_large.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/polynomial/compositional_inverse_of_formal_power_series_large.test.cpp
-    title: test/yosupo/polynomial/compositional_inverse_of_formal_power_series_large.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/division_of_polynomials.test.cpp
     title: test/yosupo/polynomial/division_of_polynomials.test.cpp
@@ -1248,10 +1245,10 @@ data:
   - math/poly/BerlekampMassey.hpp
   - math/poly/SamplingPointsShift.hpp
   - math/poly/SparseFormalPowerSeries.hpp
-  - math/poly/Composition.hpp
   - math/poly/MultipointEvaluation.hpp
   - math/poly/TaylorShift.hpp
   - math/poly/BostanMori.hpp
+  - math/poly/Composite.hpp
   timestamp: '2026-09-15 21:48:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -1276,7 +1273,6 @@ data:
   - test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
   - test/yosupo/polynomial/inv_of_formal_power_series.test.cpp
   - test/yosupo/polynomial/log_of_formal_power_series_sparse.test.cpp
-  - test/yosupo/polynomial/compositional_inverse_of_formal_power_series_large.test.cpp
   - test/yosupo/polynomial/exp_of_formal_power_series_sparse.test.cpp
   - test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
   - test/yosupo/polynomial/division_of_polynomials.test.cpp
