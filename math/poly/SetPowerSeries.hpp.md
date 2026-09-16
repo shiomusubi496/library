@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/Combinatorics.hpp
     title: Combinatorics
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
   - icon: ':heavy_check_mark:'
@@ -16,35 +16,41 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/poly/FormalPowerSeries.hpp
     title: "FormalPowerSeries(\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: math/matrix/Hafnian.hpp
+    title: math/matrix/Hafnian.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/linear_algebra/hafnian_of_matrix.test.cpp
+    title: test/yosupo/linear_algebra/hafnian_of_matrix.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/log_of_set_power_series.test.cpp
     title: test/yosupo/new/log_of_set_power_series.test.cpp
@@ -1067,7 +1073,8 @@ data:
   - math/convolution/Convolution.hpp
   isVerificationFile: false
   path: math/poly/SetPowerSeries.hpp
-  requiredBy: []
+  requiredBy:
+  - math/matrix/Hafnian.hpp
   timestamp: '2026-09-16 22:06:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -1075,6 +1082,7 @@ data:
   - test/yosupo/set_power_series/polynomial_composite_set_power_series.test.cpp
   - test/yosupo/set_power_series/power_projection_of_set_power_series.test.cpp
   - test/yosupo/set_power_series/exp_of_set_power_series.test.cpp
+  - test/yosupo/linear_algebra/hafnian_of_matrix.test.cpp
 documentation_of: math/poly/SetPowerSeries.hpp
 layout: document
 redirect_from:

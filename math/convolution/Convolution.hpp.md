@@ -1,34 +1,34 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
@@ -61,6 +61,12 @@ data:
     path: math/convolution/RelaxedConvolution.hpp
     title: "Relaxed Convolution(\u30AA\u30F3\u30E9\u30A4\u30F3\u7573\u307F\u8FBC\u307F\
       )"
+  - icon: ':heavy_check_mark:'
+    path: math/matrix/CharacteristicPolynomial.hpp
+    title: math/matrix/CharacteristicPolynomial.hpp
+  - icon: ':heavy_check_mark:'
+    path: math/matrix/Hafnian.hpp
+    title: math/matrix/Hafnian.hpp
   - icon: ':heavy_check_mark:'
     path: math/poly/BerlekampMassey.hpp
     title: math/poly/BerlekampMassey.hpp
@@ -141,6 +147,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind_fixed_k.test.cpp
     title: test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind_fixed_k.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/linear_algebra/characteristic_polynomial.test.cpp
+    title: test/yosupo/linear_algebra/characteristic_polynomial.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/linear_algebra/hafnian_of_matrix.test.cpp
+    title: test/yosupo/linear_algebra/hafnian_of_matrix.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/log_of_set_power_series.test.cpp
     title: test/yosupo/new/log_of_set_power_series.test.cpp
@@ -1112,6 +1124,8 @@ data:
   - math/poly/SetPowerSeries.hpp
   - math/poly/BostanMori.hpp
   - math/poly/Composite.hpp
+  - math/matrix/CharacteristicPolynomial.hpp
+  - math/matrix/Hafnian.hpp
   - string/WildcardPatternMatching.hpp
   - graph/tree/FrequencyTableofTreeDistance.hpp
   timestamp: '2026-09-15 21:48:30+09:00'
@@ -1161,6 +1175,8 @@ data:
   - test/yosupo/set_power_series/power_projection_of_set_power_series.test.cpp
   - test/yosupo/set_power_series/exp_of_set_power_series.test.cpp
   - test/yosupo/string/wildcard_pattern_matching.test.cpp
+  - test/yosupo/linear_algebra/hafnian_of_matrix.test.cpp
+  - test/yosupo/linear_algebra/characteristic_polynomial.test.cpp
   - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
   - test/aoj/DPL/DPL_5_G.test.cpp
 documentation_of: math/convolution/Convolution.hpp

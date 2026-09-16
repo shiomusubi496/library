@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy:
@@ -433,7 +433,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/LinearModMin.hpp
     title: LinearModMin
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
   - icon: ':heavy_check_mark:'
@@ -524,17 +524,29 @@ data:
     title: "SupersetZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
       \u30A6\u30B9\u5909\u63DB)"
   - icon: ':heavy_check_mark:'
+    path: math/matrix/AdjugateMatrix.hpp
+    title: math/matrix/AdjugateMatrix.hpp
+  - icon: ':heavy_check_mark:'
+    path: math/matrix/CharacteristicPolynomial.hpp
+    title: math/matrix/CharacteristicPolynomial.hpp
+  - icon: ':heavy_check_mark:'
     path: math/matrix/Determinant.hpp
     title: "Determinant(\u884C\u5217\u5F0F)"
   - icon: ':heavy_check_mark:'
+    path: math/matrix/Hafnian.hpp
+    title: math/matrix/Hafnian.hpp
+  - icon: ':heavy_check_mark:'
     path: math/matrix/Inverse.hpp
     title: "Inverse(\u9006\u884C\u5217)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/matrix/LinearEquations.hpp
     title: "LinearEquations(\u7DDA\u5F62\u65B9\u7A0B\u5F0F)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/matrix/Matrix.hpp
     title: "Matrix(\u884C\u5217)"
+  - icon: ':x:'
+    path: math/matrix/Pfaffian.hpp
+    title: math/matrix/Pfaffian.hpp
   - icon: ':heavy_check_mark:'
     path: math/num/ChineseRemainder.hpp
     title: "Chinese Remainder(\u4E2D\u56FD\u5270\u4F59\u5B9A\u7406)"
@@ -612,7 +624,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   - icon: ':heavy_check_mark:'
@@ -1191,6 +1203,15 @@ data:
     path: test/yosupo/graph/two_edge_connected_components.test.cpp
     title: test/yosupo/graph/two_edge_connected_components.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/linear_algebra/adjugate_matrix.test.cpp
+    title: test/yosupo/linear_algebra/adjugate_matrix.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/linear_algebra/characteristic_polynomial.test.cpp
+    title: test/yosupo/linear_algebra/characteristic_polynomial.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/linear_algebra/hafnian_of_matrix.test.cpp
+    title: test/yosupo/linear_algebra/hafnian_of_matrix.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/inverse_matrix.test.cpp
     title: test/yosupo/linear_algebra/inverse_matrix.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1217,12 +1238,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/matrix_rank_mod_2.test.cpp
     title: test/yosupo/linear_algebra/matrix_rank_mod_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/linear_algebra/pow_of_matrix.test.cpp
     title: test/yosupo/linear_algebra/pow_of_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
     title: test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/linear_algebra/system_of_linear_equations_mod_2.test.cpp
+    title: test/yosupo/linear_algebra/system_of_linear_equations_mod_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/aho_corasick.test.cpp
     title: test/yosupo/new/aho_corasick.test.cpp
@@ -1235,6 +1259,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/minimum_steiner_tree.test.cpp
     title: test/yosupo/new/minimum_steiner_tree.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/new/pfaffian_of_matrix.test.cpp
+    title: test/yosupo/new/pfaffian_of_matrix.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/range_add_range_min.test.cpp
     title: test/yosupo/new/range_add_range_min.test.cpp
@@ -1502,9 +1529,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki/855_DynamicSegTree.test.cpp
     title: test/yuki/855_DynamicSegTree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"template/in.hpp\"\n\n#include <bits/stdc++.h>\n#include\
@@ -1900,6 +1927,10 @@ data:
   - math/SternBrocotTree.hpp
   - math/PowEnumerate.hpp
   - math/matrix/Inverse.hpp
+  - math/matrix/AdjugateMatrix.hpp
+  - math/matrix/CharacteristicPolynomial.hpp
+  - math/matrix/Pfaffian.hpp
+  - math/matrix/Hafnian.hpp
   - math/matrix/LinearEquations.hpp
   - math/matrix/Matrix.hpp
   - math/matrix/Determinant.hpp
@@ -1985,7 +2016,7 @@ data:
   - graph/flow/KProjectSelectionProblem.hpp
   - graph/flow/MaxFlow.hpp
   timestamp: '2026-09-12 01:05:48+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind_fixed_k.test.cpp
   - test/yosupo/enumerative_combinatorics/montmort_number_mod.test.cpp
@@ -2041,6 +2072,7 @@ data:
   - test/yosupo/new/aho_corasick.test.cpp
   - test/yosupo/new/range_add_range_min.test.cpp
   - test/yosupo/new/minimum_steiner_tree.test.cpp
+  - test/yosupo/new/pfaffian_of_matrix.test.cpp
   - test/yosupo/new/static_range_sum_with_upper_bound.test.cpp
   - test/yosupo/new/log_of_set_power_series.test.cpp
   - test/yosupo/number_theory/enumerate_quotients.test.cpp
@@ -2119,12 +2151,16 @@ data:
   - test/yosupo/string/enumerate_palindromes.test.cpp
   - test/yosupo/string/wildcard_pattern_matching.test.cpp
   - test/yosupo/linear_algebra/matrix_rank.test.cpp
+  - test/yosupo/linear_algebra/hafnian_of_matrix.test.cpp
   - test/yosupo/linear_algebra/inverse_matrix_mod_2.test.cpp
+  - test/yosupo/linear_algebra/characteristic_polynomial.test.cpp
   - test/yosupo/linear_algebra/matrix_det_mod_2.test.cpp
   - test/yosupo/linear_algebra/pow_of_matrix.test.cpp
   - test/yosupo/linear_algebra/matrix_product_mod_2.test.cpp
+  - test/yosupo/linear_algebra/adjugate_matrix.test.cpp
   - test/yosupo/linear_algebra/matrix_det_arbitrary_mod.test.cpp
   - test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
+  - test/yosupo/linear_algebra/system_of_linear_equations_mod_2.test.cpp
   - test/yosupo/linear_algebra/matrix_rank_mod_2.test.cpp
   - test/yosupo/linear_algebra/inverse_matrix.test.cpp
   - test/yosupo/linear_algebra/matrix_det.test.cpp
