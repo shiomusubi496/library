@@ -944,15 +944,15 @@ data:
     \    })(R, n + m - 1);\n    inverse_number_theoretic_transform(P);\n    std::reverse(1\
     \ + all(P));\n    P *= P.size();\n    P.resize(m);\n    std::reverse(all(P));\n\
     \    return P;\n}\n\ntemplate<class T>\nFormalPowerSeries<T> range_coefs(FormalPowerSeries<T>\
-    \ P, FormalPowerSeries<T> Q, ll n, int m) {\n    ll d = P.size() - 1;\n    while\
-    \ (Q.back() == 0) Q.pop_back();\n    FormalPowerSeries<T> f = transposed_bostan_mori(Q,\
-    \ n);\n    auto [p, q] = divmod(P, Q);\n    f = (f * Q).prefix(Q.size() - 1);\n\
-    \    f = (f * q) % Q;\n    FormalPowerSeries<T> res = (f * Q.inv(m)).prefix(m);\n\
-    \    rep (i, n, p.size()) if (i < n + m) res[i - n] += p[i];\n    return res;\n\
-    }\n\ntemplate<class T>\nFormalPowerSeries<T> range_terms(FormalPowerSeries<T>\
-    \ C, FormalPowerSeries<T> A, ll n, int m) {\n    assert(!C.empty() && C[0] !=\
-    \ 0);\n    assert(A.size() == C.size() - 1);\n    return range_coefs((A * C).prefix(A.size()),\
-    \ C, n, m);\n}\n"
+    \ P, FormalPowerSeries<T> Q, ll n, int m) {\n    while (Q.back() == 0) Q.pop_back();\n\
+    \    FormalPowerSeries<T> f = transposed_bostan_mori(Q, n);\n    auto [p, q] =\
+    \ divmod(P, Q);\n    f = (f * Q).prefix(Q.size() - 1);\n    f = (f * q) % Q;\n\
+    \    FormalPowerSeries<T> res = (f * Q.inv(m)).prefix(m);\n    rep (i, n, p.size())\
+    \ if (i < n + m) res[i - n] += p[i];\n    return res;\n}\n\ntemplate<class T>\n\
+    FormalPowerSeries<T> range_terms(FormalPowerSeries<T> C, FormalPowerSeries<T>\
+    \ A, ll n, int m) {\n    assert(!C.empty() && C[0] != 0);\n    assert(A.size()\
+    \ == C.size() - 1);\n    return range_coefs((A * C).prefix(A.size()), C, n, m);\n\
+    }\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"FormalPowerSeries.hpp\"\
     \n\ntemplate<class T>\nFormalPowerSeries<T> transposed_bostan_mori(FormalPowerSeries<T>\
     \ Q, ll n) {\n    static constexpr internal::NthRoot<T> nth_root;\n    int d =\
@@ -980,15 +980,15 @@ data:
     \           }\n        }\n        return S;\n    })(R, n + m - 1);\n    inverse_number_theoretic_transform(P);\n\
     \    std::reverse(1 + all(P));\n    P *= P.size();\n    P.resize(m);\n    std::reverse(all(P));\n\
     \    return P;\n}\n\ntemplate<class T>\nFormalPowerSeries<T> range_coefs(FormalPowerSeries<T>\
-    \ P, FormalPowerSeries<T> Q, ll n, int m) {\n    ll d = P.size() - 1;\n    while\
-    \ (Q.back() == 0) Q.pop_back();\n    FormalPowerSeries<T> f = transposed_bostan_mori(Q,\
-    \ n);\n    auto [p, q] = divmod(P, Q);\n    f = (f * Q).prefix(Q.size() - 1);\n\
-    \    f = (f * q) % Q;\n    FormalPowerSeries<T> res = (f * Q.inv(m)).prefix(m);\n\
-    \    rep (i, n, p.size()) if (i < n + m) res[i - n] += p[i];\n    return res;\n\
-    }\n\ntemplate<class T>\nFormalPowerSeries<T> range_terms(FormalPowerSeries<T>\
-    \ C, FormalPowerSeries<T> A, ll n, int m) {\n    assert(!C.empty() && C[0] !=\
-    \ 0);\n    assert(A.size() == C.size() - 1);\n    return range_coefs((A * C).prefix(A.size()),\
-    \ C, n, m);\n}\n"
+    \ P, FormalPowerSeries<T> Q, ll n, int m) {\n    while (Q.back() == 0) Q.pop_back();\n\
+    \    FormalPowerSeries<T> f = transposed_bostan_mori(Q, n);\n    auto [p, q] =\
+    \ divmod(P, Q);\n    f = (f * Q).prefix(Q.size() - 1);\n    f = (f * q) % Q;\n\
+    \    FormalPowerSeries<T> res = (f * Q.inv(m)).prefix(m);\n    rep (i, n, p.size())\
+    \ if (i < n + m) res[i - n] += p[i];\n    return res;\n}\n\ntemplate<class T>\n\
+    FormalPowerSeries<T> range_terms(FormalPowerSeries<T> C, FormalPowerSeries<T>\
+    \ A, ll n, int m) {\n    assert(!C.empty() && C[0] != 0);\n    assert(A.size()\
+    \ == C.size() - 1);\n    return range_coefs((A * C).prefix(A.size()), C, n, m);\n\
+    }\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -1006,7 +1006,7 @@ data:
   isVerificationFile: false
   path: math/poly/ConsecutiveTermsOfLinearRecurrence.hpp
   requiredBy: []
-  timestamp: '2026-09-15 21:48:30+09:00'
+  timestamp: '2026-09-16 17:48:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/other/consecutive_terms_of_linear_recurrent_sequence.test.cpp

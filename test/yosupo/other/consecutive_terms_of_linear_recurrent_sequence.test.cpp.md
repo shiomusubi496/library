@@ -949,15 +949,15 @@ data:
     \    })(R, n + m - 1);\n    inverse_number_theoretic_transform(P);\n    std::reverse(1\
     \ + all(P));\n    P *= P.size();\n    P.resize(m);\n    std::reverse(all(P));\n\
     \    return P;\n}\n\ntemplate<class T>\nFormalPowerSeries<T> range_coefs(FormalPowerSeries<T>\
-    \ P, FormalPowerSeries<T> Q, ll n, int m) {\n    ll d = P.size() - 1;\n    while\
-    \ (Q.back() == 0) Q.pop_back();\n    FormalPowerSeries<T> f = transposed_bostan_mori(Q,\
-    \ n);\n    auto [p, q] = divmod(P, Q);\n    f = (f * Q).prefix(Q.size() - 1);\n\
-    \    f = (f * q) % Q;\n    FormalPowerSeries<T> res = (f * Q.inv(m)).prefix(m);\n\
-    \    rep (i, n, p.size()) if (i < n + m) res[i - n] += p[i];\n    return res;\n\
-    }\n\ntemplate<class T>\nFormalPowerSeries<T> range_terms(FormalPowerSeries<T>\
-    \ C, FormalPowerSeries<T> A, ll n, int m) {\n    assert(!C.empty() && C[0] !=\
-    \ 0);\n    assert(A.size() == C.size() - 1);\n    return range_coefs((A * C).prefix(A.size()),\
-    \ C, n, m);\n}\n#line 5 \"test/yosupo/other/consecutive_terms_of_linear_recurrent_sequence.test.cpp\"\
+    \ P, FormalPowerSeries<T> Q, ll n, int m) {\n    while (Q.back() == 0) Q.pop_back();\n\
+    \    FormalPowerSeries<T> f = transposed_bostan_mori(Q, n);\n    auto [p, q] =\
+    \ divmod(P, Q);\n    f = (f * Q).prefix(Q.size() - 1);\n    f = (f * q) % Q;\n\
+    \    FormalPowerSeries<T> res = (f * Q.inv(m)).prefix(m);\n    rep (i, n, p.size())\
+    \ if (i < n + m) res[i - n] += p[i];\n    return res;\n}\n\ntemplate<class T>\n\
+    FormalPowerSeries<T> range_terms(FormalPowerSeries<T> C, FormalPowerSeries<T>\
+    \ A, ll n, int m) {\n    assert(!C.empty() && C[0] != 0);\n    assert(A.size()\
+    \ == C.size() - 1);\n    return range_coefs((A * C).prefix(A.size()), C, n, m);\n\
+    }\n#line 5 \"test/yosupo/other/consecutive_terms_of_linear_recurrent_sequence.test.cpp\"\
     \nusing namespace std;\nusing mint = modint998244353;\nint main() {\n    int d;\
     \ scan >> d;\n    ll k; scan >> k;\n    int m; scan >> m;\n    FormalPowerSeries<mint>\
     \ a(d), c(d); scan >> a >> c;\n    c <<= 1;\n    c = -c;\n    c[0] += 1;\n   \
@@ -986,7 +986,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/other/consecutive_terms_of_linear_recurrent_sequence.test.cpp
   requiredBy: []
-  timestamp: '2026-09-15 21:48:30+09:00'
+  timestamp: '2026-09-16 17:48:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/other/consecutive_terms_of_linear_recurrent_sequence.test.cpp
