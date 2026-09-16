@@ -27,9 +27,12 @@ template<class T, int L> void ranked_moebius(std::vector<std::array<T, L>>& a) {
 
 } // namespace internal
 
-template<class T, int L = 20>
+template<class T, int L = 0>
 std::vector<T> subset_convolution(const std::vector<T>& a,
                                   const std::vector<T>& b) {
+    if (a.size() > (1 << L)) {
+        return subset_convolution<T, std::min<int>(L + 1, 30)>(a, b);
+    }
     int n = a.size(), m = bitop::ceil_log2(n);
     std::vector<std::array<T, L + 1>> a2(n), b2(n);
     rep (i, n) a2[i][popcnt(i)] = a[i];
