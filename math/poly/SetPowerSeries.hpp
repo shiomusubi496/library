@@ -3,7 +3,7 @@
 #include "../../other/template.hpp"
 #include "../Combinatorics.hpp"
 #include "../convolution/SubsetConvolution.hpp"
-#include "../poly/FormalPowerSeries.hpp"
+#include "FormalPowerSeries.hpp"
 
 template<class T, class Comb = Combinatorics<T>>
 std::vector<T> fps_composite_of_sps(FormalPowerSeries<T> f, std::vector<T> s) {
@@ -23,23 +23,6 @@ std::vector<T> fps_composite_of_sps(FormalPowerSeries<T> f, std::vector<T> s) {
             rep (k, 1 << j) a[k + (1 << j)] = d[k];
         }
         a[0] = f[i];
-    }
-    return a;
-}
-
-template<class T>
-std::vector<T> exp_of_sps(std::vector<T> s) {
-    int n = s.size(), m = bitop::ceil_log2(n);
-    assert(s[0] == 0);
-    assert(n == (1 << m));
-    std::vector<T> a(1 << m, 1);
-    rrep (i, m) {
-        int j = m - i - 1;
-        std::vector<T> b(1 << j), c(1 << j);
-        rep (k, 1 << j) b[k] = a[k];
-        rep (k, 1 << j) c[k] = s[k + (1 << j)];
-        std::vector<T> d = subset_convolution(b, c);
-        rep (k, 1 << j) a[k + (1 << j)] = d[k];
     }
     return a;
 }
@@ -92,4 +75,55 @@ std::vector<T> power_projection_of_sps(std::vector<T> s, std::vector<T> w, int M
         }
     }
     return g;
+}
+
+template<class T>
+std::vector<T> exp_of_sps(const std::vector<T>& s) {
+    int n = s.size(), m = bitop::ceil_log2(n);
+    assert(s[0] == 0);
+    assert(n == (1 << m));
+    std::vector<T> a(1 << m, 1);
+    rrep (i, m) {
+        int j = m - i - 1;
+        std::vector<T> b(1 << j), c(1 << j);
+        rep (k, 1 << j) b[k] = a[k];
+        rep (k, 1 << j) c[k] = s[k + (1 << j)];
+        std::vector<T> d = subset_convolution(b, c);
+        rep (k, 1 << j) a[k + (1 << j)] = d[k];
+    }
+    return a;
+}
+
+template<class T, int L = 0>
+std::vector<T> div_of_sps(const std::vector<T>& a, const std::vector<T>& b) {
+    if ((int)a.size() > (1 << L)) {
+        return div_of_sps<T, std::min<int>(L + 1, 30)>(a, b);
+    }
+    int n = a.size();
+    assert(b[0] == 1);
+    auto f = internal::ranked_zeta<T, L + 1>(a);
+    auto g = internal::ranked_zeta<T, L + 1>(b);
+    rep (i, n) {
+        rep (j, L + 1) {
+            rep (k, 1, L + 1 - j) f[i][j + k] -= f[i][j] * g[i][k];
+        }
+    }
+    return internal::ranked_moebius<T, L + 1>(f);
+}
+
+template<class T>
+std::vector<T> log_of_sps(std::vector<T> s) {
+    int n = s.size(), m = bitop::ceil_log2(n);
+    assert(s[0] == 1);
+    assert(n == (1 << m));
+    std::vector<T> a(n);
+    rep (i, m) {
+        std::vector<T> b(1 << i);
+        std::vector<T> c(1 << i);
+        rep (j, 1 << i) b[j] = s[j + (1 << i)];
+        rep (j, 1 << i) c[j] = s[j];
+        std::vector<T> d = div_of_sps(b, c);
+        rep (j, 1 << i) a[j + (1 << i)] = d[j];
+    }
+    return a;
 }

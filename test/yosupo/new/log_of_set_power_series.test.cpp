@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/exp_of_set_power_series"
+#define PROBLEM "https://judge.yosupo.jp/problem/log_of_set_power_series"
 #include "../../../other/template.hpp"
 #include "../../../math/ModInt.hpp"
 #include "../../../math/poly/SetPowerSeries.hpp"
@@ -7,5 +7,5 @@ using mint = modint998244353;
 int main() {
     int N; scan >> N;
     vector<mint> a(1 << N); scan >> a;
-    prints(exp_of_sps(a));
+    prints(log_of_sps(a));
 }
