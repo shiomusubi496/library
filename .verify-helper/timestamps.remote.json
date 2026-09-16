@@ -92,6 +92,7 @@
 "test/yosupo/convolution/lcm_convolution.test.cpp": "2026-09-16 15:15:33 +0900",
 "test/yosupo/convolution/min_plus_convolution_convex_arbitrary.test.cpp": "2026-09-12 01:05:48 +0900",
 "test/yosupo/convolution/min_plus_convolution_convex_convex.test.cpp": "2026-09-16 16:44:21 +0900",
+"test/yosupo/convolution/mul_modp_convolution.test.cpp": "2026-09-16 22:30:32 +0900",
 "test/yosupo/convolution/multivariate_convolution.test.cpp": "2026-09-15 21:48:30 +0900",
 "test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp": "2026-09-16 15:15:33 +0900",
 "test/yosupo/data_structure/deque_operate_all_composite.test.cpp": "2026-09-16 15:15:33 +0900",
