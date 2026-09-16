@@ -635,6 +635,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/poly/TaylorShift.hpp
       title: TaylorShift
+  - name: math/sps
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: math/sps/Composite.hpp
+      title: math/sps/Composite.hpp
   - name: other
     pages:
     - icon: ':heavy_check_mark:'
@@ -1017,9 +1022,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/convolution/multivariate_convolution.test.cpp
       title: test/yosupo/convolution/multivariate_convolution.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/convolution/subset_convolution.test.cpp
-      title: test/yosupo/convolution/subset_convolution.test.cpp
   - name: test/yosupo/data_structure
     pages:
     - icon: ':heavy_check_mark:'
@@ -1413,7 +1415,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/polynomial/composition_of_formal_power_series_large.test.cpp
       title: test/yosupo/polynomial/composition_of_formal_power_series_large.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/polynomial/compositional_inverse_of_formal_power_series_large.test.cpp
       title: test/yosupo/polynomial/compositional_inverse_of_formal_power_series_large.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1484,6 +1486,20 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/sample/many_aplusb_128bit.test.cpp
       title: test/yosupo/sample/many_aplusb_128bit.test.cpp
+  - name: test/yosupo/set_power_series
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/set_power_series/exp_of_set_power_series.test.cpp
+      title: test/yosupo/set_power_series/exp_of_set_power_series.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/set_power_series/polynomial_composite_set_power_series.test.cpp
+      title: test/yosupo/set_power_series/polynomial_composite_set_power_series.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/set_power_series/power_projection_of_set_power_series.test.cpp
+      title: test/yosupo/set_power_series/power_projection_of_set_power_series.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/set_power_series/subset_convolution.test.cpp
+      title: test/yosupo/set_power_series/subset_convolution.test.cpp
   - name: test/yosupo/string
     pages:
     - icon: ':heavy_check_mark:'

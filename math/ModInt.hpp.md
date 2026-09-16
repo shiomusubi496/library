@@ -126,6 +126,9 @@ data:
     path: math/poly/TaylorShift.hpp
     title: TaylorShift
   - icon: ':heavy_check_mark:'
+    path: math/sps/Composite.hpp
+    title: math/sps/Composite.hpp
+  - icon: ':heavy_check_mark:'
     path: string/WildcardPatternMatching.hpp
     title: WildcardPatternMatching
   _extendedVerifiedWith:
@@ -174,9 +177,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/multivariate_convolution.test.cpp
     title: test/yosupo/convolution/multivariate_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/convolution/subset_convolution.test.cpp
-    title: test/yosupo/convolution/subset_convolution.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
     title: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
@@ -328,6 +328,9 @@ data:
     path: test/yosupo/polynomial/composition_of_formal_power_series_large.test.cpp
     title: test/yosupo/polynomial/composition_of_formal_power_series_large.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/polynomial/compositional_inverse_of_formal_power_series_large.test.cpp
+    title: test/yosupo/polynomial/compositional_inverse_of_formal_power_series_large.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/division_of_polynomials.test.cpp
     title: test/yosupo/polynomial/division_of_polynomials.test.cpp
   - icon: ':heavy_check_mark:'
@@ -384,6 +387,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
     title: test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/set_power_series/exp_of_set_power_series.test.cpp
+    title: test/yosupo/set_power_series/exp_of_set_power_series.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/set_power_series/polynomial_composite_set_power_series.test.cpp
+    title: test/yosupo/set_power_series/polynomial_composite_set_power_series.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/set_power_series/power_projection_of_set_power_series.test.cpp
+    title: test/yosupo/set_power_series/power_projection_of_set_power_series.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/set_power_series/subset_convolution.test.cpp
+    title: test/yosupo/set_power_series/subset_convolution.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/string/wildcard_pattern_matching.test.cpp
     title: test/yosupo/string/wildcard_pattern_matching.test.cpp
@@ -1103,6 +1118,7 @@ data:
   - math/poly/Composite.hpp
   - math/MontmortNumber.hpp
   - math/TetrationMod.hpp
+  - math/sps/Composite.hpp
   - math/Combinatorics.hpp
   - math/matrix/Inverse.hpp
   - math/matrix/LinearEquations.hpp
@@ -1131,7 +1147,6 @@ data:
   - test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
   - test/yosupo/other/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/yosupo/convolution/lcm_convolution.test.cpp
-  - test/yosupo/convolution/subset_convolution.test.cpp
   - test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
   - test/yosupo/convolution/convolution_mod.test.cpp
   - test/yosupo/convolution/multivariate_convolution.test.cpp
@@ -1147,6 +1162,7 @@ data:
   - test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
   - test/yosupo/polynomial/inv_of_formal_power_series.test.cpp
   - test/yosupo/polynomial/log_of_formal_power_series_sparse.test.cpp
+  - test/yosupo/polynomial/compositional_inverse_of_formal_power_series_large.test.cpp
   - test/yosupo/polynomial/exp_of_formal_power_series_sparse.test.cpp
   - test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
   - test/yosupo/polynomial/division_of_polynomials.test.cpp
@@ -1162,6 +1178,10 @@ data:
   - test/yosupo/number_theory/tetration_mod.test.cpp
   - test/yosupo/number_theory/bernoulli_number.test.cpp
   - test/yosupo/number_theory/primitive_root.test.cpp
+  - test/yosupo/set_power_series/subset_convolution.test.cpp
+  - test/yosupo/set_power_series/polynomial_composite_set_power_series.test.cpp
+  - test/yosupo/set_power_series/power_projection_of_set_power_series.test.cpp
+  - test/yosupo/set_power_series/exp_of_set_power_series.test.cpp
   - test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
   - test/yosupo/data_structure/deque_operate_all_composite.test.cpp
   - test/yosupo/data_structure/range_affine_range_sum.test.cpp

@@ -45,6 +45,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/composition_of_formal_power_series_large.test.cpp
     title: test/yosupo/polynomial/composition_of_formal_power_series_large.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/polynomial/compositional_inverse_of_formal_power_series_large.test.cpp
+    title: test/yosupo/polynomial/compositional_inverse_of_formal_power_series_large.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -1057,6 +1060,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/polynomial/composition_of_formal_power_series_large.test.cpp
+  - test/yosupo/polynomial/compositional_inverse_of_formal_power_series_large.test.cpp
 documentation_of: math/poly/Composite.hpp
 layout: document
 redirect_from:

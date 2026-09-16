@@ -28,11 +28,23 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: math/sps/Composite.hpp
+    title: math/sps/Composite.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/convolution/subset_convolution.test.cpp
-    title: test/yosupo/convolution/subset_convolution.test.cpp
+    path: test/yosupo/set_power_series/exp_of_set_power_series.test.cpp
+    title: test/yosupo/set_power_series/exp_of_set_power_series.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/set_power_series/polynomial_composite_set_power_series.test.cpp
+    title: test/yosupo/set_power_series/polynomial_composite_set_power_series.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/set_power_series/power_projection_of_set_power_series.test.cpp
+    title: test/yosupo/set_power_series/power_projection_of_set_power_series.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/set_power_series/subset_convolution.test.cpp
+    title: test/yosupo/set_power_series/subset_convolution.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -459,11 +471,12 @@ data:
     \ = a.size();\n    for (int i = 1; i < n; i <<= 1) {\n        rep (j, 0, n, i\
     \ << 1) {\n            rep (k, j, j + i) {\n                rep (l, L) a[k + i][l]\
     \ -= a[k][l];\n            }\n        }\n    }\n}\n\n} // namespace internal\n\
-    \ntemplate<class T, int L = 20>\nstd::vector<T> subset_convolution(const std::vector<T>&\
-    \ a,\n                                  const std::vector<T>& b) {\n    int n\
-    \ = a.size(), m = bitop::ceil_log2(n);\n    std::vector<std::array<T, L + 1>>\
-    \ a2(n), b2(n);\n    rep (i, n) a2[i][popcnt(i)] = a[i];\n    rep (i, n) b2[i][popcnt(i)]\
-    \ = b[i];\n    internal::ranked_zeta<T, L + 1>(a2);\n    internal::ranked_zeta<T,\
+    \ntemplate<class T, int L = 0>\nstd::vector<T> subset_convolution(const std::vector<T>&\
+    \ a,\n                                  const std::vector<T>& b) {\n    if (a.size()\
+    \ > (1 << L)) {\n        return subset_convolution<T, std::min<int>(L + 1, 30)>(a,\
+    \ b);\n    }\n    int n = a.size(), m = bitop::ceil_log2(n);\n    std::vector<std::array<T,\
+    \ L + 1>> a2(n), b2(n);\n    rep (i, n) a2[i][popcnt(i)] = a[i];\n    rep (i,\
+    \ n) b2[i][popcnt(i)] = b[i];\n    internal::ranked_zeta<T, L + 1>(a2);\n    internal::ranked_zeta<T,\
     \ L + 1>(b2);\n    rep (k, n) {\n        auto& f = a2[k];\n        const auto&\
     \ g = b2[k];\n        rrep (i, m + 1) {\n            T sm = 0;\n            rep\
     \ (j, i + 1) sm += f[j] * g[i - j];\n            f[i] = sm;\n        }\n    }\n\
@@ -479,11 +492,12 @@ data:
     \ = a.size();\n    for (int i = 1; i < n; i <<= 1) {\n        rep (j, 0, n, i\
     \ << 1) {\n            rep (k, j, j + i) {\n                rep (l, L) a[k + i][l]\
     \ -= a[k][l];\n            }\n        }\n    }\n}\n\n} // namespace internal\n\
-    \ntemplate<class T, int L = 20>\nstd::vector<T> subset_convolution(const std::vector<T>&\
-    \ a,\n                                  const std::vector<T>& b) {\n    int n\
-    \ = a.size(), m = bitop::ceil_log2(n);\n    std::vector<std::array<T, L + 1>>\
-    \ a2(n), b2(n);\n    rep (i, n) a2[i][popcnt(i)] = a[i];\n    rep (i, n) b2[i][popcnt(i)]\
-    \ = b[i];\n    internal::ranked_zeta<T, L + 1>(a2);\n    internal::ranked_zeta<T,\
+    \ntemplate<class T, int L = 0>\nstd::vector<T> subset_convolution(const std::vector<T>&\
+    \ a,\n                                  const std::vector<T>& b) {\n    if (a.size()\
+    \ > (1 << L)) {\n        return subset_convolution<T, std::min<int>(L + 1, 30)>(a,\
+    \ b);\n    }\n    int n = a.size(), m = bitop::ceil_log2(n);\n    std::vector<std::array<T,\
+    \ L + 1>> a2(n), b2(n);\n    rep (i, n) a2[i][popcnt(i)] = a[i];\n    rep (i,\
+    \ n) b2[i][popcnt(i)] = b[i];\n    internal::ranked_zeta<T, L + 1>(a2);\n    internal::ranked_zeta<T,\
     \ L + 1>(b2);\n    rep (k, n) {\n        auto& f = a2[k];\n        const auto&\
     \ g = b2[k];\n        rrep (i, m + 1) {\n            T sm = 0;\n            rep\
     \ (j, i + 1) sm += f[j] * g[i - j];\n            f[i] = sm;\n        }\n    }\n\
@@ -502,11 +516,15 @@ data:
   - template/util.hpp
   isVerificationFile: false
   path: math/convolution/SubsetConvolution.hpp
-  requiredBy: []
-  timestamp: '2026-09-12 01:05:48+09:00'
+  requiredBy:
+  - math/sps/Composite.hpp
+  timestamp: '2026-09-16 19:56:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/convolution/subset_convolution.test.cpp
+  - test/yosupo/set_power_series/subset_convolution.test.cpp
+  - test/yosupo/set_power_series/polynomial_composite_set_power_series.test.cpp
+  - test/yosupo/set_power_series/power_projection_of_set_power_series.test.cpp
+  - test/yosupo/set_power_series/exp_of_set_power_series.test.cpp
 documentation_of: math/convolution/SubsetConvolution.hpp
 layout: document
 redirect_from:

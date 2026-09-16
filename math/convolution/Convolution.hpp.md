@@ -93,6 +93,9 @@ data:
     path: math/poly/TaylorShift.hpp
     title: TaylorShift
   - icon: ':heavy_check_mark:'
+    path: math/sps/Composite.hpp
+    title: math/sps/Composite.hpp
+  - icon: ':heavy_check_mark:'
     path: string/WildcardPatternMatching.hpp
     title: WildcardPatternMatching
   _extendedVerifiedWith:
@@ -154,6 +157,9 @@ data:
     path: test/yosupo/polynomial/composition_of_formal_power_series_large.test.cpp
     title: test/yosupo/polynomial/composition_of_formal_power_series_large.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/polynomial/compositional_inverse_of_formal_power_series_large.test.cpp
+    title: test/yosupo/polynomial/compositional_inverse_of_formal_power_series_large.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/division_of_polynomials.test.cpp
     title: test/yosupo/polynomial/division_of_polynomials.test.cpp
   - icon: ':heavy_check_mark:'
@@ -210,6 +216,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
     title: test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/set_power_series/exp_of_set_power_series.test.cpp
+    title: test/yosupo/set_power_series/exp_of_set_power_series.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/set_power_series/polynomial_composite_set_power_series.test.cpp
+    title: test/yosupo/set_power_series/polynomial_composite_set_power_series.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/set_power_series/power_projection_of_set_power_series.test.cpp
+    title: test/yosupo/set_power_series/power_projection_of_set_power_series.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/string/wildcard_pattern_matching.test.cpp
     title: test/yosupo/string/wildcard_pattern_matching.test.cpp
@@ -1086,6 +1101,7 @@ data:
   - math/poly/TaylorShift.hpp
   - math/poly/BostanMori.hpp
   - math/poly/Composite.hpp
+  - math/sps/Composite.hpp
   - string/WildcardPatternMatching.hpp
   - graph/tree/FrequencyTableofTreeDistance.hpp
   timestamp: '2026-09-15 21:48:30+09:00'
@@ -1115,6 +1131,7 @@ data:
   - test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
   - test/yosupo/polynomial/inv_of_formal_power_series.test.cpp
   - test/yosupo/polynomial/log_of_formal_power_series_sparse.test.cpp
+  - test/yosupo/polynomial/compositional_inverse_of_formal_power_series_large.test.cpp
   - test/yosupo/polynomial/exp_of_formal_power_series_sparse.test.cpp
   - test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
   - test/yosupo/polynomial/division_of_polynomials.test.cpp
@@ -1128,6 +1145,9 @@ data:
   - test/yosupo/polynomial/inv_of_formal_power_series_sparse.test.cpp
   - test/yosupo/polynomial/exp_of_formal_power_series-RelaxedConvolution.test.cpp
   - test/yosupo/number_theory/bernoulli_number.test.cpp
+  - test/yosupo/set_power_series/polynomial_composite_set_power_series.test.cpp
+  - test/yosupo/set_power_series/power_projection_of_set_power_series.test.cpp
+  - test/yosupo/set_power_series/exp_of_set_power_series.test.cpp
   - test/yosupo/string/wildcard_pattern_matching.test.cpp
   - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
   - test/aoj/DPL/DPL_5_G.test.cpp
