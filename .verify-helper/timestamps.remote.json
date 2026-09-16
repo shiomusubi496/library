@@ -185,6 +185,7 @@
 "test/yosupo/linear_algebra/matrix_rank_mod_2.test.cpp": "2026-09-12 01:05:48 +0900",
 "test/yosupo/linear_algebra/pow_of_matrix.test.cpp": "2026-09-12 01:05:48 +0900",
 "test/yosupo/linear_algebra/system_of_linear_equations.test.cpp": "2026-09-12 01:05:48 +0900",
+"test/yosupo/new/aho_corasick.test.cpp": "2026-09-16 16:09:24 +0900",
 "test/yosupo/new/majority_voting.test.cpp": "2026-09-16 15:15:33 +0900",
 "test/yosupo/new/minimum_steiner_tree.test.cpp": "2026-09-12 16:59:40 +0900",
 "test/yosupo/new/range_add_range_min.test.cpp": "2026-09-14 19:07:59 +0900",
