@@ -38,6 +38,16 @@ template<class T> struct LCM {
     static T id() { return 1; }
 };
 
+template<class T> struct Majority {
+    using value_type = std::pair<T, int>;
+    static value_type id() { return {0, 0}; }
+    static value_type op(const value_type& a, const value_type& b) {
+        if (a.first == b.first) return {a.first, a.second + b.second};
+        if (a.second > b.second) return {a.first, a.second - b.second};
+        return {b.first, b.second - a.second};
+    }
+};
+
 template<class T> struct AddAssign {
     using value_type = std::pair<bool, T>; // false: add, true: assign
     static value_type op(const value_type& a, const value_type& b) {
