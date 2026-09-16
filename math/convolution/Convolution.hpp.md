@@ -55,6 +55,9 @@ data:
     path: math/convolution/MultidimensionalConvolution.hpp
     title: MultidimensionalConvolution
   - icon: ':heavy_check_mark:'
+    path: math/convolution/MultiplicationConvolution.hpp
+    title: math/convolution/MultiplicationConvolution.hpp
+  - icon: ':heavy_check_mark:'
     path: math/convolution/RelaxedConvolution.hpp
     title: "Relaxed Convolution(\u30AA\u30F3\u30E9\u30A4\u30F3\u7573\u307F\u8FBC\u307F\
       )"
@@ -108,6 +111,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/convolution_mod_1000000007.test.cpp
     title: test/yosupo/convolution/convolution_mod_1000000007.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/convolution/mul_modp_convolution.test.cpp
+    title: test/yosupo/convolution/mul_modp_convolution.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/multivariate_convolution.test.cpp
     title: test/yosupo/convolution/multivariate_convolution.test.cpp
@@ -1088,6 +1094,7 @@ data:
   requiredBy:
   - math/Factorial.hpp
   - math/StirlingNumber.hpp
+  - math/convolution/MultiplicationConvolution.hpp
   - math/convolution/MultidimensionalConvolution.hpp
   - math/convolution/RelaxedConvolution.hpp
   - math/SubsetSum.hpp
@@ -1125,6 +1132,7 @@ data:
   - test/yosupo/other/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/yosupo/convolution/convolution_mod.test.cpp
   - test/yosupo/convolution/multivariate_convolution.test.cpp
+  - test/yosupo/convolution/mul_modp_convolution.test.cpp
   - test/yosupo/convolution/convolution_mod_1000000007.test.cpp
   - test/yosupo/polynomial/composition_of_formal_power_series_large.test.cpp
   - test/yosupo/polynomial/log_of_formal_power_series.test.cpp

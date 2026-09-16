@@ -47,8 +47,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: math/convolution/MultiplicationConvolution.hpp
+    title: math/convolution/MultiplicationConvolution.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/convolution/mul_modp_convolution.test.cpp
+    title: test/yosupo/convolution/mul_modp_convolution.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/primitive_root.test.cpp
     title: test/yosupo/number_theory/primitive_root.test.cpp
@@ -795,10 +801,12 @@ data:
   - string/RunLength.hpp
   isVerificationFile: false
   path: math/num/PrimitiveRoot.hpp
-  requiredBy: []
+  requiredBy:
+  - math/convolution/MultiplicationConvolution.hpp
   timestamp: '2026-09-12 01:05:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/convolution/mul_modp_convolution.test.cpp
   - test/yosupo/number_theory/primitive_root.test.cpp
 documentation_of: math/num/PrimitiveRoot.hpp
 layout: document

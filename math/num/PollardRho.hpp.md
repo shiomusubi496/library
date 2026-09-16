@@ -46,6 +46,9 @@ data:
     path: math/TetrationMod.hpp
     title: TetrationMod
   - icon: ':heavy_check_mark:'
+    path: math/convolution/MultiplicationConvolution.hpp
+    title: math/convolution/MultiplicationConvolution.hpp
+  - icon: ':heavy_check_mark:'
     path: math/num/EulerPhi.hpp
     title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
   - icon: ':heavy_check_mark:'
@@ -58,6 +61,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/NTL/NTL_1_D-Phi.test.cpp
     title: test/aoj/NTL/NTL_1_D-Phi.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/convolution/mul_modp_convolution.test.cpp
+    title: test/yosupo/convolution/mul_modp_convolution.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/factorize.test.cpp
     title: test/yosupo/number_theory/factorize.test.cpp
@@ -696,6 +702,7 @@ data:
   isVerificationFile: false
   path: math/num/PollardRho.hpp
   requiredBy:
+  - math/convolution/MultiplicationConvolution.hpp
   - math/num/TwoSquareSum.hpp
   - math/num/EulerPhi.hpp
   - math/num/PrimitiveRoot.hpp
@@ -703,6 +710,7 @@ data:
   timestamp: '2026-09-12 01:05:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/convolution/mul_modp_convolution.test.cpp
   - test/yosupo/number_theory/tetration_mod.test.cpp
   - test/yosupo/number_theory/factorize.test.cpp
   - test/yosupo/number_theory/two_square_sum.test.cpp

@@ -503,6 +503,9 @@ data:
     title: "MultipleZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
       \u30A6\u30B9\u5909\u63DB)"
   - icon: ':heavy_check_mark:'
+    path: math/convolution/MultiplicationConvolution.hpp
+    title: math/convolution/MultiplicationConvolution.hpp
+  - icon: ':heavy_check_mark:'
     path: math/convolution/RelaxedConvolution.hpp
     title: "Relaxed Convolution(\u30AA\u30F3\u30E9\u30A4\u30F3\u7573\u307F\u8FBC\u307F\
       )"
@@ -929,6 +932,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/min_plus_convolution_convex_convex.test.cpp
     title: test/yosupo/convolution/min_plus_convolution_convex_convex.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/convolution/mul_modp_convolution.test.cpp
+    title: test/yosupo/convolution/mul_modp_convolution.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/multivariate_convolution.test.cpp
     title: test/yosupo/convolution/multivariate_convolution.test.cpp
@@ -1673,6 +1679,7 @@ data:
   - math/convolution/BitwiseXorConvolution.hpp
   - math/convolution/MinPlusConvolution.hpp
   - math/convolution/Convolution.hpp
+  - math/convolution/MultiplicationConvolution.hpp
   - math/convolution/GcdConvolution.hpp
   - math/convolution/MultidimensionalConvolution.hpp
   - math/convolution/SubsetConvolution.hpp
@@ -1834,6 +1841,7 @@ data:
   - test/yosupo/convolution/convolution_mod.test.cpp
   - test/yosupo/convolution/multivariate_convolution.test.cpp
   - test/yosupo/convolution/gcd_convolution.test.cpp
+  - test/yosupo/convolution/mul_modp_convolution.test.cpp
   - test/yosupo/convolution/convolution_mod_1000000007.test.cpp
   - test/yosupo/convolution/bitwise_xor_convolution.test.cpp
   - test/yosupo/convolution/bitwise_and_convolution.test.cpp
