@@ -4,14 +4,13 @@
 #include "../../../math/matrix/Matrix.hpp"
 #include "../../../math/matrix/Determinant.hpp"
 using namespace std;
-using mint = static_modint<2>;
-using matx = Matrix<mint>;
+using matx = Matrix<bool>;
 int main() {
     int N; scan >> N;
     matx A(N, N);
     rep (i, N) rep (j, N) {
         char c; scan >> c;
-        A[i][j] = c - '0';
+        A.get(i, j) = c - '0';
     }
     prints(determinant(A));
 }

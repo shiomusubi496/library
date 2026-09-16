@@ -21,22 +21,21 @@ template<class T> Matrix<T> inverse(Matrix<T> mat) {
     return res;
 }
 
-template<> Matrix<static_modint<2>> inverse(Matrix<static_modint<2>> mat) {
+template<> Matrix<bool> inverse(Matrix<bool> mat) {
     assert(mat.is_square());
-    using T = static_modint<2>;
     const int n = mat.height();
-    T zero = T::raw(0), one = T::raw(1);
+    Matrix<bool> mat2(n, n * 2);
     rep (i, n) {
-        mat[i].resize(n * 2, zero);
-        mat[i][n + i] = one;
+        rep (j, n) mat2.get(i, j) = mat.get(i, j);
+        mat2.get(i, n + i) = true;
     }
-    mat.gauss();
+    mat2.gauss();
     rep (i, n) {
-        if (mat[i][i] == zero) return Matrix<T>(0, 0);
+        if (!mat2.get(i, i)) return Matrix<bool>(0, 0);
     }
-    Matrix<T> res(n, n);
+    Matrix<bool> res(n, n);
     rep (i, n) {
-        rep (j, n) res[i][j] = mat[i][n + j];
+        rep (j, n) res.get(i, j) = mat2.get(i, n + j);
     }
     return res;
 }

@@ -97,6 +97,92 @@ public:
     }
 };
 
+template<> class LinearEquations<bool> {
+private:
+    Matrix<bool> A;
+    int n, m;
+    bool is_solved = false;
+    std::vector<bool> solution;
+    std::vector<std::vector<bool>> solution_space;
+
+public:
+    LinearEquations() = default;
+    LinearEquations(int n) : m(n) {}
+    LinearEquations(const Matrix<bool>& A_, bool sol = true)
+        : A(A_), n(A.height()), m(A.width() - 1) {
+        if (sol) solve();
+    }
+    LinearEquations(const Matrix<bool>& A_, const std::vector<bool>& b,
+                    bool sol = true) {
+        assert(A_.height() == (int)b.size());
+        n = A_.height();
+        m = A_.width();
+        A = Matrix<bool>(n, m + 1);
+        rep (i, n) {
+            rep (j, m) A.get(i, j) = A_.get(i, j);
+            A.get(i, m) = b[i];
+        }
+        if (sol) solve();
+    }
+    bool solve() {
+        assert(!is_solved);
+        is_solved = true;
+        A.gauss();
+        int r = A.rank(true);
+        if (r != 0) {
+            bool f = true;
+            rep (i, m) if (A.get(r - 1, i) != 0) f = false;
+            if (f && A.get(r - 1, m) != 0) {
+                return false;
+            }
+        }
+        solution = std::vector<bool>(m, false);
+        solution_space.clear();
+        std::vector<int> p(m, -1);
+        rep (i, r) {
+            int j = 0;
+            while (A.get(i, j) == 0) ++j;
+            p[j] = i;
+            solution[j] = A.get(i, m);
+        }
+        rep (i, m) {
+            if (p[i] == -1) {
+                std::vector<bool> v(m, false);
+                v[i] = true;
+                rep (j, m) {
+                    if (p[j] != -1) v[j] = A.get(p[j], i);
+                }
+                solution_space.push_back(std::move(v));
+            }
+        }
+        return true;
+    }
+    bool has_solution() const {
+        assert(is_solved);
+        return solution.size() != 0;
+    }
+    int dimension() const {
+        assert(is_solved);
+        return solution_space.size();
+    }
+    std::vector<bool> get_solution() const& {
+        assert(is_solved);
+        return solution;
+    }
+    std::vector<bool> get_solution() && {
+        assert(is_solved);
+        return std::move(solution);
+    }
+    std::vector<std::vector<bool>> get_solution_space() const& {
+        assert(is_solved);
+        return solution_space;
+    }
+    std::vector<std::vector<bool>> get_solution_space() && {
+        assert(is_solved);
+        return std::move(solution_space);
+    }
+};
+
 /**
  * @brief LinearEquations(線形方程式)
  * @docs docs/math/matrix/LinearEquations.md

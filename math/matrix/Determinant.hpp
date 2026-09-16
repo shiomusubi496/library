@@ -35,9 +35,9 @@ template<class T> T determinant(Matrix<T> mat) {
     return res;
 }
 
-template<> static_modint<2> determinant(Matrix<static_modint<2>> mat) {
+template<> bool determinant(Matrix<bool> mat) {
     assert(mat.is_square());
-    return mat.rank() == mat.height() ? 1 : 0;
+    return mat.rank() == mat.height();
 }
 
 template<class T> T determinant_arbitrary_mod(Matrix<T> mat) {

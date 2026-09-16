@@ -3,22 +3,21 @@
 #include "../../../math/ModInt.hpp"
 #include "../../../math/matrix/Matrix.hpp"
 using namespace std;
-using mint = static_modint<2>;
-using matx = Matrix<mint>;
+using matx = Matrix<bool>;
 int main() {
     int N, M, K; scan >> N >> M >> K;
     matx A(N, M), B(M, K);
     rep (i, N) rep (j, M) {
         char c; scan >> c;
-        A[i][j] = c - '0';
+        A.get(i, j) = c - '0';
     }
     rep (i, M) rep (j, K) {
         char c; scan >> c;
-        B[i][j] = c - '0';
+        B.get(i, j) = c - '0';
     }
     matx C = A * B;
     rep (i, N) rep (j, K) {
-        printer << C[i][j];
+        printer << C.get(i, j);
         if (j == K - 1) printer << '\n';
     }
 }
