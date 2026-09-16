@@ -68,7 +68,6 @@ FormalPowerSeries<T> transposed_bostan_mori(FormalPowerSeries<T> Q, ll n) {
 
 template<class T>
 FormalPowerSeries<T> range_coefs(FormalPowerSeries<T> P, FormalPowerSeries<T> Q, ll n, int m) {
-    ll d = P.size() - 1;
     while (Q.back() == 0) Q.pop_back();
     FormalPowerSeries<T> f = transposed_bostan_mori(Q, n);
     auto [p, q] = divmod(P, Q);
