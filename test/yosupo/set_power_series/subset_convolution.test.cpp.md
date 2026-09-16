@@ -583,28 +583,37 @@ data:
     \ dynamic_modint = DynamicModInt<unsigned int, id>;\nusing modint = dynamic_modint<-1>;\n\
     \n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n#line 2 \"math/convolution/SubsetConvolution.hpp\"\
     \n\n#line 4 \"math/convolution/SubsetConvolution.hpp\"\n\nnamespace internal {\n\
-    \ntemplate<class T, int L> void ranked_zeta(std::vector<std::array<T, L>>& a)\
-    \ {\n    int n = a.size();\n    for (int i = 1; i < n; i <<= 1) {\n        rep\
-    \ (j, 0, n, i << 1) {\n            rep (k, j, j + i) {\n                rep (l,\
-    \ L) a[k + i][l] += a[k][l];\n            }\n        }\n    }\n}\ntemplate<class\
-    \ T, int L> void ranked_moebius(std::vector<std::array<T, L>>& a) {\n    int n\
-    \ = a.size();\n    for (int i = 1; i < n; i <<= 1) {\n        rep (j, 0, n, i\
-    \ << 1) {\n            rep (k, j, j + i) {\n                rep (l, L) a[k + i][l]\
-    \ -= a[k][l];\n            }\n        }\n    }\n}\n\n} // namespace internal\n\
-    \ntemplate<class T, int L = 0>\nstd::vector<T> subset_convolution(const std::vector<T>&\
-    \ a,\n                                  const std::vector<T>& b) {\n    if (a.size()\
-    \ > (1 << L)) {\n        return subset_convolution<T, std::min<int>(L + 1, 30)>(a,\
-    \ b);\n    }\n    int n = a.size(), m = bitop::ceil_log2(n);\n    std::vector<std::array<T,\
-    \ L + 1>> a2(n), b2(n);\n    rep (i, n) a2[i][popcnt(i)] = a[i];\n    rep (i,\
-    \ n) b2[i][popcnt(i)] = b[i];\n    internal::ranked_zeta<T, L + 1>(a2);\n    internal::ranked_zeta<T,\
-    \ L + 1>(b2);\n    rep (k, n) {\n        auto& f = a2[k];\n        const auto&\
-    \ g = b2[k];\n        rrep (i, m + 1) {\n            T sm = 0;\n            rep\
-    \ (j, i + 1) sm += f[j] * g[i - j];\n            f[i] = sm;\n        }\n    }\n\
-    \    internal::ranked_moebius<T, L + 1>(a2);\n    std::vector<T> c(n);\n    rep\
-    \ (i, n) c[i] = a2[i][popcnt(i)];\n    return c;\n}\n\n/**\n * @brief SubsetConvolution\n\
-    \ * @docs docs/math/convolution/SubsetConvolution.md\n */\n#line 5 \"test/yosupo/set_power_series/subset_convolution.test.cpp\"\
-    \nusing namespace std;\nusing mint = modint998244353;\nint main() {\n    int N;\
-    \ scan >> N;\n    vector<mint> a(1 << N), b(1 << N); scan >> a >> b;\n    prints(subset_convolution(a,\
+    \ntemplate<class T, int L> std::vector<std::array<T, L>> ranked_zeta(const std::vector<T>&\
+    \ a) {\n    int n = a.size();\n    std::vector<std::array<T, L>> b(n);\n    rep\
+    \ (i, n) b[i][popcnt(i)] = a[i];\n    for (int i = 1; i < n; i <<= 1) {\n    \
+    \    rep (j, 0, n, i << 1) {\n            rep (k, j, j + i) {\n              \
+    \  rep (l, L) b[k + i][l] += b[k][l];\n            }\n        }\n    }\n    return\
+    \ b;\n}\ntemplate<class T, int L> std::vector<T> ranked_moebius(std::vector<std::array<T,\
+    \ L>> b) {\n    int n = b.size();\n    for (int i = 1; i < n; i <<= 1) {\n   \
+    \     rep (j, 0, n, i << 1) {\n            rep (k, j, j + i) {\n             \
+    \   rep (l, L) b[k + i][l] -= b[k][l];\n            }\n        }\n    }\n    std::vector<T>\
+    \ a(n);\n    rep (i, n) a[i] = b[i][popcnt(i)];\n    return a;\n}\n\n} // namespace\
+    \ internal\n\ntemplate<class T, int L>\nstd::vector<T> subset_convolution_pow2(const\
+    \ std::vector<T>& a) {\n    int n = a.size(), m = bitop::ceil_log2(n);\n    std::vector<std::array<T,\
+    \ L + 1>> a2 = internal::ranked_zeta<T, L + 1>(a);\n    rep (k, n) {\n       \
+    \ auto& f = a2[k];\n        const auto g = a2[k];\n        rrep (i, m + 1) {\n\
+    \            T sm = 0;\n            rep (j, i + 1) sm += f[j] * g[i - j];\n  \
+    \          f[i] = sm;\n        }\n    }\n    return internal::ranked_moebius<T,\
+    \ L + 1>(a2);\n}\n\ntemplate<class T, int L = 0>\nstd::vector<T> subset_convolution(const\
+    \ std::vector<T>& a,\n                                  const std::vector<T>&\
+    \ b) {\n    if (a.size() > (1 << L)) {\n        return subset_convolution<T, std::min<int>(L\
+    \ + 1, 30)>(a, b);\n    }\n    if (a == b) {\n        return subset_convolution_pow2<T,\
+    \ L>(a);\n    }\n    int n = a.size(), m = bitop::ceil_log2(n);\n    std::vector<std::array<T,\
+    \ L + 1>> a2 = internal::ranked_zeta<T, L + 1>(a);\n    std::vector<std::array<T,\
+    \ L + 1>> b2 = internal::ranked_zeta<T, L + 1>(b);\n    rep (k, n) {\n       \
+    \ auto& f = a2[k];\n        const auto& g = b2[k];\n        int c = popcnt(k);\n\
+    \        rrep (i, std::min<int>(c * 2, m) + 1) {\n            T sm = 0;\n    \
+    \        rep (j, std::max<int>(i - c, 0), i + 1) sm += f[j] * g[i - j];\n    \
+    \        f[i] = sm;\n        }\n    }\n    return internal::ranked_moebius<T,\
+    \ L + 1>(a2);\n}\n\n/**\n * @brief SubsetConvolution\n * @docs docs/math/convolution/SubsetConvolution.md\n\
+    \ */\n#line 5 \"test/yosupo/set_power_series/subset_convolution.test.cpp\"\nusing\
+    \ namespace std;\nusing mint = modint998244353;\nint main() {\n    int N; scan\
+    \ >> N;\n    vector<mint> a(1 << N), b(1 << N); scan >> a >> b;\n    prints(subset_convolution(a,\
     \ b));\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/subset_convolution\"\n\
     #include \"../../../other/template.hpp\"\n#include \"../../../math/ModInt.hpp\"\
@@ -627,7 +636,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/set_power_series/subset_convolution.test.cpp
   requiredBy: []
-  timestamp: '2026-09-16 19:56:57+09:00'
+  timestamp: '2026-09-16 22:06:45+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/set_power_series/subset_convolution.test.cpp

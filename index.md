@@ -626,6 +626,9 @@ data:
       path: math/poly/SamplingPointsShift.hpp
       title: "SamplingPointsShift(\u6A19\u672C\u70B9\u30B7\u30D5\u30C8)"
     - icon: ':heavy_check_mark:'
+      path: math/poly/SetPowerSeries.hpp
+      title: math/poly/SetPowerSeries.hpp
+    - icon: ':heavy_check_mark:'
       path: math/poly/SparseFormalPowerSeries.hpp
       title: "SparseFormalPowerSeries(\u758E\u306A\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570\
         )"
@@ -635,11 +638,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/poly/TaylorShift.hpp
       title: TaylorShift
-  - name: math/sps
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: math/sps/Composite.hpp
-      title: math/sps/Composite.hpp
   - name: other
     pages:
     - icon: ':heavy_check_mark:'
@@ -1319,6 +1317,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/new/aho_corasick.test.cpp
       title: test/yosupo/new/aho_corasick.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/new/log_of_set_power_series.test.cpp
+      title: test/yosupo/new/log_of_set_power_series.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/new/majority_voting.test.cpp
       title: test/yosupo/new/majority_voting.test.cpp

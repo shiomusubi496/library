@@ -46,6 +46,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/log_of_set_power_series.test.cpp
+    title: test/yosupo/new/log_of_set_power_series.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/set_power_series/exp_of_set_power_series.test.cpp
     title: test/yosupo/set_power_series/exp_of_set_power_series.test.cpp
   - icon: ':heavy_check_mark:'
@@ -59,7 +62,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"math/sps/Composite.hpp\"\n\n#line 2 \"other/template.hpp\"\
+  bundledCode: "#line 2 \"math/poly/SetPowerSeries.hpp\"\n\n#line 2 \"other/template.hpp\"\
     \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
     \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define OVERLOAD5(a,\
     \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
@@ -620,26 +623,34 @@ data:
     \ = std::vector<T>(1, 1);\ntemplate<class T>\nstd::vector<T> Combinatorics<T>::factinv\
     \ = std::vector<T>(1, 1);\n\n/**\n * @brief Combinatorics\n * @docs docs/math/Combinatorics.md\n\
     \ */\n#line 2 \"math/convolution/SubsetConvolution.hpp\"\n\n#line 4 \"math/convolution/SubsetConvolution.hpp\"\
-    \n\nnamespace internal {\n\ntemplate<class T, int L> void ranked_zeta(std::vector<std::array<T,\
-    \ L>>& a) {\n    int n = a.size();\n    for (int i = 1; i < n; i <<= 1) {\n  \
-    \      rep (j, 0, n, i << 1) {\n            rep (k, j, j + i) {\n            \
-    \    rep (l, L) a[k + i][l] += a[k][l];\n            }\n        }\n    }\n}\n\
-    template<class T, int L> void ranked_moebius(std::vector<std::array<T, L>>& a)\
-    \ {\n    int n = a.size();\n    for (int i = 1; i < n; i <<= 1) {\n        rep\
-    \ (j, 0, n, i << 1) {\n            rep (k, j, j + i) {\n                rep (l,\
-    \ L) a[k + i][l] -= a[k][l];\n            }\n        }\n    }\n}\n\n} // namespace\
-    \ internal\n\ntemplate<class T, int L = 0>\nstd::vector<T> subset_convolution(const\
+    \n\nnamespace internal {\n\ntemplate<class T, int L> std::vector<std::array<T,\
+    \ L>> ranked_zeta(const std::vector<T>& a) {\n    int n = a.size();\n    std::vector<std::array<T,\
+    \ L>> b(n);\n    rep (i, n) b[i][popcnt(i)] = a[i];\n    for (int i = 1; i < n;\
+    \ i <<= 1) {\n        rep (j, 0, n, i << 1) {\n            rep (k, j, j + i) {\n\
+    \                rep (l, L) b[k + i][l] += b[k][l];\n            }\n        }\n\
+    \    }\n    return b;\n}\ntemplate<class T, int L> std::vector<T> ranked_moebius(std::vector<std::array<T,\
+    \ L>> b) {\n    int n = b.size();\n    for (int i = 1; i < n; i <<= 1) {\n   \
+    \     rep (j, 0, n, i << 1) {\n            rep (k, j, j + i) {\n             \
+    \   rep (l, L) b[k + i][l] -= b[k][l];\n            }\n        }\n    }\n    std::vector<T>\
+    \ a(n);\n    rep (i, n) a[i] = b[i][popcnt(i)];\n    return a;\n}\n\n} // namespace\
+    \ internal\n\ntemplate<class T, int L>\nstd::vector<T> subset_convolution_pow2(const\
+    \ std::vector<T>& a) {\n    int n = a.size(), m = bitop::ceil_log2(n);\n    std::vector<std::array<T,\
+    \ L + 1>> a2 = internal::ranked_zeta<T, L + 1>(a);\n    rep (k, n) {\n       \
+    \ auto& f = a2[k];\n        const auto g = a2[k];\n        rrep (i, m + 1) {\n\
+    \            T sm = 0;\n            rep (j, i + 1) sm += f[j] * g[i - j];\n  \
+    \          f[i] = sm;\n        }\n    }\n    return internal::ranked_moebius<T,\
+    \ L + 1>(a2);\n}\n\ntemplate<class T, int L = 0>\nstd::vector<T> subset_convolution(const\
     \ std::vector<T>& a,\n                                  const std::vector<T>&\
     \ b) {\n    if (a.size() > (1 << L)) {\n        return subset_convolution<T, std::min<int>(L\
-    \ + 1, 30)>(a, b);\n    }\n    int n = a.size(), m = bitop::ceil_log2(n);\n  \
-    \  std::vector<std::array<T, L + 1>> a2(n), b2(n);\n    rep (i, n) a2[i][popcnt(i)]\
-    \ = a[i];\n    rep (i, n) b2[i][popcnt(i)] = b[i];\n    internal::ranked_zeta<T,\
-    \ L + 1>(a2);\n    internal::ranked_zeta<T, L + 1>(b2);\n    rep (k, n) {\n  \
-    \      auto& f = a2[k];\n        const auto& g = b2[k];\n        rrep (i, m +\
-    \ 1) {\n            T sm = 0;\n            rep (j, i + 1) sm += f[j] * g[i - j];\n\
-    \            f[i] = sm;\n        }\n    }\n    internal::ranked_moebius<T, L +\
-    \ 1>(a2);\n    std::vector<T> c(n);\n    rep (i, n) c[i] = a2[i][popcnt(i)];\n\
-    \    return c;\n}\n\n/**\n * @brief SubsetConvolution\n * @docs docs/math/convolution/SubsetConvolution.md\n\
+    \ + 1, 30)>(a, b);\n    }\n    if (a == b) {\n        return subset_convolution_pow2<T,\
+    \ L>(a);\n    }\n    int n = a.size(), m = bitop::ceil_log2(n);\n    std::vector<std::array<T,\
+    \ L + 1>> a2 = internal::ranked_zeta<T, L + 1>(a);\n    std::vector<std::array<T,\
+    \ L + 1>> b2 = internal::ranked_zeta<T, L + 1>(b);\n    rep (k, n) {\n       \
+    \ auto& f = a2[k];\n        const auto& g = b2[k];\n        int c = popcnt(k);\n\
+    \        rrep (i, std::min<int>(c * 2, m) + 1) {\n            T sm = 0;\n    \
+    \        rep (j, std::max<int>(i - c, 0), i + 1) sm += f[j] * g[i - j];\n    \
+    \        f[i] = sm;\n        }\n    }\n    return internal::ranked_moebius<T,\
+    \ L + 1>(a2);\n}\n\n/**\n * @brief SubsetConvolution\n * @docs docs/math/convolution/SubsetConvolution.md\n\
     \ */\n#line 2 \"math/poly/FormalPowerSeries.hpp\"\n\n#line 2 \"math/convolution/Convolution.hpp\"\
     \n\n#line 5 \"math/convolution/Convolution.hpp\"\n\nconstexpr ull primitive_root_for_convolution(ull\
     \ p) {\n    if (p == 2) return 1;\n    if (p == 998244353) return 3;\n    if (p\
@@ -944,7 +955,7 @@ data:
     \ b);\n        return *this;\n    }\n};\n\n/**\n * @brief FormalPowerSeries(\u5F62\
     \u5F0F\u7684\u51AA\u7D1A\u6570)\n * @docs docs/math/poly/FormalPowerSeries.md\n\
     \ * @see https://nyaannyaan.github.io/library/fps/formal-power-series.hpp\n */\n\
-    #line 7 \"math/sps/Composite.hpp\"\n\ntemplate<class T, class Comb = Combinatorics<T>>\n\
+    #line 7 \"math/poly/SetPowerSeries.hpp\"\n\ntemplate<class T, class Comb = Combinatorics<T>>\n\
     std::vector<T> fps_composite_of_sps(FormalPowerSeries<T> f, std::vector<T> s)\
     \ {\n    int n = s.size(), m = bitop::ceil_log2(n);\n    assert(s[0] == 0);\n\
     \    assert(n == (1 << m));\n    f.resize(m + 1);\n    Comb::init(m + 1);\n  \
@@ -953,20 +964,13 @@ data:
     \ << j), c(1 << j);\n            rep (k, 1 << j) b[k] = a[k];\n            rep\
     \ (k, 1 << j) c[k] = s[k + (1 << j)];\n            std::vector<T> d = subset_convolution(b,\
     \ c);\n            rep (k, 1 << j) a[k + (1 << j)] = d[k];\n        }\n      \
-    \  a[0] = f[i];\n    }\n    return a;\n}\n\ntemplate<class T>\nstd::vector<T>\
-    \ exp_of_sps(std::vector<T> s) {\n    int n = s.size(), m = bitop::ceil_log2(n);\n\
-    \    assert(s[0] == 0);\n    assert(n == (1 << m));\n    std::vector<T> a(1 <<\
-    \ m, 1);\n    rrep (i, m) {\n        int j = m - i - 1;\n        std::vector<T>\
-    \ b(1 << j), c(1 << j);\n        rep (k, 1 << j) b[k] = a[k];\n        rep (k,\
-    \ 1 << j) c[k] = s[k + (1 << j)];\n        std::vector<T> d = subset_convolution(b,\
-    \ c);\n        rep (k, 1 << j) a[k + (1 << j)] = d[k];\n    }\n    return a;\n\
-    }\n\ntemplate<class T, class Comb = Combinatorics<T>>\nstd::vector<T> polynomial_composite_of_sps(FormalPowerSeries<T>\
-    \ f, std::vector<T> s) {\n    Comb::init(f.size());\n    int n = s.size(), m =\
-    \ bitop::ceil_log2(n);\n    FormalPowerSeries<T> g(m + 1);\n    T c = s[0];\n\
-    \    rep (i, m + 1) {\n        T d = 1;\n        rep (j, i, f.size()) {\n    \
-    \        g[i] += f[j] * Comb::comb(j, i) * d;\n            d *= c;\n        }\n\
-    \    }\n    s[0] = 0;\n    return fps_composite_of_sps(g, s);\n}\n\ntemplate<class\
-    \ T, class Comb = Combinatorics<T>>\nstd::vector<T> power_projection_of_sps(std::vector<T>\
+    \  a[0] = f[i];\n    }\n    return a;\n}\n\ntemplate<class T, class Comb = Combinatorics<T>>\n\
+    std::vector<T> polynomial_composite_of_sps(FormalPowerSeries<T> f, std::vector<T>\
+    \ s) {\n    Comb::init(f.size());\n    int n = s.size(), m = bitop::ceil_log2(n);\n\
+    \    FormalPowerSeries<T> g(m + 1);\n    T c = s[0];\n    rep (i, m + 1) {\n \
+    \       T d = 1;\n        rep (j, i, f.size()) {\n            g[i] += f[j] * Comb::comb(j,\
+    \ i) * d;\n            d *= c;\n        }\n    }\n    s[0] = 0;\n    return fps_composite_of_sps(g,\
+    \ s);\n}\n\ntemplate<class T, class Comb = Combinatorics<T>>\nstd::vector<T> power_projection_of_sps(std::vector<T>\
     \ s, std::vector<T> w, int M) {\n    int n = s.size(), m = bitop::ceil_log2(n);\n\
     \    assert(n == (1 << m));\n    assert(s.size() == w.size());\n    T c = s[0];\n\
     \    s[0] = 0;\n    FormalPowerSeries<T> f(m + 1);\n    rep (i, m) {\n       \
@@ -978,9 +982,28 @@ data:
     \ w = a;\n    }\n    f[m] = w[0];\n    Comb::init(M);\n    FormalPowerSeries<T>\
     \ g(M);\n    rep (i, m + 1) {\n        T d = 1;\n        rep (j, i, M) {\n   \
     \         g[j] += f[i] * Comb::perm(j, i) * d;\n            d *= c;\n        }\n\
-    \    }\n    return g;\n}\n"
+    \    }\n    return g;\n}\n\ntemplate<class T>\nstd::vector<T> exp_of_sps(const\
+    \ std::vector<T>& s) {\n    int n = s.size(), m = bitop::ceil_log2(n);\n    assert(s[0]\
+    \ == 0);\n    assert(n == (1 << m));\n    std::vector<T> a(1 << m, 1);\n    rrep\
+    \ (i, m) {\n        int j = m - i - 1;\n        std::vector<T> b(1 << j), c(1\
+    \ << j);\n        rep (k, 1 << j) b[k] = a[k];\n        rep (k, 1 << j) c[k] =\
+    \ s[k + (1 << j)];\n        std::vector<T> d = subset_convolution(b, c);\n   \
+    \     rep (k, 1 << j) a[k + (1 << j)] = d[k];\n    }\n    return a;\n}\n\ntemplate<class\
+    \ T, int L = 0>\nstd::vector<T> div_of_sps(const std::vector<T>& a, const std::vector<T>&\
+    \ b) {\n    if ((int)a.size() > (1 << L)) {\n        return div_of_sps<T, std::min<int>(L\
+    \ + 1, 30)>(a, b);\n    }\n    int n = a.size();\n    assert(b[0] == 1);\n   \
+    \ auto f = internal::ranked_zeta<T, L + 1>(a);\n    auto g = internal::ranked_zeta<T,\
+    \ L + 1>(b);\n    rep (i, n) {\n        rep (j, L + 1) {\n            rep (k,\
+    \ 1, L + 1 - j) f[i][j + k] -= f[i][j] * g[i][k];\n        }\n    }\n    return\
+    \ internal::ranked_moebius<T, L + 1>(f);\n}\n\ntemplate<class T>\nstd::vector<T>\
+    \ log_of_sps(std::vector<T> s) {\n    int n = s.size(), m = bitop::ceil_log2(n);\n\
+    \    assert(s[0] == 1);\n    assert(n == (1 << m));\n    std::vector<T> a(n);\n\
+    \    rep (i, m) {\n        std::vector<T> b(1 << i);\n        std::vector<T> c(1\
+    \ << i);\n        rep (j, 1 << i) b[j] = s[j + (1 << i)];\n        rep (j, 1 <<\
+    \ i) c[j] = s[j];\n        std::vector<T> d = div_of_sps(b, c);\n        rep (j,\
+    \ 1 << i) a[j + (1 << i)] = d[j];\n    }\n    return a;\n}\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Combinatorics.hpp\"\
-    \n#include \"../convolution/SubsetConvolution.hpp\"\n#include \"../poly/FormalPowerSeries.hpp\"\
+    \n#include \"../convolution/SubsetConvolution.hpp\"\n#include \"FormalPowerSeries.hpp\"\
     \n\ntemplate<class T, class Comb = Combinatorics<T>>\nstd::vector<T> fps_composite_of_sps(FormalPowerSeries<T>\
     \ f, std::vector<T> s) {\n    int n = s.size(), m = bitop::ceil_log2(n);\n   \
     \ assert(s[0] == 0);\n    assert(n == (1 << m));\n    f.resize(m + 1);\n    Comb::init(m\
@@ -989,20 +1012,13 @@ data:
     \ b(1 << j), c(1 << j);\n            rep (k, 1 << j) b[k] = a[k];\n          \
     \  rep (k, 1 << j) c[k] = s[k + (1 << j)];\n            std::vector<T> d = subset_convolution(b,\
     \ c);\n            rep (k, 1 << j) a[k + (1 << j)] = d[k];\n        }\n      \
-    \  a[0] = f[i];\n    }\n    return a;\n}\n\ntemplate<class T>\nstd::vector<T>\
-    \ exp_of_sps(std::vector<T> s) {\n    int n = s.size(), m = bitop::ceil_log2(n);\n\
-    \    assert(s[0] == 0);\n    assert(n == (1 << m));\n    std::vector<T> a(1 <<\
-    \ m, 1);\n    rrep (i, m) {\n        int j = m - i - 1;\n        std::vector<T>\
-    \ b(1 << j), c(1 << j);\n        rep (k, 1 << j) b[k] = a[k];\n        rep (k,\
-    \ 1 << j) c[k] = s[k + (1 << j)];\n        std::vector<T> d = subset_convolution(b,\
-    \ c);\n        rep (k, 1 << j) a[k + (1 << j)] = d[k];\n    }\n    return a;\n\
-    }\n\ntemplate<class T, class Comb = Combinatorics<T>>\nstd::vector<T> polynomial_composite_of_sps(FormalPowerSeries<T>\
-    \ f, std::vector<T> s) {\n    Comb::init(f.size());\n    int n = s.size(), m =\
-    \ bitop::ceil_log2(n);\n    FormalPowerSeries<T> g(m + 1);\n    T c = s[0];\n\
-    \    rep (i, m + 1) {\n        T d = 1;\n        rep (j, i, f.size()) {\n    \
-    \        g[i] += f[j] * Comb::comb(j, i) * d;\n            d *= c;\n        }\n\
-    \    }\n    s[0] = 0;\n    return fps_composite_of_sps(g, s);\n}\n\ntemplate<class\
-    \ T, class Comb = Combinatorics<T>>\nstd::vector<T> power_projection_of_sps(std::vector<T>\
+    \  a[0] = f[i];\n    }\n    return a;\n}\n\ntemplate<class T, class Comb = Combinatorics<T>>\n\
+    std::vector<T> polynomial_composite_of_sps(FormalPowerSeries<T> f, std::vector<T>\
+    \ s) {\n    Comb::init(f.size());\n    int n = s.size(), m = bitop::ceil_log2(n);\n\
+    \    FormalPowerSeries<T> g(m + 1);\n    T c = s[0];\n    rep (i, m + 1) {\n \
+    \       T d = 1;\n        rep (j, i, f.size()) {\n            g[i] += f[j] * Comb::comb(j,\
+    \ i) * d;\n            d *= c;\n        }\n    }\n    s[0] = 0;\n    return fps_composite_of_sps(g,\
+    \ s);\n}\n\ntemplate<class T, class Comb = Combinatorics<T>>\nstd::vector<T> power_projection_of_sps(std::vector<T>\
     \ s, std::vector<T> w, int M) {\n    int n = s.size(), m = bitop::ceil_log2(n);\n\
     \    assert(n == (1 << m));\n    assert(s.size() == w.size());\n    T c = s[0];\n\
     \    s[0] = 0;\n    FormalPowerSeries<T> f(m + 1);\n    rep (i, m) {\n       \
@@ -1014,7 +1030,26 @@ data:
     \ w = a;\n    }\n    f[m] = w[0];\n    Comb::init(M);\n    FormalPowerSeries<T>\
     \ g(M);\n    rep (i, m + 1) {\n        T d = 1;\n        rep (j, i, M) {\n   \
     \         g[j] += f[i] * Comb::perm(j, i) * d;\n            d *= c;\n        }\n\
-    \    }\n    return g;\n}\n"
+    \    }\n    return g;\n}\n\ntemplate<class T>\nstd::vector<T> exp_of_sps(const\
+    \ std::vector<T>& s) {\n    int n = s.size(), m = bitop::ceil_log2(n);\n    assert(s[0]\
+    \ == 0);\n    assert(n == (1 << m));\n    std::vector<T> a(1 << m, 1);\n    rrep\
+    \ (i, m) {\n        int j = m - i - 1;\n        std::vector<T> b(1 << j), c(1\
+    \ << j);\n        rep (k, 1 << j) b[k] = a[k];\n        rep (k, 1 << j) c[k] =\
+    \ s[k + (1 << j)];\n        std::vector<T> d = subset_convolution(b, c);\n   \
+    \     rep (k, 1 << j) a[k + (1 << j)] = d[k];\n    }\n    return a;\n}\n\ntemplate<class\
+    \ T, int L = 0>\nstd::vector<T> div_of_sps(const std::vector<T>& a, const std::vector<T>&\
+    \ b) {\n    if ((int)a.size() > (1 << L)) {\n        return div_of_sps<T, std::min<int>(L\
+    \ + 1, 30)>(a, b);\n    }\n    int n = a.size();\n    assert(b[0] == 1);\n   \
+    \ auto f = internal::ranked_zeta<T, L + 1>(a);\n    auto g = internal::ranked_zeta<T,\
+    \ L + 1>(b);\n    rep (i, n) {\n        rep (j, L + 1) {\n            rep (k,\
+    \ 1, L + 1 - j) f[i][j + k] -= f[i][j] * g[i][k];\n        }\n    }\n    return\
+    \ internal::ranked_moebius<T, L + 1>(f);\n}\n\ntemplate<class T>\nstd::vector<T>\
+    \ log_of_sps(std::vector<T> s) {\n    int n = s.size(), m = bitop::ceil_log2(n);\n\
+    \    assert(s[0] == 1);\n    assert(n == (1 << m));\n    std::vector<T> a(n);\n\
+    \    rep (i, m) {\n        std::vector<T> b(1 << i);\n        std::vector<T> c(1\
+    \ << i);\n        rep (j, 1 << i) b[j] = s[j + (1 << i)];\n        rep (j, 1 <<\
+    \ i) c[j] = s[j];\n        std::vector<T> d = div_of_sps(b, c);\n        rep (j,\
+    \ 1 << i) a[j + (1 << i)] = d[j];\n    }\n    return a;\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -1031,18 +1066,19 @@ data:
   - math/poly/FormalPowerSeries.hpp
   - math/convolution/Convolution.hpp
   isVerificationFile: false
-  path: math/sps/Composite.hpp
+  path: math/poly/SetPowerSeries.hpp
   requiredBy: []
-  timestamp: '2026-09-16 19:56:57+09:00'
+  timestamp: '2026-09-16 22:06:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/new/log_of_set_power_series.test.cpp
   - test/yosupo/set_power_series/polynomial_composite_set_power_series.test.cpp
   - test/yosupo/set_power_series/power_projection_of_set_power_series.test.cpp
   - test/yosupo/set_power_series/exp_of_set_power_series.test.cpp
-documentation_of: math/sps/Composite.hpp
+documentation_of: math/poly/SetPowerSeries.hpp
 layout: document
 redirect_from:
-- /library/math/sps/Composite.hpp
-- /library/math/sps/Composite.hpp.html
-title: math/sps/Composite.hpp
+- /library/math/poly/SetPowerSeries.hpp
+- /library/math/poly/SetPowerSeries.hpp.html
+title: math/poly/SetPowerSeries.hpp
 ---

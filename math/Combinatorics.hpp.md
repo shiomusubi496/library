@@ -76,6 +76,9 @@ data:
     path: math/poly/SamplingPointsShift.hpp
     title: "SamplingPointsShift(\u6A19\u672C\u70B9\u30B7\u30D5\u30C8)"
   - icon: ':heavy_check_mark:'
+    path: math/poly/SetPowerSeries.hpp
+    title: math/poly/SetPowerSeries.hpp
+  - icon: ':heavy_check_mark:'
     path: math/poly/SparseFormalPowerSeries.hpp
     title: "SparseFormalPowerSeries(\u758E\u306A\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570\
       )"
@@ -85,9 +88,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/poly/TaylorShift.hpp
     title: TaylorShift
-  - icon: ':heavy_check_mark:'
-    path: math/sps/Composite.hpp
-    title: math/sps/Composite.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_B.test.cpp
@@ -137,6 +137,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/counting_eulerian_circuits.test.cpp
     title: test/yosupo/graph/counting_eulerian_circuits.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/log_of_set_power_series.test.cpp
+    title: test/yosupo/new/log_of_set_power_series.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/bernoulli_number.test.cpp
     title: test/yosupo/number_theory/bernoulli_number.test.cpp
@@ -849,9 +852,9 @@ data:
   - math/poly/SparseFormalPowerSeries.hpp
   - math/poly/MultipointEvaluation.hpp
   - math/poly/TaylorShift.hpp
+  - math/poly/SetPowerSeries.hpp
   - math/poly/BostanMori.hpp
   - math/poly/Composite.hpp
-  - math/sps/Composite.hpp
   - graph/other/CountEulerianCircuit.hpp
   timestamp: '2026-09-12 14:55:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -891,6 +894,7 @@ data:
   - test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
   - test/yosupo/polynomial/inv_of_formal_power_series_sparse.test.cpp
   - test/yosupo/polynomial/exp_of_formal_power_series-RelaxedConvolution.test.cpp
+  - test/yosupo/new/log_of_set_power_series.test.cpp
   - test/yosupo/number_theory/bernoulli_number.test.cpp
   - test/yosupo/set_power_series/polynomial_composite_set_power_series.test.cpp
   - test/yosupo/set_power_series/power_projection_of_set_power_series.test.cpp
