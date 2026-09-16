@@ -565,43 +565,48 @@ data:
     \ {\n    using value_type = T;\n    static T op(T a, T b) { return gcd(a, b);\
     \ }\n    static T id() { return 0; }\n};\ntemplate<class T> struct LCM {\n   \
     \ using value_type = T;\n    static T op(T a, T b) { return lcm(a, b); }\n   \
-    \ static T id() { return 1; }\n};\n\ntemplate<class T> struct AddAssign {\n  \
-    \  using value_type = std::pair<bool, T>; // false: add, true: assign\n    static\
-    \ value_type op(const value_type& a, const value_type& b) {\n        if (b.first)\
+    \ static T id() { return 1; }\n};\n\ntemplate<class T> struct Majority {\n   \
+    \ using value_type = std::pair<T, int>;\n    static value_type id() { return {0,\
+    \ 0}; }\n    static value_type op(const value_type& a, const value_type& b) {\n\
+    \        if (a.first == b.first) return {a.first, a.second + b.second};\n    \
+    \    if (a.second > b.second) return {a.first, a.second - b.second};\n       \
+    \ return {b.first, b.second - a.second};\n    }\n};\n\ntemplate<class T> struct\
+    \ AddAssign {\n    using value_type = std::pair<bool, T>; // false: add, true:\
+    \ assign\n    static value_type op(const value_type& a, const value_type& b) {\n\
+    \        if (b.first) return b;\n        return {a.first, a.second + b.second};\n\
+    \    }\n    static value_type id() { return {false, T{0}}; }\n};\n\ntemplate<class\
+    \ T, T max_value = infinity<T>::max> struct MinCount {\n    using value_type =\
+    \ std::pair<T, ll>;\n    static value_type op(const value_type& a, const value_type&\
+    \ b) {\n        if (a.first < b.first) return a;\n        if (a.first > b.first)\
     \ return b;\n        return {a.first, a.second + b.second};\n    }\n    static\
-    \ value_type id() { return {false, T{0}}; }\n};\n\ntemplate<class T, T max_value\
-    \ = infinity<T>::max> struct MinCount {\n    using value_type = std::pair<T, ll>;\n\
-    \    static value_type op(const value_type& a, const value_type& b) {\n      \
-    \  if (a.first < b.first) return a;\n        if (a.first > b.first) return b;\n\
-    \        return {a.first, a.second + b.second};\n    }\n    static value_type\
-    \ id() { return {max_value, 0}; }\n};\n\n\ntemplate<class T> struct AffineSum\
-    \ {\n    using M = Sum<T>;\n    using E = Composite<T>;\n    using U = typename\
-    \ E::value_type;\n    static T mul_op(const U& a, int b, const T& c) {\n     \
-    \   return a.first * c + a.second * b;\n    }\n};\n\ntemplate<class T> struct\
-    \ AddAssignSum {\n    using M = Sum<T>;\n    using E = AddAssign<T>;\n    using\
-    \ U = typename E::value_type;\n    static T mul_op(const U& a, int b, const T&\
-    \ c) {\n        if (a.first) return a.second * b;\n        return c + a.second\
-    \ * b;\n    }\n};\n\ntemplate<class T> struct AddMinCount {\n    using M = MinCount<T>;\n\
-    \    using E = Sum<T>;\n    using U = typename M::value_type;\n    static U op(const\
-    \ T& a, const U& b) { return {a + b.first, b.second}; }\n};\n\n} // namespace\
-    \ Monoid\n#line 2 \"math/convolution/HadamardTransform.hpp\"\n\n#line 4 \"math/convolution/HadamardTransform.hpp\"\
-    \n\ntemplate<class Sum>\nvoid hadamard_transform(std::vector<typename Sum::value_type>&\
-    \ v) {\n    const int n = v.size();\n    for (ll i = 1; i < n; i <<= 1) {\n  \
-    \      rep (j, n) {\n            if (i & ~j) {\n                auto x = v[j],\
-    \ y = v[j | i];\n                v[j] = Sum::op(x, y);\n                v[j |\
-    \ i] = Sum::inv(x, y);\n            }\n        }\n    }\n}\n\ntemplate<class Sum>\n\
-    void inv_hadamard_transform(std::vector<typename Sum::value_type>& v) {\n    const\
-    \ int n = v.size();\n    hadamard_transform<Sum>(v);\n    for (auto&& x : v) x\
-    \ /= n;\n}\n\n/**\n * @brief HadmardTransform\n * @docs docs/math/convolution/HadamardTransform.md\n\
-    \ */\n#line 7 \"math/convolution/BitwiseXorConvolution.hpp\"\n\ntemplate<class\
-    \ T, class Sum = Monoid::Sum<T>, class Prod = Monoid::Product<T>>\nstd::vector<T>\
-    \ bitwise_xor_convolution(std::vector<T> a, std::vector<T> b) {\n    static_assert(std::is_same<typename\
-    \ Sum::value_type, T>::value,\n                  \"Sum::value_type must be T\"\
-    );\n    static_assert(std::is_same<typename Prod::value_type, T>::value,\n   \
-    \               \"Prod::value_type must be T\");\n    hadamard_transform<Sum>(a);\n\
-    \    hadamard_transform<Sum>(b);\n    rep (i, a.size()) a[i] = Prod::op(a[i],\
-    \ b[i]);\n    inv_hadamard_transform<Sum>(a);\n    return a;\n}\n\n/**\n * @brief\
-    \ BitwiseXorConvolution\n * @docs docs/math/convolution/BitwiseXorConvolution.md\n\
+    \ value_type id() { return {max_value, 0}; }\n};\n\n\ntemplate<class T> struct\
+    \ AffineSum {\n    using M = Sum<T>;\n    using E = Composite<T>;\n    using U\
+    \ = typename E::value_type;\n    static T mul_op(const U& a, int b, const T& c)\
+    \ {\n        return a.first * c + a.second * b;\n    }\n};\n\ntemplate<class T>\
+    \ struct AddAssignSum {\n    using M = Sum<T>;\n    using E = AddAssign<T>;\n\
+    \    using U = typename E::value_type;\n    static T mul_op(const U& a, int b,\
+    \ const T& c) {\n        if (a.first) return a.second * b;\n        return c +\
+    \ a.second * b;\n    }\n};\n\ntemplate<class T> struct AddMinCount {\n    using\
+    \ M = MinCount<T>;\n    using E = Sum<T>;\n    using U = typename M::value_type;\n\
+    \    static U op(const T& a, const U& b) { return {a + b.first, b.second}; }\n\
+    };\n\n} // namespace Monoid\n#line 2 \"math/convolution/HadamardTransform.hpp\"\
+    \n\n#line 4 \"math/convolution/HadamardTransform.hpp\"\n\ntemplate<class Sum>\n\
+    void hadamard_transform(std::vector<typename Sum::value_type>& v) {\n    const\
+    \ int n = v.size();\n    for (ll i = 1; i < n; i <<= 1) {\n        rep (j, n)\
+    \ {\n            if (i & ~j) {\n                auto x = v[j], y = v[j | i];\n\
+    \                v[j] = Sum::op(x, y);\n                v[j | i] = Sum::inv(x,\
+    \ y);\n            }\n        }\n    }\n}\n\ntemplate<class Sum>\nvoid inv_hadamard_transform(std::vector<typename\
+    \ Sum::value_type>& v) {\n    const int n = v.size();\n    hadamard_transform<Sum>(v);\n\
+    \    for (auto&& x : v) x /= n;\n}\n\n/**\n * @brief HadmardTransform\n * @docs\
+    \ docs/math/convolution/HadamardTransform.md\n */\n#line 7 \"math/convolution/BitwiseXorConvolution.hpp\"\
+    \n\ntemplate<class T, class Sum = Monoid::Sum<T>, class Prod = Monoid::Product<T>>\n\
+    std::vector<T> bitwise_xor_convolution(std::vector<T> a, std::vector<T> b) {\n\
+    \    static_assert(std::is_same<typename Sum::value_type, T>::value,\n       \
+    \           \"Sum::value_type must be T\");\n    static_assert(std::is_same<typename\
+    \ Prod::value_type, T>::value,\n                  \"Prod::value_type must be T\"\
+    );\n    hadamard_transform<Sum>(a);\n    hadamard_transform<Sum>(b);\n    rep\
+    \ (i, a.size()) a[i] = Prod::op(a[i], b[i]);\n    inv_hadamard_transform<Sum>(a);\n\
+    \    return a;\n}\n\n/**\n * @brief BitwiseXorConvolution\n * @docs docs/math/convolution/BitwiseXorConvolution.md\n\
     \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\
     \n#include \"../../other/monoid2.hpp\"\n#include \"HadamardTransform.hpp\"\n\n\
@@ -630,7 +635,7 @@ data:
   isVerificationFile: false
   path: math/convolution/BitwiseXorConvolution.hpp
   requiredBy: []
-  timestamp: '2026-09-12 01:05:48+09:00'
+  timestamp: '2026-09-16 15:15:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/convolution/bitwise_xor_convolution.test.cpp

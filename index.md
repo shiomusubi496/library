@@ -1300,6 +1300,9 @@ data:
   - name: test/yosupo/new
     pages:
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/new/majority_voting.test.cpp
+      title: test/yosupo/new/majority_voting.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/new/minimum_steiner_tree.test.cpp
       title: test/yosupo/new/minimum_steiner_tree.test.cpp
     - icon: ':heavy_check_mark:'

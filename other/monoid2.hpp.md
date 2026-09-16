@@ -100,6 +100,9 @@ data:
     path: test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
     title: test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/majority_voting.test.cpp
+    title: test/yosupo/new/majority_voting.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/discrete_logarithm_mod.test.cpp
     title: test/yosupo/number_theory/discrete_logarithm_mod.test.cpp
   - icon: ':heavy_check_mark:'
@@ -628,19 +631,24 @@ data:
     \ T op(T a, T b) { return gcd(a, b); }\n    static T id() { return 0; }\n};\n\
     template<class T> struct LCM {\n    using value_type = T;\n    static T op(T a,\
     \ T b) { return lcm(a, b); }\n    static T id() { return 1; }\n};\n\ntemplate<class\
-    \ T> struct AddAssign {\n    using value_type = std::pair<bool, T>; // false:\
-    \ add, true: assign\n    static value_type op(const value_type& a, const value_type&\
-    \ b) {\n        if (b.first) return b;\n        return {a.first, a.second + b.second};\n\
-    \    }\n    static value_type id() { return {false, T{0}}; }\n};\n\ntemplate<class\
-    \ T, T max_value = infinity<T>::max> struct MinCount {\n    using value_type =\
-    \ std::pair<T, ll>;\n    static value_type op(const value_type& a, const value_type&\
-    \ b) {\n        if (a.first < b.first) return a;\n        if (a.first > b.first)\
-    \ return b;\n        return {a.first, a.second + b.second};\n    }\n    static\
-    \ value_type id() { return {max_value, 0}; }\n};\n\n\ntemplate<class T> struct\
-    \ AffineSum {\n    using M = Sum<T>;\n    using E = Composite<T>;\n    using U\
-    \ = typename E::value_type;\n    static T mul_op(const U& a, int b, const T& c)\
-    \ {\n        return a.first * c + a.second * b;\n    }\n};\n\ntemplate<class T>\
-    \ struct AddAssignSum {\n    using M = Sum<T>;\n    using E = AddAssign<T>;\n\
+    \ T> struct Majority {\n    using value_type = std::pair<T, int>;\n    static\
+    \ value_type id() { return {0, 0}; }\n    static value_type op(const value_type&\
+    \ a, const value_type& b) {\n        if (a.first == b.first) return {a.first,\
+    \ a.second + b.second};\n        if (a.second > b.second) return {a.first, a.second\
+    \ - b.second};\n        return {b.first, b.second - a.second};\n    }\n};\n\n\
+    template<class T> struct AddAssign {\n    using value_type = std::pair<bool, T>;\
+    \ // false: add, true: assign\n    static value_type op(const value_type& a, const\
+    \ value_type& b) {\n        if (b.first) return b;\n        return {a.first, a.second\
+    \ + b.second};\n    }\n    static value_type id() { return {false, T{0}}; }\n\
+    };\n\ntemplate<class T, T max_value = infinity<T>::max> struct MinCount {\n  \
+    \  using value_type = std::pair<T, ll>;\n    static value_type op(const value_type&\
+    \ a, const value_type& b) {\n        if (a.first < b.first) return a;\n      \
+    \  if (a.first > b.first) return b;\n        return {a.first, a.second + b.second};\n\
+    \    }\n    static value_type id() { return {max_value, 0}; }\n};\n\n\ntemplate<class\
+    \ T> struct AffineSum {\n    using M = Sum<T>;\n    using E = Composite<T>;\n\
+    \    using U = typename E::value_type;\n    static T mul_op(const U& a, int b,\
+    \ const T& c) {\n        return a.first * c + a.second * b;\n    }\n};\n\ntemplate<class\
+    \ T> struct AddAssignSum {\n    using M = Sum<T>;\n    using E = AddAssign<T>;\n\
     \    using U = typename E::value_type;\n    static T mul_op(const U& a, int b,\
     \ const T& c) {\n        if (a.first) return a.second * b;\n        return c +\
     \ a.second * b;\n    }\n};\n\ntemplate<class T> struct AddMinCount {\n    using\
@@ -662,19 +670,24 @@ data:
     \ T op(T a, T b) { return gcd(a, b); }\n    static T id() { return 0; }\n};\n\
     template<class T> struct LCM {\n    using value_type = T;\n    static T op(T a,\
     \ T b) { return lcm(a, b); }\n    static T id() { return 1; }\n};\n\ntemplate<class\
-    \ T> struct AddAssign {\n    using value_type = std::pair<bool, T>; // false:\
-    \ add, true: assign\n    static value_type op(const value_type& a, const value_type&\
-    \ b) {\n        if (b.first) return b;\n        return {a.first, a.second + b.second};\n\
-    \    }\n    static value_type id() { return {false, T{0}}; }\n};\n\ntemplate<class\
-    \ T, T max_value = infinity<T>::max> struct MinCount {\n    using value_type =\
-    \ std::pair<T, ll>;\n    static value_type op(const value_type& a, const value_type&\
-    \ b) {\n        if (a.first < b.first) return a;\n        if (a.first > b.first)\
-    \ return b;\n        return {a.first, a.second + b.second};\n    }\n    static\
-    \ value_type id() { return {max_value, 0}; }\n};\n\n\ntemplate<class T> struct\
-    \ AffineSum {\n    using M = Sum<T>;\n    using E = Composite<T>;\n    using U\
-    \ = typename E::value_type;\n    static T mul_op(const U& a, int b, const T& c)\
-    \ {\n        return a.first * c + a.second * b;\n    }\n};\n\ntemplate<class T>\
-    \ struct AddAssignSum {\n    using M = Sum<T>;\n    using E = AddAssign<T>;\n\
+    \ T> struct Majority {\n    using value_type = std::pair<T, int>;\n    static\
+    \ value_type id() { return {0, 0}; }\n    static value_type op(const value_type&\
+    \ a, const value_type& b) {\n        if (a.first == b.first) return {a.first,\
+    \ a.second + b.second};\n        if (a.second > b.second) return {a.first, a.second\
+    \ - b.second};\n        return {b.first, b.second - a.second};\n    }\n};\n\n\
+    template<class T> struct AddAssign {\n    using value_type = std::pair<bool, T>;\
+    \ // false: add, true: assign\n    static value_type op(const value_type& a, const\
+    \ value_type& b) {\n        if (b.first) return b;\n        return {a.first, a.second\
+    \ + b.second};\n    }\n    static value_type id() { return {false, T{0}}; }\n\
+    };\n\ntemplate<class T, T max_value = infinity<T>::max> struct MinCount {\n  \
+    \  using value_type = std::pair<T, ll>;\n    static value_type op(const value_type&\
+    \ a, const value_type& b) {\n        if (a.first < b.first) return a;\n      \
+    \  if (a.first > b.first) return b;\n        return {a.first, a.second + b.second};\n\
+    \    }\n    static value_type id() { return {max_value, 0}; }\n};\n\n\ntemplate<class\
+    \ T> struct AffineSum {\n    using M = Sum<T>;\n    using E = Composite<T>;\n\
+    \    using U = typename E::value_type;\n    static T mul_op(const U& a, int b,\
+    \ const T& c) {\n        return a.first * c + a.second * b;\n    }\n};\n\ntemplate<class\
+    \ T> struct AddAssignSum {\n    using M = Sum<T>;\n    using E = AddAssign<T>;\n\
     \    using U = typename E::value_type;\n    static T mul_op(const U& a, int b,\
     \ const T& c) {\n        if (a.first) return a.second * b;\n        return c +\
     \ a.second * b;\n    }\n};\n\ntemplate<class T> struct AddMinCount {\n    using\
@@ -701,7 +714,7 @@ data:
   - math/convolution/BitwiseOrConvolution.hpp
   - math/convolution/BitwiseAndConvolution.hpp
   - math/DiscreteLogarithm.hpp
-  timestamp: '2026-09-12 01:05:48+09:00'
+  timestamp: '2026-09-16 15:15:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/convolution/lcm_convolution.test.cpp
@@ -709,6 +722,7 @@ data:
   - test/yosupo/convolution/gcd_convolution.test.cpp
   - test/yosupo/convolution/bitwise_xor_convolution.test.cpp
   - test/yosupo/convolution/bitwise_and_convolution.test.cpp
+  - test/yosupo/new/majority_voting.test.cpp
   - test/yosupo/number_theory/discrete_logarithm_mod.test.cpp
   - test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
   - test/yosupo/data_structure/deque_operate_all_composite.test.cpp

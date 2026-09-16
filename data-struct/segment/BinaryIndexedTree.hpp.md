@@ -70,6 +70,9 @@ data:
     path: test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
     title: test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/majority_voting.test.cpp
+    title: test/yosupo/new/majority_voting.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
     title: test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
   - icon: ':heavy_check_mark:'
@@ -667,6 +670,7 @@ data:
   timestamp: '2026-09-12 01:05:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/new/majority_voting.test.cpp
   - test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
   - test/yosupo/data_structure/static_range_inversions_query.test.cpp
   - test/yosupo/data_structure/static_range_count_distinct.test.cpp

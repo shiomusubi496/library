@@ -1200,6 +1200,9 @@ data:
     path: test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
     title: test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/majority_voting.test.cpp
+    title: test/yosupo/new/majority_voting.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/minimum_steiner_tree.test.cpp
     title: test/yosupo/new/minimum_steiner_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1817,6 +1820,7 @@ data:
   - test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
   - test/yosupo/polynomial/inv_of_formal_power_series_sparse.test.cpp
   - test/yosupo/polynomial/exp_of_formal_power_series-RelaxedConvolution.test.cpp
+  - test/yosupo/new/majority_voting.test.cpp
   - test/yosupo/new/range_add_range_min.test.cpp
   - test/yosupo/new/minimum_steiner_tree.test.cpp
   - test/yosupo/new/static_range_sum_with_upper_bound.test.cpp

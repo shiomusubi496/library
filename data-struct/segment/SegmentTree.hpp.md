@@ -82,6 +82,9 @@ data:
     path: test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
     title: test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/majority_voting.test.cpp
+    title: test/yosupo/new/majority_voting.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/vertex_add_path_sum.test.cpp
     title: test/yosupo/tree/vertex_add_path_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -714,6 +717,7 @@ data:
   timestamp: '2026-09-12 14:55:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/new/majority_voting.test.cpp
   - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
   - test/yosupo/data_structure/point_add_rectangle_sum-WM.test.cpp
   - test/yosupo/data_structure/point_add_rectangle_sum-2DSegTree.test.cpp

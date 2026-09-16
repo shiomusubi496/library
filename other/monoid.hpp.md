@@ -342,6 +342,9 @@ data:
     path: test/yosupo/graph/directedmst.test.cpp
     title: test/yosupo/graph/directedmst.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/majority_voting.test.cpp
+    title: test/yosupo/new/majority_voting.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/range_add_range_min.test.cpp
     title: test/yosupo/new/range_add_range_min.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1058,6 +1061,7 @@ data:
   - test/yosupo/convolution/gcd_convolution.test.cpp
   - test/yosupo/convolution/bitwise_xor_convolution.test.cpp
   - test/yosupo/convolution/bitwise_and_convolution.test.cpp
+  - test/yosupo/new/majority_voting.test.cpp
   - test/yosupo/new/range_add_range_min.test.cpp
   - test/yosupo/new/static_range_sum_with_upper_bound.test.cpp
   - test/yosupo/number_theory/discrete_logarithm_mod.test.cpp

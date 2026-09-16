@@ -571,27 +571,32 @@ data:
     \ {\n    using value_type = T;\n    static T op(T a, T b) { return gcd(a, b);\
     \ }\n    static T id() { return 0; }\n};\ntemplate<class T> struct LCM {\n   \
     \ using value_type = T;\n    static T op(T a, T b) { return lcm(a, b); }\n   \
-    \ static T id() { return 1; }\n};\n\ntemplate<class T> struct AddAssign {\n  \
-    \  using value_type = std::pair<bool, T>; // false: add, true: assign\n    static\
-    \ value_type op(const value_type& a, const value_type& b) {\n        if (b.first)\
+    \ static T id() { return 1; }\n};\n\ntemplate<class T> struct Majority {\n   \
+    \ using value_type = std::pair<T, int>;\n    static value_type id() { return {0,\
+    \ 0}; }\n    static value_type op(const value_type& a, const value_type& b) {\n\
+    \        if (a.first == b.first) return {a.first, a.second + b.second};\n    \
+    \    if (a.second > b.second) return {a.first, a.second - b.second};\n       \
+    \ return {b.first, b.second - a.second};\n    }\n};\n\ntemplate<class T> struct\
+    \ AddAssign {\n    using value_type = std::pair<bool, T>; // false: add, true:\
+    \ assign\n    static value_type op(const value_type& a, const value_type& b) {\n\
+    \        if (b.first) return b;\n        return {a.first, a.second + b.second};\n\
+    \    }\n    static value_type id() { return {false, T{0}}; }\n};\n\ntemplate<class\
+    \ T, T max_value = infinity<T>::max> struct MinCount {\n    using value_type =\
+    \ std::pair<T, ll>;\n    static value_type op(const value_type& a, const value_type&\
+    \ b) {\n        if (a.first < b.first) return a;\n        if (a.first > b.first)\
     \ return b;\n        return {a.first, a.second + b.second};\n    }\n    static\
-    \ value_type id() { return {false, T{0}}; }\n};\n\ntemplate<class T, T max_value\
-    \ = infinity<T>::max> struct MinCount {\n    using value_type = std::pair<T, ll>;\n\
-    \    static value_type op(const value_type& a, const value_type& b) {\n      \
-    \  if (a.first < b.first) return a;\n        if (a.first > b.first) return b;\n\
-    \        return {a.first, a.second + b.second};\n    }\n    static value_type\
-    \ id() { return {max_value, 0}; }\n};\n\n\ntemplate<class T> struct AffineSum\
-    \ {\n    using M = Sum<T>;\n    using E = Composite<T>;\n    using U = typename\
-    \ E::value_type;\n    static T mul_op(const U& a, int b, const T& c) {\n     \
-    \   return a.first * c + a.second * b;\n    }\n};\n\ntemplate<class T> struct\
-    \ AddAssignSum {\n    using M = Sum<T>;\n    using E = AddAssign<T>;\n    using\
-    \ U = typename E::value_type;\n    static T mul_op(const U& a, int b, const T&\
-    \ c) {\n        if (a.first) return a.second * b;\n        return c + a.second\
-    \ * b;\n    }\n};\n\ntemplate<class T> struct AddMinCount {\n    using M = MinCount<T>;\n\
-    \    using E = Sum<T>;\n    using U = typename M::value_type;\n    static U op(const\
-    \ T& a, const U& b) { return {a + b.first, b.second}; }\n};\n\n} // namespace\
-    \ Monoid\n#line 2 \"math/ModInt.hpp\"\n\n#line 4 \"math/ModInt.hpp\"\n\ntemplate<class\
-    \ T, T mod> class StaticModInt {\n    static_assert(std::is_integral<T>::value,\
+    \ value_type id() { return {max_value, 0}; }\n};\n\n\ntemplate<class T> struct\
+    \ AffineSum {\n    using M = Sum<T>;\n    using E = Composite<T>;\n    using U\
+    \ = typename E::value_type;\n    static T mul_op(const U& a, int b, const T& c)\
+    \ {\n        return a.first * c + a.second * b;\n    }\n};\n\ntemplate<class T>\
+    \ struct AddAssignSum {\n    using M = Sum<T>;\n    using E = AddAssign<T>;\n\
+    \    using U = typename E::value_type;\n    static T mul_op(const U& a, int b,\
+    \ const T& c) {\n        if (a.first) return a.second * b;\n        return c +\
+    \ a.second * b;\n    }\n};\n\ntemplate<class T> struct AddMinCount {\n    using\
+    \ M = MinCount<T>;\n    using E = Sum<T>;\n    using U = typename M::value_type;\n\
+    \    static U op(const T& a, const U& b) { return {a + b.first, b.second}; }\n\
+    };\n\n} // namespace Monoid\n#line 2 \"math/ModInt.hpp\"\n\n#line 4 \"math/ModInt.hpp\"\
+    \n\ntemplate<class T, T mod> class StaticModInt {\n    static_assert(std::is_integral<T>::value,\
     \ \"T must be integral\");\n    static_assert(std::is_unsigned<T>::value, \"T\
     \ must be unsigned\");\n    static_assert(mod > 0, \"mod must be positive\");\n\
     \    static_assert(mod <= std::numeric_limits<T>::max() / 2,\n               \
@@ -766,7 +771,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
   requiredBy: []
-  timestamp: '2026-09-12 01:07:36+09:00'
+  timestamp: '2026-09-16 15:15:33+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
