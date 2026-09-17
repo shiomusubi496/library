@@ -2,18 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: graph/Graph.hpp
-    title: Graph-template
-  - icon: ':heavy_check_mark:'
-    path: graph/connected/TwoEdgeConnectedComponents.hpp
-    title: "TwoEdgeConnectedComponents(\u4E8C\u8FBA\u9023\u7D50\u6210\u5206\u5206\u89E3\
-      )"
-  - icon: ':heavy_check_mark:'
-    path: graph/other/LowLink.hpp
-    title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
-  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
+  - icon: ':heavy_check_mark:'
+    path: string/ZAlgorithm.hpp
+    title: Z-Algorithm
   - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
@@ -41,57 +34,52 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _pathExtension: hpp
+  _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/two_edge_connected_components
-    links:
-    - https://judge.yosupo.jp/problem/two_edge_connected_components
-  bundledCode: "#line 1 \"test/yosupo/graph/two_edge_connected_components.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/two_edge_connected_components\"\
-    \n#line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
-    \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
-    \ __LINE__\n#endif\n\n#define OVERLOAD5(a, b, c, d, e, ...) e\n#define REP1_0(b,\
-    \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
-    \                     \\\n    for (ll REP_COUNTER_##c = 0; REP_COUNTER_##c < (ll)(b);\
-    \ ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define REP2(i,\
-    \ b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i = (ll)(a);\
-    \ i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b);\
-    \ i += (ll)(c))\n#define rep(...) OVERLOAD5(__VA_ARGS__, REP4, REP3, REP2, REP1)(__VA_ARGS__)\n\
-    #define RREP2(i, a) for (ll i = (ll)(a)-1; i >= 0; --i)\n#define RREP3(i, a, b)\
-    \ for (ll i = (ll)(b)-1; i >= (ll)(a); --i)\n#define RREP4(i, a, b, c) for (ll\
-    \ i = (ll)(b)-1; i >= (ll)(a); i -= (ll)(c))\n#define rrep(...) OVERLOAD5(__VA_ARGS__,\
-    \ RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define REPS2(i, b) for (ll i = 1; i <= (ll)(b);\
-    \ ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define\
-    \ REPS4(i, a, b, c) for (ll i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define\
-    \ reps(...) OVERLOAD5(__VA_ARGS__, REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define\
-    \ RREPS2(i, a) for (ll i = (ll)(a); i > 0; --i)\n#define RREPS3(i, a, b) for (ll\
-    \ i = (ll)(b); i > (ll)(a); --i)\n#define RREPS4(i, a, b, c) for (ll i = (ll)(b);\
-    \ i > (ll)(a); i -= (ll)(c))\n#define rreps(...) OVERLOAD5(__VA_ARGS__, RREPS4,\
-    \ RREPS3, RREPS2)(__VA_ARGS__)\n\n#define each_for(...) for (auto&& __VA_ARGS__)\n\
-    #define each_const(...) for (const auto& __VA_ARGS__)\n\n#define all(v) std::begin(v),\
-    \ std::end(v)\n#define rall(v) std::rbegin(v), std::rend(v)\n\n#if __cpp_if_constexpr\
-    \ >= 201606L\n#define IF_CONSTEXPR constexpr\n#else\n#define IF_CONSTEXPR\n#endif\n\
-    \n#define IO_BUFFER_SIZE (1 << 17)\n#line 2 \"template/alias.hpp\"\n\n#line 4\
-    \ \"template/alias.hpp\"\n\nusing ll = long long;\nusing uint = unsigned int;\n\
-    using ull = unsigned long long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\
-    using ld = long double;\nusing PLL = std::pair<ll, ll>;\ntemplate<class T>\nusing\
-    \ prique = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\ntemplate<class\
-    \ T> struct infinity {\n    static constexpr T value = std::numeric_limits<T>::max()\
-    \ / 2;\n    static constexpr T mvalue = std::numeric_limits<T>::lowest() / 2;\n\
-    \    static constexpr T max = std::numeric_limits<T>::max();\n    static constexpr\
-    \ T min = std::numeric_limits<T>::lowest();\n};\n\n#if __cplusplus <= 201402L\n\
-    template<class T> constexpr T infinity<T>::value;\ntemplate<class T> constexpr\
-    \ T infinity<T>::mvalue;\ntemplate<class T> constexpr T infinity<T>::max;\ntemplate<class\
-    \ T> constexpr T infinity<T>::min;\n#endif\n\n#if __cpp_variable_templates >=\
-    \ 201304L\ntemplate<class T> constexpr T INF = infinity<T>::value;\n#endif\n\n\
-    constexpr ll inf = infinity<ll>::value;\nconstexpr ld EPS = 1e-8;\nconstexpr ld\
-    \ PI = 3.1415926535897932384626;\n#line 2 \"template/type_traits.hpp\"\n\n#line\
-    \ 5 \"template/type_traits.hpp\"\n\ntemplate<class T, class... Args> struct function_traits_impl\
-    \ {\n    using result_type = T;\n    template<std::size_t idx>\n    using argument_type\
-    \ =\n        typename std::tuple_element<idx, std::tuple<Args...>>::type;\n  \
-    \  using argument_tuple = std::tuple<Args...>;\n    static constexpr std::size_t\
+    links: []
+  bundledCode: "#line 2 \"string/StringSort.hpp\"\n\n#line 2 \"other/template.hpp\"\
+    \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
+    \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define OVERLOAD5(a,\
+    \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
+    \                                                           \\\n    for (ll REP_COUNTER_##c\
+    \ = 0; REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b,\
+    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
+    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
+    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) OVERLOAD5(__VA_ARGS__,\
+    \ REP4, REP3, REP2, REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1;\
+    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(b)-1; i >= (ll)(a); --i)\n\
+    #define RREP4(i, a, b, c) for (ll i = (ll)(b)-1; i >= (ll)(a); i -= (ll)(c))\n\
+    #define rrep(...) OVERLOAD5(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define\
+    \ REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b) for (ll\
+    \ i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll i = (ll)(a)\
+    \ + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) OVERLOAD5(__VA_ARGS__, REPS4,\
+    \ REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a); i > 0;\
+    \ --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(b); i > (ll)(a); --i)\n#define\
+    \ RREPS4(i, a, b, c) for (ll i = (ll)(b); i > (ll)(a); i -= (ll)(c))\n#define\
+    \ rreps(...) OVERLOAD5(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define\
+    \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
+    \ __VA_ARGS__)\n\n#define all(v) std::begin(v), std::end(v)\n#define rall(v) std::rbegin(v),\
+    \ std::rend(v)\n\n#if __cpp_if_constexpr >= 201606L\n#define IF_CONSTEXPR constexpr\n\
+    #else\n#define IF_CONSTEXPR\n#endif\n\n#define IO_BUFFER_SIZE (1 << 17)\n#line\
+    \ 2 \"template/alias.hpp\"\n\n#line 4 \"template/alias.hpp\"\n\nusing ll = long\
+    \ long;\nusing uint = unsigned int;\nusing ull = unsigned long long;\nusing i128\
+    \ = __int128_t;\nusing u128 = __uint128_t;\nusing ld = long double;\nusing PLL\
+    \ = std::pair<ll, ll>;\ntemplate<class T>\nusing prique = std::priority_queue<T,\
+    \ std::vector<T>, std::greater<T>>;\n\ntemplate<class T> struct infinity {\n \
+    \   static constexpr T value = std::numeric_limits<T>::max() / 2;\n    static\
+    \ constexpr T mvalue = std::numeric_limits<T>::lowest() / 2;\n    static constexpr\
+    \ T max = std::numeric_limits<T>::max();\n    static constexpr T min = std::numeric_limits<T>::lowest();\n\
+    };\n\n#if __cplusplus <= 201402L\ntemplate<class T> constexpr T infinity<T>::value;\n\
+    template<class T> constexpr T infinity<T>::mvalue;\ntemplate<class T> constexpr\
+    \ T infinity<T>::max;\ntemplate<class T> constexpr T infinity<T>::min;\n#endif\n\
+    \n#if __cpp_variable_templates >= 201304L\ntemplate<class T> constexpr T INF =\
+    \ infinity<T>::value;\n#endif\n\nconstexpr ll inf = infinity<ll>::value;\nconstexpr\
+    \ ld EPS = 1e-8;\nconstexpr ld PI = 3.1415926535897932384626;\n#line 2 \"template/type_traits.hpp\"\
+    \n\n#line 5 \"template/type_traits.hpp\"\n\ntemplate<class T, class... Args> struct\
+    \ function_traits_impl {\n    using result_type = T;\n    template<std::size_t\
+    \ idx>\n    using argument_type =\n        typename std::tuple_element<idx, std::tuple<Args...>>::type;\n\
+    \    using argument_tuple = std::tuple<Args...>;\n    static constexpr std::size_t\
     \ arg_size() { return sizeof...(Args); }\n};\n\ntemplate<class> struct function_traits_helper;\n\
     \ntemplate<class Res, class Tp, class... Args>\nstruct function_traits_helper<Res\
     \ (Tp::*)(Args...)> {\n    using type = function_traits_impl<Res, Args...>;\n\
@@ -460,100 +448,44 @@ data:
     \        return res;\n    }\n    void press(std::vector<T>& vec) const {\n   \
     \     assert(sorted);\n        for (auto&& i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
-    };\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class\
-    \ T = int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
-    \ : from(-1), to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1)\n\
-    \        : from(f), to(t), cost(c), idx(i) {}\n    edge(int f, int t, T&& c, int\
-    \ i = -1)\n        : from(f), to(t), cost(std::move(c)), idx(i) {}\n    operator\
-    \ int() const { return to; }\n    friend bool operator<(const edge<T>& lhs, const\
-    \ edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n    }\n    friend bool\
-    \ operator>(const edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost\
-    \ > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using Edges = std::vector<edge<T>>;\n\
-    template<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class\
-    \ T = int> class Graph : public std::vector<std::vector<edge<T>>> {\nprivate:\n\
-    \    using Base = std::vector<std::vector<edge<T>>>;\n\npublic:\n    int edge_id\
-    \ = 0;\n    using Base::Base;\n    int edge_size() const { return edge_id; }\n\
-    \    int add_edge(int a, int b, const T& c, bool is_directed = false) {\n    \
-    \    assert(0 <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
-    \        (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed)\
-    \ (*this)[b].emplace_back(b, a, c, edge_id);\n        return edge_id++;\n    }\n\
-    \    int add_edge(int a, int b, bool is_directed = false) {\n        assert(0\
-    \ <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
-    \        (*this)[a].emplace_back(a, b, 1, edge_id);\n        if (!is_directed)\
-    \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
-    };\n\ntemplate<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {\n    const\
-    \ int N = G.size();\n    auto res = make_vec<T>(N, N, infinity<T>::value);\n \
-    \   rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n        for (const auto& e :\
-    \ G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\ntemplate<class T>\
-    \ Edges<T> UndirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n\
-    \    const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n   \
-    \     for (const auto& e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\n\
-    template<class T> Edges<T> DirectedListToEdges(const Graph<T>& G) {\n    const\
-    \ int V = G.size();\n    const int E = std::accumulate(\n        all(G), 0, [](int\
-    \ a, const std::vector<edge<T>>& v) -> int {\n            return a + v.size();\n\
-    \        });\n    Edges<T> Ed(G.edge_size());\n    Ed.reserve(E);\n    rep (i,\
-    \ V) {\n        for (const auto& e : G[i]) {\n            if (Ed[e.idx] == -1)\
-    \ Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n    return\
-    \ Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n   \
-    \ const int V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n        for\
-    \ (const auto& e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from, e.cost,\
-    \ e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n    return res;\n\
-    }\n\n\nstruct unweighted_edge {\n    template<class... Args> unweighted_edge(const\
-    \ Args&...) {}\n    operator int() { return 1; }\n};\n\nusing UnweightedGraph\
-    \ = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n * @docs docs/graph/Graph.md\n\
-    \ */\n#line 2 \"graph/connected/TwoEdgeConnectedComponents.hpp\"\n\n#line 2 \"\
-    graph/other/LowLink.hpp\"\n\n#line 4 \"graph/other/LowLink.hpp\"\n\ntemplate<class\
-    \ T> class LowLink {\nprotected:\n    int n, cnt;\n    const Graph<T>& G;\n  \
-    \  std::vector<int> ord, low;\n    std::vector<int> aps;\n    Edges<T> brd;\n\
-    \    void dfs(int v, int p) {\n        low[v] = ord[v] = cnt++;\n        int deg\
-    \ = 0;\n        bool is_ap = false, mul = false;\n        for (const auto& e :\
-    \ G[v]) {\n            if (e.to == p && !mul) {\n                mul = true;\n\
-    \                continue;\n            }\n            if (ord[e.to] != -1) chmin(low[v],\
-    \ ord[e.to]);\n            else {\n                dfs(e.to, v);\n           \
-    \     chmin(low[v], low[e.to]);\n                if (p != -1 && ord[v] <= low[e.to])\
-    \ is_ap = true;\n                if (ord[v] < low[e.to]) brd.push_back(e);\n \
-    \               ++deg;\n            }\n        }\n        if (p == -1 && deg >\
-    \ 1) is_ap = true;\n        if (is_ap) aps.push_back(v);\n    }\n    void init()\
-    \ {\n        n = G.size();\n        ord.assign(n, -1);\n        low.assign(n,\
-    \ n + 1);\n        cnt = 0;\n        rep (i, n) {\n            if (ord[i] == -1)\
-    \ dfs(i, -1);\n        }\n    }\n\npublic:\n    LowLink(const Graph<T>& G) : G(G)\
-    \ { init(); }\n    const std::vector<int>& articulation_points() const& { return\
-    \ aps; }\n    std::vector<int> articulation_points() && { return std::move(aps);\
-    \ }\n    const Edges<T>& bridges() const& { return brd; }\n    Edges<T> bridges()\
-    \ && { return std::move(brd); }\n};\n\n/**\n * @brief Lowlink(\u95A2\u7BC0\u70B9\
-    \u30FB\u6A4B\u691C\u51FA)\n * @docs docs/graph/other/LowLink.md\n */\n#line 6\
-    \ \"graph/connected/TwoEdgeConnectedComponents.hpp\"\n\ntemplate<class T> class\
-    \ TwoEdgeConnectedComponents : public LowLink<T> {\nprivate:\n    int sz;\n  \
-    \  std::vector<int> cmp;\n    void dcmp(int v) {\n        for (const auto& e :\
-    \ this->G[v]) {\n            if (cmp[e.to] != -1) continue;\n            if (this->ord[v]\
-    \ < this->low[e.to] ||\n                this->ord[e.to] < this->low[v])\n    \
-    \            continue;\n            cmp[e.to] = cmp[v];\n            dcmp(e.to);\n\
-    \        }\n    }\n    void init() {\n        sz = 0;\n        cmp.assign(this->n,\
-    \ -1);\n        rep (i, this->n) {\n            if (cmp[i] == -1) {\n        \
-    \        cmp[i] = sz++;\n                dcmp(i);\n            }\n        }\n\
-    \    }\n\npublic:\n    TwoEdgeConnectedComponents(const Graph<T>& G) : LowLink<T>(G)\
-    \ { init(); }\n    int size() const { return sz; }\n    int operator[](int k)\
-    \ const { return cmp[k]; }\n    std::vector<std::vector<int>> groups() const {\n\
-    \        std::vector<std::vector<int>> res(sz);\n        rep (i, this->n) res[cmp[i]].push_back(i);\n\
-    \        return res;\n    }\n    Graph<T> tree() const {\n        Graph<T> res(sz);\n\
-    \        for (const auto& e : this->brd) {\n            res.add_edge(cmp[e.from],\
-    \ cmp[e.to], e.cost);\n        }\n        return res;\n    }\n};\n\n/**\n * @brief\
-    \ TwoEdgeConnectedComponents(\u4E8C\u8FBA\u9023\u7D50\u6210\u5206\u5206\u89E3\
-    )\n * @docs docs/graph/connected/TwoEdgeConnectedComponents.md\n */\n#line 5 \"\
-    test/yosupo/graph/two_edge_connected_components.test.cpp\"\nusing namespace std;\n\
-    int main() {\n    int N, M; scan >> N >> M;\n    Graph<int> G(N);\n    rep (M)\
-    \ {\n        int a, b; scan >> a >> b;\n        G.add_edge(a, b);\n    }\n   \
-    \ auto tecc = TwoEdgeConnectedComponents<int>(G).groups();\n    printer << tecc.size()\
-    \ << endl;\n    for (const auto& v : tecc) {\n        printer << v.size() << '\
-    \ ' << v << endl;\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/two_edge_connected_components\"\
-    \n#include \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\
-    \n#include \"../../../graph/connected/TwoEdgeConnectedComponents.hpp\"\nusing\
-    \ namespace std;\nint main() {\n    int N, M; scan >> N >> M;\n    Graph<int>\
-    \ G(N);\n    rep (M) {\n        int a, b; scan >> a >> b;\n        G.add_edge(a,\
-    \ b);\n    }\n    auto tecc = TwoEdgeConnectedComponents<int>(G).groups();\n \
-    \   printer << tecc.size() << endl;\n    for (const auto& v : tecc) {\n      \
-    \  printer << v.size() << ' ' << v << endl;\n    }\n}\n"
+    };\n#line 2 \"string/ZAlgorithm.hpp\"\n\n#line 4 \"string/ZAlgorithm.hpp\"\n\n\
+    template<class Cont, class Comp>\nstd::vector<int> ZAlgorithm(const Cont& str,\
+    \ const Comp& cmp) {\n    const int n = str.size();\n    std::vector<int> res(n);\n\
+    \    int frm = 0, lst = 0;\n    rep (i, 1, str.size()) {\n        int& cur = res[i];\n\
+    \        if (frm != 0) {\n            cur = std::max(std::min(res[i - frm], lst\
+    \ - (int)i), 0);\n        }\n        while (i + cur < n && cmp(str[i + cur], str[cur]))\
+    \ ++cur;\n        if (i + cur > lst) {\n            frm = i;\n            lst\
+    \ = i + cur;\n        }\n    }\n    res[0] = n;\n    return res;\n}\n\ntemplate<class\
+    \ Cont> std::vector<int> ZAlgorithm(const Cont& str) {\n    return ZAlgorithm(str,\
+    \ std::equal_to<typename Cont::value_type>());\n}\n\n/**\n * @brief Z-Algorithm\n\
+    \ * @docs docs/string/ZAlgorithm.md\n */\n#line 5 \"string/StringSort.hpp\"\n\n\
+    std::vector<int> string_sort(const std::vector<std::string>& A) {\n    const int\
+    \ n = A.size();\n    std::vector<std::vector<int>> Z(n);\n    rep (i, n) Z[i]\
+    \ = ZAlgorithm(A[i]);\n    std::vector<int> P(n);\n    std::iota(all(P), 0);\n\
+    \    sort(all(P), [&](int a, int b) {\n        int x = A[a].size(), y = A[b].size();\n\
+    \        if (x < y) {\n            rep (i, x) if (A[a][i] != A[b][i]) return A[a][i]\
+    \ < A[b][i];\n            int z = Z[b][x];\n            if (z < y - x) return\
+    \ A[b][z] < A[b][x + z];\n            rep (i, x) if (A[b][y - x + i] != A[a][i])\
+    \ return A[b][y - x + i] < A[a][i];\n            return false;\n        }\n  \
+    \      if (x > y) {\n            rep (i, y) if (A[a][i] != A[b][i]) return A[a][i]\
+    \ < A[b][i];\n            int z = Z[a][y];\n            if (z < x - y) return\
+    \ A[a][y + z] < A[a][z];\n            rep (i, y) if (A[b][i] != A[a][x - y + i])\
+    \ return A[b][i] < A[a][x - y + i];\n            return false;\n        }\n  \
+    \      return A[a] < A[b];\n    });\n    return P;\n}\n"
+  code: "#pragma once\n\n#include \"../other/template.hpp\"\n#include \"ZAlgorithm.hpp\"\
+    \n\nstd::vector<int> string_sort(const std::vector<std::string>& A) {\n    const\
+    \ int n = A.size();\n    std::vector<std::vector<int>> Z(n);\n    rep (i, n) Z[i]\
+    \ = ZAlgorithm(A[i]);\n    std::vector<int> P(n);\n    std::iota(all(P), 0);\n\
+    \    sort(all(P), [&](int a, int b) {\n        int x = A[a].size(), y = A[b].size();\n\
+    \        if (x < y) {\n            rep (i, x) if (A[a][i] != A[b][i]) return A[a][i]\
+    \ < A[b][i];\n            int z = Z[b][x];\n            if (z < y - x) return\
+    \ A[b][z] < A[b][x + z];\n            rep (i, x) if (A[b][y - x + i] != A[a][i])\
+    \ return A[b][y - x + i] < A[a][i];\n            return false;\n        }\n  \
+    \      if (x > y) {\n            rep (i, y) if (A[a][i] != A[b][i]) return A[a][i]\
+    \ < A[b][i];\n            int z = Z[a][y];\n            if (z < x - y) return\
+    \ A[a][y + z] < A[a][z];\n            rep (i, y) if (A[b][i] != A[a][x - y + i])\
+    \ return A[b][i] < A[a][x - y + i];\n            return false;\n        }\n  \
+    \      return A[a] < A[b];\n    });\n    return P;\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -564,19 +496,17 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  - graph/Graph.hpp
-  - graph/connected/TwoEdgeConnectedComponents.hpp
-  - graph/other/LowLink.hpp
-  isVerificationFile: true
-  path: test/yosupo/graph/two_edge_connected_components.test.cpp
+  - string/ZAlgorithm.hpp
+  isVerificationFile: false
+  path: string/StringSort.hpp
   requiredBy: []
-  timestamp: '2026-09-12 01:07:36+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-09-17 13:46:19+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: test/yosupo/graph/two_edge_connected_components.test.cpp
+documentation_of: string/StringSort.hpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/graph/two_edge_connected_components.test.cpp
-- /verify/test/yosupo/graph/two_edge_connected_components.test.cpp.html
-title: test/yosupo/graph/two_edge_connected_components.test.cpp
+- /library/string/StringSort.hpp
+- /library/string/StringSort.hpp.html
+title: string/StringSort.hpp
 ---

@@ -4,31 +4,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: dp/MonotoneMinima.hpp
     title: MonotoneMinima
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -543,7 +543,7 @@ title: Min Plus Convolution
 ---
 ## 概要
 
-長さ $n$ の列 $a$ 、長さ $m$ の列 $b$ で $b$ が下に凸なものについて、 $c_k \displaystyle\min_{i+j=k} a_i b_j$ で定められる長さ $n+m-1$ の列 $c$ を求める。
+長さ $n$ の列 $a$ 、長さ $m$ の列 $b$ で $b$ が下に凸なものについて、 $c_k = \displaystyle\min_{i+j=k} (a_i + b_j)$ で定められる長さ $n+m-1$ の列 $c$ を求める。
 
 $X_{i,j}=A_j+B_{i-j}$ で定めると $X$ が monge になることより SMAWK により求まる。
 

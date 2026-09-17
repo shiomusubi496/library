@@ -460,7 +460,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/LinearModMin.hpp
       title: LinearModMin
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/ModInt.hpp
       title: ModInt
     - icon: ':heavy_check_mark:'
@@ -569,13 +569,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/matrix/Inverse.hpp
       title: "Inverse(\u9006\u884C\u5217)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/matrix/LinearEquations.hpp
       title: "LinearEquations(\u7DDA\u5F62\u65B9\u7A0B\u5F0F)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/matrix/Matrix.hpp
       title: "Matrix(\u884C\u5217)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/matrix/Pfaffian.hpp
       title: math/matrix/Pfaffian.hpp
   - name: math/num
@@ -661,7 +661,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/monoid2.hpp
       title: other/monoid2.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/template.hpp
       title: other/template.hpp
   - name: random
@@ -699,6 +699,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/RunLength.hpp
       title: "RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
+    - icon: ':warning:'
+      path: string/StringSort.hpp
+      title: string/StringSort.hpp
     - icon: ':heavy_check_mark:'
       path: string/SuffixArray.hpp
       title: SuffixArray
@@ -710,28 +713,28 @@ data:
       title: Z-Algorithm
   - name: template
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/alias.hpp
       title: template/alias.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/bitop.hpp
       title: template/bitop.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/func.hpp
       title: template/func.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/in.hpp
       title: template/in.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/macros.hpp
       title: template/macros.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/out.hpp
       title: template/out.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/type_traits.hpp
       title: template/type_traits.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/util.hpp
       title: template/util.hpp
   verificationCategories:
@@ -1333,13 +1336,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/linear_algebra/matrix_rank_mod_2.test.cpp
       title: test/yosupo/linear_algebra/matrix_rank_mod_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/linear_algebra/pow_of_matrix.test.cpp
       title: test/yosupo/linear_algebra/pow_of_matrix.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
       title: test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/linear_algebra/system_of_linear_equations_mod_2.test.cpp
       title: test/yosupo/linear_algebra/system_of_linear_equations_mod_2.test.cpp
   - name: test/yosupo/new
@@ -1356,7 +1359,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/new/minimum_steiner_tree.test.cpp
       title: test/yosupo/new/minimum_steiner_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/new/pfaffian_of_matrix.test.cpp
       title: test/yosupo/new/pfaffian_of_matrix.test.cpp
     - icon: ':heavy_check_mark:'
