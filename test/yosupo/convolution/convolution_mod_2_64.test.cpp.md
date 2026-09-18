@@ -454,15 +454,15 @@ data:
     \     assert(sorted);\n        for (auto&& i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
     };\n#line 2 \"math/convolution/Karatsuba.hpp\"\n\n#line 4 \"math/convolution/Karatsuba.hpp\"\
-    \n\ntemplate<class T>\nstd::vector<T> karatsuba(std::vector<T> a, std::vector<T>\
-    \ b) {\n    int n = a.size(), m = b.size();\n    if (n <= 100 || m <= 100) {\n\
-    \        std::vector<T> c(n + m - 1);\n        rep (i, n) rep (j, m) c[i + j]\
-    \ += a[i] * b[j];\n        return c;\n    }\n    int k = std::max<int>(n, m) /\
-    \ 2 + 1;\n    std::vector<T> a0(k), a1(k), b0(k), b1(k);\n    rep (i, n) {\n \
-    \       if (i < k) a0[i] = a[i];\n        else a1[i - k] = a[i];\n    }\n    rep\
-    \ (i, m) {\n        if (i < k) b0[i] = b[i];\n        else b1[i - k] = b[i];\n\
-    \    }\n    std::vector<T> a2(k), b2(k);\n    rep (i, k) a2[i] = a0[i] + a1[i];\n\
-    \    rep (i, k) b2[i] = b0[i] + b1[i];\n    std::vector<T> c0 = karatsuba(a0,\
+    \n\ntemplate<class T>\nstd::vector<T> karatsuba(const std::vector<T>& a, const\
+    \ std::vector<T>& b) {\n    int n = a.size(), m = b.size();\n    if (n <= 100\
+    \ || m <= 100) {\n        std::vector<T> c(n + m - 1);\n        rep (i, n) rep\
+    \ (j, m) c[i + j] += a[i] * b[j];\n        return c;\n    }\n    int k = std::max<int>(n,\
+    \ m) / 2 + 1;\n    std::vector<T> a0(k), a1(k), b0(k), b1(k);\n    rep (i, n)\
+    \ {\n        if (i < k) a0[i] = a[i];\n        else a1[i - k] = a[i];\n    }\n\
+    \    rep (i, m) {\n        if (i < k) b0[i] = b[i];\n        else b1[i - k] =\
+    \ b[i];\n    }\n    std::vector<T> a2(k), b2(k);\n    rep (i, k) a2[i] = a0[i]\
+    \ + a1[i];\n    rep (i, k) b2[i] = b0[i] + b1[i];\n    std::vector<T> c0 = karatsuba(a0,\
     \ b0);\n    std::vector<T> c1 = karatsuba(a2, b2);\n    std::vector<T> c2 = karatsuba(a1,\
     \ b1);\n    std::vector<T> c(4 * k - 1);\n    rep (i, 2 * k - 1) c[i] += c0[i];\n\
     \    rep (i, 2 * k - 1) c[i + k] += c1[i] - c0[i] - c2[i];\n    rep (i, 2 * k\
@@ -488,7 +488,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/convolution/convolution_mod_2_64.test.cpp
   requiredBy: []
-  timestamp: '2026-09-18 20:33:40+09:00'
+  timestamp: '2026-09-18 21:23:33+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/convolution/convolution_mod_2_64.test.cpp
