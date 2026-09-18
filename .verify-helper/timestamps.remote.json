@@ -161,6 +161,7 @@
 "test/yosupo/graph/bipartite_edge_coloring.test.cpp": "2026-09-12 01:05:48 +0900",
 "test/yosupo/graph/bipartitematching.test.cpp": "2026-09-12 01:05:48 +0900",
 "test/yosupo/graph/chromatic_number.test.cpp": "2026-09-12 01:05:48 +0900",
+"test/yosupo/graph/chromatic_polynomial.test.cpp": "2026-09-18 14:59:40 +0900",
 "test/yosupo/graph/connected_components_of_complement_graph.test.cpp": "2026-09-12 01:05:48 +0900",
 "test/yosupo/graph/counting_eulerian_circuits.test.cpp": "2026-09-17 01:13:47 +0900",
 "test/yosupo/graph/counting_spanning_tree_directed.test.cpp": "2026-09-17 01:13:47 +0900",
