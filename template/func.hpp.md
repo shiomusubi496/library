@@ -493,6 +493,12 @@ data:
     path: math/convolution/HadamardTransform.hpp
     title: HadmardTransform
   - icon: ':heavy_check_mark:'
+    path: math/convolution/Karatsuba.hpp
+    title: math/convolution/Karatsuba.hpp
+  - icon: ':heavy_check_mark:'
+    path: math/convolution/LargeConvolution.hpp
+    title: math/convolution/LargeConvolution.hpp
+  - icon: ':heavy_check_mark:'
     path: math/convolution/LcmConvolution.hpp
     title: LCMConvolution
   - icon: ':heavy_check_mark:'
@@ -947,6 +953,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/convolution_mod_1000000007.test.cpp
     title: test/yosupo/convolution/convolution_mod_1000000007.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/convolution/convolution_mod_2_64.test.cpp
+    title: test/yosupo/convolution/convolution_mod_2_64.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/convolution/convolution_mod_large.test.cpp
+    title: test/yosupo/convolution/convolution_mod_large.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/gcd_convolution.test.cpp
     title: test/yosupo/convolution/gcd_convolution.test.cpp
@@ -1730,10 +1742,12 @@ data:
   - math/convolution/MultiplicationConvolution.hpp
   - math/convolution/GcdConvolution.hpp
   - math/convolution/MultidimensionalConvolution.hpp
+  - math/convolution/Karatsuba.hpp
   - math/convolution/MiddleProduct.hpp
   - math/convolution/SubsetConvolution.hpp
   - math/convolution/LcmConvolution.hpp
   - math/convolution/SupersetZetaMoebiusTransform.hpp
+  - math/convolution/LargeConvolution.hpp
   - math/convolution/RelaxedConvolution.hpp
   - math/convolution/BitwiseOrConvolution.hpp
   - math/convolution/BitwiseAndConvolution.hpp
@@ -1893,6 +1907,7 @@ data:
   - test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
   - test/yosupo/other/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/yosupo/other/two_sat.test.cpp
+  - test/yosupo/convolution/convolution_mod_large.test.cpp
   - test/yosupo/convolution/lcm_convolution.test.cpp
   - test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
   - test/yosupo/convolution/convolution_mod.test.cpp
@@ -1901,6 +1916,7 @@ data:
   - test/yosupo/convolution/mul_modp_convolution.test.cpp
   - test/yosupo/convolution/convolution_mod_1000000007.test.cpp
   - test/yosupo/convolution/bitwise_xor_convolution.test.cpp
+  - test/yosupo/convolution/convolution_mod_2_64.test.cpp
   - test/yosupo/convolution/bitwise_and_convolution.test.cpp
   - test/yosupo/convolution/min_plus_convolution_convex_arbitrary.test.cpp
   - test/yosupo/convolution/min_plus_convolution_convex_convex.test.cpp
