@@ -53,7 +53,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: math/poly/PolynomialPrefixSum.hpp
+    title: math/poly/PolynomialPrefixSum.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_G.test.cpp
@@ -76,6 +79,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind_fixed_k.test.cpp
     title: test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind_fixed_k.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/prefix_sum_of_polynomial.test.cpp
+    title: test/yosupo/new/prefix_sum_of_polynomial.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/bernoulli_number.test.cpp
     title: test/yosupo/number_theory/bernoulli_number.test.cpp
@@ -1233,7 +1239,8 @@ data:
   - math/poly/TaylorShift.hpp
   isVerificationFile: false
   path: math/StirlingNumber.hpp
-  requiredBy: []
+  requiredBy:
+  - math/poly/PolynomialPrefixSum.hpp
   timestamp: '2026-09-15 21:48:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -1243,6 +1250,7 @@ data:
   - test/yosupo/enumerative_combinatorics/bell_number.test.cpp
   - test/yosupo/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
   - test/yosupo/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
+  - test/yosupo/new/prefix_sum_of_polynomial.test.cpp
   - test/yosupo/number_theory/bernoulli_number.test.cpp
   - test/aoj/DPL/DPL_5_G.test.cpp
 documentation_of: math/StirlingNumber.hpp

@@ -37,6 +37,9 @@ data:
     title: "StirlingNumber(\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\u30EB\
       \u6570, \u30D9\u30EB\u30CC\u30FC\u30A4\u6570, \u5206\u5272\u6570)"
   - icon: ':heavy_check_mark:'
+    path: math/poly/PolynomialPrefixSum.hpp
+    title: math/poly/PolynomialPrefixSum.hpp
+  - icon: ':heavy_check_mark:'
     path: math/poly/SparseFormalPowerSeries.hpp
     title: "SparseFormalPowerSeries(\u758E\u306A\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570\
       )"
@@ -65,6 +68,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind_fixed_k.test.cpp
     title: test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind_fixed_k.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/prefix_sum_of_polynomial.test.cpp
+    title: test/yosupo/new/prefix_sum_of_polynomial.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/bernoulli_number.test.cpp
     title: test/yosupo/number_theory/bernoulli_number.test.cpp
@@ -623,6 +629,7 @@ data:
   requiredBy:
   - math/StirlingNumber.hpp
   - math/poly/SquareRoot.hpp
+  - math/poly/PolynomialPrefixSum.hpp
   - math/poly/SparseFormalPowerSeries.hpp
   timestamp: '2026-09-12 01:05:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -639,6 +646,7 @@ data:
   - test/yosupo/polynomial/pow_of_formal_power_series_sparse.test.cpp
   - test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp
   - test/yosupo/polynomial/inv_of_formal_power_series_sparse.test.cpp
+  - test/yosupo/new/prefix_sum_of_polynomial.test.cpp
   - test/yosupo/number_theory/sqrt_mod.test.cpp
   - test/yosupo/number_theory/bernoulli_number.test.cpp
   - test/aoj/DPL/DPL_5_G.test.cpp

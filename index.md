@@ -653,6 +653,9 @@ data:
       path: math/poly/PolynomialInterpolation.hpp
       title: "PolynomialInterpolation(\u591A\u9805\u5F0F\u88DC\u9593)"
     - icon: ':heavy_check_mark:'
+      path: math/poly/PolynomialPrefixSum.hpp
+      title: math/poly/PolynomialPrefixSum.hpp
+    - icon: ':heavy_check_mark:'
       path: math/poly/SamplingPointsShift.hpp
       title: "SamplingPointsShift(\u6A19\u672C\u70B9\u30B7\u30D5\u30C8)"
     - icon: ':heavy_check_mark:'
@@ -1395,6 +1398,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/new/pfaffian_of_matrix.test.cpp
       title: test/yosupo/new/pfaffian_of_matrix.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/new/prefix_sum_of_polynomial.test.cpp
+      title: test/yosupo/new/prefix_sum_of_polynomial.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/new/range_add_range_min.test.cpp
       title: test/yosupo/new/range_add_range_min.test.cpp

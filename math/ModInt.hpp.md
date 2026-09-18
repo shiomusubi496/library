@@ -140,6 +140,9 @@ data:
     path: math/poly/PolynomialInterpolation.hpp
     title: "PolynomialInterpolation(\u591A\u9805\u5F0F\u88DC\u9593)"
   - icon: ':heavy_check_mark:'
+    path: math/poly/PolynomialPrefixSum.hpp
+    title: math/poly/PolynomialPrefixSum.hpp
+  - icon: ':heavy_check_mark:'
     path: math/poly/SamplingPointsShift.hpp
     title: "SamplingPointsShift(\u6A19\u672C\u70B9\u30B7\u30D5\u30C8)"
   - icon: ':heavy_check_mark:'
@@ -363,6 +366,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/pfaffian_of_matrix.test.cpp
     title: test/yosupo/new/pfaffian_of_matrix.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/prefix_sum_of_polynomial.test.cpp
+    title: test/yosupo/new/prefix_sum_of_polynomial.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/bernoulli_number.test.cpp
     title: test/yosupo/number_theory/bernoulli_number.test.cpp
@@ -1174,6 +1180,7 @@ data:
   - math/poly/SquareRoot.hpp
   - math/poly/ConsecutiveTermsOfLinearRecurrence.hpp
   - math/poly/SubproductTree.hpp
+  - math/poly/PolynomialPrefixSum.hpp
   - math/poly/PolynomialInterpolation.hpp
   - math/poly/BerlekampMassey.hpp
   - math/poly/SamplingPointsShift.hpp
@@ -1252,6 +1259,7 @@ data:
   - test/yosupo/polynomial/inv_of_formal_power_series_sparse.test.cpp
   - test/yosupo/polynomial/exp_of_formal_power_series-RelaxedConvolution.test.cpp
   - test/yosupo/new/pfaffian_of_matrix.test.cpp
+  - test/yosupo/new/prefix_sum_of_polynomial.test.cpp
   - test/yosupo/new/log_of_set_power_series.test.cpp
   - test/yosupo/number_theory/tetration_mod.test.cpp
   - test/yosupo/number_theory/bernoulli_number.test.cpp
