@@ -191,6 +191,7 @@
 "test/yosupo/linear_algebra/matrix_rank.test.cpp": "2026-09-17 01:13:47 +0900",
 "test/yosupo/linear_algebra/matrix_rank_mod_2.test.cpp": "2026-09-17 01:13:47 +0900",
 "test/yosupo/linear_algebra/pow_of_matrix.test.cpp": "2026-09-17 01:13:47 +0900",
+"test/yosupo/linear_algebra/sparse_matrix_det.test.cpp": "2026-09-18 15:33:21 +0900",
 "test/yosupo/linear_algebra/system_of_linear_equations.test.cpp": "2026-09-17 01:13:47 +0900",
 "test/yosupo/linear_algebra/system_of_linear_equations_mod_2.test.cpp": "2026-09-17 01:13:47 +0900",
 "test/yosupo/new/aho_corasick.test.cpp": "2026-09-16 16:09:24 +0900",
