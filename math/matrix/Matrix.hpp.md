@@ -972,10 +972,11 @@ Matrix + Matrix
 Matrix - Matrix
 Matrix * Matrix
 Matrix * T
+T * Matrix
 ```
 
 行列同士の和差はそれぞれ $H \times W$ 行列と $H \times W$ 行列に対して $\Theta(HW)$ 。  
 行列同士の積は $H \times W$ 行列と $W \times K$ 行列に対して $\Theta(HWK)$ 。  
 行列とスカラー倍は $H \times W$ 行列に対して $\Theta(HW)$ 。
 
-また、 `T = static_modint<2>` の時は特殊化され、 bitset 高速化が行われている。
+また、 `T = bool` の時は特殊化され、 bitset 高速化が行われている。

@@ -40,8 +40,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: math/matrix/BlackboxLinearAlgebra.hpp
+    title: math/matrix/BlackboxLinearAlgebra.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/linear_algebra/sparse_matrix_det.test.cpp
+    title: test/yosupo/linear_algebra/sparse_matrix_det.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/other/consecutive_terms_of_linear_recurrent_sequence.test.cpp
     title: test/yosupo/other/consecutive_terms_of_linear_recurrent_sequence.test.cpp
@@ -1005,11 +1011,13 @@ data:
   - math/Combinatorics.hpp
   isVerificationFile: false
   path: math/poly/ConsecutiveTermsOfLinearRecurrence.hpp
-  requiredBy: []
+  requiredBy:
+  - math/matrix/BlackboxLinearAlgebra.hpp
   timestamp: '2026-09-16 17:48:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/other/consecutive_terms_of_linear_recurrent_sequence.test.cpp
+  - test/yosupo/linear_algebra/sparse_matrix_det.test.cpp
 documentation_of: math/poly/ConsecutiveTermsOfLinearRecurrence.hpp
 layout: document
 redirect_from:

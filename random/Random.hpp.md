@@ -42,6 +42,9 @@ data:
     path: math/convolution/MultiplicationConvolution.hpp
     title: math/convolution/MultiplicationConvolution.hpp
   - icon: ':heavy_check_mark:'
+    path: math/matrix/BlackboxLinearAlgebra.hpp
+    title: math/matrix/BlackboxLinearAlgebra.hpp
+  - icon: ':heavy_check_mark:'
     path: math/num/EulerPhi.hpp
     title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
   - icon: ':heavy_check_mark:'
@@ -69,6 +72,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/mul_modp_convolution.test.cpp
     title: test/yosupo/convolution/mul_modp_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/linear_algebra/sparse_matrix_det.test.cpp
+    title: test/yosupo/linear_algebra/sparse_matrix_det.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/factorize.test.cpp
     title: test/yosupo/number_theory/factorize.test.cpp
@@ -588,6 +594,7 @@ data:
   - math/num/EulerPhi.hpp
   - math/num/PrimitiveRoot.hpp
   - math/TetrationMod.hpp
+  - math/matrix/BlackboxLinearAlgebra.hpp
   - string/WildcardPatternMatching.hpp
   - string/RollingHash.hpp
   - graph/tree/TreeHash.hpp
@@ -600,6 +607,7 @@ data:
   - test/yosupo/number_theory/two_square_sum.test.cpp
   - test/yosupo/number_theory/primitive_root.test.cpp
   - test/yosupo/string/wildcard_pattern_matching.test.cpp
+  - test/yosupo/linear_algebra/sparse_matrix_det.test.cpp
   - test/yosupo/tree/rooted_tree_isomorphism_classification.test.cpp
   - test/aoj/NTL/NTL_1_D-Phi.test.cpp
   - test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp

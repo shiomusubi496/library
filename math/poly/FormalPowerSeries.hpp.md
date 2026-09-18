@@ -55,6 +55,9 @@ data:
     path: math/SubsetSum.hpp
     title: SubsetSum
   - icon: ':heavy_check_mark:'
+    path: math/matrix/BlackboxLinearAlgebra.hpp
+    title: math/matrix/BlackboxLinearAlgebra.hpp
+  - icon: ':heavy_check_mark:'
     path: math/matrix/CharacteristicPolynomial.hpp
     title: math/matrix/CharacteristicPolynomial.hpp
   - icon: ':heavy_check_mark:'
@@ -131,6 +134,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/hafnian_of_matrix.test.cpp
     title: test/yosupo/linear_algebra/hafnian_of_matrix.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/linear_algebra/sparse_matrix_det.test.cpp
+    title: test/yosupo/linear_algebra/sparse_matrix_det.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/log_of_set_power_series.test.cpp
     title: test/yosupo/new/log_of_set_power_series.test.cpp
@@ -1288,6 +1294,7 @@ data:
   - math/poly/Composite.hpp
   - math/matrix/CharacteristicPolynomial.hpp
   - math/matrix/Hafnian.hpp
+  - math/matrix/BlackboxLinearAlgebra.hpp
   - graph/other/ChromaticPolynomial.hpp
   timestamp: '2026-09-15 21:48:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -1333,6 +1340,7 @@ data:
   - test/yosupo/set_power_series/exp_of_set_power_series.test.cpp
   - test/yosupo/linear_algebra/hafnian_of_matrix.test.cpp
   - test/yosupo/linear_algebra/characteristic_polynomial.test.cpp
+  - test/yosupo/linear_algebra/sparse_matrix_det.test.cpp
   - test/yosupo/graph/chromatic_polynomial.test.cpp
   - test/aoj/DPL/DPL_5_G.test.cpp
 documentation_of: math/poly/FormalPowerSeries.hpp

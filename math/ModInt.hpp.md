@@ -86,6 +86,9 @@ data:
     path: math/matrix/AdjugateMatrix.hpp
     title: math/matrix/AdjugateMatrix.hpp
   - icon: ':heavy_check_mark:'
+    path: math/matrix/BlackboxLinearAlgebra.hpp
+    title: math/matrix/BlackboxLinearAlgebra.hpp
+  - icon: ':heavy_check_mark:'
     path: math/matrix/CharacteristicPolynomial.hpp
     title: math/matrix/CharacteristicPolynomial.hpp
   - icon: ':heavy_check_mark:'
@@ -330,6 +333,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/pow_of_matrix.test.cpp
     title: test/yosupo/linear_algebra/pow_of_matrix.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/linear_algebra/sparse_matrix_det.test.cpp
+    title: test/yosupo/linear_algebra/sparse_matrix_det.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
     title: test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
@@ -1168,6 +1174,7 @@ data:
   - math/matrix/CharacteristicPolynomial.hpp
   - math/matrix/Pfaffian.hpp
   - math/matrix/Hafnian.hpp
+  - math/matrix/BlackboxLinearAlgebra.hpp
   - math/matrix/LinearEquations.hpp
   - math/matrix/Matrix.hpp
   - math/matrix/Determinant.hpp
@@ -1264,6 +1271,7 @@ data:
   - test/yosupo/linear_algebra/inverse_matrix.test.cpp
   - test/yosupo/linear_algebra/matrix_det.test.cpp
   - test/yosupo/linear_algebra/matrix_product.test.cpp
+  - test/yosupo/linear_algebra/sparse_matrix_det.test.cpp
   - test/yosupo/tree/vertex_set_path_composite-HLD.test.cpp
   - test/yosupo/tree/vertex_set_path_composite.test.cpp
   - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp

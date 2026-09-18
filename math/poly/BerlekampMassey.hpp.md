@@ -40,8 +40,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: math/matrix/BlackboxLinearAlgebra.hpp
+    title: math/matrix/BlackboxLinearAlgebra.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/linear_algebra/sparse_matrix_det.test.cpp
+    title: test/yosupo/linear_algebra/sparse_matrix_det.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/other/find_linear_recurrence.test.cpp
     title: test/yosupo/other/find_linear_recurrence.test.cpp
@@ -949,11 +955,13 @@ data:
   - math/Combinatorics.hpp
   isVerificationFile: false
   path: math/poly/BerlekampMassey.hpp
-  requiredBy: []
+  requiredBy:
+  - math/matrix/BlackboxLinearAlgebra.hpp
   timestamp: '2026-09-16 16:59:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/other/find_linear_recurrence.test.cpp
+  - test/yosupo/linear_algebra/sparse_matrix_det.test.cpp
 documentation_of: math/poly/BerlekampMassey.hpp
 layout: document
 redirect_from:

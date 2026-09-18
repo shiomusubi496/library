@@ -561,6 +561,9 @@ data:
       path: math/matrix/AdjugateMatrix.hpp
       title: math/matrix/AdjugateMatrix.hpp
     - icon: ':heavy_check_mark:'
+      path: math/matrix/BlackboxLinearAlgebra.hpp
+      title: math/matrix/BlackboxLinearAlgebra.hpp
+    - icon: ':heavy_check_mark:'
       path: math/matrix/CharacteristicPolynomial.hpp
       title: math/matrix/CharacteristicPolynomial.hpp
     - icon: ':heavy_check_mark:'
@@ -1345,6 +1348,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/linear_algebra/pow_of_matrix.test.cpp
       title: test/yosupo/linear_algebra/pow_of_matrix.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/linear_algebra/sparse_matrix_det.test.cpp
+      title: test/yosupo/linear_algebra/sparse_matrix_det.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
       title: test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
