@@ -33,6 +33,9 @@ data:
     title: template/util.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: graph/other/ChromaticPolynomial.hpp
+    title: graph/other/ChromaticPolynomial.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/tree/FrequencyTableofTreeDistance.hpp
     title: Frequency Table of Tree Distance
   - icon: ':warning:'
@@ -147,6 +150,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind_fixed_k.test.cpp
     title: test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind_fixed_k.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/graph/chromatic_polynomial.test.cpp
+    title: test/yosupo/graph/chromatic_polynomial.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/characteristic_polynomial.test.cpp
     title: test/yosupo/linear_algebra/characteristic_polynomial.test.cpp
@@ -1127,6 +1133,7 @@ data:
   - math/matrix/CharacteristicPolynomial.hpp
   - math/matrix/Hafnian.hpp
   - string/WildcardPatternMatching.hpp
+  - graph/other/ChromaticPolynomial.hpp
   - graph/tree/FrequencyTableofTreeDistance.hpp
   timestamp: '2026-09-15 21:48:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -1178,6 +1185,7 @@ data:
   - test/yosupo/linear_algebra/hafnian_of_matrix.test.cpp
   - test/yosupo/linear_algebra/characteristic_polynomial.test.cpp
   - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
+  - test/yosupo/graph/chromatic_polynomial.test.cpp
   - test/aoj/DPL/DPL_5_G.test.cpp
 documentation_of: math/convolution/Convolution.hpp
 layout: document

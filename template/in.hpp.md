@@ -307,6 +307,9 @@ data:
     path: graph/other/ChromaticNumber.hpp
     title: "ChromaticNumber(\u5F69\u8272\u6570)"
   - icon: ':heavy_check_mark:'
+    path: graph/other/ChromaticPolynomial.hpp
+    title: graph/other/ChromaticPolynomial.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/other/CountEulerianCircuit.hpp
     title: CountEulerianCircuit(BEST Theorem)
   - icon: ':heavy_check_mark:'
@@ -1158,6 +1161,9 @@ data:
     path: test/yosupo/graph/chromatic_number.test.cpp
     title: test/yosupo/graph/chromatic_number.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/graph/chromatic_polynomial.test.cpp
+    title: test/yosupo/graph/chromatic_polynomial.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/connected_components_of_complement_graph.test.cpp
     title: test/yosupo/graph/connected_components_of_complement_graph.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1977,6 +1983,7 @@ data:
   - graph/other/LowLink.hpp
   - graph/other/EnumerateCliques.hpp
   - graph/other/EulerianTrail.hpp
+  - graph/other/ChromaticPolynomial.hpp
   - graph/other/BipartiteEdgeColoring.hpp
   - graph/other/CountEulerianCircuit.hpp
   - graph/other/ChromaticNumber.hpp
@@ -2198,6 +2205,7 @@ data:
   - test/yosupo/graph/connected_components_of_complement_graph.test.cpp
   - test/yosupo/graph/bipartitematching.test.cpp
   - test/yosupo/graph/cycle_detection.test.cpp
+  - test/yosupo/graph/chromatic_polynomial.test.cpp
   - test/yosupo/graph/eulerian_trail_directed.test.cpp
   - test/yosupo/graph/directedmst.test.cpp
   - test/yosupo/graph/enumerate_cliques.test.cpp

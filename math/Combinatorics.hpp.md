@@ -33,6 +33,9 @@ data:
     title: template/util.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: graph/other/ChromaticPolynomial.hpp
+    title: graph/other/ChromaticPolynomial.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/other/CountEulerianCircuit.hpp
     title: CountEulerianCircuit(BEST Theorem)
   - icon: ':warning:'
@@ -140,6 +143,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind_fixed_k.test.cpp
     title: test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind_fixed_k.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/graph/chromatic_polynomial.test.cpp
+    title: test/yosupo/graph/chromatic_polynomial.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/counting_eulerian_circuits.test.cpp
     title: test/yosupo/graph/counting_eulerian_circuits.test.cpp
@@ -869,6 +875,7 @@ data:
   - math/poly/Composite.hpp
   - math/matrix/CharacteristicPolynomial.hpp
   - math/matrix/Hafnian.hpp
+  - graph/other/ChromaticPolynomial.hpp
   - graph/other/CountEulerianCircuit.hpp
   timestamp: '2026-09-12 14:55:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -915,6 +922,7 @@ data:
   - test/yosupo/set_power_series/exp_of_set_power_series.test.cpp
   - test/yosupo/linear_algebra/hafnian_of_matrix.test.cpp
   - test/yosupo/linear_algebra/characteristic_polynomial.test.cpp
+  - test/yosupo/graph/chromatic_polynomial.test.cpp
   - test/yosupo/graph/counting_eulerian_circuits.test.cpp
   - test/aoj/DPL/DPL_5_D.test.cpp
   - test/aoj/DPL/DPL_5_G.test.cpp

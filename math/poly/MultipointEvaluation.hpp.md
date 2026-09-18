@@ -42,6 +42,9 @@ data:
     title: template/util.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: graph/other/ChromaticPolynomial.hpp
+    title: graph/other/ChromaticPolynomial.hpp
+  - icon: ':heavy_check_mark:'
     path: math/Factorial.hpp
     title: "Factorial(\u968E\u4E57)"
   - icon: ':heavy_check_mark:'
@@ -51,6 +54,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/enumerative_combinatorics/factorial.test.cpp
     title: test/yosupo/enumerative_combinatorics/factorial.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/graph/chromatic_polynomial.test.cpp
+    title: test/yosupo/graph/chromatic_polynomial.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/multipoint_evaluation.test.cpp
     title: test/yosupo/polynomial/multipoint_evaluation.test.cpp
@@ -1029,6 +1035,7 @@ data:
   requiredBy:
   - math/Factorial.hpp
   - math/poly/PolynomialInterpolation.hpp
+  - graph/other/ChromaticPolynomial.hpp
   timestamp: '2026-09-15 21:48:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -1037,6 +1044,7 @@ data:
   - test/yosupo/polynomial/multipoint_evaluation_on_geometric_sequence.test.cpp
   - test/yosupo/polynomial/polynomial_interpolation.test.cpp
   - test/yosupo/polynomial/polynomial_interpolation_on_geometric_sequence.test.cpp
+  - test/yosupo/graph/chromatic_polynomial.test.cpp
 documentation_of: math/poly/MultipointEvaluation.hpp
 layout: document
 redirect_from:

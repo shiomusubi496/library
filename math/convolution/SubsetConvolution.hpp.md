@@ -30,12 +30,18 @@ data:
     title: template/util.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: graph/other/ChromaticPolynomial.hpp
+    title: graph/other/ChromaticPolynomial.hpp
+  - icon: ':heavy_check_mark:'
     path: math/matrix/Hafnian.hpp
     title: math/matrix/Hafnian.hpp
   - icon: ':heavy_check_mark:'
     path: math/poly/SetPowerSeries.hpp
     title: math/poly/SetPowerSeries.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/graph/chromatic_polynomial.test.cpp
+    title: test/yosupo/graph/chromatic_polynomial.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/hafnian_of_matrix.test.cpp
     title: test/yosupo/linear_algebra/hafnian_of_matrix.test.cpp
@@ -546,6 +552,7 @@ data:
   requiredBy:
   - math/poly/SetPowerSeries.hpp
   - math/matrix/Hafnian.hpp
+  - graph/other/ChromaticPolynomial.hpp
   timestamp: '2026-09-16 22:06:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -555,6 +562,7 @@ data:
   - test/yosupo/set_power_series/power_projection_of_set_power_series.test.cpp
   - test/yosupo/set_power_series/exp_of_set_power_series.test.cpp
   - test/yosupo/linear_algebra/hafnian_of_matrix.test.cpp
+  - test/yosupo/graph/chromatic_polynomial.test.cpp
 documentation_of: math/convolution/SubsetConvolution.hpp
 layout: document
 redirect_from:

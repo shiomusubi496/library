@@ -33,6 +33,9 @@ data:
     path: graph/mst/CountSpanningTree.hpp
     title: "CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)"
   - icon: ':heavy_check_mark:'
+    path: graph/other/ChromaticPolynomial.hpp
+    title: graph/other/ChromaticPolynomial.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/other/CountEulerianCircuit.hpp
     title: CountEulerianCircuit(BEST Theorem)
   - icon: ':heavy_check_mark:'
@@ -270,6 +273,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind_fixed_k.test.cpp
     title: test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind_fixed_k.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/graph/chromatic_polynomial.test.cpp
+    title: test/yosupo/graph/chromatic_polynomial.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/counting_eulerian_circuits.test.cpp
     title: test/yosupo/graph/counting_eulerian_circuits.test.cpp
@@ -1166,6 +1172,7 @@ data:
   - math/matrix/Matrix.hpp
   - math/matrix/Determinant.hpp
   - string/WildcardPatternMatching.hpp
+  - graph/other/ChromaticPolynomial.hpp
   - graph/other/CountEulerianCircuit.hpp
   - graph/tree/FrequencyTableofTreeDistance.hpp
   - graph/mst/CountSpanningTree.hpp
@@ -1261,6 +1268,7 @@ data:
   - test/yosupo/tree/vertex_set_path_composite.test.cpp
   - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
   - test/yosupo/tree/tree_path_composite_sum.test.cpp
+  - test/yosupo/graph/chromatic_polynomial.test.cpp
   - test/yosupo/graph/enumerate_cliques.test.cpp
   - test/yosupo/graph/counting_spanning_tree_undirected.test.cpp
   - test/yosupo/graph/counting_eulerian_circuits.test.cpp

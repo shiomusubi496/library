@@ -43,8 +43,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: graph/other/ChromaticPolynomial.hpp
+    title: graph/other/ChromaticPolynomial.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/graph/chromatic_polynomial.test.cpp
+    title: test/yosupo/graph/chromatic_polynomial.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/polynomial_interpolation.test.cpp
     title: test/yosupo/polynomial/polynomial_interpolation.test.cpp
@@ -1037,12 +1043,14 @@ data:
   - math/poly/MultipointEvaluation.hpp
   isVerificationFile: false
   path: math/poly/PolynomialInterpolation.hpp
-  requiredBy: []
+  requiredBy:
+  - graph/other/ChromaticPolynomial.hpp
   timestamp: '2026-09-15 21:48:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/polynomial/polynomial_interpolation.test.cpp
   - test/yosupo/polynomial/polynomial_interpolation_on_geometric_sequence.test.cpp
+  - test/yosupo/graph/chromatic_polynomial.test.cpp
 documentation_of: math/poly/PolynomialInterpolation.hpp
 layout: document
 redirect_from:

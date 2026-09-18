@@ -328,6 +328,9 @@ data:
       path: graph/other/ChromaticNumber.hpp
       title: "ChromaticNumber(\u5F69\u8272\u6570)"
     - icon: ':heavy_check_mark:'
+      path: graph/other/ChromaticPolynomial.hpp
+      title: graph/other/ChromaticPolynomial.hpp
+    - icon: ':heavy_check_mark:'
       path: graph/other/CountEulerianCircuit.hpp
       title: CountEulerianCircuit(BEST Theorem)
     - icon: ':heavy_check_mark:'
@@ -1250,6 +1253,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/graph/chromatic_number.test.cpp
       title: test/yosupo/graph/chromatic_number.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/graph/chromatic_polynomial.test.cpp
+      title: test/yosupo/graph/chromatic_polynomial.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/graph/connected_components_of_complement_graph.test.cpp
       title: test/yosupo/graph/connected_components_of_complement_graph.test.cpp
