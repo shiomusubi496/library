@@ -202,6 +202,7 @@
 "test/yosupo/new/majority_voting.test.cpp": "2026-09-16 15:15:33 +0900",
 "test/yosupo/new/minimum_steiner_tree.test.cpp": "2026-09-12 16:59:40 +0900",
 "test/yosupo/new/pfaffian_of_matrix.test.cpp": "2026-09-17 01:13:47 +0900",
+"test/yosupo/new/prefix_sum_of_polynomial.test.cpp": "2026-09-19 00:23:44 +0900",
 "test/yosupo/new/range_add_range_min.test.cpp": "2026-09-14 19:07:59 +0900",
 "test/yosupo/new/static_range_sum_with_upper_bound.test.cpp": "2026-09-14 19:47:02 +0900",
 "test/yosupo/number_theory/bernoulli_number.test.cpp": "2026-09-15 21:48:30 +0900",
