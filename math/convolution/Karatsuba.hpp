@@ -3,7 +3,7 @@
 #include "../../other/template.hpp"
 
 template<class T>
-std::vector<T> karatsuba(std::vector<T> a, std::vector<T> b) {
+std::vector<T> karatsuba(const std::vector<T>& a, const std::vector<T>& b) {
     int n = a.size(), m = b.size();
     if (n <= 100 || m <= 100) {
         std::vector<T> c(n + m - 1);
