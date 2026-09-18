@@ -32,15 +32,20 @@ std::vector<T> middle_product(std::vector<T> a, std::vector<T> b) {
     static constexpr ll INV1_3 = mod_pow(MOD1, MOD3 - 2, MOD3);
     static constexpr ll INV2_3 = mod_pow(MOD2, MOD3 - 2, MOD3);
     using mint1 = static_modint<MOD1>;
-    using mint2 = static_modint<MOD1>;
-    using mint3 = static_modint<MOD1>;
-    std::vector<mint1> a1(n), b1(n);
-    std::vector<mint2> a2(n), b2(n);
-    std::vector<mint3> a3(n), b3(n);
+    using mint2 = static_modint<MOD2>;
+    using mint3 = static_modint<MOD3>;
+    std::vector<mint1> a1(n), b1(m);
+    std::vector<mint2> a2(n), b2(m);
+    std::vector<mint3> a3(n), b3(m);
     rep (i, n) {
-        a1[i] = a[i].get(); b1[i] = b[i].get();
-        a2[i] = a[i].get(); b2[i] = b[i].get();
-        a3[i] = a[i].get(); b3[i] = b[i].get();
+        a1[i] = a[i].get();
+        a2[i] = a[i].get();
+        a3[i] = a[i].get();
+    }
+    rep (i, m) {
+        b1[i] = b[i].get();
+        b2[i] = b[i].get();
+        b3[i] = b[i].get();
     }
     auto c1 = middle_product(a1, b1);
     auto c2 = middle_product(a2, b2);
@@ -53,7 +58,7 @@ std::vector<T> middle_product(std::vector<T> a, std::vector<T> b) {
         ll t3 =
             (((ll)c3[i].get() - t1 + MOD3) * INV1_3 % MOD3 - t2 + MOD3) * INV2_3 % MOD3;
         if (t3 < 0) t3 += MOD3;
-        res[i] = t1 + (t2 + t3 * MOD2) * MOD1;
+        res[i] = t1 + T(t2 + t3 * MOD2) * MOD1;
     }
     return res;
 }
