@@ -48,12 +48,21 @@ data:
     path: math/Factorial.hpp
     title: "Factorial(\u968E\u4E57)"
   - icon: ':heavy_check_mark:'
+    path: math/convolution/MultidimensionalConvolution.hpp
+    title: MultidimensionalConvolution
+  - icon: ':heavy_check_mark:'
     path: math/poly/MultipointEvaluation.hpp
     title: "MultipointEvaluation(\u591A\u70B9\u8A55\u4FA1)"
   - icon: ':heavy_check_mark:'
     path: math/poly/PolynomialInterpolation.hpp
     title: "PolynomialInterpolation(\u591A\u9805\u5F0F\u88DC\u9593)"
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/convolution/multivariate_convolution.test.cpp
+    title: test/yosupo/convolution/multivariate_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/convolution/multivariate_convolution_cyclic.test.cpp
+    title: test/yosupo/convolution/multivariate_convolution_cyclic.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/enumerative_combinatorics/factorial.test.cpp
     title: test/yosupo/enumerative_combinatorics/factorial.test.cpp
@@ -1008,6 +1017,7 @@ data:
   path: math/poly/SubproductTree.hpp
   requiredBy:
   - math/Factorial.hpp
+  - math/convolution/MultidimensionalConvolution.hpp
   - math/poly/PolynomialInterpolation.hpp
   - math/poly/MultipointEvaluation.hpp
   - graph/other/ChromaticPolynomial.hpp
@@ -1015,6 +1025,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/enumerative_combinatorics/factorial.test.cpp
+  - test/yosupo/convolution/multivariate_convolution.test.cpp
+  - test/yosupo/convolution/multivariate_convolution_cyclic.test.cpp
   - test/yosupo/polynomial/multipoint_evaluation.test.cpp
   - test/yosupo/polynomial/multipoint_evaluation_on_geometric_sequence.test.cpp
   - test/yosupo/polynomial/polynomial_interpolation.test.cpp

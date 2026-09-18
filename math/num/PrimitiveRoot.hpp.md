@@ -49,12 +49,21 @@ data:
     title: template/util.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: math/convolution/MultidimensionalConvolution.hpp
+    title: MultidimensionalConvolution
+  - icon: ':heavy_check_mark:'
     path: math/convolution/MultiplicationConvolution.hpp
     title: math/convolution/MultiplicationConvolution.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/mul_modp_convolution.test.cpp
     title: test/yosupo/convolution/mul_modp_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/convolution/multivariate_convolution.test.cpp
+    title: test/yosupo/convolution/multivariate_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/convolution/multivariate_convolution_cyclic.test.cpp
+    title: test/yosupo/convolution/multivariate_convolution_cyclic.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/number_theory/primitive_root.test.cpp
     title: test/yosupo/number_theory/primitive_root.test.cpp
@@ -803,9 +812,12 @@ data:
   path: math/num/PrimitiveRoot.hpp
   requiredBy:
   - math/convolution/MultiplicationConvolution.hpp
+  - math/convolution/MultidimensionalConvolution.hpp
   timestamp: '2026-09-12 01:05:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/convolution/multivariate_convolution.test.cpp
+  - test/yosupo/convolution/multivariate_convolution_cyclic.test.cpp
   - test/yosupo/convolution/mul_modp_convolution.test.cpp
   - test/yosupo/number_theory/primitive_root.test.cpp
 documentation_of: math/num/PrimitiveRoot.hpp

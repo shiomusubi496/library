@@ -40,6 +40,9 @@ data:
     path: math/TetrationMod.hpp
     title: TetrationMod
   - icon: ':heavy_check_mark:'
+    path: math/convolution/MultidimensionalConvolution.hpp
+    title: MultidimensionalConvolution
+  - icon: ':heavy_check_mark:'
     path: math/convolution/MultiplicationConvolution.hpp
     title: math/convolution/MultiplicationConvolution.hpp
   - icon: ':heavy_check_mark:'
@@ -75,6 +78,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/mul_modp_convolution.test.cpp
     title: test/yosupo/convolution/mul_modp_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/convolution/multivariate_convolution.test.cpp
+    title: test/yosupo/convolution/multivariate_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/convolution/multivariate_convolution_cyclic.test.cpp
+    title: test/yosupo/convolution/multivariate_convolution_cyclic.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/enumerative_combinatorics/bell_number.test.cpp
     title: test/yosupo/enumerative_combinatorics/bell_number.test.cpp
@@ -713,6 +722,7 @@ data:
   requiredBy:
   - math/StirlingNumber.hpp
   - math/convolution/MultiplicationConvolution.hpp
+  - math/convolution/MultidimensionalConvolution.hpp
   - math/SqrtMod.hpp
   - math/num/TwoSquareSum.hpp
   - math/num/PollardRho.hpp
@@ -731,6 +741,8 @@ data:
   - test/yosupo/enumerative_combinatorics/bell_number.test.cpp
   - test/yosupo/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
   - test/yosupo/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
+  - test/yosupo/convolution/multivariate_convolution.test.cpp
+  - test/yosupo/convolution/multivariate_convolution_cyclic.test.cpp
   - test/yosupo/convolution/mul_modp_convolution.test.cpp
   - test/yosupo/polynomial/log_of_formal_power_series_sparse.test.cpp
   - test/yosupo/polynomial/exp_of_formal_power_series_sparse.test.cpp

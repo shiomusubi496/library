@@ -36,6 +36,9 @@ data:
     path: math/TetrationMod.hpp
     title: TetrationMod
   - icon: ':heavy_check_mark:'
+    path: math/convolution/MultidimensionalConvolution.hpp
+    title: MultidimensionalConvolution
+  - icon: ':heavy_check_mark:'
     path: math/convolution/MultiplicationConvolution.hpp
     title: math/convolution/MultiplicationConvolution.hpp
   - icon: ':heavy_check_mark:'
@@ -57,6 +60,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/mul_modp_convolution.test.cpp
     title: test/yosupo/convolution/mul_modp_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/convolution/multivariate_convolution.test.cpp
+    title: test/yosupo/convolution/multivariate_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/convolution/multivariate_convolution_cyclic.test.cpp
+    title: test/yosupo/convolution/multivariate_convolution_cyclic.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
     title: test/yosupo/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
@@ -526,6 +535,7 @@ data:
   path: string/RunLength.hpp
   requiredBy:
   - math/convolution/MultiplicationConvolution.hpp
+  - math/convolution/MultidimensionalConvolution.hpp
   - math/SubsetSum.hpp
   - math/num/TwoSquareSum.hpp
   - math/num/PollardRho.hpp
@@ -536,6 +546,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
+  - test/yosupo/convolution/multivariate_convolution.test.cpp
+  - test/yosupo/convolution/multivariate_convolution_cyclic.test.cpp
   - test/yosupo/convolution/mul_modp_convolution.test.cpp
   - test/yosupo/number_theory/tetration_mod.test.cpp
   - test/yosupo/number_theory/factorize.test.cpp

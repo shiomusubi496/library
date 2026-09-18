@@ -1065,6 +1065,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/convolution/multivariate_convolution.test.cpp
       title: test/yosupo/convolution/multivariate_convolution.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/convolution/multivariate_convolution_cyclic.test.cpp
+      title: test/yosupo/convolution/multivariate_convolution_cyclic.test.cpp
   - name: test/yosupo/data_structure
     pages:
     - icon: ':heavy_check_mark:'

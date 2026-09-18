@@ -214,6 +214,9 @@ data:
     path: test/yosupo/convolution/multivariate_convolution.test.cpp
     title: test/yosupo/convolution/multivariate_convolution.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/convolution/multivariate_convolution_cyclic.test.cpp
+    title: test/yosupo/convolution/multivariate_convolution_cyclic.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
     title: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1221,6 +1224,7 @@ data:
   - test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
   - test/yosupo/convolution/convolution_mod.test.cpp
   - test/yosupo/convolution/multivariate_convolution.test.cpp
+  - test/yosupo/convolution/multivariate_convolution_cyclic.test.cpp
   - test/yosupo/convolution/gcd_convolution.test.cpp
   - test/yosupo/convolution/mul_modp_convolution.test.cpp
   - test/yosupo/convolution/convolution_mod_1000000007.test.cpp

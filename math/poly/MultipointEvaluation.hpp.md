@@ -54,9 +54,18 @@ data:
     path: math/Factorial.hpp
     title: "Factorial(\u968E\u4E57)"
   - icon: ':heavy_check_mark:'
+    path: math/convolution/MultidimensionalConvolution.hpp
+    title: MultidimensionalConvolution
+  - icon: ':heavy_check_mark:'
     path: math/poly/PolynomialInterpolation.hpp
     title: "PolynomialInterpolation(\u591A\u9805\u5F0F\u88DC\u9593)"
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/convolution/multivariate_convolution.test.cpp
+    title: test/yosupo/convolution/multivariate_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/convolution/multivariate_convolution_cyclic.test.cpp
+    title: test/yosupo/convolution/multivariate_convolution_cyclic.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/enumerative_combinatorics/factorial.test.cpp
     title: test/yosupo/enumerative_combinatorics/factorial.test.cpp
@@ -963,18 +972,19 @@ data:
     \    static constexpr ll INV1_2 = mod_pow(MOD1, MOD2 - 2, MOD2);\n    static constexpr\
     \ ll INV1_3 = mod_pow(MOD1, MOD3 - 2, MOD3);\n    static constexpr ll INV2_3 =\
     \ mod_pow(MOD2, MOD3 - 2, MOD3);\n    using mint1 = static_modint<MOD1>;\n   \
-    \ using mint2 = static_modint<MOD1>;\n    using mint3 = static_modint<MOD1>;\n\
-    \    std::vector<mint1> a1(n), b1(n);\n    std::vector<mint2> a2(n), b2(n);\n\
-    \    std::vector<mint3> a3(n), b3(n);\n    rep (i, n) {\n        a1[i] = a[i].get();\
-    \ b1[i] = b[i].get();\n        a2[i] = a[i].get(); b2[i] = b[i].get();\n     \
-    \   a3[i] = a[i].get(); b3[i] = b[i].get();\n    }\n    auto c1 = middle_product(a1,\
-    \ b1);\n    auto c2 = middle_product(a2, b2);\n    auto c3 = middle_product(a3,\
-    \ b3);\n    std::vector<T> res(n - m + 1);\n    rep (i, n - m + 1) {\n       \
-    \ ll t1 = (ll)c1[i].get();\n        ll t2 = ((ll)c2[i].get() - t1 + MOD2) * INV1_2\
-    \ % MOD2;\n        if (t2 < 0) t2 += MOD2;\n        ll t3 =\n            (((ll)c3[i].get()\
-    \ - t1 + MOD3) * INV1_3 % MOD3 - t2 + MOD3) * INV2_3 % MOD3;\n        if (t3 <\
-    \ 0) t3 += MOD3;\n        res[i] = t1 + (t2 + t3 * MOD2) * MOD1;\n    }\n    return\
-    \ res;\n}\n#line 2 \"math/poly/SubproductTree.hpp\"\n\n#line 5 \"math/poly/SubproductTree.hpp\"\
+    \ using mint2 = static_modint<MOD2>;\n    using mint3 = static_modint<MOD3>;\n\
+    \    std::vector<mint1> a1(n), b1(m);\n    std::vector<mint2> a2(n), b2(m);\n\
+    \    std::vector<mint3> a3(n), b3(m);\n    rep (i, n) {\n        a1[i] = a[i].get();\n\
+    \        a2[i] = a[i].get();\n        a3[i] = a[i].get();\n    }\n    rep (i,\
+    \ m) {\n        b1[i] = b[i].get();\n        b2[i] = b[i].get();\n        b3[i]\
+    \ = b[i].get();\n    }\n    auto c1 = middle_product(a1, b1);\n    auto c2 = middle_product(a2,\
+    \ b2);\n    auto c3 = middle_product(a3, b3);\n    std::vector<T> res(n - m +\
+    \ 1);\n    rep (i, n - m + 1) {\n        ll t1 = (ll)c1[i].get();\n        ll\
+    \ t2 = ((ll)c2[i].get() - t1 + MOD2) * INV1_2 % MOD2;\n        if (t2 < 0) t2\
+    \ += MOD2;\n        ll t3 =\n            (((ll)c3[i].get() - t1 + MOD3) * INV1_3\
+    \ % MOD3 - t2 + MOD3) * INV2_3 % MOD3;\n        if (t3 < 0) t3 += MOD3;\n    \
+    \    res[i] = t1 + T(t2 + t3 * MOD2) * MOD1;\n    }\n    return res;\n}\n#line\
+    \ 2 \"math/poly/SubproductTree.hpp\"\n\n#line 5 \"math/poly/SubproductTree.hpp\"\
     \n\ntemplate<class T>\nclass SubproductTree {\nprivate:\n    int n, N;\n    std::vector<FormalPowerSeries<T>>\
     \ dat, ntts;\n\npublic:\n    SubproductTree(const std::vector<T>& xs) { init(xs);\
     \ }\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<\n\
@@ -1161,12 +1171,15 @@ data:
   path: math/poly/MultipointEvaluation.hpp
   requiredBy:
   - math/Factorial.hpp
+  - math/convolution/MultidimensionalConvolution.hpp
   - math/poly/PolynomialInterpolation.hpp
   - graph/other/ChromaticPolynomial.hpp
-  timestamp: '2026-09-18 19:48:48+09:00'
+  timestamp: '2026-09-18 21:09:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/enumerative_combinatorics/factorial.test.cpp
+  - test/yosupo/convolution/multivariate_convolution.test.cpp
+  - test/yosupo/convolution/multivariate_convolution_cyclic.test.cpp
   - test/yosupo/polynomial/multipoint_evaluation.test.cpp
   - test/yosupo/polynomial/multipoint_evaluation_on_geometric_sequence.test.cpp
   - test/yosupo/polynomial/polynomial_interpolation.test.cpp

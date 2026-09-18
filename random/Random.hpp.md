@@ -39,6 +39,9 @@ data:
     path: math/TetrationMod.hpp
     title: TetrationMod
   - icon: ':heavy_check_mark:'
+    path: math/convolution/MultidimensionalConvolution.hpp
+    title: MultidimensionalConvolution
+  - icon: ':heavy_check_mark:'
     path: math/convolution/MultiplicationConvolution.hpp
     title: math/convolution/MultiplicationConvolution.hpp
   - icon: ':heavy_check_mark:'
@@ -72,6 +75,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/mul_modp_convolution.test.cpp
     title: test/yosupo/convolution/mul_modp_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/convolution/multivariate_convolution.test.cpp
+    title: test/yosupo/convolution/multivariate_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/convolution/multivariate_convolution_cyclic.test.cpp
+    title: test/yosupo/convolution/multivariate_convolution_cyclic.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/sparse_matrix_det.test.cpp
     title: test/yosupo/linear_algebra/sparse_matrix_det.test.cpp
@@ -589,6 +598,7 @@ data:
   requiredBy:
   - data-struct/other/SkipList.hpp
   - math/convolution/MultiplicationConvolution.hpp
+  - math/convolution/MultidimensionalConvolution.hpp
   - math/num/TwoSquareSum.hpp
   - math/num/PollardRho.hpp
   - math/num/EulerPhi.hpp
@@ -601,6 +611,8 @@ data:
   timestamp: '2026-09-12 01:05:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/convolution/multivariate_convolution.test.cpp
+  - test/yosupo/convolution/multivariate_convolution_cyclic.test.cpp
   - test/yosupo/convolution/mul_modp_convolution.test.cpp
   - test/yosupo/number_theory/tetration_mod.test.cpp
   - test/yosupo/number_theory/factorize.test.cpp

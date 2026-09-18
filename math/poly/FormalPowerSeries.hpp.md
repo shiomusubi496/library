@@ -55,6 +55,9 @@ data:
     path: math/SubsetSum.hpp
     title: SubsetSum
   - icon: ':heavy_check_mark:'
+    path: math/convolution/MultidimensionalConvolution.hpp
+    title: MultidimensionalConvolution
+  - icon: ':heavy_check_mark:'
     path: math/matrix/BlackboxLinearAlgebra.hpp
     title: math/matrix/BlackboxLinearAlgebra.hpp
   - icon: ':heavy_check_mark:'
@@ -104,6 +107,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_G.test.cpp
     title: test/aoj/DPL/DPL_5_G.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/convolution/multivariate_convolution.test.cpp
+    title: test/yosupo/convolution/multivariate_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/convolution/multivariate_convolution_cyclic.test.cpp
+    title: test/yosupo/convolution/multivariate_convolution_cyclic.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/enumerative_combinatorics/bell_number.test.cpp
     title: test/yosupo/enumerative_combinatorics/bell_number.test.cpp
@@ -1282,6 +1291,7 @@ data:
   requiredBy:
   - math/Factorial.hpp
   - math/StirlingNumber.hpp
+  - math/convolution/MultidimensionalConvolution.hpp
   - math/SubsetSum.hpp
   - math/ExpPolySum.hpp
   - math/poly/SquareRoot.hpp
@@ -1316,6 +1326,8 @@ data:
   - test/yosupo/other/find_linear_recurrence.test.cpp
   - test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
   - test/yosupo/other/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - test/yosupo/convolution/multivariate_convolution.test.cpp
+  - test/yosupo/convolution/multivariate_convolution_cyclic.test.cpp
   - test/yosupo/polynomial/composition_of_formal_power_series_large.test.cpp
   - test/yosupo/polynomial/log_of_formal_power_series.test.cpp
   - test/yosupo/polynomial/product_of_polynomial_sequence.test.cpp
