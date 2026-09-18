@@ -95,6 +95,9 @@ data:
     path: math/poly/SquareRoot.hpp
     title: math/poly/SquareRoot.hpp
   - icon: ':heavy_check_mark:'
+    path: math/poly/SubproductTree.hpp
+    title: math/poly/SubproductTree.hpp
+  - icon: ':heavy_check_mark:'
     path: math/poly/TaylorShift.hpp
     title: TaylorShift
   _extendedVerifiedWith:
@@ -1283,6 +1286,7 @@ data:
   - math/ExpPolySum.hpp
   - math/poly/SquareRoot.hpp
   - math/poly/ConsecutiveTermsOfLinearRecurrence.hpp
+  - math/poly/SubproductTree.hpp
   - math/poly/PolynomialInterpolation.hpp
   - math/poly/BerlekampMassey.hpp
   - math/poly/SamplingPointsShift.hpp

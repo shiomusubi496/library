@@ -11,8 +11,14 @@ data:
     path: math/convolution/Convolution.hpp
     title: "Convolution(\u7573\u307F\u8FBC\u307F)"
   - icon: ':heavy_check_mark:'
+    path: math/convolution/MiddleProduct.hpp
+    title: math/convolution/MiddleProduct.hpp
+  - icon: ':heavy_check_mark:'
     path: math/poly/FormalPowerSeries.hpp
     title: "FormalPowerSeries(\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570)"
+  - icon: ':heavy_check_mark:'
+    path: math/poly/SubproductTree.hpp
+    title: math/poly/SubproductTree.hpp
   - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
@@ -942,25 +948,111 @@ data:
     \ b);\n        return *this;\n    }\n};\n\n/**\n * @brief FormalPowerSeries(\u5F62\
     \u5F0F\u7684\u51AA\u7D1A\u6570)\n * @docs docs/math/poly/FormalPowerSeries.md\n\
     \ * @see https://nyaannyaan.github.io/library/fps/formal-power-series.hpp\n */\n\
-    #line 5 \"math/poly/MultipointEvaluation.hpp\"\n\nnamespace internal {\n\ntemplate<class\
-    \ T> class ProductTree {\nprivate:\n    int n;\n    std::vector<FormalPowerSeries<T>>\
-    \ dat;\n\npublic:\n    ProductTree(const std::vector<T>& xs) {\n        n = xs.size();\n\
-    \        dat.resize(n << 1);\n        rep (i, n) dat[i + n] = FormalPowerSeries<T>{-xs[i],\
-    \ 1};\n        rrep (i, 1, n) dat[i] = dat[i << 1] * dat[i << 1 | 1];\n    }\n\
-    \    const FormalPowerSeries<T>& operator[](int k) const& { return dat[k]; }\n\
-    \    FormalPowerSeries<T> operator[](int k) && { return std::move(dat[k]); }\n\
-    };\n\ntemplate<class T>\nstd::vector<T> multipoint_evaluation(const FormalPowerSeries<T>&\
-    \ a,\n                                     const std::vector<T>& b,\n        \
-    \                             const ProductTree<T>& c) {\n    int m = b.size();\n\
-    \    std::vector<FormalPowerSeries<T>> d(m << 1);\n    d[1] = a % c[1];\n    rep\
-    \ (i, 2, m << 1) d[i] = d[i >> 1] % c[i];\n    std::vector<T> e(m);\n    rep (i,\
-    \ m) e[i] = d[m + i].empty() ? T{0} : d[m + i][0];\n    return e;\n}\n\n} // namespace\
-    \ internal\n\ntemplate<class T>\nstd::vector<T> multipoint_evaluation(const FormalPowerSeries<T>&\
-    \ a,\n                                     const std::vector<T>& b) {\n    if\
-    \ (a.empty() || b.empty()) return std::vector<T>(b.size(), T{0});\n    if (a.size()\
-    \ <= 32 || b.size() <= 32) {\n        std::vector<T> res(b.size());\n        rep\
-    \ (i, b.size()) res[i] = a.eval(b[i]);\n        return res;\n    }\n    return\
-    \ internal::multipoint_evaluation(a, b, internal::ProductTree<T>(b));\n}\n\ntemplate<class\
+    #line 2 \"math/convolution/MiddleProduct.hpp\"\n\n#line 6 \"math/convolution/MiddleProduct.hpp\"\
+    \n\ntemplate<class T, typename std::enable_if<\n                      is_ntt_friendly_modint<T>::value>::type*\
+    \ = nullptr>\nstd::vector<T> middle_product(std::vector<T> a, std::vector<T> b)\
+    \ {\n    int n = a.size(), m = b.size();\n    assert(n >= m);\n    std::reverse(all(b));\n\
+    \    int N = 1 << bitop::ceil_log2(n);\n    a.resize(N);\n    b.resize(N);\n \
+    \   number_theoretic_transform(a);\n    number_theoretic_transform(b);\n    rep\
+    \ (i, N) a[i] *= b[i];\n    inverse_number_theoretic_transform(a);\n    std::vector<T>\
+    \ res(a.begin() + (m - 1), a.begin() + n);\n    return res;\n}\n\ntemplate<class\
+    \ T, typename std::enable_if<\n                      !is_ntt_friendly_modint<T>::value>::type*\
+    \ = nullptr>\nstd::vector<T> middle_product(std::vector<T> a, std::vector<T> b)\
+    \ {\n    int n = a.size(), m = b.size();\n    static constexpr ll MOD1 = 469762049;\n\
+    \    static constexpr ll MOD2 = 1811939329;\n    static constexpr ll MOD3 = 2013265921;\n\
+    \    static constexpr ll INV1_2 = mod_pow(MOD1, MOD2 - 2, MOD2);\n    static constexpr\
+    \ ll INV1_3 = mod_pow(MOD1, MOD3 - 2, MOD3);\n    static constexpr ll INV2_3 =\
+    \ mod_pow(MOD2, MOD3 - 2, MOD3);\n    using mint1 = static_modint<MOD1>;\n   \
+    \ using mint2 = static_modint<MOD1>;\n    using mint3 = static_modint<MOD1>;\n\
+    \    std::vector<mint1> a1(n), b1(n);\n    std::vector<mint2> a2(n), b2(n);\n\
+    \    std::vector<mint3> a3(n), b3(n);\n    rep (i, n) {\n        a1[i] = a[i].get();\
+    \ b1[i] = b[i].get();\n        a2[i] = a[i].get(); b2[i] = b[i].get();\n     \
+    \   a3[i] = a[i].get(); b3[i] = b[i].get();\n    }\n    auto c1 = middle_product(a1,\
+    \ b1);\n    auto c2 = middle_product(a2, b2);\n    auto c3 = middle_product(a3,\
+    \ b3);\n    std::vector<T> res(n - m + 1);\n    rep (i, n - m + 1) {\n       \
+    \ ll t1 = (ll)c1[i].get();\n        ll t2 = ((ll)c2[i].get() - t1 + MOD2) * INV1_2\
+    \ % MOD2;\n        if (t2 < 0) t2 += MOD2;\n        ll t3 =\n            (((ll)c3[i].get()\
+    \ - t1 + MOD3) * INV1_3 % MOD3 - t2 + MOD3) * INV2_3 % MOD3;\n        if (t3 <\
+    \ 0) t3 += MOD3;\n        res[i] = t1 + (t2 + t3 * MOD2) * MOD1;\n    }\n    return\
+    \ res;\n}\n#line 2 \"math/poly/SubproductTree.hpp\"\n\n#line 5 \"math/poly/SubproductTree.hpp\"\
+    \n\ntemplate<class T>\nclass SubproductTree {\nprivate:\n    int n, N;\n    std::vector<FormalPowerSeries<T>>\
+    \ dat, ntts;\n\npublic:\n    SubproductTree(const std::vector<T>& xs) { init(xs);\
+    \ }\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<\n\
+    \                 AlwaysTrue && is_ntt_friendly_modint<T>::value>::type* =\n \
+    \                nullptr>\n    void init(const std::vector<T>& xs) {\n       \
+    \ n = xs.size(), N = 1 << bitop::ceil_log2(n);\n        dat.resize(2 * N);\n \
+    \       ntts.resize(2 * N);\n        rep (i, n) dat[i + N] = {-xs[i], 1};\n  \
+    \      rep (i, n, N) dat[i + N] = {0, 1};\n        rep (i, N, 2 * N) ntts[i] =\
+    \ {dat[i][0] + dat[i][1], dat[i][0] - dat[i][1]};\n        rrep (i, 1, N) {\n\
+    \            int m = dat[i * 2 + 0].size() * 2 - 2;\n            ntts[i].assign(m,\
+    \ -1);\n            rep (j, m) ntts[i][j] += ntts[i * 2 + 0][j] * ntts[i * 2 +\
+    \ 1][j];\n            dat[i] = ntts[i];\n            inverse_number_theoretic_transform(dat[i]);\n\
+    \            ntt_doubling_(ntts[i], dat[i]);\n            rep (j, m) ++ntts[i][j];\n\
+    \            rep (j, m, 2 * m) --ntts[i][j];\n            dat[i].push_back(1);\n\
+    \        }\n    }\n    template<bool AlwaysTrue = true,\n             typename\
+    \ std::enable_if<\n                 AlwaysTrue && !is_ntt_friendly_modint<T>::value>::type*\
+    \ =\n                 nullptr>\n    void init(const std::vector<T>& xs) {\n  \
+    \      n = xs.size(), N = 1 << bitop::ceil_log2(n);\n        dat.resize(2 * N);\n\
+    \        rep (i, n) dat[i + N] = {-xs[i], 1};\n        rep (i, n, N) dat[i + N]\
+    \ = {0, 1};\n        rrep (i, 1, N) dat[i] = dat[i * 2 + 0] * dat[i * 2 + 1];\n\
+    \    }\n    const FormalPowerSeries<T>& operator[](int i) const { return dat[i];\
+    \ }\n    const FormalPowerSeries<T>& get_ntt(int i) const { return ntts[i]; }\n\
+    };\n#line 7 \"math/poly/MultipointEvaluation.hpp\"\n\nnamespace internal {\n\n\
+    template<class T, typename std::enable_if<\n                      is_ntt_friendly_modint<T>::value>::type*\
+    \ = nullptr>\nstd::vector<T> multipoint_evaluation(FormalPowerSeries<T> a,\n \
+    \                                    const std::vector<T>& b,\n              \
+    \                       const SubproductTree<T>& c) {\n    static constexpr internal::NthRoot<T>\
+    \ nth_root;\n    auto get_high_dft = [&](std::vector<T>& a) -> void {\n      \
+    \  int n = a.size() / 2;\n        std::vector<T> b(n);\n        rep (i, n) b[i]\
+    \ = a[i + n];\n        inverse_number_theoretic_transform(b);\n        const T\
+    \ z = nth_root.inv(bitop::msb(n) + 1);\n        T r = 1;\n        rep (i, n) {\n\
+    \            b[i] *= r;\n            r *= z;\n        }\n        number_theoretic_transform(b);\n\
+    \        const T i2 = T{2}.inv();\n        rep (i, n) a[i] = (a[i] - b[i]) * i2;\n\
+    \        a.resize(n);\n    };\n    int m = a.size(), n = b.size(), N = 1 << bitop::ceil_log2(n);\n\
+    \    std::vector<FormalPowerSeries<T>> num(2 * N);\n    num[1] = middle_product(a.prefix(m\
+    \ + N - 1), c[1].rev().inv(m));\n    number_theoretic_transform(num[1]);\n   \
+    \ rep (i, 1, N) {\n        int k = num[i].size();\n        num[i * 2 + 0].resize(k);\n\
+    \        num[i * 2 + 1].resize(k);\n        rep (j, k) num[i * 2 + 0][j] = num[i][j]\
+    \ * c.get_ntt(i * 2 + 1)[j];\n        rep (j, k) num[i * 2 + 1][j] = num[i][j]\
+    \ * c.get_ntt(i * 2 + 0)[j];\n        get_high_dft(num[i * 2 + 0]);\n        get_high_dft(num[i\
+    \ * 2 + 1]);\n    }\n    std::vector<T> res(n);\n    rep (i, n) res[i] = num[i\
+    \ + N][0];\n    return res;\n}\n\ntemplate<class T, typename std::enable_if<\n\
+    \                      !is_ntt_friendly_modint<T>::value>::type* = nullptr>\n\
+    std::vector<T> multipoint_evaluation(const FormalPowerSeries<T>& a,\n        \
+    \                             const std::vector<T>& b,\n                     \
+    \                const SubproductTree<T>& c) {\n    int m = a.size(), n = b.size(),\
+    \ N = 1 << bitop::ceil_log2(n);\n    std::vector<FormalPowerSeries<T>> num(2 *\
+    \ N);\n    num[1] = middle_product(a.prefix(m + N - 1), c[1].rev().inv(m));\n\
+    \    rep (i, 1, N) {\n        num[i * 2 + 0] = middle_product(num[i], c[i * 2\
+    \ + 1].rev());\n        num[i * 2 + 1] = middle_product(num[i], c[i * 2 + 0].rev());\n\
+    \    }\n    std::vector<T> res(n);\n    rep (i, n) res[i] = num[i + N][0];\n \
+    \   return res;\n}\n\ntemplate<class T, typename std::enable_if<\n           \
+    \           is_ntt_friendly_modint<T>::value>::type* = nullptr>\nFormalPowerSeries<T>\n\
+    sum_of_fractions(const std::vector<T>& a, const std::vector<T>& b, const SubproductTree<T>&\
+    \ c) {\n    int m = a.size(), n = 1 << bitop::ceil_log2(m);\n    std::vector<FormalPowerSeries<T>>\
+    \ num(2 * n);\n    rep (i, m) num[i + n] = {a[i]};\n    rep (i, m, n) num[i +\
+    \ n] = {0};\n    rrep (i, 1, n) {\n        ntt_doubling_(num[i * 2 + 0]);\n  \
+    \      ntt_doubling_(num[i * 2 + 1]);\n        int k = num[i * 2 + 0].size();\n\
+    \        num[i].resize(k);\n        rep (j, k) {\n            num[i][j] = num[i\
+    \ * 2 + 0][j] * c.get_ntt(i * 2 + 1)[j]\n                      + num[i * 2 + 1][j]\
+    \ * c.get_ntt(i * 2 + 0)[j];\n        }\n    }\n    inverse_number_theoretic_transform(num[1]);\n\
+    \    return num[1];\n}\n\ntemplate<class T, typename std::enable_if<\n       \
+    \               !is_ntt_friendly_modint<T>::value>::type* = nullptr>\nFormalPowerSeries<T>\n\
+    sum_of_fractions(const std::vector<T>& a, const std::vector<T>& b, const SubproductTree<T>&\
+    \ c) {\n    int m = a.size(), n = 1 << bitop::ceil_log2(m);\n    std::vector<FormalPowerSeries<T>>\
+    \ num(2 * n);\n    rep (i, m) num[i + n] = {a[i]};\n    rep (i, m, n) num[i +\
+    \ n] = {0};\n    rrep (i, 1, n) {\n        num[i] = num[i * 2 + 0] * c[i * 2 +\
+    \ 1] + num[i * 2 + 1] * c[i * 2 + 0];\n    }\n    return num[1];\n}\n\n} // namespace\
+    \ internal\n\n// sum[i] a[i]/(1-b[i]x)\ntemplate<class T>\nstd::vector<FormalPowerSeries<T>,\
+    \ FormalPowerSeries<T>>\nsum_of_fractions(const std::vector<T>& a, const std::vector<T>&\
+    \ b) {\n    assert(a.size() == b.size());\n    int n = a.size(), m = 1 << bitop::ceil_log2(n);\n\
+    \    SubproductTree<T> spt(b);\n    return {sum_of_fractions(a, b, spt) >> (m\
+    \ - n), spt[1] >> (m - n)};\n}\n\ntemplate<class T>\nstd::vector<T> multipoint_evaluation(const\
+    \ FormalPowerSeries<T>& a,\n                                     const std::vector<T>&\
+    \ b) {\n    if (a.empty() || b.empty()) return std::vector<T>(b.size(), T{0});\n\
+    \    if (a.size() <= 32 || b.size() <= 32) {\n        std::vector<T> res(b.size());\n\
+    \        rep (i, b.size()) res[i] = a.eval(b[i]);\n        return res;\n    }\n\
+    \    return internal::multipoint_evaluation(a, b, SubproductTree(b));\n}\n\ntemplate<class\
     \ T>\nstd::vector<T> multipoint_evaluation_geometric(const FormalPowerSeries<T>&\
     \ f,\n                                               T a, T r, int m) {\n    if\
     \ (f.empty() || m == 0) return std::vector<T>(m, T{0});\n    if (a == 0 || r ==\
@@ -968,53 +1060,86 @@ data:
     \ {\n        std::vector<T> res(m);\n        rep (i, m) {\n            res[i]\
     \ = f.eval(a);\n            a *= r;\n        }\n        return res;\n    }\n \
     \   if (r == 0) {\n        std::vector<T> res(m, f.eval(0));\n        res[0] =\
-    \ f.eval(a);\n        return res;\n    }\n    int n = f.size();\n    int l = 1\
-    \ << bitop::ceil_log2(n + m - 1);\n    std::vector<T> p(l), q(l);\n    T ir =\
-    \ T{1} / r, t = 1, t2 = 1;\n    rep (i, n) {\n        p[n - i - 1] = f[i] * t;\n\
-    \        t *= a * t2;\n        t2 *= ir;\n    }\n    t = t2 = 1;\n    rep (i,\
-    \ n + m - 1) {\n        q[i] = t;\n        t *= t2;\n        t2 *= r;\n    }\n\
-    \    number_theoretic_transform(p);\n    number_theoretic_transform(q);\n    rep\
-    \ (i, l) p[i] *= q[i];\n    inverse_number_theoretic_transform(p);\n    std::vector<T>\
-    \ ans(p.begin() + (n - 1), p.begin() + (n + m - 1));\n    t = t2 = 1;\n    rep\
-    \ (i, m) {\n        ans[i] *= t;\n        t *= t2;\n        t2 *= ir;\n    }\n\
-    \    return ans;\n}\n\n/**\n * @brief MultipointEvaluation(\u591A\u70B9\u8A55\u4FA1\
-    )\n * @docs docs/math/poly/MultipointEvaluation.md\n */\n"
+    \ f.eval(a);\n        return res;\n    }\n    int n = f.size();\n    std::vector<T>\
+    \ p(n), q(n + m - 1);\n    T ir = T{1} / r, t = 1, t2 = 1;\n    rep (i, n) {\n\
+    \        p[i] = f[i] * t;\n        t *= a * t2;\n        t2 *= ir;\n    }\n  \
+    \  t = t2 = 1;\n    rep (i, n + m - 1) {\n        q[i] = t;\n        t *= t2;\n\
+    \        t2 *= r;\n    }\n    std::vector<T> ans = middle_product(q, p);\n   \
+    \ t = t2 = 1;\n    rep (i, m) {\n        ans[i] *= t;\n        t *= t2;\n    \
+    \    t2 *= ir;\n    }\n    return ans;\n}\n\n/**\n * @brief MultipointEvaluation(\u591A\
+    \u70B9\u8A55\u4FA1)\n * @docs docs/math/poly/MultipointEvaluation.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"FormalPowerSeries.hpp\"\
-    \n\nnamespace internal {\n\ntemplate<class T> class ProductTree {\nprivate:\n\
-    \    int n;\n    std::vector<FormalPowerSeries<T>> dat;\n\npublic:\n    ProductTree(const\
-    \ std::vector<T>& xs) {\n        n = xs.size();\n        dat.resize(n << 1);\n\
-    \        rep (i, n) dat[i + n] = FormalPowerSeries<T>{-xs[i], 1};\n        rrep\
-    \ (i, 1, n) dat[i] = dat[i << 1] * dat[i << 1 | 1];\n    }\n    const FormalPowerSeries<T>&\
-    \ operator[](int k) const& { return dat[k]; }\n    FormalPowerSeries<T> operator[](int\
-    \ k) && { return std::move(dat[k]); }\n};\n\ntemplate<class T>\nstd::vector<T>\
-    \ multipoint_evaluation(const FormalPowerSeries<T>& a,\n                     \
-    \                const std::vector<T>& b,\n                                  \
-    \   const ProductTree<T>& c) {\n    int m = b.size();\n    std::vector<FormalPowerSeries<T>>\
-    \ d(m << 1);\n    d[1] = a % c[1];\n    rep (i, 2, m << 1) d[i] = d[i >> 1] %\
-    \ c[i];\n    std::vector<T> e(m);\n    rep (i, m) e[i] = d[m + i].empty() ? T{0}\
-    \ : d[m + i][0];\n    return e;\n}\n\n} // namespace internal\n\ntemplate<class\
-    \ T>\nstd::vector<T> multipoint_evaluation(const FormalPowerSeries<T>& a,\n  \
-    \                                   const std::vector<T>& b) {\n    if (a.empty()\
-    \ || b.empty()) return std::vector<T>(b.size(), T{0});\n    if (a.size() <= 32\
-    \ || b.size() <= 32) {\n        std::vector<T> res(b.size());\n        rep (i,\
-    \ b.size()) res[i] = a.eval(b[i]);\n        return res;\n    }\n    return internal::multipoint_evaluation(a,\
-    \ b, internal::ProductTree<T>(b));\n}\n\ntemplate<class T>\nstd::vector<T> multipoint_evaluation_geometric(const\
-    \ FormalPowerSeries<T>& f,\n                                               T a,\
-    \ T r, int m) {\n    if (f.empty() || m == 0) return std::vector<T>(m, T{0});\n\
-    \    if (a == 0 || r == 1) return std::vector<T>(m, f.eval(a));\n    if (f.size()\
-    \ <= 32 || m <= 32) {\n        std::vector<T> res(m);\n        rep (i, m) {\n\
-    \            res[i] = f.eval(a);\n            a *= r;\n        }\n        return\
-    \ res;\n    }\n    if (r == 0) {\n        std::vector<T> res(m, f.eval(0));\n\
-    \        res[0] = f.eval(a);\n        return res;\n    }\n    int n = f.size();\n\
-    \    int l = 1 << bitop::ceil_log2(n + m - 1);\n    std::vector<T> p(l), q(l);\n\
-    \    T ir = T{1} / r, t = 1, t2 = 1;\n    rep (i, n) {\n        p[n - i - 1] =\
-    \ f[i] * t;\n        t *= a * t2;\n        t2 *= ir;\n    }\n    t = t2 = 1;\n\
-    \    rep (i, n + m - 1) {\n        q[i] = t;\n        t *= t2;\n        t2 *=\
-    \ r;\n    }\n    number_theoretic_transform(p);\n    number_theoretic_transform(q);\n\
-    \    rep (i, l) p[i] *= q[i];\n    inverse_number_theoretic_transform(p);\n  \
-    \  std::vector<T> ans(p.begin() + (n - 1), p.begin() + (n + m - 1));\n    t =\
-    \ t2 = 1;\n    rep (i, m) {\n        ans[i] *= t;\n        t *= t2;\n        t2\
-    \ *= ir;\n    }\n    return ans;\n}\n\n/**\n * @brief MultipointEvaluation(\u591A\
+    \n#include \"../convolution/MiddleProduct.hpp\"\n#include \"SubproductTree.hpp\"\
+    \n\nnamespace internal {\n\ntemplate<class T, typename std::enable_if<\n     \
+    \                 is_ntt_friendly_modint<T>::value>::type* = nullptr>\nstd::vector<T>\
+    \ multipoint_evaluation(FormalPowerSeries<T> a,\n                            \
+    \         const std::vector<T>& b,\n                                     const\
+    \ SubproductTree<T>& c) {\n    static constexpr internal::NthRoot<T> nth_root;\n\
+    \    auto get_high_dft = [&](std::vector<T>& a) -> void {\n        int n = a.size()\
+    \ / 2;\n        std::vector<T> b(n);\n        rep (i, n) b[i] = a[i + n];\n  \
+    \      inverse_number_theoretic_transform(b);\n        const T z = nth_root.inv(bitop::msb(n)\
+    \ + 1);\n        T r = 1;\n        rep (i, n) {\n            b[i] *= r;\n    \
+    \        r *= z;\n        }\n        number_theoretic_transform(b);\n        const\
+    \ T i2 = T{2}.inv();\n        rep (i, n) a[i] = (a[i] - b[i]) * i2;\n        a.resize(n);\n\
+    \    };\n    int m = a.size(), n = b.size(), N = 1 << bitop::ceil_log2(n);\n \
+    \   std::vector<FormalPowerSeries<T>> num(2 * N);\n    num[1] = middle_product(a.prefix(m\
+    \ + N - 1), c[1].rev().inv(m));\n    number_theoretic_transform(num[1]);\n   \
+    \ rep (i, 1, N) {\n        int k = num[i].size();\n        num[i * 2 + 0].resize(k);\n\
+    \        num[i * 2 + 1].resize(k);\n        rep (j, k) num[i * 2 + 0][j] = num[i][j]\
+    \ * c.get_ntt(i * 2 + 1)[j];\n        rep (j, k) num[i * 2 + 1][j] = num[i][j]\
+    \ * c.get_ntt(i * 2 + 0)[j];\n        get_high_dft(num[i * 2 + 0]);\n        get_high_dft(num[i\
+    \ * 2 + 1]);\n    }\n    std::vector<T> res(n);\n    rep (i, n) res[i] = num[i\
+    \ + N][0];\n    return res;\n}\n\ntemplate<class T, typename std::enable_if<\n\
+    \                      !is_ntt_friendly_modint<T>::value>::type* = nullptr>\n\
+    std::vector<T> multipoint_evaluation(const FormalPowerSeries<T>& a,\n        \
+    \                             const std::vector<T>& b,\n                     \
+    \                const SubproductTree<T>& c) {\n    int m = a.size(), n = b.size(),\
+    \ N = 1 << bitop::ceil_log2(n);\n    std::vector<FormalPowerSeries<T>> num(2 *\
+    \ N);\n    num[1] = middle_product(a.prefix(m + N - 1), c[1].rev().inv(m));\n\
+    \    rep (i, 1, N) {\n        num[i * 2 + 0] = middle_product(num[i], c[i * 2\
+    \ + 1].rev());\n        num[i * 2 + 1] = middle_product(num[i], c[i * 2 + 0].rev());\n\
+    \    }\n    std::vector<T> res(n);\n    rep (i, n) res[i] = num[i + N][0];\n \
+    \   return res;\n}\n\ntemplate<class T, typename std::enable_if<\n           \
+    \           is_ntt_friendly_modint<T>::value>::type* = nullptr>\nFormalPowerSeries<T>\n\
+    sum_of_fractions(const std::vector<T>& a, const std::vector<T>& b, const SubproductTree<T>&\
+    \ c) {\n    int m = a.size(), n = 1 << bitop::ceil_log2(m);\n    std::vector<FormalPowerSeries<T>>\
+    \ num(2 * n);\n    rep (i, m) num[i + n] = {a[i]};\n    rep (i, m, n) num[i +\
+    \ n] = {0};\n    rrep (i, 1, n) {\n        ntt_doubling_(num[i * 2 + 0]);\n  \
+    \      ntt_doubling_(num[i * 2 + 1]);\n        int k = num[i * 2 + 0].size();\n\
+    \        num[i].resize(k);\n        rep (j, k) {\n            num[i][j] = num[i\
+    \ * 2 + 0][j] * c.get_ntt(i * 2 + 1)[j]\n                      + num[i * 2 + 1][j]\
+    \ * c.get_ntt(i * 2 + 0)[j];\n        }\n    }\n    inverse_number_theoretic_transform(num[1]);\n\
+    \    return num[1];\n}\n\ntemplate<class T, typename std::enable_if<\n       \
+    \               !is_ntt_friendly_modint<T>::value>::type* = nullptr>\nFormalPowerSeries<T>\n\
+    sum_of_fractions(const std::vector<T>& a, const std::vector<T>& b, const SubproductTree<T>&\
+    \ c) {\n    int m = a.size(), n = 1 << bitop::ceil_log2(m);\n    std::vector<FormalPowerSeries<T>>\
+    \ num(2 * n);\n    rep (i, m) num[i + n] = {a[i]};\n    rep (i, m, n) num[i +\
+    \ n] = {0};\n    rrep (i, 1, n) {\n        num[i] = num[i * 2 + 0] * c[i * 2 +\
+    \ 1] + num[i * 2 + 1] * c[i * 2 + 0];\n    }\n    return num[1];\n}\n\n} // namespace\
+    \ internal\n\n// sum[i] a[i]/(1-b[i]x)\ntemplate<class T>\nstd::vector<FormalPowerSeries<T>,\
+    \ FormalPowerSeries<T>>\nsum_of_fractions(const std::vector<T>& a, const std::vector<T>&\
+    \ b) {\n    assert(a.size() == b.size());\n    int n = a.size(), m = 1 << bitop::ceil_log2(n);\n\
+    \    SubproductTree<T> spt(b);\n    return {sum_of_fractions(a, b, spt) >> (m\
+    \ - n), spt[1] >> (m - n)};\n}\n\ntemplate<class T>\nstd::vector<T> multipoint_evaluation(const\
+    \ FormalPowerSeries<T>& a,\n                                     const std::vector<T>&\
+    \ b) {\n    if (a.empty() || b.empty()) return std::vector<T>(b.size(), T{0});\n\
+    \    if (a.size() <= 32 || b.size() <= 32) {\n        std::vector<T> res(b.size());\n\
+    \        rep (i, b.size()) res[i] = a.eval(b[i]);\n        return res;\n    }\n\
+    \    return internal::multipoint_evaluation(a, b, SubproductTree(b));\n}\n\ntemplate<class\
+    \ T>\nstd::vector<T> multipoint_evaluation_geometric(const FormalPowerSeries<T>&\
+    \ f,\n                                               T a, T r, int m) {\n    if\
+    \ (f.empty() || m == 0) return std::vector<T>(m, T{0});\n    if (a == 0 || r ==\
+    \ 1) return std::vector<T>(m, f.eval(a));\n    if (f.size() <= 32 || m <= 32)\
+    \ {\n        std::vector<T> res(m);\n        rep (i, m) {\n            res[i]\
+    \ = f.eval(a);\n            a *= r;\n        }\n        return res;\n    }\n \
+    \   if (r == 0) {\n        std::vector<T> res(m, f.eval(0));\n        res[0] =\
+    \ f.eval(a);\n        return res;\n    }\n    int n = f.size();\n    std::vector<T>\
+    \ p(n), q(n + m - 1);\n    T ir = T{1} / r, t = 1, t2 = 1;\n    rep (i, n) {\n\
+    \        p[i] = f[i] * t;\n        t *= a * t2;\n        t2 *= ir;\n    }\n  \
+    \  t = t2 = 1;\n    rep (i, n + m - 1) {\n        q[i] = t;\n        t *= t2;\n\
+    \        t2 *= r;\n    }\n    std::vector<T> ans = middle_product(q, p);\n   \
+    \ t = t2 = 1;\n    rep (i, m) {\n        ans[i] *= t;\n        t *= t2;\n    \
+    \    t2 *= ir;\n    }\n    return ans;\n}\n\n/**\n * @brief MultipointEvaluation(\u591A\
     \u70B9\u8A55\u4FA1)\n * @docs docs/math/poly/MultipointEvaluation.md\n */\n"
   dependsOn:
   - other/template.hpp
@@ -1030,13 +1155,15 @@ data:
   - math/convolution/Convolution.hpp
   - math/ModInt.hpp
   - math/Combinatorics.hpp
+  - math/convolution/MiddleProduct.hpp
+  - math/poly/SubproductTree.hpp
   isVerificationFile: false
   path: math/poly/MultipointEvaluation.hpp
   requiredBy:
   - math/Factorial.hpp
   - math/poly/PolynomialInterpolation.hpp
   - graph/other/ChromaticPolynomial.hpp
-  timestamp: '2026-09-15 21:48:30+09:00'
+  timestamp: '2026-09-18 19:48:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/enumerative_combinatorics/factorial.test.cpp

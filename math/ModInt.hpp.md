@@ -73,6 +73,9 @@ data:
     path: math/convolution/Convolution.hpp
     title: "Convolution(\u7573\u307F\u8FBC\u307F)"
   - icon: ':heavy_check_mark:'
+    path: math/convolution/MiddleProduct.hpp
+    title: math/convolution/MiddleProduct.hpp
+  - icon: ':heavy_check_mark:'
     path: math/convolution/MultidimensionalConvolution.hpp
     title: MultidimensionalConvolution
   - icon: ':heavy_check_mark:'
@@ -146,6 +149,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/poly/SquareRoot.hpp
     title: math/poly/SquareRoot.hpp
+  - icon: ':heavy_check_mark:'
+    path: math/poly/SubproductTree.hpp
+    title: math/poly/SubproductTree.hpp
   - icon: ':heavy_check_mark:'
     path: math/poly/TaylorShift.hpp
     title: TaylorShift
@@ -1149,6 +1155,7 @@ data:
   - math/convolution/Convolution.hpp
   - math/convolution/MultiplicationConvolution.hpp
   - math/convolution/MultidimensionalConvolution.hpp
+  - math/convolution/MiddleProduct.hpp
   - math/convolution/RelaxedConvolution.hpp
   - math/SubsetSum.hpp
   - math/ExpPolySum.hpp
@@ -1156,6 +1163,7 @@ data:
   - math/num/PrimitiveRoot.hpp
   - math/poly/SquareRoot.hpp
   - math/poly/ConsecutiveTermsOfLinearRecurrence.hpp
+  - math/poly/SubproductTree.hpp
   - math/poly/PolynomialInterpolation.hpp
   - math/poly/BerlekampMassey.hpp
   - math/poly/SamplingPointsShift.hpp

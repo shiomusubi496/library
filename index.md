@@ -528,6 +528,9 @@ data:
       path: math/convolution/LcmConvolution.hpp
       title: LCMConvolution
     - icon: ':heavy_check_mark:'
+      path: math/convolution/MiddleProduct.hpp
+      title: math/convolution/MiddleProduct.hpp
+    - icon: ':heavy_check_mark:'
       path: math/convolution/MinPlusConvolution.hpp
       title: Min Plus Convolution
     - icon: ':heavy_check_mark:'
@@ -656,6 +659,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/poly/SquareRoot.hpp
       title: math/poly/SquareRoot.hpp
+    - icon: ':heavy_check_mark:'
+      path: math/poly/SubproductTree.hpp
+      title: math/poly/SubproductTree.hpp
     - icon: ':heavy_check_mark:'
       path: math/poly/TaylorShift.hpp
       title: TaylorShift
