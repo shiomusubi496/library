@@ -67,8 +67,20 @@ FormalPowerSeries<T> transposed_bostan_mori(FormalPowerSeries<T> Q, ll n) {
 }
 
 template<class T>
+FormalPowerSeries<T> x_pow_k_mod_F(FormalPowerSeries<T> F, ll K) {
+    F.shrink();
+    assert(!F.empty());
+    if (F.back() != 1) F /= F.back();
+    if (K < F.size() - 1) return FormalPowerSeries<T>{1} << K;
+    std::reverse(all(F));
+    int d = F.size() - 1;
+    FormalPowerSeries<T> U = transposed_bostan_mori(F, K - d + 1).prefix(d);
+    return (F * U).prefix(d).rev();
+}
+
+template<class T>
 FormalPowerSeries<T> range_coefs(FormalPowerSeries<T> P, FormalPowerSeries<T> Q, ll n, int m) {
-    while (Q.back() == 0) Q.pop_back();
+    Q.shrink();
     FormalPowerSeries<T> f = transposed_bostan_mori(Q, n);
     auto [p, q] = divmod(P, Q);
     f = (f * Q).prefix(Q.size() - 1);
