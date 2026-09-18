@@ -996,21 +996,25 @@ data:
     \ * i + 1] = P[i] * Q[2 * i] * z;\n            }\n        }\n        return S;\n\
     \    })(R, n + m - 1);\n    inverse_number_theoretic_transform(P);\n    std::reverse(1\
     \ + all(P));\n    P *= P.size();\n    P.resize(m);\n    std::reverse(all(P));\n\
-    \    return P;\n}\n\ntemplate<class T>\nFormalPowerSeries<T> range_coefs(FormalPowerSeries<T>\
-    \ P, FormalPowerSeries<T> Q, ll n, int m) {\n    while (Q.back() == 0) Q.pop_back();\n\
-    \    FormalPowerSeries<T> f = transposed_bostan_mori(Q, n);\n    auto [p, q] =\
-    \ divmod(P, Q);\n    f = (f * Q).prefix(Q.size() - 1);\n    f = (f * q) % Q;\n\
-    \    FormalPowerSeries<T> res = (f * Q.inv(m)).prefix(m);\n    rep (i, n, p.size())\
-    \ if (i < n + m) res[i - n] += p[i];\n    return res;\n}\n\ntemplate<class T>\n\
-    FormalPowerSeries<T> range_terms(FormalPowerSeries<T> C, FormalPowerSeries<T>\
-    \ A, ll n, int m) {\n    assert(!C.empty() && C[0] != 0);\n    assert(A.size()\
-    \ == C.size() - 1);\n    return range_coefs((A * C).prefix(A.size()), C, n, m);\n\
-    }\n#line 7 \"math/matrix/BlackboxLinearAlgebra.hpp\"\n\ntemplate<class T, class\
-    \ F> FormalPowerSeries<T> minimum_polynomial_blackbox(int n, F&& A) {\n    std::vector<T>\
-    \ a(2 * n), b(n), c(n);\n    rep (i, n) b[i] = rand32.uniform<unsigned int>(1,\
-    \ T::get_mod() - 1);\n    rep (i, n) c[i] = rand32.uniform<unsigned int>(1, T::get_mod()\
-    \ - 1);\n    rep (i, 2 * n) {\n        rep (j, n) a[i] += b[j] * c[j];\n     \
-    \   if (i < 2 * n - 1) b = A(b);\n    }\n    return berlekamp_massey(a).rev();\n\
+    \    return P;\n}\n\ntemplate<class T>\nFormalPowerSeries<T> x_pow_k_mod_F(FormalPowerSeries<T>\
+    \ F, ll K) {\n    F.shrink();\n    assert(!F.empty());\n    if (F.back() != 1)\
+    \ F /= F.back();\n    if (K < F.size() - 1) return FormalPowerSeries<T>{1} <<\
+    \ K;\n    std::reverse(all(F));\n    int d = F.size() - 1;\n    FormalPowerSeries<T>\
+    \ U = transposed_bostan_mori(F, K - d + 1).prefix(d);\n    return (F * U).prefix(d).rev();\n\
+    }\n\ntemplate<class T>\nFormalPowerSeries<T> range_coefs(FormalPowerSeries<T>\
+    \ P, FormalPowerSeries<T> Q, ll n, int m) {\n    Q.shrink();\n    FormalPowerSeries<T>\
+    \ f = transposed_bostan_mori(Q, n);\n    auto [p, q] = divmod(P, Q);\n    f =\
+    \ (f * Q).prefix(Q.size() - 1);\n    f = (f * q) % Q;\n    FormalPowerSeries<T>\
+    \ res = (f * Q.inv(m)).prefix(m);\n    rep (i, n, p.size()) if (i < n + m) res[i\
+    \ - n] += p[i];\n    return res;\n}\n\ntemplate<class T>\nFormalPowerSeries<T>\
+    \ range_terms(FormalPowerSeries<T> C, FormalPowerSeries<T> A, ll n, int m) {\n\
+    \    assert(!C.empty() && C[0] != 0);\n    assert(A.size() == C.size() - 1);\n\
+    \    return range_coefs((A * C).prefix(A.size()), C, n, m);\n}\n#line 7 \"math/matrix/BlackboxLinearAlgebra.hpp\"\
+    \n\ntemplate<class T, class F> FormalPowerSeries<T> minimum_polynomial_blackbox(int\
+    \ n, F&& A) {\n    std::vector<T> a(2 * n), b(n), c(n);\n    rep (i, n) b[i] =\
+    \ rand32.uniform<unsigned int>(1, T::get_mod() - 1);\n    rep (i, n) c[i] = rand32.uniform<unsigned\
+    \ int>(1, T::get_mod() - 1);\n    rep (i, 2 * n) {\n        rep (j, n) a[i] +=\
+    \ b[j] * c[j];\n        if (i < 2 * n - 1) b = A(b);\n    }\n    return berlekamp_massey(a).rev();\n\
     }\n\ntemplate<class T, class F> T determinant_blackbox(int n, F&& A) {\n    std::vector<T>\
     \ D(n);\n    rep (i, n) D[i] = rand32.uniform<unsigned int>(1, T::get_mod() -\
     \ 1);\n    FormalPowerSeries<T> chr = minimum_polynomial_blackbox<T>(n, [&](std::vector<T>\
@@ -1057,7 +1061,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/linear_algebra/sparse_matrix_det.test.cpp
   requiredBy: []
-  timestamp: '2026-09-18 15:33:21+09:00'
+  timestamp: '2026-09-18 22:01:29+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/linear_algebra/sparse_matrix_det.test.cpp
