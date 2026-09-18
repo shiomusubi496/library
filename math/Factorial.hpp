@@ -21,7 +21,8 @@ template<class T> T factorial(ll n) {
     std::vector<T> v1(bs), v2(bn);
     rep (i, bs) v1[i] = -1 - i;
     rep (i, bn) v2[i] = i * bs;
-    auto f = internal::ProductTree<T>(v1)[1];
+    ll bsp = 1 << bitop::ceil_log2(bs);
+    auto f = SubproductTree<T>(v1)[1] >> (bsp - bs);
     T res = 1;
     for (const auto& x : multipoint_evaluation(f, v2)) res *= x;
     rep (i, bn * bs + 1, n + 1) res *= i;

@@ -2,39 +2,115 @@
 
 #include "../../other/template.hpp"
 #include "FormalPowerSeries.hpp"
+#include "../convolution/MiddleProduct.hpp"
+#include "SubproductTree.hpp"
 
 namespace internal {
 
-template<class T> class ProductTree {
-private:
-    int n;
-    std::vector<FormalPowerSeries<T>> dat;
-
-public:
-    ProductTree(const std::vector<T>& xs) {
-        n = xs.size();
-        dat.resize(n << 1);
-        rep (i, n) dat[i + n] = FormalPowerSeries<T>{-xs[i], 1};
-        rrep (i, 1, n) dat[i] = dat[i << 1] * dat[i << 1 | 1];
+template<class T, typename std::enable_if<
+                      is_ntt_friendly_modint<T>::value>::type* = nullptr>
+std::vector<T> multipoint_evaluation(FormalPowerSeries<T> a,
+                                     const std::vector<T>& b,
+                                     const SubproductTree<T>& c) {
+    static constexpr internal::NthRoot<T> nth_root;
+    auto get_high_dft = [&](std::vector<T>& a) -> void {
+        int n = a.size() / 2;
+        std::vector<T> b(n);
+        rep (i, n) b[i] = a[i + n];
+        inverse_number_theoretic_transform(b);
+        const T z = nth_root.inv(bitop::msb(n) + 1);
+        T r = 1;
+        rep (i, n) {
+            b[i] *= r;
+            r *= z;
+        }
+        number_theoretic_transform(b);
+        const T i2 = T{2}.inv();
+        rep (i, n) a[i] = (a[i] - b[i]) * i2;
+        a.resize(n);
+    };
+    int m = a.size(), n = b.size(), N = 1 << bitop::ceil_log2(n);
+    std::vector<FormalPowerSeries<T>> num(2 * N);
+    num[1] = middle_product(a.prefix(m + N - 1), c[1].rev().inv(m));
+    number_theoretic_transform(num[1]);
+    rep (i, 1, N) {
+        int k = num[i].size();
+        num[i * 2 + 0].resize(k);
+        num[i * 2 + 1].resize(k);
+        rep (j, k) num[i * 2 + 0][j] = num[i][j] * c.get_ntt(i * 2 + 1)[j];
+        rep (j, k) num[i * 2 + 1][j] = num[i][j] * c.get_ntt(i * 2 + 0)[j];
+        get_high_dft(num[i * 2 + 0]);
+        get_high_dft(num[i * 2 + 1]);
     }
-    const FormalPowerSeries<T>& operator[](int k) const& { return dat[k]; }
-    FormalPowerSeries<T> operator[](int k) && { return std::move(dat[k]); }
-};
+    std::vector<T> res(n);
+    rep (i, n) res[i] = num[i + N][0];
+    return res;
+}
 
-template<class T>
+template<class T, typename std::enable_if<
+                      !is_ntt_friendly_modint<T>::value>::type* = nullptr>
 std::vector<T> multipoint_evaluation(const FormalPowerSeries<T>& a,
                                      const std::vector<T>& b,
-                                     const ProductTree<T>& c) {
-    int m = b.size();
-    std::vector<FormalPowerSeries<T>> d(m << 1);
-    d[1] = a % c[1];
-    rep (i, 2, m << 1) d[i] = d[i >> 1] % c[i];
-    std::vector<T> e(m);
-    rep (i, m) e[i] = d[m + i].empty() ? T{0} : d[m + i][0];
-    return e;
+                                     const SubproductTree<T>& c) {
+    int m = a.size(), n = b.size(), N = 1 << bitop::ceil_log2(n);
+    std::vector<FormalPowerSeries<T>> num(2 * N);
+    num[1] = middle_product(a.prefix(m + N - 1), c[1].rev().inv(m));
+    rep (i, 1, N) {
+        num[i * 2 + 0] = middle_product(num[i], c[i * 2 + 1].rev());
+        num[i * 2 + 1] = middle_product(num[i], c[i * 2 + 0].rev());
+    }
+    std::vector<T> res(n);
+    rep (i, n) res[i] = num[i + N][0];
+    return res;
+}
+
+template<class T, typename std::enable_if<
+                      is_ntt_friendly_modint<T>::value>::type* = nullptr>
+FormalPowerSeries<T>
+sum_of_fractions(const std::vector<T>& a, const std::vector<T>& b, const SubproductTree<T>& c) {
+    int m = a.size(), n = 1 << bitop::ceil_log2(m);
+    std::vector<FormalPowerSeries<T>> num(2 * n);
+    rep (i, m) num[i + n] = {a[i]};
+    rep (i, m, n) num[i + n] = {0};
+    rrep (i, 1, n) {
+        ntt_doubling_(num[i * 2 + 0]);
+        ntt_doubling_(num[i * 2 + 1]);
+        int k = num[i * 2 + 0].size();
+        num[i].resize(k);
+        rep (j, k) {
+            num[i][j] = num[i * 2 + 0][j] * c.get_ntt(i * 2 + 1)[j]
+                      + num[i * 2 + 1][j] * c.get_ntt(i * 2 + 0)[j];
+        }
+    }
+    inverse_number_theoretic_transform(num[1]);
+    return num[1];
+}
+
+template<class T, typename std::enable_if<
+                      !is_ntt_friendly_modint<T>::value>::type* = nullptr>
+FormalPowerSeries<T>
+sum_of_fractions(const std::vector<T>& a, const std::vector<T>& b, const SubproductTree<T>& c) {
+    int m = a.size(), n = 1 << bitop::ceil_log2(m);
+    std::vector<FormalPowerSeries<T>> num(2 * n);
+    rep (i, m) num[i + n] = {a[i]};
+    rep (i, m, n) num[i + n] = {0};
+    rrep (i, 1, n) {
+        num[i] = num[i * 2 + 0] * c[i * 2 + 1] + num[i * 2 + 1] * c[i * 2 + 0];
+    }
+    return num[1];
 }
 
 } // namespace internal
+
+// sum[i] a[i]/(1-b[i]x)
+template<class T>
+std::vector<FormalPowerSeries<T>, FormalPowerSeries<T>>
+sum_of_fractions(const std::vector<T>& a, const std::vector<T>& b) {
+    assert(a.size() == b.size());
+    int n = a.size(), m = 1 << bitop::ceil_log2(n);
+    SubproductTree<T> spt(b);
+    return {sum_of_fractions(a, b, spt) >> (m - n), spt[1] >> (m - n)};
+}
 
 template<class T>
 std::vector<T> multipoint_evaluation(const FormalPowerSeries<T>& a,
@@ -45,7 +121,7 @@ std::vector<T> multipoint_evaluation(const FormalPowerSeries<T>& a,
         rep (i, b.size()) res[i] = a.eval(b[i]);
         return res;
     }
-    return internal::multipoint_evaluation(a, b, internal::ProductTree<T>(b));
+    return internal::multipoint_evaluation(a, b, SubproductTree(b));
 }
 
 template<class T>
@@ -67,11 +143,10 @@ std::vector<T> multipoint_evaluation_geometric(const FormalPowerSeries<T>& f,
         return res;
     }
     int n = f.size();
-    int l = 1 << bitop::ceil_log2(n + m - 1);
-    std::vector<T> p(l), q(l);
+    std::vector<T> p(n), q(n + m - 1);
     T ir = T{1} / r, t = 1, t2 = 1;
     rep (i, n) {
-        p[n - i - 1] = f[i] * t;
+        p[i] = f[i] * t;
         t *= a * t2;
         t2 *= ir;
     }
@@ -81,11 +156,7 @@ std::vector<T> multipoint_evaluation_geometric(const FormalPowerSeries<T>& f,
         t *= t2;
         t2 *= r;
     }
-    number_theoretic_transform(p);
-    number_theoretic_transform(q);
-    rep (i, l) p[i] *= q[i];
-    inverse_number_theoretic_transform(p);
-    std::vector<T> ans(p.begin() + (n - 1), p.begin() + (n + m - 1));
+    std::vector<T> ans = middle_product(q, p);
     t = t2 = 1;
     rep (i, m) {
         ans[i] *= t;
