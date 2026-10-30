@@ -3,7 +3,7 @@
 #include "../other/template.hpp"
 
 template<class Cont, class Comp>
-std::vector<int> ZAlgorithm(const Cont& str, const Comp& cmp) {
+std::vector<int> z_algorithm(const Cont& str, const Comp& cmp) {
     const int n = str.size();
     std::vector<int> res(n);
     int frm = 0, lst = 0;
@@ -22,8 +22,8 @@ std::vector<int> ZAlgorithm(const Cont& str, const Comp& cmp) {
     return res;
 }
 
-template<class Cont> std::vector<int> ZAlgorithm(const Cont& str) {
-    return ZAlgorithm(str, std::equal_to<typename Cont::value_type>());
+template<class Cont> std::vector<int> z_algorithm(const Cont& str) {
+    return z_algorithm(str, std::equal_to<typename Cont::value_type>());
 }
 
 /**
