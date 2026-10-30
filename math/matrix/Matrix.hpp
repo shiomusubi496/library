@@ -141,7 +141,29 @@ private:
     int h, w;
     std::vector<bool> v;
 
+    class Vec {
+        using Iter = std::vector<bool>::iterator;
+        const Iter itr1, itr2;
+    public:
+        Vec(Iter a, Iter b) : itr1(a), itr2(b) {}
+        Iter::reference operator[](int k) const { return *(itr1 + k); }
+        Iter begin() const { return itr1; }
+        Iter end() const { return itr2; }
+        int size() const { return itr2 - itr1; }
+    };
+    class ConstVec {
+        using Iter = std::vector<bool>::const_iterator;
+        const Iter itr1, itr2;
+    public:
+        ConstVec(Iter a, Iter b) : itr1(a), itr2(b) {}
+        Iter::const_reference operator[](int k) const { return *(itr1 + k); }
+        Iter begin() const { return itr1; }
+        Iter end() const { return itr2; }
+        int size() const { return itr2 - itr1; }
+    };
+
 public:
+
     Matrix() = default;
     Matrix(int h, int w) : h(h), w(w), v(h * w, false) {}
     Matrix(int h, int w, const T& a) : h(h), w(w), v(h * w, a) {}
@@ -149,11 +171,12 @@ public:
         v.resize(a.size() * a[0].size());
         rep (i, a.size()) rep (j, a[0].size()) v[i * a[0].size() + j] = a[i][j];
     }
-    auto get(int i, int j) { return v[i * w + j]; }
-    auto get(int i, int j) const { return v[i * w + j]; }
+    Vec operator[](int k) { return Vec{v.begin() + k * w, v.begin() + (k + 1) * w}; }
+    ConstVec operator[](int k) const { return ConstVec{v.begin() + k * w, v.begin() + (k + 1) * w}; }
+
     static Matrix get_identity(int sz) {
         Matrix res(sz, sz);
-        rep (i, sz) res.get(i, i) = true;
+        rep (i, sz) res[i][i] = true;
         return res;
     }
     int height() const { return h; }
@@ -164,7 +187,7 @@ public:
                this->width() == other.width());
         rep (i, this->height()) {
             rep (j, this->width()) {
-                if (other.get(i, j)) get(i, j) = !get(i, j);
+                if (other[i][j]) (*this)[i][j] = !(*this)[i][j];
             }
         }
         return *this;
@@ -179,7 +202,7 @@ public:
     Matrix& operator*=(T s) {
         if (s == 0) {
             rep (i, height()) {
-                rep (j, width()) get(i, j) = false;
+                rep (j, width()) (*this)[i][j] = false;
             }
         }
         return *this;
@@ -211,7 +234,7 @@ public:
     Matrix transpose() const {
         Matrix res(width(), height());
         rep (i, height()) {
-            rep (j, width()) res.get(j, i) = get(i, j);
+            rep (j, width()) res[j][i] = (*this)[i][j];
         }
         return res;
     }
@@ -226,7 +249,7 @@ public:
             return (h >= w ? Matrix(*this) : transpose()).gauss().rank(true);
         int r = 0;
         rep (i, h) {
-            while (r < w && (*this).get(i, r) == 0) ++r;
+            while (r < w && (*this)[i][r] == 0) ++r;
             if (r == w) return i;
             ++r;
         }
@@ -242,14 +265,14 @@ template<int len> Mat2 prod_mod2_sub(const Mat2& lhs, const Mat2& rhs) {
     std::vector<std::bitset<len>> a(h), b(w);
     Mat2 res(h, w);
     rep (i, h) {
-        rep (j, m) a[i][j] = lhs.get(i, j) != 0;
+        rep (j, m) a[i][j] = lhs[i][j] != 0;
     }
     rep (i, m) {
-        rep (j, w) b[j][i] = rhs.get(i, j) != 0;
+        rep (j, w) b[j][i] = rhs[i][j] != 0;
     }
     rep (i, h) {
         rep (j, w) {
-            res.get(i, j) = (a[i] & b[j]).count() & 1;
+            res[i][j] = (a[i] & b[j]).count() & 1;
         }
     }
     return res;
@@ -261,7 +284,7 @@ template<int len> void gauss_mod2_sub(Mat2& a) {
     if (len < w) return gauss_mod2_sub<len << 1>(a);
     std::vector<std::bitset<len>> b(h);
     rep (i, h) {
-        rep (j, w) b[i][j] = a.get(i, j) != 0;
+        rep (j, w) b[i][j] = a[i][j] != 0;
     }
     int r = 0;
     rep (i, w) {
@@ -281,7 +304,7 @@ template<int len> void gauss_mod2_sub(Mat2& a) {
         ++r;
     }
     rep (i, h) {
-        rep (j, w) a.get(i, j) = (b[i][j] ? 1 : 0);
+        rep (j, w) a[i][j] = (b[i][j] ? 1 : 0);
     }
 }
 template<> void gauss_mod2_sub<1 << 30>(Mat2&) {}
