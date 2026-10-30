@@ -4,37 +4,37 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/Combinatorics.hpp
     title: Combinatorics
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
   - icon: ':heavy_check_mark:'
     path: math/convolution/Convolution.hpp
     title: "Convolution(\u7573\u307F\u8FBC\u307F)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
@@ -1295,78 +1295,78 @@ data:
   isVerificationFile: false
   path: math/poly/FormalPowerSeries.hpp
   requiredBy:
-  - math/Factorial.hpp
-  - math/StirlingNumber.hpp
-  - math/convolution/MultidimensionalConvolution.hpp
-  - math/SubsetSum.hpp
-  - math/ExpPolySum.hpp
-  - math/poly/SquareRoot.hpp
-  - math/poly/ConsecutiveTermsOfLinearRecurrence.hpp
-  - math/poly/SubproductTree.hpp
-  - math/poly/PolynomialPrefixSum.hpp
-  - math/poly/PolynomialInterpolation.hpp
-  - math/poly/BerlekampMassey.hpp
-  - math/poly/SamplingPointsShift.hpp
-  - math/poly/SparseFormalPowerSeries.hpp
-  - math/poly/MultipointEvaluation.hpp
-  - math/poly/TaylorShift.hpp
-  - math/poly/SetPowerSeries.hpp
-  - math/poly/BostanMori.hpp
-  - math/poly/Composite.hpp
-  - math/matrix/CharacteristicPolynomial.hpp
-  - math/matrix/Hafnian.hpp
-  - math/matrix/BlackboxLinearAlgebra.hpp
   - graph/other/ChromaticPolynomial.hpp
+  - math/matrix/BlackboxLinearAlgebra.hpp
+  - math/matrix/Hafnian.hpp
+  - math/matrix/CharacteristicPolynomial.hpp
+  - math/poly/SquareRoot.hpp
+  - math/poly/PolynomialInterpolation.hpp
+  - math/poly/SubproductTree.hpp
+  - math/poly/SetPowerSeries.hpp
+  - math/poly/SparseFormalPowerSeries.hpp
+  - math/poly/BerlekampMassey.hpp
+  - math/poly/TaylorShift.hpp
+  - math/poly/ConsecutiveTermsOfLinearRecurrence.hpp
+  - math/poly/BostanMori.hpp
+  - math/poly/MultipointEvaluation.hpp
+  - math/poly/PolynomialPrefixSum.hpp
+  - math/poly/SamplingPointsShift.hpp
+  - math/poly/Composite.hpp
+  - math/convolution/MultidimensionalConvolution.hpp
+  - math/ExpPolySum.hpp
+  - math/Factorial.hpp
+  - math/SubsetSum.hpp
+  - math/StirlingNumber.hpp
   timestamp: '2026-09-15 21:48:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/aoj/DPL/DPL_5_G.test.cpp
   - test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind_fixed_k.test.cpp
-  - test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
-  - test/yosupo/enumerative_combinatorics/partition_function.test.cpp
-  - test/yosupo/enumerative_combinatorics/bell_number.test.cpp
+  - test/yosupo/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
   - test/yosupo/enumerative_combinatorics/factorial.test.cpp
   - test/yosupo/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
+  - test/yosupo/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
+  - test/yosupo/enumerative_combinatorics/bell_number.test.cpp
   - test/yosupo/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
-  - test/yosupo/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
+  - test/yosupo/enumerative_combinatorics/partition_function.test.cpp
   - test/yosupo/other/consecutive_terms_of_linear_recurrent_sequence.test.cpp
-  - test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp
-  - test/yosupo/other/find_linear_recurrence.test.cpp
   - test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
+  - test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp
   - test/yosupo/other/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - test/yosupo/convolution/multivariate_convolution.test.cpp
-  - test/yosupo/convolution/multivariate_convolution_cyclic.test.cpp
-  - test/yosupo/polynomial/composition_of_formal_power_series_large.test.cpp
-  - test/yosupo/polynomial/log_of_formal_power_series.test.cpp
-  - test/yosupo/polynomial/product_of_polynomial_sequence.test.cpp
-  - test/yosupo/polynomial/exp_of_formal_power_series.test.cpp
-  - test/yosupo/polynomial/multipoint_evaluation.test.cpp
-  - test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
-  - test/yosupo/polynomial/inv_of_formal_power_series.test.cpp
-  - test/yosupo/polynomial/log_of_formal_power_series_sparse.test.cpp
-  - test/yosupo/polynomial/compositional_inverse_of_formal_power_series_large.test.cpp
-  - test/yosupo/polynomial/exp_of_formal_power_series_sparse.test.cpp
-  - test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
-  - test/yosupo/polynomial/division_of_polynomials.test.cpp
-  - test/yosupo/polynomial/multipoint_evaluation_on_geometric_sequence.test.cpp
-  - test/yosupo/polynomial/polynomial_interpolation.test.cpp
-  - test/yosupo/polynomial/polynomial_interpolation_on_geometric_sequence.test.cpp
-  - test/yosupo/polynomial/pow_of_formal_power_series_sparse.test.cpp
-  - test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp
-  - test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-  - test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
-  - test/yosupo/polynomial/inv_of_formal_power_series_sparse.test.cpp
-  - test/yosupo/polynomial/exp_of_formal_power_series-RelaxedConvolution.test.cpp
-  - test/yosupo/new/prefix_sum_of_polynomial.test.cpp
-  - test/yosupo/new/log_of_set_power_series.test.cpp
-  - test/yosupo/number_theory/bernoulli_number.test.cpp
-  - test/yosupo/set_power_series/polynomial_composite_set_power_series.test.cpp
+  - test/yosupo/other/find_linear_recurrence.test.cpp
   - test/yosupo/set_power_series/power_projection_of_set_power_series.test.cpp
   - test/yosupo/set_power_series/exp_of_set_power_series.test.cpp
+  - test/yosupo/set_power_series/polynomial_composite_set_power_series.test.cpp
+  - test/yosupo/graph/chromatic_polynomial.test.cpp
+  - test/yosupo/new/log_of_set_power_series.test.cpp
+  - test/yosupo/new/prefix_sum_of_polynomial.test.cpp
+  - test/yosupo/convolution/multivariate_convolution_cyclic.test.cpp
+  - test/yosupo/convolution/multivariate_convolution.test.cpp
+  - test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
+  - test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
+  - test/yosupo/polynomial/polynomial_interpolation.test.cpp
+  - test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
+  - test/yosupo/polynomial/product_of_polynomial_sequence.test.cpp
+  - test/yosupo/polynomial/composition_of_formal_power_series_large.test.cpp
+  - test/yosupo/polynomial/multipoint_evaluation_on_geometric_sequence.test.cpp
+  - test/yosupo/polynomial/log_of_formal_power_series_sparse.test.cpp
+  - test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp
+  - test/yosupo/polynomial/division_of_polynomials.test.cpp
+  - test/yosupo/polynomial/exp_of_formal_power_series-RelaxedConvolution.test.cpp
+  - test/yosupo/polynomial/inv_of_formal_power_series.test.cpp
+  - test/yosupo/polynomial/pow_of_formal_power_series_sparse.test.cpp
+  - test/yosupo/polynomial/polynomial_interpolation_on_geometric_sequence.test.cpp
+  - test/yosupo/polynomial/multipoint_evaluation.test.cpp
+  - test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
+  - test/yosupo/polynomial/exp_of_formal_power_series_sparse.test.cpp
+  - test/yosupo/polynomial/compositional_inverse_of_formal_power_series_large.test.cpp
+  - test/yosupo/polynomial/log_of_formal_power_series.test.cpp
+  - test/yosupo/polynomial/inv_of_formal_power_series_sparse.test.cpp
+  - test/yosupo/polynomial/exp_of_formal_power_series.test.cpp
+  - test/yosupo/number_theory/bernoulli_number.test.cpp
+  - test/yosupo/linear_algebra/sparse_matrix_det.test.cpp
   - test/yosupo/linear_algebra/hafnian_of_matrix.test.cpp
   - test/yosupo/linear_algebra/characteristic_polynomial.test.cpp
-  - test/yosupo/linear_algebra/sparse_matrix_det.test.cpp
-  - test/yosupo/graph/chromatic_polynomial.test.cpp
-  - test/aoj/DPL/DPL_5_G.test.cpp
 documentation_of: math/poly/FormalPowerSeries.hpp
 layout: document
 redirect_from:

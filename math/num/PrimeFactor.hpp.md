@@ -1,31 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
@@ -522,15 +522,15 @@ data:
   isVerificationFile: false
   path: math/num/PrimeFactor.hpp
   requiredBy:
-  - math/ExpPolySum.hpp
   - math/PowEnumerate.hpp
+  - math/ExpPolySum.hpp
   timestamp: '2026-09-12 01:05:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp
-  - test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
-  - test/yosupo/number_theory/enumerate_primes.test.cpp
   - test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp
+  - test/yosupo/other/sum_of_exponential_times_polynomial_limit.test.cpp
+  - test/yosupo/other/sum_of_exponential_times_polynomial.test.cpp
+  - test/yosupo/number_theory/enumerate_primes.test.cpp
 documentation_of: math/num/PrimeFactor.hpp
 layout: document
 redirect_from:

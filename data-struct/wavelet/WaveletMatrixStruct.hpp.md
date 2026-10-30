@@ -7,31 +7,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
@@ -662,14 +662,14 @@ data:
   isVerificationFile: false
   path: data-struct/wavelet/WaveletMatrixStruct.hpp
   requiredBy:
-  - data-struct/wavelet/CumulativeSumWM.hpp
   - data-struct/wavelet/SegmentTreeWM.hpp
+  - data-struct/wavelet/CumulativeSumWM.hpp
   timestamp: '2026-09-12 01:05:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/new/static_range_sum_with_upper_bound.test.cpp
-  - test/yosupo/data_structure/point_add_rectangle_sum-WM.test.cpp
   - test/yosupo/data_structure/rectangle_sum-WM.test.cpp
+  - test/yosupo/data_structure/point_add_rectangle_sum-WM.test.cpp
 documentation_of: data-struct/wavelet/WaveletMatrixStruct.hpp
 layout: document
 redirect_from:

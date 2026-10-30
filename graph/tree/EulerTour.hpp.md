@@ -10,31 +10,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
@@ -761,13 +761,13 @@ data:
   timestamp: '2026-09-12 14:55:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
-  - test/yosupo/tree/vertex_add_path_sum.test.cpp
-  - test/yosupo/tree/vertex_set_path_composite.test.cpp
-  - test/yosupo/tree/vertex_add_subtree_sum.test.cpp
-  - test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
   - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
+  - test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
   - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
+  - test/yosupo/tree/vertex_add_path_sum.test.cpp
+  - test/yosupo/tree/vertex_add_subtree_sum.test.cpp
+  - test/yosupo/tree/vertex_set_path_composite.test.cpp
+  - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
 documentation_of: graph/tree/EulerTour.hpp
 layout: document
 redirect_from:

@@ -1,47 +1,47 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/matrix/LinearEquations.hpp
     title: "LinearEquations(\u7DDA\u5F62\u65B9\u7A0B\u5F0F)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/matrix/Matrix.hpp
     title: "Matrix(\u884C\u5217)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/system_of_linear_equations_mod_2
@@ -639,68 +639,79 @@ data:
     \            while (r < w && (*this)[i][r] == 0) ++r;\n            if (r == w)\
     \ return i;\n            ++r;\n        }\n        return h;\n    }\n};\n\ntemplate<>\
     \ class Matrix<bool> {\nprivate:\n    using T = bool;\n    int h, w;\n    std::vector<bool>\
-    \ v;\n\npublic:\n    Matrix() = default;\n    Matrix(int h, int w) : h(h), w(w),\
-    \ v(h * w, false) {}\n    Matrix(int h, int w, const T& a) : h(h), w(w), v(h *\
-    \ w, a) {}\n    Matrix(const std::vector<std::vector<bool>>& a) : h(a.size()),\
-    \ w(a[0].size()) {\n        v.resize(a.size() * a[0].size());\n        rep (i,\
-    \ a.size()) rep (j, a[0].size()) v[i * a[0].size() + j] = a[i][j];\n    }\n  \
-    \  auto get(int i, int j) { return v[i * w + j]; }\n    auto get(int i, int j)\
-    \ const { return v[i * w + j]; }\n    static Matrix get_identity(int sz) {\n \
-    \       Matrix res(sz, sz);\n        rep (i, sz) res.get(i, i) = true;\n     \
-    \   return res;\n    }\n    int height() const { return h; }\n    int width()\
+    \ v;\n\n    class Vec {\n        using Iter = std::vector<bool>::iterator;\n \
+    \       const Iter itr1, itr2;\n    public:\n        Vec(Iter a, Iter b) : itr1(a),\
+    \ itr2(b) {}\n        Iter::reference operator[](int k) const { return *(itr1\
+    \ + k); }\n        Iter begin() const { return itr1; }\n        Iter end() const\
+    \ { return itr2; }\n        int size() const { return itr2 - itr1; }\n    };\n\
+    \    class ConstVec {\n        using Iter = std::vector<bool>::const_iterator;\n\
+    \        const Iter itr1, itr2;\n    public:\n        ConstVec(Iter a, Iter b)\
+    \ : itr1(a), itr2(b) {}\n        Iter::const_reference operator[](int k) const\
+    \ { return *(itr1 + k); }\n        Iter begin() const { return itr1; }\n     \
+    \   Iter end() const { return itr2; }\n        int size() const { return itr2\
+    \ - itr1; }\n    };\n\npublic:\n\n    Matrix() = default;\n    Matrix(int h, int\
+    \ w) : h(h), w(w), v(h * w, false) {}\n    Matrix(int h, int w, const T& a) :\
+    \ h(h), w(w), v(h * w, a) {}\n    Matrix(const std::vector<std::vector<bool>>&\
+    \ a) : h(a.size()), w(a[0].size()) {\n        v.resize(a.size() * a[0].size());\n\
+    \        rep (i, a.size()) rep (j, a[0].size()) v[i * a[0].size() + j] = a[i][j];\n\
+    \    }\n    Vec operator[](int k) { return Vec{v.begin() + k * w, v.begin() +\
+    \ (k + 1) * w}; }\n    ConstVec operator[](int k) const { return ConstVec{v.begin()\
+    \ + k * w, v.begin() + (k + 1) * w}; }\n\n    static Matrix get_identity(int sz)\
+    \ {\n        Matrix res(sz, sz);\n        rep (i, sz) res[i][i] = true;\n    \
+    \    return res;\n    }\n    int height() const { return h; }\n    int width()\
     \ const { return w; }\n    bool is_square() const { return height() == width();\
     \ }\n    Matrix& operator+=(const Matrix& other) {\n        assert(this->height()\
     \ == other.height() &&\n               this->width() == other.width());\n    \
     \    rep (i, this->height()) {\n            rep (j, this->width()) {\n       \
-    \         if (other.get(i, j)) get(i, j) = !get(i, j);\n            }\n      \
-    \  }\n        return *this;\n    }\n    Matrix& operator-=(const Matrix& other)\
+    \         if (other[i][j]) (*this)[i][j] = !(*this)[i][j];\n            }\n  \
+    \      }\n        return *this;\n    }\n    Matrix& operator-=(const Matrix& other)\
     \ {\n        return (*this) += other;\n    }\n    Matrix& operator*=(const Matrix&\
     \ other) {\n        assert(this->width() == other.height());\n        return *this\
     \ = internal::prod_mod2_sub<1>(*this, other);\n    }\n    Matrix& operator*=(T\
     \ s) {\n        if (s == 0) {\n            rep (i, height()) {\n             \
-    \   rep (j, width()) get(i, j) = false;\n            }\n        }\n        return\
-    \ *this;\n    }\n    friend Matrix operator+(const Matrix& lhs, const Matrix&\
-    \ rhs) {\n        return Matrix(lhs) += rhs;\n    }\n    friend Matrix operator-(const\
-    \ Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs) -= rhs;\n    }\n\
-    \    friend Matrix operator*(const Matrix& lhs, const Matrix& rhs) {\n       \
-    \ return Matrix(lhs) *= rhs;\n    }\n    friend Matrix operator*(const Matrix&\
-    \ lhs, T rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n    friend Matrix\
-    \ operator*(T lhs, const Matrix& rhs) {\n        return Matrix(rhs) *= lhs;\n\
-    \    }\n    Matrix pow(ll b) const {\n        Matrix a = *this, res = get_identity(height());\n\
+    \   rep (j, width()) (*this)[i][j] = false;\n            }\n        }\n      \
+    \  return *this;\n    }\n    friend Matrix operator+(const Matrix& lhs, const\
+    \ Matrix& rhs) {\n        return Matrix(lhs) += rhs;\n    }\n    friend Matrix\
+    \ operator-(const Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs)\
+    \ -= rhs;\n    }\n    friend Matrix operator*(const Matrix& lhs, const Matrix&\
+    \ rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n    friend Matrix operator*(const\
+    \ Matrix& lhs, T rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n    friend\
+    \ Matrix operator*(T lhs, const Matrix& rhs) {\n        return Matrix(rhs) *=\
+    \ lhs;\n    }\n    Matrix pow(ll b) const {\n        Matrix a = *this, res = get_identity(height());\n\
     \        while (b) {\n            if (b & 1) res *= a;\n            a *= a;\n\
     \            b >>= 1;\n        }\n        return res;\n    }\n    Matrix transpose()\
     \ const {\n        Matrix res(width(), height());\n        rep (i, height()) {\n\
-    \            rep (j, width()) res.get(j, i) = get(i, j);\n        }\n        return\
+    \            rep (j, width()) res[j][i] = (*this)[i][j];\n        }\n        return\
     \ res;\n    }\n    Matrix& gauss() {\n        internal::gauss_mod2_sub<1>(*this);\n\
     \        return *this;\n    }\n    friend Matrix gauss(const Matrix& mat) { return\
     \ Matrix(mat).gauss(); }\n    int rank(bool is_gaussed = false) const {\n    \
     \    const int h = height(), w = width();\n        if (!is_gaussed)\n        \
     \    return (h >= w ? Matrix(*this) : transpose()).gauss().rank(true);\n     \
-    \   int r = 0;\n        rep (i, h) {\n            while (r < w && (*this).get(i,\
-    \ r) == 0) ++r;\n            if (r == w) return i;\n            ++r;\n       \
-    \ }\n        return h;\n    }\n};\n\nnamespace internal {\n\ntemplate<int len>\
-    \ Mat2 prod_mod2_sub(const Mat2& lhs, const Mat2& rhs) {\n    const int h = lhs.height(),\
+    \   int r = 0;\n        rep (i, h) {\n            while (r < w && (*this)[i][r]\
+    \ == 0) ++r;\n            if (r == w) return i;\n            ++r;\n        }\n\
+    \        return h;\n    }\n};\n\nnamespace internal {\n\ntemplate<int len> Mat2\
+    \ prod_mod2_sub(const Mat2& lhs, const Mat2& rhs) {\n    const int h = lhs.height(),\
     \ w = rhs.width(), m = lhs.width();\n    if (len < m) return prod_mod2_sub<len\
     \ << 1>(lhs, rhs);\n    std::vector<std::bitset<len>> a(h), b(w);\n    Mat2 res(h,\
-    \ w);\n    rep (i, h) {\n        rep (j, m) a[i][j] = lhs.get(i, j) != 0;\n  \
-    \  }\n    rep (i, m) {\n        rep (j, w) b[j][i] = rhs.get(i, j) != 0;\n   \
-    \ }\n    rep (i, h) {\n        rep (j, w) {\n            res.get(i, j) = (a[i]\
-    \ & b[j]).count() & 1;\n        }\n    }\n    return res;\n}\ntemplate<> Mat2\
-    \ prod_mod2_sub<1 << 30>(const Mat2&, const Mat2&) { return {}; }\n\ntemplate<int\
-    \ len> void gauss_mod2_sub(Mat2& a) {\n    const int h = a.height(), w = a.width();\n\
-    \    if (len < w) return gauss_mod2_sub<len << 1>(a);\n    std::vector<std::bitset<len>>\
-    \ b(h);\n    rep (i, h) {\n        rep (j, w) b[i][j] = a.get(i, j) != 0;\n  \
-    \  }\n    int r = 0;\n    rep (i, w) {\n        int pivot = -1;\n        rep (j,\
-    \ r, h) {\n            if (b[j][i] != 0) {\n                pivot = j;\n     \
-    \           break;\n            }\n        }\n        if (pivot == -1) continue;\n\
-    \        std::swap(b[pivot], b[r]);\n        rep (j, h) {\n            if (j ==\
-    \ r) continue;\n            if (b[j][i] != 0) b[j] ^= b[r];\n        }\n     \
-    \   ++r;\n    }\n    rep (i, h) {\n        rep (j, w) a.get(i, j) = (b[i][j] ?\
-    \ 1 : 0);\n    }\n}\ntemplate<> void gauss_mod2_sub<1 << 30>(Mat2&) {}\n\n} //\
-    \ namespace internal\n\n/**\n * @brief Matrix(\u884C\u5217)\n * @docs docs/math/matrix/Matrix.md\n\
-    \ */\n#line 2 \"math/matrix/LinearEquations.hpp\"\n\n#line 5 \"math/matrix/LinearEquations.hpp\"\
+    \ w);\n    rep (i, h) {\n        rep (j, m) a[i][j] = lhs[i][j] != 0;\n    }\n\
+    \    rep (i, m) {\n        rep (j, w) b[j][i] = rhs[i][j] != 0;\n    }\n    rep\
+    \ (i, h) {\n        rep (j, w) {\n            res[i][j] = (a[i] & b[j]).count()\
+    \ & 1;\n        }\n    }\n    return res;\n}\ntemplate<> Mat2 prod_mod2_sub<1\
+    \ << 30>(const Mat2&, const Mat2&) { return {}; }\n\ntemplate<int len> void gauss_mod2_sub(Mat2&\
+    \ a) {\n    const int h = a.height(), w = a.width();\n    if (len < w) return\
+    \ gauss_mod2_sub<len << 1>(a);\n    std::vector<std::bitset<len>> b(h);\n    rep\
+    \ (i, h) {\n        rep (j, w) b[i][j] = a[i][j] != 0;\n    }\n    int r = 0;\n\
+    \    rep (i, w) {\n        int pivot = -1;\n        rep (j, r, h) {\n        \
+    \    if (b[j][i] != 0) {\n                pivot = j;\n                break;\n\
+    \            }\n        }\n        if (pivot == -1) continue;\n        std::swap(b[pivot],\
+    \ b[r]);\n        rep (j, h) {\n            if (j == r) continue;\n          \
+    \  if (b[j][i] != 0) b[j] ^= b[r];\n        }\n        ++r;\n    }\n    rep (i,\
+    \ h) {\n        rep (j, w) a[i][j] = (b[i][j] ? 1 : 0);\n    }\n}\ntemplate<>\
+    \ void gauss_mod2_sub<1 << 30>(Mat2&) {}\n\n} // namespace internal\n\n/**\n *\
+    \ @brief Matrix(\u884C\u5217)\n * @docs docs/math/matrix/Matrix.md\n */\n#line\
+    \ 2 \"math/matrix/LinearEquations.hpp\"\n\n#line 5 \"math/matrix/LinearEquations.hpp\"\
     \n\ntemplate<class T> class LinearEquations {\nprivate:\n    Matrix<T> A;\n  \
-    \  int n, m;\n    bool is_solved = false;\n    std::vector<T> solution;\n    Matrix<T>\
+    \  int n, m;\n    bool is_solved = false;\n    std::vector<T> solution;\n    std::vector<std::vector<T>>\
     \ solution_space;\n\npublic:\n    LinearEquations() = default;\n    LinearEquations(int\
     \ n) : m(n) {}\n    LinearEquations(const Matrix<T>& A_, bool sol = true)\n  \
     \      : A(A_), n(A.height()), m(A.width() - 1) {\n        if (sol) solve();\n\
@@ -716,74 +727,43 @@ data:
     \ bool solve() {\n        assert(!is_solved);\n        is_solved = true;\n   \
     \     A.gauss();\n        int r = A.rank(true);\n        if (r != 0 && std::count(all(A[r\
     \ - 1]), T{0}) == m &&\n            A[r - 1][m] != 0) {\n            return false;\n\
-    \        }\n        solution = std::vector<T>(m, T{0});\n        solution_space\
-    \ = Matrix<T>(0, m);\n        std::vector<int> p(m, -1);\n        rep (i, r) {\n\
-    \            int j = 0;\n            while (A[i][j] == 0) ++j;\n            p[j]\
-    \ = i;\n            solution[j] = A[i][m];\n        }\n        rep (i, m) {\n\
-    \            if (p[i] == -1) {\n                std::vector<T> v(m, T{0});\n \
-    \               v[i] = T{1};\n                rep (j, m) {\n                 \
-    \   if (p[j] != -1) v[j] = -A[p[j]][i];\n                }\n                solution_space.push_back(std::move(v));\n\
+    \        }\n        solution = std::vector<T>(m, T{0});\n        solution_space.clear();\n\
+    \        std::vector<int> p(m, -1);\n        rep (i, r) {\n            int j =\
+    \ 0;\n            while (A[i][j] == 0) ++j;\n            p[j] = i;\n         \
+    \   solution[j] = A[i][m];\n        }\n        rep (i, m) {\n            if (p[i]\
+    \ == -1) {\n                std::vector<T> v(m, T{0});\n                v[i] =\
+    \ T{1};\n                rep (j, m) {\n                    if (p[j] != -1) v[j]\
+    \ = -A[p[j]][i];\n                }\n                solution_space.push_back(std::move(v));\n\
     \            }\n        }\n        return true;\n    }\n    bool has_solution()\
     \ const {\n        assert(is_solved);\n        return solution.size() != 0;\n\
     \    }\n    int dimension() const {\n        assert(is_solved);\n        return\
-    \ solution_space.height();\n    }\n    std::vector<T> get_solution() const& {\n\
+    \ solution_space.size();\n    }\n    std::vector<T> get_solution() const& {\n\
     \        assert(is_solved);\n        return solution;\n    }\n    std::vector<T>\
     \ get_solution() && {\n        assert(is_solved);\n        return std::move(solution);\n\
-    \    }\n    Matrix<T> get_solution_space() const& {\n        assert(is_solved);\n\
-    \        return solution_space;\n    }\n    Matrix<T> get_solution_space() &&\
-    \ {\n        assert(is_solved);\n        return std::move(solution_space);\n \
-    \   }\n};\n\ntemplate<> class LinearEquations<bool> {\nprivate:\n    Matrix<bool>\
-    \ A;\n    int n, m;\n    bool is_solved = false;\n    std::vector<bool> solution;\n\
-    \    std::vector<std::vector<bool>> solution_space;\n\npublic:\n    LinearEquations()\
-    \ = default;\n    LinearEquations(int n) : m(n) {}\n    LinearEquations(const\
-    \ Matrix<bool>& A_, bool sol = true)\n        : A(A_), n(A.height()), m(A.width()\
-    \ - 1) {\n        if (sol) solve();\n    }\n    LinearEquations(const Matrix<bool>&\
-    \ A_, const std::vector<bool>& b,\n                    bool sol = true) {\n  \
-    \      assert(A_.height() == (int)b.size());\n        n = A_.height();\n     \
-    \   m = A_.width();\n        A = Matrix<bool>(n, m + 1);\n        rep (i, n) {\n\
-    \            rep (j, m) A.get(i, j) = A_.get(i, j);\n            A.get(i, m) =\
-    \ b[i];\n        }\n        if (sol) solve();\n    }\n    bool solve() {\n   \
-    \     assert(!is_solved);\n        is_solved = true;\n        A.gauss();\n   \
-    \     int r = A.rank(true);\n        if (r != 0) {\n            bool f = true;\n\
-    \            rep (i, m) if (A.get(r - 1, i) != 0) f = false;\n            if (f\
-    \ && A.get(r - 1, m) != 0) {\n                return false;\n            }\n \
-    \       }\n        solution = std::vector<bool>(m, false);\n        solution_space.clear();\n\
-    \        std::vector<int> p(m, -1);\n        rep (i, r) {\n            int j =\
-    \ 0;\n            while (A.get(i, j) == 0) ++j;\n            p[j] = i;\n     \
-    \       solution[j] = A.get(i, m);\n        }\n        rep (i, m) {\n        \
-    \    if (p[i] == -1) {\n                std::vector<bool> v(m, false);\n     \
-    \           v[i] = true;\n                rep (j, m) {\n                    if\
-    \ (p[j] != -1) v[j] = A.get(p[j], i);\n                }\n                solution_space.push_back(std::move(v));\n\
-    \            }\n        }\n        return true;\n    }\n    bool has_solution()\
-    \ const {\n        assert(is_solved);\n        return solution.size() != 0;\n\
-    \    }\n    int dimension() const {\n        assert(is_solved);\n        return\
-    \ solution_space.size();\n    }\n    std::vector<bool> get_solution() const& {\n\
-    \        assert(is_solved);\n        return solution;\n    }\n    std::vector<bool>\
-    \ get_solution() && {\n        assert(is_solved);\n        return std::move(solution);\n\
-    \    }\n    std::vector<std::vector<bool>> get_solution_space() const& {\n   \
-    \     assert(is_solved);\n        return solution_space;\n    }\n    std::vector<std::vector<bool>>\
+    \    }\n    std::vector<std::vector<T>> get_solution_space() const& {\n      \
+    \  assert(is_solved);\n        return solution_space;\n    }\n    std::vector<std::vector<T>>\
     \ get_solution_space() && {\n        assert(is_solved);\n        return std::move(solution_space);\n\
     \    }\n};\n\n/**\n * @brief LinearEquations(\u7DDA\u5F62\u65B9\u7A0B\u5F0F)\n\
     \ * @docs docs/math/matrix/LinearEquations.md\n */\n#line 6 \"test/yosupo/linear_algebra/system_of_linear_equations_mod_2.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int N, M; scan >> N >> M;\n    Matrix<bool>\
-    \ A(N, M);\n    rep (i, N) rep (j, M) {\n        char c; scan >> c;\n        A.get(i,\
-    \ j) = c - '0';\n    }\n    vector<bool> B(N);\n    rep (i, N) {\n        char\
-    \ c; scan >> c;\n        B[i] = c - '0';\n    }\n    LinearEquations<bool> le(A,\
+    \ A(N, M);\n    rep (i, N) rep (j, M) {\n        char c; scan >> c;\n        A[i][j]\
+    \ = c - '0';\n    }\n    vector<bool> B(N);\n    rep (i, N) {\n        char c;\
+    \ scan >> c;\n        B[i] = c - '0';\n    }\n    LinearEquations<bool> le(A,\
     \ B);\n    if (!le.has_solution()) {\n        prints(-1);\n        return 0;\n\
     \    }\n    prints(le.dimension());\n    for (auto b : le.get_solution()) printer\
-    \ << b;\n    prints();\n    for (const auto& v : le.get_solution_space()) {\n\
-    \        for (auto b : v) printer << b;\n        prints();\n    }\n}\n"
+    \ << b;\n    prints();\n    auto m = le.get_solution_space();\n    rep (i, m.size())\
+    \ {\n        for (auto b : m[i]) printer << b;\n        prints();\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/system_of_linear_equations_mod_2\"\
     \n#include \"../../../other/template.hpp\"\n#include \"../../../math/ModInt.hpp\"\
     \n#include \"../../../math/matrix/Matrix.hpp\"\n#include \"../../../math/matrix/LinearEquations.hpp\"\
     \nusing namespace std;\nint main() {\n    int N, M; scan >> N >> M;\n    Matrix<bool>\
-    \ A(N, M);\n    rep (i, N) rep (j, M) {\n        char c; scan >> c;\n        A.get(i,\
-    \ j) = c - '0';\n    }\n    vector<bool> B(N);\n    rep (i, N) {\n        char\
-    \ c; scan >> c;\n        B[i] = c - '0';\n    }\n    LinearEquations<bool> le(A,\
+    \ A(N, M);\n    rep (i, N) rep (j, M) {\n        char c; scan >> c;\n        A[i][j]\
+    \ = c - '0';\n    }\n    vector<bool> B(N);\n    rep (i, N) {\n        char c;\
+    \ scan >> c;\n        B[i] = c - '0';\n    }\n    LinearEquations<bool> le(A,\
     \ B);\n    if (!le.has_solution()) {\n        prints(-1);\n        return 0;\n\
     \    }\n    prints(le.dimension());\n    for (auto b : le.get_solution()) printer\
-    \ << b;\n    prints();\n    for (const auto& v : le.get_solution_space()) {\n\
-    \        for (auto b : v) printer << b;\n        prints();\n    }\n}\n"
+    \ << b;\n    prints();\n    auto m = le.get_solution_space();\n    rep (i, m.size())\
+    \ {\n        for (auto b : m[i]) printer << b;\n        prints();\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -800,8 +780,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/linear_algebra/system_of_linear_equations_mod_2.test.cpp
   requiredBy: []
-  timestamp: '2026-09-17 01:13:47+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-10-30 18:37:26+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/linear_algebra/system_of_linear_equations_mod_2.test.cpp
 layout: document
