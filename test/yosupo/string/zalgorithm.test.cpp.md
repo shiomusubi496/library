@@ -1,34 +1,34 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   - icon: ':heavy_check_mark:'
     path: string/ZAlgorithm.hpp
     title: Z-Algorithm
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -453,22 +453,22 @@ data:
     \     assert(sorted);\n        for (auto&& i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
     };\n#line 2 \"string/ZAlgorithm.hpp\"\n\n#line 4 \"string/ZAlgorithm.hpp\"\n\n\
-    template<class Cont, class Comp>\nstd::vector<int> ZAlgorithm(const Cont& str,\
+    template<class Cont, class Comp>\nstd::vector<int> z_algorithm(const Cont& str,\
     \ const Comp& cmp) {\n    const int n = str.size();\n    std::vector<int> res(n);\n\
     \    int frm = 0, lst = 0;\n    rep (i, 1, str.size()) {\n        int& cur = res[i];\n\
     \        if (frm != 0) {\n            cur = std::max(std::min(res[i - frm], lst\
     \ - (int)i), 0);\n        }\n        while (i + cur < n && cmp(str[i + cur], str[cur]))\
     \ ++cur;\n        if (i + cur > lst) {\n            frm = i;\n            lst\
     \ = i + cur;\n        }\n    }\n    res[0] = n;\n    return res;\n}\n\ntemplate<class\
-    \ Cont> std::vector<int> ZAlgorithm(const Cont& str) {\n    return ZAlgorithm(str,\
+    \ Cont> std::vector<int> z_algorithm(const Cont& str) {\n    return z_algorithm(str,\
     \ std::equal_to<typename Cont::value_type>());\n}\n\n/**\n * @brief Z-Algorithm\n\
     \ * @docs docs/string/ZAlgorithm.md\n */\n#line 4 \"test/yosupo/string/zalgorithm.test.cpp\"\
     \nusing namespace std;\nint main() {\n    string S; scan >> S;\n    printer <<\
-    \ ZAlgorithm(S) << endl;\n}\n"
+    \ z_algorithm(S) << endl;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/zalgorithm\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../string/ZAlgorithm.hpp\"\
     \nusing namespace std;\nint main() {\n    string S; scan >> S;\n    printer <<\
-    \ ZAlgorithm(S) << endl;\n}\n"
+    \ z_algorithm(S) << endl;\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -483,7 +483,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/string/zalgorithm.test.cpp
   requiredBy: []
-  timestamp: '2026-09-12 01:07:36+09:00'
+  timestamp: '2026-10-30 21:50:33+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/string/zalgorithm.test.cpp

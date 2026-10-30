@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy:
@@ -436,7 +436,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/LinearModMin.hpp
     title: LinearModMin
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
     title: ModInt
   - icon: ':heavy_check_mark:'
@@ -553,13 +553,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/matrix/Inverse.hpp
     title: "Inverse(\u9006\u884C\u5217)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix/LinearEquations.hpp
     title: "LinearEquations(\u7DDA\u5F62\u65B9\u7A0B\u5F0F)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix/Matrix.hpp
     title: "Matrix(\u884C\u5217)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix/Pfaffian.hpp
     title: math/matrix/Pfaffian.hpp
   - icon: ':heavy_check_mark:'
@@ -645,7 +645,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   - icon: ':heavy_check_mark:'
@@ -676,6 +676,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/RollingHash.hpp
     title: "RollingHash(\u30ED\u30EA\u30CF)"
+  - icon: ':heavy_check_mark:'
+    path: string/RunEnumerate.hpp
+    title: string/RunEnumerate.hpp
   - icon: ':heavy_check_mark:'
     path: string/RunLength.hpp
     title: "RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
@@ -1280,10 +1283,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/sparse_matrix_det.test.cpp
     title: test/yosupo/linear_algebra/sparse_matrix_det.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
     title: test/yosupo/linear_algebra/system_of_linear_equations.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/linear_algebra/system_of_linear_equations_mod_2.test.cpp
     title: test/yosupo/linear_algebra/system_of_linear_equations_mod_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1298,7 +1301,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/minimum_steiner_tree.test.cpp
     title: test/yosupo/new/minimum_steiner_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/pfaffian_of_matrix.test.cpp
     title: test/yosupo/new/pfaffian_of_matrix.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1479,6 +1482,9 @@ data:
     path: test/yosupo/string/number_of_substrings.test.cpp
     title: test/yosupo/string/number_of_substrings.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/string/runenumerate.test.cpp
+    title: test/yosupo/string/runenumerate.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/string/suffixarray.test.cpp
     title: test/yosupo/string/suffixarray.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1571,9 +1577,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki/855_DynamicSegTree.test.cpp
     title: test/yuki/855_DynamicSegTree.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"template/out.hpp\"\n\n#include <bits/stdc++.h>\n#include\
@@ -2141,6 +2147,7 @@ data:
   - string/WildcardPatternMatching.hpp
   - string/RunLength.hpp
   - string/RollingHash.hpp
+  - string/RunEnumerate.hpp
   - string/LongestIncreasingSubsequence.hpp
   - string/AhoCorasick.hpp
   - string/Parser.hpp
@@ -2151,7 +2158,7 @@ data:
   - string/Manacher.hpp
   - string/LyndonFactorization.hpp
   timestamp: '2026-09-12 01:05:48+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yuki/1469-RunLength.test.cpp
   - test/yuki/1601-RangeSet.test.cpp
@@ -2443,6 +2450,7 @@ data:
   - test/yosupo/string/enumerate_palindromes.test.cpp
   - test/yosupo/string/number_of_substrings.test.cpp
   - test/yosupo/string/wildcard_pattern_matching.test.cpp
+  - test/yosupo/string/runenumerate.test.cpp
   - test/yosupo/string/zalgorithm.test.cpp
   - test/yosupo/string/lyndon_factorization.test.cpp
   - test/yosupo/string/suffixarray.test.cpp
