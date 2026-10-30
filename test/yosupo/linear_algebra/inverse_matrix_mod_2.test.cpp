@@ -10,13 +10,13 @@ int main() {
     matx A(N, N);
     rep (i, N) rep (j, N) {
         char c; scan >> c;
-        A.get(i, j) = c - '0';
+        A[i][j] = c - '0';
     }
     auto res = inverse(A);
     if (res.height() == 0) prints(-1);
     else {
         rep (i, N) {
-            rep (j, N) printer << res.get(i, j);
+            rep (j, N) printer << res[i][j];
             printer << '\n';
         }
     }

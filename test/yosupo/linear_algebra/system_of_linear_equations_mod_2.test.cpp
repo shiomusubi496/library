@@ -9,7 +9,7 @@ int main() {
     Matrix<bool> A(N, M);
     rep (i, N) rep (j, M) {
         char c; scan >> c;
-        A.get(i, j) = c - '0';
+        A[i][j] = c - '0';
     }
     vector<bool> B(N);
     rep (i, N) {
@@ -24,8 +24,9 @@ int main() {
     prints(le.dimension());
     for (auto b : le.get_solution()) printer << b;
     prints();
-    for (const auto& v : le.get_solution_space()) {
-        for (auto b : v) printer << b;
+    auto m = le.get_solution_space();
+    rep (i, m.size()) {
+        for (auto b : m[i]) printer << b;
         prints();
     }
 }

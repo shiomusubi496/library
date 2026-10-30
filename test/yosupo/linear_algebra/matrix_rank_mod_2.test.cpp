@@ -9,7 +9,7 @@ int main() {
     matx A(N, M);
     rep (i, N) rep (j, M) {
         char c; scan >> c;
-        A.get(i, j) = c - '0';
+        A[i][j] = c - '0';
     }
     prints(A.rank());
 }

@@ -10,7 +10,7 @@ int main() {
     matx A(N, N);
     rep (i, N) rep (j, N) {
         char c; scan >> c;
-        A.get(i, j) = c - '0';
+        A[i][j] = c - '0';
     }
     prints(determinant(A));
 }
